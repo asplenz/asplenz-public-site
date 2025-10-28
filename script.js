@@ -62,14 +62,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const message = formData.get('message');
 
             // Simple validation
-            if (!name || !email || !message) {
-                alert('Please fill in all fields.');
+            const missingFields = [];
+            if (!name) missingFields.push('Name');
+            if (!email) missingFields.push('Email');
+            if (!message) missingFields.push('Message');
+            
+            if (missingFields.length > 0) {
+                alert('Please fill in the following fields: ' + missingFields.join(', '));
                 return;
             }
 
             // In a real application, you would send this data to a server
             // For now, we'll just show a success message
-            alert(`Thank you, ${name}! Your message has been received. We'll get back to you at ${email} soon.`);
+            alert('Thank you! Your message has been received. We\'ll get back to you soon.');
             
             // Reset form
             contactForm.reset();
