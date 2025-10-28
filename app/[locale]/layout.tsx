@@ -2,6 +2,7 @@ import '../globals.css';
 import React from 'react';
 import { dict, Locale } from '../../lib/dictionaries';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const dynamicParams = false;
 
@@ -23,15 +24,40 @@ export default function LocaleLayout({
     <html lang={locale}>
       <body>
         <div className="container">
-          <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12}}>
-            <div className="kicker">{d.brand}</div>
-            <nav className="lang">
-              <Link href="/fr" className={locale==='fr' ? 'active' : ''}>FR</Link>
+          {/* --- Header --- */}
+          <header
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: 24,
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <Image
+                src="/logo.png"
+                alt="Asplenz"
+                width={40}
+                height={40}
+                priority
+              />
+              <div className="kicker">{d.brand}</div>
+            </div>
+
+            <nav className="lang" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Link href="/fr" className={locale === 'fr' ? 'active' : ''}>FR</Link>
               <span>·</span>
-              <Link href="/en" className={locale==='en' ? 'active' : ''}>EN</Link>
+              <Link href="/en" className={locale === 'en' ? 'active' : ''}>EN</Link>
             </nav>
-          </div>
+          </header>
+
+          {/* --- Main content --- */}
           {children}
+
+          {/* --- Footer --- */}
+          <footer style={{ marginTop: 40, textAlign: 'center', fontSize: 12, color: '#777' }}>
+            © {new Date().getFullYear()} Asplenz. All rights reserved.
+          </footer>
         </div>
       </body>
     </html>
