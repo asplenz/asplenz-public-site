@@ -1,0 +1,42 @@
+# Node / package managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Next.js
+.next/
+.next-static/
+out/
+dist/
+build/
+
+# Env & secrets
+.env*
+!.env.example
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Vercel / Turborepo
+.vercel/
+.turbo/
+
+# Tests / coverage
+coverage/
+
+# Local caches
+*.log
+
+# Generated archives/binaries
+*.zip
+*.tar
+*.gz
+*.7z
