@@ -1,0 +1,82 @@
+Ajouter un calendrier 
+
+1) Ajoute l’URL de ton agenda
+
+Sur Vercel (ou .env.local) :
+
+NEXT_PUBLIC_SCHEDULING_URL=https://calendly.com/ton-agenda/30min
+
+
+Utilise NEXT_PUBLIC_… pour pouvoir l’utiliser côté client.
+
+2) Crée une page “Book a call” localisée
+
+app/[locale]/book/page.tsx
+
+'use client';
+import React from 'react';
+import { Locale, dict } from '../../../lib/dictionaries';
+
+export default function BookPage({ params }: { params: { locale: Locale } }) {
+  const d = dict[params.locale];
+  const url = process.env.NEXT_PUBLIC_SCHEDULING_URL || '';
+
+  return (
+    <main className="section">
+      <h2>{params.locale === 'fr' ? 'Planifier un échange' : 'Book a call'}</h2>
+      {!url ? (
+        <p style={{color:'#f99'}}>
+          {params.locale === 'fr'
+            ? 'Le lien de prise de rendez-vous est manquant. Définis NEXT_PUBLIC_SCHEDULING_URL.'
+            : 'Scheduling link missing. Set NEXT_PUBLIC_SCHEDULING_URL.'}
+        </p>
+      ) : (
+        <iframe
+          src={url}
+          style={{ width: '100%', height: '820px', border: '0', borderRadius: 12 }}
+          allow="camera; microphone; fullscreen; display-capture; clipboard-read; clipboard-write"
+        />
+      )}
+    </main>
+  );
+}
+
+3) Fais pointer les boutons “Planifier un échange / Book a call”
+Option A — Lien direct vers la page “book”
+
+Dans app/[locale]/page.tsx, remplace le bouton du Hero :
+
+<a href={`/${params.locale}/book`} className="button">
+  {d.contact_btn}
+</a>
+
+
+Dans la section CTA, remplace les liens similaires :
+
+<a href={`/${params.locale}/book`} className="button">
+  {d.cta1_btn}
+</a>
+
+
+…et idem pour les autres CTA si tu veux qu’ils mènent à la prise de RDV.
+
+Option B — Lien externe direct
+
+Si tu préfères ouvrir Calendly directement (sans page intermédiaire) :
+
+<a href={process.env.NEXT_PUBLIC_SCHEDULING_URL} target="_blank" rel="noopener" className="button">
+  {d.contact_btn}
+</a>
+
+4) (Facultatif) Garde le formulaire de contact
+
+Laisse la section “Contact” en bas pour les messages hors prise de rendez-vous.
+Tu peux aussi renommer le bouton principal en “Planifier un appel” et laisser “Demander une proposition” pointer sur le formulaire.
+
+5) Résumé ultra-court
+
+Ajoute NEXT_PUBLIC_SCHEDULING_URL (Calendly/Cal.com/Google).
+
+Crée /[locale]/book avec l’iframe.
+
+Fais pointer tous les boutons “Planifier un échange / Book a call” vers /{locale}/book.

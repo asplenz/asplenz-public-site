@@ -3,15 +3,16 @@ import type { NextRequest } from 'next/server';
 import * as parser from 'accept-language-parser';
 
 const locales = ['fr', 'en'] as const;
-const defaultLocale = 'fr';
+const defaultLocale = 'en';
 
 // NEW: regex pour fichiers statiques (public)
 const PUBLIC_FILE = /\.(.*)$/;
 
 function getLocale(req: NextRequest) {
-  const header = req.headers.get('accept-language') || '';
+  /*const header = req.headers.get('accept-language') || '';
   const langs = parser.parse(header).map(l => l.code).filter(Boolean) as string[];
-  for (const l of langs) if (locales.includes(l as any)) return l;
+  console.log('Detected languages from header:', langs);
+  for (const l of langs) if (locales.includes(l as any)) return l;*/
   return defaultLocale;
 }
 
