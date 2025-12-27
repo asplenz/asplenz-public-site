@@ -4,53 +4,59 @@ export const dict = {
   fr: {
     brand: 'Asplenz',
 
-    hero_title: 'Lorsqu’une décision IA est remise en question, pouvez-vous répondre de façon défendable ?',
+    // HERO
+    hero_title: 'Des preuves à valeur probante pour les systèmes d’IA',
     hero_lead:
-      'Dans les environnements régulés et à forts enjeux, une question s’impose souvent a posteriori. Être capable de rendre compte d’un cas précis, à un instant précis, lorsque l’examen devient exigeant.',
-    hero_claim: 'Horizon est conçu pour vous aider à apporter une réponse défendable à cette question.',
-    contact_btn: 'Nous contacter',
+      'Les systèmes d’IA produisent ou soutiennent des décisions à forts enjeux. Lorsqu’une décision est contestée, les organisations se retrouvent souvent démunies face à l’absence de preuves opposables à l’échelle du cas individuel.',
+    hero_claim:
+      'Horizon explore comment rendre le comportement réel des systèmes d’IA observable, reconstructible et imputable, sans intervenir dans la génération.',
+    contact_btn: 'Entrer en contact',
 
-    phases_title: 'Quand cela arrive',
-    p1_title: 'Lorsqu’un cas précis est examiné',
+    // PROBLEM
+    phases_title: 'Le problème',
+    p1_title: 'Quand l’examen porte sur une décision précise',
     p1_text:
-      'Lors d’un audit, d’un incident ou d’un litige, l’attention se porte sur un cas concret. Dans ces moments, les éléments habituels comme les processus, les rapports ou les indicateurs ne suffisent pas toujours à répondre aux questions qui comptent.',
-    p1_list_1: 'Un résultat précis est questionné',
-    p1_list_2: 'Le contexte exact devient central',
-    p1_list_3: 'L’explication doit résister à l’examen',
-    p1_result: 'Enjeu',
+      'La gouvernance de l’IA repose largement sur des modèles, des métriques et des comportements agrégés. Or, un audit, un incident ou un litige ne porte pas sur une moyenne. La question posée est : "Que s’est-il passé dans ce cas précis ?"',
+    p1_list_1: 'Le monitoring montre des tendances, pas des faits',
+    p1_list_2: 'L’évaluation des modèles ne permet pas de reconstruire le contexte décisionnel',
+    p1_list_3: 'Les logs sont fragmentés et rarement exploitables par un tiers auditeur',
+    p1_result: 'Constat',
     p1_result_text:
-      'Dans ces situations, la confiance repose sur la capacité à répondre de manière claire et défendable.',
+      'La reconstruction a posteriori est lente, fragile et techniquement contestable.',
 
+    // HORIZON
     p2_title: 'Horizon',
     p2_text:
-      'Horizon est en cours de développement. Nous menons des échanges confidentiels avec des équipes opérant des systèmes IA critiques afin de comprendre leurs attentes et leurs contraintes lorsqu’un cas précis doit être expliqué sous examen.',
-    p2_list_1: 'Échanges confidentiels',
-    p2_list_2: 'Cas d’usage à forts enjeux',
-    p2_list_3: 'Contraintes audit, risque et gouvernance',
-    p2_list_4: 'Clarification des attentes en situation d’examen',
+      'Horizon repose sur une séparation stricte : la preuve décrit ce qui s’est réellement produit ; l’évaluation fournit les signaux pour éclairer le jugement humain.',
+    p2_list_1: 'La preuve est factuelle, intègre et invariante',
+    p2_list_2: 'L’évaluation est indicative et évolue selon les critères de l’organisation',
+    p2_list_3: 'Le jugement humain conserve l’autorité finale',
+    p2_list_4: 'L’artefact de preuve, et non le tableau de bord, devient l’objet de l’audit',
     p2_note:
-      'Note. Nous ne divulguons pas notre méthodologie publiquement. Les échanges se font au cas par cas.',
+      'Horizon n’est ni un outil de monitoring, ni un évaluateur de modèles, ni un système de contrôle à l’exécution.',
 
-    cta_title: 'Échanger',
+    // CTA
+    cta_title: 'Engager la discussion',
     cta1_title: 'Conversation exploratoire',
     cta1_text:
-      'Un échange confidentiel pour comprendre votre contexte et la nature des questions auxquelles vous devez pouvoir répondre lorsque vos systèmes IA sont examinés.',
+      'Un échange confidentiel pour confronter vos pratiques actuelles de gouvernance aux exigences réelles de l’examen d’une décision IA individuelle.',
     cta1_deliverable: 'Objectif',
-    cta1_result: 'Clarification des enjeux',
+    cta1_result: 'Identifier les zones de risque et les écarts d’auditabilité',
     cta1_btn: 'Planifier un échange',
 
-    cta2_title: 'White paper',
+    cta2_title: 'Note de cadrage',
     cta2_text:
-      'Un cadre structurel sur la gouvernance IA et les questions qui émergent lorsque des décisions IA sont examinées a posteriori.',
+      'Un document de réflexion approfondi sur la distinction entre signaux (monitoring) et preuves, et sur les attentes de l’audit face aux systèmes d’IA.',
     cta2_deliverables: 'Contenu',
-    cta2_result: 'Clarification du contexte et des questions clés',
-    cta2_btn: 'Recevoir le document',
+    cta2_result: 'Alignement conceptuel et technique',
+    cta2_btn: 'Recevoir la note',
 
-    cta3_title: 'Design partner (sur sélection)',
+    cta3_title: 'Partenaires pilotes',
     cta3_text:
-      'Pour des organisations opérant des systèmes IA à forts enjeux et souhaitant explorer, de manière confidentielle, les attentes et les contraintes lorsque des cas précis sont examinés.',
+      'Pour les organisations opérant des systèmes d’IA critiques souhaitant co-définir les standards de la preuve décisionnelle exploitable.',
     cta3_btn: 'Manifester votre intérêt',
 
+    // CONTACT
     contact_title: 'Contact',
     contact_intro: 'Pour toute demande ou échange confidentiel :',
     contact_email: 'contact@asplenz.com',
@@ -62,7 +68,7 @@ export const dict = {
     form_send: 'Envoyer',
     form_sending: 'Envoi en cours…',
     form_sent: 'Message envoyé. Nous revenons vers vous rapidement.',
-    form_error: 'Erreur',
+    form_error: 'Erreur lors de l’envoi',
     form_policy:
       'En soumettant ce formulaire, vous acceptez que vos informations soient utilisées pour vous recontacter.',
 
@@ -72,53 +78,59 @@ export const dict = {
   en: {
     brand: 'Asplenz',
 
-    hero_title: 'When an AI decision is challenged, can you provide a defensible account?',
+    // HERO
+    hero_title: 'Decision-grade evidence for AI systems',
     hero_lead:
-      'In regulated and high-stakes environments, the hardest questions often arise after the fact. Being able to account for a specific case, at a specific time, when scrutiny is high.',
-    hero_claim: 'Horizon is designed to help provide a defensible answer when that question arises.',
-    contact_btn: 'Contact us',
+      'AI systems increasingly make or support high-stakes decisions. When a decision is challenged, organizations often find themselves without defensible evidence at the individual case level.',
+    hero_claim:
+      'Horizon explores how AI behavior can be made observable, reconstructible, and accountable without intervening in generation.',
+    contact_btn: 'Get in touch',
 
-    phases_title: 'When it happens',
-    p1_title: 'When a specific case is examined',
+    // PROBLEM
+    phases_title: 'The problem',
+    p1_title: 'When scrutiny focuses on a single decision',
     p1_text:
-      'In audits, incidents, or disputes, attention narrows to a concrete case. In those moments, the usual elements such as processes, reports, and indicators are not always sufficient to answer the questions that matter.',
-    p1_list_1: 'A specific outcome is questioned',
-    p1_list_2: 'The exact context becomes central',
-    p1_list_3: 'The account must hold under scrutiny',
-    p1_result: 'What is at stake',
+      'Most AI governance practices focus on models, metrics, and aggregate behavior. Audits, incidents, and disputes don’t ask for averages. They ask: "What happened here?"',
+    p1_list_1: 'Monitoring shows trends, not facts',
+    p1_list_2: 'Model evaluation cannot reconstruct the specific decision context',
+    p1_list_3: 'Logs are fragmented and rarely audit-ready for third parties',
+    p1_result: 'Reality',
     p1_result_text:
-      'In these situations, trust depends on the ability to respond clearly and defensibly.',
+      'After-the-fact reconstruction is slow, fragile, and technically contested.',
 
+    // HORIZON
     p2_title: 'Horizon',
     p2_text:
-      'Horizon is currently in development. We engage in confidential conversations with teams operating critical AI systems to understand expectations and constraints when a specific case must be accounted for under scrutiny.',
-    p2_list_1: 'Confidential conversations',
-    p2_list_2: 'High-stakes use cases',
-    p2_list_3: 'Audit, risk and governance constraints',
-    p2_list_4: 'Clarifying expectations under scrutiny',
+      'Horizon is built on a clear separation: evidence describes what actually happened; evaluation provides signals to support human judgment.',
+    p2_list_1: 'Evidence is factual, untampered, and invariant',
+    p2_list_2: 'Evaluation is indicative and evolves with organizational criteria',
+    p2_list_3: 'Human judgment remains the final authority',
+    p2_list_4: 'The evidence artefact, not the dashboard, becomes the object of audit',
     p2_note:
-      'Note. We do not disclose our methodology publicly. Discussions are handled case by case.',
+      'Horizon is not a monitoring tool, a model evaluator, or a runtime control system.',
 
+    // CTA
     cta_title: 'Engage',
     cta1_title: 'Exploratory conversation',
     cta1_text:
-      'A confidential discussion to understand your context and the kinds of questions you must be able to answer when AI decisions are examined.',
+      'A confidential discussion to compare current governance practices with what examining an individual AI decision actually requires.',
     cta1_deliverable: 'Goal',
-    cta1_result: 'Clarification of key considerations',
-    cta1_btn: 'Book a call',
+    cta1_result: 'Identify risk areas and auditability gaps',
+    cta1_btn: 'Book a conversation',
 
-    cta2_title: 'White paper',
+    cta2_title: 'Positioning note',
     cta2_text:
-      'A structural framework on AI governance and the questions that emerge when AI decisions are examined after the fact.',
+      'An in-depth framing document on the difference between signals (monitoring) and evidence, and what audit truly expects from AI systems.',
     cta2_deliverables: 'Content',
-    cta2_result: 'Clarification of context and key questions',
-    cta2_btn: 'Request the paper',
+    cta2_result: 'Conceptual and technical alignment',
+    cta2_btn: 'Request the note',
 
-    cta3_title: 'Design partner (by application)',
+    cta3_title: 'Design partners',
     cta3_text:
-      'For organisations operating high-stakes AI systems and interested in a confidential exploration of expectations and constraints when specific cases are examined.',
+      'For organizations operating high-stakes AI systems and interested in shaping what decision-grade evidence should mean in practice.',
     cta3_btn: 'Express interest',
 
+    // CONTACT
     contact_title: 'Contact',
     contact_intro: 'For any request or confidential discussion:',
     contact_email: 'contact@asplenz.com',
@@ -130,7 +142,7 @@ export const dict = {
     form_send: 'Send',
     form_sending: 'Sending…',
     form_sent: 'Message sent. We’ll get back to you shortly.',
-    form_error: 'Error',
+    form_error: 'Error while sending',
     form_policy:
       'By submitting this form, you agree to be contacted regarding your request.',
 
