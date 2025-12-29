@@ -43,6 +43,22 @@ export default function Page({ params }: { params: { locale: Locale } }) {
         </div>
       </section>
 
+      <section className="section" id="regulatory">
+        <h2>{d.regulatory_title}</h2>
+        <p>{d.regulatory_intro}</p>
+        <div className="grid grid-2" style={{marginTop: 14}}>
+          <div className="card">
+            <h3>{d.reg1_title}</h3>
+            <p>{d.reg1_text}</p>
+          </div>
+          <div className="card">
+            <h3>{d.reg2_title}</h3>
+            <p>{d.reg2_text}</p>
+          </div>
+        </div>
+        <p style={{marginTop: 16}}><strong>{d.regulatory_note}</strong></p>
+      </section>
+
       <section className="section" id="cta">
         <h2>{d.cta_title}</h2>
         <div className="grid grid-2" style={{marginTop:14}}>

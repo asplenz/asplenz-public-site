@@ -5,56 +5,69 @@ export const dict = {
     brand: 'Asplenz',
 
     // HERO
-    hero_title: 'Des preuves à valeur probante pour les systèmes d’IA',
+    hero_title: 'Des preuves à valeur probante pour les systèmes d\'IA',
     hero_lead:
-      'Les systèmes d’IA produisent ou soutiennent des décisions à forts enjeux. Lorsqu’une décision est contestée, les organisations se retrouvent souvent démunies face à l’absence de preuves opposables à l’échelle du cas individuel.',
+      'Face à un examen réglementaire portant sur une décision IA spécifique, pouvez-vous fournir les faits qui prouvent que la gouvernance a été respectée ?',
     hero_claim:
-      'Horizon explore comment rendre le comportement réel des systèmes d’IA observable, reconstructible et imputable, sans intervenir dans la génération.',
+      'Horizon fournit des preuves conçues pour l\'audit, la défense juridique et la conformité réglementaire.',
     contact_btn: 'Entrer en contact',
 
     // PROBLEM
     phases_title: 'Le problème',
-    p1_title: 'Quand l’examen porte sur une décision précise',
+    p1_title: 'Quand une décision est contestée',
     p1_text:
-      'La gouvernance de l’IA repose largement sur des modèles, des métriques et des comportements agrégés. Or, un audit, un incident ou un litige ne porte pas sur une moyenne. La question posée est : "Que s’est-il passé dans ce cas précis ?"',
-    p1_list_1: 'Le monitoring montre des tendances, pas des faits',
-    p1_list_2: 'L’évaluation des modèles ne permet pas de reconstruire le contexte décisionnel',
-    p1_list_3: 'Les logs sont fragmentés et rarement exploitables par un tiers auditeur',
-    p1_result: 'Constat',
+      'La gouvernance de l\'IA se concentre généralement sur des métriques agrégées et la documentation des politiques. Mais lorsqu\'une décision est contestée par les régulateurs, les équipes juridiques ou l\'audit interne, les organisations ont besoin de preuves au niveau du cas individuel.',
+    p1_list_1: 'Quel input a été fourni à l\'AI pour CETTE décision ?',
+    p1_list_2: 'Quelles règles de gouvernance ont été évaluées pour CE cas ?',
+    p1_list_3: 'Pouvez-vous reconstruire ce que l\'AI a produit ?',
+    p1_result: 'Réalité',
     p1_result_text:
-      'La reconstruction a posteriori est lente, fragile et techniquement contestable.',
+      'Les outils d\'observabilité traditionnels fournissent des logs et des tableaux de bord. Ils ne fournissent pas de preuves juridiquement opposables.',
 
     // HORIZON
     p2_title: 'Horizon',
     p2_text:
-      'Horizon repose sur une séparation stricte : la preuve décrit ce qui s’est réellement produit ; l’évaluation fournit les signaux pour éclairer le jugement humain.',
-    p2_list_1: 'La preuve est factuelle, intègre et invariante',
-    p2_list_2: 'L’évaluation est indicative et évolue selon les critères de l’organisation',
-    p2_list_3: 'Le jugement humain conserve l’autorité finale',
-    p2_list_4: 'L’artefact de preuve, et non le tableau de bord, devient l’objet de l’audit',
+      'Horizon sépare la preuve (enregistrements factuels et immuables) de l\'évaluation (signaux interprétatifs).',
+    p2_list_1: 'Les enregistrements de preuve sont conçus pour la vérification par des tiers',
+    p2_list_2: 'Les enregistrements de preuve sont conçus pour les exigences institutionnelles',
+    p2_list_3: 'Le jugement humain conserve l\'autorité finale',
+    p2_list_4: 'Horizon fournit des preuves à valeur probante lorsque les décisions sont contestées',
     p2_note:
-      'Horizon n’est ni un outil de monitoring, ni un évaluateur de modèles, ni un système de contrôle à l’exécution.',
+      'Horizon n\'est ni un outil de monitoring, ni un évaluateur de modèles.',
+
+    // REGULATORY CONTEXT
+    regulatory_title: 'Contexte réglementaire',
+    regulatory_intro:
+      'Les institutions financières opérant sous le règlement DORA doivent démontrer la gouvernance des systèmes ICT, y compris les systèmes d\'IA utilisés pour le scoring crédit, la détection de fraude et la gestion des risques.',
+    reg1_title: 'DORA (Supervision continue)',
+    reg1_text:
+      'Les outils DORA génériques couvrent la résilience des infrastructures. Ils ne fournissent pas de traces d\'audit pour les décisions IA individuelles. Horizon complète votre stack de conformité avec des preuves pour les systèmes AI.',
+    reg2_title: 'EU AI Act (Août 2026)',
+    reg2_text:
+      'Les organisations déployant des systèmes d\'IA à haut risque doivent se préparer pour le règlement européen sur l\'IA (effectif août 2026), qui exige la conservation d\'enregistrements au niveau des cas individuels.',
+    regulatory_note:
+      'Il ne s\'agit pas de conformité dictée par des échéances. Il s\'agit de construire des preuves de gouvernance durables qui résistent à l\'examen réglementaire, aujourd\'hui et à l\'avenir.',
 
     // CTA
     cta_title: 'Engager la discussion',
-    cta1_title: 'Conversation exploratoire',
+    cta1_title: 'Planifier une conversation',
     cta1_text:
-      'Un échange confidentiel pour confronter vos pratiques actuelles de gouvernance aux exigences réelles de l’examen d’une décision IA individuelle.',
-    cta1_deliverable: 'Objectif',
-    cta1_result: 'Identifier les zones de risque et les écarts d’auditabilité',
-    cta1_btn: 'Planifier un échange',
+      'Horizon est conçu pour les entreprises opérant des systèmes d\'IA à forts enjeux dans des secteurs réglementés.',
+    cta1_deliverable: '30 minutes',
+    cta1_result: 'discussion exploratoire',
+    cta1_btn: 'Planifier une conversation',
 
-    cta2_title: 'Note de cadrage',
+    cta2_title: 'Aperçu technique',
     cta2_text:
-      'Un document de réflexion approfondi sur la distinction entre signaux (monitoring) et preuves, et sur les attentes de l’audit face aux systèmes d’IA.',
-    cta2_deliverables: 'Contenu',
-    cta2_result: 'Alignement conceptuel et technique',
-    cta2_btn: 'Recevoir la note',
+      'Demandez la documentation détaillée sur la manière dont Horizon fournit des preuves conçues pour l\'audit.',
+    cta2_deliverables: 'Accès par email',
+    cta2_result: 'aperçu technique',
+    cta2_btn: 'Demander l\'aperçu',
 
-    cta3_title: 'Partenaires pilotes',
+    cta3_title: 'Programme Design Partner',
     cta3_text:
-      'Pour les organisations opérant des systèmes d’IA critiques souhaitant co-définir les standards de la preuve décisionnelle exploitable.',
-    cta3_btn: 'Manifester votre intérêt',
+      'Pour les praticiens institutionnels souhaitant définir ce que devrait signifier une preuve décisionnelle exploitable.',
+    cta3_btn: 'Se renseigner sur le programme Design Partner',
 
     // CONTACT
     contact_title: 'Contact',
@@ -68,7 +81,7 @@ export const dict = {
     form_send: 'Envoyer',
     form_sending: 'Envoi en cours…',
     form_sent: 'Message envoyé. Nous revenons vers vous rapidement.',
-    form_error: 'Erreur lors de l’envoi',
+    form_error: 'Erreur lors de l\'envoi',
     form_policy:
       'En soumettant ce formulaire, vous acceptez que vos informations soient utilisées pour vous recontacter.',
 
@@ -81,54 +94,67 @@ export const dict = {
     // HERO
     hero_title: 'Decision-grade evidence for AI systems',
     hero_lead:
-      'AI systems increasingly make or support high-stakes decisions. When a decision is challenged, organizations often find themselves without defensible evidence at the individual case level.',
+      'When regulatory examination focuses on a specific AI decision, can you provide the facts that prove governance was followed?',
     hero_claim:
-      'Horizon explores how AI behavior can be made observable, reconstructible, and accountable without intervening in generation.',
+      'Horizon provides evidence designed for audit, legal defense, and regulatory compliance.',
     contact_btn: 'Get in touch',
 
     // PROBLEM
     phases_title: 'The problem',
-    p1_title: 'When scrutiny focuses on a single decision',
+    p1_title: 'When a decision is challenged',
     p1_text:
-      'Most AI governance practices focus on models, metrics, and aggregate behavior. Audits, incidents, and disputes don’t ask for averages. They ask: "What happened here?"',
-    p1_list_1: 'Monitoring shows trends, not facts',
-    p1_list_2: 'Model evaluation cannot reconstruct the specific decision context',
-    p1_list_3: 'Logs are fragmented and rarely audit-ready for third parties',
+      'AI governance typically focuses on aggregate metrics and policy documentation. But when a decision is challenged by regulators, legal teams, or internal audit, organizations need case-level evidence.',
+    p1_list_1: 'What input was provided to the AI for THIS decision?',
+    p1_list_2: 'Which governance rules were evaluated for THIS case?',
+    p1_list_3: 'Can you reconstruct what the AI produced?',
     p1_result: 'Reality',
     p1_result_text:
-      'After-the-fact reconstruction is slow, fragile, and technically contested.',
+      'Traditional observability tools provide logs and dashboards. They don\'t provide legally defensible evidence.',
 
     // HORIZON
     p2_title: 'Horizon',
     p2_text:
-      'Horizon is built on a clear separation: evidence describes what actually happened; evaluation provides signals to support human judgment.',
-    p2_list_1: 'Evidence is factual, untampered, and invariant',
-    p2_list_2: 'Evaluation is indicative and evolves with organizational criteria',
+      'Horizon separates evidence (factual, immutable records) from evaluation (interpretive signals).',
+    p2_list_1: 'Evidence records are designed for third-party verification',
+    p2_list_2: 'Evidence records are designed for institutional requirements',
     p2_list_3: 'Human judgment remains the final authority',
-    p2_list_4: 'The evidence artefact, not the dashboard, becomes the object of audit',
+    p2_list_4: 'Horizon provides audit-grade evidence when decisions are challenged',
     p2_note:
-      'Horizon is not a monitoring tool, a model evaluator, or a runtime control system.',
+      'Horizon is not a monitoring tool or model evaluator.',
+
+    // REGULATORY CONTEXT
+    regulatory_title: 'Regulatory context',
+    regulatory_intro:
+      'Financial institutions operating under DORA must demonstrate governance of ICT systems, including AI systems used for credit scoring, fraud detection, and risk management.',
+    reg1_title: 'DORA (Ongoing supervision)',
+    reg1_text:
+      'Generic DORA compliance tools address infrastructure resilience. They don\'t provide audit trails for individual AI decisions. Horizon completes your compliance stack with evidence for AI systems.',
+    reg2_title: 'EU AI Act (August 2026)',
+    reg2_text:
+      'Organizations deploying high-risk AI systems must prepare for the EU AI Act (effective August 2026), which requires case-level record-keeping.',
+    regulatory_note:
+      'This isn\'t about deadline-driven compliance. It\'s about building durable governance evidence that survives regulatory examination, today and in the future.',
 
     // CTA
     cta_title: 'Engage',
-    cta1_title: 'Exploratory conversation',
+    cta1_title: 'Book a conversation',
     cta1_text:
-      'A confidential discussion to compare current governance practices with what examining an individual AI decision actually requires.',
-    cta1_deliverable: 'Goal',
-    cta1_result: 'Identify risk areas and auditability gaps',
-    cta1_btn: 'Book a conversation',
+      'Horizon is designed for enterprises operating high-stakes AI systems in regulated industries.',
+    cta1_deliverable: '30-minute',
+    cta1_result: 'exploratory discussion',
+    cta1_btn: 'Book conversation',
 
-    cta2_title: 'Positioning note',
+    cta2_title: 'Technical overview',
     cta2_text:
-      'An in-depth framing document on the difference between signals (monitoring) and evidence, and what audit truly expects from AI systems.',
-    cta2_deliverables: 'Content',
-    cta2_result: 'Conceptual and technical alignment',
-    cta2_btn: 'Request the note',
+      'Request detailed documentation on how Horizon provides evidence designed for audit.',
+    cta2_deliverables: 'Email-gated',
+    cta2_result: 'technical overview',
+    cta2_btn: 'Request overview',
 
-    cta3_title: 'Design partners',
+    cta3_title: 'Design partner inquiry',
     cta3_text:
-      'For organizations operating high-stakes AI systems and interested in shaping what decision-grade evidence should mean in practice.',
-    cta3_btn: 'Express interest',
+      'For institutional practitioners interested in shaping what decision-grade evidence should mean in practice.',
+    cta3_btn: 'Inquire about Design Partner program',
 
     // CONTACT
     contact_title: 'Contact',
@@ -141,7 +167,7 @@ export const dict = {
     form_message: 'Message',
     form_send: 'Send',
     form_sending: 'Sending…',
-    form_sent: 'Message sent. We’ll get back to you shortly.',
+    form_sent: 'Message sent. We\'ll get back to you shortly.',
     form_error: 'Error while sending',
     form_policy:
       'By submitting this form, you agree to be contacted regarding your request.',
