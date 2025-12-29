@@ -59,33 +59,31 @@ export default function Page({ params }: { params: { locale: Locale } }) {
         <p style={{marginTop: 16}}><strong>{d.regulatory_note}</strong></p>
       </section>
 
-      <section className="section" id="cta">
+      <section className="section" id="contact">
         <h2>{d.cta_title}</h2>
         <div className="grid grid-2" style={{marginTop:14}}>
           <div className="card">
             <h3>{d.cta1_title}</h3>
             <p>{d.cta1_text}</p>
             <p><span className="badge">{d.cta1_deliverable}</span> {d.cta1_result}</p>
-            <p><a href="#contact" className="button">{d.cta1_btn}</a></p>
           </div>
           <div className="card">
             <h3>{d.cta2_title}</h3>
             <p>{d.cta2_text}</p>
-            <p><span className="badge">{d.cta2_deliverables}</span>{d.cta2_result}</p>
-            <p><a href="#contact" className="button">{d.cta2_btn}</a></p>
+            <p><span className="badge">{d.cta2_deliverables}</span> {d.cta2_result}</p>
           </div>
         </div>
         <div className="card" style={{marginTop:16}}>
           <h3>{d.cta3_title}</h3>
           <p>{d.cta3_text}</p>
-          <p><a href="#contact" className="button">{d.cta3_btn}</a></p>
         </div>
-      </section>
 
-      <section id="contact" className="section">
-        <h2>{d.contact_title}</h2>
-        <p>{d.contact_intro} <strong>{d.contact_email}</strong> </p><p>{d.contact_or}</p>
-        <ContactForm dictKey={params.locale} />
+        <div style={{marginTop: 32}}>
+          <h3>{d.contact_title}</h3>
+          <p>{d.contact_intro} <strong>{d.contact_email}</strong></p>
+          <p>{d.contact_or}</p>
+          <ContactForm dictKey={params.locale} />
+        </div>
       </section>
 
       <footer className="footer">
