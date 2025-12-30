@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { i18n, type Locale } from '@/lib/i18n/config'
+import { i18n } from '@/lib/i18n/config'
 import '@/app/globals.css'
 
 export async function generateStaticParams() {
@@ -16,7 +16,7 @@ export default function RootLayout({
   params,
 }: {
   children: React.ReactNode
-  params: Promise<{ lang: Locale }>
+  params: Promise<{ lang: string }>
 }) {
   return (
     <html lang={params.then(p => p.lang).toString()}>
