@@ -1,49 +1,42 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import * as parser from 'accept-language-parser';
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+import { i18n } from './lib/i18n/config'
 
-const locales = ['fr', 'en'] as const;
-const defaultLocale = 'en';
+function getLocale(request: NextRequest): string {
+  const acceptLanguage = request.headers.get('accept-language')
 
-// NEW: regex pour fichiers statiques (public)
-const PUBLIC_FILE = /\.(.*)$/;
+  if (acceptLanguage) {
+    const preferredLocale = acceptLanguage
+      .split(',')
+      .map(lang => lang.split(';')[0].trim().toLowerCase())
+      .find(lang => {
+        return i18n.locales.some(locale => lang.startsWith(locale))
+      })
 
-function getLocale(req: NextRequest) {
-  /*const header = req.headers.get('accept-language') || '';
-  const langs = parser.parse(header).map(l => l.code).filter(Boolean) as string[];
-  console.log('Detected languages from header:', langs);
-  for (const l of langs) if (locales.includes(l as any)) return l;*/
-  return defaultLocale;
-}
-
-export function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
-
-  // Laisser passer API, Next internals, favicon & TOUS les fichiers publics (ex: /logo.jpeg)
-  if (
-    pathname.startsWith('/api') ||
-    pathname.startsWith('/_next') ||
-    pathname.startsWith('/favicon') ||
-    PUBLIC_FILE.test(pathname) // <= clé du correctif
-  ) {
-    return NextResponse.next();
+    if (preferredLocale) {
+      const locale = i18n.locales.find(l => preferredLocale.startsWith(l))
+      if (locale) return locale
+    }
   }
 
-  // Si l’URL n’a pas déjà un préfixe de locale, rediriger
-  const isLocalePrefixed = locales.some(
-    (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`)
-  );
-  if (!isLocalePrefixed) {
-    const locale = getLocale(req);
-    const url = req.nextUrl.clone();
-    url.pathname = `/${locale}${pathname}`;
-    return NextResponse.redirect(url);
-  }
-
-  return NextResponse.next();
+  return i18n.defaultLocale
 }
 
-// Option simple : faire matcher toutes les routes (le code ci-dessus filtre déjà les assets)
+export function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname
+
+  const pathnameIsMissingLocale = i18n.locales.every(
+    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  )
+
+  if (pathnameIsMissingLocale) {
+    const locale = getLocale(request)
+    return NextResponse.redirect(
+      new URL(`/${locale}${pathname}`, request.url)
+    )
+  }
+}
+
 export const config = {
-  matcher: ['/:path*'],
-};
+  matcher: ['/((?!api|_next/static|_next/image|images|favicon.ico).*)'],
+}

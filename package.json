@@ -1,22 +1,26 @@
 {
-  "name": "asplenz-site-i18n",
-  "version": "1.0.0",
+  "name": "horizon-website",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint"
   },
   "dependencies": {
-    "accept-language-parser": "1.5.0",
-    "next": "14.2.5",
-    "nodemailer": "6.9.14",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "next": "16.1.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
-    "@types/node": "24.9.1",
-    "@types/react": "19.2.2",
-    "typescript": "5.9.3"
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
