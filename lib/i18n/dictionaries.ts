@@ -1,296 +1,340 @@
-import type { Locale } from './config'
+import type { Locale } from "./config"
 
 const dictionaries = {
   en: {
     hero: {
-      headline: 'Prove what happened.',
-      subheadline: 'Not what should have happened.',
-      description: 'Horizon provides continuous oversight of AI decision behaviour, without influencing execution, and produces defensible evidence for individual AI decisions.',
-      clarifier: 'Not monitoring. Not judging outcomes. Not enforcing.',
-      microLine: 'Built for scrutiny, not demos.',
-      primaryCTA: 'Request a briefing',
-      secondaryCTA: 'Read the assurance philosophy',
+      headline: "Certainty for every automated decision.",
+      subheadline: "Reliable evidence for audit. Trusted signals for operations.",
+      description:
+        "Horizon is the trust infrastructure for automated decision-making. It captures and certifies your critical process history to produce indisputable evidence files. Built for high-stakes environments: AI systems, payment platforms, fraud detection, credit risk, and regulated workflows.",
+      clarifier: "Not a dashboard. Not a decision engine. No technical constraints on your runtime.",
+      microLine: "Built for the rigor of scrutiny, not for demos.",
+      primaryCTA: "Request a briefing",
+      secondaryCTA: "Read the evidence philosophy",
     },
     problem: {
-      title: 'The Problem',
-      subtitle: 'The missing capability in AI systems today',
-      paragraph1: 'Modern AI systems increasingly support or produce consequential decisions.\nWhen those systems are observed in operation, teams rely on dashboards, metrics, and alerts to understand behaviour in real time. This visibility is necessary, but it is not sufficient.',
-      paragraph2: 'When a specific decision is examined, the question changes:\nWhat exactly happened in this case?',
-      paragraph3: 'Most organizations can describe:',
+      title: "The Challenge",
+      subtitle: "The missing memory in today's automated systems",
+      paragraph1:
+        "Automated systems increasingly drive consequential outcomes. During operations, teams rely on global metrics and alerts to understand system health. This visibility is necessary, but it cannot justify a specific, individual action.",
+      paragraph2:
+        "When a single decision is challenged or audited, the question changes:\nWhy exactly did this happen in this specific case?",
+      paragraph3: "Most organizations can explain:",
       list1: [
-        'how systems behave on average',
-        'what controls and policies exist',
-        'what current indicators show',
+        "average system performance and behavior",
+        "general controls and policies in place",
+        "current operational indicators",
       ],
-      paragraph4: 'They often cannot demonstrate a single decision with stable, examinable facts.\nWhen challenged, teams reconstruct context from logs, configurations, and memory.',
+      paragraph4:
+        "They often struggle to isolate the exact facts of a single decision. Under scrutiny, teams are forced into slow, costly, and often incomplete reconstruction of events.",
     },
     consequence: {
-      title: 'The Consequence of Missing Proof',
-      paragraph1: 'When factual proof is missing:',
+      title: "The Risk of Uncertainty",
+      paragraph1: "Without immediately actionable proof:",
       list: [
-        'oversight relies on interpretation',
-        'incidents trigger manual reconstruction',
-        'audits depend on narrative coherence',
+        "oversight remains subjective and open to interpretation",
+        "incidents trigger complex manual investigations",
+        "compliance depends on narrative coherence rather than hard facts",
       ],
-      paragraph2: 'A decision can appear compliant and still be indefensible if it cannot be substantiated.\nThis gap is rarely visible during normal operations.\nIt becomes critical under scrutiny.',
+      paragraph2:
+        "A compliant decision can still be indefensible if it cannot be substantiated. This gap is rarely visible during normal operations, but it becomes critical the moment a regulator or auditor steps in.",
     },
     whatIs: {
-      title: 'What Horizon Is',
-      paragraph1: 'Horizon is an assurance capability designed to operate alongside AI systems without influencing their execution.\nIt provides continuous oversight of system behaviour while preserving factual evidence about individual decisions.',
-      paragraph2: 'Horizon does not guide, block, or optimize decisions.\nIt does not determine whether a decision is correct or acceptable.\nIt exists to make behaviour examinable, both during operation and under later scrutiny.',
+      title: "What Horizon Is",
+      paragraph1:
+        "Horizon is a responsibility layer designed to operate alongside your production systems without ever influencing or slowing down execution.\nIt certifies facts as they occur to create a protected, unalterable decision history.",
+      paragraph2:
+        "Horizon does not guide or modify your decisions.\nIts role is to preserve decision facts in a form that remains examinable later, even after your systems, policies, or vendors have changed.",
     },
     produces: {
-      title: 'What Horizon Produces',
-      paragraph1: 'For each AI-supported decision, Horizon ensures the existence of a decision-level assurance artefact.',
-      paragraph2: 'This artefact is designed to:',
+      title: "The Value Produced",
+      paragraph1:
+        "For every automated decision or regulated transaction step, Horizon produces a certified evidence file.",
+      paragraph2: "This file is designed to:",
       list: [
-        'anchor discussions in facts rather than interpretation',
-        'remain usable beyond the operational context',
-        'support independent examination',
+        "anchor discussions in objective facts rather than interpretation",
+        "be used by risk and audit teams with full autonomy",
+        "ensure total transparency for third parties (customers, regulators)",
       ],
-      paragraph3: 'The artefact is present before any incident, audit, or dispute.\nEvidence that must be assembled later is no longer evidence.',
-      paragraph4: 'The assurance artefact captures the factual elements necessary to reconstruct what occurred in a specific decision, without interpretation or post-processing.\nIt remains usable independently of Horizon.',
-      paragraph5: 'Horizon does not assemble evidence.\nIt ensures that evidence exists.',
+      paragraph3:
+        "The evidence exists before any dispute or audit arises.\nInformation that must be gathered after the fact is no longer evidence—it is a reconstruction.",
+      paragraph4:
+        "The file preserves what determined the decision: the inputs received, the criteria applied, and the observed results. It remains usable independently of your technical infrastructure.",
+      paragraph5:
+        "Horizon does not guess what happened.\nIt ensures that the reality of the facts is preserved.",
     },
     evidenceEval: {
-      title: 'Evidence and Evaluation',
-      paragraph1: 'Horizon is grounded in a strict separation.',
-      paragraph2: 'Evidence describes what actually occurred.\nEvaluation provides signals to support human judgment.',
-      paragraph3: 'Visibility and evaluation evolve over time.\nEvidence remains stable.',
-      paragraph4: 'Horizon never replaces human judgment.\nIt ensures that judgment can rely on facts.',
-      tagline: 'Signals suggest. Evidence proves.',
+      title: "Facts and Judgment",
+      paragraph1: "Horizon is grounded in a fundamental separation.",
+      paragraph2:
+        "Evidence describes what actually occurred and was recorded. The evaluation of that decision remains your professional or human prerogative, now backed by an unquestionable factual base.",
+      paragraph3:
+        "AI models and business rules evolve over time.\nPreserved evidence of what was done remains stable and definitive.",
+      paragraph4:
+        "Horizon never replaces human judgment.\nIt ensures that judgment can rely on certified, verifiable facts.",
+      tagline: "Monitoring helps you act. Horizon helps you prove.",
     },
     notIs: {
-      title: 'What Horizon Is Not',
-      paragraph1: 'To avoid ambiguity, Horizon is explicitly not:',
+      title: "What Horizon Is Not",
+      paragraph1: "Horizon occupies a unique place in your ecosystem:",
       list: [
-        'a monitoring platform',
-        'a performance or quality evaluator',
-        'an explainability interface',
-        'a runtime control or guardrail',
-        'a decision engine',
-        'a governance dashboard',
+        "not a monitoring or observability platform",
+        "not a performance or quality evaluator",
+        "not a runtime control or guardrail",
+        "not a decision engine",
+        "not a governance dashboard",
       ],
-      paragraph2: 'Horizon does not intervene in generation.\nIt observes, preserves, and attests.',
-      paragraph3: 'Horizon cannot be replicated by augmenting logs, adding explanations, or reconstructing decisions after the fact.',
+      paragraph2:
+        "Horizon does not intervene in execution.\nIt authenticates, protects, and attests to the integrity of your processes.",
+      paragraph3:
+        "It provides a guarantee that simple log accumulation or retrospective reconstruction cannot offer.",
     },
     relationship: {
-      title: 'Relationship to Existing Tooling',
-      paragraph1: 'Operational tools provide visibility, alerts, and control during execution.\nHorizon adds a different capability.',
-      paragraph2: 'It ensures that what happens at runtime can later be examined as evidence, without relying on dashboards, configurations, or vendor access.',
-      tagline1: 'Visibility is continuous.',
-      tagline2: 'Defensibility is permanent.',
+      title: "Strategic Complementarity",
+      paragraph1:
+        "Operational tools manage the present (alerts, performance).\nHorizon secures the past to protect your future (auditability, legal defense).",
+      paragraph2:
+        "By using Horizon, your production data becomes a trust asset. When a case is challenged later, your proof no longer depends on complex technical access or third-party vendors.",
+      tagline1: "Visibility is operational.",
+      tagline2: "Defensibility is strategic.",
     },
     assurance: {
-      title: 'Assurance Properties',
-      paragraph1: 'Assurance produced through Horizon is designed to be:',
+      title: "Assurance Properties",
+      paragraph1: "Evidence produced through Horizon is designed to be:",
       list: [
-        'scoped to individual decisions',
-        'consistent over time',
-        'interpretable without proprietary context',
-        'independently verifiable without the Horizon platform',
-        'suitable for audit, regulatory review, or legal scrutiny',
+        "directly linked to individual decisions or transaction steps",
+        "interpretable by non-technical stakeholders",
+        "usable independently of the original system",
+        "suitable for the strictest regulatory and legal scrutiny",
       ],
-      paragraph2: 'Interpretation does not depend on configuration or tuning.',
+      paragraph2:
+        "Proof validity is universal. It does not depend on technical tuning and remains explicit across all regulated industries.",
     },
     deployment: {
-      title: 'Deployment and Trust Boundaries',
-      paragraph1: 'Horizon operates within the organization\'s trust boundary.\nThe organization retains control over:',
-      list: [
-        'its systems',
-        'its data',
-        'its assurance material',
-      ],
-      paragraph2: 'Horizon does not require ongoing access to interpret or validate evidence.\nEvidence ownership remains with the organization.',
-      paragraph3: 'Horizon does not trigger mitigation.\nIt enables informed human response.',
+      title: "Sovereignty and Trust",
+      paragraph1:
+        "Horizon operates within your organization's trust boundary.\nThe organization retains absolute control over:",
+      list: ["its architecture", "its business data", "its evidence assets"],
+      paragraph2:
+        "You do not need us to validate or interpret your evidence.\nOwnership of the information remains 100% internal.",
+      paragraph3:
+        "Horizon is not an automated mitigation tool.\nIt enables informed human response when scrutiny arises.",
     },
     users: {
-      title: 'Intended Users',
-      paragraph1: 'Horizon is designed for teams responsible for oversight and accountability when AI decisions matter:',
+      title: "Intended Users",
+      paragraph1:
+        "Horizon is designed for leadership responsible for automated decisions and teams that must guarantee their compliance:",
       list: [
-        'Risk and Compliance',
-        'Internal Audit',
-        'AI Governance',
-        'Engineering teams operating AI systems at scale',
+        "Fraud and Payment teams securing disputes and chargebacks",
+        "AI Leads answering transparency and regulatory questions",
+        "Risk and Compliance teams automating oversight",
+        "Legal teams requiring admissible evidence",
+        "Engineering teams offloading audit-level data management",
       ],
-      paragraph2: 'Horizon creates a shared factual substrate across these functions.\nIt is built for environments where decisions may be challenged.',
+      paragraph2:
+        "Horizon creates a shared factual substrate.\nOne stream of truth supports both operational excellence and audit readiness.",
     },
     when: {
-      title: 'When Horizon Becomes Necessary',
-      paragraph1: 'Horizon is valuable before anything goes wrong.\nIt is valuable during normal operation and critical when scrutiny arises.',
-      paragraph2: 'It becomes necessary when:',
+      title: "When Horizon Becomes Essential",
+      paragraph1:
+        "The value of proof is built before anything goes wrong.",
+      paragraph2: "It becomes necessary when:",
       list: [
-        'individual AI decisions can be challenged',
-        'regulatory or legal review is expected',
-        'post-incident analysis must rely on facts',
-        'explanations must remain defensible over time',
+        "a transaction can be disputed months after execution",
+        "a regulator requires the reasoning behind an AI decision",
+        "company liability is tied to an automated outcome",
+        "defensibility must outlive technical tools and vendors",
       ],
-      paragraph3: 'If a decision matters, proof must already exist.',
+      paragraph3: "If a decision matters, proof must exist by default.",
     },
     philosophy: {
-      title: 'Philosophy',
-      paragraph1: 'Horizon enables organizations to adopt AI systems without relying on fragile reconstructions or retrospective narratives.',
-      tagline: 'Signals suggest. Evidence proves.',
+      title: "Philosophy",
+      paragraph1:
+        "We enable organizations to scale automation without sacrificing accountability.\nAct with agility, prove with certainty.",
+      tagline: "Signals guide action. Evidence establishes truth.",
     },
     cta: {
-      title: 'Call to Action',
-      paragraph1: 'Learn how Horizon fits into an AI assurance strategy focused on accountability under scrutiny.',
-      primaryCTA: 'Request a briefing',
-      secondaryCTA: 'Discuss audit and regulatory use cases',
+      title: "Call to Action",
+      paragraph1:
+        "Learn how Horizon transforms your automated processes into highly auditable and defensible systems.",
+      primaryCTA: "Request a briefing",
+      secondaryCTA: "Discuss audit and monitoring use cases",
     },
     contact: {
-      title: 'Email',
-      intro: 'Our email:',
-      copied: 'Copied',
-      copy: 'Copy email',
-      mailto: 'Open in my mail client',
-      note: 'You can paste this email into your mail application.',
+      title: "Contact",
+      intro: "Get in touch:",
+      copied: "Copied",
+      copy: "Copy email",
+      mailto: "Send an email",
+      note: "You can use this address to reach us directly.",
     },
   },
+
   fr: {
     hero: {
-      headline: "Prouver ce qui s'est passé.",
-      subheadline: "Pas ce qui aurait dû se passer.",
-      description: "Horizon assure une surveillance continue des mécanismes décisionnels de l'IA, sans interférer avec son exécution, et produit des preuves tangibles pour chaque décision individuelle.",
-      clarifier: "Ni monitoring. Ni jugement des décisions. Ni contrainte.",
-      microLine: "Conçu pour l'audit, pas pour la démonstration.",
-      primaryCTA: 'Demander une présentation',
-      secondaryCTA: "Lire notre vision de l'assurance",
+      headline: "La certitude pour chaque décision automatisée.",
+      subheadline: "Des preuves pour l'audit. Des signaux pour l'excellence opérationnelle.",
+      description:
+        "Horizon est l'infrastructure de confiance pour vos décisions automatisées. Elle capture et certifie l'historique de vos processus critiques pour produire des dossiers de preuve indiscutables. Conçu pour les environnements exigeants : IA, paiements, détection de la fraude, crédit et workflows réglementés.",
+      clarifier: "Ni un tableau de bord, ni un moteur de décision, ni une contrainte technique sur vos systèmes.",
+      microLine: "Bâti pour la rigueur des contrôles, pas pour la démonstration.",
+      primaryCTA: "Demander une présentation",
+      secondaryCTA: "Découvrir la philosophie de la preuve",
     },
     problem: {
-      title: 'Le problème',
-      subtitle: "La fonction manquante dans les systèmes d'IA actuels",
-      paragraph1: "Les systèmes d'IA soutiennent de plus en plus des décisions à fort enjeu.\nEn phase d'exploitation, les équipes s'appuient sur des tableaux de bord et des indicateurs pour comprendre les comportements en temps réel. Cette visibilité est nécessaire, mais insuffisante.",
-      paragraph2: "Lorsqu'une décision précise est examinée, la question change :\nQue s'est-il exactement passé dans ce cas précis ?",
-      paragraph3: 'La plupart des organisations peuvent décrire :',
+      title: "Le défi",
+      subtitle: "L'absence de mémoire fiable dans les systèmes automatisés",
+      paragraph1:
+        "Les systèmes automatisés pilotent aujourd'hui des décisions à fort enjeu. En exploitation, les équipes disposent de métriques globales pour comprendre la performance. Cette visibilité statistique est nécessaire, mais elle ne permet pas de justifier un acte précis.",
+      paragraph2:
+        "Dès qu'une décision est contestée ou auditée, la question devient individuelle :\nPourquoi ce résultat a-t-il été rendu dans ce cas précis ?",
+      paragraph3: "La plupart des organisations savent expliquer :",
       list1: [
-        'le comportement moyen du système',
-        'les contrôles et politiques en place',
-        'les indicateurs à un instant T',
+        "la performance moyenne de leurs modèles",
+        "les politiques générales de contrôle",
+        "les indicateurs de santé du système",
       ],
-      paragraph4: "Elles sont souvent incapables de justifier une décision unique par des faits stables et vérifiables.\nEn cas de contrôle, les équipes reconstituent le contexte à partir de journaux d'événements, de configurations et de souvenirs.",
+      paragraph4:
+        "Mais elles peinent à isoler les faits exacts d'une décision unique. En cas de contrôle, la reconstitution des faits est lente, coûteuse et souvent incomplète.",
     },
     consequence: {
-      title: "Les conséquences d'une absence de preuve",
-      paragraph1: "En l'absence de preuves factuelles :",
+      title: "Le risque de l'incertitude",
+      paragraph1: "Sans preuve exploitable immédiatement :",
       list: [
-        "la supervision repose sur l'interprétation",
-        'les incidents imposent une reconstitution manuelle',
-        'les audits dépendent de la cohérence des récits',
+        "la supervision reste subjective",
+        "chaque incident impose une enquête manuelle complexe",
+        "la conformité dépend de la capacité à raconter une histoire plutôt qu'à fournir des faits",
       ],
-      paragraph2: "Une décision peut paraître conforme tout en étant impossible à justifier si elle n'est pas étayée.\nCette lacune est rarement visible en fonctionnement normal, mais devient critique lors d'un audit.",
+      paragraph2:
+        "Une décision conforme peut devenir indéfendable si elle ne peut être étayée. Ce manque de preuves ne se voit pas au quotidien, mais il devient critique sous le regard d'un régulateur ou d'un auditeur.",
     },
     whatIs: {
       title: "Ce qu'est Horizon",
-      paragraph1: "Horizon est un dispositif d'assurance conçu pour fonctionner en parallèle des systèmes d'IA sans influencer leur exécution.\nIl assure une surveillance continue tout en préservant les preuves factuelles des décisions individuelles.",
-      paragraph2: "Horizon ne guide, ne bloque, ni n'optimise les décisions.\nIl ne juge pas si une décision est correcte. Son rôle est de rendre le comportement vérifiable, tant en exploitation qu'en cas de contrôle ultérieur.",
+      paragraph1:
+        "Horizon est une couche de responsabilité qui fonctionne en parallèle de vos systèmes sans jamais ralentir leur exécution.\nElle certifie les faits au moment où ils se produisent pour créer un historique de décision protégé et inaltérable.",
+      paragraph2:
+        "Horizon n'intervient pas dans le choix final et ne modifie pas vos algorithmes.\nSon rôle est de garantir que la vérité d'une décision est préservée pour être examinée plus tard, même si vos systèmes ou vos fournisseurs changent entre-temps.",
     },
     produces: {
-      title: 'Ce que produit Horizon',
-      paragraph1: "Pour chaque décision assistée par l'IA, Horizon garantit la création d'un élément d'assurance spécifique.",
-      paragraph2: "Cet élément est conçu pour :",
+      title: "La valeur produite",
+      paragraph1:
+        "Pour chaque acte automatisé ou étape réglementée, Horizon génère un dossier de preuve certifié.",
+      paragraph2: "Ce dossier est conçu pour :",
       list: [
-        "ancrer les discussions dans les faits plutôt que dans l'interprétation",
-        'rester exploitable en dehors du contexte opérationnel',
-        'permettre un examen indépendant',
+        "baser les discussions sur des faits objectifs plutôt que sur des interprétations",
+        "être utilisé par les métiers du risque et de l'audit en toute autonomie",
+        "garantir la transparence totale vis-à-vis des tiers (clients, régulateurs)",
       ],
-      paragraph3: "Cet élément est disponible avant tout incident ou litige.\nUne preuve que l'on doit reconstituer après coup n'est plus une preuve.",
-      paragraph4: "L'élément d'assurance capture les faits nécessaires pour reconstituer une décision donnée, sans interprétation ni traitement ultérieur.\nIl reste utilisable indépendamment d'Horizon.",
-      paragraph5: "Horizon ne compile pas de preuves.\nIl garantit leur existence.",
+      paragraph3:
+        "La preuve existe avant même que le litige ne survienne.\nUne information que l'on doit aller chercher après coup n'est plus une preuve, c'est une reconstitution.",
+      paragraph4:
+        "Le dossier contient tout ce qui a déterminé la décision : les données reçues, les critères appliqués et les résultats observés. Il reste exploitable même si vous changez d'infrastructure technique.",
+      paragraph5:
+        "Horizon ne devine pas ce qui s'est passé.\nIl garantit que la réalité des faits est conservée.",
     },
     evidenceEval: {
-      title: 'Preuve et évaluation',
-      paragraph1: 'Horizon repose sur une séparation stricte.',
-      paragraph2: "La preuve décrit ce qui s'est réellement produit.\nL'évaluation fournit les signaux nécessaires au jugement humain.",
-      paragraph3: "La visibilité et l'évaluation évoluent avec le temps.\nLa preuve, elle, reste immuable.",
-      paragraph4: "Horizon ne remplace jamais le jugement humain.\nIl garantit que ce jugement repose sur des faits.",
-      tagline: 'Les signaux suggèrent. La preuve établit.',
+      title: "Faits et Jugement",
+      paragraph1: "Horizon repose sur une distinction fondamentale.",
+      paragraph2:
+        "Le dossier de preuve relate ce qui s'est réellement passé. L'évaluation de la qualité de cette décision reste votre prérogative métier ou humaine, mais elle s'appuie désormais sur une base factuelle incontestable.",
+      paragraph3:
+        "Les modèles d'IA et les règles métier évoluent sans cesse.\nLa preuve de ce qui a été fait, elle, reste stable et définitive.",
+      paragraph4:
+        "Horizon ne remplace pas l'expert humain.\nIl lui donne les moyens d'exercer son jugement sur des données certifiées.",
+      tagline: "Les outils de monitoring vous aident à agir. Horizon vous aide à prouver.",
     },
     notIs: {
       title: "Ce que Horizon n'est pas",
-      paragraph1: 'Pour éviter toute ambiguïté, Horizon n’est pas :',
+      paragraph1: "Horizon occupe une place unique dans votre écosystème :",
       list: [
-        'une plateforme de surveillance (monitoring)',
-        'un outil de mesure de performance ou de qualité',
-        'une interface d’explicabilité',
-        "un dispositif de contrôle en temps réel ou garde-fou",
-        'un moteur de décision',
-        'un tableau de bord de gouvernance',
+        "ce n'est pas un outil de surveillance (monitoring)",
+        "ce n'est pas un moteur de calcul ou de décision",
+        "ce n'est pas un outil d'analyse de performance",
+        "ce n'est pas un obstacle à l'exécution technique",
       ],
-      paragraph2: "Horizon n'intervient pas dans la génération.\nIl observe, préserve et atteste.",
-      paragraph3: "Horizon ne peut être remplacé par un simple enrichissement des journaux (logs) ou par une reconstitution a posteriori.",
+      paragraph2:
+        "Horizon est un observateur passif et certificateur.\nIl authentifie, protège et atteste du bon déroulement de vos processus.",
+      paragraph3:
+        "Il apporte une garantie qu'aucune simple accumulation de fichiers journaux (logs) ne peut offrir.",
     },
     relationship: {
-      title: "Complémentarité avec l'existant",
-      paragraph1: "Les outils opérationnels offrent visibilité et contrôle pendant l'exécution.\nHorizon apporte une dimension différente.",
-      paragraph2: "Il garantit que les événements survenus lors de l'exécution peuvent être examinés comme des preuves, sans dépendre des tableaux de bord ou des accès fournisseurs.",
-      tagline1: 'La visibilité est continue.',
-      tagline2: 'La validité des preuves est permanente.',
+      title: "Complémentarité stratégique",
+      paragraph1:
+        "Vos outils actuels gèrent le présent (alertes, performance).\nHorizon sécurise le passé pour protéger votre futur (auditabilité, défense juridique).",
+      paragraph2:
+        "En utilisant Horizon, vos données de production deviennent des actifs de confiance. En cas de contestation, vous ne dépendez plus d'un accès technique complexe ou d'un fournisseur tiers pour justifier vos actions.",
+      tagline1: "La visibilité est opérationnelle.",
+      tagline2: "La preuve est stratégique.",
     },
     assurance: {
-      title: "Propriétés de l'assurance",
-      paragraph1: "L'assurance produite par Horizon est conçue pour être :",
+      title: "Garanties offertes",
+      paragraph1: "Chaque dossier de preuve est conçu pour être :",
       list: [
-        'spécifique à chaque décision',
-        'cohérente dans le temps',
-        'interprétable sans contexte propriétaire',
-        'vérifiable sans la plateforme Horizon',
-        'adaptée aux audits et aux contrôles réglementaires ou juridiques',
+        "directement lié à une transaction ou une décision précise",
+        "compréhensible par des non-techniciens",
+        "utilisable de manière autonome, sans accès au système d'origine",
+        "conforme aux exigences des audits les plus stricts",
       ],
-      paragraph2: "L'interprétation ne dépend d'aucun réglage ou ajustement.",
+      paragraph2:
+        "La validité de la preuve est universelle. Elle ne dépend pas d'un réglage technique et s'applique à tous les secteurs régulés.",
     },
     deployment: {
-      title: 'Déploiement et périmètre de confiance',
-      paragraph1: "Horizon opère au sein du périmètre de confiance de l'organisation.\nCelle-ci conserve la maîtrise totale :",
-      list: [
-        'de ses systèmes',
-        'de ses données',
-        "de ses éléments d'assurance",
-      ],
-      paragraph2: "Horizon ne requiert aucun accès permanent pour valider les preuves.\nLa propriété des preuves appartient exclusivement à l'organisation.",
-      paragraph3: "Horizon ne déclenche pas de mesures de correction.\nIl permet une intervention humaine éclairée.",
+      title: "Souveraineté et Contrôle",
+      paragraph1:
+        "Horizon s'intègre dans votre propre environnement de confiance.\nVotre organisation garde la maîtrise absolue de :",
+      list: ["son architecture", "ses données métier", "ses actifs de preuve"],
+      paragraph2:
+        "Vous n'avez pas besoin de nous pour valider vos preuves.\nLa propriété de l'information reste 100% interne.",
+      paragraph3:
+        "Horizon n'est pas un outil de correction automatique.\nC'est l'outil qui permet à l'humain de répondre avec certitude lors d'un contrôle.",
     },
     users: {
-      title: 'Utilisateurs visés',
-      paragraph1: "Horizon est conçu pour les équipes responsables de la supervision et de la redevabilité :",
+      title: "Pour qui ?",
+      paragraph1:
+        "Horizon s'adresse aux directions qui portent la responsabilité des décisions automatisées et à celles qui doivent en garantir la conformité :",
       list: [
-        'Risques et Conformité',
-        'Audit interne',
-        'Gouvernance de l’IA',
-        "Équipes d'ingénierie gérant l'IA à grande échelle",
+        "Directions Fraude et Paiement : pour sécuriser les litiges",
+        "Responsables IA : pour répondre aux exigences de transparence",
+        "Directions Risques et Conformité : pour automatiser les contrôles",
+        "Directions Juridiques : pour disposer de preuves opposables",
+        "Équipes Engineering : pour décharger la gestion des logs d'audit",
       ],
-      paragraph2: "Horizon crée un socle factuel commun entre ces fonctions.\nIl est conçu pour les contextes où les décisions peuvent être contestées.",
+      paragraph2:
+        "Horizon crée un langage commun : une seule source de vérité pour l'exploitation et pour l'audit.",
     },
     when: {
-      title: 'Quand Horizon devient indispensable',
-      paragraph1: "Horizon est utile dès la mise en service.\nIl est précieux au quotidien et devient critique lors d'un contrôle.",
-      paragraph2: 'Il devient nécessaire lorsque :',
+      title: "Quand Horizon devient-il essentiel ?",
+      paragraph1:
+        "La valeur de la preuve se construit avant que le problème ne survienne.",
+      paragraph2: "Horizon devient indispensable quand :",
       list: [
-        'des décisions d’IA peuvent être contestées',
-        'un audit réglementaire ou juridique est attendu',
-        "l'analyse après incident doit reposer sur des faits",
-        'les justifications doivent rester solides dans le temps',
+        "une transaction peut être contestée plusieurs mois après son exécution",
+        "un régulateur exige de comprendre le cheminement d'une décision IA",
+        "la responsabilité de l'entreprise est engagée sur un résultat automatisé",
+        "vous devez prouver votre conformité au-delà de la durée de vie de vos outils techniques",
       ],
-      paragraph3: 'Si une décision a de l’importance, la preuve doit déjà exister.',
+      paragraph3: "Si une décision compte, la preuve doit exister par défaut.",
     },
     philosophy: {
-      title: 'Philosophie',
-      paragraph1: "Horizon permet d'adopter l'IA sans dépendre de reconstitutions fragiles ou de récits rétrospectifs.",
-      tagline: 'Les signaux suggèrent. La preuve établit.',
+      title: "Philosophie",
+      paragraph1:
+        "Nous permettons aux entreprises de déployer l'automatisation à grande échelle sans sacrifier la responsabilité.\nAgissez avec agilité, prouvez avec certitude.",
+      tagline: "Les signaux guident l'action. La preuve établit la vérité.",
     },
     cta: {
-      title: "Appel à l'action",
-      paragraph1: "Découvrez comment Horizon s'intègre dans une stratégie d'assurance IA axée sur la responsabilité.",
-      primaryCTA: 'Demander une présentation',
-      secondaryCTA: "Échanger sur les cas d'usage audit et réglementaire",
+      title: "Passer à l'action",
+      paragraph1:
+        "Découvrez comment Horizon transforme vos processus automatisés en systèmes hautement auditables et défendables.",
+      primaryCTA: "Demander une présentation",
+      secondaryCTA: "Échanger sur vos cas d'usage audit et risque",
     },
     contact: {
-      title: 'E-mail',
-      intro: 'Notre adresse e-mail :',
-      copied: 'Copié',
+      title: "Contact",
+      intro: "Nous contacter :",
+      copied: "Copié",
       copy: "Copier l'adresse",
-      mailto: 'Ouvrir dans ma messagerie',
-      note: 'Vous pouvez coller cette adresse dans votre logiciel de messagerie.',
+      mailto: "Envoyer un e-mail",
+      note: "Vous pouvez utiliser cette adresse pour nous joindre directement.",
     },
   },
 }
