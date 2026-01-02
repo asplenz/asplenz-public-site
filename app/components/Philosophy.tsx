@@ -4,7 +4,7 @@ type PhilosophyProps = {
 
 export default function Philosophy({ dict }: PhilosophyProps) {
   return (
-    <section id="philosophy" className="py-20 px-6">
+    <section id="philosophy" className="py-6 px-6">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl font-bold text-[#001F5C] mb-8">
           {dict.philosophy.title}

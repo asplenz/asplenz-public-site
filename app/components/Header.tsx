@@ -17,9 +17,9 @@ export default function Header({ lang, dict }: HeaderProps) {
         <Image
           src="/images/logo-white.png"
           alt="Horizon"
-          width={140}
-          height={32}
-          className="h-8 w-auto"
+          width={280}
+          height={64}
+          className="h-16 w-auto"
           priority
         />
       </Link>

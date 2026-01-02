@@ -4,7 +4,7 @@ type CTAProps = {
 
 export default function CTA({ dict }: CTAProps) {
   return (
-    <section id="contact" className="py-20 px-6 bg-gray-50">
+    <section id="contact" className="py-8 px-6 bg-gray-50">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl font-bold text-[#001F5C] mb-8">
           {dict.cta.title}

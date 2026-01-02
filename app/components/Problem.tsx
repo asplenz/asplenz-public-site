@@ -4,7 +4,7 @@ type ProblemProps = {
 
 export default function Problem({ dict }: ProblemProps) {
   return (
-    <section className="py-20 px-6 bg-gray-50">
+    <section className="py-6 px-6 bg-gray-50">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl font-bold text-[#001F5C] mb-3">
           {dict.problem.title}
