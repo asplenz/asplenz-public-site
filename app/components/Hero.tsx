@@ -4,8 +4,8 @@ type HeroProps = {
 
 export default function Hero({ dict }: HeroProps) {
   return (
-    <section className="pt-16 md:pt-24 pb-20 px-6">
-        <div className="max-w-5xl mx-auto text-center">
+   <section className="py-20 px-6 mt-12">
+        <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-semibold text-[#001F5C] mb-3 leading-snug">
           {dict.hero.headline}
           <span className="block mt-2 text-xl md:text-2xl font-normal">
