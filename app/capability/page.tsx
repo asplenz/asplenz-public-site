@@ -16,7 +16,7 @@ export default function CapabilityPage() {
           <h3 className={prose.h3}>What it records</h3>
           <p className={prose.body}>Two types of declared facts, strictly separated:</p>
 
-          <div className="rounded-2xl bg-white shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6 space-y-4">
+          <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6 space-y-4">
             <div className="space-y-2">
               <div className="text-slate-900 font-medium tracking-tightish">1) Executions</div>
               <p className={prose.body}>An execution is an irreversible act:</p>
@@ -97,7 +97,7 @@ export default function CapabilityPage() {
           </ul>
         </div>
 
-        <div className="rounded-2xl bg-white shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
+        <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
           <div className="text-slate-600 text-xs uppercase tracking-[0.18em]">
             Operational side-effect (porte PSP, 1 phrase)
           </div>

@@ -23,7 +23,7 @@ export default function EngagePage() {
 
         <div className="space-y-3">
           <h3 className={prose.h3}>The single question</h3>
-          <div className="rounded-2xl bg-white shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
+          <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
             <p className="text-slate-900 tracking-tightish font-medium text-base md:text-lg leading-relaxed">
               Would this evidence approach be defensible within your governance framework?
             </p>

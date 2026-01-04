@@ -63,7 +63,7 @@ export default function ApproachPage() {
         <div className="space-y-3">
           <h3 className={prose.h3}>What “fact” means here (définition)</h3>
           <p className={prose.body}>In this context, a fact is:</p>
-          <div className="rounded-2xl bg-white shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
+          <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
             <p className={prose.body}>
               a signed, recorded act or declaration, regardless of its business truth or regulatory correctness.
             </p>

@@ -69,7 +69,6 @@ export default function MarketInfrastructuresPage() {
 
         <div className="pt-2">
           <CTAButton href="/engage">Discuss acceptability for market infrastructures</CTAButton>
-          <div className="mt-2 text-sm text-slate-600">(choose “Market Infrastructure” in the form)</div>
         </div>
       </div>
     </Section>

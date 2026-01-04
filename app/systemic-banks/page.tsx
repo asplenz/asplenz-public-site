@@ -60,7 +60,6 @@ export default function SystemicBanksPage() {
 
         <div className="pt-2">
           <CTAButton href="/engage">Discuss acceptability for systemic banks</CTAButton>
-          <div className="mt-2 text-sm text-slate-600">(choose “Systemic Bank” in the form)</div>
         </div>
       </div>
     </Section>

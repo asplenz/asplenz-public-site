@@ -69,7 +69,7 @@ export default function HomePage() {
           </p>
 
           <div className="max-w-3xl">
-            <div className="rounded-2xl bg-white shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
+            <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
               <div className="text-slate-600 text-xs uppercase tracking-[0.18em]">
                 What this enables
               </div>

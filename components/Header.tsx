@@ -18,7 +18,7 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-blue-900 text-white border-b border-blue-800">
+    <header className="sticky top-0 z-50 bg-blue-50 text-blue-900 border-b border-blue-100">
       {/* Hard-left company logo (outside grid) */}
       <Link
         href="/"
@@ -40,10 +40,10 @@ export function Header() {
           <div className="flex items-center gap-6 pl-12">
             {/* Capability name */}
             <div className="flex items-baseline gap-2">
-              <span className="font-medium tracking-tightish text-white">
+              <span className="font-medium tracking-tightish text-black">
                 Horizon
               </span>
-              <span className="text-blue-200 text-xs tracking-[0.18em] uppercase">
+              <span className="text-black text-xs tracking-[0.18em] uppercase">
                 Evidence capability
               </span>
             </div>
@@ -55,7 +55,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-blue-100 no-underline hover:no-underline hover:text-white"
+                className="text-sm text-black no-underline hover:no-underline hover:text-blue-700"
               >
                 {item.label}
               </Link>
@@ -77,7 +77,7 @@ export function Header() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMenuOpen(false)}
-                    className="block rounded-xl px-3 py-2 text-sm text-blue-100 no-underline hover:no-underline hover:bg-blue-800 hover:text-white"
+                    className="block rounded-xl px-3 py-2 text-sm text-black no-underline hover:no-underline hover:bg-blue-800 hover:text-white"
                   >
                     {item.label}
                   </Link>
