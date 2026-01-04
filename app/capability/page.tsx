@@ -19,12 +19,12 @@ export default function CapabilityPage() {
           <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6 space-y-4">
             <div className="space-y-2">
               <div className="text-slate-900 font-medium tracking-tightish">1) Executions</div>
-              <p className={prose.body}>An execution is an irreversible act:</p>
+              <p className={prose.body}>An execution is <em>an irreversible act</em>:</p>
               <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
-                <li>an automated decision applied,</li>
-                <li>a human authorization,</li>
-                <li>a continuation/suspension choice,</li>
-                <li>a publication, override, or acceptance.</li>
+                <li>An automated decision applied</li>
+                <li>A human authorization</li>
+                <li>A continuation/suspension choice</li>
+                <li>A publication, override, or acceptance</li>
               </ul>
               <p className={prose.body}>Executions record what happened, in declared context, at time T.</p>
             </div>
@@ -33,12 +33,12 @@ export default function CapabilityPage() {
 
             <div className="space-y-2">
               <div className="text-slate-900 font-medium tracking-tightish">2) Evaluations</div>
-              <p className={prose.body}>An evaluation is an organizational assessment at time T:</p>
+              <p className={prose.body}>An evaluation is <em>an organizational assessment at time T</em>:</p>
               <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
-                <li>severity classification,</li>
-                <li>risk acceptance,</li>
-                <li>declared basis,</li>
-                <li>confidence level.</li>
+                <li>Severity classification</li>
+                <li>Risk acceptance</li>
+                <li>Declared basis</li>
+                <li>Confidence level</li>
               </ul>
               <p className="text-slate-900 font-medium tracking-tightish">
                 An evaluation does not authorize an action.
@@ -51,17 +51,15 @@ export default function CapabilityPage() {
         </div>
 
         <div className="space-y-3">
-          <h3 className={prose.h3}>How automated + human decisions are linked</h3>
+          <h3 className={prose.h3}>How automated and human decisions become examinable as one</h3>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
-            <li>
-              Automated systems produce an <code className="text-slate-900">execution_id</code>
-            </li>
-            <li>The escalation channel (alert/ticket/console) carries that reference</li>
-            <li>The human decision publishes an evaluation linked to that execution</li>
-            <li>The final action can reference both</li>
+            <li>Automated systems produce <span className="text-slate-900 font-medium">declared executions</span>, each identified by a stable execution reference</li>
+            <li>When a situation escalates, this reference is propagated through the organization's existing channels (alerts, tickets, consoles)</li>
+            <li>Any human decision taken in response is recorded as a <span className="text-slate-900 font-medium">declared evaluation</span>, explicitly linked to the original execution</li>
+            <li>Subsequent actions may reference either or both, preserving a <span className="text-slate-900 font-medium">single factual chain</span></li>
           </ul>
           <p className="text-slate-900 font-medium tracking-tightish">
-            Facts are linked by references, not by UI.
+            Facts are linked by explicit references, not reconstructed through interfaces or workflows.
           </p>
         </div>
 

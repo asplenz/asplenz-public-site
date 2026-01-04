@@ -16,9 +16,9 @@ export default function MarketInfrastructuresPage() {
           <h3 className={prose.h3}>Why market infrastructures face institutional scrutiny</h3>
           <p className={prose.body}>Market infrastructures operate under a distinct constraint:</p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
-            <li>decisions are examined not only for correctness,</li>
+            <li>Decisions are examined not only for correctness</li>
             <li>
-              but for <span className="text-slate-900 font-medium">institutional legitimacy</span>.
+              But for <span className="text-slate-900 font-medium">institutional legitimacy</span>
             </li>
           </ul>
           <p className={prose.body}>
@@ -38,11 +38,11 @@ export default function MarketInfrastructuresPage() {
           <h3 className={prose.h3}>Critical moments</h3>
           <p className={prose.body}>This capability becomes relevant at points of no return such as:</p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
-            <li>trading halt / continuation decisions under uncertainty</li>
-            <li>market data publication under degraded conditions</li>
-            <li>methodology interpretation during exceptional events</li>
-            <li>exception handling / manual overrides in critical workflows</li>
-            <li>post-incident reviews where chronology itself becomes contested</li>
+            <li>Trading halt / continuation decisions under uncertainty</li>
+            <li>Market data publication under degraded conditions</li>
+            <li>Methodology interpretation during exceptional events</li>
+            <li>Exception handling / manual overrides in critical workflows</li>
+            <li>Post-incident reviews where chronology itself becomes contested</li>
           </ul>
         </div>
 
@@ -50,11 +50,11 @@ export default function MarketInfrastructuresPage() {
           <h3 className={prose.h3}>What “good” looks like under scrutiny</h3>
           <p className={prose.body}>A defensible dossier contains:</p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
-            <li>the exact execution(s) that occurred</li>
-            <li>the evaluations that existed at the time</li>
-            <li>their order and timestamps</li>
-            <li>the roles involved (without relying on memory)</li>
-            <li>integrity verifiable independently of source systems</li>
+            <li>The exact execution(s) that occurred</li>
+            <li>The evaluations that existed at the time</li>
+            <li>Their order and timestamps</li>
+            <li>The roles involved (without relying on memory)</li>
+            <li>Integrity verifiable independently of source systems</li>
           </ul>
         </div>
 

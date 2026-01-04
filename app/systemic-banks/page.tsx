@@ -18,9 +18,9 @@ export default function SystemicBanksPage() {
             In systemic contexts, what matters is not only whether controls existed, but whether the institution can prove:
           </p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
-            <li>what it knew,</li>
-            <li>what it evaluated,</li>
-            <li>and what it decided at time T.</li>
+            <li>What it knew</li>
+            <li>What it evaluated</li>
+            <li>What it decided at time T</li>
           </ul>
           <p className={prose.body}>
             This is most visible when automated decisions interact with human escalation.

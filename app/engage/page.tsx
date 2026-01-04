@@ -36,7 +36,7 @@ export default function EngagePage() {
             <li><span className="text-slate-900 font-medium">A shared understanding</span> of whether this approach is conceptually acceptable in your context</li>
             <li><span className="text-slate-900 font-medium">The main conditions</span> that would have to be met for such a capability to exist (governance, architecture, security boundaries)</li>
             <li><span className="text-slate-900 font-medium">The key objections or blockers</span>, if any, that would prevent adoption in your institution</li>
-            <li>If relevant, <span className="text-slate-900 font-medium">an outline of what a minimal, non-intrusive pilot could look like</span>, focused on a single point of no return defined as a specific moment where a decision or action becomes institutionally irreversible or materially consequential.</li>
+            <li>If relevant, <span className="text-slate-900 font-medium">an outline of what a minimal, non-intrusive pilot could look like</span>, focused on a single point of no return defined as a specific moment where a decision or action becomes institutionally irreversible or materially consequential</li>
           </ul>
         </div>
 
