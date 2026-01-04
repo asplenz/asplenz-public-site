@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s — Horizon"
   },
   description:
-    "A factual evidence capability for regulated institutions, where decisions—automated or human—may be examined long after they are made."
+    "A factual evidence capability for regulated institutions, where decisions (automated or human) may be examined long after they are made."
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
