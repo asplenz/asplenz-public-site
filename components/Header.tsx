@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/Container";
@@ -12,6 +15,8 @@ const nav = [
 ];
 
 export function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 bg-blue-900 text-white border-b border-blue-800">
       {/* Hard-left company logo (outside grid) */}
@@ -58,23 +63,27 @@ export function Header() {
           </nav>
 
           {/* Mobile menu */}
-          <div className="md:hidden">
-            <details className="relative">
-              <summary className="cursor-pointer list-none rounded-full px-3 py-1.5 text-sm ring-1 ring-blue-700 hover:ring-blue-500 text-white">
-                Menu
-              </summary>
+          <div className="md:hidden relative">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="cursor-pointer rounded-full px-3 py-1.5 text-sm ring-1 ring-blue-700 hover:ring-blue-500 text-white bg-transparent"
+            >
+              Menu
+            </button>
+            {menuOpen && (
               <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-blue-900 p-2 shadow-hairline ring-1 ring-blue-700">
                 {nav.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={() => setMenuOpen(false)}
                     className="block rounded-xl px-3 py-2 text-sm text-blue-100 no-underline hover:no-underline hover:bg-blue-800 hover:text-white"
                   >
                     {item.label}
                   </Link>
                 ))}
               </div>
-            </details>
+            )}
           </div>
         </div>
       </Container>

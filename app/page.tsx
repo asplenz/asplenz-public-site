@@ -9,7 +9,7 @@ import { prose } from "@/components/typography";
 export const metadata: Metadata = {
   title: "Home",
   description:
-    "Evidence must exist before questions arise. A factual evidence capability for regulated institutions, where decisions—automated or human—may be examined long after they are made."
+    "Evidence must exist before questions. A factual evidence capability for regulated institutions, where decisions—automated or human—may be examined long after they are made."
 };
 
 export default function HomePage() {
@@ -18,7 +18,7 @@ export default function HomePage() {
       <section className="py-14 md:py-20">
         <Container>
           <div className="max-w-3xl space-y-6">
-            <h1 className={prose.h1}>Evidence must exist before questions arise.</h1>
+            <h1 className={`${prose.h1} whitespace-nowrap`}>Evidence must exist before questions.</h1>
 
             <p className={prose.lead}>
               A factual evidence capability for regulated institutions, where decisions—automated or human—may be examined long after they are made.
