@@ -66,12 +66,12 @@ export function Header() {
           <div className="md:hidden relative">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="cursor-pointer rounded-full px-3 py-1.5 text-sm ring-1 ring-blue-700 hover:ring-blue-500 text-blue-900 bg-transparent"
+              className="cursor-pointer rounded-full px-3 py-1.5 text-sm ring-1 ring-blue-100 hover:ring-blue-500 text-blue-900 bg-transparent"
             >
               Menu
             </button>
             {menuOpen && (
-              <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-blue-50 p-2 shadow-hairline ring-1 ring-blue-700">
+              <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-blue-50 p-2 shadow-hairline ring-1 ring-blue-100">
                 {nav.map((item) => (
                   <Link
                     key={item.href}
