@@ -18,7 +18,7 @@ export default function HomePage() {
       <section className="py-10 md:py-14">
         <Container>
           <div className="max-w-3xl space-y-6">
-            <h1 className={`${prose.h1} whitespace-nowrap`}>Evidence must exist before questions.</h1>
+            <h1 className={prose.h1}>Evidence must exist before<br /> questions.</h1>
 
             <p className={prose.lead}>
               A factual evidence capability for regulated institutions, designed to{" "}
