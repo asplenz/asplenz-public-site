@@ -36,7 +36,7 @@ export default function PrinciplesPage() {
         </div>
 
         <div className="space-y-3">
-          <h3 className={prose.h3}>Clear non-goals (anti scope creep)</h3>
+          <h3 className={prose.h3}>Clear non-goals</h3>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>Not an investigation platform</li>
             <li>Not observability / SIEM</li>
@@ -47,10 +47,10 @@ export default function PrinciplesPage() {
         </div>
 
         <div className="space-y-3">
-          <h3 className={prose.h3}>Why logs + tickets are not equivalent (une section verrou)</h3>
+          <h3 className={prose.h3}>Why logs + tickets are not equivalent</h3>
           <p className={prose.body}>
             Logs and tickets can support reconstruction. They do not create immutable, ordered declared evidence at time T.
-            Reconstruction is valuable—until it becomes the object of contestation.
+            Reconstruction is valuable, until it becomes the object of contestation.
           </p>
         </div>
       </div>

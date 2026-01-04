@@ -51,7 +51,7 @@ export default function CapabilityPage() {
         </div>
 
         <div className="space-y-3">
-          <h3 className={prose.h3}>How automated + human decisions are linked (simple)</h3>
+          <h3 className={prose.h3}>How automated + human decisions are linked</h3>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>
               Automated systems produce an <code className="text-slate-900">execution_id</code>
@@ -61,12 +61,12 @@ export default function CapabilityPage() {
             <li>The final action can reference both</li>
           </ul>
           <p className="text-slate-900 font-medium tracking-tightish">
-            Facts are linked by references—not by UI.
+            Facts are linked by references, not by UI.
           </p>
         </div>
 
         <div className="space-y-3">
-          <h3 className={prose.h3}>Properties (ce que la capacité garantit)</h3>
+          <h3 className={prose.h3}>Properties</h3>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>
               <span className="text-slate-900 font-medium">Append-only</span>: no edits, no deletes
@@ -99,10 +99,10 @@ export default function CapabilityPage() {
 
         <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
           <div className="text-slate-600 text-xs uppercase tracking-[0.18em]">
-            Operational side-effect (porte PSP, 1 phrase)
+            Operational side-effect
           </div>
           <p className="mt-3 text-slate-700 text-[15px] md:text-base leading-relaxed">
-            In practice, these same facts are often used daily to avoid transaction reconstruction—without turning the capability into an operations tool.
+            In practice, these same facts are often used daily to avoid transaction reconstruction, without turning the capability into an operations tool.
           </p>
         </div>
 

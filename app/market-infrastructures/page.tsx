@@ -13,7 +13,7 @@ export default function MarketInfrastructuresPage() {
     <Section eyebrow="Context" title="Market Infrastructures require institutional evidence">
       <div className="max-w-3xl space-y-8">
         <div className="space-y-3">
-          <h3 className={prose.h3}>Why this context is different</h3>
+          <h3 className={prose.h3}>Why market infrastructures face institutional scrutiny</h3>
           <p className={prose.body}>Market infrastructures operate under a distinct constraint:</p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>decisions are examined not only for correctness,</li>
@@ -29,13 +29,13 @@ export default function MarketInfrastructuresPage() {
               <em>“Was the decision justifiable at the time?”</em>
             </li>
             <li>
-              <em>“What was known, evaluated, and decided—exactly when?”</em>
+              <em>“What was known, evaluated, and decided, and exactly when?”</em>
             </li>
           </ul>
         </div>
 
         <div className="space-y-3">
-          <h3 className={prose.h3}>Critical moments (liste courte, très concrète)</h3>
+          <h3 className={prose.h3}>Critical moments</h3>
           <p className={prose.body}>This capability becomes relevant at points of no return such as:</p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>trading halt / continuation decisions under uncertainty</li>

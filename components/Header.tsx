@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Container } from "@/components/Container";
 
 const nav = [
+  { href: "/", label: "Home" },
   { href: "/approach", label: "Approach" },
   { href: "/capability", label: "Capability" },
   { href: "/principles", label: "Principles" },
@@ -22,14 +23,14 @@ export function Header() {
       {/* Hard-left company logo (outside grid) */}
       <Link
         href="/"
-        aria-label="Asplenz — Home"
+        aria-label="Asplenz - Home"
         className="absolute left-4 top-1/2 -translate-y-1/2 no-underline hover:no-underline"
       >
         <Image
           src="/logo-white.png"
           alt="Asplenz"
-          width={50}
-          height={50}
+          width={30}
+          height={30}
           priority
         />
       </Link>

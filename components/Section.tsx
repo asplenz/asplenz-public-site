@@ -9,7 +9,7 @@ type SectionProps = {
 
 export function Section({ eyebrow, title, children }: SectionProps) {
   return (
-    <section className="py-10 md:py-14">
+    <section className="py-6 md:py-10">
       <Container>
         {(eyebrow || title) && (
           <header className="mb-6 md:mb-8">

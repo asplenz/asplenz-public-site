@@ -25,7 +25,7 @@ export function EngageForm() {
 
   const mailtoHref = useMemo(() => {
     const to = "hello@asplenz.com";
-    const subject = `Horizon — acceptability discussion (${orgType})`;
+    const subject = `Horizon - acceptability discussion (${orgType})`;
 
     const bodyLines = [
       "Engage: an acceptability discussion (not a sales process)",

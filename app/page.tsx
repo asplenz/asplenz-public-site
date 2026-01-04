@@ -9,25 +9,34 @@ import { prose } from "@/components/typography";
 export const metadata: Metadata = {
   title: "Home",
   description:
-    "Evidence must exist before questions. A factual evidence capability for regulated institutions, where decisions (automated or human) may be examined long after they are made."
+    "Evidence must exist before questions. A factual evidence capability that observes and preserves, at execution time, what systems actually do and evaluate, so later examination doesn't depend on reconstruction."
 };
 
 export default function HomePage() {
   return (
     <>
-      <section className="py-14 md:py-20">
+      <section className="py-10 md:py-14">
         <Container>
           <div className="max-w-3xl space-y-6">
             <h1 className={`${prose.h1} whitespace-nowrap`}>Evidence must exist before questions.</h1>
 
             <p className={prose.lead}>
-              A factual evidence capability for regulated institutions, where decisions (automated or human) may be examined long after they are made.
+              A factual evidence capability for regulated institutions, designed to{" "}
+              <span className="text-slate-900 font-medium">observe and preserve</span>,{" "}
+              <span className="text-slate-900 font-medium">at execution time</span>, what systems
+              actually do and evaluate, whether decisions are automated or human.
+            </p>
+
+            <p className="text-slate-700 leading-relaxed">
+             These observations are produced as execution occurs, before any audit, incident, or investigation exists. 
+             When decisions are examined later, Horizon does not reconstruct events, infer intent, or assemble context retrospectively.
+             It ensures that examination is performed on <span className="text-slate-700 font-medium mt-1">pre-existing factual artefacts</span>, not on narratives rebuilt from logs, memory, or interpretation.
             </p>
 
             <p className="text-slate-900 font-medium tracking-tightish">
               Not a monitoring tool. Not a decision engine. Not a compliance shortcut.
               <span className="block text-slate-700 font-normal mt-1">
-                A neutral evidence layer designed for examination.
+              A neutral evidence layer that replaces reconstruction with fact
               </span>
             </p>
 
@@ -56,7 +65,7 @@ export default function HomePage() {
           <p className={prose.body}>Very few are designed to be examined later.</p>
           <p className={prose.body}>
             When scrutiny begins, organizations fall back on logs, dashboards, tickets, and reconstruction.
-            That works—until the question becomes:{" "}
+            That works, until the question becomes:{" "}
             <span className="text-slate-900 font-medium">“What exactly happened in this case?”</span>
           </p>
         </div>
@@ -75,7 +84,7 @@ export default function HomePage() {
               </div>
               <ul className="mt-4 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed list-disc pl-5">
                 <li>Stable, ordered, verifiable facts</li>
-                <li>Reduced reconstruction under pressure</li>
+                <li>No post-hoc reconstruction required</li>
                 <li>Examination without replaying systems or mobilizing multiple teams</li>
               </ul>
             </div>
@@ -84,7 +93,7 @@ export default function HomePage() {
           <div className="pt-2 flex flex-col gap-2">
             <CTAButton href="/engage">Discuss acceptability</CTAButton>
             <div className="text-sm text-slate-600">
-              No demo. No ROI claims. One question: is this defensible in your governance framework?
+              No sales demo. We discuss concrete evidence artefacts
             </div>
           </div>
         </div>
@@ -92,3 +101,5 @@ export default function HomePage() {
     </>
   );
 }
+
+

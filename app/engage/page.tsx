@@ -13,7 +13,7 @@ export default function EngagePage() {
     <Section eyebrow="Engage" title="Engage: an acceptability discussion (not a sales process)">
       <div className="max-w-3xl space-y-8">
         <div className="space-y-3">
-          <h3 className={prose.h3}>What we do (3 bullets)</h3>
+          <h3 className={prose.h3}>What we do</h3>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>We do not ask for internal incidents</li>
             <li>We do not present demos</li>
@@ -31,11 +31,12 @@ export default function EngagePage() {
         </div>
 
         <div className="space-y-3">
-          <h3 className={prose.h3}>What you get (clear output)</h3>
+          <h3 className={prose.h3}>What this discussion produces</h3>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
-            <li>A yes/no view on acceptability</li>
-            <li>Constraints and red flags (architecture, governance, security)</li>
-            <li>A minimal pilot shape (one point of no return), if relevant</li>
+            <li><span className="text-slate-900 font-medium">A shared understanding</span> of whether this approach is conceptually acceptable in your context</li>
+            <li><span className="text-slate-900 font-medium">The main conditions</span> that would have to be met for such a capability to exist (governance, architecture, security boundaries)</li>
+            <li><span className="text-slate-900 font-medium">The key objections or blockers</span>, if any, that would prevent adoption in your institution</li>
+            <li>If relevant, <span className="text-slate-900 font-medium">an outline of what a minimal, non-intrusive pilot could look like</span>, focused on a single point of no return defined as a specific moment where a decision or action becomes institutionally irreversible or materially consequential.</li>
           </ul>
         </div>
 

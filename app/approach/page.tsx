@@ -13,7 +13,7 @@ export default function ApproachPage() {
     <Section eyebrow="Approach" title="From reconstruction to factual continuity">
       <div className="max-w-3xl space-y-6">
         <div className="space-y-3">
-          <h3 className={prose.h3}>The failure mode (concrete, non-blaming)</h3>
+          <h3 className={prose.h3}>The failure mode</h3>
           <p className={prose.body}>
             When an incident, transaction, or decision is examined, teams often rely on:
           </p>
@@ -54,14 +54,14 @@ export default function ApproachPage() {
         <div className="space-y-3">
           <h3 className={prose.h3}>Principle</h3>
           <p className="text-slate-900 tracking-tightish font-medium text-base md:text-lg leading-relaxed">
-            Evidence must be produced at the point of no return—the moment an action becomes irreversible or responsibility is engaged.
+            Evidence must be produced at the point of no return: the moment an action becomes irreversible or responsibility is engaged.
           </p>
         </div>
 
         <hr />
 
         <div className="space-y-3">
-          <h3 className={prose.h3}>What “fact” means here (définition)</h3>
+          <h3 className={prose.h3}>What “fact” means here</h3>
           <p className={prose.body}>In this context, a fact is:</p>
           <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
             <p className={prose.body}>
@@ -69,7 +69,7 @@ export default function ApproachPage() {
             </p>
           </div>
           <p className={prose.body}>
-            The capability does not certify reality. It preserves what was declared and done—immutably and in order.
+            The capability does not certify reality. It preserves what was declared and done, immutably and in order.
           </p>
         </div>
 

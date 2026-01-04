@@ -5,8 +5,8 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "Horizon — Evidence capability",
-    template: "%s — Horizon"
+    default: "Horizon - Evidence capability",
+    template: "%s - Horizon"
   },
   description:
     "A factual evidence capability for regulated institutions, where decisions (automated or human) may be examined long after they are made."

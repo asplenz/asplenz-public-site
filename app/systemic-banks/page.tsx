@@ -13,7 +13,7 @@ export default function SystemicBanksPage() {
     <Section eyebrow="Context" title="Systemic banks face a different kind of scrutiny">
       <div className="max-w-3xl space-y-8">
         <div className="space-y-3">
-          <h3 className={prose.h3}>Why this Context is specific</h3>
+          <h3 className={prose.h3}>Why systemic banks face institutional examination</h3>
           <p className={prose.body}>
             In systemic contexts, what matters is not only whether controls existed, but whether the institution can prove:
           </p>
@@ -28,7 +28,7 @@ export default function SystemicBanksPage() {
         </div>
 
         <div className="space-y-3">
-          <h3 className={prose.h3}>High-criticality situations (concrets)</h3>
+          <h3 className={prose.h3}>High-criticality situations</h3>
           <p className={prose.body}>Examples of “point of no return” situations:</p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>continuing critical services under partial outage</li>
