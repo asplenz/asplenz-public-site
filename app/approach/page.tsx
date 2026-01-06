@@ -1,80 +1,143 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Section } from "@/components/Section";
 import { CTAButton } from "@/components/CTAButton";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
   title: "Approach",
-  description: "From reconstruction to factual continuity."
+  description: "Decision evidence is created at execution time, not reconstructed later."
 };
 
 export default function ApproachPage() {
   return (
-    <Section eyebrow="Approach" title="From reconstruction to factual continuity">
+    <Section eyebrow="Approach" title="From reconstruction to decision evidence">
       <div className="max-w-3xl space-y-6">
+        {/* Intro */}
+        <div className="space-y-3">
+          <p className={prose.body}>
+            Most systems are built to operate. Few are built to be examined later.
+          </p>
+          <p className={prose.body}>
+            When a specific transaction, incident, or decision is scrutinized, organizations often discover that
+            their "memory" is distributed across tools and teams, and that the past must be reconstructed before it
+            can even be discussed.
+          </p>
+          <p className={prose.body}>
+            This approach is about one thing: ensuring that examinable facts exist <span className="text-slate-900 font-medium">at execution time</span>,
+            so that later examination relies on facts already constituted, not on correlation and interpretation assembled under pressure.
+          </p>
+        </div>
+
+        <hr />
+
+        {/* The failure mode */}
         <div className="space-y-3">
           <h3 className={prose.h3}>The failure mode</h3>
           <p className={prose.body}>
-            When an incident, transaction, or decision is examined, teams often rely on:
+            When a case is questioned, teams typically rely on:
           </p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
-            <li>Distributed logs across systems</li>
-            <li>Dashboards reflecting current state</li>
-            <li>Tickets and post-mortems written later</li>
-            <li>Human memory</li>
+            <li>Logs fragmented across multiple systems</li>
+            <li>Dashboards that reflect current state (not past execution)</li>
+            <li>Tickets, emails, documents, and post-mortems written later</li>
+            <li>Human memory and informal explanations</li>
           </ul>
-          <p className={prose.body}>This creates a predictable failure mode:</p>
+          <p className={prose.body}>This creates a predictable pattern:</p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
-            <li>Timelines are reconstructed</li>
-            <li>Interpretations replace facts</li>
-            <li>Explanations remain contestable</li>
+            <li>Timelines are rebuilt from heterogeneous traces</li>
+            <li>Context is inferred after the fact</li>
+            <li>Multiple “versions” of what happened emerge</li>
+            <li>Explanations remain contestable because the reconstruction is contestable</li>
           </ul>
         </div>
 
         <hr />
 
+        {/* The shift */}
         <div className="space-y-3">
           <h3 className={prose.h3}>The shift</h3>
-          <p className={prose.body}>The question shifts from:</p>
+          <p className={prose.body}>
+            Under scrutiny, the question changes from:
+          </p>
           <p className={prose.body}>"How does the system usually behave?"</p>
           <p className={prose.body}>to:</p>
           <p className="text-slate-900 tracking-tightish font-medium text-[15px] md:text-base leading-relaxed">
-            "What exactly happened in this specific case?"
+            "What exactly happened in this specific case, and what facts existed at that moment?"
           </p>
           <p className={prose.body}>
-            At that point, the cost is not only time.<br />
-            It is the <span className="text-slate-900 font-medium">loss of institutional control over the narrative</span>.
+            At that point, the cost is not only time. It is also governance:
+            the organization loses the ability to ground discussions in a shared factual baseline.
           </p>
         </div>
 
         <hr />
 
+        {/* Core principle */}
         <div className="space-y-3">
-          <h3 className={prose.h3}>Principle</h3>
+          <h3 className={prose.h3}>Core principle</h3>
           <p className="text-slate-900 tracking-tightish font-medium text-base md:text-lg leading-relaxed">
-            Evidence must be produced at the point of no return: the moment an action becomes irreversible or responsibility is engaged.
+            Evidence should be created at the point of no return: the moment an action becomes irreversible,
+            institutionally binding, or materially consequential.
+          </p>
+          <p className={prose.body}>
+            Examination may happen later. But evidence must exist before questions arise.
           </p>
         </div>
 
         <hr />
 
+        {/* What “fact” means */}
         <div className="space-y-3">
           <h3 className={prose.h3}>What “fact” means here</h3>
-          <p className={prose.body}>In this context, a fact is:</p>
+          <p className={prose.body}>
+            In this context, a “fact” is not business truth or regulatory correctness. It is:
+          </p>
           <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
             <p className={prose.body}>
-              <em>a signed and recorded act or declaration, produced by a system or a human actor, regardless of its business truth or regulatory correctness.</em>
+              <em>
+                a signed and recorded act or declaration, produced by a system or a human actor, regardless of its
+                business truth or regulatory correctness.
+              </em>
             </p>
           </div>
           <p className={prose.body}>
-            This capability does not certify reality. It preserves what was declared and executed, <span className="text-slate-900 font-medium">immutably and in order</span>.
+            The objective is not to "explain" the past with better narratives. It is to preserve what was declared and executed,
+            <span className="text-slate-900 font-medium"> immutably and in order</span>, so discussion starts from stable facts.
           </p>
         </div>
 
+        <hr />
+
+        {/* Scope clarification */}
+        <div className="space-y-3">
+          <h3 className={prose.h3}>What this is (and is not)</h3>
+          <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+            <li>
+              This is an evidence approach: it preserves executions and declared evaluations at execution time.
+            </li>
+            <li>
+              It does not replace observability, SIEM, audit tools, or case management.
+            </li>
+            <li>
+              It does not decide, validate, optimize, or enforce.
+            </li>
+            <li>
+              It applies equally to automated workflows and human-in-the-loop decisions: what matters is the point of no return.
+            </li>
+          </ul>
+          <p className={prose.body}>
+            If you want the institutional implications (scope, discovery, retention, governance boundaries), see the{" "}
+            <Link href="/approach/decision-evidence-faq" className="text-slate-900 font-medium underline underline-offset-4">
+              Decision Evidence FAQ
+            </Link>
+            .
+          </p>
+        </div>
+
+        {/* CTA */}
         <div className="pt-2">
-          <CTAButton href="/capability" variant="secondary">
-            If this framing resonates, see the capability
-          </CTAButton>
+          <CTAButton href="/engage">Discuss acceptability</CTAButton>
         </div>
       </div>
     </Section>
