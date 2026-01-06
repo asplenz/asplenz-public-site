@@ -20,6 +20,19 @@ export default function PrinciplesPage() {
             These principles are not design preferences. They exist because, in formal examination contexts, flexibility
             becomes a liability: evidence must be created at the moment of execution, not rebuilt later.
           </p>
+
+          {/* Category (introduced once, explicitly, but non-normative) */}
+          <p className={prose.body}>
+            We use the term{" "}
+            <span className="text-slate-900 font-medium">
+              Execution Evidence Infrastructure (EEI)
+            </span>{" "}
+            to describe this capability: a dedicated evidence layer that creates examinable facts at execution time,
+            independently of later audits, investigations, or reconstructions.{" "}
+            <span className="text-slate-500">
+              (Descriptive, non-normative terminology.)
+            </span>
+          </p>
         </div>
 
         <div className="space-y-3">
@@ -52,18 +65,19 @@ export default function PrinciplesPage() {
                 <span className="text-slate-500">(human or machine)</span>
               </div>
               <div className="text-slate-600">
-                Preserves a single factual chain across automated decisions and human interventions, with no "handoff gap."
+                Preserves a single factual chain across automated decisions and human interventions, with no &quot;handoff
+                gap.&quot;
               </div>
             </li>
 
             <li>
               <div>
                 <span className="text-slate-900 font-medium">Non-intrusive</span>{" "}
-                <span className="text-slate-500">(no blocking, no decision influence)</span>
+                <span className="text-slate-500">(no gating, no decision influence)</span>
               </div>
               <div className="text-slate-600">
-                Ensures evidence capture does not alter outcomes, workflows, or latency; the evidence layer stays
-                observational.
+                Ensures evidence capture does not act as a control point. It is designed to avoid altering outcomes or
+                workflows, and to minimize overhead; the evidence layer stays observational.
               </div>
             </li>
 
@@ -83,8 +97,8 @@ export default function PrinciplesPage() {
                 <span className="text-slate-500">(including offline)</span>
               </div>
               <div className="text-slate-600">
-                Allows integrity to be checked without trusting the producing systems (or even the vendor) when scrutiny
-                is highest.
+                Integrity can be checked from exported evidence artefacts (case bundles) without trusting the producing
+                systems, and without requiring access to the vendor or runtime when scrutiny is highest.
               </div>
             </li>
           </ol>
@@ -93,8 +107,8 @@ export default function PrinciplesPage() {
         <div className="space-y-3">
           <h3 className={prose.h3}>Clear non-goals</h3>
           <p className={prose.body}>
-            These non-goals are deliberate. They preserve Horizon's role as an evidence layer, orthogonal to operational
-            tooling, so evidence remains stable even as systems evolve.
+            These non-goals are deliberate. They preserve Horizon&apos;s role as an evidence layer, orthogonal to
+            operational tooling, so evidence remains stable even as systems evolve.
           </p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>Not an investigation platform</li>
@@ -110,7 +124,7 @@ export default function PrinciplesPage() {
           <p className={prose.body}>
             Logs and tickets can support reconstruction. They do not create immutable, ordered, declared evidence at
             time T. When scrutiny is case-specific, the question is no longer “what usually happens,” but “what exactly
-            happened here," and reconstruction itself becomes contestable.
+            happened here,” and reconstruction itself becomes contestable.
           </p>
         </div>
       </div>
