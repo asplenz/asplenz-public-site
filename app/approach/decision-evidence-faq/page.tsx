@@ -73,7 +73,43 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "3. Does Horizon force companies to log more decisions than they already do?",
+    q: "3. How are implementation details addressed?",
+    a: (
+      <div className="space-y-3">
+        <p className={prose.body}>
+          This Horizon documentation focuses on conceptual acceptability and institutional boundaries.
+        </p>
+        <p className={prose.body}>
+          Questions related to how this capability is instantiated in a given environment, including:
+        </p>
+        <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+          <li>user interfaces and visualizations</li>
+          <li>integration mechanisms</li>
+          <li>access control models</li>
+          <li>querying and search patterns</li>
+          <li>retention automation</li>
+          <li>performance and scalability characteristics</li>
+          <li>scope selection tools</li>
+          <li>handling of distributed or multi-stage decision chains</li>
+        </ul>
+        <p className={prose.body}>
+          are intentionally not specified at the documentation level.
+        </p>
+        <p className={prose.body}>
+          These aspects are defined during a bounded acceptability or exploration phase, once:
+        </p>
+        <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+          <li>the capability itself is deemed conceptually acceptable, and</li>
+          <li>the organization's architectural, governance, and security constraints are known.</li>
+        </ul>
+        <p className={prose.body}>
+          This separation ensures that Horizon remains non-prescriptive, non-intrusive, and adaptable to different institutional environments.
+        </p>
+      </div>
+    )
+  },
+  {
+    q: "4. Does Horizon force companies to log more decisions than they already do?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -96,7 +132,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "4. Does Horizon create new legal or regulatory exposure?",
+    q: "5. Does Horizon create new legal or regulatory exposure?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -140,7 +176,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "5. Could Horizon records be subpoenaed or discovered?",
+    q: "6. Could Horizon records be subpoenaed or discovered?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -175,7 +211,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "6. Does Horizon record every decision in the company?",
+    q: "7. Does Horizon record every decision in the company?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -218,7 +254,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "7. Can Horizon be limited to high-risk or high-scrutiny decisions only?",
+    q: "8. Can Horizon be limited to high-risk or high-scrutiny decisions only?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -252,7 +288,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "8. Does Horizon replace logging, observability, or audit tools?",
+    q: "9. Does Horizon replace logging, observability, or audit tools?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -273,7 +309,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "9. Does Horizon only matter after something goes wrong?",
+    q: "10. Does Horizon only matter after something goes wrong?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -291,7 +327,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "10. How is Horizon different from just improving logging?",
+    q: "11. How is Horizon different from just improving logging?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>Improved logging still leaves companies with:</p>
@@ -317,7 +353,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "11. Does Horizon record human decisions and overrides?",
+    q: "12. Does Horizon record human decisions and overrides?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -339,7 +375,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "12. Could Horizon increase individual accountability or blame?",
+    q: "13. Could Horizon increase individual accountability or blame?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -371,7 +407,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "13. Does Horizon lock companies into rigid narratives?",
+    q: "14. Does Horizon lock companies into rigid narratives?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -403,7 +439,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "14. Who typically uses Horizon?",
+    q: "15. Who typically uses Horizon?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>Horizon is designed for internal use.</p>
@@ -431,7 +467,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "15. What happens if a company decides not to retain certain evidence?",
+    q: "16. What happens if a company decides not to retain certain evidence?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
