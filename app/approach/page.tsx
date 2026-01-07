@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Section } from "@/components/Section";
-import { CTAButton } from "@/components/CTAButton";
+import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
@@ -13,6 +12,14 @@ export default function ApproachPage() {
   return (
     <Section eyebrow="Approach" title="From reconstruction to decision evidence">
       <div className="max-w-3xl space-y-6">
+        {/* Orientation block */}
+        <div className="rounded-2xl bg-slate-50 ring-1 ring-slate-200/70 p-5 md:p-6">
+          <p className="text-slate-600 text-[15px] md:text-base leading-relaxed">
+            This section explains how to read and understand Horizon. It covers the problem being addressed,
+            the core principle, and what "fact" means in this context.
+          </p>
+        </div>
+
         {/* Intro */}
         <div className="space-y-3">
           <p className={prose.body}>
@@ -47,7 +54,7 @@ export default function ApproachPage() {
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>Timelines are rebuilt from heterogeneous traces</li>
             <li>Context is inferred after the fact</li>
-            <li>Multiple “versions” of what happened emerge</li>
+            <li>Multiple "versions" of what happened emerge</li>
             <li>Explanations remain contestable because the reconstruction is contestable</li>
           </ul>
         </div>
@@ -87,11 +94,11 @@ export default function ApproachPage() {
 
         <hr />
 
-        {/* What “fact” means */}
+        {/* What "fact" means */}
         <div className="space-y-3">
-          <h3 className={prose.h3}>What “fact” means here</h3>
+          <h3 className={prose.h3}>What "fact" means here</h3>
           <p className={prose.body}>
-            In this context, a “fact” is not business truth or regulatory correctness. It is:
+            In this context, a "fact" is not business truth or regulatory correctness. It is:
           </p>
           <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
             <p className={prose.body}>
@@ -109,7 +116,7 @@ export default function ApproachPage() {
 
         <hr />
 
-        {/* Scope clarification */}
+        {/* What this is (and is not) */}
         <div className="space-y-3">
           <h3 className={prose.h3}>What this is (and is not)</h3>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
@@ -126,19 +133,61 @@ export default function ApproachPage() {
               It applies equally to automated workflows and human-in-the-loop decisions: what matters is the point of no return.
             </li>
           </ul>
+        </div>
+
+        <hr />
+
+        {/* Institutional implications (merged from Implications page) */}
+        <div className="space-y-3">
+          <h3 className={prose.h3}>Scope and control</h3>
           <p className={prose.body}>
-            If you want the institutional implications (scope, discovery, retention, governance boundaries), see the{" "}
-            <Link href="/approach/decision-evidence-faq" className="text-slate-900 font-medium underline underline-offset-4">
-              Decision Evidence FAQ
-            </Link>
-            .
+            The company decides which decisions, actions, or processes are within scope.
+            Integration is selective by design.
+          </p>
+          <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+            <li>Adoption typically starts with one high-pain or high-scrutiny area</li>
+            <li>Companies explicitly choose which systems are covered</li>
+            <li>Horizon does not expand the decision surface</li>
+          </ul>
+        </div>
+
+        <hr />
+
+        <div className="space-y-3">
+          <h3 className={prose.h3}>Retention and governance</h3>
+          <p className={prose.body}>
+            Retention, deletion, and scope are entirely determined by the company's governance choices.
+          </p>
+          <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+            <li>Retention policies remain company-controlled</li>
+            <li>Deletion rules are respected</li>
+            <li>Scope limits are enforced</li>
+          </ul>
+          <p className={prose.body}>
+            As with any other system, the company retains{" "}
+            <span className="text-slate-900 font-medium">full sovereignty</span>{" "}
+            over what is retained, for how long, and for what purpose.
           </p>
         </div>
 
-        {/* CTA */}
-        <div className="pt-2">
-          <CTAButton href="/engage">Discuss acceptability</CTAButton>
+        <hr />
+
+        <div className="space-y-3">
+          <h3 className={prose.h3}>Legal considerations</h3>
+          <p className={prose.body}>
+            Horizon records are subject to the same legal processes as any other internal company data.
+          </p>
+          <p className={prose.body}>
+            Horizon does not introduce new categories of data, new disclosure obligations, or special legal status.
+            It preserves evidence that already exists elsewhere in the organization, under the same rules governing
+            discovery, subpoenas, legal holds, and privilege.
+          </p>
         </div>
+
+        <PageNav
+          prev={{ href: "/", label: "Home" }}
+          next={{ href: "/capability", label: "Capability" }}
+        />
       </div>
     </Section>
   );

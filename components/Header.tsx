@@ -6,13 +6,6 @@ import Image from "next/image";
 import { Container } from "@/components/Container";
 
 const nav = [
-  { href: "/", label: "Home" },
-  { href: "/approach", label: "Approach" },
-  { href: "/capability", label: "Capability" },
-  { href: "/product-status", label: "Product" },
-  { href: "/principles", label: "Principles" },
-  { href: "/market-infrastructures", label: "Market Infrastructures" },
-  { href: "/systemic-banks", label: "Systemic Banks" },
   { href: "/engage", label: "Engage" }
 ];
 

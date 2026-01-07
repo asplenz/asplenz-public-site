@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Section } from "@/components/Section";
-import { CTAButton } from "@/components/CTAButton";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
-  title: "Decision Evidence FAQ",
+  title: "FAQ",
   description:
     "Common questions about scope, exposure, and governance implications of a decision evidence capability."
 };
@@ -96,7 +94,7 @@ const faqs: FAQ[] = [
           are intentionally not specified at the documentation level.
         </p>
         <p className={prose.body}>
-          These aspects are defined during a bounded acceptability or exploration phase, once:
+          These aspects are defined during a bounded acceptability discussion, once:
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
           <li>the capability itself is deemed conceptually acceptable, and</li>
@@ -205,7 +203,7 @@ const faqs: FAQ[] = [
         </p>
         <p className={prose.body}>
           How such data is retained, protected, or produced remains governed by
-          the company’s existing legal and governance frameworks.
+          the company's existing legal and governance frameworks.
         </p>
       </div>
     )
@@ -511,9 +509,9 @@ function FAQItem({ q, a }: FAQ) {
   );
 }
 
-export default function DecisionEvidenceFAQPage() {
+export default function FAQPage() {
   return (
-    <Section eyebrow="Approach" title="Decision Evidence: Frequently Asked Questions">
+    <Section eyebrow="Approach" title="Frequently Asked Questions">
       <div className="max-w-3xl space-y-6">
         {/* Intro */}
         <div className="space-y-3">
@@ -551,18 +549,13 @@ export default function DecisionEvidenceFAQPage() {
             It answers one question more reliably:
           </p>
           <p className="text-slate-900 tracking-tightish font-medium text-[15px] md:text-base leading-relaxed">
-            “What facts already existed at the moment this decision was made?”
+            "What facts already existed at the moment this decision was made?"
           </p>
           <p className={prose.body}>
             Whether that capability should exist, and how it should be governed, is
             an <span className="text-slate-900 font-medium">institutional choice</span>,
             not a technical one.
           </p>
-        </div>
-
-        {/* CTA */}
-        <div className="pt-2">
-          <CTAButton href="/engage">Discuss acceptability</CTAButton>
         </div>
 
         <p className="text-slate-600 text-sm leading-relaxed">

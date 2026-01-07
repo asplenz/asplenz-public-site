@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/Section";
-import { CTAButton } from "@/components/CTAButton";
+import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
@@ -71,9 +71,10 @@ export default function ProductStatusPage() {
           </p>
         </div>
 
-        <div className="pt-2">
-          <CTAButton href="/engage">Discuss acceptability</CTAButton>
-        </div>
+        <PageNav
+          prev={{ href: "/use-cases", label: "Use cases" }}
+          next={{ href: "/engage", label: "Engage" }}
+        />
       </div>
     </Section>
   );

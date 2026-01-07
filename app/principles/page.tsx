@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/Section";
+import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
@@ -123,10 +124,15 @@ export default function PrinciplesPage() {
           <h3 className={prose.h3}>Why logs + tickets are not equivalent</h3>
           <p className={prose.body}>
             Logs and tickets can support reconstruction. They do not create immutable, ordered, declared evidence at
-            time T. When scrutiny is case-specific, the question is no longer “what usually happens,” but “what exactly
-            happened here,” and reconstruction itself becomes contestable.
+            time T. When scrutiny is case-specific, the question is no longer "what usually happens," but "what exactly
+            happened here," and reconstruction itself becomes contestable.
           </p>
         </div>
+
+        <PageNav
+          prev={{ href: "/capability", label: "Capability" }}
+          next={{ href: "/use-cases", label: "Use cases" }}
+        />
       </div>
     </Section>
   );

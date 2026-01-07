@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/Section";
 import { CTAButton } from "@/components/CTAButton";
+import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
@@ -12,8 +13,33 @@ export default function EngagePage() {
   return (
     <Section eyebrow="Engage" title="Engage: an acceptability discussion">
       <div className="max-w-3xl space-y-8">
+        {/* Orientation block */}
+        <div className="rounded-2xl bg-slate-50 ring-1 ring-slate-200/70 p-5 md:p-6 space-y-3">
+          <p className="text-slate-900 font-medium tracking-tightish text-base md:text-lg leading-relaxed">
+            A short, structured discussion to assess whether this capability is acceptable in your context.
+          </p>
+          <p className="text-slate-600 text-[15px] md:text-base leading-relaxed">
+            No demos. No incidents. No commitment.
+          </p>
+        </div>
+
+        {/* Primary CTA - immediately after orientation */}
+        <div>
+          <CTAButton href="https://app.cal.eu/asplenz/institutional-acceptability">
+            Schedule an acceptability discussion
+          </CTAButton>
+          <p className="mt-3 text-sm text-slate-500">
+            If calendar booking is not permitted in your organization,
+            contact us at{" "}
+            <a href="mailto:contact@asplenz.com" className="text-slate-700 underline underline-offset-4">
+              contact@asplenz.com
+            </a>.
+          </p>
+        </div>
+
+        <hr />
+
         <div className="space-y-3">
-          <p className="text-slate-500 text-[15px] md:text-base -mt-4">(not a sales process, not a product pitch)</p>
           <p className={prose.body}>
             This engagement is designed to explore, in a bounded and non-critical way, whether a specific evidence capability would be institutionally acceptable in your context.
           </p>
@@ -97,33 +123,27 @@ export default function EngagePage() {
           </p>
         </div>
 
-        <div className="space-y-4 pt-4">
-          <h3 className={prose.h3}>Schedule an acceptability discussion</h3>
-
-          <p className="text-slate-700 text-[15px] md:text-base leading-relaxed max-w-xl">
-            A short, structured conversation focused on institutional defensibility.<br />
-            No demos. No incidents. No commercial discussion.
-          </p>
-
-          <CTAButton href="https://app.cal.eu/asplenz/institutional-acceptability">
-            Schedule an acceptability discussion
-          </CTAButton>
-
-          <p className="text-sm text-slate-600 max-w-xl">
-            If calendar booking is not permitted in your organization,
-            you may contact us at{" "}
-            <a href="mailto:contact@asplenz.com" className="text-slate-900">
-              contact@asplenz.com
-            </a>.
-          </p>
-
-          <p className={prose.body}>This discussion is intended for:</p>
+        <div className="space-y-4">
+          <h3 className={prose.h3}>This discussion is intended for</h3>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>market infrastructures (exchanges, CCPs, CSDs)</li>
             <li>systemic banks</li>
             <li>or exploratory functions acting on their behalf (CTO Office, architecture, operational resilience, risk methodology)</li>
           </ul>
         </div>
+
+        <hr />
+
+        {/* Repeated CTA at bottom */}
+        <div className="pt-2">
+          <CTAButton href="https://app.cal.eu/asplenz/institutional-acceptability">
+            Schedule an acceptability discussion
+          </CTAButton>
+        </div>
+
+        <PageNav
+          prev={{ href: "/product-status", label: "Product status" }}
+        />
       </div>
     </Section>
   );

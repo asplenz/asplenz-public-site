@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/Section";
-import { CTAButton } from "@/components/CTAButton";
+import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
@@ -172,9 +172,10 @@ export default function CapabilityPage() {
           </p>
         </div>
 
-        <div className="pt-2">
-          <CTAButton href="/engage">Discuss acceptability</CTAButton>
-        </div>
+        <PageNav
+          prev={{ href: "/approach", label: "Approach" }}
+          next={{ href: "/principles", label: "Principles" }}
+        />
       </div>
     </Section>
   );
