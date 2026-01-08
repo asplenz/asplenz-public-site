@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Container } from "@/components/Container";
 
 const nav = [
-  { href: "/clarifications", label: "Clarifications" },
+  { href: "/", label: "Home" },
   { href: "/engage", label: "Engage" }
 ];
 
