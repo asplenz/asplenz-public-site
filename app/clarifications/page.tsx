@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/Section";
+import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
-  title: "FAQ",
+  title: "Clarifications",
   description:
-    "Common questions about scope, exposure, and governance implications of a decision evidence capability."
+    "Clarifications about scope, exposure, and governance implications of a decision evidence capability."
 };
 
-type FAQ = {
+type Clarification = {
+  id?: string;
   q: string;
   a: React.ReactNode;
 };
 
-const faqs: FAQ[] = [
+const clarifications: Clarification[] = [
   {
     q: "1. What problem does Horizon actually solve?",
     a: (
@@ -107,7 +109,106 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "4. Does Horizon force companies to log more decisions than they already do?",
+    id: "observability",
+    q: "4. We already have observability, logging, and audit trails. Why is this different?",
+    a: (
+      <div className="space-y-3">
+        <p className={prose.body}>
+          Observability, logging, and audit trails help organizations understand how systems behave and support investigation after the fact.
+        </p>
+        <p className="text-slate-900 font-medium tracking-tightish">
+          They are designed to support reconstruction.
+        </p>
+        <p className={prose.body}>
+          Horizon addresses a different question: whether{" "}
+          <span className="text-slate-900 font-medium">declared, examinable facts</span>{" "}
+          existed at execution time, before any investigation, explanation, or justification was required.
+        </p>
+        <p className={prose.body}>
+          Improving observability reduces the cost and effort of reconstruction. It does not remove reconstruction as a dependency.
+        </p>
+        <p className={prose.body}>
+          This distinction does not disappear with better tooling or richer telemetry.
+        </p>
+        <p className="text-slate-900 font-medium tracking-tightish">
+          Horizon is concerned with situations where reconstruction itself becomes the object of examination.
+        </p>
+      </div>
+    )
+  },
+  {
+    id: "artefacts",
+    q: "5. We already capture execution-time facts and generate artefacts automatically. Why is this not sufficient?",
+    a: (
+      <div className="space-y-3">
+        <p className={prose.body}>
+          Many systems capture signals at execution time and retain them in structured logs, tables, or audit trails.
+        </p>
+        <p className={prose.body}>
+          This is not disputed.
+        </p>
+        <p className={prose.body}>
+          The distinction Horizon makes is not about whether data exists, but about{" "}
+          <span className="text-slate-900 font-medium">when a fact becomes institutionally declared</span>.
+        </p>
+        <p className={prose.body}>In most architectures, logs and signals are:</p>
+        <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+          <li>produced automatically by systems,</li>
+          <li>selected, interpreted, and assembled later,</li>
+          <li>transformed into an artefact after a question has been raised.</li>
+        </ul>
+        <p className={prose.body}>
+          Even when fully automated, this process creates facts{" "}
+          <span className="text-slate-900 font-medium">post hoc</span>.
+        </p>
+        <p className={prose.body}>Horizon addresses situations where certain facts are:</p>
+        <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+          <li>explicitly declared by the organization,</li>
+          <li>at execution time,</li>
+          <li>with their scope, structure, and ordering defined in advance,</li>
+          <li>and preserved independently of any later investigation.</li>
+        </ul>
+        <p className={prose.body}>
+          The difference is not technical sophistication.
+        </p>
+        <p className="text-slate-900 font-medium tracking-tightish">
+          It is whether the fact existed as an institutional record before scrutiny began.
+        </p>
+        <p className={prose.body}>
+          Once scrutiny begins, no additional declaration can retroactively change when a fact came into existence.
+        </p>
+        <p className={prose.body}>Horizon exists for situations where organizations require certain records to:</p>
+        <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+          <li>be defined as facts before execution,</li>
+          <li>be preserved independently of code ownership,</li>
+          <li>and retain their status regardless of later interpretation.</li>
+        </ul>
+        <p className={prose.body}>
+          This often creates an illusion of institutional protection.
+        </p>
+        <p className={prose.body}>
+          As long as no specific execution is examined under scrutiny, the distinction remains invisible.
+        </p>
+        <p className={prose.body}>
+          It typically becomes visible only in difficult situations, such as:
+        </p>
+        <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+          <li>a regulatory inspection or supervisory review,</li>
+          <li>a post-incident investigation,</li>
+          <li>a legal or contractual dispute,</li>
+          <li>an internal audit focusing on a specific case,</li>
+          <li>or an ex post review of automated or AI-assisted decisions.</li>
+        </ul>
+        <p className={prose.body}>
+          In these situations, the question is no longer whether data exists, but whether{" "}
+          <span className="text-slate-900 font-medium">facts existed as institutional records at execution time</span>,
+          independently of later reconstruction.
+        </p>
+      </div>
+    )
+  },
+  {
+    q: "6. Does Horizon force companies to log more decisions than they already do?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -130,7 +231,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "5. Does Horizon create new legal or regulatory exposure?",
+    q: "7. Does Horizon create new legal or regulatory exposure?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -174,7 +275,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "6. Could Horizon records be subpoenaed or discovered?",
+    q: "8. Could Horizon records be subpoenaed or discovered?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -209,7 +310,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "7. Does Horizon record every decision in the company?",
+    q: "9. Does Horizon record every decision in the company?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -252,14 +353,14 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "8. Can Horizon be limited to high-risk or high-scrutiny decisions only?",
+    q: "10. Can Horizon be limited to high-risk or high-scrutiny decisions only?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
           <span className="text-slate-900 font-medium">Yes.</span>
         </p>
         <p className={prose.body}>
-          As described in Question 6, the company explicitly decides which
+          As described in Question 9, the company explicitly decides which
           decisions, actions, or processes are within scope.
         </p>
         <p className={prose.body}>
@@ -286,7 +387,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "9. Does Horizon replace logging, observability, or audit tools?",
+    q: "11. Does Horizon replace logging, observability, or audit tools?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -307,7 +408,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "10. Does Horizon only matter after something goes wrong?",
+    q: "12. Does Horizon only matter after something goes wrong?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -325,7 +426,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "11. How is Horizon different from just improving logging?",
+    q: "13. How is Horizon different from just improving logging?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>Improved logging still leaves companies with:</p>
@@ -351,7 +452,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "12. Does Horizon record human decisions and overrides?",
+    q: "14. Does Horizon record human decisions and overrides?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -373,7 +474,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "13. Could Horizon increase individual accountability or blame?",
+    q: "15. Could Horizon increase individual accountability or blame?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -405,7 +506,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "14. Does Horizon lock companies into rigid narratives?",
+    q: "16. Does Horizon lock companies into rigid narratives?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -437,7 +538,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "15. Who typically uses Horizon?",
+    q: "17. Who typically uses Horizon?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>Horizon is designed for internal use.</p>
@@ -465,7 +566,7 @@ const faqs: FAQ[] = [
     )
   },
   {
-    q: "16. What happens if a company decides not to retain certain evidence?",
+    q: "18. What happens if a company decides not to retain certain evidence?",
     a: (
       <div className="space-y-3">
         <p className={prose.body}>
@@ -500,23 +601,23 @@ const faqs: FAQ[] = [
   }
 ];
 
-function FAQItem({ q, a }: FAQ) {
+function ClarificationItem({ id, q, a }: Clarification) {
   return (
-    <div className="space-y-2">
+    <div id={id} className="space-y-2 scroll-mt-24">
       <h3 className={prose.h3}>{q}</h3>
       {a}
     </div>
   );
 }
 
-export default function FAQPage() {
+export default function ClarificationsPage() {
   return (
-    <Section eyebrow="Approach" title="Frequently Asked Questions">
+    <Section eyebrow="Clarifications" title="Clarifications">
       <div className="max-w-3xl space-y-6">
         {/* Intro */}
         <div className="space-y-3">
           <p className={prose.body}>
-            This FAQ addresses common questions raised when considering whether a
+            This page addresses common questions raised when considering whether a
             decision evidence capability should exist within an organization.
           </p>
           <p className={prose.body}>
@@ -527,10 +628,10 @@ export default function FAQPage() {
 
         <hr />
 
-        {/* FAQ list */}
+        {/* Clarifications list */}
         <div className="space-y-8">
-          {faqs.map((item) => (
-            <FAQItem key={item.q} q={item.q} a={item.a} />
+          {clarifications.map((item) => (
+            <ClarificationItem key={item.q} id={item.id} q={item.q} a={item.a} />
           ))}
         </div>
 
@@ -562,6 +663,11 @@ export default function FAQPage() {
           Note: This page is written for institutional readers evaluating scope and governance.
           It is not a product support page.
         </p>
+
+        <PageNav
+          prev={{ href: "/principles", label: "Principles" }}
+          next={{ href: "/use-cases", label: "Use cases" }}
+        />
       </div>
     </Section>
   );

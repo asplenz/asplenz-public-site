@@ -130,8 +130,8 @@ export default function PrinciplesPage() {
         </div>
 
         <PageNav
-          prev={{ href: "/capability", label: "Capability" }}
-          next={{ href: "/use-cases", label: "Use cases" }}
+          prev={{ href: "/product-status", label: "Product status" }}
+          next={{ href: "/clarifications", label: "Clarifications" }}
         />
       </div>
     </Section>

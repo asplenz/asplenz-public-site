@@ -122,8 +122,8 @@ export default function UseCasesPage() {
         </div>
 
         <PageNav
-          prev={{ href: "/principles", label: "Principles" }}
-          next={{ href: "/product-status", label: "Product status" }}
+          prev={{ href: "/clarifications", label: "Clarifications" }}
+          next={{ href: "/engage", label: "Engage" }}
         />
       </div>
     </Section>

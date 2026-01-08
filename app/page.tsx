@@ -11,10 +11,12 @@ export const metadata: Metadata = {
 
 const readingPath = [
   { href: "/approach", label: "Approach", description: "What is this capability and why does it exist?" },
+  { href: "/illustrative-scenario", label: "Illustrative scenario", description: "Two possible worlds: reconstruction vs examination" },
   { href: "/capability", label: "Capability", description: "What does it record and how?" },
+  { href: "/product-status", label: "Product status", description: "Current maturity and validation approach" },
   { href: "/principles", label: "Principles", description: "Non-negotiable constraints and clear non-goals" },
+  { href: "/clarifications", label: "Clarifications", description: "Questions and clarifications" },
   { href: "/use-cases", label: "Use cases", description: "Market infrastructures and systemic banks" },
-  { href: "/product-status", label: "Product status", description: "Current maturity and what is not yet available" },
   { href: "/engage", label: "Engage", description: "Schedule an acceptability discussion" }
 ];
 

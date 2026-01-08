@@ -72,8 +72,8 @@ export default function ProductStatusPage() {
         </div>
 
         <PageNav
-          prev={{ href: "/use-cases", label: "Use cases" }}
-          next={{ href: "/engage", label: "Engage" }}
+          prev={{ href: "/capability", label: "Capability" }}
+          next={{ href: "/principles", label: "Principles" }}
         />
       </div>
     </Section>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Section } from "@/components/Section";
 import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
@@ -172,9 +173,24 @@ export default function CapabilityPage() {
           </p>
         </div>
 
+        {/* Common questions */}
+        <div className="space-y-3">
+          <h3 className={prose.h3}>Common questions</h3>
+          <ul className="space-y-2">
+            <li>
+              <Link
+                href="/clarifications#artefacts"
+                className="text-slate-700 text-[15px] md:text-base no-underline hover:no-underline hover:text-blue-700"
+              >
+                We already capture execution-time facts and generate artefacts automatically. Why is this not sufficient?
+              </Link>
+            </li>
+          </ul>
+        </div>
+
         <PageNav
-          prev={{ href: "/approach", label: "Approach" }}
-          next={{ href: "/principles", label: "Principles" }}
+          prev={{ href: "/illustrative-scenario", label: "Illustrative scenario" }}
+          next={{ href: "/product-status", label: "Product status" }}
         />
       </div>
     </Section>

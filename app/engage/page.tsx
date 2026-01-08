@@ -142,7 +142,7 @@ export default function EngagePage() {
         </div>
 
         <PageNav
-          prev={{ href: "/product-status", label: "Product status" }}
+          prev={{ href: "/use-cases", label: "Use cases" }}
         />
       </div>
     </Section>

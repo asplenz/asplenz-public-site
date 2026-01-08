@@ -3,11 +3,12 @@ import { Container } from "@/components/Container";
 
 const footerLinks = [
   { href: "/approach", label: "Approach" },
+  { href: "/illustrative-scenario", label: "Illustrative scenario" },
   { href: "/capability", label: "Capability" },
-  { href: "/principles", label: "Principles" },
-  { href: "/use-cases", label: "Use cases" },
   { href: "/product-status", label: "Product status" },
-  { href: "/faq", label: "FAQ" },
+  { href: "/principles", label: "Principles" },
+  { href: "/clarifications", label: "Clarifications" },
+  { href: "/use-cases", label: "Use cases" },
   { href: "/engage", label: "Engage" }
 ];
 
