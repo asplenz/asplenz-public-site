@@ -173,6 +173,29 @@ export default function CapabilityPage() {
           </p>
         </div>
 
+        <div className="space-y-3">
+          <h3 className={prose.h3}>Deployment</h3>
+          <p className={prose.body}>
+            Horizon is designed to operate entirely within an institution's trust perimeter.
+          </p>
+          <p className={prose.body}>
+            Horizon can be deployed in different modalities depending on institutional constraints and integration
+            preferences. These modalities do not change the conceptual scope of Horizon. They affect how execution
+            evidence is produced and managed operationally, not what Horizon exists to establish.
+          </p>
+          <p className={prose.body}>
+            The choice of deployment modality is addressed during technical discussions and depends on performance,
+            isolation, and operational requirements.
+          </p>
+          <div className="mt-4 text-slate-700 text-[15px] md:text-base">
+            <span className="text-slate-900 font-medium">Technical documentation</span> describing deployment modes,
+            integration boundaries, and performance considerations is available upon request:{" "}
+            <a href="mailto:contact@asplenz.com?subject=Technical%20documentation%20request" className="text-blue-700 hover:text-blue-800">
+              contact@asplenz.com
+            </a>
+          </div>
+        </div>
+
         {/* Common questions */}
         <div className="space-y-3">
           <h3 className={prose.h3}>Common questions</h3>
@@ -180,7 +203,7 @@ export default function CapabilityPage() {
             <li>
               <Link
                 href="/clarifications#artefacts"
-                className="text-slate-700 text-[15px] md:text-base no-underline hover:no-underline hover:text-blue-700"
+                className="text-blue-700 text-[15px] md:text-base underline underline-offset-4 hover:text-blue-800"
               >
                 We already capture execution-time facts and generate artefacts automatically. Why is this not sufficient?
               </Link>

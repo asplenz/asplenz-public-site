@@ -6,24 +6,46 @@ import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
   title: "Engage",
-  description: "Engage: an acceptability discussion (not a sales process)."
+  description: "Two engagement types: Horizon acceptability discussion, or analytical engagements."
 };
 
 export default function EngagePage() {
   return (
-    <Section eyebrow="Engage" title="Engage: an acceptability discussion">
+    <Section eyebrow="Engage" title="Two ways to engage">
       <div className="max-w-3xl space-y-8">
         {/* Orientation block */}
         <div className="rounded-2xl bg-slate-50 ring-1 ring-slate-200/70 p-5 md:p-6 space-y-3">
-          <p className="text-slate-900 font-medium tracking-tightish text-base md:text-lg leading-relaxed">
-            A short, structured discussion to assess whether this capability is acceptable in your context.
+          <p className={prose.body}>
+            This page describes two distinct engagement types:
+          </p>
+          <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+            <li>
+              <span className="text-slate-900 font-medium">Horizon acceptability discussion</span>: assessing whether
+              the Horizon evidence capability would be institutionally acceptable in your context
+            </li>
+            <li>
+              <span className="text-slate-900 font-medium">Analytical engagements</span>: bounded analyses that do not
+              involve adopting Horizon or any other system
+            </li>
+          </ul>
+        </div>
+
+        <hr />
+
+        {/* ====== HORIZON ACCEPTABILITY ====== */}
+        <div className="space-y-3">
+          <div className="text-slate-600 text-xs uppercase tracking-[0.18em]">Horizon</div>
+          <h3 className="text-slate-900 tracking-tightish font-semibold text-xl md:text-2xl">Acceptability discussion</h3>
+          <p className={prose.body}>
+            A short, structured discussion to assess whether the Horizon evidence capability would be
+            institutionally acceptable in your context.
           </p>
           <p className="text-slate-600 text-[15px] md:text-base leading-relaxed">
             No demos. No incidents. No commitment.
           </p>
         </div>
 
-        {/* Primary CTA - immediately after orientation */}
+        {/* Primary CTA */}
         <div>
           <CTAButton href="https://app.cal.eu/asplenz/institutional-acceptability">
             Schedule an acceptability discussion
@@ -134,11 +156,66 @@ export default function EngagePage() {
 
         <hr />
 
-        {/* Repeated CTA at bottom */}
+        {/* Repeated CTA at bottom of Horizon section */}
         <div className="pt-2">
           <CTAButton href="https://app.cal.eu/asplenz/institutional-acceptability">
             Schedule an acceptability discussion
           </CTAButton>
+        </div>
+
+        <hr className="my-12 border-slate-300" />
+
+        {/* ====== ANALYTICAL ENGAGEMENTS ====== */}
+        <div className="space-y-3">
+          <div className="text-slate-600 text-xs uppercase tracking-[0.18em]">Analytical engagements</div>
+          <h3 className="text-slate-900 tracking-tightish font-semibold text-xl md:text-2xl">Bounded analyses (no system adoption)</h3>
+          <p className={prose.body}>
+            In some situations, organizations do not need a new system.
+            They need clarity about what actually happened, or what would be examinable if it did.
+          </p>
+          <p className={prose.body}>
+            These engagements are not product deployments.
+            They are bounded analyses designed to surface structural dependencies on reconstruction.
+          </p>
+        </div>
+
+        <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6 space-y-4">
+          <div className="space-y-2">
+            <div className="text-slate-900 font-medium tracking-tightish">Post-incident analysis</div>
+            <p className={prose.body}>
+              Applied after an incident, dispute, or review.
+              Focused on understanding where reconstruction replaced execution-time facts.
+            </p>
+          </div>
+
+          <hr />
+
+          <div className="space-y-2">
+            <div className="text-slate-900 font-medium tracking-tightish">Readiness review</div>
+            <p className={prose.body}>
+              Applied before audits or critical deployments.
+              Focused on identifying whether examinable facts would exist if a specific decision were reviewed.
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <p className={prose.body}>
+            These analyses do not result in mandatory follow-up actions or tool adoption.
+            Reaching the conclusion that no change is required is a valid outcome.
+          </p>
+          <p className="text-slate-900 font-medium tracking-tightish">
+            Analytical engagements are independent from Horizon adoption.
+          </p>
+        </div>
+
+        <div className="pt-2">
+          <p className={prose.body}>
+            Available through direct engagement:{" "}
+            <a href="mailto:contact@asplenz.com?subject=Analytical%20engagement%20inquiry" className="text-blue-700 underline underline-offset-4 hover:text-blue-800">
+              contact@asplenz.com
+            </a>
+          </p>
         </div>
 
         <PageNav

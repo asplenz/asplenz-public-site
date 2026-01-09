@@ -194,7 +194,7 @@ export default function ApproachPage() {
             <li>
               <Link
                 href="/clarifications#observability"
-                className="text-slate-700 text-[15px] md:text-base no-underline hover:no-underline hover:text-blue-700"
+                className="text-blue-700 text-[15px] md:text-base underline underline-offset-4 hover:text-blue-800"
               >
                 We already have observability, logging, and audit trails. Why is this different?
               </Link>
