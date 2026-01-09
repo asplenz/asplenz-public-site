@@ -8,7 +8,7 @@ const footerLinks = [
   { href: "/product-status", label: "Product status" },
   { href: "/principles", label: "Principles" },
   { href: "/clarifications", label: "Clarifications" },
-  { href: "/use-cases", label: "Use cases" },
+  { href: "/institutional-contexts", label: "Institutional contexts" },
   { href: "/engage", label: "Engage" }
 ];
 

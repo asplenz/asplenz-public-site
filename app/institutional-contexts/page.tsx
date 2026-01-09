@@ -4,13 +4,13 @@ import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
-  title: "Use cases",
+  title: "Institutional contexts",
   description: "Contexts where decision evidence capability is examined."
 };
 
-export default function UseCasesPage() {
+export default function InstitutionalContextsPage() {
   return (
-    <Section eyebrow="Use cases" title="Where Horizon is examined">
+    <Section eyebrow="Institutional contexts" title="Where Horizon is examined">
       <div className="max-w-3xl space-y-6">
         <div className="space-y-3">
           <p className={prose.body}>
@@ -123,7 +123,7 @@ export default function UseCasesPage() {
 
         <PageNav
           prev={{ href: "/clarifications", label: "Clarifications" }}
-          next={{ href: "/engage", label: "Engage" }}
+          next={{ href: "/engage#acceptability", label: "Engage" }}
         />
       </div>
     </Section>

@@ -10,13 +10,14 @@ export const metadata: Metadata = {
 };
 
 type Clarification = {
-  id?: string;
+  id: string;
   q: string;
   a: React.ReactNode;
 };
 
 const clarifications: Clarification[] = [
   {
+    id: "problem",
     q: "1. What problem does Horizon actually solve?",
     a: (
       <div className="space-y-3">
@@ -52,6 +53,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "decide",
     q: "2. Does Horizon decide anything or influence decisions?",
     a: (
       <div className="space-y-3">
@@ -73,6 +75,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "implementation",
     q: "3. How are implementation details addressed?",
     a: (
       <div className="space-y-3">
@@ -208,6 +211,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "log-more",
     q: "6. Does Horizon force companies to log more decisions than they already do?",
     a: (
       <div className="space-y-3">
@@ -231,6 +235,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "legal-exposure",
     q: "7. Does Horizon create new legal or regulatory exposure?",
     a: (
       <div className="space-y-3">
@@ -275,6 +280,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "subpoena",
     q: "8. Could Horizon records be subpoenaed or discovered?",
     a: (
       <div className="space-y-3">
@@ -310,6 +316,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "every-decision",
     q: "9. Does Horizon record every decision in the company?",
     a: (
       <div className="space-y-3">
@@ -353,6 +360,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "high-risk",
     q: "10. Can Horizon be limited to high-risk or high-scrutiny decisions only?",
     a: (
       <div className="space-y-3">
@@ -387,6 +395,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "replace-logging",
     q: "11. Does Horizon replace logging, observability, or audit tools?",
     a: (
       <div className="space-y-3">
@@ -408,6 +417,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "after-wrong",
     q: "12. Does Horizon only matter after something goes wrong?",
     a: (
       <div className="space-y-3">
@@ -426,6 +436,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "improve-logging",
     q: "13. How is Horizon different from just improving logging?",
     a: (
       <div className="space-y-3">
@@ -452,6 +463,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "human-decisions",
     q: "14. Does Horizon record human decisions and overrides?",
     a: (
       <div className="space-y-3">
@@ -474,6 +486,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "accountability",
     q: "15. Could Horizon increase individual accountability or blame?",
     a: (
       <div className="space-y-3">
@@ -506,6 +519,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "rigid-narratives",
     q: "16. Does Horizon lock companies into rigid narratives?",
     a: (
       <div className="space-y-3">
@@ -538,6 +552,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "users",
     q: "17. Who typically uses Horizon?",
     a: (
       <div className="space-y-3">
@@ -566,6 +581,7 @@ const clarifications: Clarification[] = [
     )
   },
   {
+    id: "retention",
     q: "18. What happens if a company decides not to retain certain evidence?",
     a: (
       <div className="space-y-3">
@@ -603,7 +619,7 @@ const clarifications: Clarification[] = [
 
 function ClarificationItem({ id, q, a }: Clarification) {
   return (
-    <div id={id} className="space-y-2 scroll-mt-24">
+    <div id={id} className="space-y-2 scroll-mt-20">
       <h3 className={prose.h3}>{q}</h3>
       {a}
     </div>
@@ -624,6 +640,22 @@ export default function ClarificationsPage() {
             It focuses on scope, governance implications, and institutional
             consequences, not on product features or commercial terms.
           </p>
+        </div>
+
+        {/* Table of contents */}
+        <div className="rounded-2xl bg-slate-50 ring-1 ring-slate-200/70 p-5 md:p-6">
+          <nav className="space-y-2">
+            {clarifications.map((item) => (
+              <div key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className="text-blue-700 text-[15px] md:text-base underline underline-offset-4 hover:text-blue-800"
+                >
+                  {item.q}
+                </a>
+              </div>
+            ))}
+          </nav>
         </div>
 
         <hr />
@@ -666,7 +698,7 @@ export default function ClarificationsPage() {
 
         <PageNav
           prev={{ href: "/principles", label: "Principles" }}
-          next={{ href: "/use-cases", label: "Use cases" }}
+          next={{ href: "/institutional-contexts", label: "Institutional contexts" }}
         />
       </div>
     </Section>

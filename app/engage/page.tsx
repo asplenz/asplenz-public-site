@@ -20,11 +20,11 @@ export default function EngagePage() {
           </p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>
-              <span className="text-slate-900 font-medium">Horizon acceptability discussion</span>: assessing whether
+              <a href="#acceptability" className="text-blue-700 underline underline-offset-4 hover:text-blue-800 font-medium">Horizon acceptability discussion</a>: assessing whether
               the Horizon evidence capability would be institutionally acceptable in your context
             </li>
             <li>
-              <span className="text-slate-900 font-medium">Analytical engagements</span>: bounded analyses that do not
+              <a href="#analytical" className="text-blue-700 underline underline-offset-4 hover:text-blue-800 font-medium">Analytical engagements</a>: bounded analyses that do not
               involve adopting Horizon or any other system
             </li>
           </ul>
@@ -33,7 +33,7 @@ export default function EngagePage() {
         <hr />
 
         {/* ====== HORIZON ACCEPTABILITY ====== */}
-        <div className="space-y-3">
+        <div id="acceptability" className="space-y-3 scroll-mt-20">
           <div className="text-slate-600 text-xs uppercase tracking-[0.18em]">Horizon</div>
           <h3 className="text-slate-900 tracking-tightish font-semibold text-xl md:text-2xl">Acceptability discussion</h3>
           <p className={prose.body}>
@@ -166,7 +166,7 @@ export default function EngagePage() {
         <hr className="my-12 border-slate-300" />
 
         {/* ====== ANALYTICAL ENGAGEMENTS ====== */}
-        <div className="space-y-3">
+        <div id="analytical" className="space-y-3 scroll-mt-20">
           <div className="text-slate-600 text-xs uppercase tracking-[0.18em]">Analytical engagements</div>
           <h3 className="text-slate-900 tracking-tightish font-semibold text-xl md:text-2xl">Bounded analyses (no system adoption)</h3>
           <p className={prose.body}>
@@ -205,7 +205,7 @@ export default function EngagePage() {
             Reaching the conclusion that no change is required is a valid outcome.
           </p>
           <p className="text-slate-900 font-medium tracking-tightish">
-            Analytical engagements are independent from Horizon adoption.
+            Analytical engagements are not a precursor to Horizon adoption, nor a substitute for it.
           </p>
         </div>
 
@@ -219,7 +219,7 @@ export default function EngagePage() {
         </div>
 
         <PageNav
-          prev={{ href: "/use-cases", label: "Use cases" }}
+          prev={{ href: "/institutional-contexts", label: "Institutional contexts" }}
         />
       </div>
     </Section>

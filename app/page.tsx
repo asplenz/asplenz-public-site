@@ -16,8 +16,8 @@ const readingPath = [
   { href: "/product-status", label: "Product status", description: "Current maturity and validation approach" },
   { href: "/principles", label: "Principles", description: "Non-negotiable constraints and clear non-goals" },
   { href: "/clarifications", label: "Clarifications", description: "Questions and clarifications" },
-  { href: "/use-cases", label: "Use cases", description: "Market infrastructures and systemic banks" },
-  { href: "/engage", label: "Engage", description: "Schedule an acceptability discussion" }
+  { href: "/institutional-contexts", label: "Institutional contexts", description: "Market infrastructures and systemic banks" },
+  { href: "/engage", label: "Engage", description: "Two ways to engage" }
 ];
 
 export default function HomePage() {
