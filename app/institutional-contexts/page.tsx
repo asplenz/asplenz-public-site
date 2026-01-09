@@ -5,16 +5,16 @@ import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
   title: "Institutional contexts",
-  description: "Contexts where decision evidence capability is examined."
+  description: "Contexts where execution may later be examined."
 };
 
 export default function InstitutionalContextsPage() {
   return (
-    <Section eyebrow="Institutional contexts" title="Where Horizon is examined">
+    <Section eyebrow="Institutional contexts" title="Contexts where execution may later be examined">
       <div className="max-w-3xl space-y-6">
         <div className="space-y-3">
           <p className={prose.body}>
-            Horizon is examined in environments where decisions may later require case-by-case scrutiny,
+            Horizon is considered in environments where decisions may later require case-by-case scrutiny,
             and where reconstruction under pressure creates institutional risk.
           </p>
           <p className={prose.body}>
