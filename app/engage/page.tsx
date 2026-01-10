@@ -273,7 +273,7 @@ export default function EngagePage() {
           </p>
         </div>
 
-        <PageNav prev={{ href: "/clarifications", label: "Clarifications" }} />
+        <PageNav prev={{ href: "/automated-decisions", label: "Automated decisions" }} />
       </div>
     </Section>
   );
