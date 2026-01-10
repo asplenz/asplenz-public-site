@@ -58,6 +58,13 @@ export default function ApproachPage() {
             <li>Multiple "versions" of what happened emerge</li>
             <li>Explanations remain contestable because the reconstruction is contestable</li>
           </ul>
+          <p className="text-slate-600 text-[15px] md:text-base leading-relaxed mt-3">
+            (See:{" "}
+            <Link href="/evidence-vs-reconstruction" className="text-blue-700 underline underline-offset-4 hover:text-blue-800">
+              Evidence vs reconstruction
+            </Link>
+            )
+          </p>
         </div>
 
         <hr />

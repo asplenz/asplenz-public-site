@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/Section";
-import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
@@ -121,10 +120,6 @@ export default function InstitutionalContextsPage() {
           </ul>
         </div>
 
-        <PageNav
-          prev={{ href: "/clarifications", label: "Clarifications" }}
-          next={{ href: "/engage#acceptability", label: "Engage" }}
-        />
       </div>
     </Section>
   );

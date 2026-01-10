@@ -5,10 +5,7 @@ const footerLinks = [
   { href: "/approach", label: "Approach" },
   { href: "/illustrative-scenario", label: "Illustrative scenario" },
   { href: "/capability", label: "Capability" },
-  { href: "/product-status", label: "Product status" },
-  { href: "/principles", label: "Principles" },
-  { href: "/clarifications", label: "Clarifications" },
-  { href: "/institutional-contexts", label: "Institutional contexts" },
+  { href: "/automated-decisions", label: "Automated decisions" },
   { href: "/engage", label: "Engage" }
 ];
 

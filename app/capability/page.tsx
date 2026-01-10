@@ -163,6 +163,13 @@ export default function CapabilityPage() {
             <li>Not decision-making</li>
             <li>Not compliance automation</li>
           </ul>
+          <p className="text-slate-600 text-[15px] md:text-base leading-relaxed mt-3">
+            (See also:{" "}
+            <Link href="/principles" className="text-blue-700 underline underline-offset-4 hover:text-blue-800">
+              Principles
+            </Link>
+            )
+          </p>
         </div>
 
         <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
@@ -190,7 +197,7 @@ export default function CapabilityPage() {
           <div className="mt-4 text-slate-700 text-[15px] md:text-base">
             <span className="text-slate-900 font-medium">Technical documentation</span> describing deployment modes,
             integration boundaries, and performance considerations is available upon request:{" "}
-            <a href="mailto:contact@asplenz.com?subject=Technical%20documentation%20request" className="text-blue-700 hover:text-blue-800">
+            <a href="mailto:contact@asplenz.com?subject=Technical%20documentation%20request" className="text-blue-700 underline underline-offset-4 hover:text-blue-800">
               contact@asplenz.com
             </a>
           </div>
@@ -213,7 +220,7 @@ export default function CapabilityPage() {
 
         <PageNav
           prev={{ href: "/illustrative-scenario", label: "Illustrative scenario" }}
-          next={{ href: "/product-status", label: "Product status" }}
+          next={{ href: "/automated-decisions", label: "Automated decisions" }}
         />
       </div>
     </Section>

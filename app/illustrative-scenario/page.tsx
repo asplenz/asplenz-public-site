@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Section } from "@/components/Section";
 import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
@@ -12,6 +13,35 @@ export default function IllustrativeScenarioPage() {
   return (
     <Section eyebrow="Illustrative scenario" title="A canonical situation where reconstruction becomes the problem">
       <div className="max-w-3xl space-y-8">
+        {/* Upfront framing */}
+        <div className="rounded-2xl bg-slate-50 ring-1 ring-slate-200/70 p-5 md:p-6 space-y-4">
+          <div className="text-slate-900 font-medium tracking-tightish">What this scenario demonstrates</div>
+          <p className={prose.body}>
+            This scenario demonstrates that when a decision is later examined, the outcome depends on whether
+            an execution-time record exists or must be reconstructed.
+          </p>
+          <p className={prose.body}>
+            It does so by comparing <span className="text-slate-900 font-medium">two worlds</span>:
+          </p>
+          <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+            <li>
+              <span className="text-slate-900 font-medium">World A: Reconstruction</span><br />
+              The decision is examined weeks later using logs, dashboards, tickets, and memory.
+            </li>
+            <li>
+              <span className="text-slate-900 font-medium">World B: Execution-time evidence</span><br />
+              The decision left behind a preserved artefact at the moment it was executed.
+            </li>
+          </ul>
+          <p className={prose.body}>
+            The events are identical.
+            The difference is <span className="text-slate-900 font-medium">not the decision</span>, but{" "}
+            <span className="text-slate-900 font-medium">what exists before scrutiny begins</span>.
+          </p>
+        </div>
+
+        <hr />
+
         <div className="space-y-3">
           <h3 className={prose.h3}>Purpose of this page</h3>
           <p className={prose.body}>
@@ -229,6 +259,13 @@ export default function IllustrativeScenarioPage() {
           </p>
           <p className="text-slate-900 font-medium tracking-tightish">
             It clarifies what changes if it does.
+          </p>
+          <p className="text-slate-600 text-[15px] md:text-base leading-relaxed mt-3">
+            (See:{" "}
+            <Link href="/evidence-vs-reconstruction" className="text-blue-700 underline underline-offset-4 hover:text-blue-800">
+              Evidence vs reconstruction
+            </Link>
+            )
           </p>
         </div>
 

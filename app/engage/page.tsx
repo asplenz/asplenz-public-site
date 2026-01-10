@@ -20,12 +20,22 @@ export default function EngagePage() {
           </p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>
-              <a href="#acceptability" className="text-blue-700 underline underline-offset-4 hover:text-blue-800 font-medium">Horizon acceptability discussion</a>: assessing whether
-              the Horizon evidence capability would be institutionally acceptable in your context
+              <a
+                href="#acceptability"
+                className="text-blue-700 underline underline-offset-4 hover:text-blue-800 font-medium"
+              >
+                Horizon acceptability discussion
+              </a>
+              : assessing whether the Horizon evidence capability would be institutionally acceptable in your context
             </li>
             <li>
-              <a href="#analytical" className="text-blue-700 underline underline-offset-4 hover:text-blue-800 font-medium">Analytical engagements</a>: bounded analyses that do not
-              involve adopting Horizon or any other system
+              <a
+                href="#analytical"
+                className="text-blue-700 underline underline-offset-4 hover:text-blue-800 font-medium"
+              >
+                Analytical engagements
+              </a>
+              : bounded analyses that do not involve adopting Horizon or any other system
             </li>
           </ul>
         </div>
@@ -35,7 +45,9 @@ export default function EngagePage() {
         {/* ====== HORIZON ACCEPTABILITY ====== */}
         <div id="acceptability" className="space-y-3 scroll-mt-20">
           <div className="text-slate-600 text-xs uppercase tracking-[0.18em]">Horizon</div>
-          <h3 className="text-slate-900 tracking-tightish font-semibold text-xl md:text-2xl">Acceptability discussion</h3>
+          <h3 className="text-slate-900 tracking-tightish font-semibold text-xl md:text-2xl">
+            Acceptability discussion
+          </h3>
           <p className={prose.body}>
             A short, structured discussion to assess whether the Horizon evidence capability would be
             institutionally acceptable in your context.
@@ -51,11 +63,11 @@ export default function EngagePage() {
             Schedule an acceptability discussion
           </CTAButton>
           <p className="mt-3 text-sm text-slate-500">
-            If calendar booking is not permitted in your organization,
-            contact us at{" "}
+            If calendar booking is not permitted in your organization, contact us at{" "}
             <a href="mailto:contact@asplenz.com" className="text-slate-700 underline underline-offset-4">
               contact@asplenz.com
-            </a>.
+            </a>
+            .
           </p>
         </div>
 
@@ -63,7 +75,8 @@ export default function EngagePage() {
 
         <div className="space-y-3">
           <p className={prose.body}>
-            This engagement is designed to explore, in a bounded and non-critical way, whether a specific evidence capability would be institutionally acceptable in your context.
+            This engagement is designed to explore, in a bounded and non-critical way, whether a specific evidence
+            capability would be institutionally acceptable in your context.
           </p>
           <p className="text-slate-900 font-medium tracking-tightish">
             It is explicitly not a commitment to adopt a system.
@@ -91,7 +104,8 @@ export default function EngagePage() {
           <h3 className={prose.h3}>The single question</h3>
           <div className="rounded-2xl bg-blue-50 shadow-hairline ring-1 ring-slate-200/70 p-5 md:p-6">
             <p className="text-slate-900 tracking-tightish font-medium text-base md:text-lg leading-relaxed">
-              Would this evidence approach be institutionally defensible in your governance, risk, and accountability framework?
+              Would this evidence approach be institutionally defensible in your governance, risk, and accountability
+              framework?
             </p>
           </div>
           <p className={prose.body}>Not:</p>
@@ -113,14 +127,29 @@ export default function EngagePage() {
           </p>
           <p className={prose.body}>Specifically:</p>
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
-            <li><span className="text-slate-900 font-medium">A shared understanding</span> of whether the approach is conceptually acceptable in your institutional context</li>
-            <li><span className="text-slate-900 font-medium">The explicit conditions</span> under which such a capability could exist (governance boundaries, architectural constraints, security assumptions)</li>
-            <li><span className="text-slate-900 font-medium">The key objections or blockers</span>, if any, that would prevent acceptability</li>
-            <li>Where relevant, <span className="text-slate-900 font-medium">an outline of a minimal, non-intrusive pilot</span>, strictly bounded:
+            <li>
+              <span className="text-slate-900 font-medium">A shared understanding</span> of whether the approach is
+              conceptually acceptable in your institutional context
+            </li>
+            <li>
+              <span className="text-slate-900 font-medium">The explicit conditions</span> under which such a capability
+              could exist (governance boundaries, architectural constraints, security assumptions)
+            </li>
+            <li>
+              <span className="text-slate-900 font-medium">The key objections or blockers</span>, if any, that would
+              prevent acceptability
+            </li>
+            <li>
+              Where relevant,{" "}
+              <span className="text-slate-900 font-medium">an outline of a minimal, non-intrusive pilot</span>, strictly
+              bounded:
               <ul className="list-disc pl-5 space-y-1 mt-2">
                 <li>limited in scope</li>
                 <li>outside production-critical paths</li>
-                <li>focused on a single point of no return (a specific moment where a decision or action becomes institutionally irreversible or materially consequential)</li>
+                <li>
+                  focused on a single point of no return (a specific moment where a decision or action becomes
+                  institutionally irreversible or materially consequential)
+                </li>
               </ul>
             </li>
           </ul>
@@ -143,6 +172,15 @@ export default function EngagePage() {
           <p className="text-slate-900 font-medium tracking-tightish">
             This is a capability exploration, not an adoption process.
           </p>
+
+          {/* ✅ Added: Product status link (single correct place) */}
+          <p className="text-slate-600 text-[15px] md:text-base leading-relaxed">
+            (See:{" "}
+            <a href="/product-status" className="text-blue-700 underline underline-offset-4 hover:text-blue-800">
+              Product status
+            </a>
+            )
+          </p>
         </div>
 
         <div className="space-y-4">
@@ -150,7 +188,10 @@ export default function EngagePage() {
           <ul className="list-disc pl-5 space-y-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
             <li>market infrastructures (exchanges, CCPs, CSDs)</li>
             <li>systemic banks</li>
-            <li>or exploratory functions acting on their behalf (CTO Office, architecture, operational resilience, risk methodology)</li>
+            <li>
+              or exploratory functions acting on their behalf (CTO Office, architecture, operational resilience, risk
+              methodology)
+            </li>
           </ul>
         </div>
 
@@ -168,14 +209,16 @@ export default function EngagePage() {
         {/* ====== ANALYTICAL ENGAGEMENTS ====== */}
         <div id="analytical" className="space-y-3 scroll-mt-20">
           <div className="text-slate-600 text-xs uppercase tracking-[0.18em]">Analytical engagements</div>
-          <h3 className="text-slate-900 tracking-tightish font-semibold text-xl md:text-2xl">Bounded analyses (no system adoption)</h3>
+          <h3 className="text-slate-900 tracking-tightish font-semibold text-xl md:text-2xl">
+            Bounded analyses (no system adoption)
+          </h3>
           <p className={prose.body}>
-            In some situations, organizations do not need a new system.
-            They need clarity about what actually happened, or what would be examinable if it did.
+            In some situations, organizations do not need a new system. They need clarity about what actually happened,
+            or what would be examinable if it did.
           </p>
           <p className={prose.body}>
-            These engagements are not product deployments.
-            They are bounded analyses designed to surface structural dependencies on reconstruction.
+            These engagements are not product deployments. They are bounded analyses designed to surface structural
+            dependencies on reconstruction.
           </p>
         </div>
 
@@ -183,8 +226,8 @@ export default function EngagePage() {
           <div className="space-y-2">
             <div className="text-slate-900 font-medium tracking-tightish">Post-incident analysis</div>
             <p className={prose.body}>
-              Applied after an incident, dispute, or review.
-              Focused on understanding where reconstruction replaced execution-time facts.
+              Applied after an incident, dispute, or review. Focused on understanding where reconstruction replaced
+              execution-time facts.
             </p>
           </div>
 
@@ -193,34 +236,44 @@ export default function EngagePage() {
           <div className="space-y-2">
             <div className="text-slate-900 font-medium tracking-tightish">Readiness review</div>
             <p className={prose.body}>
-              Applied before audits or critical deployments.
-              Focused on identifying whether examinable facts would exist if a specific decision were reviewed.
+              Applied before audits or critical deployments. Focused on identifying whether examinable facts would exist
+              if a specific decision were reviewed.
             </p>
           </div>
         </div>
 
         <div className="space-y-3">
           <p className={prose.body}>
-            These analyses do not result in mandatory follow-up actions or tool adoption.
-            Reaching the conclusion that no change is required is a valid outcome.
+            These analyses do not result in mandatory follow-up actions or tool adoption. Reaching the conclusion that no
+            change is required is a valid outcome.
           </p>
           <p className="text-slate-900 font-medium tracking-tightish">
             Analytical engagements are not a precursor to Horizon adoption, nor a substitute for it.
           </p>
         </div>
 
-        <div className="pt-2">
+        <div className="pt-2 space-y-2">
           <p className={prose.body}>
             Available through direct engagement:{" "}
-            <a href="mailto:contact@asplenz.com?subject=Analytical%20engagement%20inquiry" className="text-blue-700 underline underline-offset-4 hover:text-blue-800">
+            <a
+              href="mailto:contact@asplenz.com?subject=Analytical%20engagement%20inquiry"
+              className="text-blue-700 underline underline-offset-4 hover:text-blue-800"
+            >
               contact@asplenz.com
             </a>
           </p>
+
+          {/* ✅ Added: Clarifications link at the bottom (non-flow link) */}
+          <p className="text-slate-600 text-[15px] md:text-base leading-relaxed">
+            (For detailed scope and boundary clarifications, see{" "}
+            <a href="/clarifications" className="text-blue-700 underline underline-offset-4 hover:text-blue-800">
+              Clarifications
+            </a>
+            .)
+          </p>
         </div>
 
-        <PageNav
-          prev={{ href: "/institutional-contexts", label: "Institutional contexts" }}
-        />
+        <PageNav prev={{ href: "/clarifications", label: "Clarifications" }} />
       </div>
     </Section>
   );

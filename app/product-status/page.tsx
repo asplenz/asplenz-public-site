@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/Section";
-import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
@@ -71,10 +70,6 @@ export default function ProductStatusPage() {
           </p>
         </div>
 
-        <PageNav
-          prev={{ href: "/capability", label: "Capability" }}
-          next={{ href: "/principles", label: "Principles" }}
-        />
       </div>
     </Section>
   );

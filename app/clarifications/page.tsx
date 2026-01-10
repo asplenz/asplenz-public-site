@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/Section";
-import { PageNav } from "@/components/PageNav";
 import { prose } from "@/components/typography";
 
 export const metadata: Metadata = {
@@ -696,10 +695,13 @@ export default function ClarificationsPage() {
           It is not a product support page.
         </p>
 
-        <PageNav
-          prev={{ href: "/principles", label: "Principles" }}
-          next={{ href: "/institutional-contexts", label: "Institutional contexts" }}
-        />
+        <p className="text-slate-600 text-[15px] md:text-base leading-relaxed">
+          (See:{" "}
+          <a href="/product-status" className="text-blue-700 underline underline-offset-4 hover:text-blue-800">
+            Product status
+          </a>
+          )
+        </p>
       </div>
     </Section>
   );
