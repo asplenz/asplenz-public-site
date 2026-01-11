@@ -1,16 +1,22 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
-export default {
-  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
+const config: Config = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
   theme: {
     extend: {
-      letterSpacing: {
-        tightish: "-0.015em"
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
-      boxShadow: {
-        hairline: "0 0 0 1px rgba(15, 23, 42, 0.06)"
-      }
-    }
+      colors: {
+        black: '#000000',
+        white: '#FFFFFF',
+      },
+    },
   },
-  plugins: []
-} satisfies Config;
+  plugins: [],
+}
+export default config

@@ -1,0 +1,60 @@
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { navigationSections } from '@/lib/navigation';
+import { Language } from '@/lib/types';
+
+interface NavigationProps {
+  lang: Language;
+}
+
+export default function Navigation({ lang }: NavigationProps) {
+  const pathname = usePathname();
+  
+  const isActive = (slug: string) => {
+    return pathname.includes(`/${slug}`);
+  };
+  
+  // Numérotation des pages
+  let pageNumber = 1;
+  
+  return (
+    <nav className="space-y-8">
+      {navigationSections.map((section, idx) => (
+        <div key={idx}>
+          <h3 className="text-[10px] uppercase tracking-widest text-zinc-400 mb-3 font-normal">
+            {section.title[lang]}
+          </h3>
+          <ul className="space-y-2">
+            {section.items.map((item) => {
+              const currentNumber = String(pageNumber).padStart(2, '0');
+              pageNumber++;
+              return (
+                <li key={item.slug}>
+                  <Link
+                    href={`/${lang}/${item.slug}`}
+                    className={`text-sm block transition-all duration-200 ${
+                      isActive(item.slug)
+                        ? 'text-black font-medium border-l-2 border-[#1e3a8a] pl-4 bg-[#1e3a8a]/5'
+                        : 'text-black/70 hover:text-black hover:bg-zinc-50 pl-4'
+                    }`}
+                  >
+                    <span className="inline-flex items-center gap-3">
+                      <span className={`text-xs font-mono ${
+                        isActive(item.slug) ? 'text-[#1e3a8a]' : 'text-zinc-400'
+                      }`}>
+                        {currentNumber}
+                      </span>
+                      <span>{item.title[lang]}</span>
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+    </nav>
+  );
+}
