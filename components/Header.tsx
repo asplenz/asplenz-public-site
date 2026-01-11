@@ -10,7 +10,7 @@ interface HeaderProps {
 
 export default function Header({ lang }: HeaderProps) {
   return (
-    <header className="fixed top-0 left-0 w-80 h-screen border-r border-black/10 bg-white p-8 overflow-y-auto">
+    <header className="hidden lg:block fixed top-0 left-0 w-80 h-screen border-r border-black/10 bg-white p-8 overflow-y-auto">
       <div className="space-y-8">
         {/* Logo / Brand - Link to Home */}
         <div>
