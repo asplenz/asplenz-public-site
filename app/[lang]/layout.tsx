@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import MobileMenu from '@/components/MobileMenu';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Language } from '@/lib/types';
@@ -31,13 +32,18 @@ export default function LangLayout({
             </div>
           </Link>
           
-          {/* Mobile Language Switch */}
-          <Link 
-            href={`/${otherLang}`}
-            className="text-xs uppercase tracking-wider text-black/40 hover:text-black transition-colors px-3 py-2"
-          >
-            {otherLang}
-          </Link>
+          <div className="flex items-center gap-2">
+            {/* Mobile Language Switch */}
+            <Link 
+              href={`/${otherLang}`}
+              className="text-xs uppercase tracking-wider text-black/40 hover:text-black transition-colors px-3 py-2"
+            >
+              {otherLang}
+            </Link>
+            
+            {/* Mobile Menu */}
+            <MobileMenu lang={params.lang} />
+          </div>
         </div>
       </header>
       
