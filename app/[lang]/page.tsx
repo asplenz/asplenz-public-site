@@ -1,6 +1,10 @@
 import ReadingPath from '@/components/ReadingPath';
 import { Language } from '@/lib/types';
 
+export function generateStaticParams() {
+  return [{ lang: 'en' }, { lang: 'fr' }];
+}
+
 const content = {
   en: `
     <h1 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 2.5rem; font-weight: 700; letter-spacing: -0.035em; color: #000;">Evidence must exist before questions.</h1>

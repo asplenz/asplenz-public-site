@@ -1,6 +1,10 @@
 import ReadingPath from '@/components/ReadingPath';
 import { Language } from '@/lib/types';
 
+export function generateStaticParams() {
+  return [{ lang: 'en' }, { lang: 'fr' }];
+}
+
 const content = {
   en: `
     <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Institutional contexts</h1>
