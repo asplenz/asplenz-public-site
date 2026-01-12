@@ -39,7 +39,7 @@ const content = {
     <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.75rem;">Founder & CEO, Asplenz</p>
     <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.25rem;"><a href="mailto:amohamedali@asplenz.com" style="color: #18181b; text-decoration: underline;">amohamedali@asplenz.com</a></p>
     <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.25rem;">+33 (0)6 84 97 15 84</p>
-    <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><a href="https://www.linkedin.com/in/ahmohamedali" target="_blank" rel="noopener noreferrer" style="color: #18181b; text-decoration: underline;">linkedin.com/in/ahmohamedali</a></p>
+    <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><a href="https://www.linkedin.com/in/ahmed-mohamed-ali" target="_blank" rel="noopener noreferrer" style="color: #18181b; text-decoration: underline;">linkedin.com/in/ahmed-mohamed-ali</a></p>
   `,
   fr: `
     <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Contact</h1>
@@ -74,7 +74,7 @@ const content = {
     <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.75rem;">Founder & CEO, Asplenz</p>
     <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.25rem;"><a href="mailto:amohamedali@asplenz.com" style="color: #18181b; text-decoration: underline;">amohamedali@asplenz.com</a></p>
     <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.25rem;">+33 (0)6 84 97 15 84</p>
-    <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><a href="https://www.linkedin.com/in/ahmohamedali" target="_blank" rel="noopener noreferrer" style="color: #18181b; text-decoration: underline;">linkedin.com/in/ahmohamedali</a></p>
+    <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><a href="https://www.linkedin.com/in/ahmed-mohamed-ali" target="_blank" rel="noopener noreferrer" style="color: #18181b; text-decoration: underline;">linkedin.com/in/ahmed-mohamed-ali</a></p>
   `
 };
 

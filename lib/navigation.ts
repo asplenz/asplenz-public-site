@@ -56,8 +56,8 @@ export const navigationSections: NavigationSection[] = [
       {
         slug: 'institutional-contexts',
         title: {
-          en: 'Institutional contexts',
-          fr: 'Contextes institutionnels',
+          en: 'Institutional Contexts',
+          fr: 'Contextes Institutionnels',
         },
       },
     ],
@@ -138,7 +138,7 @@ export const readingPath: ReadingPathItem[] = [
   },
   {
     slug: 'institutional-contexts',
-    title: { en: 'Institutional contexts', fr: 'Contextes institutionnels' },
+    title: { en: 'Institutional Contexts', fr: 'Contextes Institutionnels' },
   },
   {
     slug: 'principles-boundaries',
