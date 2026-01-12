@@ -100,8 +100,8 @@ export const navigationSections: NavigationSection[] = [
       {
         slug: 'contact',
         title: {
-          en: 'Acceptability Dialogue',
-          fr: 'Dialogue d\'Acceptabilité',
+          en: 'Engagement & Contact',
+          fr: 'Engagement & Contact',
         },
       },
     ],
@@ -154,7 +154,7 @@ export const readingPath: ReadingPathItem[] = [
   },
   {
     slug: 'contact',
-    title: { en: 'Acceptability Dialogue', fr: 'Dialogue d\'Acceptabilité' },
+    title: { en: 'Engagement & Contact', fr: 'Engagement & Contact' },
   },
 ];
 
