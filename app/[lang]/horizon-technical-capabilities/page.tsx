@@ -25,15 +25,26 @@ const content = {
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     
-    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">2) Evaluations</h4>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">An evaluation is <strong>an organizational assessment at time T</strong>:</p>
+    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">2) Evaluations & Chronological Anchoring</h4>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">An evaluation is an <strong>evidentiary record of judgment</strong> captured at Time T. It documents the organizational stance (human or policy-based) that contextualizes a specific factual event.</p>
+    
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Functional Decoupling:</strong> Horizon is functionally independent of the operational execution path. It records the evaluation without ever intervening in the system's workflow.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Point-in-Time Binding:</strong> Evaluations are bound to factual triggers at the exact moment they are produced. This ensures the "state of knowledge" is frozen, preventing any post-hoc justification or hindsight bias.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Sequential Integrity:</strong> Every evaluation is treated as an immutable block. It proves what the organization judged to be true at Time T, regardless of the eventual outcome.</span></li>
+    </ul>
+    
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1rem;"><strong>Captured Stance Attributes:</strong></p>
     <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Severity classification</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Risk acceptance</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Declared basis</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Declared basis (The rationale used at that specific moment)</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Confidence level</span></li>
     </ul>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>An evaluation does not authorize an action.</strong> It preserves the state of knowledge and organizational stance at the time of execution.</p>
+    
+    <blockquote style="border-left: 4px solid #1e3a8a; padding: 1.5rem 2rem; background: #fafafa; font-style: italic; margin: 2rem 0;">
+      <p style="font-size: 1.125rem; line-height: 1.625; margin-bottom: 0; color: #18181b;"><strong>Design Principle:</strong> An evaluation is an evidentiary artifact; it is functionally independent of the execution path. Horizon documents the <em>why</em> without participating in the <em>what</em>.</p>
+    </blockquote>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     
@@ -83,11 +94,11 @@ const content = {
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Not a decision-making system.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Not compliance automation.</span></li>
     </ul>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">(See also: Principles)</p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">(See also: <a href="/en/principles-boundaries" style="color: #18181b; text-decoration: underline;">Principles & Boundaries</a>)</p>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>Operational side-effect</strong><br>In practice, these same facts are often used daily to avoid transaction reconstruction, without turning the infrastructure into an operations tool.</p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>Operational Dividend</strong><br>In practice, these same facts are often used daily to avoid transaction reconstruction, without turning the infrastructure into an operations tool.</p>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     
@@ -116,15 +127,26 @@ const content = {
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     
-    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">2) Les évaluations</h4>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Une évaluation est <strong>une appréciation organisationnelle à l'instant T</strong> :</p>
+    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">2) Les évaluations et l'ancrage chronologique</h4>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Une évaluation est un <strong>acte de jugement consigné</strong> à l'instant T. Elle documente la posture organisationnelle (humaine ou réglementaire) qui contextualise un fait précis.</p>
+    
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Indépendance fonctionnelle :</strong> Horizon est déconnecté du flux d'exécution opérationnel. Il consigne l'évaluation sans jamais interférer avec le déroulement du système.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Lien indissociable :</strong> Les évaluations sont liées aux déclencheurs factuels au moment exact de leur production. Cela fige « l'état des connaissances », interdisant toute reconstruction a posteriori ou biais de rétrospective.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Intégrité séquentielle :</strong> Chaque évaluation est traitée comme un bloc immuable. Elle prouve ce que l'organisation jugeait vrai à l'instant T, indépendamment du résultat final.</span></li>
+    </ul>
+    
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1rem;"><strong>Attributs de posture consignés :</strong></p>
     <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Classification de sévérité</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Acceptation de risque</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Fondement déclaré</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Acceptation du risque</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Fondement déclaré (Le raisonnement à cet instant précis)</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Niveau de confiance</span></li>
     </ul>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>Une évaluation n'autorise pas une action.</strong> Elle préserve l'état des connaissances et la posture de l'organisation au moment de l'exécution.</p>
+    
+    <blockquote style="border-left: 4px solid #1e3a8a; padding: 1.5rem 2rem; background: #fafafa; font-style: italic; margin: 2rem 0;">
+      <p style="font-size: 1.125rem; line-height: 1.625; margin-bottom: 0; color: #18181b;"><strong>Principe de conception :</strong> Une évaluation est un artefact de preuve ; elle est fonctionnellement indépendante du chemin d'exécution. Horizon documente le <em>pourquoi</em> sans participer au <em>quoi</em>.</p>
+    </blockquote>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     
@@ -174,11 +196,11 @@ const content = {
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni système de prise de décision.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni automatisation de la conformité.</span></li>
     </ul>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">(Voir aussi : Principes)</p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">(Voir aussi : <a href="/fr/principles-boundaries" style="color: #18181b; text-decoration: underline;">Principes & Limites</a>)</p>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>Effet secondaire opérationnel</strong><br>En pratique, ces mêmes faits sont souvent utilisés quotidiennement pour éviter la reconstruction de transactions, sans transformer l'infrastructure en outil opérationnel.</p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>Dividende opérationnel</strong><br>En pratique, ces mêmes faits sont souvent utilisés quotidiennement pour éviter la reconstruction de transactions, sans transformer l'infrastructure en outil opérationnel.</p>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     

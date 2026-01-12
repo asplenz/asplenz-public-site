@@ -21,16 +21,21 @@ Executions record what happened, in a declared context, at time T.
 
 ---
 
-#### 2) Evaluations
+#### 2) Evaluations & Chronological Anchoring
 
-An evaluation is **an organizational assessment at time T**:
+An evaluation is an **evidentiary record of judgment** captured at Time T. It documents the organizational stance (human or policy-based) that contextualizes a specific factual event.
 
-* Severity classification
-* Risk acceptance
-* Declared basis
-* Confidence level
+* **Functional Decoupling:** Horizon is functionally independent of the operational execution path. It records the evaluation without ever intervening in the system's workflow.
+* **Point-in-Time Binding:** Evaluations are bound to factual triggers at the exact moment they are produced. This ensures the "state of knowledge" is frozen, preventing any post-hoc justification or hindsight bias.
+* **Sequential Integrity:** Every evaluation is treated as an immutable block. It proves what the organization judged to be true at Time T, regardless of the eventual outcome.
 
-**An evaluation does not authorize an action.** It preserves the state of knowledge and organizational stance at the time of execution.
+**Captured Stance Attributes:**
+■ Severity classification
+■ Risk acceptance
+■ Declared basis (The rationale used at that specific moment)
+■ Confidence level
+
+> **Design Principle:** An evaluation is an evidentiary artifact; it is functionally independent of the execution path. Horizon documents the *why* without participating in the *what*.
 
 ---
 
@@ -89,7 +94,7 @@ When automated outcomes escalate to humans, the original execution reference is 
 
 ---
 
-**Operational side-effect**
+****
 In practice, these same facts are often used daily to avoid transaction reconstruction, without turning the infrastructure into an operations tool.
 
 ---
@@ -135,16 +140,21 @@ Les exécutions consignent ce qui s'est produit, dans un contexte déclaré, à 
 
 ---
 
-#### 2) Les évaluations
+#### 2) Les évaluations et l'ancrage chronologique
 
-Une évaluation est **une appréciation organisationnelle à l'instant T** :
+Une évaluation est un **acte de jugement consigné** à l'instant T. Elle documente la posture organisationnelle (humaine ou réglementaire) qui contextualise un fait précis.
 
-* Classification de sévérité
-* Acceptation de risque
-* Fondement déclaré
-* Niveau de confiance
+* **Indépendance fonctionnelle :** Horizon est déconnecté du flux d'exécution opérationnel. Il consigne l'évaluation sans jamais interférer avec le déroulement du système.
+* **Lien indissociable :** Les évaluations sont liées aux déclencheurs factuels au moment exact de leur production. Cela fige « l'état des connaissances », interdisant toute reconstruction a posteriori ou biais de rétrospective.
+* **Intégrité séquentielle :** Chaque évaluation est traitée comme un bloc immuable. Elle prouve ce que l'organisation jugeait vrai à l'instant T, indépendamment du résultat final.
 
-**Une évaluation n'autorise pas une action.** Elle préserve l'état des connaissances et la posture de l'organisation au moment de l'exécution.
+**Attributs de posture consignés :**
+■ Classification de sévérité
+■ Acceptation du risque
+■ Fondement déclaré (Le raisonnement à cet instant précis)
+■ Niveau de confiance
+
+> **Principe de conception :** Une évaluation est un artefact de preuve ; elle est fonctionnellement indépendante du chemin d'exécution. Horizon documente le *pourquoi* sans participer au *quoi*.
 
 ---
 

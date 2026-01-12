@@ -2,11 +2,13 @@
 
 # Automated Decisions
 
-## Why automated decisions create a specific evidence problem
+### Why automation creates a specific evidence problem
 
-Automated systems execute decisions continuously, at high frequency, and without human intervention. In these environments, the original execution context is often transient. By the time a decision is examined, the inputs, configuration, or model state that produced it may no longer exist.
+Automated systems execute decisions continuously, at a sustained pace and without direct human intervention. In these environments, the original execution context is inherently fleeting. By the time a decision is examined, the input data, the specific configuration, or the exact state of the model that produced it have often already disappeared or evolved.
 
-Traditional logging and observability capture activity and aggregates. They do not preserve the decision context as it existed at execution time. Asplenz Horizon addresses this gap by preserving execution-time evidence for selected automated decisions, without explaining models or evaluating outcomes.
+Activity logs and traditional observability capture technical activity and performance aggregates. They are not designed to preserve the decisional context as it existed at the precise moment of the action.
+
+**Asplenz Horizon enables the institution to bridge this gap by securing execution-time evidence for targeted automated decisions. Horizon does not seek to explain models or evaluate outcomes: it enables the safeguarding of the state of facts and knowledge that led to the execution.**
 
 ---
 
@@ -16,7 +18,7 @@ An automated decision is considered at the point where:
 
 * inputs are evaluated
 * rules or models are applied
-* an output is executed
+* 
 
 **Asplenz Horizon operates at this boundary.** It does not observe upstream data generation. It does not observe downstream impact.
 
@@ -66,14 +68,14 @@ This artefact exists independently of the system that produced it. It does not d
 
 ### What Asplenz Horizon does not attempt (by design)
 
-Combining evidence preservation with interpretation introduces institutional risk. Asplenz Horizon avoids this by remaining strictly neutral. It does not attempt to:
+Combining evidence preservation with active interpretation introduces institutional risk. Asplenz Horizon avoids this by remaining strictly neutral. It does not attempt to:
 
-* explain why a model behaved as it did or justify outcomes
-* assess bias, fairness, or correctness
-* provide counterfactuals or enforce governance
-* replace monitoring or observability
+* Explain why a model behaved as it did or justify outcomes;
+* Assess bias, fairness, or correctness of decisions;
+* Provide counterfactuals or enforce governance;
+* Replace monitoring or technical observability.
 
-**Horizon preserves facts, not interpretations. Any such analysis occurs outside the infrastructure.**
+**Horizon preserves facts as well as interpretations declared by the organization, without ever generating its own analysis. Any evaluation of the quality or relevance of the decision occurs outside the infrastructure.**
 
 ---
 
@@ -89,11 +91,13 @@ Automation accelerates decision-making. It also accelerates evidence loss. Autom
 
 # Décisions Automatisées
 
-## Pourquoi l'automatisation crée un problème de preuve spécifique
+### Pourquoi l'automatisation crée un problème de preuve spécifique
 
-Les systèmes automatisés exécutent des décisions en continu, à haute fréquence et sans intervention humaine. Dans ces environnements, le contexte d'exécution d'origine est souvent fugace. Au moment où une décision est examinée, les données d'entrée, la configuration ou l'état du modèle qui l'a produite peuvent avoir disparu.
+Les systèmes automatisés exécutent des décisions en continu, à une cadence soutenue et sans intervention humaine directe. Dans ces environnements, le contexte d'exécution d'origine est par nature fugace. Au moment où une décision est examinée, les données d'entrée, la configuration précise ou l'état exact du modèle qui l'a produite ont souvent déjà disparu ou évolué.
 
-Les journaux d'activité (logs) et l'observabilité traditionnelle capturent l'activité et des agrégats. Ils ne préservent pas le contexte décisionnel tel qu'il existait au moment de l'action. Asplenz Horizon comble cette lacune en préservant la preuve au moment de l'exécution pour des décisions automatisées ciblées, sans expliquer les modèles ni évaluer les résultats.
+Les journaux d'activité (logs) et l'observabilité traditionnelle capturent l'activité technique et des agrégats de performance. Ils ne sont pas conçus pour préserver le contexte décisionnel tel qu'il existait au moment précis de l'action.
+
+**Asplenz Horizon permet à l'institution de combler cette lacune en sécurisant la preuve au moment de l'exécution pour des décisions automatisées ciblées. Horizon ne cherche ni à expliquer les modèles, ni à évaluer les résultats : il permet de sanctuariser l'état des faits et des connaissances qui ont conduit à l'exécution.**
 
 ---
 
@@ -103,7 +107,7 @@ Une décision automatisée est considérée au point précis où :
 
 * les données d'entrée sont évaluées
 * les règles ou les modèles sont appliqués
-* un résultat est exécuté
+* Un résultat est produit et l'action est engagée
 
 **Asplenz Horizon opère à cette frontière.** Il n'observe ni la génération des données en amont, ni l'impact opérationnel en aval.
 
@@ -153,14 +157,14 @@ Cet artefact existe indépendamment du système qui l'a produit. Il ne dépend n
 
 ### Ce que Asplenz Horizon ne tente pas (par conception)
 
-Combiner la préservation de la preuve et son interprétation introduit un risque institutionnel. Asplenz Horizon évite cet écueil en restant strictement neutre. Il ne tente pas de :
+Combiner la préservation de la preuve avec l'interprétation active introduit un risque institutionnel. Asplenz Horizon évite cela en restant strictement neutre. Il ne tente pas de :
 
-* expliquer pourquoi un modèle s'est comporté de telle manière ou justifier les résultats
-* évaluer les biais, l'équité ou la pertinence
-* fournir des scénarios contrefactuels ou imposer une gouvernance
-* remplacer le monitoring ou l'observabilité
+* Expliquer pourquoi un modèle s'est comporté ainsi ou justifier les résultats ;
+* Évaluer les biais, l'équité ou la justesse des décisions ;
+* Fournir des scénarios contrefactuels ou imposer une gouvernance ;
+* Remplacer le monitoring ou l'observabilité technique.
 
-**Horizon préserve les faits, pas les interprétations. Toute analyse de ce type s'effectue en dehors de l'infrastructure.**
+**Horizon préserve les faits ainsi que les interprétations déclarées par l'organisation, sans jamais générer sa propre analyse. Toute évaluation de la qualité ou de la pertinence de la décision intervient en dehors de l'infrastructure.**
 
 ---
 

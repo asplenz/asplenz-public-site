@@ -56,13 +56,17 @@ Examination may happen later. But evidence must exist before questions arise.
 
 ---
 
-### What "fact" means here
+### What "a fact" means here
 
-In this context, a "fact" is not business truth or regulatory correctness. It is:
+In this context, a "fact" is neither a business truth nor a compliance validation. It is a signed and recorded act or declaration produced by a system or a human actor at the exact moment of execution.
 
-> *a signed and recorded act or declaration, produced by a system or a human actor, regardless of its business truth or regulatory correctness.*
+The goal is not to "explain" the past with better narratives, but to preserve what was declared and executed, in an immutable and ordered manner, so that institutional discussion starts from stable grounds.
 
-The objective is not to "explain" the past with better narratives. It is to preserve what was declared and executed, **immutably and in order**, so discussion starts from stable facts.
+**Concrete Example:**
+
+* **The Action:** A scoring algorithm approves a loan at Time T despite a threshold breach.
+* **The "Fact" captured by Horizon:** The exact approval signal, the specific input data used at that moment, and the system's associated risk assessment.
+* **The Value:** Even if it is later discovered that the loan should not have been granted (business truth), the **fact** remains that it was granted on that specific basis. **Horizon enables the institution to safeguard the reality of its executions and assessments, providing it with a sovereign factual basis that makes any subsequent reconstruction or alteration technically impossible.**
 
 ---
 
@@ -170,13 +174,17 @@ L'examen peut avoir lieu plus tard. Mais la preuve doit exister avant l'interrog
 
 ---
 
-### La définition du « fait »
+### Ce que signifie « un fait » ici
 
-Dans ce contexte, un « fait » n'est ni une vérité métier, ni une conformité réglementaire. C'est :
+Dans ce contexte, un « fait » n'est ni une vérité métier, ni une validation de conformité. C'est un acte ou une déclaration, signée et enregistrée, produite par un système ou un acteur humain au moment précis de l'exécution.
 
-> *un acte ou une déclaration signé et consigné, produit par un système ou un acteur humain, indépendamment de sa justesse métier ou de sa validité réglementaire.*
+L'objectif n'est pas d'« expliquer » le passé avec de meilleurs récits, mais de préserver ce qui a été déclaré et exécuté, de manière immuable et ordonnée, pour que la discussion institutionnelle repose sur des bases stables.
 
-L'objectif n'est pas d'expliquer le passé avec de meilleurs récits. Il s'agit de préserver ce qui a été déclaré et exécuté, **de manière immuable et ordonnée**, afin que la discussion débute sur des faits stables.
+**Exemple concret :**
+
+* **L'action :** Un algorithme de scoring approuve un prêt à un instant T malgré un dépassement de seuil.
+* **Le « fait » capturé par Horizon :** Le signal exact d'approbation, les données d'entrée utilisées à cet instant précis et l'évaluation de risque associée par le système.
+* **La valeur :** Même si l'on découvre plus tard que le prêt n'aurait pas dû être accordé (vérité métier), le **fait** est qu'il l'a été sur cette base spécifique. **Horizon permet à l'institution de sanctuariser la réalité de ses exécutions et de ses évaluations, lui garantissant une base factuelle souveraine qui rend toute reconstruction ou altération ultérieure techniquement impossible.**
 
 ---
 

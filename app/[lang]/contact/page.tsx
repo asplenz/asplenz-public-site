@@ -14,16 +14,16 @@ const content = {
       <p style="font-size: 1.25rem; line-height: 1.75; margin-bottom: 0; color: #18181b;"><strong>Evidence is a reality, not a simulation.</strong></p>
     </blockquote>
     
-    <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;">Asplenz Horizon is not a product of simulation. Because the integrity of execution evidence is inseparable from its actual environment, we do not provide standard commercial demonstrations. We prioritize a transition from conceptual dialogue to concrete validation.</p>
+    <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;">Asplenz Horizon is not a product of simulation. Because the integrity of execution evidence is inseparable from its actual environment, we do not provide standard commercial demonstrations. We prioritize a transition from conceptual dialogue to concrete validation through two engagement modes:</p>
     
     <section style="margin-top: 2.5rem;">
       <hr style="border: none; height: 1px; background: linear-gradient(to right, transparent, #e4e4e7 20%, #e4e4e7 80%, transparent); margin: 2.5rem 0;" />
       
       <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;"><span style="color: #71717a; margin-right: 0.5rem; font-size: 1.75rem;">▪</span>1. Acceptability Dialogue</h2>
       
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1rem;"><strong>Concept:</strong> A structured discussion to assess whether and how factual execution evidence mechanisms could be institutionally acceptable within your infrastructure.</p>
+      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.5rem;"><strong>Concept:</strong> A structured discussion to assess whether and how factual execution evidence mechanisms could be institutionally acceptable within your infrastructure.</p>
       
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objective:</strong> Identify institutional boundaries, clarify 'non-goals', and validate acceptability in principle (explicit adoption or non-adoption).</p>
+      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objective:</strong> Examine compatibility with your governance and <strong>risk posture</strong>, identify institutional boundaries, and validate acceptability in principle (explicit adoption or non-adoption).</p>
     </section>
     
     <section style="margin-top: 2.5rem;">
@@ -31,9 +31,9 @@ const content = {
       
       <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;"><span style="color: #71717a; margin-right: 0.5rem; font-size: 1.75rem;">▪</span>2. Audit Readiness & Post-mortem</h2>
       
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1rem;"><strong>Concept:</strong> Assistance with evidence scoping, structuring factual dossiers, and articulating an institutional posture during formal examinations, regulatory investigations, or complex incident analyses.</p>
+      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.5rem;"><strong>Concept:</strong> Assistance in framing evidence, structuring factual records, and articulating an institutional stance during formal examinations, regulatory inquiries, or complex incident analyses.</p>
       
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objective:</strong> Reduce exposure created by fragmented or reconstructed evidence <em>post-facto</em>. Separate facts, evaluations, and interpretations.</p>
+      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objective:</strong> Reduce exposure created by fragmented or post-hoc reconstructed evidence. Separate facts, evaluations, and interpretations to prepare a defensible institutional narrative.</p>
     </section>
     
     <section style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e4e4e7;">
@@ -52,16 +52,16 @@ const content = {
       <p style="font-size: 1.25rem; line-height: 1.75; margin-bottom: 0; color: #18181b;"><strong>La preuve est une réalité, pas une simulation.</strong></p>
     </blockquote>
     
-    <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;">Asplenz Horizon n'est pas un produit de simulation. Parce que l'intégrité de la preuve d'exécution est inséparable de son environnement réel, nous ne fournissons pas de démonstrations commerciales standard. Nous privilégions une transition du dialogue conceptuel à la validation concrète.</p>
+    <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;">Asplenz Horizon n'est pas un produit de simulation. Parce que l'intégrité de la preuve d'exécution est inséparable de son environnement réel, nous ne fournissons pas de démonstrations commerciales standard. Nous privilégions une transition du dialogue conceptuel à la validation concrète via deux modes d'engagement :</p>
     
     <section style="margin-top: 2.5rem;">
       <hr style="border: none; height: 1px; background: linear-gradient(to right, transparent, #e4e4e7 20%, #e4e4e7 80%, transparent); margin: 2.5rem 0;" />
       
       <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;"><span style="color: #71717a; margin-right: 0.5rem; font-size: 1.75rem;">▪</span>1. Dialogue d'Acceptabilité</h2>
       
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1rem;"><strong>Concept :</strong> Une discussion structurée pour évaluer si et comment les mécanismes de preuve factuelle d'exécution pourraient être institutionnellement acceptables au sein de votre infrastructure.</p>
+      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.5rem;"><strong>Concept :</strong> Une discussion structurée pour évaluer si et comment les mécanismes de preuve factuelle d'exécution pourraient être institutionnellement acceptables au sein de votre infrastructure.</p>
       
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objectif :</strong> Identifier les limites institutionnelles, clarifier les 'non-objectifs' et valider l'acceptabilité de principe (adoption ou non-adoption explicite).</p>
+      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objectif :</strong> Examiner la compatibilité avec votre gouvernance et votre <strong>posture de risque</strong>, identifier les limites institutionnelles et valider l'acceptabilité de principe (adoption ou non-adoption explicite).</p>
     </section>
     
     <section style="margin-top: 2.5rem;">
@@ -69,9 +69,9 @@ const content = {
       
       <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;"><span style="color: #71717a; margin-right: 0.5rem; font-size: 1.75rem;">▪</span>2. Audit Readiness & Post-mortem</h2>
       
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1rem;"><strong>Concept :</strong> Assistance au cadrage des preuves, à la structuration des dossiers factuels et à l'articulation d'une posture institutionnelle lors d'examens formels, d'enquêtes réglementaires ou d'analyses d'incidents complexes.</p>
+      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.5rem;"><strong>Concept :</strong> Assistance au cadrage des preuves, à la structuration des dossiers factuels et à l'articulation d'une posture institutionnelle lors d'examens formels, d'enquêtes réglementaires ou d'analyses d'incidents complexes.</p>
       
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objectif :</strong> Réduire l'exposition créée par des preuves fragmentées ou reconstruites <em>a posteriori</em>. Séparer les faits, les évaluations et les interprétations.</p>
+      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objectif :</strong> Réduire l'exposition créée par des preuves fragmentées ou reconstruites <em>a posteriori</em>. Séparer les faits, les évaluations et les interprétations pour préparer un récit institutionnel défendable.</p>
     </section>
     
     <section style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e4e4e7;">

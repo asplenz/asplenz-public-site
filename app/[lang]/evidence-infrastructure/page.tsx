@@ -74,15 +74,19 @@ const content = {
     <section style="margin-top: 2.5rem;">
       <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
       
-      <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1.rem;">What "fact" means here</h3>
+      <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1.rem;">What "a fact" means here</h3>
       
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">In this context, a "fact" is not business truth or regulatory correctness. It is:</p>
+      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">In this context, a "fact" is neither a business truth nor a compliance validation. It is a signed and recorded act or declaration produced by a system or a human actor at the exact moment of execution.</p>
       
-      <blockquote style="border-left: 2px solid #e4e4e7; padding-left: 1.5rem; font-style: italic; color: #52525b; margin: 1.5rem 0;">
-        <p style="font-size: 1.125rem; line-height: 1.625;"><em>a signed and recorded act or declaration, produced by a system or a human actor, regardless of its business truth or regulatory correctness.</em></p>
-      </blockquote>
+      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">The goal is not to "explain" the past with better narratives, but to preserve what was declared and executed, in an immutable and ordered manner, so that institutional discussion starts from stable grounds.</p>
       
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b;">The objective is not to "explain" the past with better narratives. It is to preserve what was declared and executed, <strong>immutably and in order</strong>, so discussion starts from stable facts.</p>
+      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 1rem; margin-top: 2rem;"><strong>Concrete Example:</strong></p>
+      
+      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+        <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>The Action:</strong> A scoring algorithm approves a loan at Time T despite a threshold breach.</span></li>
+        <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>The "Fact" captured by Horizon:</strong> The exact approval signal, the specific input data used at that moment, and the system's associated risk assessment.</span></li>
+        <li style="display: flex; align-items: baseline; gap: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>The Value:</strong> Even if it is later discovered that the loan should not have been granted (business truth), the <strong>fact</strong> remains that it was granted on that specific basis. <strong>Horizon enables the institution to safeguard the reality of its executions and assessments, providing it with a sovereign factual basis that makes any subsequent reconstruction or alteration technically impossible.</strong></span></li>
+      </ul>
     </section>
   `,
   fr: `
@@ -153,15 +157,19 @@ const content = {
     <section style="margin-top: 2.5rem;">
       <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
       
-      <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1.rem;">Ce que signifie « fait » ici</h3>
+      <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1.rem;">Ce que signifie « un fait » ici</h3>
       
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Dans ce contexte, un « fait » n'est ni une vérité métier ni une correction réglementaire. C'est :</p>
+      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Dans ce contexte, un « fait » n'est ni une vérité métier, ni une validation de conformité. C'est un acte ou une déclaration, signée et enregistrée, produite par un système ou un acteur humain au moment précis de l'exécution.</p>
       
-      <blockquote style="border-left: 2px solid #e4e4e7; padding-left: 1.5rem; font-style: italic; color: #52525b; margin: 1.5rem 0;">
-        <p style="font-size: 1.125rem; line-height: 1.625;"><em>un acte ou une déclaration signée et enregistrée, produite par un système ou un acteur humain, indépendamment de sa véracité métier ou de sa conformité réglementaire.</em></p>
-      </blockquote>
+      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">L'objectif n'est pas d'« expliquer » le passé avec de meilleurs récits, mais de préserver ce qui a été déclaré et exécuté, de manière immuable et ordonnée, pour que la discussion institutionnelle repose sur des bases stables.</p>
       
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b;">L'objectif n'est pas d'« expliquer » le passé avec de meilleurs récits. Il s'agit de préserver ce qui a été déclaré et exécuté, <strong>de manière immuable et ordonnée</strong>, pour que la discussion parte de faits stables.</p>
+      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 1rem; margin-top: 2rem;"><strong>Exemple concret :</strong></p>
+      
+      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+        <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>L'action :</strong> Un algorithme de scoring approuve un prêt à un instant T malgré un dépassement de seuil.</span></li>
+        <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>Le « fait » capturé par Horizon :</strong> Le signal exact d'approbation, les données d'entrée utilisées à cet instant précis et l'évaluation de risque associée par le système.</span></li>
+        <li style="display: flex; align-items: baseline; gap: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>La valeur :</strong> Même si l'on découvre plus tard que le prêt n'aurait pas dû être accordé (vérité métier), le <strong>fait</strong> est qu'il l'a été sur cette base spécifique. <strong>Horizon permet à l'institution de sanctuariser la réalité de ses exécutions et de ses évaluations, lui garantissant une base factuelle souveraine qui rend toute reconstruction ou altération ultérieure techniquement impossible.</strong></span></li>
+      </ul>
     </section>
   `
 };
