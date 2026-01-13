@@ -39,9 +39,33 @@ These exclusions preserve Horizon's role as a pure evidence layer, orthogonal to
 
 ---
 
-### Why logs and tickets are not equivalent
+### The Reconstruction Problem
 
 Logs and tickets facilitate reconstruction. They do not create a declared, ordered, and immutable evidence record at Time T. When an examination focuses on a specific case, the question is no longer "what usually happens," but "what exactly happened here." At that point, the reconstruction itself becomes contestable.
+
+---
+
+### Institutional Control and Evidence Governance
+
+*Mastery of the evidence lifecycle, from capture to disclosure*
+
+#### A. Control of Capture: Institution-Defined Rules
+
+* **Institution-owned logic:** Horizon records execution-time evidence according to capture rules defined and owned by the institution.
+* **Defined Scope:** The institution determines which specific execution flows are within scope and which artefacts are considered legitimate for evidentiary purposes.
+* **No Blind Automation:** Capture is a deliberate governance choice, not a technical imposition.
+
+#### B. Perimeter and Access: Absolute Sovereignty
+
+* **Intra-Perimeter Deployment:** Horizon operates strictly within the institution's perimeter, under its own operational and security controls.
+* **No External Windows:** Regulators and third parties have no direct access to Horizon or its underlying evidence store.
+* **Security Alignment:** The system integrates into the existing institutional security stack without creating external dependencies.
+
+#### C. Evidence Disclosure: A Strategic Decision
+
+* **Selective Inclusion:** Horizon produces evidence artefacts that the institution may include, selectively, in an audit, inquiry, or regulatory dossier.
+* **Institutional Discretion:** The institution retains full discretion over which artefacts are disclosed, contextualized, or withheld, in accordance with applicable legal and procedural frameworks.
+* **Technical vs. Legal:** Horizon provides the factual capability; the disclosure remains a legal and strategic decision.
 
 ---
 
@@ -86,8 +110,32 @@ Ces exclusions préservent le rôle d'Horizon en tant que couche de preuve pure,
 
 ---
 
-### Pourquoi les logs et les tickets ne sont pas équivalents
+### Le problème de la reconstruction
 
 Les logs et les tickets facilitent la reconstruction. Ils ne créent pas une preuve déclarée, ordonnée et immuable à l'instant T. Lorsqu'un examen porte sur un cas spécifique, la question n'est plus « que se passe-t-il habituellement », mais « que s'est-il passé exactement ici ». C'est à ce moment précis que la reconstruction elle-même devient contestable.
+
+---
+
+### Contrôle institutionnel et gouvernance des preuves
+
+*Maîtrise du cycle de vie de la preuve, de la capture à la divulgation*
+
+#### A. Contrôle de la capture : défini par l'institution
+
+* **Règles détenues par l'institution :** Horizon enregistre les preuves à l'exécution selon des règles de capture définies et appartenant exclusivement à l'institution.
+* **Périmètre sur mesure :** L'institution détermine quels flux d'exécution entrent dans le périmètre et quels artefacts sont considérés comme légitimes à des fins probatoires.
+* **Pas d'automatisme aveugle :** La capture est un choix de gouvernance délibéré, et non une imposition technique automatique.
+
+#### B. Périmètre et accès : souveraineté absolue
+
+* **Déploiement intra-périmètre :** Horizon fonctionne strictement au sein du périmètre de l'institution, sous ses propres contrôles opérationnels et de sécurité.
+* **Aucune « fenêtre » externe :** Les régulateurs et les tiers n'ont aucun accès direct à Horizon ni à son socle de preuves sous-jacent.
+* **Contrôle opérationnel :** Le système s'intègre dans l'infrastructure de sécurité existante sans créer de dépendances ou d'accès vers l'extérieur.
+
+#### C. Divulgation des preuves : une décision stratégique
+
+* **Inclusion sélective :** Horizon produit des artefacts de preuve que l'institution peut choisir d'inclure, de manière sélective, dans un audit, une enquête ou un dossier réglementaire.
+* **Discrétion institutionnelle :** L'institution conserve l'entière discrétion sur les artefacts Horizon qui sont divulgués, contextualisés ou retenus, conformément aux cadres juridiques et procéduraux applicables.
+* **Capacité technique vs Décision juridique :** Horizon fournit la capacité factuelle ; la divulgation demeure une décision juridique et stratégique sous le contrôle de la banque.
 
 ---

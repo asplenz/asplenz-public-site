@@ -32,8 +32,32 @@ const content = {
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Not a single operational oversight console</span></li>
     </ul>
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Why logs and tickets are not equivalent</h3>
+    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">The Reconstruction Problem</h3>
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Logs and tickets facilitate reconstruction. They do not create a declared, ordered, and immutable evidence record at Time T. When an examination focuses on a specific case, the question is no longer "what usually happens," but "what exactly happened here." At that point, the reconstruction itself becomes contestable.</p>
+    <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
+    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Institutional Control and Evidence Governance</h3>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem; font-style: italic;">Mastery of the evidence lifecycle, from capture to disclosure</p>
+    
+    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem; margin-top: 2rem;">A. Control of Capture: Institution-Defined Rules</h4>
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Institution-owned logic:</strong> Horizon records execution-time evidence according to capture rules defined and owned by the institution.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Defined Scope:</strong> The institution determines which specific execution flows are within scope and which artefacts are considered legitimate for evidentiary purposes.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>No Blind Automation:</strong> Capture is a deliberate governance choice, not a technical imposition.</span></li>
+    </ul>
+    
+    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem; margin-top: 2rem;">B. Perimeter and Access: Absolute Sovereignty</h4>
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Intra-Perimeter Deployment:</strong> Horizon operates strictly within the institution's perimeter, under its own operational and security controls.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>No External Windows:</strong> Regulators and third parties have no direct access to Horizon or its underlying evidence store.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Security Alignment:</strong> The system integrates into the existing institutional security stack without creating external dependencies.</span></li>
+    </ul>
+    
+    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem; margin-top: 2rem;">C. Evidence Disclosure: A Strategic Decision</h4>
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Selective Inclusion:</strong> Horizon produces evidence artefacts that the institution may include, selectively, in an audit, inquiry, or regulatory dossier.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Institutional Discretion:</strong> The institution retains full discretion over which artefacts are disclosed, contextualized, or withheld, in accordance with applicable legal and procedural frameworks.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Technical vs. Legal:</strong> Horizon provides the factual capability; the disclosure remains a legal and strategic decision.</span></li>
+    </ul>
   `,
   fr: `
     <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Principes & Limites</h1>
@@ -61,8 +85,32 @@ const content = {
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni console de supervision opérationnelle</span></li>
     </ul>
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Pourquoi les logs et les tickets ne sont pas équivalents</h3>
+    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Le problème de la reconstruction</h3>
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Les logs et les tickets facilitent la reconstruction. Ils ne créent pas une preuve déclarée, ordonnée et immuable à l'instant T. Lorsqu'un examen porte sur un cas spécifique, la question n'est plus « que se passe-t-il habituellement », mais « que s'est-il passé exactement ici ». C'est à ce moment précis que la reconstruction elle-même devient contestable.</p>
+    <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
+    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Contrôle institutionnel et gouvernance des preuves</h3>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem; font-style: italic;">Maîtrise du cycle de vie de la preuve, de la capture à la divulgation</p>
+    
+    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem; margin-top: 2rem;">A. Contrôle de la capture : défini par l'institution</h4>
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Règles détenues par l'institution :</strong> Horizon enregistre les preuves à l'exécution selon des règles de capture définies et appartenant exclusivement à l'institution.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Périmètre sur mesure :</strong> L'institution détermine quels flux d'exécution entrent dans le périmètre et quels artefacts sont considérés comme légitimes à des fins probatoires.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Pas d'automatisme aveugle :</strong> La capture est un choix de gouvernance délibéré, et non une imposition technique automatique.</span></li>
+    </ul>
+    
+    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem; margin-top: 2rem;">B. Périmètre et accès : souveraineté absolue</h4>
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Déploiement intra-périmètre :</strong> Horizon fonctionne strictement au sein du périmètre de l'institution, sous ses propres contrôles opérationnels et de sécurité.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Aucune « fenêtre » externe :</strong> Les régulateurs et les tiers n'ont aucun accès direct à Horizon ni à son socle de preuves sous-jacent.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Contrôle opérationnel :</strong> Le système s'intègre dans l'infrastructure de sécurité existante sans créer de dépendances ou d'accès vers l'extérieur.</span></li>
+    </ul>
+    
+    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem; margin-top: 2rem;">C. Divulgation des preuves : une décision stratégique</h4>
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Inclusion sélective :</strong> Horizon produit des artefacts de preuve que l'institution peut choisir d'inclure, de manière sélective, dans un audit, une enquête ou un dossier réglementaire.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Discrétion institutionnelle :</strong> L'institution conserve l'entière discrétion sur les artefacts Horizon qui sont divulgués, contextualisés ou retenus, conformément aux cadres juridiques et procéduraux applicables.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Capacité technique vs Décision juridique :</strong> Horizon fournit la capacité factuelle ; la divulgation demeure une décision juridique et stratégique sous le contrôle de la banque.</span></li>
+    </ul>
   `
 };
 
