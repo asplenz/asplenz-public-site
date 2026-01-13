@@ -15,7 +15,7 @@ const content = {
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Market infrastructures operate under a distinct constraint: decisions are examined not only for correctness, but for <strong>institutional legitimacy</strong>. When trading continues or halts, when data is published, or when exceptions are applied, the question is often: "Was the decision justifiable at the time?"</p>
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Critical moments</h3>
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">This capability becomes relevant at points of no return such as:</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Trading halt or continuation decisions under uncertainty.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Market data publication under degraded conditions.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Methodology interpretation during exceptional events.</span></li>
@@ -24,7 +24,7 @@ const content = {
     </ul>
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">What "good" looks like under scrutiny</h3>
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">A defensible dossier contains:</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>The exact execution that occurred.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>The evaluations that existed at the time.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Their order and timestamps.</span></li>
@@ -36,7 +36,7 @@ const content = {
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">In systemic contexts, what matters is not only whether controls existed, but whether the institution can prove what it knew, what it evaluated, and what it decided at time T. This is most visible when automated decisions interact with human escalation.</p>
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">High-criticality situations</h3>
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Examples of "point of no return" situations:</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Continuing critical services during a partial outage.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Overriding a blocking control under time pressure: fraud, sanctions, AML, or risk.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Approving an exception with explicit risk acceptance.</span></li>
@@ -44,13 +44,13 @@ const content = {
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Model-assisted decisions where context changes, including GenAI or RAG-assisted workflows.</span></li>
     </ul>
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">What is typically missing today</h3>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>The human decision is recorded later (ticket notes, emails, post-mortems).</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>The "state of knowledge" at the moment of action must be reconstructed.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Technical logs exist, but the institutional stance remains unclear.</span></li>
     </ul>
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">What the infrastructure provides</h3>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Combined execution facts and evaluation facts.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Explicit linkage between automated triggers and human decisions.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ordered, immutable chronology.</span></li>
@@ -66,7 +66,7 @@ const content = {
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Les infrastructures de marché opèrent sous une contrainte spécifique : les décisions sont examinées non seulement pour leur exactitude, mais pour leur <strong>légitimité institutionnelle</strong>. Lorsque les transactions se poursuivent ou s'arrêtent, lorsque des données sont publiées ou que des exceptions sont appliquées, la question est souvent : « La décision était-elle justifiable à cet instant précis ? »</p>
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Moments critiques</h3>
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Ce dispositif devient crucial aux points de non-retour tels que :</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les décisions de suspension ou de poursuite des transactions en période d'incertitude.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>La publication de données de marché en conditions dégradées.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>L'interprétation méthodologique lors d'événements exceptionnels.</span></li>
@@ -75,7 +75,7 @@ const content = {
     </ul>
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Ce qu'est un dossier « défendable » lors d'un examen</h3>
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Un dossier robuste contient :</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>L'exécution exacte qui a eu lieu.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les évaluations qui existaient à ce moment-là.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Leur ordre et leurs horodatages précis.</span></li>
@@ -87,7 +87,7 @@ const content = {
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Dans les contextes systémiques, ce qui importe n'est pas seulement l'existence de contrôles, mais la capacité de l'institution à prouver ce qu'elle savait, ce qu'elle a évalué et ce qu'elle a décidé à l'instant T. Cela est particulièrement visible lorsque des décisions automatisées interagissent avec une escalade humaine.</p>
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Situations de haute criticité</h3>
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Exemples de situations de « point de non-retour » :</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Le maintien de services critiques lors d'une interruption partielle.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Le passage outre d'un contrôle bloquant sous pression temporelle : fraude, sanctions, AML ou risque.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>L'approbation d'une exception avec acceptation explicite du risque.</span></li>
@@ -95,13 +95,13 @@ const content = {
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les décisions assistées par des modèles où le contexte évolue, y compris les flux assistés par GenAI ou RAG.</span></li>
     </ul>
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Ce qui manque généralement aujourd'hui</h3>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>La décision humaine est enregistrée plus tard (notes de tickets, e-mails, rapports d'incidents).</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>L'« état des connaissances » au moment de l'action doit être reconstruit.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les logs techniques existent, mais la posture institutionnelle reste floue.</span></li>
     </ul>
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Ce que le dispositif apporte</h3>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>La réunion des faits d'exécution et des faits d'évaluation.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Un lien explicite entre les déclencheurs automatisés et les décisions humaines.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Une chronologie ordonnée et immuable.</span></li>

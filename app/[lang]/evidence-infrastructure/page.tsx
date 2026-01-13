@@ -26,7 +26,7 @@ const content = {
       
       <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">When a case is questioned, teams typically rely on:</p>
       
-      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Logs fragmented across multiple systems</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Dashboards that reflect current state, not past execution</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Tickets, emails, documents, and post-mortems written later</span></li>
@@ -35,7 +35,7 @@ const content = {
       
       <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">This creates a predictable pattern:</p>
       
-      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Timelines are rebuilt from heterogeneous traces</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Context is inferred after the fact</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Multiple "versions" of what happened emerge</span></li>
@@ -82,7 +82,7 @@ const content = {
       
       <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 1rem; margin-top: 2rem;"><strong>Concrete Example:</strong></p>
       
-      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>The Action:</strong> A scoring algorithm approves a loan at Time T despite a threshold breach.</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>The "Fact" captured by Horizon:</strong> The exact approval signal, the specific input data used at that moment, and the system's associated risk assessment.</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>The Value:</strong> Even if it is later discovered that the loan should not have been granted (business truth), the <strong>fact</strong> remains that it was granted on that specific basis. <strong>Horizon enables the institution to safeguard the reality of its executions and assessments, providing it with a sovereign factual basis that makes any subsequent reconstruction or alteration technically impossible.</strong></span></li>
@@ -109,7 +109,7 @@ const content = {
       
       <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Lorsqu'un dossier est remis en question, les équipes s'appuient généralement sur :</p>
       
-      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Des journaux (logs) fragmentés entre plusieurs systèmes</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Des tableaux de bord reflétant l'état actuel et non l'exécution passée</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Des tickets, courriels, documents et rapports d'incidents rédigés a posteriori</span></li>
@@ -118,7 +118,7 @@ const content = {
       
       <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Cela génère un schéma prévisible :</p>
       
-      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Les chronologies sont rebâties à partir de traces hétérogènes</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Le contexte est déduit après coup</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Plusieurs « versions » de l'événement émergent</span></li>
@@ -165,7 +165,7 @@ const content = {
       
       <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 1rem; margin-top: 2rem;"><strong>Exemple concret :</strong></p>
       
-      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem; border-left: 1px solid #e4e4e7; margin-bottom: 1.5rem;">
+      <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>L'action :</strong> Un algorithme de scoring approuve un prêt à un instant T malgré un dépassement de seuil.</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>Le « fait » capturé par Horizon :</strong> Le signal exact d'approbation, les données d'entrée utilisées à cet instant précis et l'évaluation de risque associée par le système.</span></li>
         <li style="display: flex; align-items: baseline; gap: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;"><strong>La valeur :</strong> Même si l'on découvre plus tard que le prêt n'aurait pas dû être accordé (vérité métier), le <strong>fait</strong> est qu'il l'a été sur cette base spécifique. <strong>Horizon permet à l'institution de sanctuariser la réalité de ses exécutions et de ses évaluations, lui garantissant une base factuelle souveraine qui rend toute reconstruction ou altération ultérieure techniquement impossible.</strong></span></li>
