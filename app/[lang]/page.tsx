@@ -534,7 +534,7 @@ export default function HomePage({
       </section>
 
       {/* Engage Section */}
-      <section className="py-16 bg-zinc-50">
+      <section id="engage" className="py-16 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-4">{c.engage.title}</h2>
           <p className="text-black/70 mb-8">{c.engage.intro}</p>

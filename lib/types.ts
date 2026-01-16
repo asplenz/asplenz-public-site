@@ -9,6 +9,7 @@ export interface PageContent {
 
 export interface NavigationItem {
   slug: string;
+  externalHref?: string;
   title: {
     en: string;
     fr: string;

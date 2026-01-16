@@ -17,7 +17,7 @@ const readingPathItems = {
     { href: '/en/white-paper/principles-boundaries', title: 'Principles & Boundaries', desc: 'Design principles and clear non-goals.' },
     { href: '/en/white-paper/clarifications', title: 'Clarifications', desc: 'Common questions and precise clarifications.' },
     { href: '/en/white-paper/horizon-availability', title: 'Horizon Availability', desc: 'Current status and deployment approach.' },
-    { href: '/en/white-paper/contact', title: 'Acceptability Dialogue', desc: 'Two ways to engage.' },
+    { href: '/en#engage', title: 'Acceptability Dialogue', desc: 'Two ways to engage.' },
   ],
   fr: [
     { href: '/fr/white-paper/evidence-infrastructure', title: 'L\'Infrastructure de Preuve', desc: 'Qu\'est-ce que cette infrastructure et pourquoi existe-t-elle ?' },
@@ -29,7 +29,7 @@ const readingPathItems = {
     { href: '/fr/white-paper/principles-boundaries', title: 'Principes & Limites', desc: 'Principes de conception et non-objectifs clairs.' },
     { href: '/fr/white-paper/clarifications', title: 'Clarifications', desc: 'Questions courantes et clarifications précises.' },
     { href: '/fr/white-paper/horizon-availability', title: 'Disponibilité de Horizon', desc: 'Statut actuel et approche de déploiement.' },
-    { href: '/fr/white-paper/contact', title: 'Dialogue d\'Acceptabilité', desc: 'Deux modes de collaboration.' },
+    { href: '/fr#engage', title: 'Dialogue d\'Acceptabilité', desc: 'Deux modes de collaboration.' },
   ],
 };
 

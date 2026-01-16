@@ -98,7 +98,8 @@ export const navigationSections: NavigationSection[] = [
         },
       },
       {
-        slug: 'contact',
+        slug: '',
+        externalHref: '#engage',
         title: {
           en: 'Engagement & Contact',
           fr: 'Engagement & Contact',
@@ -151,10 +152,6 @@ export const readingPath: ReadingPathItem[] = [
   {
     slug: 'horizon-availability',
     title: { en: 'Horizon Availability', fr: 'Disponibilité de Horizon' },
-  },
-  {
-    slug: 'contact',
-    title: { en: 'Engagement & Contact', fr: 'Engagement & Contact' },
   },
 ];
 

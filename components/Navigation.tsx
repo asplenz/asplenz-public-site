@@ -30,19 +30,22 @@ export default function Navigation({ lang }: NavigationProps) {
             {section.items.map((item) => {
               const currentNumber = String(pageNumber).padStart(2, '0');
               pageNumber++;
+              const href = item.externalHref
+                ? `/${lang}${item.externalHref}`
+                : `/${lang}/white-paper/${item.slug}`;
               return (
-                <li key={item.slug}>
+                <li key={item.slug || item.externalHref}>
                   <Link
-                    href={`/${lang}/white-paper/${item.slug}`}
+                    href={href}
                     className={`text-sm block transition-all duration-200 ${
-                      isActive(item.slug)
+                      item.slug && isActive(item.slug)
                         ? 'text-black font-medium border-l-2 border-[#1e3a8a] pl-4 bg-[#1e3a8a]/5'
                         : 'text-black/70 hover:text-black hover:bg-zinc-50 pl-4'
                     }`}
                   >
                     <span className="inline-flex items-center gap-3">
                       <span className={`text-xs font-mono ${
-                        isActive(item.slug) ? 'text-[#1e3a8a]' : 'text-zinc-400'
+                        item.slug && isActive(item.slug) ? 'text-[#1e3a8a]' : 'text-zinc-400'
                       }`}>
                         {currentNumber}
                       </span>

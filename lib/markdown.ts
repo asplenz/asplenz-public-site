@@ -6,7 +6,7 @@ import html from 'remark-html';
 import gfm from 'remark-gfm';
 import { PageContent, Language } from './types';
 
-const contentDirectory = path.join(process.cwd(), 'content');
+const contentDirectory = path.join(process.cwd(), 'content', 'white-paper');
 
 /**
  * Parse bilingual markdown file and extract content for specific language
