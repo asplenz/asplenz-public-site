@@ -79,7 +79,7 @@ export default function MobileMenu({ lang }: MobileMenuProps) {
                   return (
                     <li key={item.slug}>
                       <Link
-                        href={`/${lang}/${item.slug}`}
+                        href={`/${lang}/white-paper/${item.slug}`}
                         onClick={() => setIsOpen(false)}
                         className={`text-sm block transition-all duration-200 ${
                           isActive(item.slug)

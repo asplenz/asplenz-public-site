@@ -94,7 +94,7 @@ const content = {
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Not a decision-making system.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Not compliance automation.</span></li>
     </ul>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">(See also: <a href="/en/principles-boundaries" style="color: #18181b; text-decoration: underline;">Principles & Boundaries</a>)</p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">(See also: <a href="/en/white-paper/principles-boundaries" style="color: #18181b; text-decoration: underline;">Principles & Boundaries</a>)</p>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     
@@ -196,7 +196,7 @@ const content = {
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni système de prise de décision.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni automatisation de la conformité.</span></li>
     </ul>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">(Voir aussi : <a href="/fr/principles-boundaries" style="color: #18181b; text-decoration: underline;">Principes & Limites</a>)</p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">(Voir aussi : <a href="/fr/white-paper/principles-boundaries" style="color: #18181b; text-decoration: underline;">Principes & Limites</a>)</p>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     

@@ -42,7 +42,7 @@ const content = {
         <li style="display: flex; align-items: baseline; gap: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Explanations remain contestable because the reconstruction is contestable</span></li>
       </ul>
       
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b;">(See: <a href="/en/evidence-vs-reconstruction" style="color: #18181b; text-decoration: underline;">Evidence vs reconstruction</a>)</p>
+      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b;">(See: <a href="/en/white-paper/evidence-vs-reconstruction" style="color: #18181b; text-decoration: underline;">Evidence vs reconstruction</a>)</p>
     </section>
     
     <section style="margin-top: 2.5rem;">
@@ -125,7 +125,7 @@ const content = {
         <li style="display: flex; align-items: baseline; gap: 0.75rem; padding-left: 1.25rem;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span style="font-size: 1.125rem; color: #18181b;">Les explications restent contestables car la reconstruction elle-même est contestable</span></li>
       </ul>
       
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b;">(Voir : <a href="/fr/evidence-vs-reconstruction" style="color: #18181b; text-decoration: underline;">Preuve vs reconstruction</a>)</p>
+      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b;">(Voir : <a href="/fr/white-paper/evidence-vs-reconstruction" style="color: #18181b; text-decoration: underline;">Preuve vs reconstruction</a>)</p>
     </section>
     
     <section style="margin-top: 2.5rem;">

@@ -1,4 +1,3 @@
-import ReadingPath from '@/components/ReadingPath';
 import Link from 'next/link';
 import { Language } from '@/lib/types';
 
@@ -7,94 +6,111 @@ export function generateStaticParams() {
 }
 
 const content = {
-  en: `
-    <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Engagement & Contact</h1>
-    
-    <blockquote style="border-left: 4px solid #1e3a8a; padding: 1.5rem 2rem; background: #fafafa; font-style: italic; margin: 2rem 0;">
-      <p style="font-size: 1.25rem; line-height: 1.75; margin-bottom: 0; color: #18181b;"><strong>Evidence is a reality, not a simulation.</strong></p>
-    </blockquote>
-    
-    <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;">Asplenz Horizon is not a product of simulation. Because the integrity of execution evidence is inseparable from its actual environment, we do not provide standard commercial demonstrations. We prioritize a transition from conceptual dialogue to concrete validation through two engagement modes:</p>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; height: 1px; background: linear-gradient(to right, transparent, #e4e4e7 20%, #e4e4e7 80%, transparent); margin: 2.5rem 0;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;"><span style="color: #71717a; margin-right: 0.5rem; font-size: 1.75rem;">▪</span>1. Acceptability Dialogue</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.5rem;"><strong>Concept:</strong> A structured discussion to assess whether and how factual execution evidence mechanisms could be institutionally acceptable within your infrastructure.</p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objective:</strong> Examine compatibility with your governance and <strong>risk posture</strong>, identify institutional boundaries, and validate acceptability in principle (explicit adoption or non-adoption).</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; height: 1px; background: linear-gradient(to right, transparent, #e4e4e7 20%, #e4e4e7 80%, transparent); margin: 2.5rem 0;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;"><span style="color: #71717a; margin-right: 0.5rem; font-size: 1.75rem;">▪</span>2. Audit Readiness & Post-mortem</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.5rem;"><strong>Concept:</strong> Assistance in framing evidence, structuring factual records, and articulating an institutional stance during formal examinations, regulatory inquiries, or complex incident analyses.</p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objective:</strong> Reduce exposure created by fragmented or post-hoc reconstructed evidence. Separate facts, evaluations, and interpretations to prepare a defensible institutional narrative.</p>
-    </section>
-    
-    <section style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e4e4e7;">
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #000; margin-bottom: 1rem; font-weight: 600;">Contact for an Engagement Discussion:</p>
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.25rem; font-weight: 600;">Ahmed Mohamed Ali</p>
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #52525b; margin-bottom: 0.75rem;">Founder & CEO, Asplenz</p>
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.25rem;">Email: <a href="mailto:amohamedali@asplenz.com" style="color: #18181b; text-decoration: underline;">amohamedali@asplenz.com</a></p>
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.25rem;">Mobile: <span style="unicode-bidi: bidi-override; direction: rtl;">48 51 79 48 6 33+</span></p>
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><a href="https://www.linkedin.com/in/ahmohamedali/" target="_blank" rel="noopener noreferrer" style="color: #18181b; text-decoration: underline; border-bottom: 1px solid #1e3a8a/30;">linkedin.com/in/ahmohamedali</a></p>
-    </section>
-  `,
-  fr: `
-    <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Engagement & Contact</h1>
-    
-    <blockquote style="border-left: 4px solid #1e3a8a; padding: 1.5rem 2rem; background: #fafafa; font-style: italic; margin: 2rem 0;">
-      <p style="font-size: 1.25rem; line-height: 1.75; margin-bottom: 0; color: #18181b;"><strong>La preuve est une réalité, pas une simulation.</strong></p>
-    </blockquote>
-    
-    <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;">Asplenz Horizon n'est pas un produit de simulation. Parce que l'intégrité de la preuve d'exécution est inséparable de son environnement réel, nous ne fournissons pas de démonstrations commerciales standard. Nous privilégions une transition du dialogue conceptuel à la validation concrète via deux modes d'engagement :</p>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; height: 1px; background: linear-gradient(to right, transparent, #e4e4e7 20%, #e4e4e7 80%, transparent); margin: 2.5rem 0;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;"><span style="color: #71717a; margin-right: 0.5rem; font-size: 1.75rem;">▪</span>1. Dialogue d'Acceptabilité</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.5rem;"><strong>Concept :</strong> Une discussion structurée pour évaluer si et comment les mécanismes de preuve factuelle d'exécution pourraient être institutionnellement acceptables au sein de votre infrastructure.</p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objectif :</strong> Examiner la compatibilité avec votre gouvernance et votre <strong>posture de risque</strong>, identifier les limites institutionnelles et valider l'acceptabilité de principe (adoption ou non-adoption explicite).</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; height: 1px; background: linear-gradient(to right, transparent, #e4e4e7 20%, #e4e4e7 80%, transparent); margin: 2.5rem 0;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;"><span style="color: #71717a; margin-right: 0.5rem; font-size: 1.75rem;">▪</span>2. Audit Readiness & Post-mortem</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.5rem;"><strong>Concept :</strong> Assistance au cadrage des preuves, à la structuration des dossiers factuels et à l'articulation d'une posture institutionnelle lors d'examens formels, d'enquêtes réglementaires ou d'analyses d'incidents complexes.</p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><strong>Objectif :</strong> Réduire l'exposition créée par des preuves fragmentées ou reconstruites <em>a posteriori</em>. Séparer les faits, les évaluations et les interprétations pour préparer un récit institutionnel défendable.</p>
-    </section>
-    
-    <section style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e4e4e7;">
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #000; margin-bottom: 1rem; font-weight: 600;">Contact pour une discussion d'engagement :</p>
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.25rem; font-weight: 600;">Ahmed Mohamed Ali</p>
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #52525b; margin-bottom: 0.75rem;">Founder & CEO, Asplenz</p>
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.25rem;">Email : <a href="mailto:amohamedali@asplenz.com" style="color: #18181b; text-decoration: underline;">amohamedali@asplenz.com</a></p>
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 0.25rem;">Mobile : <span style="unicode-bidi: bidi-override; direction: rtl;">48 51 79 48 6 33+</span></p>
-      <p style="font-size: 1.125rem; line-height: 1.75; color: #18181b; margin-bottom: 1.5rem;"><a href="https://www.linkedin.com/in/ahmohamedali/" target="_blank" rel="noopener noreferrer" style="color: #18181b; text-decoration: underline; border-bottom: 1px solid #1e3a8a/30;">linkedin.com/in/ahmohamedali</a></p>
-    </section>
-  `
+  fr: {
+    title: 'Contact',
+    subtitle: 'Asplenz s\'engage dans des conversations où la responsabilité compte.',
+    getInTouch: 'Nous contacter',
+    context: 'Vous souhaitez discuter d\'Horizon, d\'un diagnostic IA, ou d\'un accompagnement audit.',
+    name: 'Ahmed Mohamed Ali',
+    role: 'Fondateur & CEO, Asplenz',
+    email: 'amohamedali@asplenz.com',
+    phone: '+33 6 84 97 15 84',
+    linkedin: 'linkedin.com/in/ahmohamedali',
+    backToHome: 'Retour à l\'accueil',
+  },
+  en: {
+    title: 'Contact',
+    subtitle: 'Asplenz engages in conversations where accountability matters.',
+    getInTouch: 'Get in touch',
+    context: 'You want to discuss Horizon, an AI diagnostic, or audit support.',
+    name: 'Ahmed Mohamed Ali',
+    role: 'Founder & CEO, Asplenz',
+    email: 'amohamedali@asplenz.com',
+    phone: '+33 6 84 97 15 84',
+    linkedin: 'linkedin.com/in/ahmohamedali',
+    backToHome: 'Back to home',
+  },
 };
 
-export default function ContactPage({ params }: { params: { lang: Language } }) {
+export default function ContactPage({
+  params,
+}: {
+  params: { lang: Language };
+}) {
+  const c = content[params.lang];
+
   return (
-    <article className="max-w-3xl">
-      <div className="mb-6">
-        <Link href={`/${params.lang}`} className="text-sm text-zinc-400 hover:text-black transition-colors">
-          ← ASPLENZ
-        </Link>
-      </div>
-      <div dangerouslySetInnerHTML={{ __html: content[params.lang] }} />
-      <ReadingPath currentSlug="contact" lang={params.lang} />
-    </article>
+    <div className="min-h-screen">
+      {/* Hero */}
+      <section className="py-20 lg:py-32">
+        <div className="max-w-4xl mx-auto px-6">
+          <h1 className="text-3xl lg:text-5xl font-bold tracking-tight text-black mb-4">
+            {c.title}
+          </h1>
+          <p className="text-xl lg:text-2xl text-black/60 font-light">
+            {c.subtitle}
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Info */}
+      <section className="py-16 bg-zinc-50">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-2xl font-bold text-black mb-2">{c.getInTouch}</h2>
+          <p className="text-black/60 mb-8">{c.context}</p>
+
+          <div className="bg-white p-8 border border-black/5 max-w-md">
+            <h3 className="text-xl font-bold text-black mb-1">{c.name}</h3>
+            <p className="text-black/60 mb-6">{c.role}</p>
+
+            <div className="space-y-4">
+              <div>
+                <p className="text-xs uppercase tracking-wider text-black/40 mb-1">Email</p>
+                <a
+                  href={`mailto:${c.email}`}
+                  className="text-[#1e3a8a] hover:underline font-medium"
+                >
+                  {c.email}
+                </a>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-wider text-black/40 mb-1">{params.lang === 'fr' ? 'Téléphone' : 'Phone'}</p>
+                <a
+                  href={`tel:${c.phone.replace(/\s/g, '')}`}
+                  className="text-black hover:text-[#1e3a8a] transition-colors"
+                >
+                  {c.phone}
+                </a>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-wider text-black/40 mb-1">LinkedIn</p>
+                <a
+                  href={`https://${c.linkedin}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#1e3a8a] hover:underline"
+                >
+                  {c.linkedin}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Back to Home */}
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <Link
+            href={`/${params.lang}`}
+            className="inline-flex items-center gap-2 text-black/60 hover:text-black transition-colors"
+          >
+            <span>←</span> {c.backToHome}
+          </Link>
+        </div>
+      </section>
+    </div>
   );
 }

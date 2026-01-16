@@ -33,7 +33,7 @@ export default function Navigation({ lang }: NavigationProps) {
               return (
                 <li key={item.slug}>
                   <Link
-                    href={`/${lang}/${item.slug}`}
+                    href={`/${lang}/white-paper/${item.slug}`}
                     className={`text-sm block transition-all duration-200 ${
                       isActive(item.slug)
                         ? 'text-black font-medium border-l-2 border-[#1e3a8a] pl-4 bg-[#1e3a8a]/5'

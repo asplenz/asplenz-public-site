@@ -14,7 +14,7 @@ export default function Header({ lang }: HeaderProps) {
       <div className="space-y-8">
         {/* Logo / Brand - Link to Home */}
         <div>
-          <Link href={`/${lang}`} className="block hover:opacity-70 transition-opacity">
+          <Link href={`/${lang}/white-paper`} className="block hover:opacity-70 transition-opacity">
             <div className="flex items-center gap-3">
               <Image
                 src="/logo.png"
