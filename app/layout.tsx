@@ -4,10 +4,6 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Asplenz Horizon',
   description: 'A factual evidence layer for regulated institutions',
-  icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
-  },
 };
 
 export default function RootLayout({
