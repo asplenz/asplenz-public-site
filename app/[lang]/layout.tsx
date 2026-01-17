@@ -67,7 +67,7 @@ export default function LangLayout({
               <Link href={`/${params.lang}/white-paper`} className="hover:text-black transition-colors">
                 White Paper
               </Link>
-              <Link href={`/${params.lang}/contact`} className="hover:text-black transition-colors">
+              <Link href={`/${params.lang}/engagement`} className="hover:text-black transition-colors">
                 Contact
               </Link>
             </div>

@@ -221,7 +221,7 @@ export default function HomePage({
           </ul>
           <div className="mb-4">
             <Link
-              href={`/${params.lang}/contact`}
+              href={`/${params.lang}/engagement`}
               className="inline-flex items-center gap-2 bg-[#00205E] text-white px-6 py-3 font-medium hover:bg-[#00205E]/90 transition-colors"
             >
               {c.hero.cta}
@@ -350,7 +350,7 @@ export default function HomePage({
             ))}
           </ol>
           <Link
-            href={`/${params.lang}/contact`}
+            href={`/${params.lang}/engagement`}
             className="inline-flex items-center gap-2 bg-[#00205E] text-white px-6 py-3 font-medium hover:bg-[#00205E]/90 transition-colors"
           >
             {c.cta.button}

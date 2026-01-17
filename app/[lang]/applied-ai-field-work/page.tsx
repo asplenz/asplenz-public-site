@@ -502,7 +502,7 @@ export default function AppliedAIFieldWorkPage({
         <div className="max-w-4xl mx-auto px-6 text-center">
           <p className="text-black/70 mb-8 max-w-2xl mx-auto">{c.cta.intro}</p>
           <Link
-            href={`/${params.lang}/contact`}
+            href={`/${params.lang}/engagement`}
             className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
           >
             {c.cta.linkText} <span>→</span>
