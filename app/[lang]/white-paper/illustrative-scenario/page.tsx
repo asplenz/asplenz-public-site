@@ -25,9 +25,9 @@ const content = {
       'opère sous une configuration concrète,',
       'et produit un résultat.',
     ],
-    contextConclusion: 'Quelque temps plus tard, l\'organisation doit répondre à une question concernant cette décision. La différence entre les deux mondes ci-dessous ne réside pas dans la décision elle-même, mais dans la persistance — ou non — de l\'état factuel de l\'exécution.',
+    contextConclusion: 'Quelque temps plus tard, l\'organisation doit répondre à une question concernant cette décision. La différence entre les deux mondes ci-dessous ne réside pas dans la décision elle-même, mais dans la persistance - ou non - de l\'état factuel de l\'exécution.',
     twoWorldsTitle: 'Deux mondes possibles',
-    worldATitle: 'Monde A — La Reconstruction',
+    worldATitle: 'Monde A - La Reconstruction',
     worldAP1: 'Dans ce monde, aucune preuve n\'a été capturée au moment où la décision a été prise. Lorsque la décision est examinée plus tard, l\'organisation doit reconstruire ce qui s\'est passé en utilisant :',
     worldAPoints: [
       'des journaux (logs),',
@@ -38,8 +38,8 @@ const content = {
       'et la mémoire humaine.',
     ],
     worldAConclusion: 'L\'état factuel de la décision est déduit après coup. Différentes équipes peuvent reconstruire des versions divergentes de l\'événement, selon les sources disponibles, l\'évolution des systèmes et les interprétations appliquées. Le résultat est un récit assemblé sous le signe de l\'incertitude.',
-    worldBTitle: 'Monde B — La Preuve à l\'exécution',
-    worldBP1: 'Dans ce monde, l\'état factuel de la décision a été capturé au moment exact de l\'exécution. Cela implique qu\'un mécanisme de preuve — tel qu\'une **Infrastructure de Snapshot Décisionnel** — était déjà en place.',
+    worldBTitle: 'Monde B - La Preuve à l\'exécution',
+    worldBP1: 'Dans ce monde, l\'état factuel de la décision a été capturé au moment exact de l\'exécution. Cela implique qu\'un mécanisme de preuve - tel qu\'une **Infrastructure de Snapshot Décisionnel** - était déjà en place.',
     worldBP2: 'Lorsque la décision est examinée plus tard :',
     worldBPoints: [
       'les données d\'entrée réellement utilisées sont disponibles,',
@@ -114,7 +114,7 @@ const content = {
     ],
     contextConclusion: 'Some time later, the organization must answer a question about that decision. The difference between the two worlds below lies not in the decision itself, but in whether the factual state of execution still exists.',
     twoWorldsTitle: 'Two possible worlds',
-    worldATitle: 'World A — Reconstruction',
+    worldATitle: 'World A - Reconstruction',
     worldAP1: 'In this world, no execution-time evidence was captured when the decision was made. When the decision is later examined, the organization must reconstruct what happened using:',
     worldAPoints: [
       'logs,',
@@ -125,8 +125,8 @@ const content = {
       'and human recollection.',
     ],
     worldAConclusion: 'The factual state of the decision is inferred after the fact. Different teams may reconstruct different versions of what happened, depending on which sources are still available, how systems have evolved, and which interpretations are applied. The result is a narrative assembled under uncertainty.',
-    worldBTitle: 'World B — Execution-time evidence',
-    worldBP1: 'In this world, the factual state of the decision was captured at the moment of execution. This implies that an execution-time evidence mechanism — such as a **Decision Snapshot Infrastructure** — was already in place.',
+    worldBTitle: 'World B - Execution-time evidence',
+    worldBP1: 'In this world, the factual state of the decision was captured at the moment of execution. This implies that an execution-time evidence mechanism - such as a **Decision Snapshot Infrastructure** - was already in place.',
     worldBP2: 'When the decision is later examined:',
     worldBPoints: [
       'the input data actually used is available,',

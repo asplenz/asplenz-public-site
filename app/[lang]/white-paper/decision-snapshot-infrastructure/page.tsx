@@ -17,7 +17,7 @@ const content = {
     evidenceP2: 'À mesure que les systèmes évoluent, cette « mémoire » devient distribuée, incomplète et contestée. Différentes équipes reconstruisent des versions divergentes de ce qui s\'est passé, souvent sans socle factuel commun.',
     evidenceQuote: 'La reconstruction n\'est pas une preuve. C\'est une approximation construite sous des contraintes qui n\'existaient pas au moment de l\'exécution.',
     principleTitle: 'Le principe central : Capturer au Point de Non-Retour',
-    principleStatement: 'La preuve doit être créée au point de non-retour — le moment où la décision devient irréversible.',
+    principleStatement: 'La preuve doit être créée au point de non-retour - le moment où la décision devient irréversible.',
     principleIntro: 'À cet instant précis, le système :',
     principlePoints: [
       'a consommé des entrées spécifiques,',
@@ -106,7 +106,7 @@ const content = {
     evidenceP2: 'As systems evolve, this "memory" becomes distributed, incomplete, and contested. Different teams reconstruct different versions of what happened, often with no shared factual baseline.',
     evidenceQuote: 'Reconstruction is not evidence. It is an approximation built under constraints that did not exist at execution time.',
     principleTitle: 'The Core Principle: Capture at the Point of No Return',
-    principleStatement: 'Evidence should be created at the point of no return — when the decision becomes irreversible.',
+    principleStatement: 'Evidence should be created at the point of no return - when the decision becomes irreversible.',
     principleIntro: 'At that moment, the system:',
     principlePoints: [
       'has consumed specific inputs,',

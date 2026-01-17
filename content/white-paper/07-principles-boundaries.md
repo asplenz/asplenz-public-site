@@ -1,141 +1,171 @@
-### 2. English Version
+# 🇫🇷 Principes et Limites
 
-# Principles & Boundaries
+### Définir ce qu’est la preuve à l’exécution — et ce qu’elle n’est pas
 
-## Principles, perimeters and excluded objectives
-
-Reconstruction is valuable, until it becomes the subject of dispute. These principles are not design preferences. They exist because, in formal examination contexts, flexibility becomes a vulnerability: evidence must be created at the time of execution, not reconstructed post-hoc.
-
-We use the term **Execution Evidence Infrastructure (EEI)** to describe this framework: a dedicated evidence layer that creates examinable facts at the moment of execution, independent of subsequent audits, inquiries, or reconstructions.
+Les principes suivants définissent les fondations conceptuelles de Horizon et les limites au sein desquelles l’infrastructure opère. Ils ne constituent pas des prescriptions de gouvernance ou de prise de décision. Ils décrivent les contraintes structurelles observées dans les systèmes de décision automatisés et les conditions dans lesquelles une certitude factuelle peut exister durablement.
 
 ---
 
-### Non-negotiable principles
+### Principe 1 — La preuve n’existe qu’au moment de l’exécution
 
-* **Evidence at Time T (Point of no return)**
-Prevents retrospective reconstruction from becoming "the evidence" by producing facts at the exact moment the action occurs. This protects the organization against asymmetric adverse interpretations by anchoring the defense in the actual execution context, effectively neutralizing hindsight bias.
-* **Append-only Ledger: An immutable, cumulative record**
-Nothing is ever erased or overwritten. If new information (e.g., an audit or post-hoc validation) emerges after an execution, it is appended as a new timestamped artefact. We do not modify the past; we document the progression of knowledge.
-* **Agent-Agnostic (Human or Machine)**
-Preserves a single factual chain between automated decisions and human interventions, without loss of continuity.
-* **Non-intrusiveness (Functional Decoupling)**
-Ensures that evidence capture does not act as a checkpoint. The system is purely observational: it modifies neither outcomes nor workflows, and minimizes system overhead.
-* **Strict Separation: Execution vs. Evaluation**
-Distinguishes "what happened" from "what was evaluated," so that subsequent examination can separate the raw action from its organizational interpretation.
-* **Independent Verification (Including Offline)**
-Integrity can be verified from exported evidence artefacts (evidence packages) without relying on the source systems, and without requiring access to the execution environment during critical examinations.
+Une décision devient un fait à l’instant même où elle est exécutée. À cet instant précis :
 
----
+* des entrées spécifiques sont consommées,
+* une logique spécifique est appliquée,
+* dans un contexte d’exécution spécifique,
+* produisant un résultat spécifique.
 
-### Deliberate Exclusions
+Une fois ce moment passé, l’état factuel d’origine n’existe plus dans son intégralité au sein du système. Toute tentative ultérieure d'établir ce qui s'est passé repose sur la reconstruction. La preuve à l’exécution ne peut donc être produite qu'au moment de l'exécution. Elle ne peut être recréée après coup sans perte ni interprétation.
 
-These exclusions preserve Horizon's role as a pure evidence layer, orthogonal to operational tools:
+### Principe 2 — Les faits et les interprétations doivent rester distincts
 
-* Not an investigation platform
-* Not observability or SIEM
-* Not a case-management workflow
-* Not a compliance tool (GRC)
-* Not a single operational oversight console
+La preuve à l’exécution établit les faits, pas le sens. Les faits décrivent :
 
----
+* ce qui a été exécuté,
+* avec quelles données,
+* dans quelles conditions,
+* et avec quel résultat.
 
-### The Reconstruction Problem
+L’interprétation, l’évaluation et le jugement peuvent suivre — mais ils surviennent dans une couche temporelle différente. Confondre les faits et l’interprétation introduit de l’ambiguïté et un biais de rétrospective. Les séparer préserve l’état réel des connaissances de l’institution au moment de l’action.
 
-Logs and tickets facilitate reconstruction. They do not create a declared, ordered, and immutable evidence record at Time T. When an examination focuses on a specific case, the question is no longer "what usually happens," but "what exactly happened here." At that point, the reconstruction itself becomes contestable.
+### Principe 3 — La reconstruction n’est pas une preuve
 
----
+La reconstruction assemble des récits a posteriori. Elle peut soutenir la compréhension, l’explication ou l’apprentissage. Elle ne préserve pas l’état factuel qui existait au moment de l’exécution.
+La reconstruction dépend :
 
-### Institutional Control and Evidence Governance
+* des traces survivantes,
+* de systèmes évolutifs,
+* de données partielles,
+* et d’une interprétation rétrospective.
 
-*Mastery of the evidence lifecycle, from capture to disclosure*
-
-#### A. Control of Capture: Institution-Defined Rules
-
-* **Institution-owned logic:** Horizon records execution-time evidence according to capture rules defined and owned by the institution.
-* **Defined Scope:** The institution determines which specific execution flows are within scope and which artefacts are considered legitimate for evidentiary purposes.
-* **No Blind Automation:** Capture is a deliberate governance choice, not a technical imposition.
-
-#### B. Perimeter and Access: Absolute Sovereignty
-
-* **Intra-Perimeter Deployment:** Horizon operates strictly within the institution's perimeter, under its own operational and security controls.
-* **No External Windows:** Regulators and third parties have no direct access to Horizon or its underlying evidence store.
-* **Security Alignment:** The system integrates into the existing institutional security stack without creating external dependencies.
-
-#### C. Evidence Disclosure: A Strategic Decision
-
-* **Selective Inclusion:** Horizon produces evidence artefacts that the institution may include, selectively, in an audit, inquiry, or regulatory dossier.
-* **Institutional Discretion:** The institution retains full discretion over which artefacts are disclosed, contextualized, or withheld, in accordance with applicable legal and procedural frameworks.
-* **Technical vs. Legal:** Horizon provides the factual capability; the disclosure remains a legal and strategic decision.
+Il s’agit de limites structurelles, et non de défauts de mise en œuvre. Là où une certitude factuelle est requise, la reconstruction ne peut servir de fondation.
 
 ---
 
-### 3. Version Française
+### Limite 1 — Horizon n’explique pas les décisions
 
-# Principes & Limites
+Horizon ne fournit ni explications, ni justifications, ni interprétations. Il ne :
 
-## Principes, périmètres et objectifs exclus
+* juge pas la pertinence,
+* n'attribue pas de responsabilité,
+* n'évalue pas les résultats.
 
-La reconstruction est précieuse, jusqu'à ce qu'elle devienne l'objet de la contestation. Ces principes ne sont pas des préférences de conception. Ils existent car, dans les contextes d'examen formel, la flexibilité devient une vulnérabilité : la preuve doit être créée au moment de l'exécution, et non reconstruite a posteriori.
+Son rôle s’arrête à la déclaration et à la préservation des faits. L’interprétation reste une activité humaine et institutionnelle.
 
-Nous utilisons le terme **Infrastructure de Preuve d'Exécution (EEI)** pour décrire ce dispositif : une couche de preuve dédiée qui crée des faits examinables au moment de l'exécution, indépendamment des audits, enquêtes ou reconstructions ultérieurs.
+### Limite 2 — Horizon n’est pas un système d’audit ou de monitoring
 
----
+Horizon n’est pas : une plateforme d’observabilité, un outil de monitoring ou d’alerte, un SIEM, un moteur de workflow ou un système de décision.
+Ces outils répondent à des questions différentes. Horizon comble une lacune structurelle : l’absence de registres factuels durables, produits à l’exécution, pour les décisions automatisées.
 
-### Principes non négociables
+### Limite 3 — Horizon n’impose pas de posture institutionnelle
 
-* **La preuve à l'instant T (point de non-retour)**
-Empêche la reconstruction rétrospective de devenir « la preuve » en produisant des faits au moment même où l'action survient. Cela protège l'organisation contre les interprétations adverses asymétriques en ancrant la défense sur le contexte réel de l'exécution, neutralisant ainsi le biais de rétrospective.
-* **Registres en ajout exclusif (Append-only) : Un registre immuable et cumulatif**
-Rien n'est jamais effacé ou réécrit. Si une information nouvelle (ex : un audit ou une validation a posteriori) survient après une exécution, elle est ajoutée comme un nouvel artefact daté. On ne modifie pas le passé, on documente la progression de la connaissance.
-* **Agnostique vis-à-vis de l'agent (humain ou machine)**
-Préserve une chaîne factuelle unique entre les décisions automatisées et les interventions humaines, sans rupture de continuité.
-* **Non-intrusivité (découplage fonctionnel)**
-Garantit que la capture de la preuve n'agit pas comme un point de contrôle. Le dispositif est purement observationnel : il ne modifie ni les résultats ni les flux de travail, minimisant ainsi la charge système.
-* **Séparation stricte : exécution vs évaluation**
-Distingue « ce qui s'est passé » de « ce qui a été évalué », afin que l'examen ultérieur puisse séparer l'action brute de son interprétation organisationnelle.
-* **Vérification indépendante (y compris hors ligne)**
-L'intégrité peut être vérifiée à partir d'artefacts exportés (dossiers de preuves) sans dépendre des systèmes d'origine, ni nécessiter d'accès à l'environnement d'exécution au moment de l'examen.
+Horizon ne définit pas quelles décisions importent, ce qui doit être examiné, comment les conclusions doivent être tirées ou ce qui doit être communiqué. Ces choix restent institutionnels et contextuels.
+La preuve à l’exécution contraint la reconstruction, pas le pouvoir discrétionnaire. L’organisation conserve l’entière maîtrise du périmètre, de l’interprétation, de l’articulation et de la communication.
 
 ---
 
-### Objectifs exclus délibérément
+### Principe d'infrastructure — Neutralité par conception
 
-Ces exclusions préservent le rôle d'Horizon en tant que couche de preuve pure, orthogonale aux outils opérationnels :
+Horizon opère comme une couche d’infrastructure. Il s’intègre aux côtés des systèmes existants sans interférer avec la logique de décision, les structures de gouvernance ou l’autorité organisationnelle. L’infrastructure n’encode ni politique ni intention. Elle garantit que des états factuels d’exécution existent lorsqu’ils sont nécessaires.
 
-* Ni plateforme d'enquête
-* Ni observabilité ou SIEM
-* Ni flux de gestion de dossiers (case-management)
-* Ni outil de conformité (GRC)
-* Ni console de supervision opérationnelle
+### Limite temporelle — Indépendance vis-à-vis de l’évolution du système
 
----
+La preuve à l’exécution doit rester exploitable au-delà du cycle de vie du système qui l’a produite. Les Artefacts de Snapshot Décisionnel sont donc conçus pour être auto-contenus, vérifiables et indépendants de l’état futur du système. Ils restent utilisables même si les modèles sont ré-entraînés, les configurations modifiées, les architectures refondues ou les systèmes décommissionnés.
 
-### Le problème de la reconstruction
+### Limite opérationnelle — Réduire l’effort, pas redéfinir le dossier
 
-Les logs et les tickets facilitent la reconstruction. Ils ne créent pas une preuve déclarée, ordonnée et immuable à l'instant T. Lorsqu'un examen porte sur un cas spécifique, la question n'est plus « que se passe-t-il habituellement », mais « que s'est-il passé exactement ici ». C'est à ce moment précis que la reconstruction elle-même devient contestable.
+Horizon ne modifie pas ce que les organisations choisissent d'enregistrer. Il modifie l'effort requis pour établir l'état factuel. En capturant la preuve à l'exécution, le coût de la reconstruction a posteriori est réduit, la coordination entre équipes est minimisée et la dépendance vis-à-vis des systèmes hérités diminue. Ce qui change n’est pas le contenu du dossier, c’est le coût pour l’assembler, le conserver et y accéder au fil du temps.
 
 ---
 
-### Contrôle institutionnel et gouvernance des preuves
+### Résumé
 
-*Maîtrise du cycle de vie de la preuve, de la capture à la divulgation*
-
-#### A. Contrôle de la capture : défini par l'institution
-
-* **Règles détenues par l'institution :** Horizon enregistre les preuves à l'exécution selon des règles de capture définies et appartenant exclusivement à l'institution.
-* **Périmètre sur mesure :** L'institution détermine quels flux d'exécution entrent dans le périmètre et quels artefacts sont considérés comme légitimes à des fins probatoires.
-* **Pas d'automatisme aveugle :** La capture est un choix de gouvernance délibéré, et non une imposition technique automatique.
-
-#### B. Périmètre et accès : souveraineté absolue
-
-* **Déploiement intra-périmètre :** Horizon fonctionne strictement au sein du périmètre de l'institution, sous ses propres contrôles opérationnels et de sécurité.
-* **Aucune « fenêtre » externe :** Les régulateurs et les tiers n'ont aucun accès direct à Horizon ni à son socle de preuves sous-jacent.
-* **Contrôle opérationnel :** Le système s'intègre dans l'infrastructure de sécurité existante sans créer de dépendances ou d'accès vers l'extérieur.
-
-#### C. Divulgation des preuves : une décision stratégique
-
-* **Inclusion sélective :** Horizon produit des artefacts de preuve que l'institution peut choisir d'inclure, de manière sélective, dans un audit, une enquête ou un dossier réglementaire.
-* **Discrétion institutionnelle :** L'institution conserve l'entière discrétion sur les artefacts Horizon qui sont divulgués, contextualisés ou retenus, conformément aux cadres juridiques et procéduraux applicables.
-* **Capacité technique vs Décision juridique :** Horizon fournit la capacité factuelle ; la divulgation demeure une décision juridique et stratégique sous le contrôle de la banque.
+Horizon repose sur un ensemble limité de principes et des limites strictes. Il capture les faits à l'exécution, les préserve indépendamment de l'évolution du système, sépare les faits de l'interprétation et laisse le contrôle institutionnel inchangé. Au sein de ces limites, la preuve à l'exécution devient durable, exploitable et efficace — sans prescrire de gouvernance, de jugement ou d'intention.
 
 ---
+
+---
+
+# 🇬🇧 Principles & Boundaries
+
+### Defining what execution-time evidence is — and what it is not
+
+The following principles define the conceptual foundations of Horizon and the boundaries within which it operates. They are not prescriptions for governance or decision-making. They describe structural constraints observed in automated decision systems and the conditions under which factual certainty can exist over time.
+
+---
+
+### Principle 1 — Evidence exists only at execution time
+
+A decision becomes a fact at the moment it is executed. At that moment:
+
+* specific inputs are consumed,
+* specific logic is applied,
+* under a specific execution context,
+* producing a specific outcome.
+
+Once this moment has passed, the original factual state no longer exists as a whole within the system. Any later attempt to establish what happened relies on reconstruction. Execution-time evidence can therefore only be produced at execution time. It cannot be recreated afterward without loss or interpretation.
+
+### Principle 2 — Facts and interpretations must remain distinct
+
+Execution-time evidence establishes facts, not meaning. Facts describe:
+
+* what was executed,
+* with what data,
+* under which conditions,
+* and with what result.
+
+Interpretation, assessment, and judgment may follow — but they occur in a different temporal layer. Conflating facts with interpretation introduces ambiguity and hindsight bias. Separating them preserves the institution’s actual state of knowledge at the moment of action.
+
+### Principle 3 — Reconstruction is not evidence
+
+Reconstruction assembles narratives after the fact. It may support understanding, explanation, or learning. It does not preserve the factual state that existed at execution time.
+Reconstruction depends on:
+
+* surviving traces,
+* evolving systems,
+* partial data,
+* and retrospective interpretation.
+
+These are structural limitations, not implementation flaws. Where factual certainty is required, reconstruction cannot serve as the foundation.
+
+---
+
+### Boundary 1 — Horizon does not explain decisions
+
+Horizon does not provide explanations, justifications, or interpretations. It does not:
+
+* assess correctness,
+* assign responsibility,
+* or evaluate outcomes.
+
+Its role ends with the declaration and preservation of facts. Interpretation remains a human and institutional activity.
+
+### Boundary 2 — Horizon is not an audit or monitoring system
+
+Horizon is not: an observability platform, a monitoring or alerting tool, a SIEM, a workflow engine, or a decision system.
+Those tools answer different questions. Horizon addresses a structural gap: the absence of durable, execution-time factual records for automated decisions.
+
+### Boundary 3 — Horizon does not impose institutional posture
+
+Horizon does not define which decisions matter, what must be examined, how conclusions should be drawn, or what should be communicated. These choices remain institutional and contextual.
+Execution-time evidence constrains reconstruction, not discretion. The organization retains full control over scope, interpretation, articulation, and communication.
+
+---
+
+### Infrastructure principle — Neutrality by design
+
+Horizon operates as an infrastructure layer. It integrates alongside existing systems without interfering with decision logic, governance structures, or organizational authority. The infrastructure does not encode policy or intent. It ensures that factual execution states exist when they are needed.
+
+### Temporal boundary — Independence from system evolution
+
+Execution-time evidence must remain usable beyond the lifecycle of the system that produced it. Decision Snapshot Artifacts are therefore designed to be self-contained, verifiable, and independent of future system state. They remain usable even if models are retrained, configurations change, architectures are refactored, or systems are decommissioned.
+
+### Operational boundary — Reducing effort, not redefining records
+
+Horizon does not change what organizations choose to record. It changes the effort required to establish factual state. By capturing execution-time evidence, the cost of post-hoc reconstruction is reduced, cross-team coordination is minimized, and dependency on legacy systems decreases. What changes is not the content of the record, but the cost of assembling, retaining, and accessing it over time.
+
+---
+
+### Summary
+
+Horizon is built on a limited set of principles and strict boundaries. It captures facts at execution time, preserves them independently of system evolution, separates facts from interpretation, and leaves institutional control unchanged. Within these boundaries, execution-time evidence becomes durable, usable, and operationally efficient — without prescribing governance, judgment, or intent.

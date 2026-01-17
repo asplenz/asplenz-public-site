@@ -1,175 +1,285 @@
-### English Version 
+# 🇫🇷 Décisions Automatisées
 
-# Automated Decisions
+### Comprendre la nature du processus décisionnel automatisé
 
-### Why automation creates a specific evidence problem
+Les décisions automatisées sont de plus en plus intégrées aux systèmes opérationnels. Elles déterminent des résultats qui peuvent avoir des effets durables sur les individus, les organisations et les institutions.
 
-Automated systems execute decisions continuously, at a sustained pace and without direct human intervention. In these environments, the original execution context is inherently fleeting. By the time a decision is examined, the input data, the specific configuration, or the exact state of the model that produced it have often already disappeared or evolved.
-
-Activity logs and traditional observability capture technical activity and performance aggregates. They are not designed to preserve the decisional context as it existed at the precise moment of the action.
-
-**Asplenz Horizon enables the institution to bridge this gap by securing execution-time evidence for targeted automated decisions. Horizon does not seek to explain models or evaluate outcomes: it enables the safeguarding of the state of facts and knowledge that led to the execution.**
+Une décision automatisée n'est pas un simple résultat en sortie. C'est le produit d'une exécution concrète qui survient à un instant précis, dans des conditions spécifiques. Comprendre la nature d'une décision automatisée est un prérequis pour comprendre pourquoi son état factuel ne peut être reconstruit de manière fiable a posteriori.
 
 ---
 
-### The automated decision boundary
+### Les composantes d'une décision automatisée
 
-An automated decision is considered at the point where:
+Une décision automatisée est composée de plusieurs éléments qui déterminent conjointement son résultat.
 
-* inputs are evaluated
-* rules or models are applied
-* 
+**Les données d'entrée**
+Elles consistent en l'information disponible pour le système au moment de l'exécution. Cela peut inclure :
 
-**Asplenz Horizon operates at this boundary.** It does not observe upstream data generation. It does not observe downstream impact.
+* des données fournies par l'utilisateur,
+* des signaux contextuels,
+* des sources de données externes,
+* des variables dérivées ou calculées.
+Ces entrées ne sont pas statiques. Elles évoluent continuellement et peuvent ne plus exister sous la même forme après l'exécution.
 
----
+**La logique de décision**
+Elle définit la manière dont les entrées sont traitées. Elle peut prendre la forme de :
 
-### Examples of automated decisions
+* règles déterministes,
+* modèles statistiques,
+* modèles d'apprentissage automatique (Machine Learning),
+* systèmes hybrides combinant plusieurs approches.
+Cette logique est elle-même versionnée, configurée et sujette à modification dans le temps.
 
-Automated decisions with material effects include:
+**Le contexte d'exécution**
+Il inclut :
 
-* fraud detection
-* ranking and allocation
-* pricing and regulation of flows (throttling)
-* content moderation
-* access control
+* l'identité du système,
+* les paramètres de configuration,
+* les seuils actifs,
+* l'environnement d'exécution,
+* les dépendances actives au moment de l'exécution.
+Ce contexte est rarement capturé dans son intégralité par les mécanismes de journalisation (logs) conventionnels, alors qu'il affecte matériellement la décision.
 
----
-
-### Why evidence is lost in automated systems
-
-In automated environments:
-
-* inputs are transient
-* models are retrained
-* parameters drift
-* configurations are overwritten
-* execution context is ephemeral
-
-By the time a decision is questioned, the system that produced it may no longer exist in the same state. Logs show activity. Metrics show aggregates. **Neither preserves decision context.**
-
----
-
-### The execution-time artefact
-
-For each selected automated decision, Horizon preserves an immutable artefact containing:
-
-* execution timestamp and strict ordering guarantees
-* observed inputs as seen by the decision system
-* rule set or model identifier
-* configuration state and thresholds
-* evaluation signals present at execution time
-* output produced
-
-**Independence from system lifecycle**
-This artefact exists independently of the system that produced it. It does not depend on model retraining, log retention, dashboards, or human memory.
+**Le résultat (Output)**
+C'est le produit du système au moment de l'exécution. Il peut être binaire ou continu, final ou intermédiaire. C'est souvent le seul élément conservé durablement. À lui seul, le résultat ne décrit ni comment, ni pourquoi il a été produit.
 
 ---
 
-### What Asplenz Horizon does not attempt (by design)
+### La décision automatisée comme fait d'exécution
 
-Combining evidence preservation with active interpretation introduces institutional risk. Asplenz Horizon avoids this by remaining strictly neutral. It does not attempt to:
+Une décision automatisée est un fait d'exécution. Elle existe à un instant précis, lorsque :
 
-* Explain why a model behaved as it did or justify outcomes;
-* Assess bias, fairness, or correctness of decisions;
-* Provide counterfactuals or enforce governance;
-* Replace monitoring or technical observability.
+1. des données spécifiques ont été consommées,
+2. une logique spécifique a été appliquée,
+3. dans un contexte spécifique,
+4. pour produire un résultat spécifique.
 
-**Horizon preserves facts as well as interpretations declared by the organization, without ever generating its own analysis. Any evaluation of the quality or relevance of the decision occurs outside the infrastructure.**
-
----
-
-### Summary
-
-Automation accelerates decision-making. It also accelerates evidence loss. Automated decisions require execution-time evidence because reconstruction becomes unreliable as systems evolve.
-
-**Asplenz Horizon ensures that, when examination is required, immutable decision artefacts already exist.**
+Une fois ce moment passé, l'état d'exécution original n'existe plus dans le système global. Ce qu'il en reste sont des traces.
 
 ---
 
-### Version Française
+### Pourquoi la reconstruction est structurellement fragile
 
-# Décisions Automatisées
+Parce que les décisions automatisées dépendent de multiples composantes volatiles, les reconstruire a posteriori est structurellement fragile. En pratique :
 
-### Pourquoi l'automatisation crée un problème de preuve spécifique
+* les données d'entrée peuvent avoir changé ou disparu,
+* les modèles peuvent avoir été ré-entraînés,
+* les configurations peuvent avoir évolué,
+* les environnements d'exécution peuvent ne plus exister.
 
-Les systèmes automatisés exécutent des décisions en continu, à une cadence soutenue et sans intervention humaine directe. Dans ces environnements, le contexte d'exécution d'origine est par nature fugace. Au moment où une décision est examinée, les données d'entrée, la configuration précise ou l'état exact du modèle qui l'a produite ont souvent déjà disparu ou évolué.
-
-Les journaux d'activité (logs) et l'observabilité traditionnelle capturent l'activité technique et des agrégats de performance. Ils ne sont pas conçus pour préserver le contexte décisionnel tel qu'il existait au moment précis de l'action.
-
-**Asplenz Horizon permet à l'institution de combler cette lacune en sécurisant la preuve au moment de l'exécution pour des décisions automatisées ciblées. Horizon ne cherche ni à expliquer les modèles, ni à évaluer les résultats : il permet de sanctuariser l'état des faits et des connaissances qui ont conduit à l'exécution.**
-
----
-
-### Le périmètre de la décision automatisée
-
-Une décision automatisée est considérée au point précis où :
-
-* les données d'entrée sont évaluées
-* les règles ou les modèles sont appliqués
-* Un résultat est produit et l'action est engagée
-
-**Asplenz Horizon opère à cette frontière.** Il n'observe ni la génération des données en amont, ni l'impact opérationnel en aval.
+Les logs et les traces capturent des fragments d'activité, pas l'état d'exécution complet. La reconstruction nécessite donc : de l'inférence, de l'interprétation et des hypothèses formulées avec la connaissance du résultat final. Ce n'est pas un défaut d'implémentation, c'est une limite structurelle de la reconstruction a posteriori.
 
 ---
 
-### Exemples de décisions automatisées
+### Les logs ne sont pas des preuves d'exécution
 
-Les décisions automatisées ayant des effets matériels incluent :
+Les journaux traditionnels (logs) sont conçus pour l'observabilité et le débogage. Ils :
 
-* la détection de fraude
-* le classement et l'allocation
-* la tarification et la régulation de flux
-* la modération de contenu
-* le contrôle d'accès
+* sont distribués entre plusieurs systèmes,
+* ne sont pas garantis complets,
+* sont souvent soumis à rotation ou échantillonnage,
+* ne sont pas liés cryptographiquement au moment de l'exécution.
 
----
-
-### Pourquoi la preuve se perd dans les systèmes automatisés
-
-Dans les environnements automatisés :
-
-* les données d'entrée sont transitoires
-* les modèles sont réentraînés
-* les paramètres dérivent (drift)
-* les configurations sont écrasées
-* le contexte d'exécution est éphémère
-
-Au moment où une décision est remise en question, le système qui l'a produite peut ne plus exister dans le même état. Les logs montrent l'activité. Les métriques montrent des agrégats. **Aucun des deux ne préserve le contexte de la décision.**
+Par conséquent, les logs peuvent soutenir une investigation, mais ils ne peuvent établir de manière fiable l'état factuel d'une décision au moment exact où elle a été exécutée. La preuve d'exécution nécessite une approche différente.
 
 ---
 
-### L'artefact au moment de l'exécution
+### La nécessité d'une capture au moment de l'exécution
 
-Pour chaque décision automatisée sélectionnée, Horizon préserve un artefact immuable contenant :
+Si une décision automatisée est un fait d'exécution, alors préserver ce fait exige de le capturer au moment où il survient, et non de le reconstruire plus tard. Cela implique :
 
-* l'horodatage de l'exécution et des garanties strictes de séquençage
-* les données d'entrée telles qu'observées par le système de décision
-* l'identifiant du jeu de règles ou du modèle
-* l'état de la configuration et les seuils
-* les signaux d'évaluation présents au moment de l'exécution
-* le résultat produit
+* de capturer toutes les composantes pertinentes simultanément,
+* de les lier à un instant précis dans le temps,
+* de les préserver indépendamment de l'évolution future du système.
 
-**Indépendance vis-à-vis du cycle de vie des systèmes**
-Cet artefact existe indépendamment du système qui l'a produit. Il ne dépend ni du réentraînement des modèles, ni de la rétention des logs, ni des tableaux de bord, ni de la mémoire humaine.
+C’est le rôle d’une Infrastructure de Snapshot Décisionnel.
 
 ---
 
-### Ce que Asplenz Horizon ne tente pas (par conception)
+### Indépendance vis-à-vis du système source
 
-Combiner la préservation de la preuve avec l'interprétation active introduit un risque institutionnel. Asplenz Horizon évite cela en restant strictement neutre. Il ne tente pas de :
+Pour qu'une preuve d'exécution reste exploitable dans le temps, elle ne doit pas dépendre de la survie ou de la stabilité du système source. Les faits d'exécution doivent rester accessibles même si :
 
-* Expliquer pourquoi un modèle s'est comporté ainsi ou justifier les résultats ;
-* Évaluer les biais, l'équité ou la justesse des décisions ;
-* Fournir des scénarios contrefactuels ou imposer une gouvernance ;
-* Remplacer le monitoring ou l'observabilité technique.
+* le système de décision est modifié,
+* l'architecture est refondue,
+* le modèle est remplacé,
+* ou le système est décommissionné.
 
-**Horizon préserve les faits ainsi que les interprétations déclarées par l'organisation, sans jamais générer sa propre analyse. Toute évaluation de la qualité ou de la pertinence de la décision intervient en dehors de l'infrastructure.**
+Cette indépendance ne peut être atteinte par la reconstruction. Elle nécessite des enregistrements factuels auto-contenus.
+
+---
+
+### Un contrôle institutionnel inchangé
+
+La capture de preuves au moment de l'exécution ne change pas qui décide, interprète ou communique. L'institution conserve l'entière maîtrise de :
+
+* quelles décisions sont examinées,
+* comment les faits sont interprétés,
+* quelles conclusions en sont tirées,
+* et ce qui est divulgué.
+
+La preuve d'exécution n'impose pas de récit. Elle fournit une base factuelle stable sur laquelle le jugement institutionnel peut s'exercer.
+
+---
+
+### Implications opérationnelles
+
+La complexité des décisions automatisées ne crée pas seulement un risque conceptuel. Elle crée un coût opérationnel. Lorsque les faits ne sont pas capturés à l'exécution :
+
+* les investigations durent plus longtemps,
+* plusieurs équipes doivent se coordonner,
+* les systèmes hérités (legacy) doivent être consultés,
+* et l'incertitude s'accumule.
+
+Capturer la preuve à l'exécution réduit l'effort requis pour établir l'état factuel lorsqu'il est nécessaire. Ce qui change n'est pas le contenu du dossier, c'est le coût pour l'assembler, le conserver et y accéder.
 
 ---
 
 ### Résumé
 
-L'automatisation accélère la prise de décision. Elle accélère également la perte de preuve. Les décisions automatisées exigent une preuve au moment de l'exécution car la reconstruction devient peu fiable à mesure que les systèmes évoluent.
+Les décisions automatisées sont des événements d'exécution complexes composés d'éléments volatils. Une fois exécutées, leur état factuel d'origine ne peut être reconstruit de manière fiable à partir des seules traces. Préserver cet état nécessite de le capturer au moment de l'exécution, sous une forme qui survit à l'évolution du système. C'est pourquoi les décisions automatisées requièrent une Infrastructure de Snapshot Décisionnel.
 
-**Asplenz Horizon garantit que, lorsqu'un examen est requis, des artefacts de décision immuables existent déjà.**
+---
+
+---
+
+# 🇬🇧 Automated Decisions
+
+### Understanding the nature of automated decision-making
+
+Automated decisions are increasingly embedded in operational systems. They determine outcomes that can have durable effects on individuals, organizations, and institutions.
+
+An automated decision is not a single output. It is the result of a concrete execution that occurs at a specific moment in time, under specific conditions. Understanding what an automated decision is is a prerequisite to understanding why its factual state cannot be reliably reconstructed after the fact.
+
+---
+
+### The components of an automated decision
+
+An automated decision is composed of multiple elements that jointly determine its outcome.
+
+**Input data**
+Input data consists of the information available to the system at execution time. This may include:
+
+* user-provided data,
+* contextual signals,
+* external data sources,
+* derived or computed variables.
+These inputs are not static. They evolve continuously and may not exist in the same form after execution.
+
+**Decision logic**
+The decision logic defines how inputs are processed. It may take the form of:
+
+* deterministic rules,
+* statistical models,
+* machine learning models,
+* hybrid systems combining several approaches.
+This logic is itself versioned, configured, and subject to change over time.
+
+**Execution context**
+The execution context includes:
+
+* the system identity,
+* configuration parameters,
+* thresholds,
+* runtime environment,
+* dependencies active at execution time.
+This context is rarely captured in full by conventional logging mechanisms, yet it materially affects the decision.
+
+**Output**
+The output is the result produced by the system at execution time. It may be binary or continuous, final or intermediate, and is often the only element that is durably retained. On its own, the output does not describe how or why it was produced.
+
+---
+
+### Automated decisions as execution-time facts
+
+An automated decision is a fact of execution. It exists at a precise moment, when:
+
+1. specific data was consumed,
+2. specific logic was applied,
+3. under a specific context,
+4. to produce a specific outcome.
+
+Once this moment has passed, the original execution state no longer exists in the system as a whole. What remains are traces.
+
+---
+
+### Why reconstruction is structurally fragile
+
+Because automated decisions depend on multiple volatile components, reconstructing them after the fact is structurally fragile. In practice:
+
+* input data may have changed or disappeared,
+* models may have been retrained,
+* configurations may have evolved,
+* execution environments may no longer exist.
+
+Logs and traces capture fragments of activity, not the full execution state. Reconstruction therefore requires: inference, interpretation, and assumptions made with knowledge of the outcome. This is not a failure of implementation. It is a structural limitation of post-hoc reconstruction.
+
+---
+
+### Logs are not execution-time evidence
+
+Traditional logs are designed for observability and debugging. They:
+
+* are distributed across systems,
+* are not guaranteed to be complete,
+* are often rotated or sampled,
+* and are not cryptographically bound to execution time.
+
+As a result, logs can support investigation, but they cannot reliably establish the factual state of a decision at the moment it was executed. Execution-time evidence requires a different approach.
+
+---
+
+### The need for execution-time capture
+
+If an automated decision is a fact of execution, then preserving that fact requires capturing it when it occurs, not reconstructing it later. This implies:
+
+* capturing all relevant components together,
+* binding them to a precise moment in time,
+* preserving them independently of future system evolution.
+
+This is the role of a Decision Snapshot Infrastructure.
+
+---
+
+### Independence from the source system
+
+For execution-time evidence to remain usable over time, it must not depend on the continued existence or stability of the source system. Execution-time facts must remain accessible even if:
+
+* the decision system is modified,
+* the architecture is refactored,
+* the model is replaced,
+* or the system is decommissioned.
+
+This independence cannot be achieved through reconstruction. It requires self-contained factual records.
+
+---
+
+### Institutional control remains unchanged
+
+Capturing execution-time evidence does not change who decides, interprets, or communicates. The institution retains full control over:
+
+* which decisions are examined,
+* how facts are interpreted,
+* what conclusions are drawn,
+* and what is disclosed.
+
+Execution-time evidence does not impose a narrative. It provides a stable factual base upon which institutional judgment can be exercised.
+
+---
+
+### Operational implications
+
+The complexity of automated decisions does not only create conceptual risk. It creates operational cost. When facts are not captured at execution time:
+
+* investigations take longer,
+* multiple teams must coordinate,
+* legacy systems must be consulted,
+* and uncertainty accumulates.
+
+Capturing execution-time evidence reduces the effort required to establish factual state when it is needed. What changes is not the content of the record. It is the cost of assembling, retaining, and accessing it.
+
+---
+
+### Summary
+
+Automated decisions are complex, execution-time events composed of volatile elements. Once executed, their original factual state cannot be reliably reconstructed from traces alone. Preserving that state requires capturing it at execution time, in a form that survives system evolution. This is why automated decisions require a Decision Snapshot Infrastructure.

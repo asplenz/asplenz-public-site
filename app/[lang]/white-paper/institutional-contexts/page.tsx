@@ -6,127 +6,296 @@ export function generateStaticParams() {
 }
 
 const content = {
-  en: `
-    <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Institutional contexts</h1>
-    <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">Contexts where execution may later be examined</h2>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon is considered in environments where decisions may later require case-by-case scrutiny, and where reconstruction under pressure creates institutional risk. The following contexts describe why this capability is considered in these environments, not what benefits it provides.</p>
-    <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">Market infrastructures</h2>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Market infrastructures operate under a distinct constraint: decisions are examined not only for correctness, but for <strong>institutional legitimacy</strong>. When trading continues or halts, when data is published, or when exceptions are applied, the question is often: "Was the decision justifiable at the time?"</p>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Critical moments</h3>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">This capability becomes relevant at points of no return such as:</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Trading halt or continuation decisions under uncertainty.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Market data publication under degraded conditions.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Methodology interpretation during exceptional events.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Exception handling and manual overrides in critical workflows.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Post-incident reviews where chronology itself becomes contested.</span></li>
-    </ul>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">What "good" looks like under scrutiny</h3>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">A defensible dossier contains:</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>The exact execution that occurred.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>The evaluations that existed at the time.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Their order and timestamps.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>The roles involved, without relying on human memory.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Integrity verifiable independently of source systems.</span></li>
-    </ul>
-    <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">Systemic banks</h2>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">In systemic contexts, what matters is not only whether controls existed, but whether the institution can prove what it knew, what it evaluated, and what it decided at time T. This is most visible when automated decisions interact with human escalation.</p>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">High-criticality situations</h3>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Examples of "point of no return" situations:</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Continuing critical services during a partial outage.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Overriding a blocking control under time pressure: fraud, sanctions, AML, or risk.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Approving an exception with explicit risk acceptance.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Operating under degraded or ambiguous market data.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Model-assisted decisions where context changes, including GenAI or RAG-assisted workflows.</span></li>
-    </ul>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">What is typically missing today</h3>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>The human decision is recorded later (ticket notes, emails, post-mortems).</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>The "state of knowledge" at the moment of action must be reconstructed.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Technical logs exist, but the institutional stance remains unclear.</span></li>
-    </ul>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">What the infrastructure provides</h3>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Combined execution facts and evaluation facts.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Explicit linkage between automated triggers and human decisions.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ordered, immutable chronology.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Verifiable integrity.</span></li>
-    </ul>
-  `,
-  fr: `
-    <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Contextes institutionnels</h1>
-    <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">Contextes où l'exécution peut faire l'objet d'un examen ultérieur</h2>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon est envisagé dans des environnements où les décisions peuvent nécessiter un examen au cas par cas, et où la reconstruction sous pression crée un risque institutionnel. Les contextes suivants décrivent pourquoi ce dispositif est pertinent pour ces milieux, et non les bénéfices qu'il procure.</p>
-    <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">Infrastructures de marché</h2>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Les infrastructures de marché opèrent sous une contrainte spécifique : les décisions sont examinées non seulement pour leur exactitude, mais pour leur <strong>légitimité institutionnelle</strong>. Lorsque les transactions se poursuivent ou s'arrêtent, lorsque des données sont publiées ou que des exceptions sont appliquées, la question est souvent : « La décision était-elle justifiable à cet instant précis ? »</p>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Moments critiques</h3>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Ce dispositif devient crucial aux points de non-retour tels que :</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les décisions de suspension ou de poursuite des transactions en période d'incertitude.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>La publication de données de marché en conditions dégradées.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>L'interprétation méthodologique lors d'événements exceptionnels.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>La gestion des exceptions et les passages outre (overrides) manuels dans les flux critiques.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les revues post-incidents où la chronologie elle-même est contestée.</span></li>
-    </ul>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Ce qu'est un dossier « défendable » lors d'un examen</h3>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Un dossier robuste contient :</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>L'exécution exacte qui a eu lieu.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les évaluations qui existaient à ce moment-là.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Leur ordre et leurs horodatages précis.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les rôles impliqués, sans dépendre de la mémoire humaine.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Une intégrité vérifiable indépendamment des systèmes sources.</span></li>
-    </ul>
-    <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">Banques systémiques</h2>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Dans les contextes systémiques, ce qui importe n'est pas seulement l'existence de contrôles, mais la capacité de l'institution à prouver ce qu'elle savait, ce qu'elle a évalué et ce qu'elle a décidé à l'instant T. Cela est particulièrement visible lorsque des décisions automatisées interagissent avec une escalade humaine.</p>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Situations de haute criticité</h3>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Exemples de situations de « point de non-retour » :</p>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Le maintien de services critiques lors d'une interruption partielle.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Le passage outre d'un contrôle bloquant sous pression temporelle : fraude, sanctions, AML ou risque.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>L'approbation d'une exception avec acceptation explicite du risque.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>L'exploitation sous des données de marché dégradées ou ambiguës.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les décisions assistées par des modèles où le contexte évolue, y compris les flux assistés par GenAI ou RAG.</span></li>
-    </ul>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Ce qui manque généralement aujourd'hui</h3>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>La décision humaine est enregistrée plus tard (notes de tickets, e-mails, rapports d'incidents).</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>L'« état des connaissances » au moment de l'action doit être reconstruit.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les logs techniques existent, mais la posture institutionnelle reste floue.</span></li>
-    </ul>
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Ce que le dispositif apporte</h3>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>La réunion des faits d'exécution et des faits d'évaluation.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Un lien explicite entre les déclencheurs automatisés et les décisions humaines.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Une chronologie ordonnée et immuable.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Une intégrité vérifiable.</span></li>
-    </ul>
-  `
+  fr: {
+    title: 'Contextes Institutionnels',
+    subtitle: 'Là où la preuve à l\'exécution devient institutionnellement critique',
+    intro: 'Les décisions automatisées opèrent de plus en plus au sein d\'environnements où la responsabilité, la capacité de revue et la durabilité des faits sont essentielles. Ces environnements sont qualifiés de **contextes institutionnels** - non parce qu\'ils imposent un modèle de gouvernance unique, mais parce qu\'ils exigent la capacité d\'établir ce qui s\'est réellement passé au moment de l\'exécution, indépendamment de toute interprétation ultérieure.',
+    introP2: 'La preuve à l\'exécution n\'est pas spécifique à une seule fonction. Elle devient pertinente partout où les organisations doivent répondre de manière fiable à des questions factuelles sur des décisions passées.',
+    beyondTitle: 'Au-delà de l\'audit et de la conformité',
+    beyondP1: 'Les contextes institutionnels sont souvent associés à l\'audit, à la conformité ou au contrôle réglementaire. Ce sont des cas d\'usage importants, mais ils ne sont pas les seuls. La preuve à l\'exécution soutient également :',
+    beyondPoints: [
+      'les revues internes et les analyses après incident (post-mortem),',
+      'la coordination entre équipes (ingénierie, data, opérations, risques),',
+      'les demandes d\'informations des clients ou des partenaires,',
+      'la responsabilité à long terme au sein de systèmes en évolution.',
+    ],
+    beyondConclusion: 'L\'exigence commune à ces contextes n\'est pas la conformité en soi. C\'est le besoin d\'un socle factuel stable qui ne dépend pas de la reconstruction.',
+    limitsTitle: 'Les limites des récits rétrospectifs',
+    limitsP1: 'Dans les cadres institutionnels, l\'analyse rétrospective est souvent traitée comme une preuve. Cependant, l\'analyse rétrospective :',
+    limitsPoints: [
+      'assemble des récits une fois que le résultat est connu,',
+      's\'appuie sur des sources partielles et changeantes,',
+      'et est intrinsèquement exposée à l\'interprétation ainsi qu\'au biais de rétrospective.',
+    ],
+    limitsConclusion: 'Les récits peuvent aider à la compréhension, mais ils n\'établissent pas de certitude factuelle. Là où la responsabilité institutionnelle est en jeu, cette distinction est cruciale.',
+    foundationTitle: 'La preuve à l\'exécution comme fondation institutionnelle',
+    foundationP1: 'La preuve à l\'exécution établit les faits avant que l\'examen ne commence. Elle ancre :',
+    foundationSteps: [
+      'quelles données étaient disponibles,',
+      'quelle logique a été appliquée,',
+      'dans quelles conditions,',
+      'et quel résultat a été produit.',
+    ],
+    foundationConclusion: 'Cet ancrage ne dicte ni l\'interprétation ni le jugement. Il fournit une base factuelle partagée sur laquelle différentes fonctions institutionnelles peuvent s\'appuyer. L\'audit, l\'examen juridique, la gouvernance et l\'investigation technique peuvent tous se référer aux mêmes faits - sans pour autant exiger les mêmes conclusions.',
+    infraTitle: 'Une infrastructure, pas une prescription institutionnelle',
+    infraP1: 'Une Infrastructure de Snapshot Décisionnel n\'impose pas de posture institutionnelle. Elle ne définit pas :',
+    infraPoints: [
+      'ce qui doit être examiné,',
+      'quelles décisions importent,',
+      'comment les conclusions doivent être tirées,',
+      'ou ce qui doit être communiqué.',
+    ],
+    infraConclusion: 'Ces choix restent institutionnels et contextuels. Le rôle de l\'infrastructure est limité et précis : garantir que des états factuels d\'exécution existent, indépendamment de l\'évolution du système, lorsqu\'ils sont nécessaires.',
+    controlTitle: 'Le contrôle reste institutionnel',
+    controlP1: 'La capture de preuves à l\'exécution ne centralise pas l\'autorité. Les institutions conservent le plein contrôle sur :',
+    controlPoints: [
+      'le périmètre de l\'examen,',
+      'l\'interprétation des faits,',
+      'l\'articulation de la responsabilité,',
+      'et la communication externe.',
+    ],
+    controlConclusion: 'La preuve à l\'exécution contraint la reconstruction, pas le pouvoir discrétionnaire. Elle réduit l\'incertitude sans réduire la latitude institutionnelle.',
+    impactTitle: 'Impact opérationnel à travers les fonctions institutionnelles',
+    impactP1: 'En pratique, les contextes institutionnels sont aussi des contextes opérationnels. Lorsque la preuve à l\'exécution n\'existe pas :',
+    impactWithoutPoints: [
+      'établir les faits nécessite une coordination entre les équipes,',
+      'les systèmes hérités doivent être accédés ou réactivés,',
+      'des hypothèses doivent être négociées,',
+      'et l\'effort croît avec le temps.',
+    ],
+    impactWithTitle: 'À l\'inverse, la preuve à l\'exécution :',
+    impactWithPoints: [
+      'réduit l\'effort requis pour établir l\'état factuel,',
+      'raccourcit les cycles de revue,',
+      'et limite la dépendance vis-à-vis des systèmes et configurations passés.',
+    ],
+    impactConclusion: 'Ce qui change n\'est pas le rôle institutionnel. C\'est le coût opérationnel nécessaire pour l\'assumer.',
+    timeTitle: 'Pourquoi cela importe au fil du temps',
+    timeP1: 'La responsabilité institutionnelle ne s\'arrête pas lorsque les systèmes changent. Les modèles sont remplacés. Les architectures sont refondues. Les équipes évoluent.',
+    timeConclusion: 'La preuve à l\'exécution garantit que les décisions passées restent examinables sans exiger que le système d\'origine existe encore. Cette durabilité est essentielle partout où la responsabilité institutionnelle s\'étend au-delà du cycle de vie des composants techniques.',
+    summaryTitle: 'Résumé',
+    summaryP1: 'Les contextes institutionnels exigent plus que des récits rétrospectifs. Ils exigent une certitude factuelle qui survit au temps, à l\'évolution des systèmes et aux changements organisationnels.',
+    summaryConclusion: 'Une Infrastructure de Snapshot Décisionnel apporte cette certitude en préservant la preuve à l\'exécution - sans prescrire d\'interprétation, de gouvernance ou de posture institutionnelle.',
+  },
+  en: {
+    title: 'Institutional Contexts',
+    subtitle: 'Where execution-time evidence becomes institutionally critical',
+    intro: 'Automated decisions increasingly operate within environments where accountability, reviewability, and the durability of facts are essential. These environments are referred to as **institutional contexts** - not because they impose a single governance model, but because they require the ability to establish what actually happened at execution time, independent of any subsequent interpretation.',
+    introP2: 'Execution-time evidence is not specific to any single function. It becomes relevant wherever organizations must reliably answer factual questions about past decisions.',
+    beyondTitle: 'Beyond audit and compliance',
+    beyondP1: 'Institutional contexts are often associated with audit, compliance, or regulatory oversight. These are important use cases, but they are not the only ones. Execution-time evidence also supports:',
+    beyondPoints: [
+      'internal reviews and post-incident analysis (post-mortems),',
+      'cross-team coordination (engineering, data, operations, risk),',
+      'information requests from clients or partners,',
+      'long-term accountability within evolving systems.',
+    ],
+    beyondConclusion: 'The common requirement across these contexts is not compliance per se. It is the need for a stable factual foundation that does not depend on reconstruction.',
+    limitsTitle: 'The limits of retrospective narratives',
+    limitsP1: 'In institutional settings, retrospective analysis is often treated as evidence. However, retrospective analysis:',
+    limitsPoints: [
+      'assembles narratives once the outcome is known,',
+      'relies on partial and changing sources,',
+      'and is inherently exposed to interpretation and hindsight bias.',
+    ],
+    limitsConclusion: 'Narratives may aid understanding, but they do not establish factual certainty. Where institutional accountability is at stake, this distinction is crucial.',
+    foundationTitle: 'Execution-time evidence as institutional foundation',
+    foundationP1: 'Execution-time evidence establishes facts before examination begins. It anchors:',
+    foundationSteps: [
+      'what data was available,',
+      'what logic was applied,',
+      'under what conditions,',
+      'and what outcome was produced.',
+    ],
+    foundationConclusion: 'This anchoring does not dictate interpretation or judgment. It provides a shared factual base upon which different institutional functions can rely. Audit, legal review, governance, and technical investigation can all refer to the same facts - without requiring the same conclusions.',
+    infraTitle: 'An infrastructure, not an institutional prescription',
+    infraP1: 'A Decision Snapshot Infrastructure does not impose an institutional posture. It does not define:',
+    infraPoints: [
+      'what should be examined,',
+      'which decisions matter,',
+      'how conclusions should be drawn,',
+      'or what should be communicated.',
+    ],
+    infraConclusion: 'These choices remain institutional and contextual. The role of the infrastructure is limited and precise: to ensure that factual execution states exist, independently of system evolution, when they are needed.',
+    controlTitle: 'Control remains institutional',
+    controlP1: 'Capturing execution-time evidence does not centralize authority. Institutions retain full control over:',
+    controlPoints: [
+      'the scope of examination,',
+      'the interpretation of facts,',
+      'the articulation of accountability,',
+      'and external communication.',
+    ],
+    controlConclusion: 'Execution-time evidence constrains reconstruction, not discretion. It reduces uncertainty without reducing institutional latitude.',
+    impactTitle: 'Operational impact across institutional functions',
+    impactP1: 'In practice, institutional contexts are also operational contexts. When execution-time evidence does not exist:',
+    impactWithoutPoints: [
+      'establishing facts requires cross-team coordination,',
+      'legacy systems must be accessed or reactivated,',
+      'assumptions must be negotiated,',
+      'and effort grows with time.',
+    ],
+    impactWithTitle: 'Conversely, execution-time evidence:',
+    impactWithPoints: [
+      'reduces the effort required to establish factual state,',
+      'shortens review cycles,',
+      'and limits dependency on past systems and configurations.',
+    ],
+    impactConclusion: 'What changes is not the institutional role. It is the operational cost of fulfilling it.',
+    timeTitle: 'Why this matters over time',
+    timeP1: 'Institutional accountability does not stop when systems change. Models are replaced. Architectures are refactored. Teams move on.',
+    timeConclusion: 'Execution-time evidence ensures that past decisions remain examinable without requiring the original system to still exist. This durability is essential wherever institutional accountability extends beyond the lifecycle of technical components.',
+    summaryTitle: 'Summary',
+    summaryP1: 'Institutional contexts require more than retrospective narratives. They require factual certainty that survives time, system evolution, and organizational change.',
+    summaryConclusion: 'A Decision Snapshot Infrastructure provides this certainty by preserving execution-time evidence - without prescribing interpretation, governance, or institutional posture.',
+  },
 };
 
+function renderMarkdown(text: string) {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>');
+}
+
 export default function InstitutionalContextsPage({ params }: { params: { lang: Language } }) {
+  const c = content[params.lang];
+
   return (
     <article className="max-w-3xl">
-      <div 
-        className="prose prose-lg prose-black max-w-none
-          prose-headings:font-light prose-headings:tracking-tight
-          prose-h1:text-5xl prose-h1:mb-8
-          prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-4
-          prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-          prose-p:text-base prose-p:leading-relaxed prose-p:mb-6
-          prose-blockquote:border-l-2 prose-blockquote:border-black/20 
-          prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-black/80
-          prose-ul:my-6 prose-li:my-2
-          prose-strong:font-medium prose-strong:text-black
-          prose-hr:border-black/10 prose-hr:my-12"
-        dangerouslySetInnerHTML={{ __html: content[params.lang] }}
-      />
+      {/* Title */}
+      <h1 className="text-4xl font-bold tracking-tight text-black mb-4">{c.title}</h1>
+      <h2 className="text-xl text-black/70 mb-8">{c.subtitle}</h2>
+
+      {/* Intro */}
+      <p className="text-lg text-black/80 mb-4" dangerouslySetInnerHTML={{ __html: renderMarkdown(c.intro) }} />
+      <p className="text-lg text-black/80 mb-8">{c.introP2}</p>
+
+      {/* Beyond audit and compliance */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.beyondTitle}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.beyondP1}</p>
+        <ul className="space-y-2 mb-6">
+          {c.beyondPoints.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="text-lg text-black/80">{c.beyondConclusion}</p>
+      </section>
+
+      {/* The limits of retrospective narratives */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.limitsTitle}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.limitsP1}</p>
+        <ul className="space-y-2 mb-6">
+          {c.limitsPoints.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="bg-[#005C99] text-white p-6">
+          <p className="text-lg font-medium">{c.limitsConclusion}</p>
+        </div>
+      </section>
+
+      {/* Execution-time evidence as institutional foundation */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.foundationTitle}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.foundationP1}</p>
+        <ol className="space-y-2 mb-6">
+          {c.foundationSteps.map((step, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] font-semibold">{i + 1}.</span>
+              <span>{step}</span>
+            </li>
+          ))}
+        </ol>
+        <p className="text-lg text-black/80">{c.foundationConclusion}</p>
+      </section>
+
+      {/* An infrastructure, not an institutional prescription */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.infraTitle}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.infraP1}</p>
+        <ul className="space-y-2 mb-6">
+          {c.infraPoints.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="text-lg text-black/80">{c.infraConclusion}</p>
+      </section>
+
+      {/* Control remains institutional */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.controlTitle}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.controlP1}</p>
+        <ul className="space-y-2 mb-6">
+          {c.controlPoints.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="text-lg text-black/80">{c.controlConclusion}</p>
+      </section>
+
+      {/* Operational impact across institutional functions */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.impactTitle}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.impactP1}</p>
+        <ul className="space-y-2 mb-6">
+          {c.impactWithoutPoints.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="text-lg font-semibold text-black mb-3">{c.impactWithTitle}</p>
+        <ul className="space-y-2 mb-6">
+          {c.impactWithPoints.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="bg-[#005C99] text-white p-6">
+          <p className="text-lg font-medium">{c.impactConclusion}</p>
+        </div>
+      </section>
+
+      {/* Why this matters over time */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.timeTitle}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.timeP1}</p>
+        <p className="text-lg text-black/80">{c.timeConclusion}</p>
+      </section>
+
+      {/* Summary */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.summaryTitle}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.summaryP1}</p>
+        <div className="bg-[#005C99] text-white p-6">
+          <p className="text-lg font-medium">{c.summaryConclusion}</p>
+        </div>
+      </section>
+
       <ReadingPath currentSlug="institutional-contexts" lang={params.lang} />
     </article>
   );

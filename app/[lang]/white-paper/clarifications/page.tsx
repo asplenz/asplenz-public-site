@@ -6,371 +6,262 @@ export function generateStaticParams() {
 }
 
 const content = {
-  en: `
-    <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Clarifications</h1>
-    
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">This page addresses common questions raised when considering whether a decision evidence capability should exist within an organization. It focuses on scope, governance implications, and institutional consequences, not on product features or commercial terms.</p>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">1. What problem does Horizon actually solve?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 1.5rem;"><strong>Asplenz Horizon eliminates the need to reconstruct facts after a decision is questioned.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Today, when a decision is examined, companies pull logs from multiple systems, search emails, and reconcile timelines manually. Horizon preserves existing factual artefacts at decision time, so examination relies on <strong>presentation</strong>, not reconstruction. This shifts examination from a reactive activity to a property of execution itself.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">2. Does Horizon decide anything or influence decisions?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>No.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon does not make decisions, recommend actions, or replace business logic. It only observes and preserves what already happened.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">3. How are implementation details addressed?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">This documentation focuses on conceptual acceptability and institutional boundaries. Specific implementation details (interfaces, integration mechanisms, access control, performance) are intentionally not specified here. These aspects are defined during a bounded acceptability discussion, once the capability is deemed conceptually acceptable and the organization's constraints are known.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">4. We already have observability and logging. Why is this different?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Observability and logging are designed to support reconstruction. Horizon addresses a different question: whether <strong>declared, examinable facts</strong> existed at execution time, before any investigation was required. Improving observability reduces the cost of reconstruction but does not remove it as a dependency. <strong>Horizon is concerned with situations where reconstruction itself becomes the object of examination.</strong></p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">5. We already generate artefacts automatically. Why is this not sufficient?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">The distinction Horizon makes is not about whether data exists, but about <strong>when a fact becomes institutionally declared</strong>. In most architectures, artefacts are assembled post-hoc after a question is raised. Asplenz Horizon ensures facts are explicitly declared at execution time, with their scope and structure defined in advance, and preserved independently of any later investigation.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">6. Does Horizon force companies to log more decisions?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>No.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon does not define what should be logged or expand the decision surface. It only consolidates facts already produced (logs, files, tickets) that are currently fragmented.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">7. Does Horizon create new legal or regulatory exposure?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>Not by design.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Scope, integration, and retention are company-controlled. Horizon does not publish to regulators. While clearer evidence can make weaknesses visible, most relevant facts already exist in fragmented archives today. Horizon changes <strong>when</strong> and <strong>how consistently</strong> existing facts are accessible, preventing decisions from being assessed based on competing reconstructed narratives.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">8. Could Horizon records be subpoenaed or discovered?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon records are subject to the same legal processes as any other internal company data (emails, logs, databases). Horizon does not introduce new categories of data or special legal status. It preserves evidence under the same rules governing discovery, subpoenas, and legal holds.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">9. Does Horizon record every decision in the company?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>No.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Integration is selective. Companies explicitly choose which systems are covered. Adoption typically starts with one high-pain or high-scrutiny area. Horizon is not an omniscient recorder: it is a <strong>deliberately scoped evidence layer</strong>.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">10. Can Horizon be limited to high-risk decisions only?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>Yes.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">The choice of scope reflects organizational priorities, not product constraints. Typical starting points include regulatory decisions, automated approvals, or compliance-critical workflows.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">11. Does Horizon replace logging or audit tools?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>No.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">It sits above them, acting as an evidence layer that correlates, stabilizes, and preserves.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">12. Does Horizon only matter after something goes wrong?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>No.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon matters before anything goes wrong, because evidence must exist <strong>before questions arise</strong>. The capability is exercised at execution time.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">13. How is Horizon different from just improving logging?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Logging improves observation. Horizon establishes evidence at execution time. Improved logging still leaves companies with fragmented sources and heavy reconstruction work.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">14. Does Horizon record human decisions and overrides?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Only if the company chooses to integrate those points. If human artefacts already exist (tickets, approvals), Horizon can preserve them as facts.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">15. Could Horizon increase individual accountability?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon increases <strong>factual clarity</strong>. Whether this leads to changes in accountability depends on governance rules and organizational culture. These outcomes are determined by how evidence is used, not by the existence of the evidence layer itself.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">16. Does Horizon lock companies into rigid narratives?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon grounds interpretation in a shared factual baseline. This applies symmetrically to the organization and the examiner. Horizon does not interpret intent or quality: it anchors human interpretation to stable facts.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">17. Who typically uses Horizon?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon is designed for internal use by functions such as Internal Audit, Risk Management, Legal, and Compliance. External parties may review outputs only if the company decides or is required to disclose them.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">18. What happens if a company decides not to retain certain evidence?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Retention, deletion, and scope are entirely determined by the company's governance choices. The organization retains <strong>full sovereignty</strong> over what is retained, for how long, and for what purpose.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Final note</h3>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b;">Horizon does not force truth or change decisions. It answers one question reliably: <strong>"What facts already existed at the moment this decision was made?"</strong> Whether that capability should exist is an <strong>institutional choice</strong>, not a technical one.</p>
-    </section>
-  `,
-  fr: `
-    <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Clarifications</h1>
-    
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Cette page répond aux questions courantes soulevées lors de l'évaluation de l'opportunité d'intégrer un dispositif de preuve décisionnelle au sein d'une organisation. Elle se concentre sur le périmètre, les enjeux de gouvernance et les conséquences institutionnelles, plutôt que sur les fonctionnalités du produit ou les conditions commerciales.</p>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">1. Quel problème Horizon résout-il réellement ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 1.5rem;"><strong>Asplenz Horizon élimine le besoin de reconstruire les faits après qu'une décision a été remise en question.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Aujourd'hui, lorsqu'une décision est examinée, les entreprises extraient des logs de multiples systèmes, fouillent des courriels et réconcilient manuellement des chronologies. Horizon préserve les artefacts factuels existants au moment de la décision. Ainsi, l'examen repose sur la <strong>présentation</strong> de faits, et non sur leur reconstruction. Cela transforme l'examen, d'une activité réactive en une propriété intrinsèque de l'exécution.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">2. Horizon décide-t-il de quoi que ce soit ou influence-t-il les décisions ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>Non.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon ne prend pas de décisions, ne recommande aucune action et ne remplace pas la logique métier. Il se contente d'observer et de préserver ce qui s'est déjà produit.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">3. Comment les détails de mise en œuvre sont-ils abordés ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Cette documentation se concentre sur l'acceptabilité conceptuelle et les limites institutionnelles. Les questions relatives à l'instanciation du dispositif (interfaces, mécanismes d'intégration, contrôle d'accès, performance) ne sont pas spécifiées ici. Ces aspects sont définis lors d'une discussion d'acceptabilité délimitée, une fois que le dispositif est jugé conceptuellement acceptable et que les contraintes d'architecture et de sécurité de l'organisation sont connues.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">4. Nous avons déjà de l'observabilité et des logs. En quoi est-ce différent ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">L'observabilité et les logs sont conçus pour faciliter la reconstruction. Horizon répond à une question différente : est-ce que des <strong>faits déclarés et examinables</strong> existaient au moment de l'exécution, avant que toute enquête ou explication ne soit requise ? Améliorer l'observabilité réduit le coût de la reconstruction mais ne l'élimine pas en tant que dépendance. <strong>Horizon s'adresse aux situations où la reconstruction elle-même devient l'objet de l'examen.</strong></p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">5. Nous générons déjà des artefacts automatiquement. Pourquoi cela ne suffit-il pas ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">La distinction établie par Horizon ne porte pas sur l'existence des données, mais sur <strong>le moment où un fait devient institutionnellement déclaré</strong>. Dans la plupart des architectures, les artefacts sont assemblés a posteriori, une fois qu'une question a été soulevée. Asplenz Horizon garantit que les faits sont explicitement déclarés au moment de l'exécution, avec un périmètre et une structure définis à l'avance, et préservés indépendamment de toute enquête ultérieure.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">6. Horizon force-t-il les entreprises à tracer plus de décisions ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>Non.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon ne définit pas ce qui doit être tracé et n'étend pas la surface de décision. Il se contente de consolider des faits déjà produits (logs, fichiers, tickets) qui sont actuellement fragmentés.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">7. Horizon crée-t-il de nouvelles expositions juridiques ou réglementaires ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>Pas par conception.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Le périmètre, l'intégration et la rétention sont contrôlés par l'entreprise. Horizon ne publie rien vers les régulateurs. Si une preuve plus claire peut rendre des faiblesses visibles, la plupart des faits pertinents existent déjà aujourd'hui dans des archives fragmentées. Horizon modifie <strong>le moment</strong> et <strong>la cohérence</strong> avec lesquels les faits existants sont accessibles, évitant ainsi que des décisions ne soient évaluées sur la base de récits reconstruits contradictoires.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">8. Les registres Horizon peuvent-ils faire l'objet d'une communication de pièces ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Les registres Horizon sont soumis aux mêmes processus juridiques que toute autre donnée interne (courriels, logs, bases de données). Horizon n'introduit pas de nouvelles catégories de données ou de statut juridique spécial. Il préserve les preuves selon les mêmes règles régissant la communication de pièces (discovery), les injonctions et le secret professionnel.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">9. Horizon enregistre-t-il chaque décision de l'entreprise ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>Non.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">L'intégration est sélective. Les entreprises choisissent explicitement les systèmes couverts. L'adoption commence généralement par une zone de forte tension ou de contrôle intensif. Horizon n'est pas un enregistreur omniscient : c'est une <strong>couche de preuve au périmètre délibérément restreint</strong>.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">10. Horizon peut-il être limité aux seules décisions à haut risque ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>Oui.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Le choix du périmètre reflète les priorités organisationnelles, et non les contraintes du produit. Les points de départ types incluent les décisions réglementaires, les approbations automatisées ou les flux critiques pour la conformité.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">11. Horizon remplace-t-il les outils de logging ou d'audit ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>Non.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Il se situe au-dessus d'eux, agissant comme une couche de preuve qui corrèle, stabilise et préserve.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">12. Horizon n'est-il utile qu'en cas de problème ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #000; margin-bottom: 0.5rem;"><strong>Non.</strong></p>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon est utile avant que tout problème ne survienne, car la preuve doit exister <strong>avant que les questions ne surgissent</strong>. Le dispositif est actionné au moment de l'exécution.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">13. Quelle est la différence avec une simple amélioration du logging ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Le logging améliore l'observation. Horizon établit la preuve au moment de l'exécution. Même amélioré, le logging laisse les entreprises face à des sources fragmentées et un travail de reconstruction lourd.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">14. Horizon enregistre-t-il les décisions humaines et les passages outre ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Uniquement si l'entreprise choisit d'intégrer ces points. Si des artefacts humains existent déjà (tickets, approbations), Horizon peut les préserver en tant que faits.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">15. Horizon pourrait-il accroître la responsabilité individuelle ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon accroît la <strong>clarté factuelle</strong>. Le fait que cela mène à des changements en matière de responsabilité dépend des règles de gouvernance et de la culture organisationnelle. Ces résultats sont déterminés par l'usage de la preuve, et non par l'existence même de la couche de preuve.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">16. Horizon enferme-t-il les entreprises dans des récits rigides ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon fonde l'interprétation sur un socle factuel commun. Cela s'applique symétriquement à l'organisation et à l'examinateur. Horizon n'interprète ni l'intention ni la qualité : il ancre l'interprétation humaine sur des faits stables.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">17. Qui utilise généralement Horizon ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon est conçu pour un usage interne par des fonctions telles que l'Audit Interne, la Gestion des Risques, le Juridique et la Conformité. Des tiers ne peuvent consulter les résultats que si l'entreprise décide ou est tenue de les divulguer.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">18. Que se passe-t-il si une entreprise décide de ne pas conserver certaines preuves ?</h2>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">La rétention, la suppression et le périmètre sont exclusivement déterminés par les choix de gouvernance de l'entreprise. L'organisation conserve sa <strong>pleine souveraineté</strong> sur ce qui est conservé, pour quelle durée et à quelle fin.</p>
-    </section>
-    
-    <section style="margin-top: 2.5rem;">
-      <hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" />
-      
-      <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Note finale</h3>
-      
-      <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b;">Horizon n'impose pas de vérité et ne modifie pas les décisions. Il répond de manière fiable à une seule question : <strong>« Quels faits existaient déjà au moment où cette décision a été prise ? »</strong> Le fait que ce dispositif doive exister est un <strong>choix institutionnel</strong>, et non technique.</p>
-    </section>
-  `
+  fr: {
+    title: 'Clarifications',
+    subtitle: 'Lever les malentendus courants sur la preuve à l\'exécution',
+    intro: 'Cette section clarifie les points de confusion récurrents qui surviennent lors des discussions sur la preuve à l\'exécution et l\'infrastructure de snapshot décisionnel. Ces clarifications n\'introduisent pas de nouveaux principes. Elles garantissent que les concepts précédemment énoncés sont interprétés correctement et appliqués dans leur périmètre prévu.',
+    clarification1Title: 'Clarification 1 - Preuve versus explication',
+    clarification1P1: 'La preuve à l\'exécution établit les faits, pas les explications. Un Snapshot Décisionnel :',
+    clarification1PointsYes: [
+      'déclare ce qui a été exécuté,',
+      'avec quelles données,',
+      'dans quelles conditions,',
+      'et avec quel résultat.',
+    ],
+    clarification1P2: 'Il ne cherche pas à :',
+    clarification1PointsNo: [
+      'expliquer pourquoi une décision a été prise,',
+      'justifier sa justesse,',
+      'ou attribuer une responsabilité.',
+    ],
+    clarification1Conclusion: 'L\'explication, l\'interprétation et le jugement restent des activités humaines et institutionnelles.',
+    clarification2Title: 'Clarification 2 - La reconstruction n\'est pas une preuve',
+    clarification2P1: 'La reconstruction assemble des récits après l\'exécution en utilisant : des journaux (logs), des traces, des référentiels de configuration, la mémoire humaine et une interprétation rétrospective. La reconstruction peut soutenir l\'apprentissage et l\'analyse. Elle ne préserve pas l\'état factuel qui existait au moment de l\'exécution.',
+    clarification2Conclusion: 'Cette limite est structurelle, et non méthodologique. Là où une certitude factuelle est requise, la reconstruction ne peut servir de preuve.',
+    clarification3Title: 'Clarification 3 - Simulation versus capture à l\'exécution',
+    clarification3P1: 'La preuve à l\'exécution ne peut être simulée rétroactivement. Si aucune preuve n\'a été capturée au moment où une décision a été exécutée, elle ne peut être recréée plus tard sans interprétation.',
+    clarification3P2: 'Cela ne signifie pas que Horizon ne peut pas être démontré. La capture Horizon peut être démontrée sur n\'importe quel système actif, incluant :',
+    clarification3Points: [
+      'des environnements de test,',
+      'des systèmes sandbox,',
+      'et des configurations de démonstration.',
+    ],
+    clarification3Conclusion: 'Dans ces cas, Horizon capture l\'état factuel de cette exécution spécifique. Ce qui ne peut être simulé, c\'est la capture d\'exécutions passées qui n\'ont jamais produit de preuve au moment où elles ont eu lieu.',
+    clarification4Title: 'Clarification 4 - Horizon ne remplace pas entièrement la reconstruction',
+    clarification4P1: 'Horizon ne vise pas à éliminer la pratique analytique de la reconstruction. La reconstruction reste utile pour : comprendre le comportement du système, explorer des explications alternatives ou apprendre des incidents.',
+    clarification4Conclusion: 'Ce que Horizon supprime, c\'est la nécessité de s\'appuyer sur la reconstruction comme source de faits. La reconstruction peut éclairer l\'interprétation ; elle n\'établit pas la certitude factuelle.',
+    clarification5Title: 'Clarification 5 - Le contrôle institutionnel reste inchangé',
+    clarification5P1: 'La capture de preuves à l\'exécution ne centralise pas l\'autorité et n\'impose pas d\'interprétation. L\'institution conserve l\'entière maîtrise de :',
+    clarification5Points: [
+      'quelles décisions sont examinées,',
+      'comment les faits sont interprétés,',
+      'quelles conclusions en sont tirées,',
+      'et ce qui est communiqué en interne ou en externe.',
+    ],
+    clarification5Conclusion: 'Horizon enregistre l\'état factuel. Le pouvoir discrétionnaire de l\'institution gouverne son utilisation.',
+    clarification6Title: 'Clarification 6 - Pourquoi ces distinctions importent opérationnellement',
+    clarification6P1: 'Ces distinctions ne sont pas purement conceptuelles. Lorsque la preuve à l\'exécution n\'existe pas :',
+    clarification6Points: [
+      'établir l\'état factuel nécessite une coordination entre les équipes,',
+      'les systèmes hérités (legacy) doivent être accédés ou réactivés,',
+      'des hypothèses doivent être négociées,',
+      'et l\'effort augmente avec le temps.',
+    ],
+    clarification6Conclusion: 'La preuve à l\'exécution réduit l\'effort requis pour établir l\'état factuel, soutenir l\'examen institutionnel et répondre aux questions sur les décisions passées. Ce qui change n\'est pas le contenu du dossier, c\'est le coût pour l\'assembler, le conserver et y accéder.',
+    clarification7Title: 'Clarification 7 - Horizon est une infrastructure, pas une méthode',
+    clarification7P1: 'Horizon n\'est ni une méthodologie, ni un cadre de travail, ni une prescription de gouvernance. Il opère comme une couche d\'infrastructure qui :',
+    clarification7Points: [
+      'capture les faits à l\'exécution,',
+      'les préserve indépendamment de l\'évolution du système,',
+      'sans interférer avec la logique de décision ou les processus institutionnels.',
+    ],
+    clarification7Conclusion: 'L\'infrastructure permet la durabilité factuelle. Elle ne définit ni l\'intention, ni la politique.',
+    summaryTitle: 'Résumé',
+    summaryP1: 'La preuve à l\'exécution n\'existe que lorsqu\'elle est produite au moment de l\'exécution. Elle établit les faits sans explication, survit à l\'évolution du système et réduit la dépendance à la reconstruction comme source de vérité.',
+    summaryConclusion: 'Horizon capture ces faits. Les institutions conservent le plein contrôle sur leur interprétation et leur usage.',
+  },
+  en: {
+    title: 'Clarifications',
+    subtitle: 'Addressing common misunderstandings about execution-time evidence',
+    intro: 'This section clarifies recurring points of confusion that arise when discussing execution-time evidence and Decision Snapshot Infrastructure. These clarifications do not introduce new principles. They ensure that previously stated concepts are interpreted correctly and applied within their intended scope.',
+    clarification1Title: 'Clarification 1 - Evidence versus explanation',
+    clarification1P1: 'Execution-time evidence establishes facts, not explanations. A Decision Snapshot:',
+    clarification1PointsYes: [
+      'declares what was executed,',
+      'with what data,',
+      'under which conditions,',
+      'and with what outcome.',
+    ],
+    clarification1P2: 'It does not:',
+    clarification1PointsNo: [
+      'explain why a decision was made,',
+      'justify its correctness,',
+      'or assign responsibility.',
+    ],
+    clarification1Conclusion: 'Explanation, interpretation, and judgment remain human and institutional activities.',
+    clarification2Title: 'Clarification 2 - Reconstruction is not evidence',
+    clarification2P1: 'Reconstruction assembles narratives after execution using: logs, traces, configuration repositories, human recollection, and retrospective interpretation. Reconstruction may support learning and analysis. It does not preserve the factual state that existed at execution time.',
+    clarification2Conclusion: 'This limitation is structural, not methodological. Where factual certainty is required, reconstruction cannot serve as evidence.',
+    clarification3Title: 'Clarification 3 - Simulation versus execution-time capture',
+    clarification3P1: 'Execution-time evidence cannot be simulated retroactively. If no evidence was captured when a decision was executed, it cannot be recreated later without interpretation.',
+    clarification3P2: 'This does not mean that Horizon cannot be demonstrated. Horizon capture can be demonstrated on any live system, including:',
+    clarification3Points: [
+      'test environments,',
+      'sandbox systems,',
+      'and demonstration setups.',
+    ],
+    clarification3Conclusion: 'In those cases, Horizon captures the factual state of that execution. What cannot be simulated is the capture of past executions that never produced evidence at the time they occurred.',
+    clarification4Title: 'Clarification 4 - Horizon does not replace reconstruction entirely',
+    clarification4P1: 'Horizon does not aim to eliminate reconstruction as an analytical practice. Reconstruction remains useful for: understanding system behavior, exploring alternative explanations, or learning from incidents.',
+    clarification4Conclusion: 'What Horizon removes is the need to rely on reconstruction as a source of facts. Reconstruction may inform interpretation; it does not establish factual certainty.',
+    clarification5Title: 'Clarification 5 - Institutional control remains unchanged',
+    clarification5P1: 'Capturing execution-time evidence does not centralize authority or impose interpretation. The institution retains full control over:',
+    clarification5Points: [
+      'which decisions are examined,',
+      'how facts are interpreted,',
+      'what conclusions are drawn,',
+      'and what is communicated internally or externally.',
+    ],
+    clarification5Conclusion: 'Horizon records factual state. Institutional discretion governs its use.',
+    clarification6Title: 'Clarification 6 - Why these distinctions matter operationally',
+    clarification6P1: 'These distinctions are not purely conceptual. When execution-time evidence does not exist:',
+    clarification6Points: [
+      'establishing factual state requires coordination across teams,',
+      'legacy systems must be accessed or revived,',
+      'assumptions must be negotiated,',
+      'and effort increases over time.',
+    ],
+    clarification6Conclusion: 'Execution-time evidence reduces the effort required to establish factual state, support institutional review, and answer questions about past decisions. What changes is not the content of the record. It is the cost of assembling, retaining, and accessing it.',
+    clarification7Title: 'Clarification 7 - Horizon is infrastructure, not a method',
+    clarification7P1: 'Horizon is not a methodology, framework, or governance prescription. It operates as an infrastructure layer:',
+    clarification7Points: [
+      'capturing execution-time facts,',
+      'preserving them independently of system evolution,',
+      'without interfering with decision logic or institutional processes.',
+    ],
+    clarification7Conclusion: 'The infrastructure enables factual durability. It does not define intent or policy.',
+    summaryTitle: 'Summary',
+    summaryP1: 'Execution-time evidence exists only when it is produced at execution time. It establishes facts without explanation, survives system evolution, and reduces reliance on reconstruction as a source of truth.',
+    summaryConclusion: 'Horizon captures these facts. Institutions retain full control over their interpretation and use.',
+  },
 };
 
 export default function ClarificationsPage({ params }: { params: { lang: Language } }) {
+  const c = content[params.lang];
+
   return (
     <article className="max-w-3xl">
-      <div 
-        className="prose prose-lg prose-black max-w-none
-          prose-headings:font-light prose-headings:tracking-tight
-          prose-h1:text-5xl prose-h1:mb-8
-          prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-4
-          prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-          prose-p:text-base prose-p:leading-relaxed prose-p:mb-6
-          prose-blockquote:border-l-2 prose-blockquote:border-black/20 
-          prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-black/80
-          prose-ul:my-6 prose-li:my-2
-          prose-strong:font-medium prose-strong:text-black
-          prose-hr:border-black/10 prose-hr:my-12"
-        dangerouslySetInnerHTML={{ __html: content[params.lang] }}
-      />
+      {/* Title */}
+      <h1 className="text-4xl font-bold tracking-tight text-black mb-4">{c.title}</h1>
+      <h2 className="text-xl text-black/70 mb-8">{c.subtitle}</h2>
+
+      {/* Intro */}
+      <p className="text-lg text-black/80 mb-8">{c.intro}</p>
+
+      {/* Clarification 1 */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.clarification1Title}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.clarification1P1}</p>
+        <ul className="space-y-2 mb-6">
+          {c.clarification1PointsYes.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="text-lg text-black/80 mb-4">{c.clarification1P2}</p>
+        <ul className="space-y-2 mb-6">
+          {c.clarification1PointsNo.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="text-lg text-black/80">{c.clarification1Conclusion}</p>
+      </section>
+
+      {/* Clarification 2 */}
+      <section className="mb-10">
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.clarification2Title}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.clarification2P1}</p>
+        <div className="bg-[#005C99] text-white p-6">
+          <p className="text-lg font-medium">{c.clarification2Conclusion}</p>
+        </div>
+      </section>
+
+      {/* Clarification 3 */}
+      <section className="mb-10">
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.clarification3Title}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.clarification3P1}</p>
+        <p className="text-lg text-black/80 mb-4">{c.clarification3P2}</p>
+        <ul className="space-y-2 mb-6">
+          {c.clarification3Points.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="text-lg text-black/80">{c.clarification3Conclusion}</p>
+      </section>
+
+      {/* Clarification 4 */}
+      <section className="mb-10">
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.clarification4Title}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.clarification4P1}</p>
+        <p className="text-lg text-black/80">{c.clarification4Conclusion}</p>
+      </section>
+
+      {/* Clarification 5 */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.clarification5Title}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.clarification5P1}</p>
+        <ul className="space-y-2 mb-6">
+          {c.clarification5Points.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="text-lg text-black/80">{c.clarification5Conclusion}</p>
+      </section>
+
+      {/* Clarification 6 */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.clarification6Title}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.clarification6P1}</p>
+        <ul className="space-y-2 mb-6">
+          {c.clarification6Points.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="text-lg text-black/80">{c.clarification6Conclusion}</p>
+      </section>
+
+      {/* Clarification 7 */}
+      <section className="mb-10">
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.clarification7Title}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.clarification7P1}</p>
+        <ul className="space-y-2 mb-6">
+          {c.clarification7Points.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 text-lg text-black/80">
+              <span className="text-[#005C99] mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="text-lg text-black/80">{c.clarification7Conclusion}</p>
+      </section>
+
+      {/* Summary */}
+      <section className="mb-10">
+        <hr className="border-t border-black/10 mb-8" />
+        <h3 className="text-2xl font-semibold text-black mb-4">{c.summaryTitle}</h3>
+        <p className="text-lg text-black/80 mb-4">{c.summaryP1}</p>
+        <div className="bg-[#005C99] text-white p-6">
+          <p className="text-lg font-medium">{c.summaryConclusion}</p>
+        </div>
+      </section>
+
       <ReadingPath currentSlug="clarifications" lang={params.lang} />
     </article>
   );
