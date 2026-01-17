@@ -25,11 +25,11 @@ export default function MobileMenu({ lang }: MobileMenuProps) {
       {/* Hamburger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 hover:bg-zinc-50 rounded transition-colors"
+        className="p-2 hover:bg-white/10 rounded transition-colors"
         aria-label="Menu"
       >
         <svg
-          className="w-6 h-6"
+          className="w-6 h-6 text-white"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
