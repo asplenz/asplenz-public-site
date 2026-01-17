@@ -171,6 +171,7 @@ Elle ne dicte ni l'interprétation, ni le jugement. Elle préserve le terrain fa
     nextStep: {
       title: 'Étape suivante',
       content: 'Si vous souhaitez examiner comment ces principes s\'appliquent à vos propres systèmes de décision ou contraintes institutionnelles, vous pouvez initier une discussion.',
+      cta: 'Réserver un entretien d\'acceptabilité',
       conceptualRef: 'Pour les institutions nécessitant une définition formelle de la preuve à l\'exécution et des limites conceptuelles de l\'Infrastructure de Snapshot Décisionnel, une',
       conceptualRefLink: 'Référence Conceptuelle',
       conceptualRefEnd: 'est disponible.'
@@ -341,6 +342,7 @@ It does not impose interpretation, governance, or judgment. It preserves the fac
     nextStep: {
       title: 'Next step',
       content: 'If you want to examine how these principles apply to your own decision systems or institutional constraints, you can initiate a discussion.',
+      cta: 'Book an Acceptability Discussion',
       conceptualRef: 'For institutions requiring an explicit, formal definition of execution-time evidence and the conceptual boundaries of Decision Snapshot Infrastructure, a',
       conceptualRefLink: 'Conceptual Reference',
       conceptualRefEnd: 'is available.'
@@ -475,7 +477,15 @@ export default function WhitePaperPage({
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-[#005C99]/5 border border-[#005C99]/20 p-8 lg:p-12">
             <h2 className="text-2xl font-bold text-black mb-4">{c.nextStep.title}</h2>
-            <p className="text-black/70 mb-4">{c.nextStep.content}</p>
+            <p className="text-black/70 mb-6">{c.nextStep.content}</p>
+            <div className="mb-6">
+              <Link
+                href={`/${lang}/engagement`}
+                className="inline-flex items-center gap-2 bg-[#005C99] text-white px-6 py-3 font-medium hover:bg-[#005C99]/90 transition-colors"
+              >
+                {c.nextStep.cta}
+              </Link>
+            </div>
             <p className="text-black/70">
               {c.nextStep.conceptualRef}{' '}
               <Link
