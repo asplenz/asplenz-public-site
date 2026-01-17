@@ -15,7 +15,7 @@ export default function LangLayout({
     <div className="min-h-screen bg-white">
       {/* Minimal Header for Landing Pages */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-black/5">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between">
           <Link href={`/${params.lang}`} className="flex items-center gap-3 hover:opacity-70 transition-opacity">
             <Image
               src="/logo.png"

@@ -203,7 +203,7 @@ export default function HomePage({
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24">
+      <section className="pt-4 lg:pt-6 pb-8">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-4">{c.hero.badge}</p>
           <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-black mb-6 leading-tight">
@@ -232,7 +232,7 @@ export default function HomePage({
       </section>
 
       {/* Facts First Section */}
-      <section className="py-12">
+      <section className="pt-0 pb-12">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-[#00205E] p-8 lg:p-12 text-center">
             <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
