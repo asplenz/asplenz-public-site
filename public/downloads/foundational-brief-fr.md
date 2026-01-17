@@ -1,4 +1,4 @@
-# Infrastructure de Snapshot Decisionnel
+# Infrastructure de Snapshot Décisionnel
 
 ## Foundational Brief
 
@@ -8,40 +8,40 @@
 
 ## Introduction
 
-Ce livre blanc presente les fondations operationnelles de la **preuve a l'execution** pour les systemes de decision automatises et semi-automatises operant dans des contextes institutionnels.
+Ce livre blanc présente les fondations opérationnelles de la **preuve à l'exécution** pour les systèmes de décision automatisés et semi-automatisés opérant dans des contextes institutionnels.
 
-Il s'adresse aux organisations qui doivent etablir, avec le temps, ce qui a reellement ete execute lorsque les decisions deviennent irreversibles - independamment de l'evolution ulterieure des systemes, des modeles, des donnees ou des equipes.
+Il s'adresse aux organisations qui doivent établir, avec le temps, ce qui a réellement été exécuté lorsque les décisions deviennent irréversibles – indépendamment de l'évolution ultérieure des systèmes, des modèles, des données ou des équipes.
 
-Ce document est volontairement non promotionnel. Il se concentre sur la preservation factuelle plutot que sur l'explication, la justification ou l'evaluation.
-
----
-
-## Resume operationnel
-
-Les organisations s'appuient de plus en plus sur des systemes de decision dont les resultats entrainent des consequences operationnelles, juridiques, financieres et reputationnelles durables. Ces systemes evoluent continuellement : les modeles sont re-entraines, les regles ajustees, les sources de donnees modifiees, les infrastructures refondues et les equipes renouvelees. Pourtant, les decisions produites restent souvent examinables bien apres que les conditions techniques ayant preside a leur creation ont disparu.
-
-Dans la plupart des organisations, l'etat factuel des decisions passees n'est pas preserve au moment de l'execution. Lorsque des questions surgissent, les institutions tentent de reconstruire ce qui s'est passe a l'aide de logs, de traces, de referentiels de configuration, de tableaux de bord et de souvenirs humains. Ce processus est intrinsequement fragile, couteux et incertain. Il produit des recits plutot que des faits.
-
-L'Infrastructure de Snapshot Decisionnel comble cette lacune structurelle. Elle introduit une couche de preuve a l'execution dont le seul but est de capturer, au point de non-retour, l'etat factuel complet d'une decision et de le preserver sous la forme d'un artefact immuable et auto-contenu. Cet artefact existe independamment de l'evolution future du systeme qui l'a produit.
-
-L'infrastructure n'explique, ne justifie, ni n'evalue les decisions. Elle preserve ce qui a ete execute. Ce faisant, elle reduit l'effort operationnel, limite l'incertitude et restaure une autorite factuelle durable sans alterer le controle institutionnel ou la gouvernance.
+Ce document est volontairement non promotionnel. Il se concentre sur la préservation factuelle plutôt que sur l'explication, la justification ou l'évaluation.
 
 ---
 
-## Enonce du probleme
+## Résumé opérationnel
+
+Les organisations s'appuient de plus en plus sur des systèmes de décision dont les résultats entraînent des conséquences opérationnelles, juridiques, financières et réputationnelles durables. Ces systèmes évoluent continuellement : les modèles sont ré-entraînés, les règles ajustées, les sources de données modifiées, les infrastructures refondues et les équipes renouvelées. Pourtant, les décisions produites restent souvent examinables bien après que les conditions techniques ayant présidé à leur création ont disparu.
+
+Dans la plupart des organisations, l'état factuel des décisions passées n'est pas préservé au moment de l'exécution. Lorsque des questions surgissent, les institutions tentent de reconstruire ce qui s'est passé à l'aide de logs, de traces, de référentiels de configuration, de tableaux de bord et de souvenirs humains. Ce processus est intrinsèquement fragile, coûteux et incertain. Il produit des récits plutôt que des faits.
+
+L'Infrastructure de Snapshot Décisionnel comble cette lacune structurelle. Elle introduit une couche de preuve à l'exécution dont le seul but est de capturer, au point de non-retour, l'état factuel complet d'une décision et de le préserver sous la forme d'un artefact immuable et auto-contenu. Cet artefact existe indépendamment de l'évolution future du système qui l'a produit.
+
+L'infrastructure n'explique, ne justifie, ni n'évalue les décisions. Elle préserve ce qui a été exécuté. Ce faisant, elle réduit l'effort opérationnel, limite l'incertitude et restaure une autorité factuelle durable sans altérer le contrôle institutionnel ou la gouvernance.
+
+---
+
+## Énoncé du problème
 
 ### La reconstruction n'est pas une preuve
 
-La plupart des systemes de decision ne preservent pas les etats d'execution factuels. Ils laissent derriere eux des logs, des metriques et des traces concus pour l'observabilite, et non pour la certitude probante. Lorsque les decisions sont contestees plus tard, les organisations reconstruisent des recits sous des contraintes qui n'existaient pas au moment de l'execution.
+La plupart des systèmes de décision ne préservent pas les états d'exécution factuels. Ils laissent derrière eux des logs, des métriques et des traces conçus pour l'observabilité, et non pour la certitude probante. Lorsque les décisions sont contestées plus tard, les organisations reconstruisent des récits sous des contraintes qui n'existaient pas au moment de l'exécution.
 
-Cela conduit a :
+Cela conduit à :
 
-- des bases factuelles fragmentees et incompletes,
-- des divergences entre les equipes et les interpretations,
-- un biais de retrospective integre aux explications,
-- une augmentation exponentielle des couts operationnels au fil du temps.
+- des bases factuelles fragmentées et incomplètes,
+- des divergences entre les équipes et les interprétations,
+- un biais de rétrospective intégré aux explications,
+- une augmentation exponentielle des coûts opérationnels au fil du temps.
 
-Ces defaillances sont structurelles. Elles decoulent d'une inadequation entre ce que les systemes d'execution sont concus pour conserver et ce dont les institutions ont besoin plus tard pour etablir les faits.
+Ces défaillances sont structurelles. Elles découlent d'une inadéquation entre ce que les systèmes d'exécution sont conçus pour conserver et ce dont les institutions ont besoin plus tard pour établir les faits.
 
 ---
 
@@ -49,132 +49,132 @@ Ces defaillances sont structurelles. Elles decoulent d'une inadequation entre ce
 
 ### Capturer au point de non-retour
 
-Une decision devient un fait lorsqu'elle est executee. A cet instant :
+Une décision devient un fait lorsqu'elle est exécutée. À cet instant :
 
-- des entrees specifiques sont consommees,
-- une logique specifique est appliquee,
-- dans un contexte d'execution specifique,
-- produisant un resultat specifique.
+- des entrées spécifiques sont consommées,
+- une logique spécifique est appliquée,
+- dans un contexte d'exécution spécifique,
+- produisant un résultat spécifique.
 
-Une fois ce moment passe, l'etat factuel d'origine ne peut plus etre reconstitue avec certitude. La preuve doit donc etre produite au moment de l'execution, et non deduite plus tard.
+Une fois ce moment passé, l'état factuel d'origine ne peut plus être reconstitué avec certitude. La preuve doit donc être produite au moment de l'exécution, et non déduite plus tard.
 
 ---
 
-## Artefact de Snapshot Decisionnel
+## Artefact de Snapshot Décisionnel
 
-Un **Artefact de Snapshot Decisionnel** est l'enregistrement canonique de l'execution produit par le systeme lui-meme. Ce n'est ni un log, ni une trace, ni un rapport, ni une explication. Il constitue la declaration institutionnelle de ce qui existait au moment de l'execution.
+Un **Artefact de Snapshot Décisionnel** est l'enregistrement canonique de l'exécution produit par le système lui-même. Ce n'est ni un log, ni une trace, ni un rapport, ni une explication. Il constitue la déclaration institutionnelle de ce qui existait au moment de l'exécution.
 
-Toute affirmation sur la realite de l'execution est donc une affirmation sur le contenu de cet artefact.
+Toute affirmation sur la réalité de l'exécution est donc une affirmation sur le contenu de cet artefact.
 
-### Proprietes invariantes
+### Propriétés invariantes
 
 Chaque artefact garantit :
 
-- **Completude** - toutes les entrees, le contexte, l'etat de la logique et les resultats presents a l'execution sont integres.
-- **Integrite temporelle** - l'horodatage de l'execution est lie par cryptographie.
-- **Immuabilite** - les artefacts sont en ajout exclusif (append-only) et non modifiables.
-- **Ordonnancement** - sequencage verifiable entre les decisions.
-- **Authenticite** - preuve cryptographique de l'origine et de l'integrite.
+- **Complétude** – toutes les entrées, le contexte, l'état de la logique et les résultats présents à l'exécution sont intégrés.
+- **Intégrité temporelle** – l'horodatage de l'exécution est lié par cryptographie.
+- **Immuabilité** – les artefacts sont en ajout exclusif (append-only) et non modifiables.
+- **Ordonnancement** – séquençage vérifiable entre les décisions.
+- **Authenticité** – preuve cryptographique de l'origine et de l'intégrité.
 
-Si l'etablissement des faits necessite d'interroger des systemes externes, la reconstruction a deja commence.
+Si l'établissement des faits nécessite d'interroger des systèmes externes, la reconstruction a déjà commencé.
 
 ---
 
 ## Preuve vs Reconstruction
 
-| Reconstruction | Preuve a l'execution |
+| Reconstruction | Preuve à l'exécution |
 |----------------|---------------------|
-| Recit assemble apres le resultat | Fait declare avant l'examen |
-| Depend des traces survivantes | Artefact auto-contenu |
-| Soumise au biais de retrospective | Preserve la connaissance au temps T |
-| Cout croissant avec le temps | Cout fixe a l'execution |
+| Récit assemblé après le résultat | Fait déclaré avant l'examen |
+| Dépend des traces survivantes | Artefact auto-contenu |
+| Soumise au biais de rétrospective | Préserve la connaissance au temps T |
+| Coût croissant avec le temps | Coût fixe à l'exécution |
 
-L'Infrastructure de Snapshot Decisionnel n'ameliore pas la reconstruction. Elle la rend inutile dans son perimetre.
-
----
-
-## Decisions automatisees
-
-Les decisions automatisees sont des evenements d'execution composes d'elements volatils :
-
-- les donnees d'entree,
-- la logique de decision (regles, modeles, configurations),
-- le contexte d'execution,
-- les resultats produits.
-
-Les logs capturent des fragments de ces elements. Ils ne preservent pas l'execution dans son ensemble. Comme ces composantes evoluent independamment, la reconstruction a posteriori ne peut retablir l'etat factuel de maniere fiable. La capture a l'execution est donc la seule voie vers la certitude factuelle.
+L'Infrastructure de Snapshot Décisionnel n'améliore pas la reconstruction. Elle la rend inutile dans son périmètre.
 
 ---
 
-## Separation de l'Execution et de l'Evaluation
+## Décisions automatisées
 
-L'Infrastructure de Snapshot Decisionnel distingue :
+Les décisions automatisées sont des événements d'exécution composés d'éléments volatils :
 
-- **Les Executions** - faits immuables declares au temps T.
-- **Les Evaluations** - appreciations humaines ou institutionnelles produites ulterieurement, explicitement datees et liees.
+- les données d'entrée,
+- la logique de décision (règles, modèles, configurations),
+- le contexte d'exécution,
+- les résultats produits.
 
-Cette separation empeche structurellement le biais de retrospective en garantissant que les connaissances ulterieures ne contaminent pas les faits d'execution.
+Les logs capturent des fragments de ces éléments. Ils ne préservent pas l'exécution dans son ensemble. Comme ces composantes évoluent indépendamment, la reconstruction a posteriori ne peut rétablir l'état factuel de manière fiable. La capture à l'exécution est donc la seule voie vers la certitude factuelle.
+
+---
+
+## Séparation de l'Exécution et de l'Évaluation
+
+L'Infrastructure de Snapshot Décisionnel distingue :
+
+- **Les Exécutions** – faits immuables déclarés au temps T.
+- **Les Évaluations** – appréciations humaines ou institutionnelles produites ultérieurement, explicitement datées et liées.
+
+Cette séparation empêche structurellement le biais de rétrospective en garantissant que les connaissances ultérieures ne contaminent pas les faits d'exécution.
 
 ---
 
 ## Contextes institutionnels
 
-La preuve a l'execution devient critique partout ou les organisations doivent repondre de maniere fiable a des questions sur des decisions passees, incluant :
+La preuve à l'exécution devient critique partout où les organisations doivent répondre de manière fiable à des questions sur des décisions passées, incluant :
 
-- les revues reglementaires ou d'audit,
-- les enquetes internes et les analyses post-mortem,
+- les revues réglementaires ou d'audit,
+- les enquêtes internes et les analyses post-mortem,
 - les demandes d'informations des clients ou partenaires,
-- la responsabilite a long terme a travers les cycles de vie des systemes.
+- la responsabilité à long terme à travers les cycles de vie des systèmes.
 
-L'infrastructure ne prescrit ni la gouvernance, ni l'interpretation, ni la divulgation. Elle fournit un socle factuel partage sur lequel s'exerce le pouvoir discretionnaire de l'institution.
+L'infrastructure ne prescrit ni la gouvernance, ni l'interprétation, ni la divulgation. Elle fournit un socle factuel partagé sur lequel s'exerce le pouvoir discrétionnaire de l'institution.
 
 ---
 
-## Impact operationnel
+## Impact opérationnel
 
-L'Infrastructure de Snapshot Decisionnel ne change pas ce que les institutions choisissent de decider ou d'enregistrer. Elle change le cout et la fragilite de l'etablissement des faits.
+L'Infrastructure de Snapshot Décisionnel ne change pas ce que les institutions choisissent de décider ou d'enregistrer. Elle change le coût et la fragilité de l'établissement des faits.
 
-Elle reduit :
+Elle réduit :
 
-- la coordination entre equipes lors des revues,
-- la dependance aux systemes herites (legacy),
-- le temps passe a reconstruire des etats passes,
+- la coordination entre équipes lors des revues,
+- la dépendance aux systèmes hérités (legacy),
+- le temps passé à reconstruire des états passés,
 - l'incertitude lors de l'examen.
 
-Ce qui change n'est pas l'autorite ou l'intention. C'est l'effort operationnel.
+Ce qui change n'est pas l'autorité ou l'intention. C'est l'effort opérationnel.
 
 ---
 
 ## Principes et limites
 
-L'Infrastructure de Snapshot Decisionnel est regie par les limites suivantes :
+L'Infrastructure de Snapshot Décisionnel est régie par les limites suivantes :
 
 - Capture les faits, pas les explications.
-- Neutre vis-a-vis de l'interpretation, du jugement et de la gouvernance.
-- Independante du cycle de vie du systeme source.
-- Non intrusive pour la logique de decision.
-- Concue par defaut comme immuable, verifiable et en ajout exclusif.
+- Neutre vis-à-vis de l'interprétation, du jugement et de la gouvernance.
+- Indépendante du cycle de vie du système source.
+- Non intrusive pour la logique de décision.
+- Conçue par défaut comme immuable, vérifiable et en ajout exclusif.
 
-L'infrastructure s'arrete la ou l'interpretation commence.
+L'infrastructure s'arrête là où l'interprétation commence.
 
 ---
 
-## Disponibilite et adoption
+## Disponibilité et adoption
 
-L'Infrastructure de Snapshot Decisionnel est implementee comme une capacite delimitee et introduite par des deploiements de validation controles, intra-perimetre.
+L'Infrastructure de Snapshot Décisionnel est implémentée comme une capacité délimitée et introduite par des déploiements de validation contrôlés, intra-périmètre.
 
-Ces deploiements ne sont pas des adoptions de plateforme. Ils existent pour permettre aux institutions d'examiner l'acceptabilite operationnelle et institutionnelle de la preuve a l'execution produite par leurs propres systemes. La decision de ne pas poursuivre est consideree comme un resultat valide de cette etape.
+Ces déploiements ne sont pas des adoptions de plateforme. Ils existent pour permettre aux institutions d'examiner l'acceptabilité opérationnelle et institutionnelle de la preuve à l'exécution produite par leurs propres systèmes. La décision de ne pas poursuivre est considérée comme un résultat valide de cette étape.
 
 ---
 
 ## Conclusion
 
-Les systemes de decision automatises ne faiblissent pas parce que les institutions sont incapables d'agir. Ils faiblissent lorsque, avec le temps, les institutions ne peuvent plus etablir avec certitude ce qui a reellement ete execute, dans quelles conditions et avec quelles informations.
+Les systèmes de décision automatisés ne faiblissent pas parce que les institutions sont incapables d'agir. Ils faiblissent lorsque, avec le temps, les institutions ne peuvent plus établir avec certitude ce qui a réellement été exécuté, dans quelles conditions et avec quelles informations.
 
-La reconstruction a posteriori est structurellement incapable de fournir cette certitude. Elle assemble des recits une fois les resultats connus, en utilisant des traces qui n'ont jamais ete concues pour servir de preuve durable. L'Infrastructure de Snapshot Decisionnel restaure la continuite factuelle en garantissant que la preuve existe avant que les questions ne surgissent.
+La reconstruction a posteriori est structurellement incapable de fournir cette certitude. Elle assemble des récits une fois les résultats connus, en utilisant des traces qui n'ont jamais été conçues pour servir de preuve durable. L'Infrastructure de Snapshot Décisionnel restaure la continuité factuelle en garantissant que la preuve existe avant que les questions ne surgissent.
 
-Elle ne dicte ni l'interpretation, ni le jugement. Elle preserve le terrain factuel sur lequel s'exerce la discretion institutionnelle. La preuve n'existe qu'au moment de l'execution. Sa preservation n'est pas un choix methodologique, c'est une necessite structurelle.
+Elle ne dicte ni l'interprétation, ni le jugement. Elle préserve le terrain factuel sur lequel s'exerce la discrétion institutionnelle. La preuve n'existe qu'au moment de l'exécution. Sa préservation n'est pas un choix méthodologique, c'est une nécessité structurelle.
 
 ---
 
-*Asplenz - Infrastructure de Snapshot Decisionnel*
+*Asplenz – Infrastructure de Snapshot Décisionnel*
