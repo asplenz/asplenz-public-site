@@ -12,7 +12,9 @@ interface MainHeaderProps {
 export default function MainHeader({ lang }: MainHeaderProps) {
   const pathname = usePathname();
   const otherLang = lang === 'en' ? 'fr' : 'en';
-  const isWhitePaper = pathname.includes('/white-paper');
+  const isFoundations = pathname.includes('/foundations');
+
+  const foundationsLabel = lang === 'en' ? 'Foundations' : 'Fondements';
 
   return (
     <header className="sticky top-0 z-50 bg-[#005C99] border-b border-white/10">
@@ -29,16 +31,16 @@ export default function MainHeader({ lang }: MainHeaderProps) {
         </Link>
 
         <div className="flex items-center gap-6">
-          {!isWhitePaper && (
+          {!isFoundations && (
             <Link
-              href={`/${lang}/white-paper`}
+              href={`/${lang}/foundations`}
               className="text-sm text-white/70 hover:text-white transition-colors hidden sm:block"
             >
-              White Paper
+              {foundationsLabel}
             </Link>
           )}
           <Link
-            href={isWhitePaper ? `/${otherLang}/white-paper` : `/${otherLang}`}
+            href={isFoundations ? `/${otherLang}/foundations` : `/${otherLang}`}
             className="text-sm uppercase tracking-wider text-white/60 hover:text-white transition-colors"
           >
             {otherLang}

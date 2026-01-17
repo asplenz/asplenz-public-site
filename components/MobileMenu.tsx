@@ -78,7 +78,7 @@ export default function MobileMenu({ lang }: MobileMenuProps) {
                   pageNumber++;
                   const href = item.externalHref
                     ? `/${lang}${item.externalHref}`
-                    : `/${lang}/white-paper/${item.slug}`;
+                    : `/${lang}/foundations/${item.slug}`;
                   return (
                     <li key={item.slug || item.externalHref}>
                       <Link

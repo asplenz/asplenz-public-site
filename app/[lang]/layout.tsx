@@ -35,8 +35,8 @@ export default function LangLayout({
               <span className="text-sm text-black/40">Asplenz</span>
             </div>
             <div className="flex flex-wrap gap-6 text-sm text-black/40">
-              <Link href={`/${params.lang}/white-paper`} className="hover:text-black transition-colors">
-                White Paper
+              <Link href={`/${params.lang}/foundations`} className="hover:text-black transition-colors">
+                {params.lang === 'en' ? 'Foundations' : 'Fondements'}
               </Link>
               <Link href={`/${params.lang}/engagement`} className="hover:text-black transition-colors">
                 Contact

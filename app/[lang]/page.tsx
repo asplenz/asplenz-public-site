@@ -124,10 +124,10 @@ const content = {
         { q: 'Perd-on de la flexibilité ?', a: 'Non. Le contrôle est inchangé, seul l\'effort diminue.' },
       ],
     },
-    whitePaper: {
+    foundations: {
       title: 'Approfondir le sujet',
-      content: 'Le White Paper Horizon détaille l\'architecture technique, les cas d\'usage et les principes de conception de l\'infrastructure.',
-      linkText: 'Lire le White Paper',
+      content: 'Le document Foundational Brief detaille l\'architecture technique, les cas d\'usage et les principes de conception de l\'infrastructure.',
+      linkText: 'Lire les Fondements',
     },
   },
   en: {
@@ -248,10 +248,10 @@ const content = {
         { q: 'Does it reduce flexibility?', a: 'No. Control is unchanged; only the effort decreases.' },
       ],
     },
-    whitePaper: {
+    foundations: {
       title: 'Learn more',
-      content: 'The Horizon White Paper details the technical architecture, use cases, and design principles of the infrastructure.',
-      linkText: 'Read the White Paper',
+      content: 'The Foundational Brief details the technical architecture, use cases, and design principles of the infrastructure.',
+      linkText: 'Read the Foundations',
     },
   },
 };
@@ -493,17 +493,17 @@ export default function LandingPage({
         </div>
       </section>
 
-      {/* White Paper CTA */}
+      {/* Foundations CTA */}
       <section className="py-8">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-[#005C99]/5 border border-[#005C99]/20 p-8 lg:p-12">
-            <h2 className="text-2xl font-bold text-black mb-4">{c.whitePaper.title}</h2>
-            <p className="text-black/70 mb-6 max-w-2xl">{c.whitePaper.content}</p>
+            <h2 className="text-2xl font-bold text-black mb-4">{c.foundations.title}</h2>
+            <p className="text-black/70 mb-6 max-w-2xl">{c.foundations.content}</p>
             <Link
-              href={`/${params.lang}/white-paper`}
+              href={`/${params.lang}/foundations`}
               className="inline-flex items-center gap-2 bg-[#005C99] text-white px-6 py-3 font-medium hover:bg-[#005C99]/90 transition-colors"
             >
-              {c.whitePaper.linkText} <span>→</span>
+              {c.foundations.linkText} <span>→</span>
             </Link>
           </div>
         </div>

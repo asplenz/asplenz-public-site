@@ -20,7 +20,7 @@ export default function ReadingPath({ currentSlug, lang }: ReadingPathProps) {
         {lang === 'en' ? 'Next' : 'Suivant'}
       </p>
       <Link
-        href={`/${lang}/white-paper/${nextPage.slug}`}
+        href={`/${lang}/foundations/${nextPage.slug}`}
         className="group inline-flex items-center gap-2 text-black hover:text-[#1e3a8a] transition-colors"
       >
         <span className="text-lg font-medium">{nextPage.title[lang]}</span>
