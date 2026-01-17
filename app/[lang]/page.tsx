@@ -17,7 +17,7 @@ const content = {
         'Le contrôle institutionnel reste inchangé.',
         'Le coût opérationnel est radicalement réduit.',
       ],
-      cta: 'Book an acceptability discussion',
+      cta: 'Réserver un entretien d\'acceptabilité',
       ctaSubtext: 'Horizon s\'intègre aux systèmes existants. L\'adoption commence par une discussion d\'acceptabilité, pas par une décision imposée.',
     },
     factsFirst: {

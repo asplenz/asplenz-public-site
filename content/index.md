@@ -14,7 +14,7 @@ Horizon est une **infrastructure** qui permet de **préserver l’état factuel 
 * 👉 Le contrôle institutionnel reste inchangé.
 * 👉 Le coût opérationnel est radicalement réduit.
 
-### **[ Book an acceptability discussion ]**
+### **[ Réserver un entretien d'acceptabilité ]**
 
 *Horizon s’intègre aux systèmes existants. L’adoption commence par une discussion d’acceptabilité, pas par une décision imposée.*
 
@@ -128,7 +128,7 @@ Horizon is an **infrastructure** that preserves the **factual state of a decisio
 * 👉 Institutional control remains unchanged.
 * 👉 Operational cost is dramatically reduced.
 
-### **[ Book an Acceptability Discussion ]**
+### **[ Book an acceptability discussion ]**
 
 *Horizon integrates into existing systems. Adoption starts with an acceptability discussion, not an imposed rule.*
 
@@ -212,7 +212,7 @@ Adoption starts with an **acceptability discussion**:
 2. Define relevant scopes.
 3. Explicitly decide on adoption (or non-adoption).
 
-### **[ Book an Acceptability Discussion ]**
+### **[ Book an acceptability discussion ]**
 
 ---
 
