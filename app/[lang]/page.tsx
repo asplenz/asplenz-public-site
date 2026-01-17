@@ -205,7 +205,7 @@ export default function HomePage({
       {/* Hero Section */}
       <section className="py-16 lg:py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-sm uppercase tracking-wider text-[#1e3a8a] font-medium mb-4">{c.hero.badge}</p>
+          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-4">{c.hero.badge}</p>
           <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-black mb-6 leading-tight">
             {c.hero.title}
           </h1>
@@ -213,7 +213,7 @@ export default function HomePage({
           <p className="text-lg text-black/70 mb-8" dangerouslySetInnerHTML={{ __html: c.hero.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
           <ul className="space-y-2 mb-8 inline-block text-left">
             {c.hero.points.map((point, i) => (
-              <li key={i} className="flex items-center gap-2 text-[#1e3a8a] font-medium">
+              <li key={i} className="flex items-center gap-2 text-[#005C99] font-medium">
                 <span>👉</span>
                 <span>{point}</span>
               </li>
@@ -222,7 +222,7 @@ export default function HomePage({
           <div className="mb-4">
             <Link
               href={`/${params.lang}/contact`}
-              className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-[#00205E] text-white px-6 py-3 font-medium hover:bg-[#00205E]/90 transition-colors"
             >
               {c.hero.cta}
             </Link>
@@ -234,7 +234,7 @@ export default function HomePage({
       {/* Facts First Section */}
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-[#0d1117] p-8 lg:p-12 text-center">
+          <div className="bg-[#00205E] p-8 lg:p-12 text-center">
             <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
               {c.factsFirst.title}
             </h2>
@@ -255,10 +255,10 @@ export default function HomePage({
       {/* Problem Section */}
       <section className="py-16 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-wider text-[#1e3a8a] font-medium mb-2">{c.problem.title}</p>
+          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">{c.problem.title}</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.problem.subtitle}</h2>
           <p className="text-black/70 mb-6" dangerouslySetInnerHTML={{ __html: c.problem.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
-          <blockquote className="border-l-4 border-[#1e3a8a] pl-4 text-lg font-medium text-black">
+          <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
             {c.problem.quote}
           </blockquote>
         </div>
@@ -267,13 +267,13 @@ export default function HomePage({
       {/* Principle Section */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-wider text-[#1e3a8a] font-medium mb-2">{c.principle.title}</p>
+          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">{c.principle.title}</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.principle.subtitle}</h2>
           <p className="text-black/70 mb-6" dangerouslySetInnerHTML={{ __html: c.principle.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
           <ul className="space-y-3">
             {c.principle.points.map((point, i) => (
               <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-[#1e3a8a] mt-1">•</span>
+                <span className="text-[#005C99] mt-1">•</span>
                 <span><strong>{point.title} :</strong> {point.desc}</span>
               </li>
             ))}
@@ -289,7 +289,7 @@ export default function HomePage({
           <ul className="space-y-3">
             {c.artifact.points.map((point, i) => (
               <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-[#1e3a8a] mt-1">•</span>
+                <span className="text-[#005C99] mt-1">•</span>
                 <span dangerouslySetInnerHTML={{ __html: `<strong>${point.title} :</strong> ${point.desc.replace(/\*(.*?)\*/g, '<em>$1</em>')}` }} />
               </li>
             ))}
@@ -300,7 +300,7 @@ export default function HomePage({
       {/* Support Section */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-[#0d1117] text-white p-8 lg:p-12">
+          <div className="bg-[#00205E] text-white p-8 lg:p-12">
             <h2 className="text-2xl lg:text-3xl font-bold mb-6">{c.support.title}</h2>
             <p className="text-lg mb-6 opacity-90" dangerouslySetInnerHTML={{ __html: c.support.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
             <p className="text-lg font-medium" dangerouslySetInnerHTML={{ __html: '👉 ' + c.support.conclusion.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
@@ -316,10 +316,10 @@ export default function HomePage({
             <table className="w-full border-collapse">
               <thead>
                 <tr>
-                  <th className="text-left py-3 px-4 bg-zinc-100 font-bold text-black border-b-2 border-[#1e3a8a]">
+                  <th className="text-left py-3 px-4 bg-zinc-100 font-bold text-black border-b-2 border-[#005C99]">
                     {isFr ? 'Avant' : 'Before'}
                   </th>
-                  <th className="text-left py-3 px-4 bg-[#1e3a8a] font-bold text-white">
+                  <th className="text-left py-3 px-4 bg-[#00205E] font-bold text-white">
                     {isFr ? 'Avec Horizon' : 'With Horizon'}
                   </th>
                 </tr>
@@ -328,7 +328,7 @@ export default function HomePage({
                 {c.comparison.items.map((item, i) => (
                   <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-zinc-50'}>
                     <td className="py-3 px-4 text-black/70">{item.before}</td>
-                    <td className="py-3 px-4 text-[#1e3a8a] font-medium">{item.after}</td>
+                    <td className="py-3 px-4 text-[#005C99] font-medium">{item.after}</td>
                   </tr>
                 ))}
               </tbody>
@@ -340,7 +340,7 @@ export default function HomePage({
       {/* CTA Section */}
       <section id="engage" className="py-16 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-wider text-[#1e3a8a] font-medium mb-2">{c.cta.title}</p>
+          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">{c.cta.title}</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.cta.subtitle}</h2>
           <p className="text-black/70 mb-6" dangerouslySetInnerHTML={{ __html: c.cta.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
           <p className="text-black/70 mb-4" dangerouslySetInnerHTML={{ __html: c.cta.discussionIntro.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
@@ -351,7 +351,7 @@ export default function HomePage({
           </ol>
           <Link
             href={`/${params.lang}/contact`}
-            className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
+            className="inline-flex items-center gap-2 bg-[#00205E] text-white px-6 py-3 font-medium hover:bg-[#00205E]/90 transition-colors"
           >
             {c.cta.button}
           </Link>
@@ -376,12 +376,12 @@ export default function HomePage({
       {/* White Paper CTA */}
       <section className="py-16 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-[#1e3a8a]/5 border border-[#1e3a8a]/20 p-8 lg:p-12">
+          <div className="bg-[#00205E]/5 border border-[#005C99]/20 p-8 lg:p-12">
             <h2 className="text-2xl font-bold text-black mb-4">{c.whitePaper.title}</h2>
             <p className="text-black/70 mb-6 max-w-2xl">{c.whitePaper.content}</p>
             <Link
               href={`/${params.lang}/white-paper`}
-              className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-[#00205E] text-white px-6 py-3 font-medium hover:bg-[#00205E]/90 transition-colors"
             >
               {c.whitePaper.linkText} <span>→</span>
             </Link>
