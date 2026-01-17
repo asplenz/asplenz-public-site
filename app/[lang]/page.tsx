@@ -26,7 +26,7 @@ const content = {
       description: 'Horizon **ne redéfinit pas ce qu\'est un dossier**. Il **simplifie radicalement la production de ses éléments factuels**.',
       points: [
         'Ce qui change, ce n\'est pas le contenu du dossier.',
-        'C\'est l\'effort nécessaire pour l\'établir.',
+        'C\'est l\'effort nécessaire pour l\'établir, le conserver et le mobiliser.',
       ],
     },
     problem: {
@@ -118,7 +118,7 @@ const content = {
       description: 'Horizon **does not redefine what the record is**. It **removes the friction of producing its factual components**.',
       points: [
         'What changes is not the content of the record.',
-        'It is the cost of assembling it.',
+        'It is the cost of assembling, retaining, and accessing it.',
       ],
     },
     problem: {

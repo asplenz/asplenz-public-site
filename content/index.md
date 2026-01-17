@@ -27,7 +27,7 @@ Les équipes techniques produisent déjà aujourd’hui des dossiers décisionne
 Horizon **ne redéfinit pas ce qu’est un dossier**. Il **simplifie radicalement la production de ses éléments factuels**.
 
 * 👉 Ce qui change, ce n’est pas le contenu du dossier.
-* 👉 C’est l’effort nécessaire pour l’établir.
+* 👉 C'est l'effort nécessaire pour l'établir, le conserver et le mobiliser.
 
 ---
 
@@ -141,7 +141,7 @@ Teams already assemble decision records today: logs, databases, configurations, 
 Horizon **does not redefine what the record is**. It **removes the friction of producing its factual components**.
 
 * 👉 What changes is not the content of the record.
-* 👉 It is the cost of assembling it.
+* 👉 It is the cost of assembling, retaining, and accessing it.
 
 ---
 
