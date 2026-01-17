@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Language } from '@/lib/types';
 
 export function generateStaticParams() {
@@ -8,135 +7,89 @@ export function generateStaticParams() {
 
 const content = {
   fr: {
-    factsOverInterpretation: {
-      title: 'Le fait avant l\'interprétation.',
-      subtitle: 'Cette infrastructure n\'explique pas les décisions. Elle les préserve.',
-    },
     hero: {
-      title: 'Figer chaque décision automatisée telle qu\'elle a réellement eu lieu',
-      subtitle: 'Chaque décision produite par un système automatisé génère un **snapshot auto-contenu**, capturé **au moment exact de l\'exécution**, puis **signé et vérifiable**.',
+      badge: 'Decision Snapshot Infrastructure',
+      title: 'Rendre les décisions automatisées durablement exploitables',
+      intro: 'Aujourd\'hui, les systèmes automatisés prennent des décisions qui engagent l\'organisation sur la durée. Pourtant, les faits ayant conduit à ces décisions disparaissent rapidement avec l\'évolution des systèmes.',
+      description: 'Horizon est une **infrastructure** qui permet de **préserver l\'état factuel d\'une décision au moment exact où elle est exécutée**, afin que les équipes puissent y revenir plus tard **sans dépendre du système d\'origine**.',
       points: [
-        'Aucune reconstitution.',
-        'Aucune simulation.',
-        'Aucune dépendance au système source.',
+        'Les faits sont capturés au moment de l\'exécution.',
+        'Le contrôle institutionnel reste inchangé.',
+        'Le coût opérationnel est radicalement réduit.',
       ],
-      ctaArtifact: 'Demander un exemple d\'artefact',
-      ctaDemo: 'Demander une démo',
+      cta: 'Book an acceptability discussion',
+      ctaSubtext: 'Horizon s\'intègre aux systèmes existants. L\'adoption commence par une discussion d\'acceptabilité, pas par une décision imposée.',
+    },
+    factsFirst: {
+      title: 'Les faits avant la reconstruction',
+      intro: 'Les équipes techniques produisent déjà aujourd\'hui des dossiers décisionnels : logs, bases de données, configurations, modèles, documents internes.',
+      description: 'Horizon **ne redéfinit pas ce qu\'est un dossier**. Il **simplifie radicalement la production de ses éléments factuels**.',
+      points: [
+        'Ce qui change, ce n\'est pas le contenu du dossier.',
+        'C\'est l\'effort nécessaire pour l\'établir.',
+      ],
     },
     problem: {
-      title: 'Le constat',
-      subtitle: 'Une décision automatisée disparaît au moment où elle est prise',
-      intro: 'Dans la majorité des systèmes :',
-      points: [
-        'les données évoluent',
-        'les règles changent',
-        'les modèles sont mis à jour',
-        'les contextes d\'exécution ne sont pas figés',
-      ],
-      conclusion: 'Une fois la décision produite, **son état réel n\'existe plus**.',
-      result: 'Il ne reste que des reconstructions partielles.',
+      title: 'Le problème opérationnel',
+      subtitle: 'Les décisions automatisées ne survivent pas aux systèmes qui les produisent',
+      description: 'Dans les environnements réels, tout bouge : les données évoluent, les règles changent, les modèles sont mis à jour et les architectures se transforment. Lorsqu\'une décision passée doit être comprise, les équipes doivent **reconstruire les faits** à partir de sources partielles.',
+      quote: 'Le constat : Cette reconstruction est coûteuse, incertaine et dépendante d\'un système qui n\'existe plus dans son état d\'origine.',
     },
     principle: {
-      title: 'Notre principe',
-      subtitle: 'Capturer l\'instant d\'exécution, pas l\'expliquer après coup',
-      intro: 'Nous produisons, pour chaque décision automatisée, un **artefact factuel** qui capture :',
+      title: 'Le principe Horizon',
+      subtitle: 'Capturer les faits une fois, au bon moment',
+      description: 'Horizon capture **l\'état factuel d\'une décision au moment exact de son exécution**, sous la forme d\'un **Decision Snapshot Artifact**.',
       points: [
-        'ce qui a été exécuté',
-        'avec quelles données',
-        'dans quel contexte',
-        'et quel résultat a été produit',
+        { title: 'Données réellement consommées', desc: 'L\'intégralité des entrées à T0.' },
+        { title: 'État de la Logique', desc: 'La version exacte du modèle et sa configuration.' },
+        { title: 'Contexte', desc: 'L\'identité du système et l\'horodatage précis.' },
+        { title: 'Indépendance', desc: 'Généré en temps réel, il ne dépend pas de l\'évolution future du système.' },
       ],
-      conclusion: 'Cet artefact est généré **en ligne**, **sans dépendre du futur état du système**.',
     },
     artifact: {
-      title: 'Contenu de l\'artefact décisionnel',
-      intro: 'Chaque snapshot est un objet complet qui contient :',
-      sections: [
-        {
-          title: 'Contexte d\'Exécution',
-          items: [
-            'Identité précise du système, version de l\'acteur et horodatage exact (UTC).',
-          ],
-        },
-        {
-          title: 'Données d\'Entrée (T0)',
-          items: [
-            'L\'intégralité des données brutes telles qu\'elles ont été vues par le système à l\'instant de la décision.',
-          ],
-        },
-        {
-          title: 'État de la Logique',
-          items: [
-            'Le hash du modèle, la configuration exacte et les seuils actifs à ce moment précis.',
-          ],
-        },
-        {
-          title: 'Sortie & Intégrité',
-          items: [
-            'Le résultat final et ses codes de raison, scellés par une signature cryptographique immuable.',
-          ],
-        },
-      ],
-      conclusion: '**L\'artefact est auto-contenu : il contient la preuve et les données nécessaires à sa propre vérification.**',
-      formalDefinitionLink: '→ Lire la définition formelle de l\'Artefact de Persistance Décisionnelle',
-    },
-    proof: {
-      title: 'Une preuve technique, pas une interprétation',
+      title: 'Decision Snapshot Artifact',
+      intro: 'L\'Artefact est un **objet auto-contenu** qui permet d\'établir les faits sans reconstitution. Il inclut :',
       points: [
-        'aucune hypothèse a posteriori',
-        'aucune simulation',
-        'aucune approximation',
-      ],
-      content: 'L\'artefact ne **raconte pas pourquoi**. Il **atteste de ce qui s\'est réellement produit**.',
-      conclusion: 'L\'artefact est auto-contenu, signé et vérifiable. **Il peut être consulté et interprété sans connaissance du système ayant produit la décision.**',
-    },
-    afterDecision: {
-      title: 'Après la décision',
-      intro: 'Une fois capturé, le snapshot peut être :',
-      actions: ['conservé', 'transmis', 'vérifié', 'relu', 'analysé'],
-      points: [
-        'Sans accès au système d\'origine',
-        'Sans dépendre de versions futures',
-        'Sans rejouer l\'exécution',
+        { title: 'Métadonnées d\'exécution', desc: 'ID unique et horodatage UTC précis.' },
+        { title: 'Snapshot Data', desc: 'Les entrées brutes vues par le système à T0.' },
+        { title: 'Model State', desc: 'Le hash du modèle et les seuils actifs.' },
+        { title: 'Output', desc: 'Le résultat et ses codes de raison (*reason codes*).' },
+        { title: 'Intégrité', desc: 'Signature cryptographique assurant l\'immuabilité.' },
       ],
     },
-    infrastructure: {
-      title: 'Pensé comme une infrastructure',
-      points: [
-        's\'intègre aux systèmes existants',
-        'compatible règles, scoring, IA',
-        'capture synchrone ou asynchrone',
-        'gouvernance des durées de conservation',
-        'contrôle d\'accès et sécurité intégrés',
-      ],
+    support: {
+      title: 'Un support factuel, pas une contrainte',
+      description: 'Horizon n\'impose aucune narration et n\'automatise aucun jugement. Les équipes conservent **le même contrôle qu\'aujourd\'hui** sur ce qui est consigné, interprété ou communiqué.',
+      conclusion: 'La seule différence est opérationnelle : **les faits sont déjà là.**',
     },
     comparison: {
-      title: 'Ce que cela change fondamentalement',
+      title: 'Ce qui change concrètement',
       items: [
-        { before: 'Décision éphémère', after: 'Décision figée' },
-        { before: 'Traces partielles', after: 'Artefact complet' },
-        { before: 'Reconstitution', after: 'Attestation' },
-        { before: 'Dépendance au système', after: 'Indépendance' },
-        { before: 'Incertitude', after: 'Intégrité' },
+        { before: 'Faits reconstruits', after: 'Faits capturés' },
+        { before: 'Effort élevé', after: 'Coût marginal' },
+        { before: 'Dépendance aux anciens systèmes', after: 'Indépendance temporelle' },
+        { before: 'Investigations longues', after: 'Accès immédiat' },
+        { before: 'Incertitude factuelle', after: 'Base factuelle immuable' },
       ],
     },
-    quote: '« Nous ne reconstruisons pas les décisions automatisées. Nous conservons l\'instant exact où elles ont été prises. »',
     cta: {
-      title: 'Rendre chaque décision automatisée vérifiable par défaut',
-      points: [
-        'consulter un artefact réel',
-        'tester sur un flux existant',
-        'évaluer l\'impact technique',
+      title: 'Comment commencer',
+      subtitle: 'Une démonstration est possible. Une reconstitution ne l\'est pas.',
+      description: 'Horizon peut être démontré sur tout système vivant (test, sandbox, démo). Ce qui ne peut pas être simulé, c\'est la capture de décisions **déjà passées**.',
+      discussionIntro: 'L\'adoption commence par un **entretien d\'acceptabilité** :',
+      steps: [
+        'Évaluer l\'adéquation technique et organisationnelle.',
+        'Définir les périmètres pertinents.',
+        'Décider explicitement d\'une adoption (ou non).',
       ],
-      ctaArtifact: 'Demander un exemple d\'artefact',
-      ctaDemo: 'Demander une démo',
+      button: 'Réserver un entretien d\'acceptabilité',
     },
     faq: {
-      title: 'Mini-FAQ',
+      title: 'FAQ',
       items: [
-        { q: 'Est-ce un système d\'audit ?', a: 'Non. C\'est une capture factuelle de l\'exécution.' },
-        { q: 'Est-ce une explication ?', a: 'Non. C\'est une attestation.' },
-        { q: 'Est-ce dépendant du système source ?', a: 'Non. L\'artefact est autonome.' },
+        { q: 'Est-ce un système d\'audit ?', a: 'Non. C\'est une infrastructure de capture factuelle.' },
+        { q: 'Est-ce une explication automatique ?', a: 'Non. L\'interprétation reste humaine.' },
+        { q: 'Perd-on de la flexibilité ?', a: 'Non. Le contrôle est inchangé, seul l\'effort diminue.' },
       ],
     },
     whitePaper: {
@@ -146,135 +99,89 @@ const content = {
     },
   },
   en: {
-    factsOverInterpretation: {
-      title: 'Facts over Interpretation.',
-      subtitle: 'This infrastructure does not explain decisions. It preserves them.',
-    },
     hero: {
-      title: 'Freeze every automated decision exactly as it occurred',
-      subtitle: 'Every decision produced by an automated system generates a **self-contained snapshot**, captured at the **exact moment of execution**, then **signed and verifiable**.',
+      badge: 'Decision Snapshot Infrastructure',
+      title: 'Making automated decisions durable over time',
+      intro: 'Automated systems make decisions that have long-term consequences. Yet the factual state behind those decisions quickly disappears as systems evolve.',
+      description: 'Horizon is an **infrastructure** that preserves the **factual state of a decision at the exact moment it is executed**, allowing teams to rely on it later **without depending on the original system**.',
       points: [
-        'No reconstruction.',
-        'No simulation.',
-        'No dependency on the source system.',
+        'Facts are captured at execution time.',
+        'Institutional control remains unchanged.',
+        'Operational cost is dramatically reduced.',
       ],
-      ctaArtifact: 'Request an artifact sample',
-      ctaDemo: 'Request a demo',
+      cta: 'Book an Acceptability Discussion',
+      ctaSubtext: 'Horizon integrates into existing systems. Adoption starts with an acceptability discussion, not an imposed rule.',
+    },
+    factsFirst: {
+      title: 'Facts before reconstruction',
+      intro: 'Teams already assemble decision records today: logs, databases, configurations, models, internal documents.',
+      description: 'Horizon **does not redefine what the record is**. It **removes the friction of producing its factual components**.',
+      points: [
+        'What changes is not the content of the record.',
+        'It is the cost of assembling it.',
+      ],
     },
     problem: {
-      title: 'The Problem',
-      subtitle: 'An automated decision vanishes the moment it is made',
-      intro: 'In most systems:',
-      points: [
-        'data evolves',
-        'rules change',
-        'models are updated',
-        'execution contexts are not frozen',
-      ],
-      conclusion: 'Once a decision is produced, **its real state no longer exists**.',
-      result: 'All that remains are partial reconstructions.',
+      title: 'The operational problem',
+      subtitle: 'Automated decisions do not survive the systems that produced them',
+      description: 'In real-world environments, everything moves: data evolves, rules change, models are retrained, and architectures move on. When a past decision must be understood, teams are forced to **reconstruct facts** from partial sources.',
+      quote: 'The reality: This reconstruction is costly, uncertain, and dependent on a system that no longer exists in its original state.',
     },
     principle: {
-      title: 'Our Principle',
-      subtitle: 'Capture the moment of execution, don\'t explain it after the fact',
-      intro: 'For every automated decision, we produce a **factual artifact** that captures:',
+      title: 'The Horizon principle',
+      subtitle: 'Capture facts once, at the right moment',
+      description: 'Horizon captures the **factual state of a decision at execution time**, producing a **Decision Snapshot Artifact**.',
       points: [
-        'what was executed',
-        'with which data',
-        'in what context',
-        'and what result was produced',
+        { title: 'Data Actually Consumed', desc: 'The complete raw inputs at T0.' },
+        { title: 'Logic State', desc: 'The exact model version and configuration.' },
+        { title: 'Context', desc: 'System identity and precise UTC timestamp.' },
+        { title: 'Independence', desc: 'Generated in real-time; independent from future system evolution.' },
       ],
-      conclusion: 'This artifact is generated **inline**, **without depending on the future state of the system**.',
     },
     artifact: {
-      title: 'Decision Artifact Content',
-      intro: 'Each snapshot is a complete object containing:',
-      sections: [
-        {
-          title: 'Execution Context',
-          items: [
-            'Precise system identity, actor version and exact timestamp (UTC).',
-          ],
-        },
-        {
-          title: 'Input Data (T0)',
-          items: [
-            'The complete raw data as seen by the system at the moment of decision.',
-          ],
-        },
-        {
-          title: 'Logic State',
-          items: [
-            'The model hash, exact configuration and active thresholds at that precise moment.',
-          ],
-        },
-        {
-          title: 'Output & Integrity',
-          items: [
-            'The final result and its reason codes, sealed by an immutable cryptographic signature.',
-          ],
-        },
-      ],
-      conclusion: '**The artifact is self-contained: it holds the proof and the data needed for its own verification.**',
-      formalDefinitionLink: '→ Read the formal definition of the Decision Snapshot Artifact',
-    },
-    proof: {
-      title: 'Technical proof, not interpretation',
+      title: 'Decision Snapshot Artifact',
+      intro: 'The Artifact is a **self-contained object** that establishes facts without reconstruction. It includes:',
       points: [
-        'no post-hoc assumptions',
-        'no simulation',
-        'no approximation',
-      ],
-      content: 'The artifact **does not tell "why"**. It **attests to what actually happened**.',
-      conclusion: 'The artifact is self-contained, signed, and verifiable. **It can be consulted and interpreted without any knowledge of the system that produced the decision.**',
-    },
-    afterDecision: {
-      title: 'After the Decision',
-      intro: 'Once captured, the snapshot can be:',
-      actions: ['preserved', 'transmitted', 'verified', 'reviewed', 'analyzed'],
-      points: [
-        'Without access to the original system',
-        'Without depending on future versions',
-        'Without replaying the execution',
+        { title: 'Execution Metadata', desc: 'Unique ID and precise UTC timestamp.' },
+        { title: 'Snapshot Data', desc: 'Raw inputs exactly as seen by the system at T0.' },
+        { title: 'Model State', desc: 'Model hash and active thresholds.' },
+        { title: 'Decision Output', desc: 'Final result and actionable reason codes.' },
+        { title: 'Integrity', desc: 'Cryptographic signature ensuring non-alteration.' },
       ],
     },
-    infrastructure: {
-      title: 'Built as Infrastructure',
-      points: [
-        'integrates with existing systems',
-        'compatible with rules, scoring, and AI',
-        'synchronous or asynchronous capture',
-        'retention policy governance',
-        'integrated access control and security',
-      ],
+    support: {
+      title: 'Factual support, not institutional constraint',
+      description: 'Horizon does not impose narratives or automate judgment. Teams retain **the same control as today** over what enters the record, what is interpreted, and what is communicated.',
+      conclusion: 'The difference is operational: **the facts already exist.**',
     },
     comparison: {
-      title: 'The Fundamental Shift',
+      title: 'What changes in practice',
       items: [
-        { before: 'Ephemeral decision', after: 'Frozen decision' },
-        { before: 'Partial traces', after: 'Complete artifact' },
-        { before: 'Reconstruction', after: 'Attestation' },
-        { before: 'System dependency', after: 'Independence' },
-        { before: 'Uncertainty', after: 'Integrity' },
+        { before: 'Reconstructed facts', after: 'Captured facts' },
+        { before: 'High effort', after: 'Marginal cost' },
+        { before: 'Legacy dependency', after: 'Temporal independence' },
+        { before: 'Long investigations', after: 'Immediate access' },
+        { before: 'Factual uncertainty', after: 'Immutable factual base' },
       ],
     },
-    quote: '"We do not reconstruct automated decisions. We preserve the exact moment they were taken."',
     cta: {
-      title: 'Make every automated decision verifiable by default',
-      points: [
-        'view a real artifact',
-        'test on an existing flow',
-        'assess technical impact',
+      title: 'How to start',
+      subtitle: 'Demonstration is possible. Reconstruction is not.',
+      description: 'Horizon can be demonstrated on any live system (test, sandbox, demo). What cannot be simulated is the capture of **past executions**.',
+      discussionIntro: 'Adoption starts with an **acceptability discussion**:',
+      steps: [
+        'Assess technical and organizational fit.',
+        'Define relevant scopes.',
+        'Explicitly decide on adoption (or non-adoption).',
       ],
-      ctaArtifact: 'Request an artifact sample',
-      ctaDemo: 'Request a demo',
+      button: 'Book an Acceptability Discussion',
     },
     faq: {
-      title: 'Mini-FAQ',
+      title: 'FAQ',
       items: [
-        { q: 'Is this an audit system?', a: 'No. It is a factual capture of the execution.' },
-        { q: 'Is this an explanation?', a: 'No. It is an attestation.' },
-        { q: 'Is it dependent on the source system?', a: 'No. The artifact is autonomous.' },
+        { q: 'Is this an audit system?', a: 'No. It is a factual capture infrastructure.' },
+        { q: 'Is interpretation automated?', a: 'No. Interpretation remains human.' },
+        { q: 'Does this reduce flexibility?', a: 'No. Control is unchanged; effort is reduced.' },
       ],
     },
     whitePaper: {
@@ -297,58 +204,51 @@ export default function HomePage({
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-black mb-6 leading-tight">
-                {c.hero.title}
-              </h1>
-              <p className="text-lg text-black/70 mb-6" dangerouslySetInnerHTML={{ __html: c.hero.subtitle.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
-              <ul className="space-y-2 mb-8">
-                {c.hero.points.map((point, i) => (
-                  <li key={i} className="flex items-center gap-2 text-[#1e3a8a] font-medium">
-                    <span>👉</span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href={`/${params.lang}/contact`}
-                  className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
-                >
-                  {c.hero.ctaArtifact}
-                </Link>
-                <Link
-                  href={`/${params.lang}/contact`}
-                  className="inline-flex items-center gap-2 border border-[#1e3a8a] text-[#1e3a8a] px-6 py-3 font-medium hover:bg-[#1e3a8a]/5 transition-colors"
-                >
-                  {c.hero.ctaDemo}
-                </Link>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/hero.png"
-                alt="Decision snapshot flow"
-                width={600}
-                height={400}
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-sm uppercase tracking-wider text-[#1e3a8a] font-medium mb-4">{c.hero.badge}</p>
+          <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-black mb-6 leading-tight">
+            {c.hero.title}
+          </h1>
+          <p className="text-lg text-black/70 mb-4">{c.hero.intro}</p>
+          <p className="text-lg text-black/70 mb-8" dangerouslySetInnerHTML={{ __html: c.hero.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+          <ul className="space-y-2 mb-8 inline-block text-left">
+            {c.hero.points.map((point, i) => (
+              <li key={i} className="flex items-center gap-2 text-[#1e3a8a] font-medium">
+                <span>👉</span>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mb-4">
+            <Link
+              href={`/${params.lang}/contact`}
+              className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
+            >
+              {c.hero.cta}
+            </Link>
           </div>
+          <p className="text-sm text-black italic">{c.hero.ctaSubtext}</p>
         </div>
       </section>
 
-      {/* Facts over Interpretation Section */}
-      <section className="py-12 bg-[#0d1117]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-2xl lg:text-3xl font-bold text-white mb-3">
-            {c.factsOverInterpretation.title}
-          </p>
-          <p className="text-lg lg:text-xl text-white/80">
-            {c.factsOverInterpretation.subtitle}
-          </p>
+      {/* Facts First Section */}
+      <section className="py-12">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-[#0d1117] p-8 lg:p-12 text-center">
+            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
+              {c.factsFirst.title}
+            </h2>
+            <p className="text-lg text-white/80 mb-4">{c.factsFirst.intro}</p>
+            <p className="text-lg text-white/80 mb-6" dangerouslySetInnerHTML={{ __html: c.factsFirst.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+            <ul className="space-y-2 inline-block text-left">
+              {c.factsFirst.points.map((point, i) => (
+                <li key={i} className="flex items-center gap-2 text-white/90 font-medium">
+                  <span>👉</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -357,17 +257,10 @@ export default function HomePage({
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-sm uppercase tracking-wider text-[#1e3a8a] font-medium mb-2">{c.problem.title}</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.problem.subtitle}</h2>
-          <p className="text-black/70 mb-4">{c.problem.intro}</p>
-          <ul className="space-y-2 mb-6">
-            {c.problem.points.map((point, i) => (
-              <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-red-500 mt-1">•</span>
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="text-lg font-medium text-black mb-2" dangerouslySetInnerHTML={{ __html: c.problem.conclusion.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
-          <p className="text-[#1e3a8a] font-medium">👉 {c.problem.result}</p>
+          <p className="text-black/70 mb-6" dangerouslySetInnerHTML={{ __html: c.problem.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+          <blockquote className="border-l-4 border-[#1e3a8a] pl-4 text-lg font-medium text-black">
+            {c.problem.quote}
+          </blockquote>
         </div>
       </section>
 
@@ -376,124 +269,41 @@ export default function HomePage({
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-sm uppercase tracking-wider text-[#1e3a8a] font-medium mb-2">{c.principle.title}</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.principle.subtitle}</h2>
-          <p className="text-black/70 mb-4" dangerouslySetInnerHTML={{ __html: c.principle.intro.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
-          <ul className="space-y-2 mb-6">
+          <p className="text-black/70 mb-6" dangerouslySetInnerHTML={{ __html: c.principle.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+          <ul className="space-y-3">
             {c.principle.points.map((point, i) => (
               <li key={i} className="flex items-start gap-3 text-black/70">
                 <span className="text-[#1e3a8a] mt-1">•</span>
-                <span>{point}</span>
+                <span><strong>{point.title} :</strong> {point.desc}</span>
               </li>
             ))}
           </ul>
-          <p className="text-lg font-medium text-black border-l-4 border-[#1e3a8a] pl-4" dangerouslySetInnerHTML={{ __html: c.principle.conclusion.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
         </div>
       </section>
 
-      {/* Artifact Content Section */}
+      {/* Artifact Section */}
       <section className="py-16 bg-zinc-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.artifact.title}</h2>
-              <p className="text-black/70 mb-6">{c.artifact.intro}</p>
-              <div className="space-y-3">
-                {c.artifact.sections.map((section, i) => (
-                  <div key={i}>
-                    <h3 className="font-bold text-[#1e3a8a] mb-1 flex items-center gap-2">
-                      <span>•</span>
-                      {section.title}
-                    </h3>
-                    <p className="text-black/70 text-sm pl-4" dangerouslySetInnerHTML={{ __html: section.items[0].replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>') }} />
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-[#1e3a8a] font-medium" dangerouslySetInnerHTML={{ __html: '👉 ' + c.artifact.conclusion.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
-              <p className="mt-4">
-                <Link
-                  href={`/${params.lang}/white-paper/decision-snapshot-artifact`}
-                  className="text-black/70 hover:text-[#1e3a8a] transition-colors font-bold underline"
-                >
-                  {c.artifact.formalDefinitionLink}
-                </Link>
-              </p>
-            </div>
-            <div className="lg:sticky lg:top-24">
-              <Image
-                src="/images/artefact.png"
-                alt="Decision Snapshot Artifact"
-                width={600}
-                height={800}
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Technical Proof Section */}
-      <section className="py-16 bg-[#1e3a8a] text-white">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-6">{c.proof.title}</h2>
-          <ul className="space-y-2 mb-6">
-            {c.proof.points.map((point, i) => (
-              <li key={i} className="flex items-start gap-3 opacity-90">
-                <span className="mt-1">•</span>
-                <span>{point}</span>
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.artifact.title}</h2>
+          <p className="text-black/70 mb-6" dangerouslySetInnerHTML={{ __html: c.artifact.intro.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+          <ul className="space-y-3">
+            {c.artifact.points.map((point, i) => (
+              <li key={i} className="flex items-start gap-3 text-black/70">
+                <span className="text-[#1e3a8a] mt-1">•</span>
+                <span dangerouslySetInnerHTML={{ __html: `<strong>${point.title} :</strong> ${point.desc.replace(/\*(.*?)\*/g, '<em>$1</em>')}` }} />
               </li>
             ))}
           </ul>
-          <p className="text-lg mb-4 opacity-95" dangerouslySetInnerHTML={{ __html: c.proof.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
-          <p className="text-base opacity-80 border-t border-white/20 pt-6 mt-6" dangerouslySetInnerHTML={{ __html: c.proof.conclusion.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
         </div>
       </section>
 
-      {/* After Decision Section */}
+      {/* Support Section */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.afterDecision.title}</h2>
-          <p className="text-black/70 mb-4">{c.afterDecision.intro}</p>
-          <div className="flex flex-wrap gap-3 mb-6">
-            {c.afterDecision.actions.map((action, i) => (
-              <span key={i} className="bg-zinc-100 px-4 py-2 text-black/70 rounded">
-                {action}
-              </span>
-            ))}
-          </div>
-          <ul className="space-y-2">
-            {c.afterDecision.points.map((point, i) => (
-              <li key={i} className="flex items-center gap-2 text-[#1e3a8a] font-medium">
-                <span>👉</span>
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Infrastructure Section */}
-      <section className="py-16 bg-zinc-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.infrastructure.title}</h2>
-              <ul className="space-y-3">
-                {c.infrastructure.points.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 text-black/70">
-                    <span className="text-green-600 mt-1">✓</span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <Image
-                src="/images/infra.png"
-                alt="Infrastructure before and after"
-                width={600}
-                height={400}
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
+          <div className="bg-[#0d1117] text-white p-8 lg:p-12">
+            <h2 className="text-2xl lg:text-3xl font-bold mb-6">{c.support.title}</h2>
+            <p className="text-lg mb-6 opacity-90" dangerouslySetInnerHTML={{ __html: c.support.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+            <p className="text-lg font-medium" dangerouslySetInnerHTML={{ __html: '👉 ' + c.support.conclusion.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
           </div>
         </div>
       </section>
@@ -510,7 +320,7 @@ export default function HomePage({
                     {isFr ? 'Avant' : 'Before'}
                   </th>
                   <th className="text-left py-3 px-4 bg-[#1e3a8a] font-bold text-white">
-                    {isFr ? 'Après' : 'After'}
+                    {isFr ? 'Avec Horizon' : 'With Horizon'}
                   </th>
                 </tr>
               </thead>
@@ -527,51 +337,34 @@ export default function HomePage({
         </div>
       </section>
 
-      {/* Quote Section */}
-      <section className="py-16 bg-[#1e3a8a] text-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-xl lg:text-2xl font-medium italic">
-            {c.quote}
-          </p>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section id="engage" className="py-16">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.cta.title}</h2>
-          <ul className="space-y-2 mb-8 inline-block text-left">
-            {c.cta.points.map((point, i) => (
-              <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-[#1e3a8a] mt-1">•</span>
-                <span>{point}</span>
-              </li>
+      <section id="engage" className="py-16 bg-zinc-50">
+        <div className="max-w-4xl mx-auto px-6">
+          <p className="text-sm uppercase tracking-wider text-[#1e3a8a] font-medium mb-2">{c.cta.title}</p>
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.cta.subtitle}</h2>
+          <p className="text-black/70 mb-6" dangerouslySetInnerHTML={{ __html: c.cta.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+          <p className="text-black/70 mb-4" dangerouslySetInnerHTML={{ __html: c.cta.discussionIntro.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+          <ol className="space-y-2 mb-8 list-decimal list-inside">
+            {c.cta.steps.map((step, i) => (
+              <li key={i} className="text-black/70">{step}</li>
             ))}
-          </ul>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href={`/${params.lang}/contact`}
-              className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
-            >
-              {c.cta.ctaArtifact}
-            </Link>
-            <Link
-              href={`/${params.lang}/contact`}
-              className="inline-flex items-center gap-2 border border-[#1e3a8a] text-[#1e3a8a] px-6 py-3 font-medium hover:bg-[#1e3a8a]/5 transition-colors"
-            >
-              {c.cta.ctaDemo}
-            </Link>
-          </div>
+          </ol>
+          <Link
+            href={`/${params.lang}/contact`}
+            className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
+          >
+            {c.cta.button}
+          </Link>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-zinc-50">
+      <section className="py-16">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-xl font-bold text-black mb-6">{c.faq.title}</h2>
           <div className="space-y-4">
             {c.faq.items.map((item, i) => (
-              <div key={i} className="bg-white p-4 border border-black/5">
+              <div key={i} className="bg-zinc-50 p-4 border border-black/5">
                 <p className="font-bold text-black mb-1">{item.q}</p>
                 <p className="text-black/70">{item.a}</p>
               </div>
@@ -581,7 +374,7 @@ export default function HomePage({
       </section>
 
       {/* White Paper CTA */}
-      <section className="py-16">
+      <section className="py-16 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-[#1e3a8a]/5 border border-[#1e3a8a]/20 p-8 lg:p-12">
             <h2 className="text-2xl font-bold text-black mb-4">{c.whitePaper.title}</h2>

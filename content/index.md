@@ -1,366 +1,226 @@
-**Version FR**
+# 🇫🇷 Version Française : Horizon
 
-# 🧠 Hero section
+## 🧠 Horizon
 
-### **Figer chaque décision automatisée telle qu’elle a réellement eu lieu**
+### **Decision Snapshot Infrastructure**
 
-Chaque décision produite par un système automatisé génère un **snapshot auto-contenu**,
-capturé **au moment exact de l’exécution**, puis **signé et vérifiable**.
+### **Rendre les décisions automatisées durablement exploitables**
 
-👉 Aucune reconstitution.
-👉 Aucune simulation.
-👉 Aucun dépendance au système source.
+Aujourd’hui, les systèmes automatisés prennent des décisions qui engagent l’organisation sur la durée. Pourtant, les faits ayant conduit à ces décisions disparaissent rapidement avec l’évolution des systèmes.
 
-**[ Demander un exemple d'artefact ]**  **[ Demander une démo ]**
+Horizon est une **infrastructure** qui permet de **préserver l’état factuel d’une décision au moment exact où elle est exécutée**, afin que les équipes puissent y revenir plus tard **sans dépendre du système d’origine**.
 
-![Image](https://td-mainsite-cdn.tutorialsdojo.com/wp-content/uploads/2024/05/Automated-RDS-Snapshot-Management-for-Improved-Data-Security-Image-1.png)
+* 👉 Les faits sont capturés au moment de l’exécution.
+* 👉 Le contrôle institutionnel reste inchangé.
+* 👉 Le coût opérationnel est radicalement réduit.
 
-![Image](https://blog.quarkslab.com/resources/2019-09-09-execution-trace-analysis/dfg1.png)
+### **[ Book an acceptability discussion ]**
 
-![Image](https://miro.medium.com/v2/resize%3Afit%3A1400/1%2AC6NdkpITyE-a2NvwQcoz3g.jpeg)
-
-![Image](https://cdn.comparitech.com/wp-content/uploads/2019/03/digital-signatures-2.jpg)
+*Horizon s’intègre aux systèmes existants. L’adoption commence par une discussion d’acceptabilité, pas par une décision imposée.*
 
 ---
 
-## 🎯 Le fait avant l'interprétation.
+## 🎯 Les faits avant la reconstruction
 
-**Cette infrastructure n'explique pas les décisions. Elle les préserve.**
+Les équipes techniques produisent déjà aujourd’hui des dossiers décisionnels : logs, bases de données, configurations, modèles, documents internes.
 
----
+Horizon **ne redéfinit pas ce qu’est un dossier**. Il **simplifie radicalement la production de ses éléments factuels**.
 
-## ❓ Le constat
-
-### Une décision automatisée disparaît au moment où elle est prise
-
-Dans la majorité des systèmes :
-
-* les données évoluent
-* les règles changent
-* les modèles sont mis à jour
-* les contextes d’exécution ne sont pas figés
-
-Une fois la décision produite, **son état réel n’existe plus**.
-
-👉 Il ne reste que des reconstructions partielles.
+* 👉 Ce qui change, ce n’est pas le contenu du dossier.
+* 👉 C’est l’effort nécessaire pour l’établir.
 
 ---
 
-## ✅ Notre principe
+## ❓ Le problème opérationnel
 
-### Capturer l’instant d’exécution — pas l’expliquer après coup
+### **Les décisions automatisées ne survivent pas aux systèmes qui les produisent**
 
-Nous produisons, pour chaque décision automatisée, un **artefact factuel** qui capture :
+Dans les environnements réels, tout bouge : les données évoluent, les règles changent, les modèles sont mis à jour et les architectures se transforment. Lorsqu’une décision passée doit être comprise, les équipes doivent **reconstruire les faits** à partir de sources partielles.
 
-* ce qui a été exécuté
-* avec quelles données
-* dans quel contexte
-* et quel résultat a été produit
-
-Cet artefact est généré **en ligne**, **sans dépendre du futur état du système**.
+> **Le constat :** Cette reconstruction est coûteuse, incertaine et dépendante d’un système qui n'existe plus dans son état d'origine.
 
 ---
 
-## 📦 Contenu de l’artefact décisionnel
+## ✅ Le principe Horizon
 
-Chaque snapshot est un objet complet qui contient cinq couches de données :
+### **Capturer les faits une fois, au bon moment**
 
-### 🔹 Métadonnées d’exécution (EXECUTION RECORD)
+Horizon capture **l’état factuel d’une décision au moment exact de son exécution**, sous la forme d’un **Decision Snapshot Artifact**.
 
-* **Identifiant unique** de l'exécution et **horodatage UTC** précis.
-* Identité du système source et version exacte de l'acteur (système expert, IA).
-
-### 🔹 Snapshot des données (SNAPSHOT DATA)
-
-* **Données brutes telles que vues par le système à l’instant T0.**
-* Toutes les variables d’entrée ayant servi au calcul (revenus, dette, âge, etc.).
-* *C'est ce qui permet de s'affranchir de l'historisation des bases de données.*
-
-### 🔹 État du modèle et de la logique (MODEL STATE)
-
-* Empreinte numérique (**hash**) du modèle et version de la configuration.
-* Paramètres et seuils (thresholds) actifs au moment précis de la décision.
-
-### 🔹 Résultat de la décision (OUTPUT)
-
-* Résultat final (Accordé / Refusé) et scores de confiance.
-* **Codes de motifs (reason codes)** expliquant factuellement la sortie du système.
-
-### 🔹 Intégrité & Chaîne de confiance (INTEGRITY)
-
-* **Signature cryptographique Ed25519** garantissant la non-altération.
-* Chaînage séquentiel (**hash précédent**) rendant toute suppression détectable.
-
-👉 **L'artefact est auto-contenu : il contient la preuve et les données nécessaires à sa propre vérification.**
-
-→ Lire la définition formelle de l'*Artefact de Persistance Décisionnelle*
+* **Données réellement consommées :** L'intégralité des entrées à T0.
+* **État de la Logique :** La version exacte du modèle et sa configuration.
+* **Contexte :** L'identité du système et l'horodatage précis.
+* **Indépendance :** Généré en temps réel, il ne dépend pas de l’évolution future du système.
 
 ---
 
-## 🔐 Une preuve technique, pas une interprétation
+## 📦 Decision Snapshot Artifact
 
-* aucune hypothèse a posteriori
-* aucune simulation
-* aucune approximation
+L’Artefact est un **objet auto-contenu** qui permet d’établir les faits sans reconstitution. Il inclut :
 
-L’artefact ne **raconte pas pourquoi**.
-Il **atteste de ce qui s’est réellement produit**.
-
-L’artefact est auto-contenu, signé et vérifiable.
-**Il peut être consulté et interprété sans connaissance du système ayant produit la décision.**
+* **Métadonnées d’exécution :** ID unique et horodatage UTC précis.
+* **Snapshot Data :** Les entrées brutes vues par le système à T0.
+* **Model State :** Le hash du modèle et les seuils actifs.
+* **Output :** Le résultat et ses codes de raison (*reason codes*).
+* **Intégrité :** Signature cryptographique assurant l'immuabilité.
 
 ---
 
-## 🔁 Après la décision
+## 🔐 Un support factuel, pas une contrainte
 
-Une fois capturé, le snapshot peut être :
+Horizon n’impose aucune narration et n’automatise aucun jugement. Les équipes conservent **le même contrôle qu’aujourd’hui** sur ce qui est consigné, interprété ou communiqué.
 
-* conservé
-* transmis
-* vérifié
-* relu
-* analysé
-
-👉 Sans accès au système d’origine
-👉 Sans dépendre de versions futures
-👉 Sans rejouer l’exécution
+👉 La seule différence est opérationnelle : **les faits sont déjà là.**
 
 ---
 
-## ⚙️ Pensé comme une infrastructure
+## 🎯 Ce qui change concrètement
 
-* s’intègre aux systèmes existants
-* compatible règles, scoring, IA
-* capture synchrone ou asynchrone
-* gouvernance des durées de conservation
-* contrôle d’accès et sécurité intégrés
-
----
-
-## 🎯 Ce que cela change fondamentalement
-
-| Avant                 | Après            |
-| --------------------- | ---------------- |
-| Décision éphémère     | Décision figée   |
-| Traces partielles     | Artefact complet |
-| Reconstitution        | Attestation      |
-| Dépendance au système | Indépendance     |
-| Incertitude           | Intégrité        |
-
----
-
-## 🗣️ Phrase clé
-
-> *« Nous ne reconstruisons pas les décisions automatisées.
-> Nous conservons l’instant exact où elles ont été prises. »*
-
----
-
-## 🚀 Call to action
-
-### Rendre chaque décision automatisée vérifiable par défaut
-
-* consulter un artefact réel
-* tester sur un flux existant
-* évaluer l’impact technique
-
-**[ Demander un example d'artefact ]**
-**[ Demander une démo ]**
-
----
-
-### (Optionnel) Mini-FAQ
-
-**Est-ce un système d’audit ?**
-Non. C’est une capture factuelle de l’exécution.
-
-**Est-ce une explication ?**
-Non. C’est une attestation.
-
-**Est-ce dépendant du système source ?**
-Non. L’artefact est autonome.
-
-** English version**
-
-**EN Version**
-
-# 🧠 Hero section
-
-### **Freeze every automated decision exactly as it occurred**
-
-Every decision produced by an automated system generates a **self-contained snapshot**, captured at the **exact moment of execution**, then **signed and verifiable**.
-
-👉 No reconstruction.
-👉 No simulation.
-👉 No dependency on the source system.
-
-**[ Request an artifact sample ]**  **[ Request a demo ]**
-
----
-
-## 🎯 Facts over Interpretation.
-
-**This infrastructure does not explain decisions. It preserves them.**
-
----
-
-## ❓ The Problem
-
-### An automated decision vanishes the moment it is made
-
-In most systems:
-
-* data evolves
-* rules change
-* models are updated
-* execution contexts are not frozen
-
-Once a decision is produced, **its real state no longer exists**.
-
-👉 All that remains are partial reconstructions.
-
----
-
-## ✅ Our Principle
-
-### Capture the moment of execution — don't explain it after the fact
-
-For every automated decision, we produce a **factual artifact** that captures:
-
-* what was executed
-* with which data
-* in what context
-* and what result was produced
-
-This artifact is generated **inline**, **without depending on the future state of the system**.
-
----
-
-## 📦 Decision Artifact Content
-
-Each snapshot includes:
-
-### 🔹 Execution Metadata
-
-
-* Unique execution ID and precise UTC timestamp.
-* System identity and actor versioning.
-
-
-### 🔹 Snapshot Data (Inputs at T0)
-
-
-* **Raw data seen by the system at the exact moment of decision.**
-* All variables used for the calculation (income, debt, age, etc.).
-
-
-### 🔹 Model & Logic State
-
-
-* Model hash and configuration versioning.
-* Active thresholds and parameters at T0.
-
-
-### 🔹 Decision Output
-
-
-* Final result and confidence scores.
-* **Actionable reason codes** explaining the outcome.
-
-
-### 🔹 Integrity & Chain of Trust
-
-
-* Cryptographic Ed25519 signature.
-* Sequential chaining (`prev_hash`) to prevent deletion or alteration.
-
-
-👉 The artifact is **self-contained** and **independently actionable**.
-
-→ Read the formal definition of the *Decision Snapshot Artifact*
-
----
-
-## 🔐 Technical proof, not interpretation
-
-* no post-hoc assumptions
-* no simulation
-* no approximation
-
-The artifact **does not tell "why"**.
-It **attests to what actually happened**.
-
-The artifact is self-contained, signed, and verifiable.
-**It can be consulted and interpreted without any knowledge of the system that produced the decision.**
-
----
-
-## 🔁 After the Decision
-
-Once captured, the snapshot can be:
-
-* preserved
-* transmitted
-* verified
-* reviewed
-* analyzed
-
-👉 Without access to the original system
-👉 Without depending on future versions
-👉 Without replaying the execution
-
----
-
-## ⚙️ Built as Infrastructure
-
-* integrates with existing systems
-* compatible with rules, scoring, and AI
-* synchronous or asynchronous capture
-* retention policy governance
-* integrated access control and security
-
----
-
-## 🎯 The Fundamental Shift
-
-| Before | After |
+| Avant | Avec Horizon |
 | --- | --- |
-| Ephemeral decision | Frozen decision |
-| Partial traces | Complete artifact |
-| Reconstruction | Attestation |
-| System dependency | Independence |
-| Uncertainty | Integrity |
+| Faits reconstruits | **Faits capturés** |
+| Effort élevé | **Coût marginal** |
+| Dépendance aux anciens systèmes | **Indépendance temporelle** |
+| Investigations longues | **Accès immédiat** |
+| Incertitude factuelle | **Base factuelle immuable** |
 
 ---
 
-## 🗣️ Key Quote
+## 🚀 Comment commencer
 
-> *"We do not reconstruct automated decisions.
-> We preserve the exact moment they were taken."*
+### **Une démonstration est possible. Une reconstitution ne l’est pas.**
 
----
+Horizon peut être démontré sur tout système vivant (test, sandbox, démo). Ce qui ne peut pas être simulé, c’est la capture de décisions **déjà passées**.
 
-## 🚀 Call to Action
+L’adoption commence par une **entretien d’acceptabilité** :
 
-### Make every automated decision verifiable by default
+1. Évaluer l’adéquation technique et organisationnelle.
+2. Définir les périmètres pertinents.
+3. Décider explicitement d’une adoption (ou non).
 
-* view a real artifact
-* test on an existing flow
-* assess technical impact
-
-**[ Request an artifact sample ]**
-**[ Request a demo ]**
+### **[ Réserver un entretien d'acceptabilité ]**
 
 ---
 
-### (Optional) Mini-FAQ
+## ❓ FAQ
 
-**Is this an audit system?**
-No. It is a factual capture of the execution.
+* **Est-ce un système d’audit ?** Non. C’est une infrastructure de capture factuelle.
+* **Est-ce une explication automatique ?** Non. L’interprétation reste humaine.
+* **Perd-on de la flexibilité ?** Non. Le contrôle est inchangé, seul l'effort diminue.
 
-**Is this an explanation?**
-No. It is an attestation.
+---
 
-**Is it dependent on the source system?**
-No. The artifact is autonomous.
+---
+
+# 🇬🇧 English Version: Horizon
+
+## 🧠 Horizon
+
+### **Decision Snapshot Infrastructure**
+
+### **Making automated decisions durable over time**
+
+Automated systems make decisions that have long-term consequences. Yet the factual state behind those decisions quickly disappears as systems evolve.
+
+Horizon is an **infrastructure** that preserves the **factual state of a decision at the exact moment it is executed**, allowing teams to rely on it later **without depending on the original system**.
+
+* 👉 Facts are captured at execution time.
+* 👉 Institutional control remains unchanged.
+* 👉 Operational cost is dramatically reduced.
+
+### **[ Book an Acceptability Discussion ]**
+
+*Horizon integrates into existing systems. Adoption starts with an acceptability discussion, not an imposed rule.*
+
+---
+
+## 🎯 Facts before reconstruction
+
+Teams already assemble decision records today: logs, databases, configurations, models, internal documents.
+
+Horizon **does not redefine what the record is**. It **removes the friction of producing its factual components**.
+
+* 👉 What changes is not the content of the record.
+* 👉 It is the cost of assembling it.
+
+---
+
+## ❓ The operational problem
+
+### **Automated decisions do not survive the systems that produced them**
+
+In real-world environments, everything moves: data evolves, rules change, models are retrained, and architectures move on. When a past decision must be understood, teams are forced to **reconstruct facts** from partial sources.
+
+> **The reality:** This reconstruction is costly, uncertain, and dependent on a system that no longer exists in its original state.
+
+---
+
+## ✅ The Horizon principle
+
+### **Capture facts once, at the right moment**
+
+Horizon captures the **factual state of a decision at execution time**, producing a **Decision Snapshot Artifact**.
+
+* **Data Actually Consumed:** The complete raw inputs at T0.
+* **Logic State:** The exact model version and configuration.
+* **Context:** System identity and precise UTC timestamp.
+* **Independence:** Generated in real-time; independent from future system evolution.
+
+---
+
+## 📦 Decision Snapshot Artifact
+
+The Artifact is a **self-contained object** that establishes facts without reconstruction. It includes:
+
+* **Execution Metadata:** Unique ID and precise UTC timestamp.
+* **Snapshot Data:** Raw inputs exactly as seen by the system at T0.
+* **Model State:** Model hash and active thresholds.
+* **Decision Output:** Final result and actionable reason codes.
+* **Integrity:** Cryptographic signature ensuring non-alteration.
+
+---
+
+## 🔐 Factual support, not institutional constraint
+
+Horizon does not impose narratives or automate judgment. Teams retain **the same control as today** over what enters the record, what is interpreted, and what is communicated.
+
+👉 The difference is operational: **the facts already exist.**
+
+---
+
+## 🎯 What changes in practice
+
+| Before | With Horizon |
+| --- | --- |
+| Reconstructed facts | **Captured facts** |
+| High effort | **Marginal cost** |
+| Legacy dependency | **Temporal independence** |
+| Long investigations | **Immediate access** |
+| Factual uncertainty | **Immutable factual base** |
+
+---
+
+## 🚀 How to start
+
+### **Demonstration is possible. Reconstruction is not.**
+
+Horizon can be demonstrated on any live system (test, sandbox, demo). What cannot be simulated is the capture of **past executions**.
+
+Adoption starts with an **acceptability discussion**:
+
+1. Assess technical and organizational fit.
+2. Define relevant scopes.
+3. Explicitly decide on adoption (or non-adoption).
+
+### **[ Book an Acceptability Discussion ]**
+
+---
+
+## ❓ FAQ
+
+* **Is this an audit system?** No. It is a factual capture infrastructure.
+* **Is interpretation automated?** No. Interpretation remains human.
+* **Does this reduce flexibility?** No. Control is unchanged; effort is reduced.
+
+---
 
