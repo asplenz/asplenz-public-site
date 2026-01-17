@@ -1,12 +1,12 @@
-### 2. English Version
+# 1. English Version
 
 # Horizon: Technical Capabilities
 
-## A factual evidence infrastructure (intra-perimeter)
+## A Decision Snapshot Infrastructure (intra-perimeter)
 
 ### What it records
 
-Two types of declared facts, strictly separated:
+Horizon records **Decision Snapshots**, encapsulated in immutable and self-contained **Artifacts**. These snapshots consist of two types of declared facts, strictly separated:
 
 #### 1) Executions
 
@@ -35,7 +35,7 @@ An evaluation is an **evidentiary record of judgment** captured at Time T. It do
 ■ Declared basis (The rationale used at that specific moment)
 ■ Confidence level
 
-> **Design Principle:** An evaluation is an evidentiary artifact; it is functionally independent of the execution path. Horizon documents the *why* without participating in the *what*.
+> **Design Principle:** A **Decision Snapshot Artifact** is the evidence itself. It carries everything required to establish what occurred within itself, ensuring absolute independence from the source system's future state.
 
 ---
 
@@ -45,40 +45,27 @@ This infrastructure is agnostic to the decision source. It applies whenever a sp
 
 #### AI-assisted decisions
 
-AI-assisted systems increasingly inform or produce decisions. When those decisions are later examined by Risk, Audit, Legal, or regulators, the question is not only about model performance, but about **what actually happened in that specific case**.
-
-The same approach captures executions and evaluations from AI-assisted workflows at execution time, immutably, before any question arises. This supports a shift from outcome-based testing (the "right" answer) to **behavior-based examinability**: what did the system see, evaluate, and decide, and when?
-
-Asplenz Horizon does not replace AI governance frameworks such as the EU AI Act or CDMC. It provides the **evidence layer** that allows those frameworks to be demonstrated in real, case-by-case examinations.
+The same approach captures executions and evaluations from AI-assisted workflows at execution time, immutably, before any question arises. This supports a shift from outcome-based testing to **behavior-based examinability**: what did the system see, evaluate, and decide, and when?
+Asplenz Horizon does not replace AI governance frameworks (EU AI Act, CDMC). It provides the **evidence layer** that allows those frameworks to be demonstrated in real, case-by-case examinations.
 
 #### Automated decision workflows
 
-Risk engines, eligibility rules, throttling, and automated outcomes are recorded as declared executions. Optional evaluations preserve the organizational stance at time T.
+Risk engines and eligibility rules are recorded as declared executions. Optional evaluations preserve the organizational stance at time T.
 
 #### Human-in-the-loop escalations
 
-When automated outcomes escalate to humans, the original execution reference is propagated through existing channels: alerts, tickets, or consoles. Human decisions are recorded as evaluations linked to the triggering execution, preserving a single factual chain.
-
----
-
-### How automated and human decisions become examinable as one
-
-* Automated systems produce **declared executions**, each identified by a stable execution reference.
-* When a situation escalates, this reference is propagated through the organization's existing channels.
-* Any human decision taken in response is recorded as a **declared evaluation**, explicitly linked to the original execution.
-* Subsequent actions may reference either or both, preserving a **single factual chain**.
-
-**Facts are linked by explicit references, not reconstructed through interfaces or workflows.**
+When automated outcomes escalate, the original execution reference is propagated. Human decisions are recorded as evaluations linked to the triggering execution, preserving a **single factual chain**.
 
 ---
 
 ### Properties
 
-* **Append-only** : no edits, no deletes.
-* **Ordering** : explicit chronology.
-* **Integrity** : verifiable records.
-* **Intra-perimeter** : deployable on-premise or in private cloud.
-* **Non-intrusive** : not in the critical execution path.
+* **Self-contained**: Everything needed for verification is inside the artifact (no reliance on external databases).
+* **Append-only**: No edits, no deletes.
+* **Ordering**: Explicit and verifiable chronology.
+* **Integrity**: Cryptographically signed records (Ed25519).
+* **Intra-perimeter**: Deployable on-premise or in private cloud.
+* **Non-intrusive**: Outside the critical execution path.
 
 ---
 
@@ -88,44 +75,27 @@ When automated outcomes escalate to humans, the original execution reference is 
 * Not SIEM.
 * Not a workflow tool.
 * Not a decision-making system.
-* Not compliance automation.
-
-(See also: Principles)
-
----
-
-****
-In practice, these same facts are often used daily to avoid transaction reconstruction, without turning the infrastructure into an operations tool.
-
----
-
-### Deployment
-
-Horizon is designed to operate entirely within an institution's trust perimeter.
-
-Horizon can be deployed in different modalities depending on institutional constraints and integration preferences. These modalities do not change the conceptual scope of Horizon: they affect how execution evidence is produced and managed operationally, not what Horizon exists to establish.
-
-The choice of deployment modality is addressed during technical discussions and depends on performance, isolation, and operational requirements.
-
-**Technical documentation** describing deployment modes, integration boundaries, and performance considerations is available upon request: contact@asplenz.com
 
 ---
 
 ### Common questions
 
-* We already capture execution-time facts and generate artefacts automatically. Why is this not sufficient?
+* **We already capture execution-time facts and generate artefacts. Why is this not sufficient?**
+Most systems generate traces that depend on the source system’s current state (database, API, version). If the system evolves, the trace requires a complex and uncertain **reconstruction**. Horizon produces **Decision Snapshot Artifacts** that are **independently verifiable**: they remain valid and readable even after the model is retrained, the database schema changes, or the source system is decommissioned.
 
 ---
 
-### 3. Version Française 
+---
 
-# Horizon: Capacités Techniques
+# 2. Version Française
 
-## Une infrastructure de preuve factuelle (intra-périmètre)
+# Horizon : Capacités Techniques
+
+## Une Infrastructure de Persistance Décisionnelle (intra-périmètre)
 
 ### Ce qu'il consigne
 
-Deux types de faits déclarés, strictement séparés :
+Horizon consigne des **Snapshots Décisionnels**, encapsulés dans des **Artefacts** immuables et auto-contenus. Ces snapshots se composent de deux types de faits déclarés, strictement séparés :
 
 #### 1) Les exécutions
 
@@ -145,8 +115,8 @@ Les exécutions consignent ce qui s'est produit, dans un contexte déclaré, à 
 Une évaluation est un **acte de jugement consigné** à l'instant T. Elle documente la posture organisationnelle (humaine ou réglementaire) qui contextualise un fait précis.
 
 * **Indépendance fonctionnelle :** Horizon est déconnecté du flux d'exécution opérationnel. Il consigne l'évaluation sans jamais interférer avec le déroulement du système.
-* **Lien indissociable :** Les évaluations sont liées aux déclencheurs factuels au moment exact de leur production. Cela fige « l'état des connaissances », interdisant toute reconstruction a posteriori ou biais de rétrospective.
-* **Intégrité séquentielle :** Chaque évaluation est traitée comme un bloc immuable. Elle prouve ce que l'organisation jugeait vrai à l'instant T, indépendamment du résultat final.
+* **Lien indissociable :** Les évaluations sont liées aux déclencheurs factuels au moment exact de leur production. Cela fige « l'état des connaissances », interdisant toute reconstruction a posteriori.
+* **Intégrité séquentielle :** Chaque évaluation est traitée comme un bloc immuable. Elle prouve ce que l'organisation jugeait vrai à l'instant T.
 
 **Attributs de posture consignés :**
 ■ Classification de sévérité
@@ -154,50 +124,37 @@ Une évaluation est un **acte de jugement consigné** à l'instant T. Elle docum
 ■ Fondement déclaré (Le raisonnement à cet instant précis)
 ■ Niveau de confiance
 
-> **Principe de conception :** Une évaluation est un artefact de preuve ; elle est fonctionnellement indépendante du chemin d'exécution. Horizon documente le *pourquoi* sans participer au *quoi*.
+> **Principe de conception :** L’**Artefact de Snapshot Décisionnel** est la preuve elle-même. Il porte en lui-même tout ce qui est nécessaire pour établir ce qui s'est produit, garantissant une indépendance absolue vis-à-vis de l'évolution future du système source.
 
 ---
 
 ### Contextes d'application
 
-Ce dispositif est agnostique vis-à-vis de la source de décision. Il s'applique dès lors qu'une décision ou une action spécifique peut nécessiter un examen ultérieur au cas par cas.
+Ce dispositif est agnostique vis-à-vis de la source de décision.
 
 #### Décisions assistées par l'IA
 
-Les systèmes assistés par l'IA informent ou produisent de plus en plus de décisions. Lorsque ces décisions sont examinées ultérieurement par les Risques, l'Audit, le Juridique ou les régulateurs, la question ne porte pas seulement sur la performance du modèle, mais sur **ce qui s'est réellement passé dans ce cas précis**.
-
-Cette approche capture les exécutions et les évaluations des flux d'IA au moment de l'exécution, de manière immuable. Cela permet de passer d'un test basé sur le résultat (la « bonne » réponse) à une **examinabilité comportementale** : qu'est-ce que le système a vu, évalué et décidé, et à quel moment ?
-
-Asplenz Horizon ne remplace pas les cadres de gouvernance de l'IA (tels que l'IA Act de l'UE ou CDMC). Il fournit la **couche de preuve** qui permet de démontrer l'application de ces cadres lors d'examens réels et individuels.
+Cette approche capture les exécutions et les évaluations des flux d'IA au moment de l'exécution, de manière immuable. Cela permet de passer d'un test basé sur le résultat à une **examinabilité comportementale** : qu'est-ce que le système a vu, évalué et décidé, et à quel moment ?
+Asplenz Horizon fournit la **couche de preuve** qui permet de démontrer l'application des cadres de gouvernance (IA Act, CDMC) lors d'examens réels.
 
 #### Flux de décisions automatisés
 
-Les moteurs de risques, les règles d'éligibilité, le throttling et les résultats automatisés sont consignés en tant qu'exécutions déclarées. Des évaluations optionnelles préservent la posture organisationnelle à l'instant T.
+Les moteurs de risques et les règles d'éligibilité sont consignés en tant qu'exécutions. Des évaluations optionnelles préservent la posture organisationnelle à l'instant T.
 
 #### Escalades vers l'humain (Human-in-the-loop)
 
-Lorsque des résultats automatisés font l'objet d'une escalade humaine, la référence d'exécution d'origine est propagée via les canaux existants : alertes, tickets ou consoles. Les décisions humaines sont consignées comme des évaluations liées à l'exécution déclencheuse, préservant ainsi une chaîne factuelle unique.
-
----
-
-### Unification de l'examen des décisions humaines et automatisées
-
-* Les systèmes automatisés produisent des **exécutions déclarées**, chacune identifiée par une référence d'exécution stable.
-* En cas d'escalade, cette référence est transmise via les canaux existants de l'organisation.
-* Toute décision humaine prise en réponse est consignée comme une **évaluation déclarée**, explicitement liée à l'exécution d'origine.
-* Les actions subséquentes peuvent se référer à l'un, à l'autre ou aux deux, préservant une **chaîne factuelle unique**.
-
-**Les faits sont liés par des références explicites, et non reconstruits via des interfaces ou des flux de travail.**
+En cas d'escalade, la référence d'exécution d'origine est propagée. Toute décision humaine est consignée comme une évaluation liée à l'exécution déclencheuse, préservant une **chaîne factuelle unique**.
 
 ---
 
 ### Propriétés
 
-* **Ajout exclusif (Append-only)** : ni modification, ni suppression.
-* **Séquençage** : chronologie explicite.
-* **Intégrité** : registres vérifiables.
-* **Intra-périmètre** : déploiement sur site (on-premise) ou sur cloud privé.
-* **Non-intrusif** : hors du chemin critique d'exécution.
+* **Auto-contenu** : Tout ce qui est nécessaire à la vérification est dans l’artefact (pas de dépendance aux bases de données externes).
+* **Ajout exclusif (Append-only)** : Ni modification, ni suppression.
+* **Séquençage** : Chronologie explicite et vérifiable.
+* **Intégrité** : Registres signés cryptographiquement (Ed25519).
+* **Intra-périmètre** : Déploiement on-premise ou cloud privé.
+* **Non-intrusif** : Hors du chemin critique d'exécution.
 
 ---
 
@@ -207,32 +164,11 @@ Lorsque des résultats automatisés font l'objet d'une escalade humaine, la réf
 * Ni SIEM.
 * Ni outil de gestion de flux (workflow).
 * Ni système de prise de décision.
-* Ni automatisation de la conformité.
-
-(Voir aussi : Principes)
-
----
-
-**Effet collatéral opérationnel**
-En pratique, ces mêmes faits sont souvent utilisés quotidiennement pour éviter la reconstruction de transactions, sans pour autant transformer l'infrastructure en un outil opérationnel.
-
----
-
-### Déploiement
-
-Horizon est conçu pour fonctionner entièrement dans le périmètre de confiance de l'institution.
-
-Horizon peut être déployé selon différentes modalités en fonction des contraintes institutionnelles et des préférences d'intégration. Ces modalités ne modifient pas la portée conceptuelle de Horizon : elles affectent la manière dont la preuve d'exécution est produite et gérée opérationnellement, et non ce que Horizon a vocation à établir.
-
-Le choix de la modalité de déploiement est abordé lors des discussions techniques et dépend des exigences de performance, d'isolation et d'exploitation.
-
-**La documentation technique** décrivant les modes de déploiement, les limites d'intégration et les considérations de performance est disponible sur demande : contact@asplenz.com
 
 ---
 
 ### Questions fréquentes
 
-* Nous capturons déjà des faits au moment de l'exécution et générons des artefacts automatiquement. Pourquoi cela ne suffit-il pas ?
-
----
+* **Nous capturons déjà des faits à l'exécution et générons des artefacts. Pourquoi cela ne suffit-il pas ?**
+La plupart des systèmes génèrent des traces dépendantes de l'état actuel du système (base de données, API, version). Si le système évolue, la trace nécessite une **reconstitution** complexe et incertaine. Horizon produit des **Artefacts de Snapshots Décisionnels** qui sont **vérifiables de manière indépendante** : ils restent valides et lisibles même après le réentraînement d'un modèle, un changement de schéma de base de données ou le décommissionnement du système source.
 

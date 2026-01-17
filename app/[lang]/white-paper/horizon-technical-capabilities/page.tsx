@@ -8,10 +8,10 @@ export function generateStaticParams() {
 const content = {
   en: `
     <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Horizon: Technical Capabilities</h1>
-    <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">A factual evidence infrastructure (intra-perimeter)</h2>
-    
+    <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">A Decision Snapshot Infrastructure (intra-perimeter)</h2>
+
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">What it records</h3>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Two types of declared facts, strictly separated:</p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon records <strong>Decision Snapshots</strong>, encapsulated in immutable and self-contained <strong>Artifacts</strong>. These snapshots consist of two types of declared facts, strictly separated:</p>
     
     <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">1) Executions</h4>
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">An execution is <strong>an irreversible act</strong>:</p>
@@ -43,7 +43,7 @@ const content = {
     </ul>
     
     <blockquote style="border-left: 4px solid #1e3a8a; padding: 1.5rem 2rem; background: #fafafa; font-style: italic; margin: 2rem 0;">
-      <p style="font-size: 1.125rem; line-height: 1.625; margin-bottom: 0; color: #18181b;"><strong>Design Principle:</strong> An evaluation is an evidentiary artifact; it is functionally independent of the execution path. Horizon documents the <em>why</em> without participating in the <em>what</em>.</p>
+      <p style="font-size: 1.125rem; line-height: 1.625; margin-bottom: 0; color: #18181b;"><strong>Design Principle:</strong> A <strong>Decision Snapshot Artifact</strong> is the evidence itself. It carries everything required to establish what occurred within itself, ensuring absolute independence from the source system's future state.</p>
     </blockquote>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
@@ -52,36 +52,25 @@ const content = {
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">This infrastructure is agnostic to the decision source. It applies whenever a specific decision or action may later require case-by-case examination.</p>
     
     <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">AI-assisted decisions</h4>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">AI-assisted systems increasingly inform or produce decisions. When those decisions are later examined by Risk, Audit, Legal, or regulators, the question is not only about model performance, but about <strong>what actually happened in that specific case</strong>.</p>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">The same approach captures executions and evaluations from AI-assisted workflows at execution time, immutably, before any question arises. This supports a shift from outcome-based testing (the "right" answer) to <strong>behavior-based examinability</strong>: what did the system see, evaluate, and decide, and when?</p>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Asplenz Horizon does not replace AI governance frameworks such as the EU AI Act or CDMC. It provides the <strong>evidence layer</strong> that allows those frameworks to be demonstrated in real, case-by-case examinations.</p>
-    
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">The same approach captures executions and evaluations from AI-assisted workflows at execution time, immutably, before any question arises. This supports a shift from outcome-based testing to <strong>behavior-based examinability</strong>: what did the system see, evaluate, and decide, and when?</p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Asplenz Horizon does not replace AI governance frameworks (EU AI Act, CDMC). It provides the <strong>evidence layer</strong> that allows those frameworks to be demonstrated in real, case-by-case examinations.</p>
+
     <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">Automated decision workflows</h4>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Risk engines, eligibility rules, throttling, and automated outcomes are recorded as declared executions. Optional evaluations preserve the organizational stance at time T.</p>
-    
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Risk engines and eligibility rules are recorded as declared executions. Optional evaluations preserve the organizational stance at time T.</p>
+
     <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">Human-in-the-loop escalations</h4>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">When automated outcomes escalate to humans, the original execution reference is propagated through existing channels: alerts, tickets, or consoles. Human decisions are recorded as evaluations linked to the triggering execution, preserving a single factual chain.</p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">When automated outcomes escalate, the original execution reference is propagated. Human decisions are recorded as evaluations linked to the triggering execution, preserving a <strong>single factual chain</strong>.</p>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">How automated and human decisions become examinable as one</h3>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Automated systems produce <strong>declared executions</strong>, each identified by a stable execution reference.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>When a situation escalates, this reference is propagated through the organization's existing channels.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Any human decision taken in response is recorded as a <strong>declared evaluation</strong>, explicitly linked to the original execution.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Subsequent actions may reference either or both, preserving a <strong>single factual chain</strong>.</span></li>
-    </ul>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>Facts are linked by explicit references, not reconstructed through interfaces or workflows.</strong></p>
-    
-    <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    
+
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Properties</h3>
     <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Append-only</strong>: no edits, no deletes.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Ordering</strong>: explicit chronology.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Integrity</strong>: verifiable records.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Intra-perimeter</strong>: deployable on-premise or in private cloud.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Non-intrusive</strong>: not in the critical execution path.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Self-contained</strong>: Everything needed for verification is inside the artifact (no reliance on external databases).</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Append-only</strong>: No edits, no deletes.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Ordering</strong>: Explicit and verifiable chronology.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Integrity</strong>: Cryptographically signed records (Ed25519).</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Intra-perimeter</strong>: Deployable on-premise or in private cloud.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Non-intrusive</strong>: Outside the critical execution path.</span></li>
     </ul>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
@@ -92,28 +81,20 @@ const content = {
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Not SIEM.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Not a workflow tool.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Not a decision-making system.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Not compliance automation.</span></li>
     </ul>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">(See also: <a href="/en/white-paper/principles-boundaries" style="color: #18181b; text-decoration: underline;">Principles & Boundaries</a>)</p>
-    
+
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>Operational Dividend</strong><br>In practice, these same facts are often used daily to avoid transaction reconstruction, without turning the infrastructure into an operations tool.</p>
-    
-    <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Deployment</h3>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon is designed to operate entirely within an institution's trust perimeter.</p>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon can be deployed in different modalities depending on institutional constraints and integration preferences. These modalities do not change the conceptual scope of Horizon: they affect how execution evidence is produced and managed operationally, not what Horizon exists to establish.</p>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">The choice of deployment modality is addressed during technical discussions and depends on performance, isolation, and operational requirements.</p>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>Technical documentation</strong> describing deployment modes, integration boundaries, and performance considerations is available upon request: contact@asplenz.com</p>
+
+    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Common questions</h3>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 0.5rem;"><strong>We already capture execution-time facts and generate artefacts. Why is this not sufficient?</strong></p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Most systems generate traces that depend on the source system's current state (database, API, version). If the system evolves, the trace requires a complex and uncertain <strong>reconstruction</strong>. Horizon produces <strong>Decision Snapshot Artifacts</strong> that are <strong>independently verifiable</strong>: they remain valid and readable even after the model is retrained, the database schema changes, or the source system is decommissioned.</p>
   `,
   fr: `
-    <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Horizon: Capacités Techniques</h1>
-    <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">Une infrastructure de preuve factuelle (intra-périmètre)</h2>
-    
+    <h1 style="font-size: 2.25rem; line-height: 1.1; margin-bottom: 2rem; font-weight: 700; letter-spacing: -0.025em; color: #000;">Horizon : Capacités Techniques</h1>
+    <h2 style="font-size: 1.5rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 600; color: #000;">Une Infrastructure de Persistance Décisionnelle (intra-périmètre)</h2>
+
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Ce qu'il consigne</h3>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Deux types de faits déclarés, strictement séparés :</p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon consigne des <strong>Snapshots Décisionnels</strong>, encapsulés dans des <strong>Artefacts</strong> immuables et auto-contenus. Ces snapshots se composent de deux types de faits déclarés, strictement séparés :</p>
     
     <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">1) Les exécutions</h4>
     <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Une exécution est <strong>un acte irréversible</strong> :</p>
@@ -145,70 +126,51 @@ const content = {
     </ul>
     
     <blockquote style="border-left: 4px solid #1e3a8a; padding: 1.5rem 2rem; background: #fafafa; font-style: italic; margin: 2rem 0;">
-      <p style="font-size: 1.125rem; line-height: 1.625; margin-bottom: 0; color: #18181b;"><strong>Principe de conception :</strong> Une évaluation est un artefact de preuve ; elle est fonctionnellement indépendante du chemin d'exécution. Horizon documente le <em>pourquoi</em> sans participer au <em>quoi</em>.</p>
+      <p style="font-size: 1.125rem; line-height: 1.625; margin-bottom: 0; color: #18181b;"><strong>Principe de conception :</strong> L'<strong>Artefact de Persistance Décisionnelle</strong> est la preuve elle-même. Il porte en lui-même tout ce qui est nécessaire pour établir ce qui s'est produit, garantissant une indépendance absolue vis-à-vis de l'évolution future du système source.</p>
     </blockquote>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Contextes d'application</h3>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Cette infrastructure est agnostique quant à la source de décision. Elle s'applique chaque fois qu'une décision ou action spécifique peut nécessiter un examen au cas par cas.</p>
-    
-    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">Décisions assistées par IA</h4>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Les systèmes assistés par IA informent ou produisent de plus en plus de décisions. Lorsque ces décisions sont examinées par les Risques, l'Audit, le Juridique ou les régulateurs, la question ne porte pas seulement sur la performance du modèle, mais sur <strong>ce qui s'est réellement passé dans ce cas spécifique</strong>.</p>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">La même approche capture les exécutions et évaluations des flux assistés par IA au moment de l'exécution, de manière immuable, avant que toute question ne surgisse. Cela favorise un passage des tests basés sur les résultats (la "bonne" réponse) à l'<strong>examinabilité basée sur le comportement</strong> : qu'a vu, évalué et décidé le système, et quand ?</p>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Asplenz Horizon ne remplace pas les cadres de gouvernance de l'IA tels que l'EU AI Act ou CDMC. Il fournit la <strong>couche de preuve</strong> qui permet de démontrer ces cadres dans des examens réels, cas par cas.</p>
-    
-    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">Flux de décisions automatisées</h4>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Les moteurs de risque, règles d'éligibilité, régulation de flux et résultats automatisés sont enregistrés comme exécutions déclarées. Les évaluations optionnelles préservent la posture organisationnelle à l'instant T.</p>
-    
-    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">Escalades avec intervention humaine</h4>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Lorsque des résultats automatisés sont escaladés vers des humains, la référence d'exécution d'origine est propagée via les canaux existants : alertes, tickets ou consoles. Les décisions humaines sont enregistrées comme évaluations liées à l'exécution déclencheuse, préservant une chaîne factuelle unique.</p>
-    
-    <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Comment les décisions automatisées et humaines deviennent examinables comme un tout</h3>
-    <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les systèmes automatisés produisent des <strong>exécutions déclarées</strong>, chacune identifiée par une référence d'exécution stable.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Lorsqu'une situation est escaladée, cette référence est propagée via les canaux existants de l'organisation.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Toute décision humaine prise en réponse est enregistrée comme une <strong>évaluation déclarée</strong>, explicitement liée à l'exécution d'origine.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Les actions ultérieures peuvent référencer l'une ou l'autre, préservant une <strong>chaîne factuelle unique</strong>.</span></li>
-    </ul>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>Les faits sont liés par des références explicites, non reconstruits via des interfaces ou flux de travail.</strong></p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Ce dispositif est agnostique vis-à-vis de la source de décision.</p>
+
+    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">Décisions assistées par l'IA</h4>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Cette approche capture les exécutions et les évaluations des flux d'IA au moment de l'exécution, de manière immuable. Cela permet de passer d'un test basé sur le résultat à une <strong>examinabilité comportementale</strong> : qu'est-ce que le système a vu, évalué et décidé, et à quel moment ?</p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Asplenz Horizon fournit la <strong>couche de preuve</strong> qui permet de démontrer l'application des cadres de gouvernance (IA Act, CDMC) lors d'examens réels.</p>
+
+    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">Flux de décisions automatisés</h4>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Les moteurs de risques et les règles d'éligibilité sont consignés en tant qu'exécutions. Des évaluations optionnelles préservent la posture organisationnelle à l'instant T.</p>
+
+    <h4 style="font-size: 1.125rem; font-weight: 500; color: #000; margin-bottom: 0.75rem;">Escalades vers l'humain (Human-in-the-loop)</h4>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">En cas d'escalade, la référence d'exécution d'origine est propagée. Toute décision humaine est consignée comme une évaluation liée à l'exécution déclencheuse, préservant une <strong>chaîne factuelle unique</strong>.</p>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    
+
     <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Propriétés</h3>
     <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Ajout exclusif</strong> : pas de modifications, pas de suppressions.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Ordonnancement</strong> : chronologie explicite.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Intégrité</strong> : registres vérifiables.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Intra-périmètre</strong> : déployable sur site ou en cloud privé.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Non-intrusif</strong> : pas sur le chemin critique d'exécution.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Auto-contenu</strong> : Tout ce qui est nécessaire à la vérification est dans l'artefact (pas de dépendance aux bases de données externes).</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Ajout exclusif (Append-only)</strong> : Ni modification, ni suppression.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Séquençage</strong> : Chronologie explicite et vérifiable.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Intégrité</strong> : Registres signés cryptographiquement (Ed25519).</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Intra-périmètre</strong> : Déploiement on-premise ou cloud privé.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span><strong>Non-intrusif</strong> : Hors du chemin critique d'exécution.</span></li>
     </ul>
     
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
     
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Ce que ce N'EST PAS</h3>
+    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Ce que ceci n'est PAS</h3>
     <ul style="list-style: none; padding-left: 0; margin-left: 0.25rem;  margin-bottom: 1.5rem;">
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni observabilité ou monitoring.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni observabilité, ni monitoring.</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni SIEM.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni outil de workflow.</span></li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni outil de gestion de flux (workflow).</span></li>
       <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni système de prise de décision.</span></li>
-      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; padding-left: 1.25rem; font-size: 1.125rem; line-height: 1.625; color: #18181b;"><span style="font-size: 0.75rem; color: #a1a1aa;">■</span><span>Ni automatisation de la conformité.</span></li>
     </ul>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">(Voir aussi : <a href="/fr/white-paper/principles-boundaries" style="color: #18181b; text-decoration: underline;">Principes & Limites</a>)</p>
-    
+
     <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>Dividende opérationnel</strong><br>En pratique, ces mêmes faits sont souvent utilisés quotidiennement pour éviter la reconstruction de transactions, sans transformer l'infrastructure en outil opérationnel.</p>
-    
-    <section style="margin-top: 2.5rem;"><hr style="border: none; border-top: 1px solid #e4e4e7; margin-bottom: 2rem;" /></section>
-    
-    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Déploiement</h3>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon est conçu pour opérer entièrement au sein du périmètre de confiance d'une institution.</p>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Horizon peut être déployé selon différentes modalités en fonction des contraintes institutionnelles et des préférences d'intégration. Ces modalités ne modifient pas le périmètre conceptuel d'Horizon : elles affectent la manière dont la preuve d'exécution est produite et gérée opérationnellement, pas ce qu'Horizon existe pour établir.</p>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">Le choix de la modalité de déploiement est abordé lors des discussions techniques et dépend des exigences de performance, d'isolation et opérationnelles.</p>
-    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;"><strong>La documentation technique</strong> décrivant les modes de déploiement, les limites d'intégration et les considérations de performance est disponible sur demande : contact@asplenz.com</p>
+
+    <h3 style="font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; color: #000; margin-bottom: 1rem;">Questions fréquentes</h3>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 0.5rem;"><strong>Nous capturons déjà des faits à l'exécution et générons des artefacts. Pourquoi cela ne suffit-il pas ?</strong></p>
+    <p style="font-size: 1.125rem; line-height: 1.625; color: #18181b; margin-bottom: 1.5rem;">La plupart des systèmes génèrent des traces dépendantes de l'état actuel du système (base de données, API, version). Si le système évolue, la trace nécessite une <strong>reconstitution</strong> complexe et incertaine. Horizon produit des <strong>Artefacts de Persistance Décisionnelle</strong> qui sont <strong>vérifiables de manière indépendante</strong> : ils restent valides et lisibles même après le réentraînement d'un modèle, un changement de schéma de base de données ou le décommissionnement du système source.</p>
   `
 };
 

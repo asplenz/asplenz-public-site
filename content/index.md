@@ -1,427 +1,366 @@
-# [FR VERSION]
+**Version FR**
 
-# ASPLENZ Horizon
+# 🧠 Hero section
 
-## Prouver ce qui s'est réellement passé — au moment où la décision est prise
+### **Figer chaque décision automatisée telle qu’elle a réellement eu lieu**
 
-ASPLENZ Horizon est une infrastructure indépendante qui permet aux institutions de conserver une preuve fiable, complète et incontestable de leurs décisions automatisées, exactement au moment où elles deviennent irréversibles.
+Chaque décision produite par un système automatisé génère un **snapshot auto-contenu**,
+capturé **au moment exact de l’exécution**, puis **signé et vérifiable**.
 
-Quand une décision peut être contestée, l'explication après coup ne suffit plus.
+👉 Aucune reconstitution.
+👉 Aucune simulation.
+👉 Aucun dépendance au système source.
 
----
+**[ Demander un exemple d'artefact ]**  **[ Demander une démo ]**
 
-## Le problème que vous vivez déjà
+![Image](https://td-mainsite-cdn.tutorialsdojo.com/wp-content/uploads/2024/05/Automated-RDS-Snapshot-Management-for-Improved-Data-Security-Image-1.png)
 
-Lorsqu'une décision automatisée est contestée — audit, incident, litige, régulateur — la question n'est jamais : « Que dit le système aujourd'hui ? » mais toujours :
+![Image](https://blog.quarkslab.com/resources/2019-09-09-execution-trace-analysis/dfg1.png)
 
-> « Que savait réellement le système au moment de la décision ? »
+![Image](https://miro.medium.com/v2/resize%3Afit%3A1400/1%2AC6NdkpITyE-a2NvwQcoz3g.jpeg)
 
-Dans la majorité des organisations, cette réalité n'existe plus :
-
-* les systèmes ont évolué.
-* les paramètres ont changé.
-* les modèles ont été mis à jour.
-* les journaux sont incomplets ou dérivés.
-
-Résultat : vous devez reconstruire le passé au lieu de pouvoir le prouver.
+![Image](https://cdn.comparitech.com/wp-content/uploads/2019/03/digital-signatures-2.jpg)
 
 ---
 
-## Le coût réel de la reconstitution
+## 🎯 Le fait avant l'interprétation.
 
-Chaque fois qu'une décision est contestée, la reconstitution implique :
-
-* des équipes mobilisées pendant des jours ou des semaines.
-* des experts seniors détournés de leurs fonctions critiques.
-* des systèmes interrogés dans des états qui n'existent plus.
-* des hypothèses techniques impossibles à vérifier.
-* des délais incompatibles avec les exigences réglementaires.
-
-Cette reconstitution :
-
-* **coûte cher** en ressources humaines.
-* **fragilise juridiquement** vos positions.
-* **augmente l'incertitude** lors des audits et litiges.
-* **expose l'institution** à des conclusions contestables.
-
-La reconstitution n'est pas seulement imparfaite. Elle est structurellement coûteuse, lente et risquée.
+**Cette infrastructure n'explique pas les décisions. Elle les préserve.**
 
 ---
 
-## Un risque asymétrique et irréversible
+## ❓ Le constat
 
-Tant qu'aucune décision n'est contestée, l'absence de preuve ne se voit pas. Mais le jour où une décision automatisée est remise en cause :
+### Une décision automatisée disparaît au moment où elle est prise
 
-* la preuve est exigée immédiatement.
-* le niveau d'exigence est maximal.
-* aucune reconstruction ultérieure n'est suffisante.
+Dans la majorité des systèmes :
 
-Ce risque n'est pas progressif. Il se matérialise en une seule fois, au pire moment. Et surtout : il est impossible de le corriger a posteriori.
+* les données évoluent
+* les règles changent
+* les modèles sont mis à jour
+* les contextes d’exécution ne sont pas figés
 
----
+Une fois la décision produite, **son état réel n’existe plus**.
 
-## La règle qui change tout
-
-Si la preuve n'est pas capturée au moment exact où l'action devient irréversible, alors ce n'est plus une preuve.
-
-ASPLENZ Horizon part de cette règle simple et non négociable. La preuve doit exister avant la contestation, pas être produite après.
+👉 Il ne reste que des reconstructions partielles.
 
 ---
 
-## Ce que fait Horizon
+## ✅ Notre principe
 
-Horizon capture, au moment précis où une décision devient irréversible :
+### Capturer l’instant d’exécution — pas l’expliquer après coup
 
-* l'état réel du système.
-* les règles et paramètres effectivement appliqués.
-* le contexte décisionnel disponible.
-* l'action exécutée.
+Nous produisons, pour chaque décision automatisée, un **artefact factuel** qui capture :
 
-Cette preuve est :
+* ce qui a été exécuté
+* avec quelles données
+* dans quel contexte
+* et quel résultat a été produit
 
-* indépendante des systèmes qui décident.
-* figée dans le temps.
-* exploitable immédiatement ou des années plus tard.
-
-Vous n'avez plus à reconstruire. Vous pouvez montrer ce qui s'est réellement passé.
+Cet artefact est généré **en ligne**, **sans dépendre du futur état du système**.
 
 ---
 
-## Pourquoi une infrastructure séparée
+## 📦 Contenu de l’artefact décisionnel
 
-Les systèmes qui prennent des décisions évoluent en permanence. Ils ne peuvent pas être une source fiable de leur propre preuve.
+Chaque snapshot est un objet complet qui contient cinq couches de données :
 
-Horizon introduit une séparation claire :
+### 🔹 Métadonnées d’exécution (EXECUTION RECORD)
 
-1. le système agit.
-2. Horizon conserve la preuve.
+* **Identifiant unique** de l'exécution et **horodatage UTC** précis.
+* Identité du système source et version exacte de l'acteur (système expert, IA).
 
-Cette séparation empêche la preuve de dériver avec le système et garantit sa valeur institutionnelle dans le temps.
+### 🔹 Snapshot des données (SNAPSHOT DATA)
 
----
+* **Données brutes telles que vues par le système à l’instant T0.**
+* Toutes les variables d’entrée ayant servi au calcul (revenus, dette, âge, etc.).
+* *C'est ce qui permet de s'affranchir de l'historisation des bases de données.*
 
-## Ce que Horizon n'est pas
+### 🔹 État du modèle et de la logique (MODEL STATE)
 
-Horizon n'est :
+* Empreinte numérique (**hash**) du modèle et version de la configuration.
+* Paramètres et seuils (thresholds) actifs au moment précis de la décision.
 
-* ni un outil de monitoring.
-* ni une solution d'observabilité.
-* ni un système d'explicabilité IA.
-* ni un moteur de décision.
+### 🔹 Résultat de la décision (OUTPUT)
 
-👉 Horizon témoigne.
+* Résultat final (Accordé / Refusé) et scores de confiance.
+* **Codes de motifs (reason codes)** expliquant factuellement la sortie du système.
 
----
+### 🔹 Intégrité & Chaîne de confiance (INTEGRITY)
 
-## Ce que cela change pour votre organisation
+* **Signature cryptographique Ed25519** garantissant la non-altération.
+* Chaînage séquentiel (**hash précédent**) rendant toute suppression détectable.
 
-### Audits et régulation
+👉 **L'artefact est auto-contenu : il contient la preuve et les données nécessaires à sa propre vérification.**
 
-Vous fournissez des faits vérifiables, pas des reconstructions narratives.
-
-### Litiges et incidents
-
-Vous réduisez l'incertitude juridique liée aux décisions automatisées.
-
-### Gouvernance interne
-
-Vous établissez une source de vérité stable pour les décisions critiques.
-
-### Décisions à fort enjeu
-
-Vous transformez un risque futur asymétrique en fait prouvable dès aujourd'hui.
+→ Lire la définition formelle de l'*Artefact de Persistance Décisionnelle*
 
 ---
 
-## Pour quels environnements
+## 🔐 Une preuve technique, pas une interprétation
 
-Horizon est conçu pour les organisations où :
+* aucune hypothèse a posteriori
+* aucune simulation
+* aucune approximation
 
-* les décisions sont automatisées.
-* les impacts sont élevés.
-* la contestation est possible à court ou long terme.
-* la preuve doit résister au temps.
+L’artefact ne **raconte pas pourquoi**.
+Il **atteste de ce qui s’est réellement produit**.
 
-Si une décision peut être remise en cause dans 6 mois ou dans 6 ans, Horizon permet d'en conserver la réalité factuelle.
-
----
-
-## Collaborer avec nous
-
-Les organisations sollicitent Asplenz pour différentes raisons. Toutes les interventions ci-dessous sont des points d'entrée indépendants.
-
-### 1. Discuter d'Horizon
-
-Pour les organisations qui reconnaissent déjà le besoin d'une capacité de preuve d'exécution.
-
-* Discuter de l'adéquation d'Horizon avec votre contexte.
-* Clarifier le périmètre et l'acceptabilité institutionnelle.
-* Explorer l'intégration dans votre paysage décisionnel.
-
-→ [Nous contacter](/fr/contact)
-
-### 2. IA Appliquée : Diagnostic Décision & Responsabilité
-
-Un travail de terrain court et ciblé pour identifier où l'IA influence les décisions réelles.
-
-* Identifier les décisions automatisées ou influencées par l'IA.
-* Évaluer les écarts de responsabilité et les zones où la preuve est manquante.
-
-→ [En savoir plus](/fr/applied-ai-field-work)
-
-### 3. Audit de Conformité & Post-mortem
-
-Soutien ciblé avant ou après des audits, des contrôles ou des incidents.
-
-* Établir factuellement ce qui peut être prouvé et ce qui ne peut pas l'être.
-* Déterminer précisément où la responsabilité est matériellement exposée.
-
-→ [En savoir plus](/fr/audit-readiness-postmortem)
+L’artefact est auto-contenu, signé et vérifiable.
+**Il peut être consulté et interprété sans connaissance du système ayant produit la décision.**
 
 ---
 
-## Ce qu'Asplenz fait, et ne fait pas
+## 🔁 Après la décision
 
-Asplenz n'offre pas de conseil générique en IA, de programmes d'optimisation de la productivité, ou de développement sur mesure.
+Une fois capturé, le snapshot peut être :
 
-Chaque intervention est :
+* conservé
+* transmis
+* vérifié
+* relu
+* analysé
 
-* **Indépendante** : limitée dans le temps pour garantir une clarté immédiate.
-* **Ancrée** : basée sur des décisions opérationnelles réelles.
-* **Stratégique** : focalisée sur la responsabilité comme socle de la performance.
-* **Souveraine** : conçue pour mettre fin à la dépendance technologique en matière de preuve.
-
----
-
-## Aller plus loin
-
-### Lire le White Paper
-
-Le white paper détaille les principes de la preuve d'exécution, l'architecture de Horizon, et les implications institutionnelles, juridiques et techniques.
-
-*Pour comprendre le "pourquoi" et le "comment", au-delà de cette page.*
-
-→ [Lire le White Paper](/fr/white-paper)
+👉 Sans accès au système d’origine
+👉 Sans dépendre de versions futures
+👉 Sans rejouer l’exécution
 
 ---
 
-## Parlons-en
+## ⚙️ Pensé comme une infrastructure
 
-Vous gérez des décisions automatisées critiques et souhaitez éliminer un risque irréversible avant qu'il ne se matérialise ?
-
-→ [Contact](/fr/contact)
-
----
-
-# [EN VERSION]
-
-# ASPLENZ Horizon
-
-## Prove what actually happened — at the moment of decision
-
-ASPLENZ Horizon is an independent infrastructure that allows institutions to maintain reliable, complete, and incontestable evidence of their automated decisions, precisely at the moment they become irreversible.
-
-When a decision can be contested, after-the-fact explanation is no longer enough.
+* s’intègre aux systèmes existants
+* compatible règles, scoring, IA
+* capture synchrone ou asynchrone
+* gouvernance des durées de conservation
+* contrôle d’accès et sécurité intégrés
 
 ---
 
-## The problem you already face
+## 🎯 Ce que cela change fondamentalement
 
-When an automated decision is contested — audit, incident, dispute, regulator — the question is never: "What does the system say today?" but always:
-
-> "What did the system actually know at the moment of decision?"
-
-In most organizations, this reality no longer exists:
-
-* systems have evolved.
-* parameters have changed.
-* models have been updated.
-* logs are incomplete or derived.
-
-Result: you must reconstruct the past instead of being able to prove it.
+| Avant                 | Après            |
+| --------------------- | ---------------- |
+| Décision éphémère     | Décision figée   |
+| Traces partielles     | Artefact complet |
+| Reconstitution        | Attestation      |
+| Dépendance au système | Indépendance     |
+| Incertitude           | Intégrité        |
 
 ---
 
-## The real cost of reconstruction
+## 🗣️ Phrase clé
 
-Every time a decision is contested, reconstruction involves:
-
-* teams mobilized for days or weeks.
-* senior experts diverted from their critical functions.
-* systems queried in states that no longer exist.
-* technical hypotheses that are impossible to verify.
-* timelines incompatible with regulatory requirements.
-
-This reconstruction:
-
-* **is expensive** in human resources.
-* **weakens your legal standing**.
-* **increases uncertainty** during audits and disputes.
-* **exposes the institution** to contestable conclusions.
-
-Reconstruction is not just imperfect. It is structurally costly, slow, and risky.
+> *« Nous ne reconstruisons pas les décisions automatisées.
+> Nous conservons l’instant exact où elles ont été prises. »*
 
 ---
 
-## An asymmetric and irreversible risk
+## 🚀 Call to action
 
-As long as no decision is contested, the absence of evidence remains invisible. But the day an automated decision is questioned:
+### Rendre chaque décision automatisée vérifiable par défaut
 
-* evidence is required immediately.
-* the standard of proof is at its maximum.
-* no later reconstruction is sufficient.
+* consulter un artefact réel
+* tester sur un flux existant
+* évaluer l’impact technique
 
-This risk is not gradual. It materializes all at once, at the worst possible time. And above all: it is impossible to correct after the fact.
-
----
-
-## The rule that changes everything
-
-If evidence is not captured at the precise moment an action becomes irreversible, then it is no longer evidence.
-
-ASPLENZ Horizon starts from this simple and non-negotiable rule. Evidence must exist before the contestation, not be produced after.
+**[ Demander un example d'artefact ]**
+**[ Demander une démo ]**
 
 ---
 
-## What Horizon does
+### (Optionnel) Mini-FAQ
 
-Horizon captures, at the precise moment a decision becomes irreversible:
+**Est-ce un système d’audit ?**
+Non. C’est une capture factuelle de l’exécution.
 
-* the real state of the system.
-* the rules and parameters actually applied.
-* the available decision context.
-* the action executed.
+**Est-ce une explication ?**
+Non. C’est une attestation.
 
-This evidence is:
+**Est-ce dépendant du système source ?**
+Non. L’artefact est autonome.
 
-* independent of the deciding systems.
-* fixed in time.
-* usable immediately or years later.
+** English version**
 
-You no longer have to reconstruct. You can show what actually happened.
+**EN Version**
 
----
+# 🧠 Hero section
 
-## Why a separate infrastructure
+### **Freeze every automated decision exactly as it occurred**
 
-Systems that take decisions evolve constantly. They cannot be a reliable source of their own evidence.
+Every decision produced by an automated system generates a **self-contained snapshot**, captured at the **exact moment of execution**, then **signed and verifiable**.
 
-Horizon introduces a clear separation:
+👉 No reconstruction.
+👉 No simulation.
+👉 No dependency on the source system.
 
-1. the system acts.
-2. Horizon preserves the proof.
-
-This separation prevents evidence from drifting with the system and guarantees its institutional value over time.
+**[ Request an artifact sample ]**  **[ Request a demo ]**
 
 ---
 
-## What Horizon is not
+## 🎯 Facts over Interpretation.
 
-Horizon is:
-
-* neither a monitoring tool.
-* neither an observability solution.
-* neither an AI explainability system.
-* neither a decision engine.
-
-👉 Horizon bears witness.
+**This infrastructure does not explain decisions. It preserves them.**
 
 ---
 
-## What this changes for your organization
+## ❓ The Problem
 
-### Audits and regulation
+### An automated decision vanishes the moment it is made
 
-You provide verifiable facts, not narrative reconstructions.
+In most systems:
 
-### Disputes and incidents
+* data evolves
+* rules change
+* models are updated
+* execution contexts are not frozen
 
-You reduce legal uncertainty related to automated decisions.
+Once a decision is produced, **its real state no longer exists**.
 
-### Internal governance
-
-You establish a stable source of truth for critical decisions.
-
-### High-stakes decisions
-
-You transform asymmetric future risk into provable facts today.
+👉 All that remains are partial reconstructions.
 
 ---
 
-## For which environments
+## ✅ Our Principle
 
-Horizon is designed for organizations where:
+### Capture the moment of execution — don't explain it after the fact
 
-* decisions are automated.
-* impacts are high.
-* contestability is possible in the short or long term.
-* evidence must resist time.
+For every automated decision, we produce a **factual artifact** that captures:
 
-If a decision can be challenged in 6 months or 6 years, Horizon preserves its factual reality.
+* what was executed
+* with which data
+* in what context
+* and what result was produced
 
----
-
-## Engage with us
-
-Organizations engage with Asplenz for different reasons. All engagements below are independent entry points.
-
-### 1. Discuss Horizon
-
-For organizations that already recognize the need for a capability of execution evidence.
-
-* Discuss Horizon's fit within your governance, risk, and legal context.
-* Clarify scope and institutional acceptability.
-* Explore how execution evidence would integrate into your decision landscape.
-
-→ [Get in touch](/en/contact)
-
-### 2. Applied AI — Decision & Responsibility Field Work
-
-Short, focused field work to identify where AI influences real decisions.
-
-* Identify automated or AI-assisted decisions.
-* Assess responsibility gaps and areas where proof is missing.
-
-→ [Learn more](/en/applied-ai-field-work)
-
-### 3. Audit Readiness & Post-mortem
-
-Targeted support before or after audits, reviews, or incidents.
-
-* Establish factually what can and cannot be proven.
-* Determine exactly where responsibility is materially exposed.
-
-→ [Learn more](/en/audit-readiness-postmortem)
+This artifact is generated **inline**, **without depending on the future state of the system**.
 
 ---
 
-## What Asplenz does, and does not do
+## 📦 Decision Artifact Content
 
-Asplenz does not offer generic AI consulting, productivity optimization programs, or custom development.
+Each snapshot includes:
 
-Each engagement is:
+### 🔹 Execution Metadata
 
-* **Independent**: time-boxed to ensure immediate clarity.
-* **Grounded**: based on real operational decisions.
-* **Strategic**: focused on accountability as the foundation of performance.
-* **Sovereign**: designed to end technological dependency regarding evidence.
+
+* Unique execution ID and precise UTC timestamp.
+* System identity and actor versioning.
+
+
+### 🔹 Snapshot Data (Inputs at T0)
+
+
+* **Raw data seen by the system at the exact moment of decision.**
+* All variables used for the calculation (income, debt, age, etc.).
+
+
+### 🔹 Model & Logic State
+
+
+* Model hash and configuration versioning.
+* Active thresholds and parameters at T0.
+
+
+### 🔹 Decision Output
+
+
+* Final result and confidence scores.
+* **Actionable reason codes** explaining the outcome.
+
+
+### 🔹 Integrity & Chain of Trust
+
+
+* Cryptographic Ed25519 signature.
+* Sequential chaining (`prev_hash`) to prevent deletion or alteration.
+
+
+👉 The artifact is **self-contained** and **independently actionable**.
+
+→ Read the formal definition of the *Decision Snapshot Artifact*
 
 ---
 
-## Go further
+## 🔐 Technical proof, not interpretation
 
-### Read the White Paper
+* no post-hoc assumptions
+* no simulation
+* no approximation
 
-The white paper details execution-time evidence principles, Horizon's architecture, and institutional, legal, and technical implications.
+The artifact **does not tell "why"**.
+It **attests to what actually happened**.
 
-*To understand the "why" and the "how," beyond this page.*
-
-→ [Read the White Paper](/en/white-paper)
+The artifact is self-contained, signed, and verifiable.
+**It can be consulted and interpreted without any knowledge of the system that produced the decision.**
 
 ---
 
-## Get in touch
+## 🔁 After the Decision
 
-Do you manage critical automated decisions and want to eliminate irreversible risk before it materializes?
+Once captured, the snapshot can be:
 
-→ [Contact](/en/contact)
+* preserved
+* transmitted
+* verified
+* reviewed
+* analyzed
+
+👉 Without access to the original system
+👉 Without depending on future versions
+👉 Without replaying the execution
+
+---
+
+## ⚙️ Built as Infrastructure
+
+* integrates with existing systems
+* compatible with rules, scoring, and AI
+* synchronous or asynchronous capture
+* retention policy governance
+* integrated access control and security
+
+---
+
+## 🎯 The Fundamental Shift
+
+| Before | After |
+| --- | --- |
+| Ephemeral decision | Frozen decision |
+| Partial traces | Complete artifact |
+| Reconstruction | Attestation |
+| System dependency | Independence |
+| Uncertainty | Integrity |
+
+---
+
+## 🗣️ Key Quote
+
+> *"We do not reconstruct automated decisions.
+> We preserve the exact moment they were taken."*
+
+---
+
+## 🚀 Call to Action
+
+### Make every automated decision verifiable by default
+
+* view a real artifact
+* test on an existing flow
+* assess technical impact
+
+**[ Request an artifact sample ]**
+**[ Request a demo ]**
+
+---
+
+### (Optional) Mini-FAQ
+
+**Is this an audit system?**
+No. It is a factual capture of the execution.
+
+**Is this an explanation?**
+No. It is an attestation.
+
+**Is it dependent on the source system?**
+No. The artifact is autonomous.
+

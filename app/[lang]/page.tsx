@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Language } from '@/lib/types';
 
 export function generateStaticParams() {
@@ -7,337 +8,302 @@ export function generateStaticParams() {
 
 const content = {
   fr: {
+    factsOverInterpretation: {
+      title: 'Le fait avant l\'interprétation.',
+      subtitle: 'Cette infrastructure n\'explique pas les décisions. Elle les préserve.',
+    },
     hero: {
-      title: 'Prouver ce qui s\'est réellement passé',
-      subtitle: 'au moment où la décision est prise',
-      intro: 'ASPLENZ Horizon est une infrastructure indépendante qui permet aux institutions de conserver une preuve fiable, complète et incontestable de leurs décisions automatisées, exactement au moment où elles deviennent irréversibles.',
-      cta: 'Quand une décision peut être contestée, l\'explication après coup ne suffit plus.',
+      title: 'Figer chaque décision automatisée telle qu\'elle a réellement eu lieu',
+      subtitle: 'Chaque décision produite par un système automatisé génère un **snapshot auto-contenu**, capturé **au moment exact de l\'exécution**, puis **signé et vérifiable**.',
+      points: [
+        'Aucune reconstitution.',
+        'Aucune simulation.',
+        'Aucune dépendance au système source.',
+      ],
+      ctaArtifact: 'Demander un exemple d\'artefact',
+      ctaDemo: 'Demander une démo',
     },
     problem: {
-      title: 'Le problème que vous vivez déjà',
-      question: 'Que savait réellement le système au moment de la décision ?',
-      intro: 'Lorsqu\'une décision automatisée est contestée — audit, incident, litige, régulateur — la question n\'est jamais : « Que dit le système aujourd\'hui ? » mais toujours :',
+      title: 'Le constat',
+      subtitle: 'Une décision automatisée disparaît au moment où elle est prise',
+      intro: 'Dans la majorité des systèmes :',
       points: [
-        'les systèmes ont évolué.',
-        'les paramètres ont changé.',
-        'les modèles ont été mis à jour.',
-        'les journaux sont incomplets ou dérivés.',
+        'les données évoluent',
+        'les règles changent',
+        'les modèles sont mis à jour',
+        'les contextes d\'exécution ne sont pas figés',
       ],
-      result: 'Résultat : vous devez reconstruire le passé au lieu de pouvoir le prouver.',
+      conclusion: 'Une fois la décision produite, **son état réel n\'existe plus**.',
+      result: 'Il ne reste que des reconstructions partielles.',
     },
-    cost: {
-      title: 'Le coût réel de la reconstitution',
-      intro: 'Chaque fois qu\'une décision est contestée, la reconstitution implique :',
+    principle: {
+      title: 'Notre principe',
+      subtitle: 'Capturer l\'instant d\'exécution, pas l\'expliquer après coup',
+      intro: 'Nous produisons, pour chaque décision automatisée, un **artefact factuel** qui capture :',
       points: [
-        'des équipes mobilisées pendant des jours ou des semaines.',
-        'des experts seniors détournés de leurs fonctions critiques.',
-        'des systèmes interrogés dans des états qui n\'existent plus.',
-        'des hypothèses techniques impossibles à vérifier.',
-        'des délais incompatibles avec les exigences réglementaires.',
+        'ce qui a été exécuté',
+        'avec quelles données',
+        'dans quel contexte',
+        'et quel résultat a été produit',
       ],
-      consequences: [
-        'coûte cher en ressources humaines.',
-        'fragilise juridiquement vos positions.',
-        'augmente l\'incertitude lors des audits et litiges.',
-        'expose l\'institution à des conclusions contestables.',
-      ],
-      conclusion: 'La reconstitution n\'est pas seulement imparfaite. Elle est structurellement coûteuse, lente et risquée.',
+      conclusion: 'Cet artefact est généré **en ligne**, **sans dépendre du futur état du système**.',
     },
-    risk: {
-      title: 'Un risque asymétrique et irréversible',
-      intro: 'Tant qu\'aucune décision n\'est contestée, l\'absence de preuve ne se voit pas. Mais le jour où une décision automatisée est remise en cause :',
+    artifact: {
+      title: 'Contenu de l\'artefact décisionnel',
+      intro: 'Chaque snapshot est un objet complet qui contient cinq couches de données :',
+      sections: [
+        {
+          title: 'Métadonnées d\'exécution (EXECUTION RECORD)',
+          items: [
+            '**Identifiant unique** de l\'exécution et **horodatage UTC** précis.',
+            'Identité du système source et version exacte de l\'acteur (système expert, IA).',
+          ],
+        },
+        {
+          title: 'Snapshot des données (SNAPSHOT DATA)',
+          items: [
+            '**Données brutes telles que vues par le système à l\'instant T0.**',
+            'Toutes les variables d\'entrée ayant servi au calcul (revenus, dette, âge, etc.).',
+            '*C\'est ce qui permet de s\'affranchir de l\'historisation des bases de données.*',
+          ],
+        },
+        {
+          title: 'État du modèle et de la logique (MODEL STATE)',
+          items: [
+            'Empreinte numérique (**hash**) du modèle et version de la configuration.',
+            'Paramètres et seuils (thresholds) actifs au moment précis de la décision.',
+          ],
+        },
+        {
+          title: 'Résultat de la décision (OUTPUT)',
+          items: [
+            'Résultat final (Accordé / Refusé) et scores de confiance.',
+            '**Codes de motifs (reason codes)** expliquant factuellement la sortie du système.',
+          ],
+        },
+        {
+          title: 'Intégrité & Chaîne de confiance (INTEGRITY)',
+          items: [
+            '**Signature cryptographique Ed25519** garantissant la non-altération.',
+            'Chaînage séquentiel (**hash précédent**) rendant toute suppression détectable.',
+          ],
+        },
+      ],
+      conclusion: '**L\'artefact est auto-contenu : il contient la preuve et les données nécessaires à sa propre vérification.**',
+      formalDefinitionLink: '→ Lire la définition formelle de l\'Artefact de Persistance Décisionnelle',
+    },
+    proof: {
+      title: 'Une preuve technique, pas une interprétation',
       points: [
-        'la preuve est exigée immédiatement.',
-        'le niveau d\'exigence est maximal.',
-        'aucune reconstruction ultérieure n\'est suffisante.',
+        'aucune hypothèse a posteriori',
+        'aucune simulation',
+        'aucune approximation',
       ],
-      conclusion: 'Ce risque n\'est pas progressif. Il se matérialise en une seule fois, au pire moment. Et surtout : il est impossible de le corriger a posteriori.',
+      content: 'L\'artefact ne **raconte pas pourquoi**. Il **atteste de ce qui s\'est réellement produit**.',
+      conclusion: 'L\'artefact est auto-contenu, signé et vérifiable. **Il peut être consulté et interprété sans connaissance du système ayant produit la décision.**',
     },
-    rule: {
-      title: 'La règle qui change tout',
-      content: 'Si la preuve n\'est pas capturée au moment exact où l\'action devient irréversible, alors ce n\'est plus une preuve.',
-      conclusion: 'ASPLENZ Horizon part de cette règle simple et non négociable. La preuve doit exister avant la contestation, pas être produite après.',
-    },
-    whatHorizonDoes: {
-      title: 'Ce que fait Horizon',
-      intro: 'Horizon capture, au moment précis où une décision devient irréversible :',
+    afterDecision: {
+      title: 'Après la décision',
+      intro: 'Une fois capturé, le snapshot peut être :',
+      actions: ['conservé', 'transmis', 'vérifié', 'relu', 'analysé'],
       points: [
-        'l\'état réel du système.',
-        'les règles et paramètres effectivement appliqués.',
-        'le contexte décisionnel disponible.',
-        'l\'action exécutée.',
+        'Sans accès au système d\'origine',
+        'Sans dépendre de versions futures',
+        'Sans rejouer l\'exécution',
       ],
-      proofIs: [
-        'indépendante des systèmes qui décident.',
-        'figée dans le temps.',
-        'exploitable immédiatement ou des années plus tard.',
-      ],
-      conclusion: 'Vous n\'avez plus à reconstruire. Vous pouvez montrer ce qui s\'est réellement passé.',
     },
-    whySeparate: {
-      title: 'Pourquoi une infrastructure séparée',
-      content: 'Les systèmes qui prennent des décisions évoluent en permanence. Ils ne peuvent pas être une source fiable de leur propre preuve.',
+    infrastructure: {
+      title: 'Pensé comme une infrastructure',
       points: [
-        'le système agit.',
-        'Horizon conserve la preuve.',
+        's\'intègre aux systèmes existants',
+        'compatible règles, scoring, IA',
+        'capture synchrone ou asynchrone',
+        'gouvernance des durées de conservation',
+        'contrôle d\'accès et sécurité intégrés',
       ],
-      conclusion: 'Cette séparation empêche la preuve de dériver avec le système et garantit sa valeur institutionnelle dans le temps.',
     },
-    whatHorizonIsNot: {
-      title: 'Ce que Horizon n\'est pas',
-      points: [
-        'ni un outil de monitoring.',
-        'ni une solution d\'observabilité.',
-        'ni un système d\'explicabilité IA.',
-        'ni un moteur de décision.',
-      ],
-      conclusion: '👉 Horizon témoigne.',
-    },
-    benefits: {
-      title: 'Ce que cela change pour votre organisation',
+    comparison: {
+      title: 'Ce que cela change fondamentalement',
       items: [
-        { title: 'Audits et régulation', desc: 'Vous fournissez des faits vérifiables, pas des reconstructions narratives.' },
-        { title: 'Litiges et incidents', desc: 'Vous réduisez l\'incertitude juridique liée aux décisions automatisées.' },
-        { title: 'Gouvernance interne', desc: 'Vous établissez une source de vérité stable pour les décisions critiques.' },
-        { title: 'Décisions à fort enjeu', desc: 'Vous transformez un risque futur asymétrique en fait prouvable dès aujourd\'hui.' },
+        { before: 'Décision éphémère', after: 'Décision figée' },
+        { before: 'Traces partielles', after: 'Artefact complet' },
+        { before: 'Reconstitution', after: 'Attestation' },
+        { before: 'Dépendance au système', after: 'Indépendance' },
+        { before: 'Incertitude', after: 'Intégrité' },
       ],
     },
-    environments: {
-      title: 'Pour quels environnements',
-      intro: 'Horizon est conçu pour les organisations où :',
+    quote: '« Nous ne reconstruisons pas les décisions automatisées. Nous conservons l\'instant exact où elles ont été prises. »',
+    cta: {
+      title: 'Rendre chaque décision automatisée vérifiable par défaut',
       points: [
-        'les décisions sont automatisées.',
-        'les impacts sont élevés.',
-        'la contestation est possible à court ou long terme.',
-        'la preuve doit résister au temps.',
+        'consulter un artefact réel',
+        'tester sur un flux existant',
+        'évaluer l\'impact technique',
       ],
-      conclusion: 'Si une décision peut être remise en cause dans 6 mois ou dans 6 ans, Horizon permet d\'en conserver la réalité factuelle.',
+      ctaArtifact: 'Demander un exemple d\'artefact',
+      ctaDemo: 'Demander une démo',
     },
-    engage: {
-      title: 'Collaborer avec nous',
-      intro: 'Les organisations sollicitent Asplenz pour différentes raisons. Toutes les interventions ci-dessous sont des points d\'entrée indépendants.',
+    faq: {
+      title: 'Mini-FAQ',
       items: [
-        {
-          title: '1. Discuter d\'Horizon',
-          desc: 'Pour les organisations qui reconnaissent déjà le besoin d\'une capacité de preuve d\'exécution.',
-          points: [
-            'Discuter de l\'adéquation d\'Horizon avec votre contexte.',
-            'Clarifier le périmètre et l\'acceptabilité institutionnelle.',
-            'Explorer l\'intégration dans votre paysage décisionnel.',
-          ],
-          link: 'contact',
-          linkText: 'Nous contacter',
-        },
-        {
-          title: '2. IA Appliquée : Diagnostic Décision & Responsabilité',
-          desc: 'Un travail de terrain court et ciblé pour identifier où l\'IA influence les décisions réelles.',
-          points: [
-            'Identifier les décisions automatisées ou influencées par l\'IA.',
-            'Évaluer les écarts de responsabilité et les zones où la preuve est manquante.',
-          ],
-          link: 'applied-ai-field-work',
-          linkText: 'En savoir plus',
-        },
-        {
-          title: '3. Audit de Conformité & Post-mortem',
-          desc: 'Soutien ciblé avant ou après des audits, des contrôles ou des incidents.',
-          points: [
-            'Établir factuellement ce qui peut être prouvé et ce qui ne peut pas l\'être.',
-            'Déterminer précisément où la responsabilité est matériellement exposée.',
-          ],
-          link: 'audit-readiness-postmortem',
-          linkText: 'En savoir plus',
-        },
-      ],
-    },
-    whatAsplenzDoes: {
-      title: 'Ce qu\'Asplenz fait, et ne fait pas',
-      intro: 'Asplenz n\'offre pas de conseil générique en IA, de programmes d\'optimisation de la productivité, ou de développement sur mesure.',
-      points: [
-        { title: 'Indépendante', desc: 'limitée dans le temps pour garantir une clarté immédiate.' },
-        { title: 'Ancrée', desc: 'basée sur des décisions opérationnelles réelles.' },
-        { title: 'Stratégique', desc: 'focalisée sur la responsabilité comme socle de la performance.' },
-        { title: 'Souveraine', desc: 'conçue pour mettre fin à la dépendance technologique en matière de preuve.' },
+        { q: 'Est-ce un système d\'audit ?', a: 'Non. C\'est une capture factuelle de l\'exécution.' },
+        { q: 'Est-ce une explication ?', a: 'Non. C\'est une attestation.' },
+        { q: 'Est-ce dépendant du système source ?', a: 'Non. L\'artefact est autonome.' },
       ],
     },
     whitePaper: {
-      title: 'Aller plus loin',
-      subtitle: 'Lire le White Paper',
-      content: 'Le white paper détaille les principes de la preuve d\'exécution, l\'architecture de Horizon, et les implications institutionnelles, juridiques et techniques.',
-      cta: 'Pour comprendre le "pourquoi" et le "comment", au-delà de cette page.',
+      title: 'Comprendre en profondeur',
+      content: 'Le White Paper détaille les principes de la preuve d\'exécution, l\'architecture de Horizon, et les implications institutionnelles, juridiques et techniques.',
       linkText: 'Lire le White Paper',
-    },
-    contact: {
-      title: 'Parlons-en',
-      content: 'Vous gérez des décisions automatisées critiques et souhaitez éliminer un risque irréversible avant qu\'il ne se matérialise ?',
-      linkText: 'Contact',
     },
   },
   en: {
+    factsOverInterpretation: {
+      title: 'Facts over Interpretation.',
+      subtitle: 'This infrastructure does not explain decisions. It preserves them.',
+    },
     hero: {
-      title: 'Prove what actually happened',
-      subtitle: 'at the moment of decision',
-      intro: 'ASPLENZ Horizon is an independent infrastructure that allows institutions to maintain reliable, complete, and incontestable evidence of their automated decisions, precisely at the moment they become irreversible.',
-      cta: 'When a decision can be contested, after-the-fact explanation is no longer enough.',
+      title: 'Freeze every automated decision exactly as it occurred',
+      subtitle: 'Every decision produced by an automated system generates a **self-contained snapshot**, captured at the **exact moment of execution**, then **signed and verifiable**.',
+      points: [
+        'No reconstruction.',
+        'No simulation.',
+        'No dependency on the source system.',
+      ],
+      ctaArtifact: 'Request an artifact sample',
+      ctaDemo: 'Request a demo',
     },
     problem: {
-      title: 'The problem you already face',
-      question: 'What did the system actually know at the moment of decision?',
-      intro: 'When an automated decision is contested — audit, incident, dispute, regulator — the question is never: "What does the system say today?" but always:',
+      title: 'The Problem',
+      subtitle: 'An automated decision vanishes the moment it is made',
+      intro: 'In most systems:',
       points: [
-        'systems have evolved.',
-        'parameters have changed.',
-        'models have been updated.',
-        'logs are incomplete or derived.',
+        'data evolves',
+        'rules change',
+        'models are updated',
+        'execution contexts are not frozen',
       ],
-      result: 'Result: you must reconstruct the past instead of being able to prove it.',
+      conclusion: 'Once a decision is produced, **its real state no longer exists**.',
+      result: 'All that remains are partial reconstructions.',
     },
-    cost: {
-      title: 'The real cost of reconstruction',
-      intro: 'Every time a decision is contested, reconstruction involves:',
+    principle: {
+      title: 'Our Principle',
+      subtitle: 'Capture the moment of execution, don\'t explain it after the fact',
+      intro: 'For every automated decision, we produce a **factual artifact** that captures:',
       points: [
-        'teams mobilized for days or weeks.',
-        'senior experts diverted from their critical functions.',
-        'systems queried in states that no longer exist.',
-        'technical hypotheses that are impossible to verify.',
-        'timelines incompatible with regulatory requirements.',
+        'what was executed',
+        'with which data',
+        'in what context',
+        'and what result was produced',
       ],
-      consequences: [
-        'is expensive in human resources.',
-        'weakens your legal standing.',
-        'increases uncertainty during audits and disputes.',
-        'exposes the institution to contestable conclusions.',
-      ],
-      conclusion: 'Reconstruction is not just imperfect. It is structurally costly, slow, and risky.',
+      conclusion: 'This artifact is generated **inline**, **without depending on the future state of the system**.',
     },
-    risk: {
-      title: 'An asymmetric and irreversible risk',
-      intro: 'As long as no decision is contested, the absence of evidence remains invisible. But the day an automated decision is questioned:',
+    artifact: {
+      title: 'Decision Artifact Content',
+      intro: 'Each snapshot is a complete object containing five layers of data:',
+      sections: [
+        {
+          title: 'Execution Metadata (EXECUTION RECORD)',
+          items: [
+            'Unique execution **ID** and precise **UTC timestamp**.',
+            'System identity and exact actor version (expert system, AI).',
+          ],
+        },
+        {
+          title: 'Snapshot Data (Inputs at T0)',
+          items: [
+            '**Raw data seen by the system at the exact moment of decision.**',
+            'All input variables used for the calculation (income, debt, age, etc.).',
+          ],
+        },
+        {
+          title: 'Model & Logic State (MODEL STATE)',
+          items: [
+            'Model **hash** and configuration version.',
+            'Active thresholds and parameters at the precise moment of decision.',
+          ],
+        },
+        {
+          title: 'Decision Output (OUTPUT)',
+          items: [
+            'Final result (Approved / Denied) and confidence scores.',
+            '**Actionable reason codes** explaining the system output.',
+          ],
+        },
+        {
+          title: 'Integrity & Chain of Trust (INTEGRITY)',
+          items: [
+            '**Ed25519 cryptographic signature** ensuring non-alteration.',
+            'Sequential chaining (**prev_hash**) making any deletion detectable.',
+          ],
+        },
+      ],
+      conclusion: '**The artifact is self-contained: it holds the proof and the data needed for its own verification.**',
+      formalDefinitionLink: '→ Read the formal definition of the Decision Snapshot Artifact',
+    },
+    proof: {
+      title: 'Technical proof, not interpretation',
       points: [
-        'evidence is required immediately.',
-        'the standard of proof is at its maximum.',
-        'no later reconstruction is sufficient.',
+        'no post-hoc assumptions',
+        'no simulation',
+        'no approximation',
       ],
-      conclusion: 'This risk is not gradual. It materializes all at once, at the worst possible time. And above all: it is impossible to correct after the fact.',
+      content: 'The artifact **does not tell "why"**. It **attests to what actually happened**.',
+      conclusion: 'The artifact is self-contained, signed, and verifiable. **It can be consulted and interpreted without any knowledge of the system that produced the decision.**',
     },
-    rule: {
-      title: 'The rule that changes everything',
-      content: 'If evidence is not captured at the precise moment an action becomes irreversible, then it is no longer evidence.',
-      conclusion: 'ASPLENZ Horizon starts from this simple and non-negotiable rule. Evidence must exist before the contestation, not be produced after.',
-    },
-    whatHorizonDoes: {
-      title: 'What Horizon does',
-      intro: 'Horizon captures, at the precise moment a decision becomes irreversible:',
+    afterDecision: {
+      title: 'After the Decision',
+      intro: 'Once captured, the snapshot can be:',
+      actions: ['preserved', 'transmitted', 'verified', 'reviewed', 'analyzed'],
       points: [
-        'the real state of the system.',
-        'the rules and parameters actually applied.',
-        'the available decision context.',
-        'the action executed.',
+        'Without access to the original system',
+        'Without depending on future versions',
+        'Without replaying the execution',
       ],
-      proofIs: [
-        'independent of the deciding systems.',
-        'fixed in time.',
-        'usable immediately or years later.',
-      ],
-      conclusion: 'You no longer have to reconstruct. You can show what actually happened.',
     },
-    whySeparate: {
-      title: 'Why a separate infrastructure',
-      content: 'Systems that take decisions evolve constantly. They cannot be a reliable source of their own evidence.',
+    infrastructure: {
+      title: 'Built as Infrastructure',
       points: [
-        'the system acts.',
-        'Horizon preserves the proof.',
+        'integrates with existing systems',
+        'compatible with rules, scoring, and AI',
+        'synchronous or asynchronous capture',
+        'retention policy governance',
+        'integrated access control and security',
       ],
-      conclusion: 'This separation prevents evidence from drifting with the system and guarantees its institutional value over time.',
     },
-    whatHorizonIsNot: {
-      title: 'What Horizon is not',
-      points: [
-        'neither a monitoring tool.',
-        'neither an observability solution.',
-        'neither an AI explainability system.',
-        'neither a decision engine.',
-      ],
-      conclusion: '👉 Horizon bears witness.',
-    },
-    benefits: {
-      title: 'What this changes for your organization',
+    comparison: {
+      title: 'The Fundamental Shift',
       items: [
-        { title: 'Audits and regulation', desc: 'You provide verifiable facts, not narrative reconstructions.' },
-        { title: 'Disputes and incidents', desc: 'You reduce legal uncertainty related to automated decisions.' },
-        { title: 'Internal governance', desc: 'You establish a stable source of truth for critical decisions.' },
-        { title: 'High-stakes decisions', desc: 'You transform asymmetric future risk into provable facts today.' },
+        { before: 'Ephemeral decision', after: 'Frozen decision' },
+        { before: 'Partial traces', after: 'Complete artifact' },
+        { before: 'Reconstruction', after: 'Attestation' },
+        { before: 'System dependency', after: 'Independence' },
+        { before: 'Uncertainty', after: 'Integrity' },
       ],
     },
-    environments: {
-      title: 'For which environments',
-      intro: 'Horizon is designed for organizations where:',
+    quote: '"We do not reconstruct automated decisions. We preserve the exact moment they were taken."',
+    cta: {
+      title: 'Make every automated decision verifiable by default',
       points: [
-        'decisions are automated.',
-        'impacts are high.',
-        'contestability is possible in the short or long term.',
-        'evidence must resist time.',
+        'view a real artifact',
+        'test on an existing flow',
+        'assess technical impact',
       ],
-      conclusion: 'If a decision can be challenged in 6 months or 6 years, Horizon preserves its factual reality.',
+      ctaArtifact: 'Request an artifact sample',
+      ctaDemo: 'Request a demo',
     },
-    engage: {
-      title: 'Engage with us',
-      intro: 'Organizations engage with Asplenz for different reasons. All engagements below are independent entry points.',
+    faq: {
+      title: 'Mini-FAQ',
       items: [
-        {
-          title: '1. Discuss Horizon',
-          desc: 'For organizations that already recognize the need for a capability of execution evidence.',
-          points: [
-            'Discuss Horizon\'s fit within your governance, risk, and legal context.',
-            'Clarify scope and institutional acceptability.',
-            'Explore how execution evidence would integrate into your decision landscape.',
-          ],
-          link: 'contact',
-          linkText: 'Get in touch',
-        },
-        {
-          title: '2. Applied AI — Decision & Responsibility Field Work',
-          desc: 'Short, focused field work to identify where AI influences real decisions.',
-          points: [
-            'Identify automated or AI-assisted decisions.',
-            'Assess responsibility gaps and areas where proof is missing.',
-          ],
-          link: 'applied-ai-field-work',
-          linkText: 'Learn more',
-        },
-        {
-          title: '3. Audit Readiness & Post-mortem',
-          desc: 'Targeted support before or after audits, reviews, or incidents.',
-          points: [
-            'Establish factually what can and cannot be proven.',
-            'Determine exactly where responsibility is materially exposed.',
-          ],
-          link: 'audit-readiness-postmortem',
-          linkText: 'Learn more',
-        },
-      ],
-    },
-    whatAsplenzDoes: {
-      title: 'What Asplenz does, and does not do',
-      intro: 'Asplenz does not offer generic AI consulting, productivity optimization programs, or custom development.',
-      points: [
-        { title: 'Independent', desc: 'time-boxed to ensure immediate clarity.' },
-        { title: 'Grounded', desc: 'based on real operational decisions.' },
-        { title: 'Strategic', desc: 'focused on accountability as the foundation of performance.' },
-        { title: 'Sovereign', desc: 'designed to end technological dependency regarding evidence.' },
+        { q: 'Is this an audit system?', a: 'No. It is a factual capture of the execution.' },
+        { q: 'Is this an explanation?', a: 'No. It is an attestation.' },
+        { q: 'Is it dependent on the source system?', a: 'No. The artifact is autonomous.' },
       ],
     },
     whitePaper: {
-      title: 'Go further',
-      subtitle: 'Read the White Paper',
-      content: 'The white paper details execution-time evidence principles, Horizon\'s architecture, and institutional, legal, and technical implications.',
-      cta: 'To understand the "why" and the "how," beyond this page.',
+      title: 'Understand in depth',
+      content: 'The White Paper details execution-time evidence principles, Horizon\'s architecture, and institutional, legal, and technical implications.',
       linkText: 'Read the White Paper',
-    },
-    contact: {
-      title: 'Get in touch',
-      content: 'Do you manage critical automated decisions and want to eliminate irreversible risk before it materializes?',
-      linkText: 'Contact',
     },
   },
 };
@@ -348,23 +314,63 @@ export default function HomePage({
   params: { lang: Language };
 }) {
   const c = content[params.lang];
+  const isFr = params.lang === 'fr';
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32">
-        <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-black mb-4">
-            {c.hero.title}
-          </h1>
-          <p className="text-2xl lg:text-3xl font-light text-black/60 mb-8">
-            {c.hero.subtitle}
+      <section className="py-16 lg:py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-black mb-6 leading-tight">
+                {c.hero.title}
+              </h1>
+              <p className="text-lg text-black/70 mb-6" dangerouslySetInnerHTML={{ __html: c.hero.subtitle.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+              <ul className="space-y-2 mb-8">
+                {c.hero.points.map((point, i) => (
+                  <li key={i} className="flex items-center gap-2 text-[#1e3a8a] font-medium">
+                    <span>👉</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href={`/${params.lang}/contact`}
+                  className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
+                >
+                  {c.hero.ctaArtifact}
+                </Link>
+                <Link
+                  href={`/${params.lang}/contact`}
+                  className="inline-flex items-center gap-2 border border-[#1e3a8a] text-[#1e3a8a] px-6 py-3 font-medium hover:bg-[#1e3a8a]/5 transition-colors"
+                >
+                  {c.hero.ctaDemo}
+                </Link>
+              </div>
+            </div>
+            <div className="relative">
+              <Image
+                src="/images/hero.png"
+                alt="Decision snapshot flow"
+                width={600}
+                height={400}
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Facts over Interpretation Section */}
+      <section className="py-12 bg-[#0d1117]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-2xl lg:text-3xl font-bold text-white mb-3">
+            {c.factsOverInterpretation.title}
           </p>
-          <p className="text-lg lg:text-xl leading-relaxed text-black/80 mb-8 max-w-3xl">
-            {c.hero.intro}
-          </p>
-          <p className="text-lg font-medium text-black/90 border-l-4 border-[#1e3a8a] pl-4">
-            {c.hero.cta}
+          <p className="text-lg lg:text-xl text-white/80">
+            {c.factsOverInterpretation.subtitle}
           </p>
         </div>
       </section>
@@ -372,211 +378,263 @@ export default function HomePage({
       {/* Problem Section */}
       <section className="py-16 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.problem.title}</h2>
-          <p className="text-lg text-black/70 mb-4">{c.problem.intro}</p>
-          <blockquote className="text-xl font-medium text-black border-l-4 border-[#1e3a8a] pl-4 py-2 my-6 bg-white">
-            "{c.problem.question}"
-          </blockquote>
-          <p className="text-black/70 mb-4">{params.lang === 'fr' ? 'Dans la majorité des organisations, cette réalité n\'existe plus :' : 'In most organizations, this reality no longer exists:'}</p>
+          <p className="text-sm uppercase tracking-wider text-[#1e3a8a] font-medium mb-2">{c.problem.title}</p>
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.problem.subtitle}</h2>
+          <p className="text-black/70 mb-4">{c.problem.intro}</p>
           <ul className="space-y-2 mb-6">
             {c.problem.points.map((point, i) => (
               <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-[#1e3a8a] mt-1">•</span>
+                <span className="text-red-500 mt-1">•</span>
                 <span>{point}</span>
               </li>
             ))}
           </ul>
-          <p className="text-lg font-medium text-black">{c.problem.result}</p>
+          <p className="text-lg font-medium text-black mb-2" dangerouslySetInnerHTML={{ __html: c.problem.conclusion.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+          <p className="text-[#1e3a8a] font-medium">👉 {c.problem.result}</p>
         </div>
       </section>
 
-      {/* Cost Section */}
+      {/* Principle Section */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.cost.title}</h2>
-          <p className="text-black/70 mb-4">{c.cost.intro}</p>
+          <p className="text-sm uppercase tracking-wider text-[#1e3a8a] font-medium mb-2">{c.principle.title}</p>
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.principle.subtitle}</h2>
+          <p className="text-black/70 mb-4" dangerouslySetInnerHTML={{ __html: c.principle.intro.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
           <ul className="space-y-2 mb-6">
-            {c.cost.points.map((point, i) => (
+            {c.principle.points.map((point, i) => (
               <li key={i} className="flex items-start gap-3 text-black/70">
                 <span className="text-[#1e3a8a] mt-1">•</span>
                 <span>{point}</span>
               </li>
             ))}
           </ul>
-          <p className="text-black/70 mb-4">{params.lang === 'fr' ? 'Cette reconstitution :' : 'This reconstruction:'}</p>
-          <ul className="space-y-2 mb-6">
-            {c.cost.consequences.map((point, i) => (
-              <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-[#1e3a8a] mt-1">•</span>
-                <span><strong>{point.split(' ')[0]}</strong> {point.split(' ').slice(1).join(' ')}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="text-lg font-medium text-black border-l-4 border-[#1e3a8a] pl-4">{c.cost.conclusion}</p>
+          <p className="text-lg font-medium text-black border-l-4 border-[#1e3a8a] pl-4" dangerouslySetInnerHTML={{ __html: c.principle.conclusion.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
         </div>
       </section>
 
-      {/* Risk Section */}
+      {/* Artifact Content Section */}
       <section className="py-16 bg-zinc-50">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.risk.title}</h2>
-          <p className="text-black/70 mb-4">{c.risk.intro}</p>
-          <ul className="space-y-2 mb-6">
-            {c.risk.points.map((point, i) => (
-              <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-[#1e3a8a] mt-1">•</span>
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="text-lg font-medium text-black border-l-4 border-[#1e3a8a] pl-4">{c.risk.conclusion}</p>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.artifact.title}</h2>
+              <p className="text-black/70 mb-6">{c.artifact.intro}</p>
+              <div className="space-y-6">
+                {c.artifact.sections.map((section, i) => (
+                  <div key={i}>
+                    <h3 className="font-bold text-[#1e3a8a] mb-2 flex items-center gap-2">
+                      <span className="text-lg">🔹</span>
+                      {section.title}
+                    </h3>
+                    <ul className="space-y-1 pl-6">
+                      {section.items.map((item, j) => (
+                        <li key={j} className="text-black/70 text-sm" dangerouslySetInnerHTML={{ __html: '• ' + item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>') }} />
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-[#1e3a8a] font-medium" dangerouslySetInnerHTML={{ __html: '👉 ' + c.artifact.conclusion.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+              <p className="mt-4">
+                <Link
+                  href={`/${params.lang}/white-paper/decision-snapshot-artifact`}
+                  className="text-black/70 hover:text-[#1e3a8a] transition-colors font-bold underline"
+                >
+                  {c.artifact.formalDefinitionLink}
+                </Link>
+              </p>
+            </div>
+            <div className="lg:sticky lg:top-24">
+              <pre className="bg-[#0d1117] text-[#e6edf3] p-4 rounded-lg shadow-lg border border-black/10 text-[10px] sm:text-xs overflow-x-auto font-mono leading-relaxed">
+{`┌─────────────────────────────────────────────────────────────────┐
+│ EXECUTION RECORD                                                │
+├─────────────────────────────────────────────────────────────────┤
+│ execution_id:    exec_7f3a9b2c-4d1e-4a8f-b5c6-9e0f1a2b3c4d     │
+│ timestamp:       2025-01-16T14:32:07.892Z                       │
+│ actor:           system:credit-scoring-v2.3.1                   │
+│ action:          LOAN_APPLICATION_DENIED                        │
+├─────────────────────────────────────────────────────────────────┤
+│ SNAPSHOT DATA (inputs seen at T0)                               │
+├─────────────────────────────────────────────────────────────────┤
+│ applicant_id:        APP-2025-84729                             │
+│ requested_amount:    45,000 EUR                                 │
+│ annual_income:       52,000 EUR                                 │
+│ debt_ratio:          0.47                                       │
+│ employment_months:   8                                          │
+│ credit_history:      LIMITED                                    │
+│ previous_defaults:   0                                          │
+│ age:                 29                                         │
+├─────────────────────────────────────────────────────────────────┤
+│ MODEL STATE (at T0)                                             │
+├─────────────────────────────────────────────────────────────────┤
+│ model_hash:          sha256:8f4a2b...c9d1e                      │
+│ model_version:       credit-scoring-v2.3.1                      │
+│ config_version:      prod-2025-01-15                            │
+│ threshold:           0.65                                       │
+├─────────────────────────────────────────────────────────────────┤
+│ OUTPUT (decision at T0)                                         │
+├─────────────────────────────────────────────────────────────────┤
+│ score:               0.42                                       │
+│ decision:            DENIED                                     │
+│ reason_codes:        [DEBT_RATIO_HIGH, EMPLOYMENT_LENGTH_SHORT] │
+│ confidence:          0.89                                       │
+├─────────────────────────────────────────────────────────────────┤
+│ INTEGRITY                                                       │
+├─────────────────────────────────────────────────────────────────┤
+│ signature:           ed25519:9a8b7c6d5e4f...                    │
+│ sequence:            1,847,293                                  │
+│ prev_hash:           sha256:2c4e6a...b8d0f                      │
+└─────────────────────────────────────────────────────────────────┘`}
+              </pre>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Rule Section */}
+      {/* Technical Proof Section */}
       <section className="py-16 bg-[#1e3a8a] text-white">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-6">{c.rule.title}</h2>
-          <p className="text-xl lg:text-2xl font-medium mb-6 opacity-90">{c.rule.content}</p>
-          <p className="text-lg opacity-80">{c.rule.conclusion}</p>
-        </div>
-      </section>
-
-      {/* What Horizon Does */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.whatHorizonDoes.title}</h2>
-          <p className="text-black/70 mb-4">{c.whatHorizonDoes.intro}</p>
+          <h2 className="text-2xl lg:text-3xl font-bold mb-6">{c.proof.title}</h2>
           <ul className="space-y-2 mb-6">
-            {c.whatHorizonDoes.points.map((point, i) => (
-              <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-[#1e3a8a] mt-1">•</span>
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="text-black/70 mb-2">{params.lang === 'fr' ? 'Cette preuve est :' : 'This evidence is:'}</p>
-          <ul className="space-y-2 mb-6">
-            {c.whatHorizonDoes.proofIs.map((point, i) => (
-              <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-[#1e3a8a] mt-1">•</span>
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="text-lg font-medium text-black border-l-4 border-[#1e3a8a] pl-4">{c.whatHorizonDoes.conclusion}</p>
-        </div>
-      </section>
-
-      {/* Why Separate */}
-      <section className="py-16 bg-zinc-50">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.whySeparate.title}</h2>
-          <p className="text-black/70 mb-4">{c.whySeparate.content}</p>
-          <div className="flex gap-8 my-6">
-            {c.whySeparate.points.map((point, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <span className="w-8 h-8 rounded-full bg-[#1e3a8a] text-white flex items-center justify-center text-sm font-medium">{i + 1}</span>
-                <span className="text-black/80 font-medium">{point}</span>
-              </div>
-            ))}
-          </div>
-          <p className="text-black/70">{c.whySeparate.conclusion}</p>
-        </div>
-      </section>
-
-      {/* What Horizon Is Not */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.whatHorizonIsNot.title}</h2>
-          <ul className="space-y-2 mb-6">
-            {c.whatHorizonIsNot.points.map((point, i) => (
-              <li key={i} className="flex items-start gap-3 text-black/50">
+            {c.proof.points.map((point, i) => (
+              <li key={i} className="flex items-start gap-3 opacity-90">
                 <span className="mt-1">•</span>
                 <span>{point}</span>
               </li>
             ))}
           </ul>
-          <p className="text-xl font-bold text-[#1e3a8a]">{c.whatHorizonIsNot.conclusion}</p>
+          <p className="text-lg mb-4 opacity-95" dangerouslySetInnerHTML={{ __html: c.proof.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+          <p className="text-base opacity-80 border-t border-white/20 pt-6 mt-6" dangerouslySetInnerHTML={{ __html: c.proof.conclusion.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="py-16 bg-zinc-50">
+      {/* After Decision Section */}
+      <section className="py-16">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-8">{c.benefits.title}</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {c.benefits.items.map((item, i) => (
-              <div key={i} className="bg-white p-6 border border-black/5">
-                <h3 className="font-bold text-black mb-2">{item.title}</h3>
-                <p className="text-black/70">{item.desc}</p>
-              </div>
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.afterDecision.title}</h2>
+          <p className="text-black/70 mb-4">{c.afterDecision.intro}</p>
+          <div className="flex flex-wrap gap-3 mb-6">
+            {c.afterDecision.actions.map((action, i) => (
+              <span key={i} className="bg-zinc-100 px-4 py-2 text-black/70 rounded">
+                {action}
+              </span>
             ))}
+          </div>
+          <ul className="space-y-2">
+            {c.afterDecision.points.map((point, i) => (
+              <li key={i} className="flex items-center gap-2 text-[#1e3a8a] font-medium">
+                <span>👉</span>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Infrastructure Section */}
+      <section className="py-16 bg-zinc-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.infrastructure.title}</h2>
+              <ul className="space-y-3">
+                {c.infrastructure.points.map((point, i) => (
+                  <li key={i} className="flex items-start gap-3 text-black/70">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <Image
+                src="/images/infra_before_apres.png"
+                alt="Infrastructure before and after"
+                width={600}
+                height={400}
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Environments */}
+      {/* Comparison Table */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.environments.title}</h2>
-          <p className="text-black/70 mb-4">{c.environments.intro}</p>
-          <ul className="space-y-2 mb-6">
-            {c.environments.points.map((point, i) => (
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-8">{c.comparison.title}</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className="text-left py-3 px-4 bg-zinc-100 font-bold text-black border-b-2 border-[#1e3a8a]">
+                    {isFr ? 'Avant' : 'Before'}
+                  </th>
+                  <th className="text-left py-3 px-4 bg-[#1e3a8a] font-bold text-white">
+                    {isFr ? 'Après' : 'After'}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {c.comparison.items.map((item, i) => (
+                  <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-zinc-50'}>
+                    <td className="py-3 px-4 text-black/70">{item.before}</td>
+                    <td className="py-3 px-4 text-[#1e3a8a] font-medium">{item.after}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Quote Section */}
+      <section className="py-16 bg-[#1e3a8a] text-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-xl lg:text-2xl font-medium italic">
+            {c.quote}
+          </p>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section id="engage" className="py-16">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.cta.title}</h2>
+          <ul className="space-y-2 mb-8 inline-block text-left">
+            {c.cta.points.map((point, i) => (
               <li key={i} className="flex items-start gap-3 text-black/70">
                 <span className="text-[#1e3a8a] mt-1">•</span>
                 <span>{point}</span>
               </li>
             ))}
           </ul>
-          <p className="text-black/70">{c.environments.conclusion}</p>
-        </div>
-      </section>
-
-      {/* Engage Section */}
-      <section id="engage" className="py-16 bg-zinc-50">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-4">{c.engage.title}</h2>
-          <p className="text-black/70 mb-8">{c.engage.intro}</p>
-          <div className="space-y-8">
-            {c.engage.items.map((item, i) => (
-              <div key={i} className="bg-white p-6 border border-black/5">
-                <h3 className="font-bold text-black text-lg mb-2">{item.title}</h3>
-                <p className="text-black/70 mb-4">{item.desc}</p>
-                <ul className="space-y-1 mb-4">
-                  {item.points.map((point, j) => (
-                    <li key={j} className="flex items-start gap-3 text-black/60 text-sm">
-                      <span className="text-[#1e3a8a] mt-1">•</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={`/${params.lang}/${item.link}`}
-                  className="inline-flex items-center gap-2 text-[#1e3a8a] font-medium hover:underline"
-                >
-                  {item.linkText} <span>→</span>
-                </Link>
-              </div>
-            ))}
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href={`/${params.lang}/contact`}
+              className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
+            >
+              {c.cta.ctaArtifact}
+            </Link>
+            <Link
+              href={`/${params.lang}/contact`}
+              className="inline-flex items-center gap-2 border border-[#1e3a8a] text-[#1e3a8a] px-6 py-3 font-medium hover:bg-[#1e3a8a]/5 transition-colors"
+            >
+              {c.cta.ctaDemo}
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* What Asplenz Does */}
-      <section className="py-16">
+      {/* FAQ Section */}
+      <section className="py-16 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.whatAsplenzDoes.title}</h2>
-          <p className="text-black/70 mb-6">{c.whatAsplenzDoes.intro}</p>
-          <p className="text-black/70 mb-4">{params.lang === 'fr' ? 'Chaque intervention est :' : 'Each engagement is:'}</p>
-          <div className="grid md:grid-cols-2 gap-4">
-            {c.whatAsplenzDoes.points.map((point, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <span className="text-[#1e3a8a] font-bold">•</span>
-                <div>
-                  <span className="font-bold text-black">{point.title}</span>
-                  <span className="text-black/70"> : {point.desc}</span>
-                </div>
+          <h2 className="text-xl font-bold text-black mb-6">{c.faq.title}</h2>
+          <div className="space-y-4">
+            {c.faq.items.map((item, i) => (
+              <div key={i} className="bg-white p-4 border border-black/5">
+                <p className="font-bold text-black mb-1">{item.q}</p>
+                <p className="text-black/70">{item.a}</p>
               </div>
             ))}
           </div>
@@ -584,32 +642,18 @@ export default function HomePage({
       </section>
 
       {/* White Paper CTA */}
-      <section className="py-16 bg-[#1e3a8a] text-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-4">{c.whitePaper.title}</h2>
-          <h3 className="text-xl mb-4 opacity-90">{c.whitePaper.subtitle}</h3>
-          <p className="opacity-80 mb-6 max-w-2xl mx-auto">{c.whitePaper.content}</p>
-          <p className="opacity-70 mb-8 italic">{c.whitePaper.cta}</p>
-          <Link
-            href={`/${params.lang}/white-paper`}
-            className="inline-flex items-center gap-2 bg-white text-[#1e3a8a] px-6 py-3 font-medium hover:bg-white/90 transition-colors"
-          >
-            {c.whitePaper.linkText} <span>→</span>
-          </Link>
-        </div>
-      </section>
-
-      {/* Final Contact CTA */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-4">{c.contact.title}</h2>
-          <p className="text-black/70 mb-8 max-w-2xl mx-auto">{c.contact.content}</p>
-          <Link
-            href={`/${params.lang}/contact`}
-            className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
-          >
-            {c.contact.linkText} <span>→</span>
-          </Link>
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-[#1e3a8a]/5 border border-[#1e3a8a]/20 p-8 lg:p-12">
+            <h2 className="text-2xl font-bold text-black mb-4">{c.whitePaper.title}</h2>
+            <p className="text-black/70 mb-6 max-w-2xl">{c.whitePaper.content}</p>
+            <Link
+              href={`/${params.lang}/white-paper`}
+              className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-6 py-3 font-medium hover:bg-[#1e3a8a]/90 transition-colors"
+            >
+              {c.whitePaper.linkText} <span>→</span>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

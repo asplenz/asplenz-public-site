@@ -11,10 +11,17 @@ export const navigationSections: NavigationSection[] = [
     },
     items: [
       {
-        slug: 'evidence-infrastructure',
+        slug: 'decision-snapshot-infrastructure',
         title: {
-          en: 'Evidence Infrastructure',
-          fr: 'Infrastructure de preuve',
+          en: 'Decision Snapshot Infrastructure',
+          fr: 'Infrastructure de Persistance Décisionnelle',
+        },
+      },
+      {
+        slug: 'decision-snapshot-artifact',
+        title: {
+          en: 'The Decision Snapshot Artifact',
+          fr: 'L\'Artefact de Persistance Décisionnelle',
         },
       },
       {
@@ -82,6 +89,13 @@ export const navigationSections: NavigationSection[] = [
           fr: 'Clarifications',
         },
       },
+      {
+        slug: 'glossary',
+        title: {
+          en: 'Glossary',
+          fr: 'Glossaire',
+        },
+      },
     ],
   },
   {
@@ -118,8 +132,12 @@ export const readingPath: ReadingPathItem[] = [
     title: { en: 'Home', fr: 'Accueil' },
   },
   {
-    slug: 'evidence-infrastructure',
-    title: { en: 'Evidence Infrastructure', fr: 'Infrastructure de preuve' },
+    slug: 'decision-snapshot-infrastructure',
+    title: { en: 'Decision Snapshot Infrastructure', fr: 'Infrastructure de Persistance Décisionnelle' },
+  },
+  {
+    slug: 'decision-snapshot-artifact',
+    title: { en: 'The Decision Snapshot Artifact', fr: 'L\'Artefact de Persistance Décisionnelle' },
   },
   {
     slug: 'evidence-vs-reconstruction',
@@ -148,6 +166,10 @@ export const readingPath: ReadingPathItem[] = [
   {
     slug: 'clarifications',
     title: { en: 'Clarifications', fr: 'Clarifications' },
+  },
+  {
+    slug: 'glossary',
+    title: { en: 'Glossary', fr: 'Glossaire' },
   },
   {
     slug: 'horizon-availability',

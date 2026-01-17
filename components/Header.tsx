@@ -25,7 +25,7 @@ export default function Header({ lang }: HeaderProps) {
               />
               <div className="flex flex-col">
                 <span className="text-lg font-medium tracking-tight text-black">ASPLENZ</span>
-                <span className="text-xs text-zinc-500 tracking-wide">Evidence Infrastructure</span>
+                <span className="text-xs text-zinc-500 tracking-wide">Decision Snapshot Infrastructure</span>
               </div>
             </div>
           </Link>
