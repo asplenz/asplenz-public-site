@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import MainHeader from '@/components/MainHeader';
 import { Language } from '@/lib/types';
 
 export default function LangLayout({
@@ -9,42 +10,12 @@ export default function LangLayout({
   children: React.ReactNode;
   params: { lang: Language };
 }) {
-  const otherLang = params.lang === 'en' ? 'fr' : 'en';
-
   return (
     <div className="min-h-screen bg-white">
-      {/* Minimal Header for Landing Pages */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-black/5">
-        <div className="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between">
-          <Link href={`/${params.lang}`} className="flex items-center gap-3 hover:opacity-70 transition-opacity">
-            <Image
-              src="/logo.png"
-              alt="Asplenz Logo"
-              width={36}
-              height={36}
-              className="object-contain"
-            />
-            <span className="text-lg font-medium tracking-tight text-black">ASPLENZ</span>
-          </Link>
+      {/* Main Header */}
+      <MainHeader lang={params.lang} />
 
-          <div className="flex items-center gap-6">
-            <Link
-              href={`/${params.lang}/white-paper`}
-              className="text-sm text-black/60 hover:text-black transition-colors hidden sm:block"
-            >
-              White Paper
-            </Link>
-            <Link
-              href={`/${otherLang}`}
-              className="text-sm uppercase tracking-wider text-black/40 hover:text-black transition-colors"
-            >
-              {otherLang}
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content - Full Width for Landing Pages */}
+      {/* Main Content */}
       <main>
         {children}
       </main>
