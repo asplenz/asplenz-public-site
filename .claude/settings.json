@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(copy \"c:\\\\dev\\\\projects\\\\asplenz-public-site\\\\public\\\\logo.png\" \"c:\\\\dev\\\\projects\\\\asplenz-public-site\\\\app\\\\icon.png\")"
+    ]
+  }
+}

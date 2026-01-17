@@ -1,234 +1,272 @@
-###  English Version
-
-# Decision Snapshot Infrastructure
-
-## From reconstruction to decision evidence
-
-This section explains how to read and understand Horizon. It covers the problem being addressed, the core principle, and what "fact" means in this context.
-
-Most systems are built to operate. Few are built to be examined later.
-
-When a specific transaction, incident, or decision is scrutinized, organizations often discover that their "memory" is distributed across tools and teams, and that the past must be reconstructed before it can even be discussed.
-
-This approach is about one thing: ensuring that examinable facts exist **at execution time**, so that later examination relies on facts already constituted, not on correlation and interpretation assembled under pressure.
+Voici les deux versions de votre White Paper, débarrassées de tout commentaire éditorial et alignées sur la terminologie finale.
 
 ---
 
-### The failure mode
+# 📄 White Paper — Infrastructure de Snapshot Décisionnel
 
-When a case is questioned, teams typically rely on:
+## L'Infrastructure de Snapshot Décisionnel
 
-* Logs fragmented across multiple systems
-* Dashboards that reflect current state, not past execution
-* Tickets, emails, documents, and post-mortems written later
-* Human memory and informal explanations
+Les systèmes de décision automatisés produisent des résultats aux conséquences durables. Pourtant, l'état factuel ayant conduit à ces décisions survit rarement à l'évolution des systèmes qui les ont produites.
 
-This creates a predictable pattern:
+Au fil du temps, les modèles sont ré-entraînés, les règles sont mises à jour, les sources de données changent et les architectures sont remplacées. Lorsque des décisions passées doivent être comprises, les organisations sont contraintes de **reconstruire la réalité a posteriori**, à partir de sources partielles et hétérogènes.
 
-* Timelines are rebuilt from heterogeneous traces
-* Context is inferred after the fact
-* Multiple "versions" of what happened emerge
-* Explanations remain contestable because the reconstruction is contestable
+Cette reconstruction est, par nature, fragile.
 
-(See: Evidence vs reconstruction)
+## Preuve vs Reconstruction
 
----
+Dans la plupart des systèmes automatisés, la preuve factuelle n'est pas produite au moment de l'exécution. Au lieu de cela, le passé est déduit plus tard à partir de logs, de bases de données, de configurations et de souvenirs humains.
 
-### The shift
+À mesure que les systèmes évoluent, cette « mémoire » devient distribuée, incomplète et contestée. Différentes équipes reconstruisent des versions divergentes de ce qui s'est passé, souvent sans socle factuel commun.
 
-Under scrutiny, the question changes from:
+👉 **La reconstruction n'est pas une preuve.**
+C'est une approximation construite sous des contraintes qui n'existaient pas au moment de l'exécution.
 
-"How does the system usually behave?"
+## Le principe central : Capturer au Point de Non-Retour
 
-to:
+**La preuve doit être créée au point de non-retour — le moment où la décision devient irréversible.**
 
-**"What exactly happened in this specific case, and what facts existed at that moment?"**
+À cet instant précis, le système :
 
-At that point, the cost is not only time. It is also governance: the organization loses the ability to ground discussions in a shared factual baseline.
+* a consommé des entrées spécifiques,
+* a appliqué une logique ou un modèle spécifique,
+* a opéré sous une configuration spécifique,
+* et a produit un résultat concret.
 
----
+Une fois ce moment passé, l'état factuel d'origine ne peut plus être recréé avec certitude.
 
-### Core principle
+Une Infrastructure de Snapshot Décisionnel existe pour capturer cet état **une fois**, **tel qu'il était**, **au moment où il s'est produit**.
 
-**Evidence should be created at the point of no return: the moment an action becomes irreversible, institutionally binding, or materially consequential.**
+## Ce qu'est un fait (dans ce contexte)
 
-Examination may happen later. But evidence must exist before questions arise.
+Dans ce contexte, un *fait* n'est ni une interprétation, ni une justification, ni une explication.
 
----
+Un fait est un **acte d'exécution signé et enregistré**, capturé à l'instant exact où la décision est produite.
 
-### What "a fact" means here
+Il inclut :
 
-In this context, a "fact" is neither a business truth nor a compliance validation. It is a signed and recorded act or declaration produced by a system or a human actor at the exact moment of execution.
+* les données réellement consommées,
+* la version de la logique ou du modèle appliquée,
+* le contexte d'exécution exact,
+* le résultat généré.
 
-The goal is not to "explain" the past with better narratives, but to preserve what was declared and executed, in an immutable and ordered manner, so that institutional discussion starts from stable grounds.
+Les faits sont déclarés ; ils ne sont pas déduits.
 
-**Concrete Example:**
+## Scénario illustratif
 
-* **The Action:** A scoring algorithm approves a loan at Time T despite a threshold breach.
-* **The "Fact" captured by Horizon:** The exact approval signal, the specific input data used at that moment, and the system's associated risk assessment.
-* **The Value:** Even if it is later discovered that the loan should not have been granted (business truth), the **fact** remains that it was granted on that specific basis. **Horizon enables the institution to safeguard the reality of its executions and assessments, providing it with a sovereign factual basis that makes any subsequent reconstruction or alteration technically impossible.**
+Considérons une décision d'octroi de prêt produite par un système automatisé.
 
----
+À l'exécution, le système reçoit un ensemble spécifique de données du demandeur, applique une version et une configuration de modèle données, et émet une décision d'approbation. Cette décision peut plus tard être remise en question, révisée ou même jugée incorrecte d'un point de vue métier ou politique.
 
-### What this is (and is not)
+👉 **Cela ne change pas le fait de ce qui a été exécuté.**
 
-* This is an evidence approach: it preserves executions and declared evaluations at execution time.
-* It is a passive observation layer: it does not interfere with the operational path of the systems it monitors.
-* It does not replace observability, SIEM, audit tools, or case management.
-* It does not decide, validate, optimize, or enforce.
-* It applies equally to automated workflows and human-in-the-loop decisions: what matters is the point of no return.
+Un Snapshot Décisionnel ne légitime ni ne justifie le résultat. Il n'affirme pas que la décision était correcte. Il établit une seule chose : **ce que le système a réellement fait, avec ce qu'il avait, à cet instant précis.**
 
----
+## Du principe à l'infrastructure
 
-### Scope and control
+Une Infrastructure de Snapshot Décisionnel n'est **ni un outil d'audit**, **ni une plateforme d'analyse**, **ni un processus de gouvernance**.
 
-The company decides which decisions, actions, or processes are within scope. Integration is selective by design.
+C'est une **couche technique fondamentale** dont le seul rôle est de garantir que les états factuels d'exécution existent indépendamment de l'évolution des systèmes.
 
-* Adoption typically starts with one high-pain or high-scrutiny area
-* Companies explicitly choose which systems are covered
-* Asplenz Horizon does not expand the decision surface
+Elle :
 
----
+* s'intègre aux côtés des systèmes de décision existants,
+* capture les états d'exécution sans interférer avec la logique de décision,
+* produit des enregistrements immuables et auto-contenus,
+* reste neutre quant à la manière dont ces enregistrements sont ultérieurement utilisés.
 
-### Retention and governance
+L'infrastructure ne décide pas de ce qui importe. Elle garantit que les faits sont disponibles quand ils importent.
 
-Retention, deletion, and scope are entirely determined by the company's governance choices.
+## Contextes institutionnels
 
-* Retention policies remain company-controlled
-* Deletion rules are respected
-* Scope limits are enforced
+Les organisations exercent déjà leur pouvoir discrétionnaire sur :
 
-As with any other system, the company retains **full sovereignty** over what is retained, for how long, and for what purpose.
+* ce qui entre dans un dossier officiel,
+* comment les faits sont interprétés,
+* ce qui est communiqué en interne ou en externe.
 
----
+Une Infrastructure de Snapshot Décisionnel **ne modifie pas ce contrôle**.
 
-### Legal considerations
+Ce qu'elle change, c'est la **charge opérationnelle** liée à l'établissement des faits lorsqu'ils sont nécessaires. La latitude institutionnelle reste la même ; l'effort requis pour la soutenir est réduit.
 
-Horizon records are subject to the same legal processes as any other internal company data.
+## Implications opérationnelles
 
-Asplenz does not introduce new categories of data, new disclosure obligations, or special legal status. Horizon preserves evidence that already exists elsewhere in the organization, under the same rules governing discovery, subpoenas, legal holds, and privilege.
+L'impact principal d'une Infrastructure de Snapshot Décisionnel est opérationnel. Elle ne crée pas de nouvelles obligations, elle supprime les coûts récurrents associés à la reconstruction du passé.
 
----
+Concrètement, elle réduit :
 
-### Common questions
+* l'effort requis pour établir l'état factuel après l'exécution,
+* la coordination entre équipes lors de révisions, d'incidents ou d'enquêtes,
+* la dépendance vis-à-vis des systèmes hérités, des configurations passées et des anciennes équipes.
 
-* We already have observability, logging, and audit trails. Why is this different?
+👉 **Le contenu du dossier ne change pas.**
+👉 **Le coût pour l'assembler, le conserver et y accéder change.**
 
----
+## Principes et limites
 
-### Version Française
+Une Infrastructure de Snapshot Décisionnel est intentionnellement délimitée.
 
-# Infrastructure de Persistance Décisionnelle
+Elle :
 
-## De la reconstruction à la preuve décisionnelle
+* n'explique pas les décisions,
+* n'automatise pas l'interprétation,
+* n'impose pas de règles de gouvernance,
+* ne remplace pas le jugement humain.
 
-Cette section détaille la lecture et la compréhension d'Horizon. Elle traite du problème adressé, du principe fondamental et de la définition d'un « fait » dans ce contexte.
+Sa responsabilité s'arrête là où l'interprétation commence.
 
-La plupart des systèmes sont conçus pour opérer. Peu sont conçus pour être examinés ultérieurement.
+## Disponibilité dans le temps
 
-Lorsqu'une transaction, un incident ou une décision spécifique est scruté, les organisations découvrent souvent que leur « mémoire » est répartie entre différents outils et équipes. Le passé doit alors être reconstruit avant même de pouvoir être discuté.
+Les systèmes changent. Les organisations évoluent. Les équipes se renouvellent.
 
-Cette approche repose sur un objectif unique : garantir que des faits examinables existent **au moment de l’exécution**. Ainsi, l’examen ultérieur s’appuie sur des faits déjà constitués, et non sur une corrélation ou une interprétation assemblée sous pression.
+Les Snapshots Décisionnels sont conçus pour survivre aux systèmes qui les ont produits. Ils restent :
 
----
+* lisibles,
+* vérifiables,
+* et indépendants de la survie du système source.
 
-### Le mode de défaillance
+## Dialogue d'acceptabilité
 
-Lorsqu'un dossier est remis en question, les équipes s'appuient généralement sur :
+Parce que cette infrastructure touche à la réalité de l'exécution, son adoption ne peut être abstraite. L'acceptabilité doit être évaluée en contexte : technique, organisationnel et institutionnel.
 
-* Des journaux (logs) fragmentés entre plusieurs systèmes
-* Des tableaux de bord reflétant l'état actuel et non l'exécution passée
-* Des tickets, courriels, documents et rapports d'incidents rédigés a posteriori
-* La mémoire humaine et des explications informelles
-
-Cela génère un schéma prévisible :
-
-* Les chronologies sont rebâties à partir de traces hétérogènes
-* Le contexte est déduit après coup
-* Plusieurs « versions » de l'événement émergent
-* Les explications restent contestables car la reconstruction elle-même est contestable
-
-(Voir : Preuve vs reconstruction)
+C'est pourquoi l'adoption commence par un **dialogue d'acceptabilité**, et non par une démonstration générique ou une approbation théorique.
 
 ---
 
-### Le basculement
-
-Sous le regard de l'auditeur ou du régulateur, la question change :
-
-« Comment le système se comporte-t-il habituellement ? »
-
-devient :
-
-**« Que s’est-il passé exactement dans ce cas précis, et quels faits existaient à cet instant ? »**
-
-À ce stade, le coût n'est pas seulement temporel. Il est aussi politique : l'organisation perd sa capacité à fonder ses discussions sur un socle factuel commun.
-
 ---
 
-### Principe fondamental
+# 🇬🇧 White Paper — Decision Snapshot Infrastructure
 
-**La preuve doit être créée au point de non-retour : l’instant où une action devient irréversible, engageante pour l’institution ou lourde de conséquences matérielles.**
+## Decision Snapshot Infrastructure
 
-L'examen peut avoir lieu plus tard. Mais la preuve doit exister avant l'interrogation.
+Automated decision systems produce outcomes that have lasting consequences. Yet the factual state that led to those decisions rarely survives the evolution of the systems that produced them.
 
----
+Over time, models are retrained, rules are updated, data sources change, and architectures are replaced. When past decisions must be understood, organizations are forced to **reconstruct reality after the fact**, using partial and heterogeneous sources.
 
-### Ce que signifie « un fait » ici
+This reconstruction is fragile by nature.
 
-Dans ce contexte, un « fait » n'est ni une vérité métier, ni une validation de conformité. C'est un acte ou une déclaration, signée et enregistrée, produite par un système ou un acteur humain au moment précis de l'exécution.
+## Evidence vs Reconstruction
 
-L'objectif n'est pas d'« expliquer » le passé avec de meilleurs récits, mais de préserver ce qui a été déclaré et exécuté, de manière immuable et ordonnée, pour que la discussion institutionnelle repose sur des bases stables.
+In most automated systems, factual evidence is not produced at execution time. Instead, the past is inferred later from logs, databases, configurations, and human recollections.
 
-**Exemple concret :**
+As systems evolve, this “memory” becomes distributed, incomplete, and contested. Different teams reconstruct different versions of what happened, often with no shared factual baseline.
 
-* **L'action :** Un algorithme de scoring approuve un prêt à un instant T malgré un dépassement de seuil.
-* **Le « fait » capturé par Horizon :** Le signal exact d'approbation, les données d'entrée utilisées à cet instant précis et l'évaluation de risque associée par le système.
-* **La valeur :** Même si l'on découvre plus tard que le prêt n'aurait pas dû être accordé (vérité métier), le **fait** est qu'il l'a été sur cette base spécifique. **Horizon permet à l'institution de sanctuariser la réalité de ses exécutions et de ses évaluations, lui garantissant une base factuelle souveraine qui rend toute reconstruction ou altération ultérieure techniquement impossible.**
+👉 **Reconstruction is not evidence.**
+It is an approximation built under constraints that did not exist at execution time.
 
----
+## The Core Principle: Capture at the Point of No Return
 
-### Ce que ceci est (et n'est pas)
+**Evidence should be created at the point of no return — when the decision becomes irreversible.**
 
-* C'est une approche de la preuve : elle préserve les exécutions et les évaluations déclarées au moment de l'action.
-* C'est une couche d'observation passive : elle n'interfère pas avec le chemin critique des systèmes qu'elle monitore.
-* Elle ne remplace pas l'observabilité, le SIEM, les outils d'audit ou la gestion de dossiers (case management).
-* Elle ne décide pas, ne valide pas, n'optimise pas et ne contraint pas.
-* Elle s'applique aussi bien aux flux automatisés qu'aux décisions humaines : seul importe le point de non-retour.
+At that moment, the system:
 
----
+* has consumed specific inputs,
+* applied a specific logic or model,
+* operated under a specific configuration,
+* and produced a concrete outcome.
 
-### Périmètre et contrôle
+Once that moment has passed, the original factual state cannot be recreated with certainty.
 
-L'entreprise décide quels processus, actions ou décisions entrent dans le périmètre. L'intégration est sélective par conception.
+A Decision Snapshot Infrastructure exists to capture that state **once**, **as it was**, **when it occurred**.
 
-* L'adoption commence généralement par une zone de forte tension ou de contrôle intensif.
-* Les entreprises choisissent explicitement les systèmes couverts.
-* Asplenz Horizon n'étend pas la surface de décision.
+## What Is a Fact (in this context)
 
----
+In this context, a *fact* is not an interpretation, a justification, or an explanation.
 
-### Rétention et gouvernance
+A fact is a **signed and recorded act of execution**, captured at the exact moment the decision is produced.
 
-La rétention, la suppression et le périmètre sont exclusivement déterminés par les choix de gouvernance de l'entreprise.
+It includes:
 
-* Les politiques de rétention restent sous le contrôle de l'entreprise.
-* Les règles de suppression sont respectées.
-* Les limites de périmètre sont appliquées.
+* what data was actually consumed,
+* which logic or model version was applied,
+* under which execution context,
+* and what output was generated.
 
-Comme pour tout autre système, l'entreprise conserve sa **pleine souveraineté** sur ce qui est conservé, pour quelle durée et à quelle fin.
+Facts are declared, not inferred.
 
----
+## Illustrative Scenario
 
-### Considérations juridiques
+Consider a loan approval decision produced by an automated system.
 
-Les registres Horizon sont soumis aux mêmes processus juridiques que toute autre donnée interne de l'entreprise.
+At execution time, the system:
 
-Asplenz n'introduit pas de nouvelles catégories de données, de nouvelles obligations de divulgation ou de statut juridique spécial. Horizon préserve des preuves qui existent déjà ailleurs dans l'organisation, selon les mêmes règles régissant la communication de pièces, les injonctions, les gels juridiques et le secret professionnel.
+* receives a specific set of applicant data,
+* applies a given model version and configuration,
+* and outputs an approval decision.
 
----
+That decision may later be questioned, revised, or even deemed incorrect from a business or policy perspective.
 
-### Questions fréquentes
+👉 **This does not change the fact of what was executed.**
 
-* Nous disposons déjà d'observabilité, de logs et de pistes d'audit. En quoi est-ce différent ?
+A Decision Snapshot does **not** legitimize or justify the outcome. It does **not** assert that the decision was correct. It establishes only one thing: **what the system actually did, with what it had, at that moment.**
+
+## From Principle to Infrastructure
+
+A Decision Snapshot Infrastructure is **not an audit tool**, **not an analytics platform**, and **not a governance process**.
+
+It is a **foundational technical layer** whose sole role is to ensure that factual execution states exist independently of system evolution.
+
+It:
+
+* integrates alongside existing decision systems,
+* captures execution states without interfering with decision logic,
+* produces immutable, self-contained records,
+* and remains neutral to how those records are later interpreted or used.
+
+The infrastructure does not decide what matters. It ensures that facts are available when they do.
+
+## Institutional Contexts
+
+Organizations already exercise discretion over:
+
+* what enters an official record,
+* how facts are interpreted,
+* what is communicated internally or externally.
+
+A Decision Snapshot Infrastructure **does not change this control**.
+
+What it changes is the **operational burden** of establishing facts when they are needed. The institutional latitude remains the same. The effort required to support it is reduced.
+
+## Operational Implications
+
+The primary impact of a Decision Snapshot Infrastructure is operational. It does not create new obligations. It removes recurring costs associated with reconstructing the past.
+
+Concretely, it reduces:
+
+* the effort required to establish factual state post-execution,
+* cross-team coordination during reviews, incidents, or inquiries,
+* dependency on legacy systems, configurations, and former teams.
+
+👉 **The content of the record does not change.**
+👉 **The cost of assembling, retaining, and accessing it does.**
+
+## Principles & Boundaries
+
+A Decision Snapshot Infrastructure is intentionally bounded.
+
+It:
+
+* does not explain decisions,
+* does not automate interpretation,
+* does not enforce governance rules,
+* does not replace human judgment.
+
+Its responsibility ends where interpretation begins.
+
+## Availability Over Time
+
+Systems change. Organizations evolve. Teams move on.
+
+Decision Snapshots are designed to outlive the systems that produced them. They remain:
+
+* readable,
+* verifiable,
+* and independent of the continued existence of the source system.
+
+## Acceptability Dialogue
+
+Because this infrastructure touches execution reality, its adoption cannot be abstract. Acceptability must be assessed in context: technical, organizational, and institutional.
+
+This is why adoption begins with an **acceptability dialogue**, not with a generic demonstration or theoretical endorsement.
+
+<-- link to engagement page-->
 

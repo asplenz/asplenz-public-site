@@ -1,342 +1,264 @@
-### 2.  English Version
+# 🇫🇷 Scénario Illustratif
 
-# Illustrative scenario
+## Une illustration concrète de la preuve à l’exécution face à la reconstruction
 
-## A canonical situation where reconstruction becomes the problem
+Ce scénario est volontairement générique. Il ne décrit pas une organisation, un produit ou un contexte réglementaire spécifique.
 
-### What this scenario demonstrates
+Son objectif est d’illustrer, en termes concrets, la différence structurelle entre :
 
-This scenario demonstrates that when a decision is later examined, the outcome depends on whether an execution-time record exists or must be reconstructed.
+* des décisions dont l’état factuel doit être reconstruit a posteriori, et
+* des décisions dont l’état factuel a été capturé au moment de l’exécution.
 
-It does so by comparing **two worlds**:
-
-* **World A : Reconstruction**
-The decision is examined weeks later using logs, dashboards, tickets, and memory.
-* **World B : Execution-time evidence**
-The decision left behind a preserved artefact at the moment it was executed.
-
-The events are identical. The difference is **not the decision**, but **what exists before scrutiny begins**.
+La qualité, la justesse ou la légitimité de la décision elle-même **n'est pas** évaluée ici.
 
 ---
 
-### Purpose of this page
+## Le contexte
 
-This page does not describe a customer case, an incident, or a deployment.
+Un système de décision automatisé produit des décisions ayant des effets durables.
 
-It describes an archetypal situation that occurs across regulated institutions, regardless of industry, technology stack, or decision logic.
+Au moment de l'exécution, le système :
 
-The purpose is to make the underlying problem concrete without operational disclosure.
+* consomme des données d'entrée spécifiques,
+* applique une logique ou un modèle donné,
+* opère sous une configuration concrète,
+* et produit un résultat.
 
----
-
-### The situation
-
-At time T, a system performs an execution.
-
-The execution may be:
-
-* fully automated
-* partially automated
-* initiated by a human supported by a system
-
-The execution produces an outcome that is:
-
-* institutionally consequential
-* irreversible
-* externally contestable
-
-At the time it occurs, nothing appears abnormal.
+Quelque temps plus tard, l’organisation doit répondre à une question concernant cette décision. La différence entre les deux mondes ci-dessous ne réside pas dans la décision elle-même, mais dans la persistance — ou non — de l’état factuel de l’exécution.
 
 ---
 
-### Weeks or months later
+## Deux mondes possibles
 
-A question arises. Not a general question about how the system usually behaves, but a **specific question about a specific case**:
+### Monde A — La Reconstruction
 
-* Why was this action taken?
-* What information was available at that moment?
-* What evaluations were produced?
-* What was known, assessed, or assumed when the execution occurred?
+Dans ce monde, aucune preuve n’a été capturée au moment où la décision a été prise. Lorsque la décision est examinée plus tard, l’organisation doit reconstruire ce qui s’est passé en utilisant :
 
-The question is qualitative, case-specific, and non-statistical.
+* des journaux (logs),
+* des états de bases de données,
+* des référentiels de configuration,
+* des outils de monitoring,
+* des tickets et rapports d'incidents,
+* et la mémoire humaine.
 
----
-
-### Two possible worlds
-
-At this point, the institution finds itself in one of two situations.
-
-#### World A : Reconstruction
-
-No declared evidence exists for the execution at time T.
-
-To answer the question, the organization must reconstruct what happened by:
-
-* correlating logs from multiple systems
-* reviewing tickets, emails, or dashboards
-* interviewing engineers and operators
-* reloading configurations or models that may have changed
-
-Facts are inferred. Context is reassembled. Explanations are produced after the fact. The reconstruction may be honest and diligent, but it is:
-
-* time-consuming
-* fragile
-* dependent on human mediation
-* potentially contestable
-
-**At this stage, the reconstruction itself becomes part of what is examined.**
-
-#### World B : Examination
-
-Declared evidence exists for the execution at time T.
-
-When the execution occurred:
-
-* the action was recorded as a fact
-* the evaluations produced at that moment were preserved
-* ordering and integrity were guaranteed
-
-To answer the question, the organization does not reconstruct. It examines. The facts examined are:
-
-* the same facts that existed at execution time
-* independent of current system state
-* independent of current personnel
-
-The discussion focuses on:
-
-* what was executed
-* what was evaluated
-* the declared context
-
-**Not on how convincingly the past can be rebuilt.**
+L’état factuel de la décision est déduit après coup. Différentes équipes peuvent reconstruire des versions divergentes de l’événement, selon les sources disponibles, l’évolution des systèmes et les interprétations appliquées. Le résultat est un récit assemblé sous le signe de l’incertitude.
 
 ---
 
-### What changes between the two worlds
+### Monde B — La Preuve à l’exécution
 
-The difference between these two worlds is not technical sophistication. **It is when evidence is created.**
+Dans ce monde, l’état factuel de la décision a été capturé au moment exact de l’exécution. Cela implique qu’un mécanisme de preuve — tel qu’une **Infrastructure de Snapshot Décisionnel** — était déjà en place.
 
-* In World A, evidence is assembled when the question arises.
-* In World B, evidence already exists when the question is asked.
+Lorsque la décision est examinée plus tard :
 
-This single shift changes:
+* les données d’entrée réellement utilisées sont disponibles,
+* l’état exact de la logique ou du modèle est connu,
+* le contexte d’exécution est préservé,
+* et le résultat produit est enregistré.
 
-* the duration of investigations
-* the number of teams involved
-* the stability of conclusions
-* the institutional risk profile
-
----
-
-### What this scenario is not about
-
-This scenario does not address:
-
-* whether the decision was correct or incorrect
-* whether the model or policy was good or bad
-* whether the outcome should have been different
-
-**It is strictly about whether facts are examinable without reconstruction.**
+L’état factuel n’a pas besoin d’être déduit. Il existe déjà.
 
 ---
 
-### Why this scenario matters
+## Ce qui change entre les deux mondes
 
-Institutions rarely fail because they cannot decide. They fail because, later, they cannot demonstrate what happened, under scrutiny, without reassembling the past.
+La décision peut être identique dans les deux mondes. Ce qui change, c’est la **disponibilité des faits**.
 
-**This scenario captures the moment where the ability to reconstruct is no longer sufficient, because reconstruction itself is examined.**
+Dans le Monde A :
 
----
+* les faits doivent être reconstruits,
+* l’interprétation est inévitable pour combler les vides,
+* l’incertitude s’accumule avec le temps.
 
-### Relation to Horizon
+Dans le Monde B :
 
-Asplenz Horizon exists to make World B possible. It does not explain decisions. It does not judge outcomes. It does not prevent incidents.
+* les faits sont examinés directement,
+* l’interprétation est séparée de l’exécution,
+* l’état de connaissance au moment de l’action est préservé.
 
-**It ensures that, when examination is required, facts already exist.**
+D’un point de vue opérationnel, cela signifie :
 
----
+> **Moins d’efforts sont requis pour établir, conserver et accéder à l’état factuel lorsqu’il est nécessaire.**
 
-### Closing note
-
-This scenario is intentionally generic. It applies wherever:
-
-* executions are consequential
-* time passes
-* systems and teams evolve
-* questions are asked after the fact
-
-The scenario does not argue that such a capability must exist. **It clarifies what changes if it does.**
+La différence n’est pas une intention institutionnelle. C’est un coût opérationnel.
 
 ---
 
-### 3. Version Française
+## Ce que ce scénario n’évalue pas
 
-# Scénario illustratif
+Ce scénario n’évalue **pas** :
 
-## Une situation type où la reconstruction devient le problème
+* si la décision était correcte ou incorrecte,
+* si la politique ou le modèle était approprié,
+* si un résultat différent aurait été préférable.
 
-### Ce que ce scénario démontre
+Une décision capturée à l’exécution peut plus tard être contestée, révisée ou annulée. La preuve à l’exécution ne légitime pas la décision. Elle ne justifie pas le résultat.
 
-Ce scénario démontre que lorsqu'une décision est examinée ultérieurement, l'issue dépend de l'existence d'un registre au moment de l'exécution ou de la nécessité d'une reconstruction.
-
-Il procède par la comparaison de **deux mondes possibles** :
-
-* **Monde A : La reconstruction**
-La décision est examinée des semaines plus tard à l'aide de journaux (logs), de tableaux de bord, de tickets et de la mémoire des acteurs.
-* **Monde B : La preuve au moment de l'exécution**
-La décision a laissé derrière elle un artefact préservé à l'instant même où elle a été exécutée.
-
-Les événements sont identiques. La différence ne réside **pas dans la décision**, mais dans **ce qui existe avant que l'examen ne commence**.
+Elle établit une seule chose : **ce que le système a réellement fait, avec ce qu’il avait, à cet instant précis.**
 
 ---
 
-### Objet de cette page
+## Le contrôle institutionnel reste inchangé
 
-Cette page ne décrit pas un cas client, un incident ou un déploiement spécifique.
+Dans les deux mondes, l’institution conserve le plein contrôle sur :
 
-Elle décrit une situation archétypale propre aux institutions régulées, quels que soient leur secteur, leur pile technologique ou leur logique décisionnelle.
+* ce qui est examiné,
+* la manière dont les faits sont interprétés,
+* les conclusions qui en sont tirées,
+* et ce qui est communiqué.
 
-L'objectif est de rendre le problème sous-jacent concret sans divulgation opérationnelle.
-
----
-
-### La situation
-
-À l'instant T, un système procède à une exécution.
-
-Cette exécution peut être :
-
-* entièrement automatisée
-* partiellement automatisée
-* initiée par un humain assisté par un système
-
-L'exécution produit un résultat :
-
-* porteur de conséquences institutionnelles
-* irréversible
-* extérieurement contestable
-
-Au moment où elle survient, rien ne semble anormal.
+La preuve à l’exécution n’impose pas de récit. Elle n’automatise pas le jugement. Elle fournit une base factuelle stable sur laquelle le pouvoir discrétionnaire de l’institution peut s’exercer.
 
 ---
 
-### Des semaines ou des mois plus tard
+## Pourquoi cette distinction est cruciale
 
-Une question surgit. Il ne s'agit pas d'une question générale sur le comportement habituel du système, mais d'une **question précise sur un cas spécifique** :
+Les institutions échouent rarement parce qu’elles ne peuvent pas décider. Elles échouent parce que, avec le temps, elles ne peuvent plus **démontrer** ce qui s’est réellement passé.
 
-* Pourquoi cette action a-t-elle été entreprise ?
-* Quelles informations étaient disponibles à cet instant ?
-* Quelles évaluations ont été produites ?
-* Qu’est-ce qui était connu, évalué ou supposé lors de l'exécution ?
-
-La question est qualitative, spécifique au cas et non statistique.
+L’absence de preuve à l’exécution n’empêche pas l’action, mais elle augmente le coût, l’incertitude et la fragilité de l’examen ultérieur. Ce scénario illustre pourquoi la préservation des faits au moment de l’exécution change fondamentalement la relation d’une organisation avec ses propres décisions passées.
 
 ---
 
-### Deux mondes possibles
+## Résumé
 
-À ce stade, l'institution se trouve dans l'une des deux situations suivantes.
+La différence entre les deux mondes n'est pas la décision elle-même. C'est la nature de l'état factuel de l'exécution :
 
-#### Monde A : La reconstruction
+* doit-il être reconstruit dans l'incertitude, ou
+* existe-t-il déjà sous la forme d'un enregistrement immuable ?
 
-Aucune preuve déclarée n'existe pour l'exécution à l'instant T.
-
-Pour répondre à la question, l'organisation doit reconstruire les événements :
-
-* en corrélant les logs de plusieurs systèmes
-* en examinant les tickets, courriels ou tableaux de bord
-* en interrogeant les ingénieurs et les opérateurs
-* en rechargeant des configurations ou des modèles ayant pu évoluer
-
-Les faits sont déduits. Le contexte est réassemblé. Les explications sont produites après coup. Bien que la reconstruction puisse être honnête et diligente, elle est :
-
-* chronophage
-* fragile
-* dépendante de l'intervention humaine
-* potentiellement contestable
-
-**À ce stade, la reconstruction elle-même devient l'un des objets de l'examen.**
-
-#### Monde B : L’examen
-
-Une preuve déclarée existe pour l'exécution à l'instant T.
-
-Au moment de l'exécution :
-
-* l'action a été consignée comme un fait
-* les évaluations produites à cet instant ont été préservées
-* l'ordre et l'intégrité ont été garantis
-
-Pour répondre à la question, l'organisation ne reconstruit pas. Elle examine. Les faits examinés sont :
-
-* les mêmes faits que ceux existant au moment de l'exécution
-* indépendants de l'état actuel du système
-* indépendants du personnel en place
-
-La discussion se concentre sur :
-
-* ce qui a été exécuté
-* ce qui a été évalué
-* le contexte déclaré
-
-**Et non sur la crédibilité de la reconstruction du passé.**
+Une Infrastructure de Snapshot Décisionnel rend le second monde possible.
 
 ---
 
-### Ce qui change entre les deux mondes
+---
 
-La différence entre ces deux mondes n'est pas d'ordre technique. **Elle réside dans le moment où la preuve est créée.**
+# 🇬🇧 Illustrative Scenario
 
-* Dans le Monde A, la preuve est assemblée quand la question se pose.
-* Dans le Monde B, la preuve existe déjà quand la question est posée.
+## A concrete illustration of execution-time evidence versus reconstruction
 
-Ce simple décalage modifie :
+This scenario is intentionally generic. It does not describe a specific organization, product, or regulatory context.
 
-* la durée des investigations
-* le nombre d'équipes mobilisées
-* la stabilité des conclusions
-* le profil de risque institutionnel
+Its purpose is to illustrate, in concrete terms, the structural difference between:
+
+* decisions whose factual state must be reconstructed after the fact, and
+* decisions whose factual state was captured at execution time.
+
+The quality, correctness, or legitimacy of the decision itself is **not** evaluated here.
 
 ---
 
-### Ce que ce scénario n'est pas
+## The context
 
-Ce scénario ne traite pas :
+An automated decision system produces decisions that have durable effects.
 
-* de la justesse ou de l'erreur de la décision
-* de la qualité du modèle ou de la politique appliquée
-* de la pertinence du résultat obtenu
+At the moment of execution, the system:
 
-**Il porte exclusivement sur la capacité à examiner des faits sans reconstruction.**
+* consumes specific input data,
+* applies a given logic or model,
+* operates under a concrete configuration,
+* and produces an outcome.
 
----
-
-### Pourquoi ce scénario est crucial
-
-Les institutions échouent rarement par incapacité à décider. Elles échouent parce que, plus tard, elles ne peuvent démontrer ce qui s'est passé sous la pression d'un examen, sans avoir à réassembler le passé.
-
-**Ce scénario capture l'instant où la capacité de reconstruction ne suffit plus, car la reconstruction elle-même fait l'objet de l'examen.**
+Some time later, the organization must answer a question about that decision. The difference between the two worlds below lies not in the decision itself, but in whether the factual state of execution still exists.
 
 ---
 
-### Relation avec Horizon
+## Two possible worlds
 
-Asplenz Horizon existe pour rendre le Monde B possible. Il n'explique pas les décisions. Il ne juge pas les résultats. Il ne prévient pas les incidents.
+### World A — Reconstruction
 
-**Il garantit que, lorsqu'un examen est requis, les faits existent déjà.**
+In this world, no execution-time evidence was captured when the decision was made. When the decision is later examined, the organization must reconstruct what happened using:
+
+* logs,
+* database states,
+* configuration repositories,
+* monitoring tools,
+* tickets and incident reports,
+* and human recollection.
+
+The factual state of the decision is inferred after the fact. Different teams may reconstruct different versions of what happened, depending on which sources are still available, how systems have evolved, and which interpretations are applied. The result is a narrative assembled under uncertainty.
 
 ---
 
-### Note finale
+### World B — Execution-time evidence
 
-Ce scénario est intentionnellement générique. Il s'applique partout où :
+In this world, the factual state of the decision was captured at the moment of execution. This implies that an execution-time evidence mechanism — such as a **Decision Snapshot Infrastructure** — was already in place.
 
-* les exécutions sont lourdes de conséquences
-* le temps passe
-* les systèmes et les équipes évoluent
-* des questions sont posées après coup
+When the decision is later examined:
 
-Le scénario ne prétend pas qu'un tel dispositif doive impérativement exister. **Il clarifie ce qui change s'il existe.**
+* the input data actually used is available,
+* the exact logic or model state is known,
+* the execution context is preserved,
+* and the produced outcome is recorded.
 
+The factual state does not need to be inferred. It already exists.
 
+---
+
+## What changes between the two worlds
+
+The decision itself may be identical in both worlds. What changes is the **availability of facts**.
+
+In World A:
+
+* facts must be reconstructed,
+* interpretations are unavoidable,
+* and uncertainty accumulates over time.
+
+In World B:
+
+* facts are examined directly,
+* interpretation is separated from execution,
+* and the state of knowledge at the moment of action is preserved.
+
+From an operational perspective, this also means:
+
+> **Less effort is required to establish, retain, and access factual state when it is needed.**
+
+The difference is not institutional intent. It is operational cost.
+
+---
+
+## What this scenario does *not* assess
+
+This scenario does **not** assess:
+
+* whether the decision was correct or incorrect,
+* whether the policy or model was appropriate,
+* whether a different outcome would have been preferable.
+
+A decision captured at execution time may later be challenged, revised, or overturned. Execution-time evidence does **not** legitimize the decision. It does **not** justify the outcome.
+
+It establishes only one thing: **what the system actually did, with what it had, at that moment.**
+
+---
+
+## Institutional control remains unchanged
+
+In both worlds, the institution retains full control over:
+
+* what is examined,
+* how facts are interpreted,
+* what conclusions are drawn,
+* and what is communicated.
+
+Execution-time evidence does not impose a narrative. It does not automate judgment. It provides a stable factual base upon which institutional discretion can be exercised.
+
+---
+
+## Why this distinction matters
+
+Institutions rarely fail because they cannot decide. They fail because, over time, they can no longer **demonstrate** what actually happened.
+
+The absence of execution-time evidence does not prevent action. It increases the cost, uncertainty, and fragility of later examination. This scenario illustrates why preserving facts at execution time fundamentally changes the organization’s relationship to its own past decisions.
+
+---
+
+## Summary
+
+The difference between the two worlds is not the decision itself. It is whether the factual state of execution:
+
+* must be reconstructed under uncertainty, or
+* already exists as an immutable record.
+
+A Decision Snapshot Infrastructure makes the second world possible.
 
