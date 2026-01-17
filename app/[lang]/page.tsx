@@ -204,14 +204,14 @@ export default function HomePage({
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="pt-4 lg:pt-6 pb-8">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-4xl mx-auto px-6">
           <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-4">{c.hero.badge}</p>
           <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-black mb-6 leading-tight">
             {c.hero.title}
           </h1>
           <p className="text-lg text-black/70 mb-4">{c.hero.intro}</p>
           <p className="text-lg text-black/70 mb-8" dangerouslySetInnerHTML={{ __html: c.hero.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
-          <ul className="space-y-2 mb-8 inline-block text-left">
+          <ul className="space-y-2 mb-8">
             {c.hero.points.map((point, i) => (
               <li key={i} className="flex items-center gap-2 text-[#005C99] font-medium">
                 <span>👉</span>
@@ -232,7 +232,7 @@ export default function HomePage({
       </section>
 
       {/* Facts First Section */}
-      <section className="pt-0 pb-12">
+      <section className="pt-0 pb-6">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-[#00205E] p-8 lg:p-12 text-center">
             <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
@@ -253,7 +253,7 @@ export default function HomePage({
       </section>
 
       {/* Problem Section */}
-      <section className="py-16 bg-zinc-50">
+      <section className="py-8 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">{c.problem.title}</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.problem.subtitle}</h2>
@@ -265,7 +265,7 @@ export default function HomePage({
       </section>
 
       {/* Principle Section */}
-      <section className="py-16">
+      <section className="py-8">
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">{c.principle.title}</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.principle.subtitle}</h2>
@@ -282,7 +282,7 @@ export default function HomePage({
       </section>
 
       {/* Artifact Section */}
-      <section className="py-16 bg-zinc-50">
+      <section className="py-8 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.artifact.title}</h2>
           <p className="text-black/70 mb-6" dangerouslySetInnerHTML={{ __html: c.artifact.intro.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
@@ -298,7 +298,7 @@ export default function HomePage({
       </section>
 
       {/* Support Section */}
-      <section className="py-16">
+      <section className="py-8">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-[#00205E] text-white p-8 lg:p-12">
             <h2 className="text-2xl lg:text-3xl font-bold mb-6">{c.support.title}</h2>
@@ -309,7 +309,7 @@ export default function HomePage({
       </section>
 
       {/* Comparison Table */}
-      <section className="py-16">
+      <section className="py-8">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-8">{c.comparison.title}</h2>
           <div className="overflow-x-auto">
@@ -338,7 +338,7 @@ export default function HomePage({
       </section>
 
       {/* CTA Section */}
-      <section id="engage" className="py-16 bg-zinc-50">
+      <section id="engage" className="py-8 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">{c.cta.title}</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.cta.subtitle}</h2>
@@ -359,7 +359,7 @@ export default function HomePage({
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16">
+      <section className="py-8">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-xl font-bold text-black mb-6">{c.faq.title}</h2>
           <div className="space-y-4">
@@ -374,7 +374,7 @@ export default function HomePage({
       </section>
 
       {/* White Paper CTA */}
-      <section className="py-16 bg-zinc-50">
+      <section className="py-8 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-[#00205E]/5 border border-[#005C99]/20 p-8 lg:p-12">
             <h2 className="text-2xl font-bold text-black mb-4">{c.whitePaper.title}</h2>
