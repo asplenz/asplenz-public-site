@@ -14,8 +14,8 @@ export default function WhitePaperLayout({
       {/* Desktop Sidebar */}
       <Header lang={params.lang} />
 
-      {/* Mobile Menu Button (fixed position) */}
-      <div className="lg:hidden fixed top-2 right-4 z-50">
+      {/* Mobile Menu Button (fixed position, after language switch) */}
+      <div className="lg:hidden fixed top-2 right-16 z-50">
         <MobileMenu lang={params.lang} />
       </div>
 
