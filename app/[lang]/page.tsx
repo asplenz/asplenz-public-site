@@ -50,42 +50,30 @@ const content = {
     },
     artifact: {
       title: 'Contenu de l\'artefact décisionnel',
-      intro: 'Chaque snapshot est un objet complet qui contient cinq couches de données :',
+      intro: 'Chaque snapshot est un objet complet qui contient :',
       sections: [
         {
-          title: 'Métadonnées d\'exécution (EXECUTION RECORD)',
+          title: 'Contexte d\'Exécution',
           items: [
-            '**Identifiant unique** de l\'exécution et **horodatage UTC** précis.',
-            'Identité du système source et version exacte de l\'acteur (système expert, IA).',
+            'Identité précise du système, version de l\'acteur et horodatage exact (UTC).',
           ],
         },
         {
-          title: 'Snapshot des données (SNAPSHOT DATA)',
+          title: 'Données d\'Entrée (T0)',
           items: [
-            '**Données brutes telles que vues par le système à l\'instant T0.**',
-            'Toutes les variables d\'entrée ayant servi au calcul (revenus, dette, âge, etc.).',
-            '*C\'est ce qui permet de s\'affranchir de l\'historisation des bases de données.*',
+            'L\'intégralité des données brutes telles qu\'elles ont été vues par le système à l\'instant de la décision.',
           ],
         },
         {
-          title: 'État du modèle et de la logique (MODEL STATE)',
+          title: 'État de la Logique',
           items: [
-            'Empreinte numérique (**hash**) du modèle et version de la configuration.',
-            'Paramètres et seuils (thresholds) actifs au moment précis de la décision.',
+            'Le hash du modèle, la configuration exacte et les seuils actifs à ce moment précis.',
           ],
         },
         {
-          title: 'Résultat de la décision (OUTPUT)',
+          title: 'Sortie & Intégrité',
           items: [
-            'Résultat final (Accordé / Refusé) et scores de confiance.',
-            '**Codes de motifs (reason codes)** expliquant factuellement la sortie du système.',
-          ],
-        },
-        {
-          title: 'Intégrité & Chaîne de confiance (INTEGRITY)',
-          items: [
-            '**Signature cryptographique Ed25519** garantissant la non-altération.',
-            'Chaînage séquentiel (**hash précédent**) rendant toute suppression détectable.',
+            'Le résultat final et ses codes de raison, scellés par une signature cryptographique immuable.',
           ],
         },
       ],
@@ -200,41 +188,30 @@ const content = {
     },
     artifact: {
       title: 'Decision Artifact Content',
-      intro: 'Each snapshot is a complete object containing five layers of data:',
+      intro: 'Each snapshot is a complete object containing:',
       sections: [
         {
-          title: 'Execution Metadata (EXECUTION RECORD)',
+          title: 'Execution Context',
           items: [
-            'Unique execution **ID** and precise **UTC timestamp**.',
-            'System identity and exact actor version (expert system, AI).',
+            'Precise system identity, actor version and exact timestamp (UTC).',
           ],
         },
         {
-          title: 'Snapshot Data (Inputs at T0)',
+          title: 'Input Data (T0)',
           items: [
-            '**Raw data seen by the system at the exact moment of decision.**',
-            'All input variables used for the calculation (income, debt, age, etc.).',
+            'The complete raw data as seen by the system at the moment of decision.',
           ],
         },
         {
-          title: 'Model & Logic State (MODEL STATE)',
+          title: 'Logic State',
           items: [
-            'Model **hash** and configuration version.',
-            'Active thresholds and parameters at the precise moment of decision.',
+            'The model hash, exact configuration and active thresholds at that precise moment.',
           ],
         },
         {
-          title: 'Decision Output (OUTPUT)',
+          title: 'Output & Integrity',
           items: [
-            'Final result (Approved / Denied) and confidence scores.',
-            '**Actionable reason codes** explaining the system output.',
-          ],
-        },
-        {
-          title: 'Integrity & Chain of Trust (INTEGRITY)',
-          items: [
-            '**Ed25519 cryptographic signature** ensuring non-alteration.',
-            'Sequential chaining (**prev_hash**) making any deletion detectable.',
+            'The final result and its reason codes, sealed by an immutable cryptographic signature.',
           ],
         },
       ],
@@ -419,18 +396,14 @@ export default function HomePage({
             <div>
               <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">{c.artifact.title}</h2>
               <p className="text-black/70 mb-6">{c.artifact.intro}</p>
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {c.artifact.sections.map((section, i) => (
                   <div key={i}>
-                    <h3 className="font-bold text-[#1e3a8a] mb-2 flex items-center gap-2">
-                      <span className="text-lg">🔹</span>
+                    <h3 className="font-bold text-[#1e3a8a] mb-1 flex items-center gap-2">
+                      <span>•</span>
                       {section.title}
                     </h3>
-                    <ul className="space-y-1 pl-6">
-                      {section.items.map((item, j) => (
-                        <li key={j} className="text-black/70 text-sm" dangerouslySetInnerHTML={{ __html: '• ' + item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>') }} />
-                      ))}
-                    </ul>
+                    <p className="text-black/70 text-sm pl-4" dangerouslySetInnerHTML={{ __html: section.items[0].replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>') }} />
                   </div>
                 ))}
               </div>
@@ -445,47 +418,13 @@ export default function HomePage({
               </p>
             </div>
             <div className="lg:sticky lg:top-24">
-              <pre className="bg-[#0d1117] text-[#e6edf3] p-4 rounded-lg shadow-lg border border-black/10 text-[10px] sm:text-xs overflow-x-auto font-mono leading-relaxed">
-{`┌─────────────────────────────────────────────────────────────────┐
-│ EXECUTION RECORD                                                │
-├─────────────────────────────────────────────────────────────────┤
-│ execution_id:    exec_7f3a9b2c-4d1e-4a8f-b5c6-9e0f1a2b3c4d     │
-│ timestamp:       2025-01-16T14:32:07.892Z                       │
-│ actor:           system:credit-scoring-v2.3.1                   │
-│ action:          LOAN_APPLICATION_DENIED                        │
-├─────────────────────────────────────────────────────────────────┤
-│ SNAPSHOT DATA (inputs seen at T0)                               │
-├─────────────────────────────────────────────────────────────────┤
-│ applicant_id:        APP-2025-84729                             │
-│ requested_amount:    45,000 EUR                                 │
-│ annual_income:       52,000 EUR                                 │
-│ debt_ratio:          0.47                                       │
-│ employment_months:   8                                          │
-│ credit_history:      LIMITED                                    │
-│ previous_defaults:   0                                          │
-│ age:                 29                                         │
-├─────────────────────────────────────────────────────────────────┤
-│ MODEL STATE (at T0)                                             │
-├─────────────────────────────────────────────────────────────────┤
-│ model_hash:          sha256:8f4a2b...c9d1e                      │
-│ model_version:       credit-scoring-v2.3.1                      │
-│ config_version:      prod-2025-01-15                            │
-│ threshold:           0.65                                       │
-├─────────────────────────────────────────────────────────────────┤
-│ OUTPUT (decision at T0)                                         │
-├─────────────────────────────────────────────────────────────────┤
-│ score:               0.42                                       │
-│ decision:            DENIED                                     │
-│ reason_codes:        [DEBT_RATIO_HIGH, EMPLOYMENT_LENGTH_SHORT] │
-│ confidence:          0.89                                       │
-├─────────────────────────────────────────────────────────────────┤
-│ INTEGRITY                                                       │
-├─────────────────────────────────────────────────────────────────┤
-│ signature:           ed25519:9a8b7c6d5e4f...                    │
-│ sequence:            1,847,293                                  │
-│ prev_hash:           sha256:2c4e6a...b8d0f                      │
-└─────────────────────────────────────────────────────────────────┘`}
-              </pre>
+              <Image
+                src="/images/artefact.png"
+                alt="Decision Snapshot Artifact"
+                width={600}
+                height={800}
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
             </div>
           </div>
         </div>
@@ -548,7 +487,7 @@ export default function HomePage({
             </div>
             <div>
               <Image
-                src="/images/infra_before_apres.png"
+                src="/images/infra.png"
                 alt="Infrastructure before and after"
                 width={600}
                 height={400}
