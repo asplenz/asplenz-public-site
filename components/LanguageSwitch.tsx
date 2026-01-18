@@ -13,7 +13,12 @@ export default function LanguageSwitch({ currentLang }: LanguageSwitchProps) {
   
   // Get URL for specific language
   const getLanguageUrl = (lang: Language) => {
-    return pathname.replace(`/${currentLang}`, `/${lang}`);
+    // Replace the language segment at the start of the path
+    const segments = pathname.split('/');
+    if (segments[1] === currentLang) {
+      segments[1] = lang;
+    }
+    return segments.join('/') || `/${lang}`;
   };
   
   return (

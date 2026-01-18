@@ -27,7 +27,7 @@ Ce document est volontairement non promotionnel. Il se concentre sur la préserv
 
 Dans la plupart des organisations, l'état factuel des décisions passées n'est pas préservé au moment de l'exécution. Lorsque des questions surgissent, les institutions tentent de reconstruire ce qui s'est passé à l'aide de logs, de traces, de référentiels de configuration, de tableaux de bord et de souvenirs humains. Ce processus est intrinsèquement fragile, coûteux et incertain. Il produit des récits plutôt que des faits.
 
-L'Infrastructure de Snapshot Décisionnel comble cette lacune structurelle. Elle introduit une couche de preuve à l'exécution dont le seul but est de capturer, au point de non-retour, l'état factuel complet d'une décision et de le préserver sous la forme d'un artefact immuable et auto-contenu. Cet artefact existe indépendamment de l'évolution future du système qui l'a produit.
+L'Infrastructure de Snapshot Décisionnel comble cette lacune structurelle. En tant que couche de preuve à l'exécution, son seul but est de capturer, au point de non-retour, l'état factuel complet d'une décision et de le préserver sous la forme d'un artefact immuable et auto-contenu. Cet artefact existe indépendamment de l'évolution future du système qui l'a produit.
 
 L'infrastructure n'explique, ne justifie, ni n'évalue les décisions. Elle préserve ce qui a été exécuté. Ce faisant, elle réduit l'effort opérationnel, limite l'incertitude et restaure une autorité factuelle durable sans altérer le contrôle institutionnel ou la gouvernance.`
       },
@@ -198,7 +198,7 @@ This document is intentionally non-promotional. It focuses on factual preservati
 
 In most organizations, the factual state of past decisions is not preserved at execution time. When questions arise, institutions attempt to reconstruct what happened using logs, traces, configuration repositories, dashboards, tickets, and human recollection. This process is inherently fragile, costly, and uncertain. It produces narratives rather than facts.
 
-Decision Snapshot Infrastructure addresses this structural gap. It introduces an execution-time evidence layer whose sole purpose is to capture, at the point of no return, the complete factual state of a decision and preserve it as an immutable, self-contained artifact. This artifact exists independently of the future evolution of the system that produced it.
+Decision Snapshot Infrastructure addresses this structural gap. As an execution-time evidence layer, its sole purpose is to capture, at the point of no return, the complete factual state of a decision and preserve it as an immutable, self-contained artifact. This artifact exists independently of the future evolution of the system that produced it.
 
 The infrastructure does not explain, justify, or evaluate decisions. It preserves what was executed. By doing so, it reduces operational effort, limits uncertainty, and restores durable factual authority without altering institutional control or governance.`
       },

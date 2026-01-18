@@ -129,6 +129,11 @@ const content = {
       content: 'Le document Foundational Brief présente les fondations opérationnelles de la preuve à l\'exécution et les principes de l\'Infrastructure de Snapshot Décisionnel.',
       linkText: 'Lire les Fondements',
     },
+    costAnalysis: {
+      title: 'Comprendre les coûts cachés',
+      content: 'Ce document analyse pourquoi le coût de la reconstruction de décisions est systématiquement sous-estimé et dépend principalement de l\'architecture, non du volume.',
+      linkText: 'Lire l\'analyse',
+    },
   },
   en: {
     hero: {
@@ -252,6 +257,11 @@ const content = {
       title: 'Learn more',
       content: 'The Foundational Brief presents the operational foundations of execution-time evidence and the principles of Decision Snapshot Infrastructure.',
       linkText: 'Read the Foundations',
+    },
+    costAnalysis: {
+      title: 'Understand hidden costs',
+      content: 'This document analyzes why the cost of decision reconstruction is systematically underestimated and depends primarily on architecture, not volume.',
+      linkText: 'Read the analysis',
     },
   },
 };
@@ -504,6 +514,22 @@ export default function LandingPage({
               className="inline-flex items-center gap-2 bg-[#005C99] text-white px-6 py-3 font-medium hover:bg-[#005C99]/90 transition-colors"
             >
               {c.foundations.linkText} <span>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Cost Analysis CTA */}
+      <section className="py-8 bg-zinc-50">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-white border border-black/10 p-8 lg:p-12">
+            <h2 className="text-2xl font-bold text-black mb-4">{c.costAnalysis.title}</h2>
+            <p className="text-black/70 mb-6 max-w-2xl">{c.costAnalysis.content}</p>
+            <Link
+              href={`/${params.lang}/cost-of-reconstruction`}
+              className="inline-flex items-center gap-2 bg-[#005C99] text-white px-6 py-3 font-medium hover:bg-[#005C99]/90 transition-colors"
+            >
+              {c.costAnalysis.linkText} <span>→</span>
             </Link>
           </div>
         </div>
