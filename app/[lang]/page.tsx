@@ -126,7 +126,7 @@ const content = {
     },
     foundations: {
       title: 'Approfondir le sujet',
-      content: 'Le document Foundational Brief detaille l\'architecture technique, les cas d\'usage et les principes de conception de l\'infrastructure.',
+      content: 'Le document Foundational Brief présente les fondations opérationnelles de la preuve à l\'exécution et les principes de l\'Infrastructure de Snapshot Décisionnel.',
       linkText: 'Lire les Fondements',
     },
   },
@@ -250,7 +250,7 @@ const content = {
     },
     foundations: {
       title: 'Learn more',
-      content: 'The Foundational Brief details the technical architecture, use cases, and design principles of the infrastructure.',
+      content: 'The Foundational Brief presents the operational foundations of execution-time evidence and the principles of Decision Snapshot Infrastructure.',
       linkText: 'Read the Foundations',
     },
   },
