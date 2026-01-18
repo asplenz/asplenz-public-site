@@ -12,33 +12,33 @@ const content = {
     subtitle: 'Conséquences opérationnelles, organisationnelles et financières de la reconstruction de décisions automatisées',
     positioning: {
       title: 'Déclaration de positionnement',
-      content: `Ce document ne fournit pas de référence comparative ou de chiffre de coût unique. Son objectif est d'expliquer :`,
+      content: `Ce document ne fournit pas de référence comparative ou de chiffre de coût consolidé unique. Son objectif est d'expliquer :`,
       bullets: [
-        'pourquoi le coût de la reconstruction de décision a posteriori varie si largement,',
-        'pourquoi il est systématiquement sous-estimé,',
-        'et pourquoi il dépend principalement de l\'architecture, et non du volume de transactions.'
+        'pourquoi la charge opérationnelle et organisationnelle associée à la reconstruction de décision a posteriori diffère si significativement d\'une organisation à l\'autre,',
+        'pourquoi cette charge est systématiquement sous-estimée,',
+        'et pourquoi elle dépend principalement de l\'architecture décisionnelle plutôt que du volume de transactions.'
       ],
-      conclusion: 'Les chiffres et les scénarios abordés ici sont des ordres de grandeur, et non des promesses ou des moyennes.'
+      conclusion: 'Tout au long de ce document, le terme coût ne fait pas référence à un poste budgétaire unique. Il désigne la charge opérationnelle globale induite par la reconstruction, incluant la mobilisation des équipes, la dynamique des escalades, les frais de coordination et le risque associé. Les scénarios discutés représentent des ordres de grandeur d\'effort, et non des promesses ou des moyennes sectorielles.'
     },
     sections: [
       {
         id: 'definition',
-        title: '1. Ce que signifie réellement la « reconstruction de décision a posteriori »',
+        title: '1. Ce que signifie réellement la reconstruction de décision a posteriori',
         content: `Dans les environnements de décision automatisés, une reconstruction a posteriori se produit lorsqu'une organisation doit expliquer, justifier ou défendre une décision après son exécution, sans avoir préservé un enregistrement factuel complet au moment de la décision.
 
 Les déclencheurs typiques incluent :`,
         bullets: [
           'les litiges clients ou marchands,',
-          'les demandes de partenaires ou de réseaux (schemes),',
+          'les demandes de partenaires ou de réseaux,',
           'les requêtes réglementaires ou de supervision,',
           'les revues d\'incidents internes,',
           'les processus précontentieux ou contentieux.'
         ],
-        conclusion: 'La reconstruction n\'est pas une explication. C\'est une tentative de déduire à nouveau des faits qui n\'ont jamais été capturés comme un tout cohérent.'
+        conclusion: 'La reconstruction n\'est pas une explication. C\'est une tentative de déduire à nouveau des faits qui n\'ont jamais été capturés comme un tout cohérent et faisant autorité.'
       },
       {
         id: 'default',
-        title: '2. Pourquoi la reconstruction est le choix par défaut aujourd\'hui',
+        title: '2. Pourquoi la reconstruction est le mode de fonctionnement par défaut aujourd\'hui',
         content: `La plupart des piles décisionnelles s'appuient sur une combinaison de :`,
         bullets: [
           'journaux de transactions (logs),',
@@ -54,10 +54,10 @@ En conséquence, lorsqu'une décision est contestée :`,
           'Les logs sont extraits.',
           'Les identifiants sont corrélés.',
           'Les règles et les modèles sont revus rétrospectivement.',
-          'Les équipes sont interrogées.',
+          'Les équipes sont consultées.',
           'Une explication narrative est reconstruite.'
         ],
-        conclusion: 'Souvent des semaines ou des mois après l\'exécution. Ce n\'est pas un échec des équipes. C\'est une conséquence de la conception architecturale.'
+        conclusion: 'Cela survient souvent des semaines ou des mois après l\'exécution. Ce n\'est pas un échec des équipes. C\'est une conséquence de la conception architecturale.'
       },
       {
         id: 'logs',
@@ -73,8 +73,8 @@ En conséquence, lorsqu'une décision est contestée :`,
       },
       {
         id: 'underestimated',
-        title: '4. Pourquoi les coûts de reconstruction sont systématiquement sous-estimés',
-        content: `Les coûts de reconstruction apparaissent rarement comme un poste budgétaire unique. Ils sont répartis entre :`,
+        title: '4. Pourquoi la charge de reconstruction est systématiquement sous-estimée',
+        content: `La reconstruction n'apparaît presque jamais comme un poste budgétaire unique. La charge associée est répartie entre :`,
         bullets: [
           'les opérations et le support,',
           'les équipes fraude et risques,',
@@ -86,62 +86,63 @@ En conséquence, lorsqu'une décision est contestée :`,
         secondBullets: [
           'l\'absence de centre de coûts dédié,',
           'des parcours d\'escalade qui s\'étendent silencieusement,',
-          'le temps des cadres supérieurs consommé de façon épisodique,',
+          'la consommation épisodique du temps des cadres dirigeants,',
           'le coût d\'opportunité des équipes détournées de leurs missions,',
-          'la fatigue émotionnelle et organisationnelle lors des audits ou des incidents.'
+          'la fatigue organisationnelle et émotionnelle lors des audits ou des incidents.'
         ],
-        conclusion: 'En conséquence, de nombreuses organisations sous-estiment les coûts de reconstruction d\'un ordre de grandeur.'
+        conclusion: 'En conséquence, ce n\'est pas le coût qui est mal calculé, mais la charge qui est mal perçue.'
       },
       {
         id: 'distribution',
-        title: '5. Le coût n\'est pas un nombre — c\'est une distribution',
-        content: `Deux organisations ayant des volumes de transactions similaires peuvent connaître des coûts de reconstruction radicalement différents. Pourquoi ? Parce que le coût de reconstruction dépend de :`,
+        title: '5. Le coût n\'est pas un nombre, c\'est une distribution d\'effort',
+        content: `Deux organisations traitant des volumes de transactions similaires peuvent connaître des charges de reconstruction radicalement différentes. Cette différence dépend de :`,
         bullets: [
           'combien de décisions deviennent contestées,',
           'combien de cas escaladent au-delà de l\'explication de premier niveau,',
-          'la fréquence d\'implication de composants tiers,',
-          'la précision du versionnage des règles et des modèles,',
+          'le degré de dépendance à des composants tiers opaques,',
+          'la qualité du versionnage des règles et des modèles,',
           'la présence de faits à l\'exécution ou la nécessité de les inférer.'
         ],
-        conclusion: 'Le coût se comporte donc comme une distribution, et non comme une constante.'
+        conclusion: 'La charge de reconstruction se comporte comme une distribution, et non comme une constante.'
       },
       {
         id: 'scenarios',
-        title: '6. Scénarios de coûts de reconstruction',
-        content: `Les scénarios suivants ne sont pas des scores de maturité ni des références comparatives. Ils illustrent comment les choix architecturaux façonnent le comportement des coûts.`,
+        title: '6. Scénarios de charge de reconstruction',
+        content: `Les scénarios suivants ne sont ni des scores de maturité ni des références comparatives. Ils illustrent comment différentes trajectoires architecturales façonnent le comportement de l'effort de reconstruction.`,
         scenarios: [
           {
-            name: 'Scénario A — Pile décisionnelle fragmentée',
-            characteristics: 'Logs distribués, traçabilité limitée des versions de règles/modèles, forte dépendance aux composants tiers.',
-            behavior: 'Escalades fréquentes vers des investigations profondes, forte dépendance aux profils seniors, justifications basées sur des récits.',
-            costProfile: 'Faible prévisibilité, risque de queue (tail risk) important, haute sensibilité aux audits et incidents.'
+            name: 'Scénario A – Pile décisionnelle fragmentée',
+            characteristics: 'Logs distribués entre plusieurs systèmes, traçabilité limitée des versions de règles et modèles, forte dépendance à des composants tiers opaques.',
+            behavior: 'Escalades fréquentes vers des investigations profondes, forte dépendance aux profils seniors, justifications largement basées sur des récits reconstruits.',
+            burdenProfile: 'Faible prévisibilité, forte variabilité, risque de queue important, haute sensibilité aux audits et incidents.'
           },
           {
-            name: 'Scénario B — Pile décisionnelle standard (PSP / Fintech)',
-            characteristics: 'Centralisation des logs, versionnage partiel, mélange de logiques internes et externes.',
-            behavior: 'Majorité des cas résolus rapidement, minorité nécessitant une reconstruction multi-équipes. Les audits restent coûteux et perturbateurs.',
-            costProfile: 'Tendance centrale stable, pics occasionnels sous pression réglementaire.'
+            name: 'Scénario B – Pile décisionnelle avancée (PSP, Fintech)',
+            characteristics: 'Journalisation centralisée, versionnage partiel des règles et modèles, outils de monitoring et de contrôle plus matures, combinaison de logiques de décision internes et externes.',
+            behavior: 'La plupart des contestations sont résolues rapidement. Une part non négligeable de cas nécessite encore une reconstruction multi-équipes, en particulier pour les décisions complexes, multi-produits ou pilotées par des tiers.',
+            burdenProfile: 'Tendance centrale relativement stable, avec des pics périodiques lors de changements réglementaires, d\'audits approfondis ou d\'incidents atypiques.'
           },
           {
-            name: 'Scénario C — Pile avec preuve à l\'exécution',
-            characteristics: 'Préservation des entrées, règles, modèles et état du système au moment de la décision. Séparation claire entre faits et interprétation.',
-            behavior: 'Justifications rapides et reproductibles, escalades limitées. Processus d\'audit basés sur des preuves, et non sur des inférences.',
-            costProfile: 'Linéaire et prévisible, réduction matérielle du risque de queue.'
+            name: 'Scénario C – Ouverture vers la preuve de décision à l\'exécution',
+            description: 'Ce scénario ne décrit pas un état largement observé aujourd\'hui. Il représente une ouverture vers un modèle cible, utilisé pour clarifier ce qui change lorsque la préservation factuelle devient systématique.',
+            characteristics: 'Préservation explicite, au moment de l\'exécution, des éléments factuels ayant produit la décision. Séparation claire entre les faits de décision et l\'interprétation ultérieure. Couverture conçue pour être transversale plutôt que limitée à des produits ou flux isolés.',
+            behavior: 'Là où de tels mécanismes sont introduits, même partiellement, une réduction immédiate de la charge de reconstruction est observée sur le périmètre couvert. Les justifications deviennent plus rapides, reproductibles et moins dépendantes de l\'escalade humaine.',
+            burdenProfile: 'Effort plus linéaire et prévisible sur les décisions couvertes. Réduction matérielle du risque de queue, tout en soulignant la nécessité d\'une approche systémique pour éviter les effets de débordement en dehors du périmètre préservé.'
           }
         ]
       },
       {
         id: 'divergence',
-        title: '7. Pourquoi les coûts de reconstruction divergent si largement',
-        content: `Dans tous les scénarios, la divergence des coûts est alimentée par :`,
+        title: '7. Pourquoi la charge de reconstruction diverge si fortement',
+        content: `Dans tous les scénarios, la divergence est alimentée par :`,
         bullets: [
-          'l\'ambiguïté de ce qui qualifie une « décision contestée »,',
-          'des seuils d\'escalade silencieux,',
+          'l\'ambiguïté autour de ce qui qualifie une décision contestée,',
+          'des seuils d\'escalade implicites,',
           'l\'opacité des composants tiers,',
           'l\'absence de snapshots au moment de la décision,',
           'les passages de relais organisationnels et les frais de coordination.'
         ],
-        conclusion: 'Lorsque les faits manquent, le raisonnement se substitue à la preuve, et le coût devient non linéaire.'
+        conclusion: 'Lorsque les faits manquent, le raisonnement se substitue à la preuve, et l\'effort devient non linéaire.'
       },
       {
         id: 'assessment',
@@ -172,13 +173,15 @@ En conséquence, lorsqu'une décision est contestée :`,
             ]
           }
         ],
-        conclusion: 'Si plusieurs réponses sont « non », votre organisation reconstruit probablement des décisions plutôt que de les préserver.'
+        conclusion: 'Si plusieurs réponses sont non, votre organisation est probablement en train de reconstruire des décisions plutôt que de les préserver.'
       },
       {
         id: 'takeaway',
         title: '9. Point clé à retenir',
-        content: `La question centrale n'est pas : « Combien coûte la reconstruction a posteriori ? »
-La vraie question est : « Pourquoi reconstruisons-nous des décisions ? »
+        content: `La question centrale n'est pas :
+« Combien coûte la reconstruction a posteriori ? »
+La vraie question est :
+« Pourquoi reconstruisons-nous des décisions ? »
 
 La reconstruction a posteriori n'est pas une anomalie. C'est le résultat prévisible d'architectures qui ne préservent pas les faits au moment de l'exécution.`,
         conclusion: 'C\'est cette lacune architecturale que l\'Infrastructure de Snapshot Décisionnel est conçue pour combler.'
@@ -186,7 +189,7 @@ La reconstruction a posteriori n'est pas une anomalie. C'est le résultat prévi
     ],
     closing: {
       title: 'Note de clôture',
-      content: 'Ce document se concentre sur la réalité d\'aujourd\'hui. Il ne prescrit pas d\'outils, de produits ou d\'implémentations. Il décrit le coût structurel de la reconstruction de ce qui n\'a jamais été préservé. Comprendre ce coût est la première étape vers un changement d\'architecture.'
+      content: 'Ce document se concentre sur la réalité opérationnelle d\'aujourd\'hui. Il ne prescrit pas d\'outils, de produits ou d\'implémentations. Il décrit la charge structurelle liée à la reconstruction de ce qui n\'a jamais été préservé. Comprendre cette charge est la première étape vers un changement architectural.'
     },
     cta: {
       title: 'Étape suivante',
@@ -196,23 +199,23 @@ La reconstruction a posteriori n'est pas une anomalie. C'est le résultat prévi
   },
   en: {
     badge: 'Operational Analysis',
-    title: 'The Cost of Post-Hoc Decision Reconstruction',
+    title: 'The Cost of Post Hoc Decision Reconstruction',
     subtitle: 'Operational, organizational, and financial consequences of reconstructing automated decisions',
     positioning: {
       title: 'Positioning statement',
-      content: `This document does not provide a benchmark or a single cost figure. Its purpose is to explain:`,
+      content: `This document does not provide a benchmark or a single consolidated cost figure. Its purpose is to explain:`,
       bullets: [
-        'why the cost of post-hoc decision reconstruction varies so widely,',
-        'why it is systematically underestimated,',
-        'and why it depends primarily on architecture, not on transaction volume.'
+        'why the operational and organizational burden associated with post hoc decision reconstruction differs so significantly across organizations,',
+        'why this burden is systematically underestimated,',
+        'and why it depends primarily on decision architecture rather than transaction volume.'
       ],
-      conclusion: 'The figures and scenarios discussed here are orders of magnitude, not promises or averages.'
+      conclusion: 'Throughout this document, the term cost does not refer to a single budget line item. It refers to the aggregate operational burden induced by reconstruction, including team mobilization, escalation dynamics, coordination overhead, and associated risk. The scenarios discussed are orders of magnitude of effort, not promises or industry averages.'
     },
     sections: [
       {
         id: 'definition',
-        title: '1. What "post-hoc decision reconstruction" actually means',
-        content: `In automated decision environments, a post-hoc reconstruction occurs when an organization must explain, justify, or defend a decision after it has been executed, without having preserved a complete factual record at decision time.
+        title: '1. What post hoc decision reconstruction actually means',
+        content: `In automated decision environments, a post hoc reconstruction occurs when an organization must explain, justify, or defend a decision after it has been executed, without having preserved a complete factual record at decision time.
 
 Typical triggers include:`,
         bullets: [
@@ -220,20 +223,20 @@ Typical triggers include:`,
           'partner or scheme inquiries,',
           'regulatory or supervisory requests,',
           'internal incident reviews,',
-          'pre-litigation or litigation processes.'
+          'pre litigation or litigation processes.'
         ],
-        conclusion: 'Reconstruction is not explanation. It is an attempt to re-infer facts that were never captured as a coherent whole.'
+        conclusion: 'Reconstruction is not explanation. It is an attempt to re infer facts that were never captured as a coherent, authoritative whole.'
       },
       {
         id: 'default',
-        title: '2. Why reconstruction is the default today',
+        title: '2. Why reconstruction is the default operating mode today',
         content: `Most decision stacks rely on a combination of:`,
         bullets: [
           'transaction logs,',
           'configuration repositories,',
           'rule engines,',
           'model registries,',
-          'third-party APIs.'
+          'third party APIs.'
         ],
         afterBullets: `These systems were designed to **execute decisions**, **monitor performance**, and **troubleshoot incidents**. They were not designed to preserve the exact factual state that produced a specific decision.
 
@@ -242,7 +245,7 @@ As a result, when a decision is challenged:`,
           'Logs are pulled.',
           'Identifiers are correlated.',
           'Rules and models are reviewed retrospectively.',
-          'Teams are interviewed.',
+          'Teams are consulted.',
           'A narrative explanation is reconstructed.'
         ],
         conclusion: 'Often weeks or months after execution. This is not a failure of teams. It is a consequence of architectural design.'
@@ -257,12 +260,12 @@ As a result, when a decision is challenged:`,
           'mutable or overwritten,',
           'incomplete with respect to decision context.'
         ],
-        conclusion: 'They rarely capture, in one place: the exact inputs consumed, the precise rule and model versions applied, the system state at the decision instant, and the role of third-party signals. Reconstruction therefore relies on inference and interpretation, not on preserved facts.'
+        conclusion: 'They rarely capture, in one place: the exact inputs consumed, the precise rule and model versions applied, the system state at the decision instant, the role of third party signals. Reconstruction therefore relies on inference and interpretation, not on preserved facts.'
       },
       {
         id: 'underestimated',
-        title: '4. Why reconstruction costs are systematically underestimated',
-        content: `Reconstruction costs rarely appear as a single line item. They are distributed across:`,
+        title: '4. Why the reconstruction burden is systematically underestimated',
+        content: `Reconstruction almost never appears as a single budget item. The associated burden is distributed across:`,
         bullets: [
           'operations and support,',
           'fraud and risk teams,',
@@ -273,67 +276,68 @@ As a result, when a decision is challenged:`,
         afterBullets: `Additional factors contribute to underestimation:`,
         secondBullets: [
           'no dedicated cost center,',
-          'escalation paths that grow silently,',
-          'senior time consumed episodically,',
+          'escalation paths that expand silently,',
+          'episodic consumption of senior time,',
           'opportunity cost of diverted teams,',
-          'emotional and organizational fatigue during audits or incidents.'
+          'organizational and emotional fatigue during audits or incidents.'
         ],
-        conclusion: 'As a result, many organizations underestimate reconstruction costs by an order of magnitude.'
+        conclusion: 'As a result, it is not the cost that is miscalculated, but the burden that is poorly perceived.'
       },
       {
         id: 'distribution',
-        title: '5. Cost is not a number — it is a distribution',
-        content: `Two organizations with similar transaction volumes can experience radically different reconstruction costs. Why? Because reconstruction cost depends on:`,
+        title: '5. Cost is not a number, it is a distribution of effort',
+        content: `Two organizations processing similar transaction volumes can experience radically different reconstruction burdens. This difference depends on:`,
         bullets: [
           'how many decisions become contested,',
-          'how many cases escalate beyond first-level explanation,',
-          'how often third-party components are involved,',
-          'how precisely rules and models are versioned,',
-          'whether execution-time facts exist or must be inferred.'
+          'how many cases escalate beyond first level explanation,',
+          'the degree of reliance on opaque third party components,',
+          'the quality of rule and model versioning,',
+          'whether execution time facts exist or must be inferred.'
         ],
-        conclusion: 'Cost therefore behaves as a distribution, not a constant.'
+        conclusion: 'Reconstruction burden behaves as a distribution, not as a constant.'
       },
       {
         id: 'scenarios',
-        title: '6. Reconstruction cost scenarios',
-        content: `The following scenarios are not maturity scores and not benchmarks. They illustrate how architectural choices shape cost behavior.`,
+        title: '6. Reconstruction burden scenarios',
+        content: `The following scenarios are neither maturity scores nor benchmarks. They illustrate how different architectural trajectories shape the behavior of reconstruction effort.`,
         scenarios: [
           {
-            name: 'Scenario A — Fragmented decision stack',
-            characteristics: 'Logs distributed across multiple systems, limited rule and model version traceability, heavy reliance on third-party decision components.',
-            behavior: 'Frequent escalation from simple explanation to deep investigation, high dependency on senior staff, narrative-driven justifications.',
-            costProfile: 'Low predictability, strong tail risk, high sensitivity to audits and incidents.'
+            name: 'Scenario A – Fragmented decision stack',
+            characteristics: 'Logs distributed across multiple systems, limited traceability of rule and model versions, strong dependence on opaque third party components.',
+            behavior: 'Frequent escalation to deep investigations, heavy reliance on senior profiles, justifications largely based on reconstructed narratives.',
+            burdenProfile: 'Low predictability, high variability, strong tail risk, high sensitivity to audits and incidents.'
           },
           {
-            name: 'Scenario B — Standard PSP / fintech decision stack',
-            characteristics: 'Centralized logging, partial versioning of rules and models, mix of internal and external decision logic.',
-            behavior: 'Majority of cases resolved quickly, minority requiring multi-team reconstruction. Audits remain costly and disruptive.',
-            costProfile: 'Stable central tendency, occasional spikes under regulatory pressure.'
+            name: 'Scenario B – Advanced decision stack (PSP, Fintech)',
+            characteristics: 'Centralized logging, partial rule and model versioning, more mature monitoring and control tooling, combination of internal and external decision logic.',
+            behavior: 'Most challenges are resolved quickly. A non trivial share of cases still requires multi team reconstruction, especially for complex, cross product, or third party driven decisions.',
+            burdenProfile: 'Relatively stable central tendency, with periodic spikes during regulatory changes, deep audits, or atypical incidents.'
           },
           {
-            name: 'Scenario C — Execution-time evidence stack',
-            characteristics: 'Preservation of inputs, rules, models, and system state at decision time. Clear separation between facts and interpretation.',
-            behavior: 'Rapid, reproducible justifications, limited escalation. Audit processes based on evidence, not inference.',
-            costProfile: 'Linear and predictable, materially reduced tail risk.'
+            name: 'Scenario C – Opening toward execution time decision evidence',
+            description: 'This scenario does not describe a state that is broadly observed today. It represents an opening toward a target model, used to clarify what changes when factual preservation becomes systematic.',
+            characteristics: 'Explicit preservation, at execution time, of the factual elements that produced the decision. Clear separation between decision facts and subsequent interpretation. Coverage designed to be transversal rather than limited to isolated products or flows.',
+            behavior: 'Where such mechanisms are introduced, even partially, an immediate reduction of reconstruction burden is observed on the covered perimeter. Justifications become faster, reproducible, and less dependent on human escalation.',
+            burdenProfile: 'More linear and predictable effort on covered decisions. Material reduction of tail risk, while highlighting the need for a systemic approach to avoid spillover effects outside the preserved perimeter.'
           }
         ]
       },
       {
         id: 'divergence',
-        title: '7. Why reconstruction costs diverge so widely',
-        content: `Across all scenarios, cost divergence is driven by:`,
+        title: '7. Why reconstruction burden diverges so strongly',
+        content: `Across all scenarios, divergence is driven by:`,
         bullets: [
-          'ambiguity in what qualifies as a "challenged decision",',
-          'silent escalation thresholds,',
-          'opacity of third-party components,',
-          'absence of decision-time snapshots,',
+          'ambiguity around what qualifies as a challenged decision,',
+          'implicit escalation thresholds,',
+          'opacity of third party components,',
+          'absence of decision time snapshots,',
           'organizational handoffs and coordination overhead.'
         ],
-        conclusion: 'When facts are missing, reasoning substitutes evidence, and cost becomes non-linear.'
+        conclusion: 'When facts are missing, reasoning substitutes evidence, and effort becomes non linear.'
       },
       {
         id: 'assessment',
-        title: '8. Self-assessment: are you reconstructing or preserving decisions?',
+        title: '8. Self assessment: are you reconstructing or preserving decisions?',
         assessmentGroups: [
           {
             title: 'Decision evidence',
@@ -346,7 +350,7 @@ As a result, when a decision is challenged:`,
           {
             title: 'Operational handling',
             questions: [
-              'Are most explanations resolved without multi-team escalation?',
+              'Are most explanations resolved without multi team escalation?',
               'Do investigations rely on interviews or memory?',
               'Are explanations reproducible months later?'
             ]
@@ -354,27 +358,29 @@ As a result, when a decision is challenged:`,
           {
             title: 'Audit and compliance',
             questions: [
-              'Can you produce audit-ready records without reconstruction?',
-              'Are third-party scores explainable retroactively?',
+              'Can you produce audit ready records without reconstruction?',
+              'Are third party scores explainable retroactively?',
               'Do audits trigger emergency engineering work?'
             ]
           }
         ],
-        conclusion: 'If several answers are "no", your organization is likely reconstructing decisions rather than preserving them.'
+        conclusion: 'If several answers are no, your organization is likely reconstructing decisions rather than preserving them.'
       },
       {
         id: 'takeaway',
         title: '9. Key takeaway',
-        content: `The central question is not: "How much does post-hoc reconstruction cost?"
-The real question is: "Why are we reconstructing decisions at all?"
+        content: `The central question is not:
+"How much does post hoc reconstruction cost?"
+The real question is:
+"Why are we reconstructing decisions at all?"
 
-Post-hoc reconstruction is not an anomaly. It is the predictable outcome of architectures that do not preserve execution-time facts.`,
+Post hoc reconstruction is not an anomaly. It is the predictable outcome of architectures that do not preserve execution time facts.`,
         conclusion: 'This architectural gap is what Decision Snapshot Infrastructure is designed to address.'
       }
     ],
     closing: {
       title: 'Closing note',
-      content: 'This document focuses on today\'s reality. It does not prescribe tools, products, or implementations. It describes the structural cost of reconstructing what was never preserved. Understanding that cost is the first step toward changing the architecture.'
+      content: 'This document focuses on today\'s operational reality. It does not prescribe tools, products, or implementations. It describes the structural burden of reconstructing what was never preserved. Understanding this burden is the first step toward architectural change.'
     },
     cta: {
       title: 'Next step',
@@ -422,7 +428,7 @@ export default function CostOfReconstructionPage({
               </li>
             ))}
           </ul>
-          <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
+          <blockquote className="border-l-4 border-[#005C99] pl-4 text-base text-black/70 italic">
             {c.positioning.conclusion}
           </blockquote>
         </div>
@@ -487,10 +493,13 @@ export default function CostOfReconstructionPage({
                 {section.scenarios.map((scenario, i) => (
                   <div key={i} className="bg-white border border-black/10 p-6">
                     <h3 className="font-bold text-black mb-4">{scenario.name}</h3>
+                    {scenario.description && (
+                      <p className="text-black/70 text-sm italic mb-4">{scenario.description}</p>
+                    )}
                     <div className="space-y-2 text-sm">
                       <p><strong className="text-[#005C99]">{lang === 'fr' ? 'Caractéristiques :' : 'Characteristics:'}</strong> <span className="text-black/70">{scenario.characteristics}</span></p>
                       <p><strong className="text-[#005C99]">{lang === 'fr' ? 'Comportement observé :' : 'Observed behavior:'}</strong> <span className="text-black/70">{scenario.behavior}</span></p>
-                      <p><strong className="text-[#005C99]">{lang === 'fr' ? 'Profil de coût :' : 'Cost profile:'}</strong> <span className="text-black/70">{scenario.costProfile}</span></p>
+                      <p><strong className="text-[#005C99]">{lang === 'fr' ? 'Profil de charge :' : 'Burden profile:'}</strong> <span className="text-black/70">{scenario.burdenProfile}</span></p>
                     </div>
                   </div>
                 ))}
