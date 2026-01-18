@@ -198,8 +198,8 @@ La reconstruction a posteriori n'est pas une anomalie. C'est le résultat prévi
     }
   },
   en: {
-    badge: 'Operational Analysis',
-    title: 'The Cost of Post Hoc Decision Reconstruction',
+    badge: 'Operational analysis',
+    title: 'The cost of post hoc decision reconstruction',
     subtitle: 'Operational, organizational, and financial consequences of reconstructing automated decisions',
     positioning: {
       title: 'Positioning statement',
@@ -314,7 +314,7 @@ As a result, when a decision is challenged:`,
             burdenProfile: 'Relatively stable central tendency, with periodic spikes during regulatory changes, deep audits, or atypical incidents.'
           },
           {
-            name: 'Scenario C – Opening toward execution time decision evidence',
+            name: 'Scenario C – Opening toward execution-time decision evidence',
             description: 'This scenario does not describe a state that is broadly observed today. It represents an opening toward a target model, used to clarify what changes when factual preservation becomes systematic.',
             characteristics: 'Explicit preservation, at execution time, of the factual elements that produced the decision. Clear separation between decision facts and subsequent interpretation. Coverage designed to be transversal rather than limited to isolated products or flows.',
             behavior: 'Where such mechanisms are introduced, even partially, an immediate reduction of reconstruction burden is observed on the covered perimeter. Justifications become faster, reproducible, and less dependent on human escalation.',
@@ -385,7 +385,7 @@ Post hoc reconstruction is not an anomaly. It is the predictable outcome of arch
     cta: {
       title: 'Next step',
       content: 'If you want to examine how these principles apply to your own decision systems, you can initiate a discussion.',
-      button: 'Book an Acceptability Discussion'
+      button: 'Book an acceptability discussion'
     }
   }
 };
