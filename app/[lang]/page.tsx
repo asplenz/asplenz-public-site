@@ -278,7 +278,7 @@ export default function LandingPage({
   return (
     <div className="min-h-screen">
       {/* 1. Hero – affirmation structurante, pas de promesse, pas de CTA */}
-      <section className="py-12 lg:py-16">
+      <section className="pt-8 pb-6 lg:pt-12 lg:pb-8">
         <div className="max-w-4xl mx-auto px-6">
           <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-black mb-6 leading-tight">
             {c.hero.title}
@@ -315,9 +315,6 @@ export default function LandingPage({
       {/* 3. Pourquoi ce problème est mal traité */}
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
-            {c.mistreated.title}
-          </p>
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">
             {c.mistreated.subtitle}
           </h2>
@@ -339,24 +336,24 @@ export default function LandingPage({
       </section>
 
       {/* 4. Ce qu'est Asplenz (tardivement) */}
-      <section className="py-12 bg-zinc-50">
+      <section className="py-16 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-4">
             {c.asplenz.title}
           </h2>
-          <p className="text-black/90 font-medium mb-6">
+          <p className="text-[#005C99] font-medium mb-6">
             {c.asplenz.brandLine}
           </p>
           <p className="text-black/70 mb-4">
             {c.asplenz.intro}
           </p>
-          <p className="text-black/70 mb-8 font-medium">
+          <p className="text-black/80 mb-8 font-medium">
             {c.asplenz.principle}
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div>
-              <h3 className="font-bold text-black mb-4">{c.asplenz.what.title}</h3>
+            <div className="bg-white p-6 rounded shadow-md border border-black/5">
+              <h3 className="font-bold text-[#005C99] mb-4">{c.asplenz.what.title}</h3>
               <ul className="space-y-2">
                 {c.asplenz.what.points.map((point, i) => (
                   <li key={i} className="flex items-start gap-3 text-black/70">
@@ -366,8 +363,8 @@ export default function LandingPage({
                 ))}
               </ul>
             </div>
-            <div>
-              <h3 className="font-bold text-black mb-4">{c.asplenz.boundaries.title}</h3>
+            <div className="bg-white p-6 rounded shadow-md border border-black/5">
+              <h3 className="font-bold text-[#005C99] mb-4">{c.asplenz.boundaries.title}</h3>
               <ul className="space-y-2">
                 {c.asplenz.boundaries.points.map((point, i) => (
                   <li key={i} className="flex items-start gap-3 text-black/70">
@@ -379,9 +376,11 @@ export default function LandingPage({
             </div>
           </div>
 
-          <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
-            {c.asplenz.conclusion}
-          </blockquote>
+          <div className="bg-white p-6 rounded shadow-md border border-black/5">
+            <p className="text-lg font-medium text-[#005C99]">
+              {c.asplenz.conclusion}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -396,8 +395,8 @@ export default function LandingPage({
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div>
-              <h3 className="font-bold text-black mb-4">{c.consequences.changes.title}</h3>
+            <div className="bg-white p-6 rounded shadow-md border border-black/5">
+              <h3 className="font-bold text-[#005C99] mb-4">{c.consequences.changes.title}</h3>
               <ul className="space-y-2">
                 {c.consequences.changes.points.map((point, i) => (
                   <li key={i} className="flex items-start gap-3 text-black/70">
@@ -407,8 +406,8 @@ export default function LandingPage({
                 ))}
               </ul>
             </div>
-            <div>
-              <h3 className="font-bold text-black mb-4">{c.consequences.unchanged.title}</h3>
+            <div className="bg-white p-6 rounded shadow-md border border-black/5">
+              <h3 className="font-bold text-[#005C99] mb-4">{c.consequences.unchanged.title}</h3>
               <ul className="space-y-2">
                 {c.consequences.unchanged.points.map((point, i) => (
                   <li key={i} className="flex items-start gap-3 text-black/70">
@@ -420,9 +419,11 @@ export default function LandingPage({
             </div>
           </div>
 
-          <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
-            {c.consequences.conclusion}
-          </blockquote>
+          <div className="bg-white p-6 rounded shadow-md border border-black/5">
+            <p className="text-lg font-medium text-[#005C99]">
+              {c.consequences.conclusion}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -434,8 +435,8 @@ export default function LandingPage({
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white border border-black/10 p-6">
-              <h3 className="font-bold text-black mb-4">{c.audience.forWhom.title}</h3>
+            <div className="bg-white p-6 rounded shadow-md border border-black/5">
+              <h3 className="font-bold text-[#005C99] mb-4">{c.audience.forWhom.title}</h3>
               <ul className="space-y-2">
                 {c.audience.forWhom.points.map((point, i) => (
                   <li key={i} className="flex items-start gap-3 text-black/70">
@@ -445,11 +446,11 @@ export default function LandingPage({
                 ))}
               </ul>
             </div>
-            <div className="bg-white border border-black/10 p-6">
-              <h3 className="font-bold text-black mb-4">{c.audience.notFor.title}</h3>
+            <div className="bg-white p-6 rounded shadow-md border border-black/5">
+              <h3 className="font-bold text-black/50 mb-4">{c.audience.notFor.title}</h3>
               <ul className="space-y-2">
                 {c.audience.notFor.points.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 text-black/70">
+                  <li key={i} className="flex items-start gap-3 text-black/50">
                     <span className="text-zinc-400 mt-1">•</span>
                     <span>{point}</span>
                   </li>
@@ -461,23 +462,25 @@ export default function LandingPage({
       </section>
 
       {/* 7. Point de contact discret */}
-      <section id="engage" className="py-12">
+      <section id="engage" className="py-16">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl font-bold text-black mb-4">
-            {c.contact.title}
-          </h2>
-          <p className="text-black/70 mb-4">
-            {c.contact.content}
-          </p>
-          <p className="text-black/50 text-sm mb-8">
-            {c.contact.note}
-          </p>
-          <Link
-            href={`/${params.lang}/engagement`}
-            className="inline-flex items-center gap-2 border border-[#005C99] text-[#005C99] px-6 py-3 font-medium hover:bg-[#005C99]/5 transition-colors"
-          >
-            {c.contact.button}
-          </Link>
+          <div className="bg-white p-8 rounded shadow-lg border border-black/5">
+            <h2 className="text-2xl font-bold text-black mb-4">
+              {c.contact.title}
+            </h2>
+            <p className="text-black/70 mb-4">
+              {c.contact.content}
+            </p>
+            <p className="text-black/50 text-sm mb-8">
+              {c.contact.note}
+            </p>
+            <Link
+              href={`/${params.lang}/engagement`}
+              className="inline-flex items-center gap-2 bg-[#005C99] text-white px-6 py-3 font-medium hover:bg-[#005C99]/90 transition-colors rounded"
+            >
+              {c.contact.button}
+            </Link>
+          </div>
         </div>
       </section>
 
