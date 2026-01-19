@@ -381,7 +381,7 @@ export default function LandingPage({
           <ul className="space-y-2 mb-8">
             {c.structural.points.map((point, i) => (
               <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-[#005C99] mt-1">•</span>
+                <span className="text-amber-500 mt-1">?</span>
                 <span>{point}</span>
               </li>
             ))}
@@ -416,7 +416,7 @@ export default function LandingPage({
           <ul className="space-y-2 mb-8">
             {c.mistreated.failures.map((failure, i) => (
               <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-[#005C99] mt-1">•</span>
+                <span className="text-red-500 mt-1">✗</span>
                 <span>{failure}</span>
               </li>
             ))}
@@ -476,18 +476,18 @@ export default function LandingPage({
               <ul className="space-y-2">
                 {c.asplenz.what.points.map((point, i) => (
                   <li key={i} className="flex items-start gap-3 text-black/70">
-                    <span className="text-[#005C99] mt-1">•</span>
+                    <span className="text-green-600 mt-1">✓</span>
                     <span>{point}</span>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="bg-white p-6 rounded shadow-md border border-black/5">
-              <h3 className="font-bold text-[#005C99] mb-4">{c.asplenz.boundaries.title}</h3>
+              <h3 className="font-bold text-black/50 mb-4">{c.asplenz.boundaries.title}</h3>
               <ul className="space-y-2">
                 {c.asplenz.boundaries.points.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 text-black/70">
-                    <span className="text-[#005C99] mt-1">•</span>
+                  <li key={i} className="flex items-start gap-3 text-black/50">
+                    <span className="text-black/30 mt-1">•</span>
                     <span>{point}</span>
                   </li>
                 ))}
@@ -521,22 +521,22 @@ export default function LandingPage({
 
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div className="bg-white p-6 rounded shadow-md border border-black/5">
-              <h3 className="font-bold text-[#005C99] mb-4">{c.consequences.changes.title}</h3>
+              <h3 className="font-bold text-green-700 mb-4">{c.consequences.changes.title}</h3>
               <ul className="space-y-2">
                 {c.consequences.changes.points.map((point, i) => (
                   <li key={i} className="flex items-start gap-3 text-black/70">
-                    <span className="text-[#005C99] mt-1">•</span>
+                    <span className="text-green-600 mt-1">↓</span>
                     <span>{point}</span>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="bg-white p-6 rounded shadow-md border border-black/5">
-              <h3 className="font-bold text-[#005C99] mb-4">{c.consequences.unchanged.title}</h3>
+              <h3 className="font-bold text-black/50 mb-4">{c.consequences.unchanged.title}</h3>
               <ul className="space-y-2">
                 {c.consequences.unchanged.points.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 text-black/70">
-                    <span className="text-[#005C99] mt-1">•</span>
+                  <li key={i} className="flex items-start gap-3 text-black/50">
+                    <span className="text-black/30 mt-1">=</span>
                     <span>{point}</span>
                   </li>
                 ))}
@@ -565,7 +565,7 @@ export default function LandingPage({
               <ul className="space-y-2">
                 {c.audience.forWhom.points.map((point, i) => (
                   <li key={i} className="flex items-start gap-3 text-black/70">
-                    <span className="text-[#005C99] mt-1">•</span>
+                    <span className="text-[#005C99] mt-1">→</span>
                     <span>{point}</span>
                   </li>
                 ))}
@@ -576,7 +576,7 @@ export default function LandingPage({
               <ul className="space-y-2">
                 {c.audience.notFor.points.map((point, i) => (
                   <li key={i} className="flex items-start gap-3 text-black/50">
-                    <span className="text-zinc-400 mt-1">•</span>
+                    <span className="text-black/30 mt-1">•</span>
                     <span>{point}</span>
                   </li>
                 ))}
