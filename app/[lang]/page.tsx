@@ -10,11 +10,13 @@ const content = {
     // 1. Hero – affirmation structurante
     hero: {
       title: 'Les systèmes automatisés ne conservent pas les faits d\'exécution des décisions',
+      accent: 'Ce qui disparaît avec le temps, ce ne sont pas les décisions, mais les faits.',
       subtitle: 'À mesure que les données, règles et modèles évoluent, les faits d\'exécution d\'une décision s\'éparpillent. L\'examen ultérieur repose alors sur des traces partielles et une reconstruction incertaine.',
     },
     // 2. Constat structurel
     structural: {
-      title: 'Le problème est architectural, pas technique',
+      title: 'Un problème qui n\'apparaît qu\'après coup',
+      subtitle: 'Les décisions fonctionnent. Leur examen, beaucoup moins.',
       content: `Dans les environnements réels, tout bouge : les données évoluent, les règles changent, les modèles sont mis à jour, les architectures se transforment et les équipes se renouvellent.
 
 Pourtant, les décisions produites par ces systèmes restent souvent examinables bien après que les conditions techniques ayant présidé à leur création ont disparu.
@@ -30,8 +32,9 @@ Lorsqu'une décision passée doit être comprise, les équipes doivent reconstit
     },
     // 3. Pourquoi ce problème est mal traité
     mistreated: {
-      title: 'Un problème structurellement mal nommé',
-      subtitle: 'La reconstruction n\'est pas une preuve',
+      title: 'Pourquoi la reconstruction devient la norme',
+      transition: 'Si les décisions sont produites correctement, pourquoi l\'examen pose-t-il problème ?',
+      subtitle: 'Parce que ce qui est conservé ne suffit pas à établir les faits.',
       content: `La plupart des systèmes de décision ne préservent pas les états d'exécution factuels. Ils laissent derrière eux des logs, métriques et traces conçus pour l'observabilité (journaux applicatifs, registres de modèles, configurations, dépendances tierces), et non pour la certitude probante.
 
 Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en réalité des reconstructions assemblées après coup :`,
@@ -43,9 +46,15 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
       ],
       conclusion: 'Ces défaillances ne sont pas accidentelles. Elles découlent d\'une inadéquation entre ce que les systèmes d\'exécution sont conçus pour conserver et ce dont les institutions ont besoin plus tard pour établir les faits.',
     },
+    // 3bis. Distinction clé (interstitiel visuel)
+    keyDistinction: {
+      title: 'La reconstruction n\'est pas une preuve',
+      subtitle: 'Elle repose sur l\'inférence, l\'interprétation et la mémoire.',
+    },
     // 4. Ce qu'est Asplenz (tardivement)
     asplenz: {
-      title: 'Une couche d\'infrastructure pour l\'état factuel à l\'exécution',
+      title: 'Ce qui manque aux systèmes de décision',
+      subtitle: 'Une couche dédiée à la préservation des faits d\'exécution.',
       brandLine: 'Asplenz Horizon introduit une Decision Snapshot Infrastructure : une couche dédiée à la préservation des faits d\'exécution.',
       intro: `En tant que couche de préservation factuelle, son seul but est de capturer, au point de non-retour, l'état factuel complet d'une décision et de le préserver sous la forme d'un artefact immuable et auto-contenu.`,
       principle: 'Cet artefact existe indépendamment de l\'évolution future du système qui l\'a produit.',
@@ -69,9 +78,14 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
       },
       conclusion: 'L\'infrastructure s\'arrête là où l\'interprétation commence. Elle capture ce qui a été exécuté.',
     },
-    // 5. Conséquences organisationnelles
+    // 5. Ce que fait / ne fait pas (nouveau titre explicite)
+    doAndDont: {
+      title: 'Ce que cette infrastructure fait — et ne fait pas',
+    },
+    // 6. Conséquences organisationnelles
     consequences: {
-      title: 'Ce qui change dans la durée',
+      title: 'Ce que cela change dans le temps',
+      subtitle: 'Moins de reconstruction. Plus de stabilité lors de l\'examen.',
       intro: 'L\'infrastructure ne change pas ce que les institutions choisissent de décider ou d\'enregistrer. Elle change le coût et la fragilité de l\'établissement des faits.',
       changes: {
         title: 'Ce qui est réduit',
@@ -93,9 +107,9 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
       },
       conclusion: 'Ce qui change n\'est pas l\'autorité ou l\'intention. C\'est l\'effort opérationnel.',
     },
-    // 6. À qui s'adresse / ne s'adresse pas
+    // 7. À qui s'adresse / ne s'adresse pas
     audience: {
-      title: 'À qui cette infrastructure s\'adresse',
+      title: 'Quand cette infrastructure est pertinente',
       forWhom: {
         title: 'Contextes pertinents',
         points: [
@@ -106,7 +120,7 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
         ],
       },
       notFor: {
-        title: 'Contextes non pertinents',
+        title: 'Quand elle ne l\'est pas',
         points: [
           'Systèmes dont les décisions sont réversibles sans conséquence.',
           'Environnements où la reconstruction est rapide et fiable.',
@@ -114,9 +128,9 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
         ],
       },
     },
-    // 7. Point de contact discret
+    // 8. Point de contact discret
     contact: {
-      title: 'Initier une discussion',
+      title: 'Entrer en discussion',
       content: 'Si vous souhaitez examiner comment ces principes s\'appliquent à vos propres systèmes de décision ou contraintes institutionnelles, vous pouvez initier une discussion.',
       note: 'L\'échange commence par un entretien d\'acceptabilité. Conclure que ce n\'est pas pertinent est un résultat valide.',
       button: 'Réserver un entretien d\'acceptabilité',
@@ -140,11 +154,13 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
     // 1. Hero – structural assertion
     hero: {
       title: 'Automated systems do not preserve the execution facts of decisions',
+      accent: 'What disappears over time is not the decisions, but the facts.',
       subtitle: 'As data, rules, and models evolve, the execution facts of a decision scatter. Subsequent examination then relies on partial traces and uncertain reconstruction.',
     },
     // 2. Structural observation
     structural: {
-      title: 'The problem is architectural, not technical',
+      title: 'A problem that only appears after the fact',
+      subtitle: 'Decisions work. Their examination, much less so.',
       content: `In real-world environments, everything moves: data evolves, rules change, models are updated, architectures transform, and teams rotate.
 
 Yet the decisions produced by these systems often remain examinable long after the technical conditions that produced them have disappeared.
@@ -160,8 +176,9 @@ When a past decision must be understood, teams must reconstitute what existed at
     },
     // 3. Why this problem is mistreated
     mistreated: {
-      title: 'A structurally misnamed problem',
-      subtitle: 'Reconstruction is not evidence',
+      title: 'Why reconstruction becomes the norm',
+      transition: 'If decisions are produced correctly, why does examination pose a problem?',
+      subtitle: 'Because what is preserved is not enough to establish facts.',
       content: `Most decision systems do not preserve factual execution states. They leave behind logs, metrics, and traces designed for observability (application logs, model registries, configurations, third-party dependencies), not evidentiary certainty.
 
 What organizations call "evidence" or "decision records" are actually reconstructions assembled after the fact:`,
@@ -173,9 +190,15 @@ What organizations call "evidence" or "decision records" are actually reconstruc
       ],
       conclusion: 'These failures are not accidental. They arise from a mismatch between what execution systems are designed to retain and what institutions later require to establish facts.',
     },
+    // 3bis. Key distinction (visual interstitial)
+    keyDistinction: {
+      title: 'Reconstruction is not evidence',
+      subtitle: 'It relies on inference, interpretation, and memory.',
+    },
     // 4. What Asplenz is (introduced late)
     asplenz: {
-      title: 'An infrastructure layer for execution-time factual state',
+      title: 'What decision systems are missing',
+      subtitle: 'A layer dedicated to preserving execution facts.',
       brandLine: 'Asplenz Horizon introduces a Decision Snapshot Infrastructure: a layer dedicated to preserving execution facts.',
       intro: `As a factual preservation layer, its sole purpose is to capture, at the point of no return, the complete factual state of a decision and preserve it as an immutable, self-contained artifact.`,
       principle: 'This artifact exists independently of the future evolution of the system that produced it.',
@@ -199,9 +222,14 @@ What organizations call "evidence" or "decision records" are actually reconstruc
       },
       conclusion: 'The infrastructure ends where interpretation begins. It captures what was executed.',
     },
-    // 5. Organizational consequences
+    // 5. What it does / does not (explicit title)
+    doAndDont: {
+      title: 'What this infrastructure does — and does not do',
+    },
+    // 6. Organizational consequences
     consequences: {
-      title: 'What changes over time',
+      title: 'What this changes over time',
+      subtitle: 'Less reconstruction. More stability during examination.',
       intro: 'The infrastructure does not change what institutions choose to decide or record. It changes the cost and fragility of establishing facts.',
       changes: {
         title: 'What is reduced',
@@ -223,9 +251,9 @@ What organizations call "evidence" or "decision records" are actually reconstruc
       },
       conclusion: 'What changes is not authority or intent. It is operational effort.',
     },
-    // 6. Who this is for / not for
+    // 7. Who this is for / not for
     audience: {
-      title: 'Who this infrastructure is for',
+      title: 'When this infrastructure is relevant',
       forWhom: {
         title: 'Relevant contexts',
         points: [
@@ -236,7 +264,7 @@ What organizations call "evidence" or "decision records" are actually reconstruc
         ],
       },
       notFor: {
-        title: 'Non-relevant contexts',
+        title: 'When it is not',
         points: [
           'Systems whose decisions are reversible without consequence.',
           'Environments where reconstruction is fast and reliable.',
@@ -244,9 +272,9 @@ What organizations call "evidence" or "decision records" are actually reconstruc
         ],
       },
     },
-    // 7. Discreet contact point
+    // 8. Discreet contact point
     contact: {
-      title: 'Initiate a discussion',
+      title: 'Start a discussion',
       content: 'If you want to examine how these principles apply to your own decision systems or institutional constraints, you can initiate a discussion.',
       note: 'The exchange starts with an acceptability discussion. Concluding that it is not relevant is a valid outcome.',
       button: 'Book an acceptability discussion',
@@ -280,9 +308,12 @@ export default function LandingPage({
       {/* 1. Hero – affirmation structurante, pas de promesse, pas de CTA */}
       <section className="pt-8 pb-6 lg:pt-12 lg:pb-8">
         <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-black mb-6 leading-tight">
+          <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-black mb-4 leading-tight">
             {c.hero.title}
           </h1>
+          <p className="text-lg text-[#005C99] font-medium mb-4">
+            {c.hero.accent}
+          </p>
           <p className="text-xl text-black/70 leading-relaxed">
             {c.hero.subtitle}
           </p>
@@ -292,9 +323,12 @@ export default function LandingPage({
       {/* 2. Constat structurel */}
       <section className="py-12 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
             {c.structural.title}
           </h2>
+          <p className="text-lg text-black/60 mb-6">
+            {c.structural.subtitle}
+          </p>
           <div className="text-black/70 mb-6 whitespace-pre-line">
             {c.structural.content}
           </div>
@@ -315,9 +349,15 @@ export default function LandingPage({
       {/* 3. Pourquoi ce problème est mal traité */}
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6">
-            {c.mistreated.subtitle}
+          <p className="text-lg text-black/60 italic mb-4">
+            {c.mistreated.transition}
+          </p>
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
+            {c.mistreated.title}
           </h2>
+          <p className="text-lg text-black/60 mb-6">
+            {c.mistreated.subtitle}
+          </p>
           <div className="text-black/70 mb-6 whitespace-pre-line">
             {c.mistreated.content}
           </div>
@@ -335,12 +375,27 @@ export default function LandingPage({
         </div>
       </section>
 
+      {/* 3bis. Distinction clé – interstitiel visuel */}
+      <section className="py-12 bg-[#005C99]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-2xl lg:text-3xl font-bold text-white mb-3">
+            {c.keyDistinction.title}
+          </h2>
+          <p className="text-lg text-white/80">
+            {c.keyDistinction.subtitle}
+          </p>
+        </div>
+      </section>
+
       {/* 4. Ce qu'est Asplenz (tardivement) */}
       <section className="py-16 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-4">
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
             {c.asplenz.title}
           </h2>
+          <p className="text-lg text-black/60 mb-6">
+            {c.asplenz.subtitle}
+          </p>
           <p className="text-[#005C99] font-medium mb-6">
             {c.asplenz.brandLine}
           </p>
@@ -384,12 +439,15 @@ export default function LandingPage({
         </div>
       </section>
 
-      {/* 5. Conséquences organisationnelles */}
+      {/* 6. Conséquences organisationnelles */}
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-4">
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
             {c.consequences.title}
           </h2>
+          <p className="text-lg text-black/60 mb-6">
+            {c.consequences.subtitle}
+          </p>
           <p className="text-black/70 mb-8">
             {c.consequences.intro}
           </p>
@@ -427,7 +485,7 @@ export default function LandingPage({
         </div>
       </section>
 
-      {/* 6. À qui s'adresse / ne s'adresse pas */}
+      {/* 7. À qui s'adresse / ne s'adresse pas */}
       <section className="py-12 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-8">
@@ -461,7 +519,7 @@ export default function LandingPage({
         </div>
       </section>
 
-      {/* 7. Point de contact discret */}
+      {/* 8. Point de contact discret */}
       <section id="engage" className="py-16">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-white p-8 rounded shadow-lg border border-black/5">
