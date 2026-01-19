@@ -7,332 +7,296 @@ export function generateStaticParams() {
 
 const content = {
   fr: {
-    // 1. Hero
+    nav: {
+      howItWorks: 'Comment ça marche',
+      useCases: 'Cas d\'usage',
+      requestDemo: 'Demander un briefing',
+    },
     hero: {
-      title: 'Les décisions automatisées engagent votre responsabilité.',
-      subtitle: 'Encore faut-il pouvoir en établir les faits, lorsque l\'examen commence.',
-      anchor: 'Décisions de crédit, de tarification, d\'acceptation, de blocage : prises par des systèmes automatisés.',
-      intro: 'Dans les infrastructures financières critiques, ces décisions sont exécutées en continu.',
-      trigger: 'Audit. Incident. Litige. Contrôle.',
-      problem: 'Ces décisions produisent des effets immédiats. Mais leurs faits constitutifs ne sont pas conservés comme des objets probants.',
-      solution: 'Horizon a été conçu pour combler cette lacune structurelle.',
+      tagline: 'Preuve décisionnelle • Infrastructures régulées',
+      title: 'Quand une décision devient contestée, vos logs ne suffisent plus.',
+      description: '<strong>Horizon</strong> capture les faits décisionnels <strong>au moment de l\'exécution</strong> et les rend <strong>immutables</strong>, <strong>vérifiables</strong> et <strong>auditables</strong>, indépendamment des systèmes sources.',
+      industries: ['Banques systémiques', 'PSP & paiements', 'Trading venues / Exchanges', 'Clearing houses / CCP'],
+      ctaPrimary: 'Voir quand Horizon est pertinent',
+      ctaSecondary: 'Lire la FAQ',
+      disclaimer: 'Horizon ne décide pas à votre place. Il enregistre ce qui a été décidé, quand, sur quelles bases, de manière opposable selon vos exigences internes et juridiques.',
     },
     // Définition canonique
     definition: {
       term: 'Infrastructure d\'Instantanés Décisionnels',
       text: 'Une infrastructure dédiée à la création de faits décisionnels vérifiables, au moment même de l\'exécution.',
     },
-    // 2. Contexte
+    demo: {
+      title: 'Demander un briefing technique (15-30 min)',
+      description: 'On qualifie rapidement : <strong>quelle décision critique</strong> ? <strong>quelle pression</strong> (audit, incident, remediation) ? Et si Horizon peut réduire votre risque.',
+      contactIntro: 'Contactez-nous :',
+      contactEmail: 'contact@asplenz.com',
+      orSchedule: 'Ou planifiez directement :',
+      scheduleLink: 'Réserver un créneau',
+    },
     problem: {
-      badge: 'Contexte',
-      title: 'Pourquoi les faits manquent',
-      subtitle: 'Les architectures décisionnelles produisent des résultats, pas des faits.',
-      characteristics: [
-        'Les décisions sont distribuées.',
-        'Les règles et modèles évoluent.',
-        'Les données sont contextuelles et volatiles.',
-        'Les systèmes sources ne sont pas synchronisés dans le temps.',
-      ],
-      consequences: [
-        'Les journaux (logs) décrivent une exécution, pas une décision.',
-        'Les états système dérivent.',
-        'La justification est reconstruite, non observée.',
-      ],
-      labelCharacteristics: 'Dans la majorité des systèmes décisionnels',
-      labelConsequences: 'Par construction',
-      // Bloc IT
-      itReality: {
-        badge: 'Aujourd\'hui',
-        title: 'Ce que l\'IT fait pour reconstruire',
-        points: [
-          'Agrégation de logs hétérogènes.',
-          'Reconstitution d\'états qui n\'existent plus.',
-          'Mobilisation de plusieurs équipes.',
-          'Dépendance à des versions de règles et données obsolètes.',
-        ],
-      },
-      conclusion: 'Lorsque l\'examen commence (audit, incident, litige, régulation), la décision telle qu\'elle a été prise n\'existe plus comme objet factuel autonome.',
-    },
-    // 3. Horizon
-    paradigm: {
-      badge: 'Horizon',
-      title: 'Où et comment il s\'insère',
-      subtitle: 'Capturer, pas reconstruire.',
-      principle: 'Les faits décisionnels doivent être créés au moment de l\'exécution. Pas reconstruits lorsque l\'examen commence.',
-      explanation: 'Horizon ne cherche pas à expliquer après coup. Il fige les faits constitutifs au moment exact où la décision est produite.',
-      pointsIntro: 'Chaque décision devient :',
-      points: [
-        'Un objet autonome.',
-        'Horodaté.',
-        'Contextualisé.',
-        'Vérifiable indépendamment des systèmes sources.',
+      title: 'Le problème',
+      intro: 'Dans les infrastructures régulées, une décision automatisée peut déclencher un effet systémique : rejet d\'un paiement, appel de marge, suspension de participant, blocage AML, activation d\'un coupe-circuit, etc.',
+      cards: [
+        {
+          title: 'Reconstruction fragile',
+          points: ['logs dispersés / formats hétérogènes', 'états de règles & modèles qui évoluent', 'données sources expirées / purgées'],
+        },
+        {
+          title: 'Réponse lente',
+          points: ['plusieurs équipes mobilisées', 'jours ou semaines pour "expliquer"', 'mais difficile de "prouver"'],
+        },
+        {
+          title: 'Risque juridique',
+          points: ['contentieux, sanctions, réputation', 'récits contradictoires', 'preuves dépendantes des SI métiers'],
+        },
       ],
     },
-    // 4. Infrastructure
-    infrastructure: {
-      badge: 'Ce que fait Horizon',
-      title: 'Et ce qu\'il ne fait pas',
-      subtitle: 'Une infrastructure transverse, indépendante des moteurs décisionnels.',
-      what: {
-        title: 'Horizon s\'insère dans les flux critiques pour',
+    whatItDoes: {
+      title: 'Ce que fait Horizon',
+      intro: 'Horizon transforme une décision éphémère en <strong>fait durable</strong> : un enregistrement horodaté, normalisé et vérifiable, qui décrit la décision et son contexte essentiel.',
+      captures: {
+        title: 'Horizon capture',
         points: [
-          'Capturer la décision au point d\'exécution.',
-          'Normaliser son expression factuelle.',
-          'Conserver un instantané immuable du contexte décisionnel.',
-          'Rendre cet instantané accessible à des fonctions d\'examen, sans dépendance aux systèmes d\'origine.',
+          'la décision (résultat, action, statut)',
+          'les entrées pertinentes (features / signaux / seuils)',
+          'la provenance (système, version, acteur)',
+          'l\'horodatage & l\'intégrité (hashing, append-only)',
         ],
       },
-      boundaries: {
-        title: 'Ce qu\'il ne fait pas',
+      enables: {
+        title: 'Horizon permet',
         points: [
-          'Prendre des décisions.',
-          'Modifier des règles.',
-          'Expliquer des résultats.',
-          'Imposer un modèle.',
-        ],
-      },
-      insertionPoint: 'Horizon s\'insère au point où une décision devient effective.',
-      conclusion: 'Il opère en amont de la justification, et en dehors de la reconstruction.',
-    },
-    // 5. À qui s'adresse
-    audience: {
-      badge: 'À qui s\'adresse Horizon',
-      title: 'Contextes d\'exposition maximale',
-      subtitle: 'Environnements où la charge de la preuve est structurelle.',
-      intro: 'Horizon est conçu pour les organisations où :',
-      criteria: [
-        'Les décisions automatisées ont un impact réglementaire, financier ou systémique.',
-        'La responsabilité ne peut pas être déduite.',
-        'La démonstration des faits est une exigence, pas une option.',
-      ],
-      examples: {
-        title: 'Typiquement',
-        points: [
-          'Banques systémiques.',
-          'Plateformes de négociation.',
-          'Prestataires de services de paiement.',
-          'Infrastructures financières critiques.',
+          'audit & inspection sans dépendre du SI source',
+          'remediation plus rapide et défendable',
+          'cohérence cross-systèmes (règles, modèles, humain)',
+          'réduction du risque probatoire',
         ],
       },
     },
-    // 6. Résultat
-    changes: {
-      badge: 'Résultat',
-      title: 'Ce qui change pour l\'examen',
-      points: [
-        'L\'audit devient constat, non reconstitution.',
-        'La responsabilité peut être démontrée sans interprétation.',
-        'La décision reste vérifiable indépendamment de l\'évolution des systèmes.',
-        'La redevabilité ne dépend plus de l\'état courant des moteurs, modèles ou règles.',
+    whatItIsNot: {
+      title: 'Ce que Horizon n\'est pas',
+      cards: [
+        { title: 'Pas un moteur de décision', description: 'Horizon n\'exécute aucune règle et ne "prend" aucune décision.' },
+        { title: 'Pas une plateforme de gouvernance', description: 'Il ne remplace ni GRC, ni SIEM, ni data lake, ni observability stack.' },
+        { title: 'Pas un outil d\'explicabilité', description: 'Il ne "rationalise" pas : il conserve le fait et son contexte.' },
       ],
-      itBenefit: 'L\'examen ne déclenche plus un projet de reconstitution.',
-      conclusion: 'La décision automatisée cesse d\'être un événement éphémère. Elle devient un fait durable, examinable et opposable.',
     },
-    // 7. Positionnement
-    positioning: {
-      title: 'Horizon ne gouverne pas vos décisions.',
-      subtitle: 'Il garantit que leurs faits existent.',
-      conclusion: 'Dans des environnements où la confiance repose sur la preuve, Horizon constitue la couche factuelle des décisions automatisées.',
+    useCases: {
+      title: 'Cas d\'usage où Horizon est immédiatement pertinent',
+      intro: 'Horizon est plus efficace quand il est déployé sur <strong>1 à 3 classes de décisions critiques</strong>.',
+      cards: [
+        {
+          title: 'PSP / Paiements',
+          points: ['rejets & retours (raison, seuil, signal)', 'blocages AML / sanctions / fraud', 'résolution de contestations clients / marchands'],
+        },
+        {
+          title: 'Trading venue / Exchange',
+          points: ['suspension instrument / participant', 'circuit breakers & garde-fous microstructure', 'enquêtes post-incident & reporting'],
+        },
+        {
+          title: 'Clearing house / CCP',
+          points: ['appels de marge & intraday risk', 'haircuts / stress triggers', 'disputes de contreparties & evidence packs'],
+        },
+        {
+          title: 'Banque systémique',
+          points: ['scoring / refus / conditions', 'limites, overrides, exceptions', 'défense en inspection & litige'],
+        },
+      ],
     },
-    // Executive Summary (lecture rapide)
-    summary: {
-      badge: 'En 30 secondes',
-      problemLabel: 'Problème',
-      problem: 'Lors d\'un audit ou litige, vous êtes incapable de prouver ce qu\'un système automatisé a réellement décidé à ce moment-là.',
-      causeLabel: 'Cause',
-      cause: 'Les décisions ne sont jamais conservées comme des faits autonomes au-delà de l\'évolution des systèmes.',
-      solutionLabel: 'Solution',
-      solution: 'Horizon capture chaque décision une fois, au moment de l\'exécution, et la rend vérifiable plus tard.',
-      readMore: 'Lire la version complète',
-      // Preuve de réalité opérationnelle
-      realityTitle: 'Ce n\'est pas théorique.',
-      realityText: 'Les équipes tentent déjà de reconstituer les décisions passées à partir de logs, modèles, configurations et archives internes. Horizon change l\'effort requis, pas le contrôle que vous conservez.',
-    },
-    // 8. CTA
-    cta: {
-      badge: 'Appel à l\'action',
-      title: 'Examiner l\'architecture avant qu\'elle ne soit examinée',
-      content: 'Découvrir comment l\'Infrastructure d\'Instantanés Décisionnels s\'intègre dans des environnements décisionnels critiques existants.',
-      button: 'Demander une présentation Horizon',
-    },
-    // Ressources
-    resources: {
-      title: 'Ressources',
-      foundations: {
-        title: 'Fondements',
-        content: 'Le document Foundational Brief présente les fondations opérationnelles de la preuve à l\'exécution.',
-        linkText: 'Lire les Fondements',
-      },
-      costAnalysis: {
-        title: 'Analyse des coûts',
-        content: 'Ce document analyse pourquoi le coût de la reconstruction est systématiquement sous-estimé.',
-        linkText: 'Lire l\'analyse',
+    howItWorks: {
+      title: 'Comment ça marche',
+      steps: [
+        { title: '1) Instrumenter le point de décision', description: 'Un hook au moment où la décision est rendue (service, rule engine, workflow humain).' },
+        { title: '2) Normaliser le fait', description: 'Schéma décisionnel stable : décision, contexte, provenance, versions, horodatage.' },
+        { title: '3) Préserver et rendre vérifiable', description: 'Stockage append-only + contrôles d\'intégrité + export "evidence pack" pour audit/litige.' },
+      ],
+      result: {
+        title: 'Résultat : une source de vérité "preuve"',
+        description: 'Vous pouvez répondre à : "Qu\'a-t-on décidé ? Quand ? Sur quelles bases ? Quelle version ? Qui/quel système ?" Sans reconstruction fragile, et sans dépendre du SI opérationnel.',
       },
     },
+    outcomes: {
+      title: 'Résultats attendus',
+      cards: [
+        { title: 'Audit plus rapide', description: 'Moins de semaines d\'enquête, plus de faits vérifiables.' },
+        { title: 'Réduction du risque probatoire', description: 'Mitigation du risque juridique "impossible à prouver".' },
+        { title: 'Remediation efficace', description: 'Evidence packs réutilisables, cohérents et opposables.' },
+      ],
+    },
+    security: {
+      title: 'Sécurité & déploiement',
+      deployment: {
+        title: 'Déploiement',
+        points: ['on-prem / cloud privé (selon contraintes)', 'intégration progressive par use case', 'contrôles d\'accès & séparation des rôles'],
+      },
+      governance: {
+        title: 'Gouvernance des données',
+        points: ['minimisation : garder l\'essentiel probatoire', 'rétention configurable', 'chiffrement & traçabilité des accès'],
+      },
+    },
+    finalCta: {
+      title: 'La question n\'est pas "pourquoi Horizon". C\'est "quelle décision critique voulez-vous pouvoir prouver ?"',
+      description: 'Si vous avez déjà vécu un audit difficile, un incident, ou un remediation plan, Horizon peut devenir votre couche de preuve. On commence par un use case, pas par une plateforme.',
+      ctaPrimary: 'Demander un briefing technique',
+      ctaSecondary: 'Voir les questions fréquentes',
+    },
+    faq: {
+      title: 'FAQ',
+      items: [
+        { question: 'Pourquoi ne pas faire ça avec des logs ?', answer: 'Les logs sont utiles, mais souvent dispersés, reconstitués, et dépendants du SI source. Horizon vise une preuve décisionnelle autonome, stable et exploitable.' },
+        { question: 'Horizon stocke-t-il des données sensibles ?', answer: 'Horizon n\'ingère pas les flux de données opérationnels. Il préserve les faits décisionnels déclarés au moment de l\'exécution, selon des schémas et périmètres définis par l\'institution. La minimisation des données, la rétention et la classification de sensibilité restent entièrement sous contrôle institutionnel.' },
+        { question: 'Est-ce un projet lourd ?', answer: 'La bonne approche est ciblée : 1 use case critique, instrumentation au point de décision, puis extension. Éviter "capturer tout".' },
+        { question: 'Qui est sponsor interne ?', answer: 'Souvent une coalition Legal/Compliance/Risk/Audit. IT exécute, mais le besoin est probatoire et réglementaire.' },
+      ],
+    },
+    footer: '© Asplenz. Horizon, Decision Evidence.',
   },
   en: {
-    // 1. Hero
+    nav: {
+      howItWorks: 'How it works',
+      useCases: 'Use cases',
+      requestDemo: 'Request a briefing',
+    },
     hero: {
-      title: 'Automated decisions entail your responsibility.',
-      subtitle: 'Yet, their constituent facts must be established when scrutiny begins.',
-      anchor: 'Credit decisions, pricing, acceptance, blocking: made by automated systems.',
-      intro: 'In critical financial infrastructures, these decisions are executed continuously.',
-      trigger: 'Audit. Incident. Litigation. Regulatory review.',
-      problem: 'These decisions produce immediate effects. But their constituent facts are not preserved as evidentiary objects.',
-      solution: 'Horizon was designed to address this structural gap.',
+      tagline: 'Decision evidence • Regulated infrastructure',
+      title: 'When a decision is challenged, your logs are no longer enough.',
+      description: '<strong>Horizon</strong> captures decision facts <strong>at execution time</strong> and makes them <strong>immutable</strong>, <strong>verifiable</strong> and <strong>auditable</strong>, independently of source systems.',
+      industries: ['Systemic banks', 'PSP & payments', 'Trading venues / Exchanges', 'Clearing houses / CCP'],
+      ctaPrimary: 'See when Horizon is relevant',
+      ctaSecondary: 'Read the FAQ',
+      disclaimer: 'Horizon does not decide for you. It records what was decided, when, on what basis, in an opposable manner according to your internal and legal requirements.',
     },
     // Canonical definition
     definition: {
       term: 'Decision Snapshot Infrastructure',
       text: 'An infrastructure dedicated to the creation of verifiable decision facts at the very moment of execution.',
     },
-    // 2. Context
+    demo: {
+      title: 'Request a technical briefing (15-30 min)',
+      description: 'We quickly qualify: <strong>which critical decision</strong>? <strong>which pressure</strong> (audit, incident, remediation)? And whether Horizon can reduce your risk.',
+      contactIntro: 'Contact us:',
+      contactEmail: 'contact@asplenz.com',
+      orSchedule: 'Or schedule directly:',
+      scheduleLink: 'Book a slot',
+    },
     problem: {
-      badge: 'Context',
-      title: 'Why facts are missing',
-      subtitle: 'Decision architectures produce results, not facts.',
-      characteristics: [
-        'Decisions are distributed.',
-        'Rules and models evolve.',
-        'Data is contextual and volatile.',
-        'Source systems are not synchronized in time.',
-      ],
-      consequences: [
-        'Logs describe an execution, not a decision.',
-        'System states drift.',
-        'Justification is reconstructed, not observed.',
-      ],
-      labelCharacteristics: 'In the majority of decision systems',
-      labelConsequences: 'By design',
-      // IT block
-      itReality: {
-        badge: 'Today',
-        title: 'What IT does to reconstruct',
-        points: [
-          'Aggregation of heterogeneous logs.',
-          'Reconstruction of states that no longer exist.',
-          'Mobilization of multiple teams.',
-          'Dependency on obsolete rule and data versions.',
-        ],
-      },
-      conclusion: 'When scrutiny begins (audit, incident, litigation, regulation), the decision as it was made no longer exists as an autonomous factual object.',
-    },
-    // 3. Horizon
-    paradigm: {
-      badge: 'Horizon',
-      title: 'Where and how it inserts',
-      subtitle: 'Capture, don\'t reconstruct.',
-      principle: 'Decision facts must be created at execution time. Not reconstructed when scrutiny begins.',
-      explanation: 'Horizon does not seek to explain after the fact. It freezes the constituent facts at the exact moment the decision is produced.',
-      pointsIntro: 'Every decision becomes:',
-      points: [
-        'An autonomous object.',
-        'Timestamped.',
-        'Contextualized.',
-        'Verifiable independently of source systems.',
+      title: 'The problem',
+      intro: 'In regulated infrastructures, an automated decision can trigger a systemic effect: payment rejection, margin call, participant suspension, AML block, circuit breaker activation, etc.',
+      cards: [
+        {
+          title: 'Fragile reconstruction',
+          points: ['scattered logs / heterogeneous formats', 'rule & model states that evolve', 'expired / purged source data'],
+        },
+        {
+          title: 'Slow response',
+          points: ['multiple teams mobilized', 'days or weeks to "explain"', 'but difficult to "prove"'],
+        },
+        {
+          title: 'Legal risk',
+          points: ['litigation, sanctions, reputation', 'contradictory narratives', 'evidence dependent on business IS'],
+        },
       ],
     },
-    // 4. Infrastructure
-    infrastructure: {
-      badge: 'What Horizon does',
-      title: 'And what it does not',
-      subtitle: 'A transversal infrastructure, independent of decision engines.',
-      what: {
-        title: 'Horizon integrates into critical flows to',
+    whatItDoes: {
+      title: 'What Horizon does',
+      intro: 'Horizon transforms an ephemeral decision into a <strong>durable fact</strong>: a timestamped, normalized and verifiable record that describes the decision and its essential context.',
+      captures: {
+        title: 'Horizon captures',
         points: [
-          'Capture the decision at the point of execution.',
-          'Normalize its factual expression.',
-          'Preserve an immutable snapshot of the decision context.',
-          'Make this snapshot accessible for examination functions, without dependency on the original systems.',
+          'the decision (result, action, status)',
+          'relevant inputs (features / signals / thresholds)',
+          'provenance (system, version, actor)',
+          'timestamp & integrity (hashing, append-only)',
         ],
       },
-      boundaries: {
-        title: 'What it does not do',
+      enables: {
+        title: 'Horizon enables',
         points: [
-          'Make decisions.',
-          'Modify rules.',
-          'Explain results.',
-          'Impose a model.',
-        ],
-      },
-      insertionPoint: 'Horizon inserts at the point where a decision becomes effective.',
-      conclusion: 'It operates upstream of justification and outside of reconstruction.',
-    },
-    // 5. Who is it for
-    audience: {
-      badge: 'Who Horizon is for',
-      title: 'Maximum exposure contexts',
-      subtitle: 'Environments where the burden of proof is structural.',
-      intro: 'Horizon is designed for organizations where:',
-      criteria: [
-        'Automated decisions have a regulatory, financial, or systemic impact.',
-        'Responsibility cannot be inferred.',
-        'The demonstration of facts is a requirement, not an option.',
-      ],
-      examples: {
-        title: 'Typically',
-        points: [
-          'Systemic banks.',
-          'Market exchanges.',
-          'Payment Service Providers.',
-          'Critical financial infrastructures.',
+          'audit & inspection without depending on source IS',
+          'faster and defensible remediation',
+          'cross-system consistency (rules, models, human)',
+          'reduction of evidentiary risk',
         ],
       },
     },
-    // 6. Result
-    changes: {
-      badge: 'Result',
-      title: 'What changes for examination',
-      points: [
-        'Audit becomes observation, not reconstruction.',
-        'Accountability can be demonstrated without interpretation.',
-        'The decision remains verifiable regardless of system evolution.',
-        'Accountability no longer depends on the current state of engines, models, or rules.',
+    whatItIsNot: {
+      title: 'What Horizon is not',
+      cards: [
+        { title: 'Not a decision engine', description: 'Horizon does not execute any rules and does not "make" any decisions.' },
+        { title: 'Not a governance platform', description: 'It does not replace GRC, SIEM, data lake, or observability stack.' },
+        { title: 'Not an explainability tool', description: 'It does not "rationalize": it preserves the fact and its context.' },
       ],
-      itBenefit: 'Examination no longer triggers a reconstruction project.',
-      conclusion: 'Automated decision-making ceases to be an ephemeral event. It becomes a durable, examinable, and opposable fact.',
     },
-    // 7. Positioning
-    positioning: {
-      title: 'Horizon does not govern your decisions.',
-      subtitle: 'It guarantees that their facts exist.',
-      conclusion: 'In environments where trust relies on evidence, Horizon constitutes the factual layer of automated decisions.',
+    useCases: {
+      title: 'Use cases where Horizon is immediately relevant',
+      intro: 'Horizon is most effective when deployed on <strong>1 to 3 classes of critical decisions</strong>.',
+      cards: [
+        {
+          title: 'PSP / Payments',
+          points: ['rejections & returns (reason, threshold, signal)', 'AML / sanctions / fraud blocks', 'customer / merchant dispute resolution'],
+        },
+        {
+          title: 'Trading venue / Exchange',
+          points: ['instrument / participant suspension', 'circuit breakers & microstructure safeguards', 'post-incident investigations & reporting'],
+        },
+        {
+          title: 'Clearing house / CCP',
+          points: ['margin calls & intraday risk', 'haircuts / stress triggers', 'counterparty disputes & evidence packs'],
+        },
+        {
+          title: 'Systemic bank',
+          points: ['scoring / rejection / conditions', 'limits, overrides, exceptions', 'defense in inspection & litigation'],
+        },
+      ],
     },
-    // Executive Summary (quick read)
-    summary: {
-      badge: 'In 30 seconds',
-      problemLabel: 'Problem',
-      problem: 'During an audit or dispute, you cannot prove what an automated system actually decided at the time.',
-      causeLabel: 'Cause',
-      cause: 'Decisions are never preserved as autonomous facts beyond system evolution.',
-      solutionLabel: 'Solution',
-      solution: 'Horizon captures each decision once, at execution time, and keeps it verifiable later.',
-      readMore: 'Read the full version',
-      // Proof of operational reality
-      realityTitle: 'This is not theoretical.',
-      realityText: 'Teams already attempt to reconstruct past decisions using logs, models, configurations, and internal records. Horizon changes the effort required, not the control you retain.',
-    },
-    // 8. CTA
-    cta: {
-      badge: 'Call to action',
-      title: 'Examine the architecture before it is examined',
-      content: 'Discover how Decision Snapshot Infrastructure integrates into existing critical decision environments.',
-      button: 'Request a Horizon presentation',
-    },
-    // Resources
-    resources: {
-      title: 'Resources',
-      foundations: {
-        title: 'Foundations',
-        content: 'The Foundational Brief presents the operational foundations of execution-time evidence.',
-        linkText: 'Read the Foundations',
-      },
-      costAnalysis: {
-        title: 'Cost analysis',
-        content: 'This document analyzes why the cost of reconstruction is systematically underestimated.',
-        linkText: 'Read the analysis',
+    howItWorks: {
+      title: 'How it works',
+      steps: [
+        { title: '1) Instrument the decision point', description: 'A hook at the moment the decision is rendered (service, rule engine, human workflow).' },
+        { title: '2) Normalize the fact', description: 'Stable decision schema: decision, context, provenance, versions, timestamp.' },
+        { title: '3) Preserve and make verifiable', description: 'Append-only storage + integrity controls + "evidence pack" export for audit/litigation.' },
+      ],
+      result: {
+        title: 'Result: a "proof" source of truth',
+        description: 'You can answer: "What was decided? When? On what basis? What version? Who/what system?" Without fragile reconstruction, and without depending on the operational IS.',
       },
     },
+    outcomes: {
+      title: 'Expected outcomes',
+      cards: [
+        { title: 'Faster audit', description: 'Fewer weeks of investigation, more verifiable facts.' },
+        { title: 'Reduced evidentiary risk', description: 'Mitigation of "impossible to prove" legal risk.' },
+        { title: 'Effective remediation', description: 'Reusable, consistent and opposable evidence packs.' },
+      ],
+    },
+    security: {
+      title: 'Security & deployment',
+      deployment: {
+        title: 'Deployment',
+        points: ['on-prem / private cloud (depending on constraints)', 'progressive integration by use case', 'access controls & role separation'],
+      },
+      governance: {
+        title: 'Data governance',
+        points: ['minimization: keep the evidentiary essentials', 'configurable retention', 'encryption & access traceability'],
+      },
+    },
+    finalCta: {
+      title: 'The question is not "why Horizon". It\'s "which critical decision do you want to be able to prove?"',
+      description: 'If you have already experienced a difficult audit, an incident, or a remediation plan, Horizon can become your proof layer. We start with a use case, not a platform.',
+      ctaPrimary: 'Request a technical briefing',
+      ctaSecondary: 'See frequently asked questions',
+    },
+    faq: {
+      title: 'FAQ',
+      items: [
+        { question: 'Why not do this with logs?', answer: 'Logs are useful, but often scattered, reconstructed, and dependent on source IS. Horizon aims for autonomous, stable and usable decision evidence.' },
+        { question: 'Does Horizon store sensitive data?', answer: 'Horizon does not ingest operational data flows. It preserves declared decision facts at execution time, according to schemas and boundaries defined by the institution. Data minimization, retention, and sensitivity classification remain fully under institutional control.' },
+        { question: 'Is this a heavy project?', answer: 'The right approach is targeted: 1 critical use case, instrumentation at the decision point, then extension. Avoid "capture everything".' },
+        { question: 'Who is the internal sponsor?', answer: 'Often a Legal/Compliance/Risk/Audit coalition. IT executes, but the need is evidentiary and regulatory.' },
+      ],
+    },
+    footer: '© Asplenz. Horizon, Decision Evidence.',
   },
 };
 
@@ -344,365 +308,268 @@ export default function LandingPage({
   const c = content[params.lang];
 
   return (
-    <div className="min-h-screen">
-      {/* 1. Hero */}
-      <section className="pt-12 pb-8 lg:pt-16 lg:pb-12">
-        <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-black mb-2 leading-tight">
-            {c.hero.title}
-          </h1>
-          <p className="text-xl lg:text-2xl text-[#005C99] font-medium mb-6">
-            {c.hero.subtitle}
-          </p>
-
-          {/* Phrase d'ancrage */}
-          <p className="text-base text-black/60 mb-6 italic">
-            {c.hero.anchor}
-          </p>
-
-          <p className="text-lg text-black/70 mb-4">
-            {c.hero.intro}
-          </p>
-
-          {/* Moments critiques */}
-          <p className="text-base font-medium text-black/80 mb-4">
-            {c.hero.trigger}
-          </p>
-
-          <p className="text-lg text-black/70 mb-6">
-            {c.hero.problem}
-          </p>
-          <p className="text-lg text-[#005C99] font-medium mb-8">
-            {c.hero.solution}
-          </p>
-
-          {/* Définition canonique */}
-          <div className="bg-[#005C99]/5 border border-[#005C99]/20 p-6 rounded">
-            <p className="font-bold text-[#005C99] mb-2">{c.definition.term}</p>
-            <p className="text-black/70">{c.definition.text}</p>
+    <div className="min-h-screen bg-white text-black">
+      <div className="max-w-5xl mx-auto px-6 py-8">
+        {/* NAV */}
+        <div className="flex justify-between items-center gap-4 flex-wrap mb-12">
+          <div className="font-bold tracking-wide text-[#005C99]">ASPLENZ <span className="text-black/40">/ Horizon</span></div>
+          <div className="flex gap-3 flex-wrap">
+            <a className="inline-block px-4 py-2.5 border border-black/10 rounded-xl text-[#005C99] hover:bg-black/5 transition-colors" href="#how">{c.nav.howItWorks}</a>
+            <a className="inline-block px-4 py-2.5 border border-black/10 rounded-xl text-[#005C99] hover:bg-black/5 transition-colors" href="#usecases">{c.nav.useCases}</a>
           </div>
         </div>
-      </section>
 
-      {/* Executive Summary - Lecture rapide */}
-      <section className="py-8 border-b border-black/10">
-        <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-6">
-            {c.summary.badge}
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-red-50 border border-red-100 p-4 rounded">
-              <p className="text-xs uppercase tracking-wider text-red-600 font-medium mb-2">{c.summary.problemLabel}</p>
-              <p className="text-black/80 text-sm">{c.summary.problem}</p>
-            </div>
-            <div className="bg-amber-50 border border-amber-100 p-4 rounded">
-              <p className="text-xs uppercase tracking-wider text-amber-600 font-medium mb-2">{c.summary.causeLabel}</p>
-              <p className="text-black/80 text-sm">{c.summary.cause}</p>
-            </div>
-            <div className="bg-green-50 border border-green-100 p-4 rounded">
-              <p className="text-xs uppercase tracking-wider text-green-600 font-medium mb-2">{c.summary.solutionLabel}</p>
-              <p className="text-black/80 text-sm">{c.summary.solution}</p>
-            </div>
-          </div>
-          <div className="mt-6 text-center">
-            <a href="#context" className="text-[#005C99] text-sm font-medium hover:underline">
-              {c.summary.readMore} ↓
-            </a>
-          </div>
+        {/* HERO */}
+        <section className="pb-8 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 items-start">
+          <div>
+            <div className="text-black/50 text-sm uppercase tracking-widest mb-3">{c.hero.tagline}</div>
+            <h1 className="mb-4 text-3xl lg:text-[40px] leading-tight font-bold">{c.hero.title}</h1>
+            <p className="text-black/60 text-lg leading-relaxed mb-5" dangerouslySetInnerHTML={{ __html: c.hero.description }} />
 
-          {/* Preuve de réalité opérationnelle */}
-          <div className="mt-8 pt-6 border-t border-black/10">
-            <p className="text-black font-medium mb-2">{c.summary.realityTitle}</p>
-            <p className="text-black/60 text-sm">{c.summary.realityText}</p>
-          </div>
-        </div>
-      </section>
+            {/* Définition canonique */}
+            <blockquote className="border-l-4 border-[#005C99] pl-4 mb-5">
+              <p className="font-medium text-[#005C99]">{c.definition.term}</p>
+              <p className="text-black/60 text-sm">{c.definition.text}</p>
+            </blockquote>
 
-      {/* 2. Le problème */}
-      <section id="context" className="py-12 bg-zinc-50">
-        <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
-            {c.problem.badge}
-          </p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
-            {c.problem.title}
-          </h2>
-          <p className="text-lg text-[#005C99] font-medium mb-8">
-            {c.problem.subtitle}
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div>
-              <p className="text-sm uppercase tracking-wider text-black/50 mb-4">{c.problem.labelCharacteristics}</p>
-              <ul className="space-y-2">
-                {c.problem.characteristics.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 text-black/70">
-                    <span className="text-amber-500 mt-1">•</span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-sm uppercase tracking-wider text-black/50 mb-4">{c.problem.labelConsequences}</p>
-              <ul className="space-y-2">
-                {c.problem.consequences.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 text-black/70">
-                    <span className="text-red-500 mt-1">✗</span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
-            {c.problem.conclusion}
-          </blockquote>
-        </div>
-      </section>
-
-      {/* 2b. Aujourd'hui - Ce que l'IT fait */}
-      <section className="py-12">
-        <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
-            {c.problem.itReality.badge}
-          </p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-8">
-            {c.problem.itReality.title}
-          </h2>
-          <div className="bg-zinc-50 border border-black/10 p-6 rounded">
-            <ul className="space-y-3">
-              {c.problem.itReality.points.map((point, i) => (
-                <li key={i} className="flex items-start gap-3 text-black/70">
-                  <span className="text-amber-500 mt-1">→</span>
-                  <span>{point}</span>
-                </li>
+            <div className="flex gap-2.5 flex-wrap mb-4">
+              {c.hero.industries.map((industry, i) => (
+                <span key={i} className="inline-flex gap-2 items-center px-3 py-1.5 border border-black/10 rounded-full text-sm text-black/60">{industry}</span>
               ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* 3. Horizon */}
-      <section className="py-12 bg-zinc-50">
-        <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
-            {c.paradigm.badge}
-          </p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
-            {c.paradigm.title}
-          </h2>
-          <p className="text-lg text-[#005C99] font-medium mb-6">
-            {c.paradigm.subtitle}
-          </p>
+            <div className="flex gap-3 flex-wrap mb-4">
+              <Link className="inline-block px-4 py-2.5 bg-[#005C99] text-white rounded-xl font-medium hover:bg-[#005C99]/90 transition-colors" href={`/${params.lang}/cost-of-reconstruction`}>{c.hero.ctaPrimary}</Link>
+              <a className="inline-block px-4 py-2.5 border border-black/10 rounded-xl text-[#005C99] hover:bg-black/5 transition-colors" href="#faq">{c.hero.ctaSecondary}</a>
+            </div>
 
-          {/* Point d'insertion + Principe */}
-          <div className="bg-[#005C99]/5 border border-[#005C99]/20 p-6 rounded mb-8">
-            <p className="text-[#005C99] font-medium mb-4">
-              {c.infrastructure.insertionPoint}
-            </p>
-            <p className="text-[#005C99] font-medium text-lg">
-              {c.paradigm.principle}
+            <p className="text-sm text-black/50 leading-snug">
+              {c.hero.disclaimer}
             </p>
           </div>
 
-          <p className="text-black/70 mb-6">
-            {c.paradigm.explanation}
-          </p>
+          {/* SIDE CTA */}
+          <div className="bg-zinc-50 border border-black/10 rounded-2xl p-5 lg:sticky lg:top-24">
+            <h3 className="mb-2 text-base font-bold">{c.demo.title}</h3>
+            <p className="mb-4 text-black/60 text-sm leading-snug" dangerouslySetInnerHTML={{ __html: c.demo.description }} />
 
-          <p className="text-black/70 mb-4">{c.paradigm.pointsIntro}</p>
-          <ul className="space-y-2 mb-8">
-            {c.paradigm.points.map((point, i) => (
-              <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-green-600 mt-1">✓</span>
-                <span>{point}</span>
-              </li>
+            <div className="space-y-3">
+              <p className="text-sm text-black/70">
+                {c.demo.contactIntro} <a href={`mailto:${c.demo.contactEmail}`} className="text-[#005C99] font-medium">{c.demo.contactEmail}</a>
+              </p>
+              <p className="text-sm text-black/70">
+                {c.demo.orSchedule}
+              </p>
+              <a
+                href="https://app.cal.eu/asplenz/institutional-acceptability?overlayCalendar=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2.5 bg-[#005C99] text-white rounded-xl font-medium hover:bg-[#005C99]/90 transition-colors"
+              >
+                {c.demo.scheduleLink}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* PROBLEM */}
+        <section className="py-10">
+          <h2 className="mb-3 text-2xl font-bold">{c.problem.title}</h2>
+          <p className="text-black/60 mb-6">{c.problem.intro}</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {c.problem.cards.map((card, i) => (
+              <div key={i} className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
+                <strong className="text-black">{card.title}</strong>
+                <ul className="mt-3 pl-4 text-black/60 leading-relaxed list-disc">
+                  {card.points.map((point, j) => (
+                    <li key={j}>{point}</li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* 4. Ce que fait Horizon / Ce qu'il ne fait pas */}
-      <section className="py-12">
-        <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
-            {c.infrastructure.badge}
-          </p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-8">
-            {c.infrastructure.title}
-          </h2>
+        {/* WHAT IT DOES */}
+        <section className="py-10">
+          <h2 className="mb-3 text-2xl font-bold">{c.whatItDoes.title}</h2>
+          <div className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
+            <p className="text-lg leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: c.whatItDoes.intro }} />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <strong className="text-[#005C99]">{c.whatItDoes.captures.title}</strong>
+                <ul className="mt-3 pl-4 text-black/60 leading-relaxed list-disc">
+                  {c.whatItDoes.captures.points.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <strong className="text-[#005C99]">{c.whatItDoes.enables.title}</strong>
+                <ul className="mt-3 pl-4 text-black/60 leading-relaxed list-disc">
+                  {c.whatItDoes.enables.points.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div className="bg-zinc-50 p-6 rounded border border-black/5">
-              <h3 className="font-bold text-[#005C99] mb-4">{c.infrastructure.what.title}</h3>
-              <ul className="space-y-2">
-                {c.infrastructure.what.points.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 text-black/70">
-                    <span className="text-green-600 mt-1">✓</span>
-                    <span>{point}</span>
-                  </li>
+        {/* WHAT IT IS NOT */}
+        <section className="py-10">
+          <h2 className="mb-3 text-2xl font-bold">{c.whatItIsNot.title}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {c.whatItIsNot.cards.map((card, i) => (
+              <div key={i} className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
+                <strong className="text-black">{card.title}</strong>
+                <p className="text-black/60 mt-2">{card.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* USE CASES */}
+        <section id="usecases" className="py-10 scroll-mt-20">
+          <h2 className="mb-3 text-2xl font-bold">{c.useCases.title}</h2>
+          <p className="text-black/60 mb-6" dangerouslySetInnerHTML={{ __html: c.useCases.intro }} />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {c.useCases.cards.map((card, i) => (
+              <div key={i} className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
+                <strong className="text-black">{card.title}</strong>
+                <ul className="mt-3 pl-4 text-black/60 leading-relaxed list-disc">
+                  {card.points.map((point, j) => (
+                    <li key={j}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* HOW IT WORKS */}
+        <section id="how" className="py-10 scroll-mt-20">
+          <h2 className="mb-3 text-2xl font-bold">{c.howItWorks.title}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            {c.howItWorks.steps.map((step, i) => (
+              <div key={i} className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
+                <strong className="text-black">{step.title}</strong>
+                <p className="text-black/60 mt-2">{step.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-[#005C99]/5 border border-[#005C99]/20 rounded-2xl p-5">
+            <strong className="text-[#005C99]">{c.howItWorks.result.title}</strong>
+            <p className="text-black/60 mt-2">{c.howItWorks.result.description}</p>
+          </div>
+        </section>
+
+        {/* OUTCOMES */}
+        <section className="py-10">
+          <h2 className="mb-3 text-2xl font-bold">{c.outcomes.title}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {c.outcomes.cards.map((card, i) => (
+              <div key={i} className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
+                <strong className="text-black">{card.title}</strong>
+                <p className="text-black/60 mt-2">{card.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* SECURITY & DEPLOYMENT */}
+        <section className="py-10">
+          <h2 className="mb-3 text-2xl font-bold">{c.security.title}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
+              <strong className="text-black">{c.security.deployment.title}</strong>
+              <ul className="mt-3 pl-4 text-black/60 leading-relaxed list-disc">
+                {c.security.deployment.points.map((point, i) => (
+                  <li key={i}>{point}</li>
                 ))}
               </ul>
             </div>
-            <div className="bg-zinc-50 p-6 rounded border border-red-100">
-              <h3 className="font-bold text-red-600 mb-4">{c.infrastructure.boundaries.title}</h3>
-              <ul className="space-y-2">
-                {c.infrastructure.boundaries.points.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 text-black/70">
-                    <span className="text-red-400 mt-1">✗</span>
-                    <span>{point}</span>
-                  </li>
+            <div className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
+              <strong className="text-black">{c.security.governance.title}</strong>
+              <ul className="mt-3 pl-4 text-black/60 leading-relaxed list-disc">
+                {c.security.governance.points.map((point, i) => (
+                  <li key={i}>{point}</li>
                 ))}
               </ul>
             </div>
           </div>
+        </section>
 
-          <div className="bg-white p-6 rounded shadow-md border border-black/5">
-            <p className="text-lg font-medium text-[#005C99]">
-              {c.infrastructure.conclusion}
-            </p>
+        <div className="h-px bg-black/10 my-6"></div>
+
+        {/* FINAL CTA */}
+        <section className="py-10 scroll-mt-20" id="contact">
+          <h2 className="mb-3 text-2xl font-bold">{c.finalCta.title}</h2>
+          <div className="bg-[#005C99]/5 border border-[#005C99]/20 rounded-2xl p-5 mb-6">
+            <p className="text-black/60 mb-4">{c.finalCta.description}</p>
+            <div className="flex gap-3 flex-wrap">
+              <a className="inline-block px-4 py-2.5 border border-[#005C99]/30 rounded-xl text-[#005C99] hover:bg-[#005C99]/10 transition-colors" href="#faq">{c.finalCta.ctaSecondary}</a>
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* 5. À qui s'adresse */}
-      <section className="py-12">
-        <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
-            {c.audience.badge}
-          </p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
-            {c.audience.title}
-          </h2>
-          <p className="text-lg text-[#005C99] font-medium mb-6">
-            {c.audience.subtitle}
-          </p>
+          {/* Contact block */}
+          <div className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
+            <h3 className="mb-2 text-base font-bold">{c.demo.title}</h3>
+            <p className="mb-4 text-black/60 text-sm leading-snug" dangerouslySetInnerHTML={{ __html: c.demo.description }} />
 
-          <p className="text-black/70 mb-4">{c.audience.intro}</p>
-          <ul className="space-y-2 mb-8">
-            {c.audience.criteria.map((point, i) => (
-              <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-[#005C99] mt-1">→</span>
-                <span>{point}</span>
-              </li>
+            <div className="space-y-3">
+              <p className="text-sm text-black/70">
+                {c.demo.contactIntro} <a href={`mailto:${c.demo.contactEmail}`} className="text-[#005C99] font-medium">{c.demo.contactEmail}</a>
+              </p>
+              <p className="text-sm text-black/70">
+                {c.demo.orSchedule}
+              </p>
+              <a
+                href="https://app.cal.eu/asplenz/institutional-acceptability?overlayCalendar=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2.5 bg-[#005C99] text-white rounded-xl font-medium hover:bg-[#005C99]/90 transition-colors"
+              >
+                {c.demo.scheduleLink}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className="py-10 scroll-mt-20">
+          <h2 className="mb-3 text-2xl font-bold">{c.faq.title}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {c.faq.items.map((item, i) => (
+              <div key={i} className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
+                <strong className="text-black">{item.question}</strong>
+                <p className="text-black/60 mt-2">{item.answer}</p>
+              </div>
             ))}
-          </ul>
-
-          <div className="bg-zinc-50 p-6 rounded">
-            <p className="font-medium text-black mb-4">{c.audience.examples.title}</p>
-            <ul className="space-y-2">
-              {c.audience.examples.points.map((point, i) => (
-                <li key={i} className="flex items-start gap-3 text-black/70">
-                  <span className="text-[#005C99] mt-1">•</span>
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 6. Ce que cela change */}
-      <section className="py-12 bg-zinc-50">
-        <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
-            {c.changes.badge}
-          </p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-8">
-            {c.changes.title}
-          </h2>
-
-          <ul className="space-y-3 mb-8">
-            {c.changes.points.map((point, i) => (
-              <li key={i} className="flex items-start gap-3 text-black/70">
-                <span className="text-green-600 mt-1">↓</span>
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
-
-          {/* Bénéfice IT */}
-          <div className="bg-green-50 border border-green-200 p-4 rounded mb-8">
-            <p className="text-green-800 font-medium">
-              {c.changes.itBenefit}
-            </p>
-          </div>
-
-          <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
-            {c.changes.conclusion}
-          </blockquote>
-        </div>
-      </section>
-
-      {/* 7. Positionnement */}
-      <section className="py-12">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-[#005C99]/5 border border-[#005C99]/20 py-12 px-8 text-center rounded">
-            <h2 className="text-2xl lg:text-3xl font-bold text-[#005C99] mb-3">
-              {c.positioning.title}
-            </h2>
-            <p className="text-xl text-black/80 mb-6">
-              {c.positioning.subtitle}
-            </p>
-            <p className="text-black/70">
-              {c.positioning.conclusion}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. CTA */}
-      <section id="engage" className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-white p-8 rounded shadow-lg border border-black/5">
-            <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
-              {c.cta.badge}
-            </p>
-            <h2 className="text-2xl font-bold text-black mb-4">
-              {c.cta.title}
-            </h2>
-            <p className="text-black/70 mb-8">
-              {c.cta.content}
-            </p>
-            <Link
-              href={`/${params.lang}/engagement`}
-              className="inline-flex items-center gap-2 bg-[#005C99] text-white px-6 py-3 font-medium hover:bg-[#005C99]/90 transition-colors rounded"
-            >
-              {c.cta.button}
+        {/* RESOURCES */}
+        <section className="py-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link href={`/${params.lang}/foundations`} className="bg-zinc-50 border border-black/10 rounded-2xl p-5 hover:bg-zinc-100 transition-colors block">
+              <strong className="text-[#005C99]">{params.lang === 'fr' ? 'Fondements' : 'Foundations'}</strong>
+              <p className="text-black/60 mt-2 text-sm">{params.lang === 'fr' ? 'Le document Foundational Brief présente les fondations opérationnelles de la preuve à l\'exécution.' : 'The Foundational Brief presents the operational foundations of execution-time evidence.'}</p>
+            </Link>
+            <Link href={`/${params.lang}/cost-of-reconstruction`} className="bg-zinc-50 border border-black/10 rounded-2xl p-5 hover:bg-zinc-100 transition-colors block">
+              <strong className="text-[#005C99]">{params.lang === 'fr' ? 'Analyse des coûts' : 'Cost analysis'}</strong>
+              <p className="text-black/60 mt-2 text-sm">{params.lang === 'fr' ? 'Ce document analyse pourquoi le coût de la reconstruction est systématiquement sous-estimé.' : 'This document analyzes why the cost of reconstruction is systematically underestimated.'}</p>
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Ressources */}
-      <section className="py-12 bg-zinc-50">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-xl font-bold text-black mb-8">{c.resources.title}</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white border border-black/10 p-6 rounded">
-              <h3 className="font-bold text-black mb-2">{c.resources.foundations.title}</h3>
-              <p className="text-black/70 text-sm mb-4">{c.resources.foundations.content}</p>
-              <Link
-                href={`/${params.lang}/foundations`}
-                className="text-[#005C99] font-medium hover:underline inline-flex items-center gap-1"
-              >
-                {c.resources.foundations.linkText} <span>→</span>
-              </Link>
-            </div>
-            <div className="bg-white border border-black/10 p-6 rounded">
-              <h3 className="font-bold text-black mb-2">{c.resources.costAnalysis.title}</h3>
-              <p className="text-black/70 text-sm mb-4">{c.resources.costAnalysis.content}</p>
-              <Link
-                href={`/${params.lang}/cost-of-reconstruction`}
-                className="text-[#005C99] font-medium hover:underline inline-flex items-center gap-1"
-              >
-                {c.resources.costAnalysis.linkText} <span>→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+        <p className="py-6 text-sm text-black/40">
+          {c.footer}
+        </p>
+      </div>
     </div>
   );
 }
