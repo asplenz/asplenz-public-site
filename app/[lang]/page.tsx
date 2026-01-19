@@ -9,10 +9,9 @@ const content = {
   fr: {
     // 0. Layer zero – contexte de lecture
     layerZero: {
-      audience: 'Ce document s\'adresse aux organisations qui doivent examiner des décisions automatisées sans disposer de l\'état factuel de leur exécution.',
-      problem: 'Elle décrit un problème structurel : les systèmes de décision produisent des résultats, mais ne préservent pas l\'état factuel qui les a produits, ce qui oblige tout examen ultérieur à reposer sur une reconstruction.',
-      complexity: 'La complexité croissante des systèmes peut accentuer cette situation, mais le problème existe indépendamment de toute évolution technologique.',
-      intent: 'Le propos est volontairement conceptuel. Il vise à nommer un manque d\'infrastructure, avant d\'en proposer une réponse.',
+      audience: 'Ce document s\'adresse aux organisations qui doivent examiner des décisions automatisées sans disposer des faits d\'exécution.',
+      problem: 'Il décrit un problème structurel : les décisions sont produites, mais les faits qui les ont produites ne sont pas préservés, ce qui oblige tout examen ultérieur à reposer sur une reconstruction.',
+      intent: 'Le propos est volontairement conceptuel.',
     },
     // 1. Hero – affirmation structurante
     hero: {
@@ -24,6 +23,7 @@ const content = {
     structural: {
       title: 'Un problème qui n\'apparaît qu\'après coup',
       subtitle: 'Les décisions fonctionnent. Leur examen, beaucoup moins.',
+      pivot: 'Cette section explique pourquoi le problème n\'est pas visible au moment de la décision.',
       content: `Dans les environnements réels, tout bouge : les données évoluent, les règles changent, les modèles sont mis à jour, les architectures se transforment et les équipes se renouvellent.
 
 Pourtant, les décisions produites par ces systèmes restent souvent examinables bien après que les conditions techniques ayant présidé à leur création ont disparu.
@@ -36,12 +36,14 @@ Lorsqu'une décision passée doit être comprise, les équipes doivent reconstit
         'Les signaux tiers éventuellement impliqués.',
       ],
       conclusion: 'Cette reconstitution est coûteuse, incertaine et dépendante d\'un système qui n\'existe plus dans son état d\'origine.',
+      takeaway: 'En résumé : le problème n\'est pas que les décisions sont mal prises, mais que leur base factuelle n\'est pas préservée.',
     },
     // 3. Pourquoi ce problème est mal traité
     mistreated: {
-      title: 'Pourquoi la reconstruction devient la norme',
+      title: 'Pourquoi les logs ne sont pas des faits',
       transition: 'Si les décisions sont produites correctement, pourquoi l\'examen pose-t-il problème ?',
       subtitle: 'Parce que ce qui est conservé ne suffit pas à établir les faits.',
+      pivot: 'Le point clé ici : l\'observabilité et la preuve ne sont pas la même chose.',
       content: `La plupart des systèmes de décision ne préservent pas les états d'exécution factuels. Ils laissent derrière eux des logs, métriques et traces conçus pour l'observabilité (journaux applicatifs, registres de modèles, configurations, dépendances tierces), et non pour la certitude probante.
 
 Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en réalité des reconstructions assemblées après coup :`,
@@ -52,6 +54,7 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
         'Un coût opérationnel qui augmente avec le temps.',
       ],
       conclusion: 'Ces défaillances ne sont pas accidentelles. Elles découlent d\'une inadéquation entre ce que les systèmes d\'exécution sont conçus pour conserver et ce dont les institutions ont besoin plus tard pour établir les faits.',
+      takeaway: 'En résumé : sans faits d\'exécution, l\'examen devient inévitablement reconstruction.',
     },
     // 3bis. Distinction clé (interstitiel visuel)
     keyDistinction: {
@@ -62,7 +65,12 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
     asplenz: {
       title: 'Ce qui manque aux systèmes de décision',
       subtitle: 'Une couche dédiée à la préservation des faits d\'exécution.',
-      brandLine: 'Asplenz Horizon introduit une Decision Snapshot Infrastructure : une couche dédiée à la préservation des faits d\'exécution.',
+      // Définition canonique
+      definition: {
+        term: 'Decision Snapshot Infrastructure',
+        text: 'Une couche d\'infrastructure dont la seule responsabilité est de préserver, de manière immuable, les faits d\'exécution d\'une décision au moment où celle-ci devient irréversible.',
+      },
+      brandLine: 'Asplenz Horizon introduit une Decision Snapshot Infrastructure.',
       intro: `En tant que couche de préservation factuelle, son seul but est de capturer, au point de non-retour, l'état factuel complet d'une décision et de le préserver sous la forme d'un artefact immuable et auto-contenu.`,
       principle: 'Cet artefact existe indépendamment de l\'évolution future du système qui l\'a produit.',
       what: {
@@ -91,8 +99,9 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
     },
     // 6. Conséquences organisationnelles
     consequences: {
-      title: 'Ce que cela change dans le temps',
+      title: 'Ce que cela change — et ce que cela ne change pas',
       subtitle: 'Moins de reconstruction. Plus de stabilité lors de l\'examen.',
+      pivot: 'L\'enjeu ici n\'est pas l\'automatisation, mais la réduction de l\'effort opérationnel.',
       intro: 'L\'infrastructure ne change pas ce que les institutions choisissent de décider ou d\'enregistrer. Elle change le coût et la fragilité de l\'établissement des faits.',
       changes: {
         title: 'Ce qui est réduit',
@@ -160,10 +169,9 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
   en: {
     // 0. Layer zero – reading context
     layerZero: {
-      audience: 'This document is intended for organizations that must examine automated decisions without having access to the factual state of their execution.',
-      problem: 'It describes a structural problem: decision systems produce outcomes, but do not preserve the factual state that produced them, forcing any subsequent examination to rely on reconstruction.',
-      complexity: 'The increasing complexity of systems may amplify this situation, but the problem exists independently of any technological evolution.',
-      intent: 'The content is intentionally conceptual. It aims to name an infrastructure gap before proposing a response.',
+      audience: 'This document is intended for organizations that must examine automated decisions without access to execution-time facts.',
+      problem: 'It describes a structural problem: decisions are produced, but the facts that produced them are not preserved, forcing later examination to rely on reconstruction.',
+      intent: 'The content is intentionally conceptual.',
     },
     // 1. Hero – structural assertion
     hero: {
@@ -175,6 +183,7 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
     structural: {
       title: 'A problem that only appears after the fact',
       subtitle: 'Decisions work. Their examination, much less so.',
+      pivot: 'This section explains why the problem is not visible at decision time.',
       content: `In real-world environments, everything moves: data evolves, rules change, models are updated, architectures transform, and teams rotate.
 
 Yet the decisions produced by these systems often remain examinable long after the technical conditions that produced them have disappeared.
@@ -187,12 +196,14 @@ When a past decision must be understood, teams must reconstitute what existed at
         'Any third-party signals involved.',
       ],
       conclusion: 'This reconstitution is costly, uncertain, and dependent on a system that no longer exists in its original state.',
+      takeaway: 'In short: the problem is not that decisions are poorly made, but that their factual basis is not preserved.',
     },
     // 3. Why this problem is mistreated
     mistreated: {
-      title: 'Why reconstruction becomes the norm',
+      title: 'Why logs are not facts',
       transition: 'If decisions are produced correctly, why does examination pose a problem?',
       subtitle: 'Because what is preserved is not enough to establish facts.',
+      pivot: 'The key point here: observability and evidence are not the same thing.',
       content: `Most decision systems do not preserve factual execution states. They leave behind logs, metrics, and traces designed for observability (application logs, model registries, configurations, third-party dependencies), not evidentiary certainty.
 
 What organizations call "evidence" or "decision records" are actually reconstructions assembled after the fact:`,
@@ -203,6 +214,7 @@ What organizations call "evidence" or "decision records" are actually reconstruc
         'Operational cost that increases over time.',
       ],
       conclusion: 'These failures are not accidental. They arise from a mismatch between what execution systems are designed to retain and what institutions later require to establish facts.',
+      takeaway: 'In short: without execution-time facts, examination inevitably becomes reconstruction.',
     },
     // 3bis. Key distinction (visual interstitial)
     keyDistinction: {
@@ -213,7 +225,12 @@ What organizations call "evidence" or "decision records" are actually reconstruc
     asplenz: {
       title: 'What decision systems are missing',
       subtitle: 'A layer dedicated to preserving execution facts.',
-      brandLine: 'Asplenz Horizon introduces a Decision Snapshot Infrastructure: a layer dedicated to preserving execution facts.',
+      // Canonical definition
+      definition: {
+        term: 'Decision Snapshot Infrastructure',
+        text: 'An infrastructure layer whose sole responsibility is to preserve, immutably, the execution facts of a decision at the moment it becomes irreversible.',
+      },
+      brandLine: 'Asplenz Horizon introduces a Decision Snapshot Infrastructure.',
       intro: `As a factual preservation layer, its sole purpose is to capture, at the point of no return, the complete factual state of a decision and preserve it as an immutable, self-contained artifact.`,
       principle: 'This artifact exists independently of the future evolution of the system that produced it.',
       what: {
@@ -242,8 +259,9 @@ What organizations call "evidence" or "decision records" are actually reconstruc
     },
     // 6. Organizational consequences
     consequences: {
-      title: 'What this changes over time',
+      title: 'What this changes — and what it does not',
       subtitle: 'Less reconstruction. More stability during examination.',
+      pivot: 'The issue here is not automation, but the reduction of operational effort.',
       intro: 'The infrastructure does not change what institutions choose to decide or record. It changes the cost and fragility of establishing facts.',
       changes: {
         title: 'What is reduced',
@@ -325,7 +343,6 @@ export default function LandingPage({
           <div className="text-sm text-black/60 space-y-2">
             <p>{c.layerZero.audience}</p>
             <p>{c.layerZero.problem}</p>
-            <p>{c.layerZero.complexity}</p>
             <p className="italic">{c.layerZero.intent}</p>
           </div>
         </div>
@@ -352,8 +369,11 @@ export default function LandingPage({
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
             {c.structural.title}
           </h2>
-          <p className="text-lg text-black/60 mb-6">
+          <p className="text-lg text-[#005C99] font-medium mb-4">
             {c.structural.subtitle}
+          </p>
+          <p className="text-sm text-black/50 mb-6">
+            {c.structural.pivot}
           </p>
           <div className="text-black/70 mb-6 whitespace-pre-line">
             {c.structural.content}
@@ -366,23 +386,29 @@ export default function LandingPage({
               </li>
             ))}
           </ul>
-          <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
+          <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black mb-6">
             {c.structural.conclusion}
           </blockquote>
+          <p className="text-base text-[#005C99] font-medium">
+            {c.structural.takeaway}
+          </p>
         </div>
       </section>
 
       {/* 3. Pourquoi ce problème est mal traité */}
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-6">
-          <p className="text-lg text-black/60 italic mb-4">
+          <p className="text-lg text-black italic mb-4">
             {c.mistreated.transition}
           </p>
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
             {c.mistreated.title}
           </h2>
-          <p className="text-lg text-black/60 mb-6">
+          <p className="text-lg text-[#005C99] font-medium mb-4">
             {c.mistreated.subtitle}
+          </p>
+          <p className="text-base text-[#005C99] mb-6">
+            {c.mistreated.pivot}
           </p>
           <div className="text-black/70 mb-6 whitespace-pre-line">
             {c.mistreated.content}
@@ -395,21 +421,26 @@ export default function LandingPage({
               </li>
             ))}
           </ul>
-          <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
+          <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black mb-6">
             {c.mistreated.conclusion}
           </blockquote>
+          <p className="text-base text-[#005C99] font-medium">
+            {c.mistreated.takeaway}
+          </p>
         </div>
       </section>
 
       {/* 3bis. Distinction clé – interstitiel visuel */}
-      <section className="py-12 bg-[#005C99]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold text-white mb-3">
-            {c.keyDistinction.title}
-          </h2>
-          <p className="text-lg text-white/80">
-            {c.keyDistinction.subtitle}
-          </p>
+      <section className="py-12">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-[#005C99] py-12 px-8 text-center rounded">
+            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-3">
+              {c.keyDistinction.title}
+            </h2>
+            <p className="text-lg text-white/80">
+              {c.keyDistinction.subtitle}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -419,9 +450,16 @@ export default function LandingPage({
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
             {c.asplenz.title}
           </h2>
-          <p className="text-lg text-black/60 mb-6">
+          <p className="text-lg text-[#005C99] font-medium mb-6">
             {c.asplenz.subtitle}
           </p>
+
+          {/* Définition canonique */}
+          <div className="bg-white border-l-4 border-[#005C99] p-6 mb-8 shadow-sm">
+            <p className="font-bold text-black mb-2">{c.asplenz.definition.term}</p>
+            <p className="text-black/80">{c.asplenz.definition.text}</p>
+          </div>
+
           <p className="text-[#005C99] font-medium mb-6">
             {c.asplenz.brandLine}
           </p>
@@ -471,8 +509,11 @@ export default function LandingPage({
           <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
             {c.consequences.title}
           </h2>
-          <p className="text-lg text-black/60 mb-6">
+          <p className="text-lg text-[#005C99] font-medium mb-4">
             {c.consequences.subtitle}
+          </p>
+          <p className="text-base text-[#005C99] mb-6">
+            {c.consequences.pivot}
           </p>
           <p className="text-black/70 mb-8">
             {c.consequences.intro}
