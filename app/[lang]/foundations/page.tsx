@@ -89,7 +89,11 @@ Toute affirmation sur la réalité de l'exécution est donc une affirmation sur 
             ['Coût croissant avec le temps', 'Coût fixe à l\'exécution']
           ]
         },
-        conclusion: 'L\'Infrastructure de Snapshot Décisionnel n\'améliore pas la reconstruction. Elle la rend inutile dans son périmètre.'
+        conclusion: 'L\'Infrastructure de Snapshot Décisionnel n\'améliore pas la reconstruction. Elle la rend inutile dans son périmètre.',
+        scenarioLink: {
+          transition: 'Le scénario illustratif suivant rend concrète la différence structurelle entre la reconstruction et la preuve disponible au moment de l\'exécution.',
+          linkText: 'Lire le scénario illustratif'
+        }
       },
       {
         id: 'decisions-auto',
@@ -260,7 +264,11 @@ Statements about execution-time reality are therefore statements about the conte
             ['Cost increases over time', 'Cost fixed at execution']
           ]
         },
-        conclusion: 'Decision Snapshot Infrastructure does not improve reconstruction. It makes reconstruction unnecessary within its perimeter.'
+        conclusion: 'Decision Snapshot Infrastructure does not improve reconstruction. It makes reconstruction unnecessary within its perimeter.',
+        scenarioLink: {
+          transition: 'The following illustrative scenario makes the structural difference between reconstruction and execution-time evidence concrete.',
+          linkText: 'Read the illustrative scenario'
+        }
       },
       {
         id: 'automated',
@@ -467,6 +475,18 @@ export default function WhitePaperPage({
               <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
                 {section.conclusion}
               </blockquote>
+            )}
+
+            {section.scenarioLink && (
+              <div className="mt-6 p-6 bg-white border border-black/10">
+                <p className="text-black/70 mb-4">{section.scenarioLink.transition}</p>
+                <Link
+                  href={`/${lang}/illustrative-scenario`}
+                  className="inline-flex items-center gap-2 text-[#005C99] font-medium hover:underline"
+                >
+                  {section.scenarioLink.linkText} <span>→</span>
+                </Link>
+              </div>
             )}
           </div>
         </section>
