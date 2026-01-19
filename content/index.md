@@ -1,312 +1,264 @@
-### Version FR
-
-## 🧠 Horizon
-
-### **Decision Snapshot Infrastructure**
-
-### **Rendre les décisions automatisées durablement exploitables**
-
-Aujourd’hui, les systèmes automatisés prennent des décisions qui engagent l’organisation sur la durée. Pourtant, les faits ayant conduit à ces décisions disparaissent rapidement avec l’évolution des systèmes.
-
-Horizon est une **infrastructure** qui permet de **préserver l’état factuel d’une décision au moment exact où elle est exécutée**, afin que les équipes puissent y revenir plus tard **sans dépendre du système d’origine**.
-
-* 👉 Les faits sont capturés au moment de l’exécution.
-* 👉 Le contrôle institutionnel reste inchangé.
-* 👉 Le coût opérationnel est radicalement réduit.
-
-### **[ Réserver un entretien d’acceptabilité ]**
-
-*Horizon s’intègre aux systèmes existants. L’adoption commence par une discussion d’acceptabilité, pas par une décision imposée.*
+Voici la version finale de la page de présentation, avec une version française intégralement traduite, sans termes anglophones résiduels pour les concepts techniques.
 
 ---
 
-## 🎯 Les faits avant la reconstruction
+# 🇫🇷 Français — Page de présentation Horizon
 
-Les équipes techniques produisent déjà aujourd’hui des dossiers décisionnels : logs, bases de données, configurations, modèles, documents internes.
+## **Les décisions automatisées engagent votre responsabilité.
 
-Horizon **ne redéfinit pas ce qu’est un dossier**. Il **simplifie radicalement la production de ces éléments factuels**.
+Encore faut-il pouvoir en établir les faits, lorsque l’examen commence.**
 
-* 👉 Ce qui change, ce n’est pas le contenu du dossier.
-* 👉 C’est l’effort nécessaire pour l’établir, le conserver et le mobiliser.
+Dans les infrastructures financières critiques, des décisions automatisées sont exécutées en continu : acceptation, refus, notation, filtrage, routage, limites, alertes.
 
----
+Ces décisions produisent des effets immédiats. Mais **leurs faits constitutifs — contexte, règles, données, responsabilité — ne sont pas, par conception, conservés comme des objets probants**.
 
-## ❓ Le problème opérationnel
+**Horizon** a été conçu pour combler cette lacune structurelle.
 
-### **Les décisions automatisées ne survivent pas aux systèmes qui les produisent**
-
-Dans les environnements réels, tout bouge : les données évoluent, les règles changent, les modèles sont mis à jour et les architectures se transforment. Lorsqu’une décision passée doit être comprise, les équipes doivent **reconstruire les faits** à partir de sources partielles.
-
-> **Le constat :** Cette reconstruction est coûteuse, incertaine et dépendante d’un système qui n’existe plus dans son état d’origine.
+> **Infrastructure d'Instantanés Décisionnels**
+> Une infrastructure dédiée à la création de faits décisionnels vérifiables, au moment même de l’exécution.
 
 ---
 
-## ✅ Le principe Horizon
+## LE PROBLÈME — Un défaut de conception, pas de maturité
 
-### **Capturer les faits une fois, au bon moment**
+### Les architectures décisionnelles produisent des résultats, pas des faits
 
-Horizon capture **l’état factuel d’une décision au moment exact de son exécution**, sous la forme d’un **Decision Snapshot Artifact**.
+Dans la majorité des systèmes décisionnels :
 
-* **Données réellement consommées :** L’intégralité des entrées à T0.
-* **État de la logique :** La version exacte du modèle et sa configuration.
-* **Contexte :** L’identité du système et l’horodatage précis.
-* **Indépendance :** L'artefact est généré en temps réel ; il ne dépend pas de l’évolution future du système.
+* les décisions sont **distribuées**
+* les règles et modèles **évoluent**
+* les données sont **contextuelles et volatiles**
+* les systèmes sources **ne sont pas synchronisés dans le temps**
 
----
+Par construction :
 
-## 📦 Decision Snapshot Artifact
+* les journaux (logs) décrivent une exécution, pas une décision
+* les états système dérivent
+* la justification est **reconstruite**, non observée
 
-L’artefact est un **objet auto-contenu** qui permet d’établir les faits sans reconstitution. Il inclut :
-
-* **Métadonnées d’exécution :** ID unique et horodatage UTC précis.
-* **Snapshot Data :** Les entrées brutes vues par le système à T0.
-* **Model State :** Le hash du modèle et les seuils actifs.
-* **Output :** Le résultat et ses *reason codes*.
-* **Intégrité :** Signature cryptographique assurant l’immuabilité.
+Lorsque l’examen commence — audit, incident, litige, régulation — **la décision telle qu’elle a été prise n’existe plus comme objet factuel autonome**.
 
 ---
 
-## 🔐 Un support factuel, pas une contrainte
+## CHANGEMENT DE PARADIGME — Capturer, pas reconstruire
 
-Horizon n’impose aucune narration et n’automatise aucun jugement. Les équipes conservent **le même contrôle qu’aujourd’hui** sur ce qui est consigné, interprété ou communiqué.
+### La décision comme fait primaire
 
-👉 La seule différence est opérationnelle : **les faits sont déjà là.**
+**Horizon repose sur un principe simple et non négociable :**
 
----
+> **Les faits décisionnels doivent être créés au moment de l’exécution, et non reconstruits lorsque l’examen commence.**
 
-## ⚙️ Conçu comme une infrastructure
+Horizon ne cherche pas à expliquer après coup. Il **fige les faits constitutifs de la décision au moment exact où elle est produite**.
 
-Horizon n’est ni un outil d’analyse, ni un système métier, ni un processus de gouvernance. C’est une **couche d’infrastructure** qui :
+Chaque décision devient :
 
-* S’intègre aux systèmes existants sans les perturber.
-* Fonctionne avec règles, scoring et systèmes IA.
-* Capture les décisions en mode synchrone ou asynchrone.
-* Respecte les politiques de conservation et de sécurité en place.
-* N’intervient jamais dans l’exécution de la décision.
-
-👉 Horizon **ne décide rien**.
-👉 Il **enregistre l’état factuel de ce qui s’exécute**, puis s’efface.
+* un objet autonome
+* horodaté
+* contextualisé
+* vérifiable indépendamment des systèmes sources
 
 ---
 
-## 💡 Valeur opérationnelle
+## INFRASTRUCTURE D'INSTANTANÉS DÉCISIONNELS — Description architecturale
 
-Horizon ne crée pas de nouveaux processus. Il **supprime des coûts invisibles mais récurrents** liés à la reconstruction des faits.
+### Une infrastructure transverse, indépendante des moteurs décisionnels
 
-### Réduction des coûts opérationnels
+Horizon s’insère dans les flux critiques pour :
 
-* Moins d’investigations longues et incertaines.
-* Moins de mobilisation transverse (IT, data, support, risques).
-* Moins de dépendance aux anciens systèmes et aux équipes passées.
+* capturer la décision **au point d’exécution**
+* normaliser son expression factuelle
+* conserver un instantané immuable du contexte décisionnel
+* rendre cet instantané accessible à des fonctions d’examen, sans dépendance aux systèmes d’origine
 
-### Gain de temps cumulatif
+Horizon :
 
-* Les faits sont immédiatement disponibles.
-* Plus besoin de reconstituer laborieusement des états passés.
-* Une base factuelle commune pour toutes les parties prenantes.
+* n’est pas un moteur de règles
+* n’est pas un système de rapport
+* n’est pas une couche de journalisation enrichie
 
-👉 **Un effort de capture unique. Plusieurs usages. Aucun coût marginal.**
-
----
-
-## 🎯 Ce qui change concrètement
-
-| Avant | Avec Horizon |
-| --- | --- |
-| Faits reconstruits | **Faits capturés** |
-| Effort élevé | **Coût marginal** |
-| Dépendance aux anciens systèmes | **Indépendance temporelle** |
-| Investigations longues | **Accès immédiat** |
-| Incertitude factuelle | **Base factuelle immuable** |
+Il opère **en amont de la justification**, et **en dehors de la reconstruction**.
 
 ---
 
-## 🚀 Comment commencer
+## À QUI S’ADRESSE HORIZON — Contextes d’exposition maximale
 
-### **Une démonstration est possible. Une reconstitution ne l’est pas.**
+### Environnements où la charge de la preuve est structurelle
 
-Horizon peut être démontré sur tout système vivant (test, sandbox, démo). Ce qui ne peut pas être simulé, c’est la capture de décisions **déjà passées**.
+Horizon est conçu pour les organisations où :
 
-L’adoption commence par un **entretien d’acceptabilité** :
+* les décisions automatisées ont un impact réglementaire, financier ou systémique
+* la responsabilité ne peut pas être déduite
+* la démonstration des faits est une exigence, pas une option
 
-1. Évaluer l’adéquation technique et organisationnelle.
-2. Définir les périmètres pertinents.
-3. Décider explicitement d’une adoption (ou non).
+Typiquement :
 
-### **[ Réserver un entretien d’acceptabilité ]**
-
----
-
-## ❓ FAQ
-
-* **Est-ce un système d’audit ?** Non. C’est une infrastructure de capture factuelle, utilisable par différentes équipes (audit, support, IT, ingénierie).
-* **Est-ce une explication automatique ?** Non. L’interprétation reste humaine.
-* **Perd-on de la flexibilité ?** Non. Le contrôle est inchangé, seul l’effort diminue.
-
-### Version EN
-
-Voici la version anglaise de votre landing page. J'ai veillé à conserver le ton **"Infrastructure"** (robuste et neutre) tout en utilisant un vocabulaire qui résonne auprès d'un public de décideurs techniques (CTO) et de responsables des risques (CRO).
+* banques systémiques
+* plateformes de négociation
+* prestataires de services de paiement
+* infrastructures financières critiques
 
 ---
 
-# 🇬🇧 English Version — Horizon
+## CE QUE CELA CHANGE — En termes de posture, pas de bénéfices
+
+Avec Horizon :
+
+* l’audit devient **examen**, non reconstitution
+* la responsabilité peut être **démontrée sans interprétation**
+* la décision reste vérifiable **indépendamment de l’évolution des systèmes**
+* la redevabilité ne dépend plus de l’état courant des moteurs, modèles ou règles
+
+La décision automatisée cesse d’être un événement éphémère. Elle devient un **fait durable, examinable et opposable**.
 
 ---
 
-## 🧠 Horizon
+## POSITIONNEMENT — Sobre et explicite
 
-### **Decision Snapshot Infrastructure**
+### Horizon ne gouverne pas vos décisions.
 
-### **Making automated decisions durably actionable**
+Il garantit que leurs faits existent.
 
-Today, automated systems make decisions that commit organizations over the long term. Yet, the facts that led to these decisions quickly disappear as systems evolve.
-
-Horizon is an **infrastructure** that **preserves the factual state of a decision at the exact moment of execution**, allowing teams to revisit it later **without depending on the original system**.
-
-* 👉 Facts are captured at the moment of execution.
-* 👉 Institutional control remains unchanged.
-* 👉 Operational cost is drastically reduced.
-
-### **[ Book an Acceptability Discussion ]**
-
-*Horizon integrates into existing systems. Adoption starts with an acceptability discussion, not an imposed decision.*
+Dans des environnements où la confiance repose sur la preuve, **Horizon constitue la couche factuelle des décisions automatisées.**
 
 ---
 
-## 🎯 Facts before reconstruction
+## APPEL À L'ACTION — Institutionnel
 
-Technical teams already produce decision records today: logs, databases, configurations, rules, models, and internal documents.
+### Examiner l’architecture avant qu’elle ne soit examinée
 
-Horizon **does not redefine what a record is**.
-It **radically simplifies the production of its factual components**.
+Découvrir comment l'**Infrastructure d'Instantanés Décisionnels** s’intègre dans des environnements décisionnels critiques existants.
 
-* 👉 What changes is not the content of the record.
-* 👉 It is the effort required to establish, preserve, and mobilize it.
+**→ Demander une présentation Horizon**
 
 ---
 
-## ❓ The operational problem
+---
 
-### **Automated decisions do not survive the systems that produced them**
+# 🇬🇧 English — Horizon Landing Page
 
-In real-world environments, everything moves: data evolves, rules change, models are updated, and architectures transform. When a past decision must be understood, teams are forced to **reconstruct the facts** from partial sources.
+## **Automated decisions entail your responsibility.
 
-> **The reality:** This reconstruction is costly, uncertain, and dependent on a system that no longer exists in its original state.
+Yet, their constituent facts must be established when scrutiny begins.**
+
+In critical financial infrastructures, automated decisions are executed continuously: acceptance, rejection, scoring, filtering, routing, limits, and alerts.
+
+These decisions produce immediate effects. However, **their constituent facts — context, rules, data, accountability — are not, by design, preserved as evidentiary objects**.
+
+**Horizon** was designed to address this structural gap.
+
+> **Decision Snapshot Infrastructure**
+> An infrastructure dedicated to the creation of verifiable decision facts at the very moment of execution.
 
 ---
 
-## ✅ The Horizon principle
+## THE PROBLEM — A design flaw, not a lack of maturity
 
-### **Capture facts once, at the right moment**
+### Decision architectures produce results, not facts
 
-Horizon captures the **factual state of a decision at the exact moment of execution**, in the form of a **Decision Snapshot Artifact**.
+In the majority of decision systems:
 
-* **Data actually consumed:** The entirety of the inputs at T0.
-* **Logic state:** The exact version of the model and its configuration.
-* **Context:** System identity and precise timestamp.
-* **Independence:** Generated in real-time; it does not depend on future system evolution.
+* decisions are **distributed**
+* rules and models **evolve**
+* data is **contextual and volatile**
+* source systems **are not synchronized in time**
 
----
+By design:
 
-## 📦 Decision Snapshot Artifact
+* logs describe an execution, not a decision
+* system states drift
+* justification is **reconstructed**, not observed
 
-The artifact is a **self-contained object** that establishes facts without reconstruction. It includes:
-
-* **Execution metadata:** Unique ID and precise UTC timestamp.
-* **Snapshot Data:** Raw inputs as seen by the system at T0.
-* **Model State:** Model hash and active thresholds.
-* **Output:** The result and its *reason codes*.
-* **Integrity:** Cryptographic signature ensuring immutability.
+When scrutiny begins — audit, incident, litigation, regulation — **the decision as it was made no longer exists as an autonomous factual object**.
 
 ---
 
-## 🔐 Factual support, not a constraint
+## PARADIGM SHIFT — Capture, don't reconstruct
 
-Horizon does not impose a narrative and does not automate judgment.
-Teams retain **the same control as they have today** over what is recorded, interpreted, or communicated.
+### The decision as a primary fact
 
-👉 The only difference is operational: **the facts are already there.**
+**Horizon is based on a simple and non-negotiable principle:**
 
----
+> **Decision facts must be created at execution time, not reconstructed when scrutiny begins.**
 
-## ⚙️ Designed as infrastructure
+Horizon does not seek to explain after the fact. It **freezes the constituent facts of the decision at the exact moment it is produced**.
 
-Horizon is not an analysis tool, a business system, or a governance process.
+Every decision becomes:
 
-It is an **infrastructure layer** that:
-
-* Integrates into existing systems without disrupting them.
-* Works with rules, scoring, and AI systems.
-* Captures decisions in synchronous or asynchronous mode.
-* Respects existing retention and security policies.
-* Never intervenes in the execution of the decision.
-
-👉 Horizon **decides nothing**.
-👉 It **records the factual state of what is executing**, then fades into the background.
+* an autonomous object
+* timestamped
+* contextualized
+* verifiable independently of source systems
 
 ---
 
-## 💡 Operational value
+## DECISION SNAPSHOT INFRASTRUCTURE — Architectural description
 
-Horizon does not create new processes.
-It **eliminates invisible but recurring costs** related to factual reconstruction.
+### A transversal infrastructure, independent of decision engines
 
-### Reduction of operational costs
+Horizon integrates into critical flows to:
 
-* Fewer long and uncertain investigations.
-* Less cross-functional mobilization (IT, data, support, risk).
-* Less dependence on legacy systems and teams.
+* capture the decision **at the point of execution**
+* normalize its factual expression
+* preserve an immutable snapshot of the decision context
+* make this snapshot accessible for examination functions, without dependency on the original systems
 
-### Cumulative time savings
+Horizon:
 
-* Facts are immediately available.
-* No more need to reconstitute past states.
-* A common factual base for all teams.
+* is not a rules engine
+* is not a reporting system
+* is not an enriched logging layer
 
-👉 **A single capture effort.
-Multiple uses. Zero marginal cost.**
-
----
-
-## 🎯 What changes in practice
-
-| Before | With Horizon |
-| --- | --- |
-| Reconstructed facts | **Captured facts** |
-| High effort | **Marginal cost** |
-| Legacy system dependence | **Temporal independence** |
-| Long investigations | **Immediate access** |
-| Factual uncertainty | **Immutable factual base** |
+It operates **upstream of justification** and **outside of reconstruction**.
 
 ---
 
-## 🚀 How to start
+## WHO HORIZON IS FOR — Maximum exposure contexts
 
-### **Demonstration is possible. Reconstruction is not.**
+### Environments where the burden of proof is structural
 
-Horizon can be demonstrated on any live system (test, sandbox, demo).
-What cannot be simulated is the capture of **past decisions**.
+Horizon is designed for organizations where:
 
-Adoption starts with an **Acceptability Discussion**:
+* automated decisions have a regulatory, financial, or systemic impact
+* responsibility cannot be inferred
+* the demonstration of facts is a requirement, not an option
 
-1. Assess technical and organizational fit.
-2. Define relevant scopes.
-3. Explicitly decide on adoption (or non-adoption).
+Typically:
 
-### **[ Book an Acceptability Discussion ]**
-
----
-
-## ❓ FAQ
-
-* **Is this an audit system?**
-No. It is a factual capture infrastructure, usable by different teams when necessary (audit, support, IT, engineering).
-* **Is this an automated explanation?**
-No. Interpretation remains human.
-* **Does it reduce flexibility?**
-No. Control is unchanged; only the effort decreases.
+* systemic banks
+* market exchanges
+* Payment Service Providers
+* critical financial infrastructures
 
 ---
 
+## WHAT CHANGES — In terms of posture, not benefits
 
+With Horizon:
+
+* audit becomes **examination**, not reconstitution
+* accountability can be **demonstrated without interpretation**
+* the decision remains verifiable **regardless of system evolution**
+* accountability no longer depends on the current state of engines, models, or rules
+
+Automated decision-making ceases to be an ephemeral event. It becomes a **durable, examinable, and opposable fact**.
+
+---
+
+## POSITIONING — Sober and explicit
+
+### Horizon does not govern your decisions.
+
+It guarantees that their facts exist.
+
+In environments where trust relies on evidence, **Horizon constitutes the factual layer of automated decisions.**
+
+---
+
+## CALL TO ACTION — Institutional
+
+### Examine the architecture before it is examined
+
+Discover how **Decision Snapshot Infrastructure** integrates into existing critical decision environments.
+
+**→ Request a Horizon presentation**
 
