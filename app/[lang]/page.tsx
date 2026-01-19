@@ -116,12 +116,25 @@ const content = {
         description: 'Vous pouvez répondre à : "Qu\'a-t-on décidé ? Quand ? Sur quelles bases ? Quelle version ? Qui/quel système ?" Sans reconstruction fragile, et sans dépendre du SI opérationnel.',
       },
     },
-    outcomes: {
-      title: 'Résultats attendus',
+    scenario: {
+      title: 'Scénario concret',
+      context: 'Un régulateur demande la justification d\'une suspension de participant intervenue 18 mois plus tôt.',
+      without: {
+        label: 'Sans Horizon',
+        text: 'Reconstruction multi-équipes, logs incomplets, versions de règles incertaines, interprétation contestable.',
+      },
+      with: {
+        label: 'Avec Horizon',
+        text: 'Un artefact horodaté, versionné, autonome — exportable en "evidence pack" prêt à l\'examen.',
+      },
+    },
+    capabilities: {
+      title: 'Capacités garanties',
+      positioning: 'Horizon n\'optimise rien. Il protège votre capacité à prouver.',
       cards: [
-        { title: 'Audit plus rapide', description: 'Moins de semaines d\'enquête, plus de faits vérifiables.' },
-        { title: 'Réduction du risque probatoire', description: 'Mitigation du risque juridique "impossible à prouver".' },
-        { title: 'Remediation efficace', description: 'Evidence packs réutilisables, cohérents et opposables.' },
+        { title: 'Produire une preuve indépendante', description: 'Répondre à un audit sans dépendre du SI métier ni reconstruire les événements.' },
+        { title: 'Démontrer ce qui a été décidé', description: 'Accès direct à un artefact décisionnel tel qu\'il existait au moment T.' },
+        { title: 'Isoler la fonction preuve', description: 'Séparer la responsabilité probatoire de la fonction opérationnelle.' },
       ],
     },
     security: {
@@ -262,12 +275,25 @@ const content = {
         description: 'You can answer: "What was decided? When? On what basis? What version? Who/what system?" Without fragile reconstruction, and without depending on the operational IS.',
       },
     },
-    outcomes: {
-      title: 'Expected outcomes',
+    scenario: {
+      title: 'Concrete scenario',
+      context: 'A regulator requests justification for a participant suspension that occurred 18 months earlier.',
+      without: {
+        label: 'Without Horizon',
+        text: 'Multi-team reconstruction, incomplete logs, uncertain rule versions, contestable interpretation.',
+      },
+      with: {
+        label: 'With Horizon',
+        text: 'A timestamped, versioned, self-contained artifact — exportable as an "evidence pack" ready for examination.',
+      },
+    },
+    capabilities: {
+      title: 'Guaranteed capabilities',
+      positioning: 'Horizon does not optimize anything. It protects your ability to prove.',
       cards: [
-        { title: 'Faster audit', description: 'Fewer weeks of investigation, more verifiable facts.' },
-        { title: 'Reduced evidentiary risk', description: 'Mitigation of "impossible to prove" legal risk.' },
-        { title: 'Effective remediation', description: 'Reusable, consistent and opposable evidence packs.' },
+        { title: 'Produce independent evidence', description: 'Respond to an audit without depending on business IS or reconstructing events.' },
+        { title: 'Demonstrate what was decided', description: 'Direct access to a decision artifact as it existed at time T.' },
+        { title: 'Isolate the proof function', description: 'Separate evidentiary responsibility from operational function.' },
       ],
     },
     security: {
@@ -467,11 +493,30 @@ export default function LandingPage({
           </div>
         </section>
 
-        {/* OUTCOMES */}
+        {/* SCENARIO */}
         <section className="py-10">
-          <h2 className="mb-3 text-2xl font-bold">{c.outcomes.title}</h2>
+          <h2 className="mb-3 text-2xl font-bold">{c.scenario.title}</h2>
+          <div className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
+            <p className="text-black/80 font-medium mb-4">{c.scenario.context}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-white border border-black/10 rounded-xl p-4">
+                <strong className="text-red-600/80">{c.scenario.without.label}</strong>
+                <p className="text-black/60 mt-2 text-sm">{c.scenario.without.text}</p>
+              </div>
+              <div className="bg-white border border-[#005C99]/20 rounded-xl p-4">
+                <strong className="text-[#005C99]">{c.scenario.with.label}</strong>
+                <p className="text-black/60 mt-2 text-sm">{c.scenario.with.text}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CAPABILITIES */}
+        <section className="py-10">
+          <h2 className="mb-3 text-2xl font-bold">{c.capabilities.title}</h2>
+          <p className="text-lg font-medium text-[#005C99] mb-6">{c.capabilities.positioning}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {c.outcomes.cards.map((card, i) => (
+            {c.capabilities.cards.map((card, i) => (
               <div key={i} className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
                 <strong className="text-black">{card.title}</strong>
                 <p className="text-black/60 mt-2">{card.description}</p>
