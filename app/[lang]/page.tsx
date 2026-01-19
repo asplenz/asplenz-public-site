@@ -76,6 +76,7 @@ const content = {
     },
     whatItIsNot: {
       title: 'Ce que Horizon n\'est pas',
+      summary: 'Horizon est un observateur passif : il enregistre et atteste les faits d\'exécution décisionnels, mais n\'évalue, n\'influence, ni ne prend jamais de décision.',
       cards: [
         { title: 'Pas un moteur de décision', description: 'Horizon n\'exécute aucune règle et ne "prend" aucune décision.' },
         { title: 'Pas une plateforme de gouvernance', description: 'Il ne remplace ni GRC, ni SIEM, ni data lake, ni observability stack.' },
@@ -83,8 +84,7 @@ const content = {
       ],
     },
     useCases: {
-      title: 'Cas d\'usage où Horizon est immédiatement pertinent',
-      intro: 'Horizon est plus efficace quand il est déployé sur <strong>1 à 3 classes de décisions critiques</strong>.',
+      title: 'Cas d\'usage',
       cards: [
         {
           title: 'PSP / Paiements',
@@ -158,10 +158,10 @@ const content = {
       title: 'FAQ',
       items: [
         { question: 'Pourquoi ne pas faire ça avec des logs ?', answer: 'Les logs sont utiles, mais souvent dispersés, reconstitués, et dépendants du SI source. Horizon vise une preuve décisionnelle autonome, stable et exploitable.' },
-        { question: 'Horizon stocke-t-il des données sensibles ?', answer: 'Horizon n\'ingère pas les flux de données opérationnels. Il préserve les faits décisionnels déclarés au moment de l\'exécution, selon des schémas et périmètres définis par l\'institution. La minimisation des données, la rétention et la classification de sensibilité restent entièrement sous contrôle institutionnel.' },
         { question: 'Est-ce un projet lourd ?', answer: 'La bonne approche est ciblée : 1 use case critique, instrumentation au point de décision, puis extension. Éviter "capturer tout".' },
-        { question: 'Qui est sponsor interne ?', answer: 'Souvent une coalition Legal/Compliance/Risk/Audit. IT exécute, mais le besoin est probatoire et réglementaire.' },
+        { question: 'Qui décide quelles données sont capturées ?', answer: 'Horizon ne décide pas de ce qui est pertinent. Les clients définissent le schéma et les données fournies pour chaque système.' },
       ],
+      seeAll: 'Voir toutes les questions →',
     },
     footer: '© Asplenz. Horizon, Decision Evidence.',
   },
@@ -235,6 +235,7 @@ const content = {
     },
     whatItIsNot: {
       title: 'What Horizon is not',
+      summary: 'Horizon is a passive observer: it records and attests decision execution facts, but never evaluates, influences, or makes decisions.',
       cards: [
         { title: 'Not a decision engine', description: 'Horizon does not execute any rules and does not "make" any decisions.' },
         { title: 'Not a governance platform', description: 'It does not replace GRC, SIEM, data lake, or observability stack.' },
@@ -242,8 +243,7 @@ const content = {
       ],
     },
     useCases: {
-      title: 'Use cases where Horizon is immediately relevant',
-      intro: 'Horizon is most effective when deployed on <strong>1 to 3 classes of critical decisions</strong>.',
+      title: 'Use cases',
       cards: [
         {
           title: 'PSP / Payments',
@@ -317,10 +317,10 @@ const content = {
       title: 'FAQ',
       items: [
         { question: 'Why not do this with logs?', answer: 'Logs are useful, but often scattered, reconstructed, and dependent on source IS. Horizon aims for autonomous, stable and usable decision evidence.' },
-        { question: 'Does Horizon store sensitive data?', answer: 'Horizon does not ingest operational data flows. It preserves declared decision facts at execution time, according to schemas and boundaries defined by the institution. Data minimization, retention, and sensitivity classification remain fully under institutional control.' },
         { question: 'Is this a heavy project?', answer: 'The right approach is targeted: 1 critical use case, instrumentation at the decision point, then extension. Avoid "capture everything".' },
-        { question: 'Who is the internal sponsor?', answer: 'Often a Legal/Compliance/Risk/Audit coalition. IT executes, but the need is evidentiary and regulatory.' },
+        { question: 'Who decides what data is captured?', answer: 'Horizon does not decide what is relevant. Clients define the schema and the data provided for each system.' },
       ],
+      seeAll: 'See all questions →',
     },
     footer: '© Asplenz. Horizon, Decision Evidence.',
   },
@@ -336,15 +336,6 @@ export default function LandingPage({
   return (
     <div className="min-h-screen bg-white text-black">
       <div className="max-w-5xl mx-auto px-6 py-8">
-        {/* NAV */}
-        <div className="flex justify-between items-center gap-4 flex-wrap mb-12">
-          <div className="font-bold tracking-wide text-[#005C99]">ASPLENZ <span className="text-black/40">/ Horizon</span></div>
-          <div className="flex gap-3 flex-wrap">
-            <a className="inline-block px-4 py-2.5 border border-black/10 rounded-xl text-[#005C99] hover:bg-black/5 transition-colors" href="#how">{c.nav.howItWorks}</a>
-            <a className="inline-block px-4 py-2.5 border border-black/10 rounded-xl text-[#005C99] hover:bg-black/5 transition-colors" href="#usecases">{c.nav.useCases}</a>
-          </div>
-        </div>
-
         {/* HERO */}
         <section className="pb-8 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 items-start">
           <div>
@@ -446,6 +437,7 @@ export default function LandingPage({
         {/* WHAT IT IS NOT */}
         <section className="py-10">
           <h2 className="mb-3 text-2xl font-bold">{c.whatItIsNot.title}</h2>
+          <p className="text-black/70 mb-6 text-lg">{c.whatItIsNot.summary}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {c.whatItIsNot.cards.map((card, i) => (
               <div key={i} className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
@@ -458,9 +450,7 @@ export default function LandingPage({
 
         {/* USE CASES */}
         <section id="usecases" className="py-10 scroll-mt-20">
-          <h2 className="mb-3 text-2xl font-bold">{c.useCases.title}</h2>
-          <p className="text-black/60 mb-6" dangerouslySetInnerHTML={{ __html: c.useCases.intro }} />
-
+          <h2 className="mb-6 text-2xl font-bold">{c.useCases.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {c.useCases.cards.map((card, i) => (
               <div key={i} className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
@@ -587,14 +577,20 @@ export default function LandingPage({
         {/* FAQ */}
         <section id="faq" className="py-10 scroll-mt-20">
           <h2 className="mb-3 text-2xl font-bold">{c.faq.title}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             {c.faq.items.map((item, i) => (
               <div key={i} className="bg-zinc-50 border border-black/10 rounded-2xl p-5">
                 <strong className="text-black">{item.question}</strong>
-                <p className="text-black/60 mt-2">{item.answer}</p>
+                <p className="text-black/60 mt-2 text-sm">{item.answer}</p>
               </div>
             ))}
           </div>
+          <Link
+            href={`/${params.lang}/faq`}
+            className="text-[#005C99] font-medium hover:underline"
+          >
+            {c.faq.seeAll}
+          </Link>
         </section>
 
         {/* RESOURCES */}
