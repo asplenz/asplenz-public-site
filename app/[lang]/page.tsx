@@ -134,6 +134,17 @@ const content = {
       subtitle: 'Il garantit que leurs faits existent.',
       conclusion: 'Dans des environnements où la confiance repose sur la preuve, Horizon constitue la couche factuelle des décisions automatisées.',
     },
+    // Executive Summary (lecture rapide)
+    summary: {
+      badge: 'En 30 secondes',
+      problemLabel: 'Problème',
+      problem: 'Lors d\'un audit ou litige, vous êtes incapable de prouver ce qu\'un système automatisé a réellement décidé.',
+      causeLabel: 'Cause',
+      cause: 'Les décisions ne sont jamais conservées comme des faits autonomes.',
+      solutionLabel: 'Solution',
+      solution: 'Horizon capture chaque décision au moment exact où elle est prise et la rend vérifiable à vie.',
+      readMore: 'Lire la version complète',
+    },
     // 8. CTA
     cta: {
       badge: 'Appel à l\'action',
@@ -284,6 +295,17 @@ const content = {
       subtitle: 'It guarantees that their facts exist.',
       conclusion: 'In environments where trust relies on evidence, Horizon constitutes the factual layer of automated decisions.',
     },
+    // Executive Summary (quick read)
+    summary: {
+      badge: 'In 30 seconds',
+      problemLabel: 'Problem',
+      problem: 'During an audit or dispute, you cannot prove what an automated system actually decided.',
+      causeLabel: 'Cause',
+      cause: 'Decisions are never preserved as autonomous facts.',
+      solutionLabel: 'Solution',
+      solution: 'Horizon captures each decision at the exact moment it is made and makes it verifiable for life.',
+      readMore: 'Read the full version',
+    },
     // 8. CTA
     cta: {
       badge: 'Call to action',
@@ -349,15 +371,43 @@ export default function LandingPage({
           </p>
 
           {/* Définition canonique */}
-          <div className="bg-[#005C99] p-6 rounded">
-            <p className="font-bold text-white mb-2">{c.definition.term}</p>
-            <p className="text-white/90">{c.definition.text}</p>
+          <div className="bg-[#005C99]/5 border border-[#005C99]/20 p-6 rounded">
+            <p className="font-bold text-[#005C99] mb-2">{c.definition.term}</p>
+            <p className="text-black/70">{c.definition.text}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Executive Summary - Lecture rapide */}
+      <section className="py-8 border-b border-black/10">
+        <div className="max-w-4xl mx-auto px-6">
+          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-6">
+            {c.summary.badge}
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-red-50 border border-red-100 p-4 rounded">
+              <p className="text-xs uppercase tracking-wider text-red-600 font-medium mb-2">{c.summary.problemLabel}</p>
+              <p className="text-black/80 text-sm">{c.summary.problem}</p>
+            </div>
+            <div className="bg-amber-50 border border-amber-100 p-4 rounded">
+              <p className="text-xs uppercase tracking-wider text-amber-600 font-medium mb-2">{c.summary.causeLabel}</p>
+              <p className="text-black/80 text-sm">{c.summary.cause}</p>
+            </div>
+            <div className="bg-green-50 border border-green-100 p-4 rounded">
+              <p className="text-xs uppercase tracking-wider text-green-600 font-medium mb-2">{c.summary.solutionLabel}</p>
+              <p className="text-black/80 text-sm">{c.summary.solution}</p>
+            </div>
+          </div>
+          <div className="mt-6 text-center">
+            <a href="#context" className="text-[#005C99] text-sm font-medium hover:underline">
+              {c.summary.readMore} ↓
+            </a>
           </div>
         </div>
       </section>
 
       {/* 2. Le problème */}
-      <section className="py-12 bg-zinc-50">
+      <section id="context" className="py-12 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
             {c.problem.badge}
@@ -435,15 +485,12 @@ export default function LandingPage({
             {c.paradigm.subtitle}
           </p>
 
-          {/* Point d'insertion */}
+          {/* Point d'insertion + Principe */}
           <div className="bg-[#005C99]/5 border border-[#005C99]/20 p-6 rounded mb-8">
-            <p className="text-[#005C99] font-medium">
+            <p className="text-[#005C99] font-medium mb-4">
               {c.infrastructure.insertionPoint}
             </p>
-          </div>
-
-          <div className="bg-[#005C99] p-6 rounded mb-8">
-            <p className="text-white font-medium text-lg">
+            <p className="text-[#005C99] font-medium text-lg">
               {c.paradigm.principle}
             </p>
           </div>
@@ -579,14 +626,14 @@ export default function LandingPage({
       {/* 7. Positionnement */}
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-[#005C99] py-12 px-8 text-center rounded">
-            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-3">
+          <div className="bg-[#005C99]/5 border border-[#005C99]/20 py-12 px-8 text-center rounded">
+            <h2 className="text-2xl lg:text-3xl font-bold text-[#005C99] mb-3">
               {c.positioning.title}
             </h2>
-            <p className="text-xl text-white/90 mb-6">
+            <p className="text-xl text-black/80 mb-6">
               {c.positioning.subtitle}
             </p>
-            <p className="text-white/80">
+            <p className="text-black/70">
               {c.positioning.conclusion}
             </p>
           </div>
