@@ -12,9 +12,20 @@ interface MainHeaderProps {
 export default function MainHeader({ lang }: MainHeaderProps) {
   const pathname = usePathname();
   const otherLang = lang === 'en' ? 'fr' : 'en';
+  const isHome = pathname === `/${lang}` || pathname === `/${lang}/`;
   const isFoundations = pathname.includes('/foundations');
 
+  const homeLabel = lang === 'en' ? 'Home' : 'Accueil';
   const foundationsLabel = lang === 'en' ? 'Foundations' : 'Fondements';
+
+  // Get the equivalent path in the other language
+  const getOtherLangPath = () => {
+    const segments = pathname.split('/');
+    if (segments[1] === lang) {
+      segments[1] = otherLang;
+    }
+    return segments.join('/') || `/${otherLang}`;
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-[#005C99] border-b border-white/10">
@@ -31,16 +42,24 @@ export default function MainHeader({ lang }: MainHeaderProps) {
         </Link>
 
         <div className="flex items-center gap-6">
+          {!isHome && (
+            <Link
+              href={`/${lang}`}
+              className="text-sm text-white/70 hover:text-white transition-colors"
+            >
+              {homeLabel}
+            </Link>
+          )}
           {!isFoundations && (
             <Link
               href={`/${lang}/foundations`}
-              className="text-sm text-white/70 hover:text-white transition-colors hidden sm:block"
+              className="text-sm text-white/70 hover:text-white transition-colors"
             >
               {foundationsLabel}
             </Link>
           )}
           <Link
-            href={isFoundations ? `/${otherLang}/foundations` : `/${otherLang}`}
+            href={getOtherLangPath()}
             className="text-sm uppercase tracking-wider text-white/60 hover:text-white transition-colors"
           >
             {otherLang}
