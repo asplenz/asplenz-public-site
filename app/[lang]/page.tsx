@@ -40,6 +40,16 @@ const content = {
       ],
       labelCharacteristics: 'Dans la majorité des systèmes décisionnels',
       labelConsequences: 'Par construction',
+      // Bloc IT
+      itReality: {
+        title: 'Aujourd\'hui, lorsqu\'une décision doit être examinée',
+        points: [
+          'Agrégation de logs hétérogènes.',
+          'Reconstitution d\'états qui n\'existent plus.',
+          'Mobilisation de plusieurs équipes.',
+          'Dépendance à des versions de règles et données obsolètes.',
+        ],
+      },
       conclusion: 'Lorsque l\'examen commence (audit, incident, litige, régulation), la décision telle qu\'elle a été prise n\'existe plus comme objet factuel autonome.',
     },
     // 3. Changement de paradigme
@@ -72,13 +82,15 @@ const content = {
         ],
       },
       boundaries: {
-        title: 'Horizon',
+        title: 'Horizon ne',
         points: [
-          'N\'est pas un moteur de règles.',
-          'N\'est pas un système de rapport.',
-          'N\'est pas une couche de journalisation enrichie.',
+          'Prend aucune décision.',
+          'Modifie aucune règle.',
+          'N\'explique aucun résultat.',
+          'N\'impose aucun modèle.',
         ],
       },
+      insertionPoint: 'Horizon s\'insère au point où une décision devient effective.',
       conclusion: 'Il opère en amont de la justification, et en dehors de la reconstruction.',
     },
     // 5. À qui s'adresse
@@ -112,6 +124,7 @@ const content = {
         'La décision reste vérifiable indépendamment de l\'évolution des systèmes.',
         'La redevabilité ne dépend plus de l\'état courant des moteurs, modèles ou règles.',
       ],
+      itBenefit: 'L\'examen ne déclenche plus un projet de reconstitution.',
       conclusion: 'La décision automatisée cesse d\'être un événement éphémère. Elle devient un fait durable, examinable et opposable.',
     },
     // 7. Positionnement
@@ -176,6 +189,16 @@ const content = {
       ],
       labelCharacteristics: 'In the majority of decision systems',
       labelConsequences: 'By design',
+      // IT block
+      itReality: {
+        title: 'Today, when a decision must be examined',
+        points: [
+          'Aggregation of heterogeneous logs.',
+          'Reconstruction of states that no longer exist.',
+          'Mobilization of multiple teams.',
+          'Dependency on obsolete rule and data versions.',
+        ],
+      },
       conclusion: 'When scrutiny begins (audit, incident, litigation, regulation), the decision as it was made no longer exists as an autonomous factual object.',
     },
     // 3. Paradigm shift
@@ -208,13 +231,15 @@ const content = {
         ],
       },
       boundaries: {
-        title: 'Horizon',
+        title: 'Horizon does not',
         points: [
-          'Is not a rules engine.',
-          'Is not a reporting system.',
-          'Is not an enriched logging layer.',
+          'Make any decision.',
+          'Modify any rule.',
+          'Explain any result.',
+          'Impose any model.',
         ],
       },
+      insertionPoint: 'Horizon inserts at the point where a decision becomes effective.',
       conclusion: 'It operates upstream of justification and outside of reconstruction.',
     },
     // 5. Who is it for
@@ -248,6 +273,7 @@ const content = {
         'The decision remains verifiable regardless of system evolution.',
         'Accountability no longer depends on the current state of engines, models, or rules.',
       ],
+      itBenefit: 'Examination no longer triggers a reconstruction project.',
       conclusion: 'Automated decision-making ceases to be an ephemeral event. It becomes a durable, examinable, and opposable fact.',
     },
     // 7. Positioning
@@ -366,6 +392,19 @@ export default function LandingPage({
             </div>
           </div>
 
+          {/* Bloc IT - reconnaissance du quotidien */}
+          <div className="bg-white border border-black/10 p-6 rounded mb-8">
+            <p className="font-medium text-black mb-4">{c.problem.itReality.title}</p>
+            <ul className="space-y-2">
+              {c.problem.itReality.points.map((point, i) => (
+                <li key={i} className="flex items-start gap-3 text-black/60">
+                  <span className="text-black/40 mt-1">→</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
             {c.problem.conclusion}
           </blockquote>
@@ -432,17 +471,24 @@ export default function LandingPage({
                 ))}
               </ul>
             </div>
-            <div className="bg-white p-6 rounded shadow-md border border-black/5">
-              <h3 className="font-bold text-black/50 mb-4">{c.infrastructure.boundaries.title}</h3>
+            <div className="bg-white p-6 rounded shadow-md border border-red-100">
+              <h3 className="font-bold text-red-600 mb-4">{c.infrastructure.boundaries.title}</h3>
               <ul className="space-y-2">
                 {c.infrastructure.boundaries.points.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 text-black/50">
-                    <span className="text-black/30 mt-1">•</span>
+                  <li key={i} className="flex items-start gap-3 text-black/70">
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>{point}</span>
                   </li>
                 ))}
               </ul>
             </div>
+          </div>
+
+          {/* Point d'insertion */}
+          <div className="bg-[#005C99]/5 border border-[#005C99]/20 p-6 rounded mb-8">
+            <p className="text-[#005C99] font-medium">
+              {c.infrastructure.insertionPoint}
+            </p>
           </div>
 
           <div className="bg-white p-6 rounded shadow-md border border-black/5">
@@ -508,6 +554,13 @@ export default function LandingPage({
               </li>
             ))}
           </ul>
+
+          {/* Bénéfice IT */}
+          <div className="bg-green-50 border border-green-200 p-4 rounded mb-8">
+            <p className="text-green-800 font-medium">
+              {c.changes.itBenefit}
+            </p>
+          </div>
 
           <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
             {c.changes.conclusion}
