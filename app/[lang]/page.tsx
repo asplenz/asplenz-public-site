@@ -7,6 +7,13 @@ export function generateStaticParams() {
 
 const content = {
   fr: {
+    // 0. Layer zero – contexte de lecture
+    layerZero: {
+      audience: 'Ce document s\'adresse aux organisations qui doivent examiner des décisions automatisées sans disposer de l\'état factuel de leur exécution.',
+      problem: 'Elle décrit un problème structurel : les systèmes de décision produisent des résultats, mais ne préservent pas l\'état factuel qui les a produits, ce qui oblige tout examen ultérieur à reposer sur une reconstruction.',
+      complexity: 'La complexité croissante des systèmes peut accentuer cette situation, mais le problème existe indépendamment de toute évolution technologique.',
+      intent: 'Le propos est volontairement conceptuel. Il vise à nommer un manque d\'infrastructure, avant d\'en proposer une réponse.',
+    },
     // 1. Hero – affirmation structurante
     hero: {
       title: 'Les systèmes automatisés ne conservent pas les faits d\'exécution des décisions',
@@ -151,6 +158,13 @@ Ce que les organisations appellent "preuves" ou "dossiers décisionnels" sont en
     },
   },
   en: {
+    // 0. Layer zero – reading context
+    layerZero: {
+      audience: 'This document is intended for organizations that must examine automated decisions without having access to the factual state of their execution.',
+      problem: 'It describes a structural problem: decision systems produce outcomes, but do not preserve the factual state that produced them, forcing any subsequent examination to rely on reconstruction.',
+      complexity: 'The increasing complexity of systems may amplify this situation, but the problem exists independently of any technological evolution.',
+      intent: 'The content is intentionally conceptual. It aims to name an infrastructure gap before proposing a response.',
+    },
     // 1. Hero – structural assertion
     hero: {
       title: 'Automated systems do not preserve the execution facts of decisions',
@@ -305,6 +319,18 @@ export default function LandingPage({
 
   return (
     <div className="min-h-screen">
+      {/* 0. Layer zero – contexte de lecture */}
+      <section className="py-6 border-b border-black/5">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-sm text-black/60 space-y-2">
+            <p>{c.layerZero.audience}</p>
+            <p>{c.layerZero.problem}</p>
+            <p>{c.layerZero.complexity}</p>
+            <p className="italic">{c.layerZero.intent}</p>
+          </div>
+        </div>
+      </section>
+
       {/* 1. Hero – affirmation structurante, pas de promesse, pas de CTA */}
       <section className="pt-8 pb-6 lg:pt-12 lg:pb-8">
         <div className="max-w-4xl mx-auto px-6">
