@@ -11,8 +11,10 @@ const content = {
     hero: {
       title: 'Les décisions automatisées engagent votre responsabilité.',
       subtitle: 'Encore faut-il pouvoir en établir les faits, lorsque l\'examen commence.',
-      intro: 'Dans les infrastructures financières critiques, des décisions automatisées sont exécutées en continu : acceptation, refus, notation, filtrage, routage, limites, alertes.',
-      problem: 'Ces décisions produisent des effets immédiats. Mais leurs faits constitutifs (contexte, règles, données, responsabilité) ne sont pas, par conception, conservés comme des objets probants.',
+      anchor: 'Décisions de crédit, de tarification, d\'acceptation, de blocage : prises par des systèmes automatisés.',
+      intro: 'Dans les infrastructures financières critiques, ces décisions sont exécutées en continu.',
+      trigger: 'Audit. Incident. Litige. Contrôle.',
+      problem: 'Ces décisions produisent des effets immédiats. Mais leurs faits constitutifs ne sont pas conservés comme des objets probants.',
       solution: 'Horizon a été conçu pour combler cette lacune structurelle.',
     },
     // Définition canonique
@@ -45,8 +47,8 @@ const content = {
       badge: 'Changement de paradigme',
       title: 'Capturer, pas reconstruire',
       subtitle: 'La décision comme fait primaire.',
-      principle: 'Les faits décisionnels doivent être créés au moment de l\'exécution, et non reconstruits lorsque l\'examen commence.',
-      explanation: 'Horizon ne cherche pas à expliquer après coup. Il fige les faits constitutifs de la décision au moment exact où elle est produite.',
+      principle: 'Les faits décisionnels doivent être créés au moment de l\'exécution. Pas reconstruits lorsque l\'examen commence.',
+      explanation: 'Horizon ne cherche pas à expliquer après coup. Il fige les faits constitutifs au moment exact où la décision est produite.',
       pointsIntro: 'Chaque décision devient :',
       points: [
         'Un objet autonome.',
@@ -145,8 +147,10 @@ const content = {
     hero: {
       title: 'Automated decisions entail your responsibility.',
       subtitle: 'Yet, their constituent facts must be established when scrutiny begins.',
-      intro: 'In critical financial infrastructures, automated decisions are executed continuously: acceptance, rejection, scoring, filtering, routing, limits, and alerts.',
-      problem: 'These decisions produce immediate effects. However, their constituent facts (context, rules, data, accountability) are not, by design, preserved as evidentiary objects.',
+      anchor: 'Credit decisions, pricing, acceptance, blocking: made by automated systems.',
+      intro: 'In critical financial infrastructures, these decisions are executed continuously.',
+      trigger: 'Audit. Incident. Litigation. Regulatory review.',
+      problem: 'These decisions produce immediate effects. But their constituent facts are not preserved as evidentiary objects.',
       solution: 'Horizon was designed to address this structural gap.',
     },
     // Canonical definition
@@ -179,8 +183,8 @@ const content = {
       badge: 'Paradigm shift',
       title: 'Capture, don\'t reconstruct',
       subtitle: 'The decision as a primary fact.',
-      principle: 'Decision facts must be created at execution time, not reconstructed when scrutiny begins.',
-      explanation: 'Horizon does not seek to explain after the fact. It freezes the constituent facts of the decision at the exact moment it is produced.',
+      principle: 'Decision facts must be created at execution time. Not reconstructed when scrutiny begins.',
+      explanation: 'Horizon does not seek to explain after the fact. It freezes the constituent facts at the exact moment the decision is produced.',
       pointsIntro: 'Every decision becomes:',
       points: [
         'An autonomous object.',
@@ -291,14 +295,26 @@ export default function LandingPage({
           <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-black mb-2 leading-tight">
             {c.hero.title}
           </h1>
-          <p className="text-xl lg:text-2xl text-[#005C99] font-medium mb-8">
+          <p className="text-xl lg:text-2xl text-[#005C99] font-medium mb-6">
             {c.hero.subtitle}
           </p>
+
+          {/* Phrase d'ancrage */}
+          <p className="text-base text-black/60 mb-6 italic">
+            {c.hero.anchor}
+          </p>
+
           <p className="text-lg text-black/70 mb-4">
             {c.hero.intro}
           </p>
+
+          {/* Moments critiques */}
+          <p className="text-base font-medium text-black/80 mb-4">
+            {c.hero.trigger}
+          </p>
+
           <p className="text-lg text-black/70 mb-6">
-            <strong>{c.hero.problem}</strong>
+            {c.hero.problem}
           </p>
           <p className="text-lg text-[#005C99] font-medium mb-8">
             {c.hero.solution}
