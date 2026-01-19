@@ -22,10 +22,10 @@ const content = {
       term: 'Infrastructure d\'Instantanés Décisionnels',
       text: 'Une infrastructure dédiée à la création de faits décisionnels vérifiables, au moment même de l\'exécution.',
     },
-    // 2. Le problème
+    // 2. Contexte
     problem: {
-      badge: 'Le problème',
-      title: 'Un défaut de conception, pas de maturité',
+      badge: 'Contexte',
+      title: 'Pourquoi les faits manquent',
       subtitle: 'Les architectures décisionnelles produisent des résultats, pas des faits.',
       characteristics: [
         'Les décisions sont distribuées.',
@@ -42,7 +42,8 @@ const content = {
       labelConsequences: 'Par construction',
       // Bloc IT
       itReality: {
-        title: 'Aujourd\'hui, lorsqu\'une décision doit être examinée',
+        badge: 'Aujourd\'hui',
+        title: 'Ce que l\'IT fait pour reconstruire',
         points: [
           'Agrégation de logs hétérogènes.',
           'Reconstitution d\'états qui n\'existent plus.',
@@ -52,11 +53,11 @@ const content = {
       },
       conclusion: 'Lorsque l\'examen commence (audit, incident, litige, régulation), la décision telle qu\'elle a été prise n\'existe plus comme objet factuel autonome.',
     },
-    // 3. Changement de paradigme
+    // 3. Horizon
     paradigm: {
-      badge: 'Changement de paradigme',
-      title: 'Capturer, pas reconstruire',
-      subtitle: 'La décision comme fait primaire.',
+      badge: 'Horizon',
+      title: 'Où et comment il s\'insère',
+      subtitle: 'Capturer, pas reconstruire.',
       principle: 'Les faits décisionnels doivent être créés au moment de l\'exécution. Pas reconstruits lorsque l\'examen commence.',
       explanation: 'Horizon ne cherche pas à expliquer après coup. Il fige les faits constitutifs au moment exact où la décision est produite.',
       pointsIntro: 'Chaque décision devient :',
@@ -69,8 +70,8 @@ const content = {
     },
     // 4. Infrastructure
     infrastructure: {
-      badge: 'Infrastructure d\'Instantanés Décisionnels',
-      title: 'Description architecturale',
+      badge: 'Ce que fait Horizon',
+      title: 'Et ce qu\'il ne fait pas',
       subtitle: 'Une infrastructure transverse, indépendante des moteurs décisionnels.',
       what: {
         title: 'Horizon s\'insère dans les flux critiques pour',
@@ -82,12 +83,12 @@ const content = {
         ],
       },
       boundaries: {
-        title: 'Horizon ne',
+        title: 'Ce qu\'il ne fait pas',
         points: [
-          'Prend aucune décision.',
-          'Modifie aucune règle.',
-          'N\'explique aucun résultat.',
-          'N\'impose aucun modèle.',
+          'Prendre des décisions.',
+          'Modifier des règles.',
+          'Expliquer des résultats.',
+          'Imposer un modèle.',
         ],
       },
       insertionPoint: 'Horizon s\'insère au point où une décision devient effective.',
@@ -114,10 +115,10 @@ const content = {
         ],
       },
     },
-    // 6. Ce que cela change
+    // 6. Résultat
     changes: {
-      badge: 'Ce que cela change',
-      title: 'En termes de posture, pas de bénéfices',
+      badge: 'Résultat',
+      title: 'Ce qui change pour l\'examen',
       points: [
         'L\'audit devient constat, non reconstitution.',
         'La responsabilité peut être démontrée sans interprétation.',
@@ -171,10 +172,10 @@ const content = {
       term: 'Decision Snapshot Infrastructure',
       text: 'An infrastructure dedicated to the creation of verifiable decision facts at the very moment of execution.',
     },
-    // 2. The problem
+    // 2. Context
     problem: {
-      badge: 'The problem',
-      title: 'A design flaw, not a lack of maturity',
+      badge: 'Context',
+      title: 'Why facts are missing',
       subtitle: 'Decision architectures produce results, not facts.',
       characteristics: [
         'Decisions are distributed.',
@@ -191,7 +192,8 @@ const content = {
       labelConsequences: 'By design',
       // IT block
       itReality: {
-        title: 'Today, when a decision must be examined',
+        badge: 'Today',
+        title: 'What IT does to reconstruct',
         points: [
           'Aggregation of heterogeneous logs.',
           'Reconstruction of states that no longer exist.',
@@ -201,11 +203,11 @@ const content = {
       },
       conclusion: 'When scrutiny begins (audit, incident, litigation, regulation), the decision as it was made no longer exists as an autonomous factual object.',
     },
-    // 3. Paradigm shift
+    // 3. Horizon
     paradigm: {
-      badge: 'Paradigm shift',
-      title: 'Capture, don\'t reconstruct',
-      subtitle: 'The decision as a primary fact.',
+      badge: 'Horizon',
+      title: 'Where and how it inserts',
+      subtitle: 'Capture, don\'t reconstruct.',
       principle: 'Decision facts must be created at execution time. Not reconstructed when scrutiny begins.',
       explanation: 'Horizon does not seek to explain after the fact. It freezes the constituent facts at the exact moment the decision is produced.',
       pointsIntro: 'Every decision becomes:',
@@ -218,8 +220,8 @@ const content = {
     },
     // 4. Infrastructure
     infrastructure: {
-      badge: 'Decision Snapshot Infrastructure',
-      title: 'Architectural description',
+      badge: 'What Horizon does',
+      title: 'And what it does not',
       subtitle: 'A transversal infrastructure, independent of decision engines.',
       what: {
         title: 'Horizon integrates into critical flows to',
@@ -231,12 +233,12 @@ const content = {
         ],
       },
       boundaries: {
-        title: 'Horizon does not',
+        title: 'What it does not do',
         points: [
-          'Make any decision.',
-          'Modify any rule.',
-          'Explain any result.',
-          'Impose any model.',
+          'Make decisions.',
+          'Modify rules.',
+          'Explain results.',
+          'Impose a model.',
         ],
       },
       insertionPoint: 'Horizon inserts at the point where a decision becomes effective.',
@@ -263,10 +265,10 @@ const content = {
         ],
       },
     },
-    // 6. What changes
+    // 6. Result
     changes: {
-      badge: 'What changes',
-      title: 'In terms of posture, not benefits',
+      badge: 'Result',
+      title: 'What changes for examination',
       points: [
         'Audit becomes observation, not reconstruction.',
         'Accountability can be demonstrated without interpretation.',
@@ -392,27 +394,36 @@ export default function LandingPage({
             </div>
           </div>
 
-          {/* Bloc IT - reconnaissance du quotidien */}
-          <div className="bg-white border border-black/10 p-6 rounded mb-8">
-            <p className="font-medium text-black mb-4">{c.problem.itReality.title}</p>
-            <ul className="space-y-2">
-              {c.problem.itReality.points.map((point, i) => (
-                <li key={i} className="flex items-start gap-3 text-black/60">
-                  <span className="text-black/40 mt-1">→</span>
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           <blockquote className="border-l-4 border-[#005C99] pl-4 text-lg font-medium text-black">
             {c.problem.conclusion}
           </blockquote>
         </div>
       </section>
 
-      {/* 3. Changement de paradigme */}
+      {/* 2b. Aujourd'hui - Ce que l'IT fait */}
       <section className="py-12">
+        <div className="max-w-4xl mx-auto px-6">
+          <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
+            {c.problem.itReality.badge}
+          </p>
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-8">
+            {c.problem.itReality.title}
+          </h2>
+          <div className="bg-zinc-50 border border-black/10 p-6 rounded">
+            <ul className="space-y-3">
+              {c.problem.itReality.points.map((point, i) => (
+                <li key={i} className="flex items-start gap-3 text-black/70">
+                  <span className="text-amber-500 mt-1">→</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Horizon */}
+      <section className="py-12 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
             {c.paradigm.badge}
@@ -423,6 +434,13 @@ export default function LandingPage({
           <p className="text-lg text-[#005C99] font-medium mb-6">
             {c.paradigm.subtitle}
           </p>
+
+          {/* Point d'insertion */}
+          <div className="bg-[#005C99]/5 border border-[#005C99]/20 p-6 rounded mb-8">
+            <p className="text-[#005C99] font-medium">
+              {c.infrastructure.insertionPoint}
+            </p>
+          </div>
 
           <div className="bg-[#005C99] p-6 rounded mb-8">
             <p className="text-white font-medium text-lg">
@@ -446,21 +464,18 @@ export default function LandingPage({
         </div>
       </section>
 
-      {/* 4. Infrastructure */}
-      <section className="py-12 bg-zinc-50">
+      {/* 4. Ce que fait Horizon / Ce qu'il ne fait pas */}
+      <section className="py-12">
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-sm uppercase tracking-wider text-[#005C99] font-medium mb-2">
             {c.infrastructure.badge}
           </p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2">
+          <h2 className="text-2xl lg:text-3xl font-bold text-black mb-8">
             {c.infrastructure.title}
           </h2>
-          <p className="text-lg text-[#005C99] font-medium mb-8">
-            {c.infrastructure.subtitle}
-          </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div className="bg-white p-6 rounded shadow-md border border-black/5">
+            <div className="bg-zinc-50 p-6 rounded border border-black/5">
               <h3 className="font-bold text-[#005C99] mb-4">{c.infrastructure.what.title}</h3>
               <ul className="space-y-2">
                 {c.infrastructure.what.points.map((point, i) => (
@@ -471,7 +486,7 @@ export default function LandingPage({
                 ))}
               </ul>
             </div>
-            <div className="bg-white p-6 rounded shadow-md border border-red-100">
+            <div className="bg-zinc-50 p-6 rounded border border-red-100">
               <h3 className="font-bold text-red-600 mb-4">{c.infrastructure.boundaries.title}</h3>
               <ul className="space-y-2">
                 {c.infrastructure.boundaries.points.map((point, i) => (
@@ -482,13 +497,6 @@ export default function LandingPage({
                 ))}
               </ul>
             </div>
-          </div>
-
-          {/* Point d'insertion */}
-          <div className="bg-[#005C99]/5 border border-[#005C99]/20 p-6 rounded mb-8">
-            <p className="text-[#005C99] font-medium">
-              {c.infrastructure.insertionPoint}
-            </p>
           </div>
 
           <div className="bg-white p-6 rounded shadow-md border border-black/5">
