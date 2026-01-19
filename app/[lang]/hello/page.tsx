@@ -185,7 +185,7 @@ export default function HelloPage({
               <ul className="mt-2.5 pl-4 text-[#9ca3af] leading-relaxed list-disc">
                 <li>appels de marge &amp; intraday risk</li>
                 <li>haircuts / stress triggers</li>
-                <li>disputes de contreparties &amp; evidence packs</li>
+                <li>disputes de contreparties &amp; snapshots décisionnels</li>
               </ul>
             </div>
             <div className="bg-gradient-to-b from-white/[0.03] to-white/[0.01] border border-[#1f2937] rounded-2xl p-4">
@@ -213,7 +213,7 @@ export default function HelloPage({
             </div>
             <div className="bg-gradient-to-b from-white/[0.03] to-white/[0.01] border border-[#1f2937] rounded-2xl p-4">
               <strong>3) Préserver et rendre vérifiable</strong>
-              <p className="text-[#9ca3af] mt-1">Stockage append-only + contrôles d&apos;intégrité + export &quot;evidence pack&quot; pour audit/litige.</p>
+              <p className="text-[#9ca3af] mt-1">Stockage append-only + contrôles d&apos;intégrité + artefacts exportables pour audit/litige.</p>
             </div>
           </div>
 
@@ -240,7 +240,7 @@ export default function HelloPage({
             </div>
             <div className="bg-gradient-to-b from-white/[0.03] to-white/[0.01] border border-[#1f2937] rounded-2xl p-4">
               <strong>Remediation efficace</strong>
-              <p className="text-[#9ca3af] mt-1">Evidence packs réutilisables, cohérents et opposables.</p>
+              <p className="text-[#9ca3af] mt-1">Decision Snapshot Artifacts réutilisables, cohérents et opposables.</p>
             </div>
           </div>
         </section>

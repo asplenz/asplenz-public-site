@@ -12,6 +12,19 @@ const content = {
     backToHome: '← Retour à l\'accueil',
     categories: [
       {
+        name: 'Terminologie',
+        items: [
+          {
+            question: 'Qu\'est-ce qu\'un Decision Snapshot ?',
+            answer: 'Un Decision Snapshot est l\'enregistrement vérifiable de ce qui a été décidé au moment de l\'exécution. C\'est la preuve — le fait décisionnel tel qu\'il est établi.',
+          },
+          {
+            question: 'Qu\'est-ce qu\'un Decision Snapshot Artifact ?',
+            answer: 'Un Decision Snapshot Artifact est la matérialisation technique du Decision Snapshot : un objet signé, immuable et auto-contenu, préservé indépendamment des systèmes sources.',
+          },
+        ],
+      },
+      {
         name: 'Général',
         items: [
           {
@@ -19,12 +32,8 @@ const content = {
             answer: 'Les logs sont utiles, mais souvent dispersés, reconstitués, et dépendants du SI source. Horizon vise une preuve décisionnelle autonome, stable et exploitable.',
           },
           {
-            question: 'Est-ce un projet lourd ?',
-            answer: 'La bonne approche est ciblée : 1 use case critique, instrumentation au point de décision, puis extension. Éviter "capturer tout".',
-          },
-          {
-            question: 'Qui est sponsor interne ?',
-            answer: 'Souvent une coalition Legal/Compliance/Risk/Audit. IT exécute, mais le besoin est probatoire et réglementaire.',
+            question: 'Quel périmètre pour commencer ?',
+            answer: 'La bonne approche est ciblée : un use case critique, instrumentation au point de décision, puis extension progressive. Éviter "capturer tout".',
           },
         ],
       },
@@ -36,16 +45,16 @@ const content = {
             answer: 'Horizon n\'ingère pas les flux de données opérationnels. Il préserve les faits décisionnels déclarés au moment de l\'exécution, selon des schémas et périmètres définis par l\'institution. La minimisation des données, la rétention et la classification de sensibilité restent entièrement sous contrôle institutionnel.',
           },
           {
-            question: 'Où commence et où finit l\'artefact de snapshot décisionnel ?',
-            answer: 'L\'artefact contient un ensemble de champs standards définis par Horizon. Chaque client définit les champs spécifiques au système et fournit le schéma utilisé pour alimenter l\'artefact.',
+            question: 'Comment le contenu d\'un snapshot décisionnel est-il défini ?',
+            answer: 'Horizon définit un ensemble de champs standards. Chaque institution définit les champs spécifiques au système et fournit le schéma utilisé pour alimenter le snapshot décisionnel.',
           },
           {
             question: 'Qui décide quelles données sont capturées ?',
             answer: 'Horizon ne décide pas de ce qui est pertinent. Les clients définissent le schéma et les données fournies pour chaque système.',
           },
           {
-            question: 'Pourquoi les détails d\'intégration ne sont-ils pas documentés publiquement ?',
-            answer: 'Les détails d\'intégration sont discutés au cas par cas pour refléter les contraintes système, les exigences de sécurité et le contexte institutionnel.',
+            question: 'Comment Horizon s\'intègre-t-il aux systèmes existants ?',
+            answer: 'Asplenz fournit un SDK léger qui s\'intègre au point de décision de l\'institution. Les détails d\'intégration sont discutés au cas par cas pour refléter les contraintes système, les exigences de sécurité et le contexte institutionnel. La documentation technique est disponible sur demande.',
           },
         ],
       },
@@ -75,6 +84,19 @@ const content = {
     backToHome: '← Back to home',
     categories: [
       {
+        name: 'Terminology',
+        items: [
+          {
+            question: 'What is a Decision Snapshot?',
+            answer: 'A Decision Snapshot is the verifiable record of what was decided at execution time. It is the evidence — the decision fact as established.',
+          },
+          {
+            question: 'What is a Decision Snapshot Artifact?',
+            answer: 'A Decision Snapshot Artifact is the technical materialization of the Decision Snapshot: a signed, immutable, and self-contained object, preserved independently of source systems.',
+          },
+        ],
+      },
+      {
         name: 'General',
         items: [
           {
@@ -82,12 +104,8 @@ const content = {
             answer: 'Logs are useful, but often scattered, reconstructed, and dependent on source IS. Horizon aims for autonomous, stable and usable decision evidence.',
           },
           {
-            question: 'Is this a heavy project?',
-            answer: 'The right approach is targeted: 1 critical use case, instrumentation at the decision point, then extension. Avoid "capture everything".',
-          },
-          {
-            question: 'Who is the internal sponsor?',
-            answer: 'Often a Legal/Compliance/Risk/Audit coalition. IT executes, but the need is evidentiary and regulatory.',
+            question: 'What is the recommended scope to start with?',
+            answer: 'The right approach is targeted: one critical use case, instrumentation at the decision point, then gradual extension. Avoid "capture everything".',
           },
         ],
       },
@@ -99,16 +117,16 @@ const content = {
             answer: 'Horizon does not ingest operational data flows. It preserves declared decision facts at execution time, according to schemas and boundaries defined by the institution. Data minimization, retention, and sensitivity classification remain fully under institutional control.',
           },
           {
-            question: 'Where does the decision snapshot artifact start and end?',
-            answer: 'The artifact contains a set of standard fields defined by Horizon. Each client defines system-specific fields and provides the schema used to populate the artifact.',
+            question: 'How is the content of a decision snapshot defined?',
+            answer: 'Horizon defines a set of standard fields. Each institution defines system-specific fields and provides the schema used to populate the decision snapshot.',
           },
           {
             question: 'Who decides what data is captured?',
             answer: 'Horizon does not decide what is relevant. Clients define the schema and the data provided for each system.',
           },
           {
-            question: 'Why are integration details not publicly documented?',
-            answer: 'Integration details are discussed on a case-by-case basis to reflect system constraints, security requirements, and institutional context.',
+            question: 'How does Horizon integrate into existing systems?',
+            answer: 'Asplenz provides a lightweight SDK that is integrated at the institution\'s decision point. Integration details are discussed on a case-by-case basis to reflect system constraints, security requirements, and institutional context. Technical documentation is available upon request.',
           },
         ],
       },

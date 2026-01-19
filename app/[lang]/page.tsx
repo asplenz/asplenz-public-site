@@ -96,7 +96,7 @@ const content = {
         },
         {
           title: 'Clearing house / CCP',
-          points: ['appels de marge & intraday risk', 'haircuts / stress triggers', 'disputes de contreparties & evidence packs'],
+          points: ['appels de marge & intraday risk', 'haircuts / stress triggers', 'disputes de contreparties & snapshots décisionnels'],
         },
         {
           title: 'Banque systémique',
@@ -109,7 +109,7 @@ const content = {
       steps: [
         { title: '1) Instrumenter le point de décision', description: 'Un hook au moment où la décision est rendue (service, rule engine, workflow humain).' },
         { title: '2) Normaliser le fait', description: 'Schéma décisionnel stable : décision, contexte, provenance, versions, horodatage.' },
-        { title: '3) Préserver et rendre vérifiable', description: 'Stockage append-only + contrôles d\'intégrité + export "evidence pack" pour audit/litige.' },
+        { title: '3) Préserver et rendre vérifiable', description: 'Stockage append-only + contrôles d\'intégrité + artefacts exportables pour audit/litige.' },
       ],
       result: {
         title: 'Résultat : une source de vérité "preuve"',
@@ -125,7 +125,7 @@ const content = {
       },
       with: {
         label: 'Avec Horizon',
-        text: 'Un artefact horodaté, versionné, autonome — exportable en "evidence pack" prêt à l\'examen.',
+        text: 'Un Decision Snapshot Artifact horodaté, versionné, autonome — prêt à l\'examen.',
       },
     },
     capabilities: {
@@ -158,7 +158,7 @@ const content = {
       title: 'FAQ',
       items: [
         { question: 'Pourquoi ne pas faire ça avec des logs ?', answer: 'Les logs sont utiles, mais souvent dispersés, reconstitués, et dépendants du SI source. Horizon vise une preuve décisionnelle autonome, stable et exploitable.' },
-        { question: 'Est-ce un projet lourd ?', answer: 'La bonne approche est ciblée : 1 use case critique, instrumentation au point de décision, puis extension. Éviter "capturer tout".' },
+        { question: 'Quel périmètre pour commencer ?', answer: 'La bonne approche est ciblée : un use case critique, instrumentation au point de décision, puis extension progressive. Éviter "capturer tout".' },
         { question: 'Qui décide quelles données sont capturées ?', answer: 'Horizon ne décide pas de ce qui est pertinent. Les clients définissent le schéma et les données fournies pour chaque système.' },
       ],
       seeAll: 'Voir toutes les questions →',
@@ -255,7 +255,7 @@ const content = {
         },
         {
           title: 'Clearing house / CCP',
-          points: ['margin calls & intraday risk', 'haircuts / stress triggers', 'counterparty disputes & evidence packs'],
+          points: ['margin calls & intraday risk', 'haircuts / stress triggers', 'counterparty disputes & decision snapshots'],
         },
         {
           title: 'Systemic bank',
@@ -268,7 +268,7 @@ const content = {
       steps: [
         { title: '1) Instrument the decision point', description: 'A hook at the moment the decision is rendered (service, rule engine, human workflow).' },
         { title: '2) Normalize the fact', description: 'Stable decision schema: decision, context, provenance, versions, timestamp.' },
-        { title: '3) Preserve and make verifiable', description: 'Append-only storage + integrity controls + "evidence pack" export for audit/litigation.' },
+        { title: '3) Preserve and make verifiable', description: 'Append-only storage + integrity controls + exportable artifacts for audit/litigation.' },
       ],
       result: {
         title: 'Result: a "proof" source of truth',
@@ -284,7 +284,7 @@ const content = {
       },
       with: {
         label: 'With Horizon',
-        text: 'A timestamped, versioned, self-contained artifact — exportable as an "evidence pack" ready for examination.',
+        text: 'A timestamped, versioned, self-contained Decision Snapshot Artifact — ready for examination.',
       },
     },
     capabilities: {
@@ -317,7 +317,7 @@ const content = {
       title: 'FAQ',
       items: [
         { question: 'Why not do this with logs?', answer: 'Logs are useful, but often scattered, reconstructed, and dependent on source IS. Horizon aims for autonomous, stable and usable decision evidence.' },
-        { question: 'Is this a heavy project?', answer: 'The right approach is targeted: 1 critical use case, instrumentation at the decision point, then extension. Avoid "capture everything".' },
+        { question: 'What is the recommended scope to start with?', answer: 'The right approach is targeted: one critical use case, instrumentation at the decision point, then gradual extension. Avoid "capture everything".' },
         { question: 'Who decides what data is captured?', answer: 'Horizon does not decide what is relevant. Clients define the schema and the data provided for each system.' },
       ],
       seeAll: 'See all questions →',
