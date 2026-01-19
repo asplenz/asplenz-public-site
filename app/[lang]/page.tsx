@@ -138,12 +138,15 @@ const content = {
     summary: {
       badge: 'En 30 secondes',
       problemLabel: 'Problème',
-      problem: 'Lors d\'un audit ou litige, vous êtes incapable de prouver ce qu\'un système automatisé a réellement décidé.',
+      problem: 'Lors d\'un audit ou litige, vous êtes incapable de prouver ce qu\'un système automatisé a réellement décidé à ce moment-là.',
       causeLabel: 'Cause',
-      cause: 'Les décisions ne sont jamais conservées comme des faits autonomes.',
+      cause: 'Les décisions ne sont jamais conservées comme des faits autonomes au-delà de l\'évolution des systèmes.',
       solutionLabel: 'Solution',
-      solution: 'Horizon capture chaque décision au moment exact où elle est prise et la rend vérifiable à vie.',
+      solution: 'Horizon capture chaque décision une fois, au moment de l\'exécution, et la rend vérifiable plus tard.',
       readMore: 'Lire la version complète',
+      // Preuve de réalité opérationnelle
+      realityTitle: 'Ce n\'est pas théorique.',
+      realityText: 'Les équipes tentent déjà de reconstituer les décisions passées à partir de logs, modèles, configurations et archives internes. Horizon change l\'effort requis, pas le contrôle que vous conservez.',
     },
     // 8. CTA
     cta: {
@@ -299,12 +302,15 @@ const content = {
     summary: {
       badge: 'In 30 seconds',
       problemLabel: 'Problem',
-      problem: 'During an audit or dispute, you cannot prove what an automated system actually decided.',
+      problem: 'During an audit or dispute, you cannot prove what an automated system actually decided at the time.',
       causeLabel: 'Cause',
-      cause: 'Decisions are never preserved as autonomous facts.',
+      cause: 'Decisions are never preserved as autonomous facts beyond system evolution.',
       solutionLabel: 'Solution',
-      solution: 'Horizon captures each decision at the exact moment it is made and makes it verifiable for life.',
+      solution: 'Horizon captures each decision once, at execution time, and keeps it verifiable later.',
       readMore: 'Read the full version',
+      // Proof of operational reality
+      realityTitle: 'This is not theoretical.',
+      realityText: 'Teams already attempt to reconstruct past decisions using logs, models, configurations, and internal records. Horizon changes the effort required, not the control you retain.',
     },
     // 8. CTA
     cta: {
@@ -402,6 +408,12 @@ export default function LandingPage({
             <a href="#context" className="text-[#005C99] text-sm font-medium hover:underline">
               {c.summary.readMore} ↓
             </a>
+          </div>
+
+          {/* Preuve de réalité opérationnelle */}
+          <div className="mt-8 pt-6 border-t border-black/10">
+            <p className="text-black font-medium mb-2">{c.summary.realityTitle}</p>
+            <p className="text-black/60 text-sm">{c.summary.realityText}</p>
           </div>
         </div>
       </section>
