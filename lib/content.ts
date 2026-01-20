@@ -3,10 +3,12 @@ export type Lang = 'en' | 'fr'
 export const content = {
   en: {
     brand: 'HORIZON by ASPLENZ',
+    brandShort: 'ASPLENZ',
     tagline: 'Eliminate reconstruction costs. Automate examination.',
     nav: {
       documentation: 'Documentation',
       contact: 'Contact',
+      menu: 'Menu',
     },
     hero: {
       title: 'Stop paying to look for what your systems already did.',
@@ -851,10 +853,12 @@ It does not impose interpretation, governance, or judgment. It preserves the fac
   },
   fr: {
     brand: 'HORIZON par ASPLENZ',
+    brandShort: 'ASPLENZ',
     tagline: 'Supprimez le coût de la reconstruction. Automatisez l\'examen.',
     nav: {
       documentation: 'Documentation',
       contact: 'Contact',
+      menu: 'Menu',
     },
     hero: {
       title: 'Ne payez plus pour chercher ce que vos systèmes ont déjà fait.',
