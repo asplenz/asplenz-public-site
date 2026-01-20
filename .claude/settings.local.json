@@ -1,7 +1,11 @@
 {
   "permissions": {
-    "additionalDirectories": [
-      "c:\\dev\\projects\\asplenz-public-site\\app\\[lang]\\white-paper"
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(if exist .next rmdir /s /q .next)",
+      "Bash(npm ls:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npx next build:*)"
     ]
   }
 }

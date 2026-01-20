@@ -1,65 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  * {
-    @apply border-black;
-  }
-  
-  html {
-    @apply antialiased;
-  }
-  
-  body {
-    @apply bg-white text-black;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    line-height: 1.75;
-  }
-  
-  /* Remove default link styling in prose */
-  .prose a {
-    @apply text-black no-underline border-b border-[#1e3a8a]/30 hover:border-[#1e3a8a] transition-colors;
-  }
-  
-  /* Improved blockquotes */
-  blockquote {
-    @apply border-l-4 border-[#1e3a8a] bg-zinc-50 px-6 py-4 italic text-lg;
-  }
-  
-  /* Responsive typography */
-  @media (max-width: 1024px) {
-    /* Scale down large headings on mobile */
-    h1 {
-      font-size: clamp(1.75rem, 5vw, 3.5rem) !important;
-    }
-    
-    /* Adjust intro text */
-    p:first-of-type {
-      font-size: clamp(1rem, 3vw, 1.375rem) !important;
-    }
-  }
-  
-  /* Custom scrollbar for sidebar */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    @apply bg-black/10 rounded-full;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-black/20;
-  }
+:root {
+  --background: #ffffff;
+  --foreground: #000000de;
+  --primary: #1A5187;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --font-sans: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
 }

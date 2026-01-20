@@ -1,19 +1,24 @@
-import type { Metadata } from 'next';
-import './globals.css';
+import type { Metadata } from "next";
+import "./globals.css";
+import { LangProvider } from "@/lib/LangContext";
 
 export const metadata: Metadata = {
-  title: 'Asplenz Horizon',
-  description: 'A factual evidence layer for regulated institutions',
+  title: "Horizon by Asplenz",
+  description: "Eliminate reconstruction costs. Automate examination.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html>
-      <body>{children}</body>
+    <html lang="en">
+      <body className="antialiased">
+        <LangProvider>
+          {children}
+        </LangProvider>
+      </body>
     </html>
   );
 }
