@@ -62,7 +62,7 @@ export default function FoundationsOverviewPage() {
               {content.introduction?.title}
             </h2>
             <p className="text-gray-700 mb-4">
-              {content.introduction?.content}
+              {renderMarkdown(content.introduction?.content || '')}
             </p>
             <p className="text-gray-700">
               {renderMarkdown(content.introduction?.conclusion || '')}
@@ -103,7 +103,7 @@ export default function FoundationsOverviewPage() {
               {renderMarkdown(content.doiCategory?.content || '')}
             </p>
             <p className="text-gray-700 mb-6">
-              {content.doiCategory?.description}
+              {renderMarkdown(content.doiCategory?.description || '')}
             </p>
             <blockquote className="border-l-4 border-[#1A5187] pl-6 py-3 text-gray-800 bg-gray-50 rounded-r-lg font-medium">
               {content.doiCategory?.quote}
