@@ -3,8 +3,7 @@ import Hero from './components/Hero'
 import Problem from './components/Problem'
 import Solution from './components/Solution'
 import Impact from './components/Impact'
-import Bridge from './components/Bridge'
-import FAQ from './components/FAQ'
+import Safeguards from './components/Safeguards'
 import CTA from './components/CTA'
 
 export default function HomePage() {
@@ -17,8 +16,7 @@ export default function HomePage() {
         <Problem />
         <Solution />
         <Impact />
-        <Bridge />
-        <FAQ />
+        <Safeguards />
         <CTA />
       </main>
 

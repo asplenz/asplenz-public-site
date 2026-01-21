@@ -34,14 +34,24 @@ export default function Solution() {
           <div className="grid gap-4">
             {t.solution.points.map((point, idx) => {
               const Icon = iconMap[point.iconKey as keyof typeof iconMap]
+              const isAIAct = point.iconKey === 'check'
               return (
                 <div key={idx} className="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm flex items-start gap-4">
                   <div className="text-[#1A5187] flex-shrink-0">
                     <Icon className="w-8 h-8" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-[#1A5187] mb-1">{point.title}</h3>
-                    <p className="text-gray-700 text-sm">{point.text}</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">{point.title}</h3>
+                    <p className={`text-sm ${isAIAct ? 'text-gray-700' : 'text-gray-700'}`}>
+                      {isAIAct ? (
+                        <>
+                          {point.text.split('Horizon')[0]}
+                          <span className="font-semibold text-[#1A5187]">Horizon does not make you compliant; it makes your compliance provable.</span>
+                        </>
+                      ) : (
+                        point.text
+                      )}
+                    </p>
                   </div>
                 </div>
               )

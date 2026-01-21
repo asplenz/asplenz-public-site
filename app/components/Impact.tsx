@@ -22,7 +22,7 @@ export default function Impact() {
           {t.impact.label}
         </p>
 
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
+        <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-10">
           {t.impact.title}
         </h2>
 
@@ -59,10 +59,10 @@ export default function Impact() {
                           <span className="font-semibold text-gray-900 text-sm">{row.label}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-3 border-b border-gray-200 text-gray-700 text-sm">
+                      <td className="px-4 py-3 border-b border-gray-200 text-gray-700 text-sm font-medium">
                         {row.without}
                       </td>
-                      <td className="px-4 py-3 border-b border-gray-200 text-gray-700 text-sm">
+                      <td className="px-4 py-3 border-b border-gray-200 text-gray-900 text-sm font-semibold">
                         {row.with}
                       </td>
                     </tr>

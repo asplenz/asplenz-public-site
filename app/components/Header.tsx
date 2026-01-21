@@ -40,12 +40,12 @@ export default function Header() {
             {t.nav.documentation}
           </Link>
 
-          <a
-            href="mailto:contact@asplenz.com"
+          <Link
+            href="/contact"
             className="px-4 py-2 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-sm"
           >
             {t.nav.contact}
-          </a>
+          </Link>
 
           <button
             onClick={toggleLang}
@@ -94,13 +94,13 @@ export default function Header() {
               {t.nav.documentation}
             </Link>
 
-            <a
-              href="mailto:contact@asplenz.com"
+            <Link
+              href="/contact"
               className="block px-4 py-2 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-center"
               onClick={() => setMenuOpen(false)}
             >
               {t.nav.contact}
-            </a>
+            </Link>
           </div>
         </div>
       )}

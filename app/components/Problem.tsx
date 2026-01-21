@@ -41,19 +41,23 @@ export default function Problem() {
               className="rounded-lg"
             />
 
-            {/* Deep Dive Link */}
-            <p className="text-gray-700 text-sm mt-6">
-              {t.problem.deepDive.text}
-            </p>
-            <Link
-              href={t.problem.deepDive.href}
-              className="inline-flex items-center gap-2 text-[#1A5187] font-medium hover:underline text-sm mt-1"
-            >
-              {t.problem.deepDive.linkText}
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
+            {/* Sentence institutionnelle */}
+            {t.problem.deepDive.text && (
+              <blockquote className="text-lg font-bold text-gray-900 border-l-4 border-[#1A5187] pl-6 py-2 mt-6">
+                {t.problem.deepDive.text}
+              </blockquote>
+            )}
+            {t.problem.deepDive.linkText && t.problem.deepDive.href && (
+              <Link
+                href={t.problem.deepDive.href}
+                className="inline-flex items-center gap-2 text-[#1A5187] font-medium hover:underline text-sm mt-2"
+              >
+                {t.problem.deepDive.linkText}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            )}
           </div>
 
           <div className="grid gap-4">
@@ -65,8 +69,8 @@ export default function Problem() {
                     <Icon className="w-8 h-8" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-[#1A5187] mb-1">{point.title}</h3>
-                    <p className="text-gray-700 text-sm">{point.text}</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">{point.title}</h3>
+                    <p className="text-gray-700 text-sm italic">{point.text}</p>
                   </div>
                 </div>
               )

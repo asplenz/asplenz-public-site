@@ -1,183 +1,128 @@
-# HORIZON by ASPLENZ - Landing Page Content
+# **[ENGLISH VERSION]**
+
+## **Stop Reconstructing. Start Proving.**
+
+### **The Decision Ledger for Automated Credit Risk Management**
+
+**When an automated credit decision is challenged, can you produce the exact factual state of the execution — immediately, without reconstruction, and with mathematical certainty?**
 
 ---
 
-## English
+### **The Problem: The Hidden Cost of Reconstruction**
 
-### Brand
+Most banking institutions rely on **Post-hoc Reconstruction**. When a regulator or an auditor asks for proof, teams spend weeks digging through disparate logs, data extracts, and human memories to "rebuild" what happened.
 
-**HORIZON by ASPLENZ**
+* **Reconstruction is a Narrative:** It is an interpretation of the past, not a proof of the fact. It is subject to hindsight bias and data gaps.
+* **Reconstruction is Volatile:** Credit inputs (3rd party scores, real-time debt ratios) are transient. They dissolve after execution, leaving the bank's defense structurally fragile.
+* **Reconstruction is Costly:** A single regulatory look-back can mobilize a cross-functional team for months, costing up to €1M in operational overhead.
 
-*Eliminate reconstruction costs. Automate examination.*
-
----
-
-### Hero
-
-**Stop paying to look for what your systems already did.**
-
-Every time a regulator asks a question or an incident occurs, your organization spends weeks "reconstructing" the past.
-
-> Horizon captures facts at execution time.
-
-Stop searching for information: it is already structured and ready for use.
-
-- [Evaluate exposure to reconstruction costs](#)
-- [Reduce audit expenses](#)
+**In critical lending, if evidence was not captured at the source, it does not exist.**
 
 ---
 
-### The Problem: Data Archaeology
+### **The Solution: Horizon — The Decision Ledger (Layer 0)**
 
-**The hidden cost of post-hoc reconstruction.**
+Horizon is a passive infrastructure layer designed to capture and seal your critical credit decisions at the **Point of No Return**. This is the moment where institutions are most exposed: a contested automated decision with no native evidence.
 
-In critical institutions, the inability to instantly explain a decision costs millions every year:
-
-#### Expert Drain
-Your most senior engineers spend 30% of their time correlating logs instead of building products.
-
-#### Critical Delays
-Weeks of waiting to provide a coherent evidence file.
-
-#### Operational Uncertainty
-Reports based on fragmented traces, creating credit and trust risks with regulators.
+* **Factual Integrity:** Every decision is captured with its exact inputs and outputs, sealed via cryptographic hash-linking.
+* **Structural Examinability:** Shift from "rebuilding the past" to "retrieving the truth" through a dedicated, independent repository of evidence.
+* **AI Act Readiness:** The EU AI Act classifies automated lending as **high-risk**, requiring strict ex-post traceability. **Horizon does not make you compliant; it makes your compliance provable** by demonstrating the exact factual state of any decision upon request.
 
 ---
 
-### The Solution: Capture at Source
+### **The Economics of Evidence**
 
-**Move from investigation to immediate response.**
+Horizon is designed to be profitable from the first regulatory inquiry or legal challenge.
 
-Horizon integrates with your critical flows to capture decision context in real-time. The result? Immediate factual availability.
-
-#### End the Log Hunt
-No more mobilizing IT teams to understand past events.
-
-#### Instant Response
-Deliver complete files in minutes, not months.
-
-#### Regulatory Peace of Mind
-Present non-interpreted factual data that closes cases faster.
+| **Manual Reconstruction** | **Horizon Decision Ledger** |
+| --- | --- |
+| **Effort:** 8 to 12 weeks of investigation. | **Effort:** Immediate API retrieval. |
+| **Team:** Risk, IT, Legal, Data Engineering. | **Team:** 1 Authorized Auditor. |
+| **Reliability:** Probable (Narrative-based). | **Reliability:** Irrefutable (Mathematically sealed). |
+| **Estimated Cost:** ~€600,000 per major case. | **Estimated Cost:** Fixed infrastructure. |
 
 ---
 
-### Financial Impact
+### **Institutional Safeguards**
 
-**Quantify the cost of data archaeology.**
+* **Zero Latency Impact:** The asynchronous capture architecture ensures that your lending engine’s performance is never compromised.
+* **In-Perimeter Sovereignty:** Horizon is deployed within your secure infrastructure. No data ever leaves your organization’s control.
+* **Passive Observer:** Horizon requires no modification of your business logic and no changes to your existing database schemas.
 
-| Challenge | Without Horizon (Reconstruction) | With Horizon (Native Capture) |
-|-----------|----------------------------------|-------------------------------|
-| Human Effort | N3 experts mobilized in "crisis mode". | Automated access without technical expertise. |
-| Investigation Cost | Unpredictable and growing OpEx. | Fixed, controlled infrastructure cost. |
-| IT Productivity | Innovation slowed by audit support. | Development capacity unlocked. |
+> **Important:** Horizon does not analyze, score, or judge decisions. It guarantees that the facts exist.
 
 ---
 
-### Technical Bridge
+### **Establish Factual Authority.**
 
-**Built for financial market requirements.**
+**The cost of a single major investigation exceeds the cost of a decade of structural evidence.**
 
-Horizon is a robust infrastructure designed for financial market requirements. For teams wishing to explore the underlying design principles and architecture, [view our technical foundations](#).
-
----
-
-### Call to Action
-
-**Ready to eliminate your reconstruction costs?**
-
-Let's discuss your specific context and critical decisions.
-
-- [Contact us](mailto:contact@asplenz.com)
-- [Schedule a call](https://app.cal.eu/asplenz/institutional-acceptability?overlayCalendar=true)
+👉 **[Request a CRO-Level Technical Briefing]**
+👉 **[Read the Foundations]**
 
 ---
 
 ---
 
-## Français
+# **[VERSION FRANÇAISE]**
 
-### Marque
+## **Arrêtez de reconstruire. Commencez à prouver.**
 
-**HORIZON par ASPLENZ**
+### **Le Registre Décisionnel pour la Gestion du Risque Crédit**
 
-*Supprimez le coût de la reconstruction. Automatisez l'examen.*
-
----
-
-### Hero
-
-**Ne payez plus pour chercher ce que vos systèmes ont déjà fait.**
-
-Chaque fois qu'un régulateur pose une question ou qu'un incident survient, votre organisation perd des semaines à « reconstruire » le passé.
-
-> Horizon capture les faits au moment de l'exécution.
-
-Vous ne cherchez plus l'information : elle est déjà structurée et disponible.
-
-- [Évaluer mon exposition aux coûts de reconstruction](#)
-- [Réduire mes coûts d'audit](#)
+**Lorsqu'une décision de crédit automatisée est contestée, pouvez-vous produire l'état factuel exact de l'exécution — immédiatement, sans reconstruction et avec une certitude mathématique ?**
 
 ---
 
-### Le Problème : L'Archéologie de Données
+### **Le Problème : Le coût caché de la reconstruction**
 
-**Le coût caché de la « reconstruction » post-hoc.**
+La plupart des institutions bancaires s'appuient sur la **reconstruction a posteriori**. Lorsqu'un régulateur ou un auditeur exige une preuve, les équipes passent des semaines à fouiller dans des logs disparates, des extraits de données et des souvenirs humains pour tenter de « rebâtir » le passé.
 
-Dans les institutions critiques, l'incapacité à expliquer instantanément une décision coûte des millions d'euros chaque année :
+* **La reconstruction est un récit :** C'est une interprétation du passé, pas une preuve du fait. Elle est soumise au biais de rétrospective et aux lacunes de données.
+* **La reconstruction est instable :** Les données de crédit (scores tiers, ratios d'endettement) sont volatiles. Elles se dissolvent après l'exécution, rendant la défense de la banque fragile.
+* **La reconstruction est coûteuse :** Un seul cycle d'audit peut mobiliser une équipe transverse pendant des mois, coûtant jusqu'à 1M€ en frais opérationnels.
 
-#### Mobilisation d'experts
-Vos ingénieurs les plus seniors passent 30 % de leur temps à corréler des logs au lieu de coder.
-
-#### Délais critiques
-Des semaines d'attente pour fournir un dossier de preuve cohérent.
-
-#### Incertitude opérationnelle
-Des rapports basés sur des traces fragmentées, créant un risque de crédit face au régulateur.
+**Dans le crédit critique, si la preuve n'a pas été capturée à la source, elle n'existe pas.**
 
 ---
 
-### La Solution : La Capture à la Source
+### **La Solution : Horizon — Le Registre Décisionnel (Layer 0)**
 
-**Passez de la recherche à la réponse immédiate.**
+Horizon est une couche d'infrastructure passive conçue pour capturer et sceller vos décisions de crédit au **Point de non-retour**. C’est précisément à ce moment — une décision automatisée contestée sans preuve native — que l’exposition institutionnelle est maximale.
 
-Horizon s'intègre à vos flux critiques pour capturer le contexte des décisions en temps réel. Le résultat ? Une disponibilité immédiate des faits.
-
-#### Fin de la chasse aux logs
-Plus besoin de mobiliser les équipes IT pour comprendre un événement passé.
-
-#### Réponse immédiate
-Fournissez des dossiers complets en quelques minutes, pas en quelques mois.
-
-#### Sérénité réglementaire
-Présentez des données factuelles non-interprétées qui ferment les dossiers plus vite.
+* **Intégrité Factuelle :** Chaque décision est capturée avec ses entrées et sorties exactes, scellée par chaînage de hash cryptographique.
+* **Examinabilité Structurelle :** Passez de la « reconstruction du passé » à l'« extraction de la vérité » via un référentiel de preuves dédié et indépendant.
+* **Préparation à l'AI Act :** Le règlement européen classe le crédit automatisé comme **« à haut risque »**, imposant une traçabilité ex-post stricte. **Horizon ne vous rend pas conforme ; il rend votre conformité démontrable** en prouvant l'état factuel de n'importe quelle décision à la demande.
 
 ---
 
-### Impact Financier
+### **L'Économie de la Preuve**
 
-**Quantifiez le coût de l'archéologie de données.**
+Horizon est conçu pour être rentable dès la première enquête réglementaire ou contestation juridique.
 
-| Enjeu | Sans Horizon (Reconstruction) | Avec Horizon (Capture native) |
-|-------|-------------------------------|-------------------------------|
-| Effort humain | Experts N3 mobilisés en mode « crise ». | Accès automatisé sans expertise technique. |
-| Coût d'investigation | OpEx imprévisible et croissant. | Coût d'infrastructure fixe et maîtrisé. |
-| Productivité IT | Innovation freinée par le support audit. | Capacité de développement libérée. |
-
----
-
-### Passerelle Technique
-
-**Conçu pour les exigences des marchés financiers.**
-
-Horizon est une infrastructure robuste conçue pour les exigences des marchés financiers. Pour les équipes souhaitant explorer les principes de design et l'architecture sous-jacente, [consultez notre documentation de référence](#).
+| **Reconstruction Manuelle** | **Registre Décisionnel Horizon** |
+| --- | --- |
+| **Effort :** 8 à 12 semaines d'investigation. | **Effort :** Extraction immédiate via API. |
+| **Équipe :** Risque, IT, Juridique, Data. | **Équipe :** 1 Auditeur autorisé. |
+| **Fiabilité :** Probable (Basée sur un récit). | **Fiabilité :** Irréfutable (Scellée mathématiquement). |
+| **Coût estimé :** ~600 000 € par dossier majeur. | **Coût estimé :** Infrastructure fixe. |
 
 ---
 
-### Appel à l'Action
+### **Garanties Institutionnelles**
 
-**Prêt à éliminer vos coûts de reconstruction ?**
+* **Impact nul sur la latence :** L'architecture de capture asynchrone garantit que la performance de votre moteur d'octroi n'est jamais compromise.
+* **Souveraineté In-Perimeter :** Horizon est déployé au sein de votre infrastructure sécurisée. Aucune donnée ne quitte le contrôle de votre organisation.
+* **Observateur Passif :** Horizon ne nécessite aucune modification de votre logique métier ni de vos schémas de base de données.
 
-Discutons de votre contexte spécifique et de vos décisions critiques.
+> **Note :** Horizon n’analyse ni ne juge les décisions. Il garantit que les faits existent.
 
-- [Nous contacter](mailto:contact@asplenz.com)
-- [Planifier un appel](https://app.cal.eu/asplenz/institutional-acceptability?overlayCalendar=true)
+---
+
+### **Établissez votre Autorité Factuelle.**
+
+**Le coût d'une seule investigation majeure dépasse le coût d'une décennie de preuves structurelles.**
+
+👉 **[Demander un briefing technique – Niveau CRO]**
+👉 **[Explorer les Fondations]**
+
