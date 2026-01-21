@@ -6,9 +6,23 @@ export const content = {
     brandShort: 'ASPLENZ',
     tagline: 'The Decision Ledger for Automated Credit Risk Management',
     nav: {
-      documentation: 'Documentation',
+      documentation: 'Foundations',
+      foundationsOverview: 'Overview',
+      foundationsPart1: 'Part 1: The Framework',
+      foundationsPart2: 'Part 2: Implementation',
+      foundationsPart3: 'Part 3: Observability',
+      conceptualReference: 'Conceptual Reference',
+      executiveBriefing: 'Executive Briefing',
+      faq: 'FAQ',
       contact: 'Contact',
       menu: 'Menu',
+    },
+    footer: {
+      product: 'Product',
+      expertise: 'Expertise',
+      company: 'Company',
+      home: 'Home',
+      copyright: '© 2025 Horizon by Asplenz. All rights reserved.',
     },
     hero: {
       title: 'Stop Reconstructing. Start Proving.',
@@ -103,6 +117,11 @@ export const content = {
       ],
       note: 'Horizon does not analyze, score, or judge decisions. It guarantees that the facts exist.',
     },
+    faqTeaser: {
+      text: 'Questions about integration or compliance?',
+      linkText: 'Read the full FAQ',
+      href: '/faq',
+    },
     bridge: {
       label: 'ESTABLISH FACTUAL AUTHORITY',
       title: 'The cost of a single major investigation exceeds the cost of a decade of structural evidence.',
@@ -146,7 +165,7 @@ While we can tell if a system is *running*, we struggle to explain exactly *why*
           title: '2. The Failure of Post-hoc Reconstruction',
           content: `In the absence of a dedicated observability layer for decisions, organizations rely on **Post-hoc Reconstruction**. This is the reactive attempt to rebuild a past decision using disparate traces.
 
-This approach leads to the **Reconstruction Paradox**: The more complex, dynamic, and fast a system becomes, the more expensive and less reliable its reconstruction becomes. In systemic environments, a reconstructed narrative—no matter how coherent—is an insufficient substitute for factual evidence.`,
+This approach leads to the **Reconstruction Paradox**: The more complex, dynamic, and fast a system becomes, the more expensive and less reliable its reconstruction becomes. In systemic environments, a reconstructed narrative -no matter how coherent -is an insufficient substitute for factual evidence.`,
         },
         {
           title: '3. Defining Decision Observability Infrastructure (DOI)',
@@ -204,7 +223,7 @@ A standard Decision Snapshot encapsulates three dimensions:`,
       sections: [
         {
           title: '1. Core Principle: The Passive Observer',
-          content: 'Horizon operates as a non-intrusive observer of decision-making systems. It does not interfere with, validate, or modify the decision flow. It captures the factual state at the **Point of No Return** — the exact moment a decision is finalized and about to be externalized — and preserves it as immutable evidence.',
+          content: 'Horizon operates as a non-intrusive observer of decision-making systems. It does not interfere with, validate, or modify the decision flow. It captures the factual state at the **Point of No Return**  - the exact moment a decision is finalized and about to be externalized  - and preserves it as immutable evidence.',
           points: [
             { name: 'Zero Logic Risk', description: 'Horizon cannot alter the outcome or the path of a decision.' },
             { name: 'Preservation Focus', description: 'Horizon ensures that even if the source system is modified or decommissioned, the evidence remains intact and accessible.' },
@@ -268,36 +287,600 @@ send_decision_to_applicant(decision_result)`,
       ],
     },
     hub: {
-      title: 'How to Read Horizon',
-      intro: 'Decision Observability is a new architectural requirement. To help you navigate our framework, we have organized our documentation by perspective.',
-      chooseEntry: 'Choose your entry point:',
+      label: 'Foundations: Overview',
+      title: 'Automated Decision Governance & Authority',
+      subtitle: 'Principles and architecture for regulated systems',
       backToHome: 'Back to home',
-      perspectives: [
-        {
-          letter: 'A',
-          title: 'Foundations: The Architectural & Systemic Perspective',
-          audience: 'For CTOs, Chief Architects, and Engineering Leads.',
-          description: 'Focus on the structural gap in modern stacks and the definition of the **Decision Observability Infrastructure (DOI)** as a new passive layer.',
-          linkText: 'Go to Part 1: The Case for DOI',
-          href: '/foundations/doi',
-        },
-        {
-          letter: 'B',
-          title: 'Horizon: The Implementation & Evidence Perspective',
-          audience: 'For Risk Managers, Internal Auditors, and Technical Leads.',
-          description: 'Focus on the **Decision Snapshot** lifecycle, the cryptographic integrity of records, and how Horizon integrates without interfering with business logic.',
-          linkText: 'Go to Part 2: Horizon Implementation',
-          href: '/horizon',
-        },
-        {
-          letter: 'C',
-          title: 'The Formal & Conceptual Perspective',
-          audience: 'For institutions requiring formal definitions.',
-          description: 'Formal definition of **execution-time evidence** and the conceptual boundaries of Decision Observability Infrastructure. Non-promotional white paper.',
-          linkText: 'Go to Conceptual Reference',
-          href: '/foundations/conceptual-reference',
-        },
-      ],
+      introduction: {
+        title: 'Introduction',
+        content: 'Modern institutions increasingly rely on **automated decisions** to operate at scale. As these decisions accelerate in frequency and complexity, traditional notions of auditability, accountability, and proof begin to fail.',
+        conclusion: 'This body of work describes the architectural principles required to establish **automated decision governance** - the ability to preserve authority over every execution fact, independently of specific technologies, vendors, or regulations. These documents provide a structural response to the erosion of factual certainty in automated environments.',
+      },
+      whatCovered: {
+        title: 'What the Foundations Cover',
+        intro: 'The Foundations establish a rigorous standard for how critical systems must handle their own execution history. This architecture defines:',
+        points: [
+          {
+            title: 'Evidence Sovereignty',
+            description: 'How automated decision facts must be captured to remain authoritative and irrefutable.',
+          },
+          {
+            title: 'Architectural Decoupling',
+            description: 'Why integrity (Layer 0) and analysis (Layer 1) cannot coexist in the same technical layer.',
+          },
+          {
+            title: 'The Chain of Trust',
+            description: 'How investigation, observability, and intelligence build on immutable, contemporaneous facts.',
+          },
+          {
+            title: 'System Classes',
+            description: 'What types of critical systems require native decision authority by design.',
+          },
+        ],
+      },
+      doiCategory: {
+        title: 'The Category: Decision Observability Infrastructure (DOI)',
+        content: 'Together, the principles laid out in these documents define a new class of system: the **Decision Observability Infrastructure (DOI)**.',
+        description: 'A DOI is the specialized infrastructure layer required to implement **Automated Decision Governance**. It ensures that an institution never has to rely on fragile, post-hoc reconstruction to explain its actions.',
+        quote: 'The DOI is the technical realization of the Automated Decision Governance & Authority framework.',
+      },
+      pillars: {
+        title: 'The Three Pillars',
+        intro: 'The Foundations are organized into three sequential parts, moving from governing logic to technical reality:',
+        items: [
+          {
+            number: '1',
+            title: 'The Automated Decision Authority Framework',
+            description: 'How decision integrity is preserved through the strategic separation of Evidence and Analysis.',
+            linkText: 'Read Foundations | Part 1',
+            href: '/foundations/framework',
+          },
+          {
+            number: '2',
+            title: 'Decision Evidence with Horizon',
+            description: 'How Layer 0 can be implemented as a passive, non-intrusive "Decision Ledger" for automated systems.',
+            linkText: 'Read Foundations | Part 2',
+            href: '/foundations/implementation',
+          },
+          {
+            number: '3',
+            title: 'Observability & Intelligence',
+            description: 'How investigation, context reconstruction, and governance reporting are built upon the foundation of immutable facts.',
+            linkText: 'Read Foundations | Part 3',
+            href: '/foundations/observability',
+          },
+        ],
+      },
+      implementation: {
+        title: 'Implementation',
+        content: 'Asplenz builds production systems that instantiate these principles in critical environments. Our role is to provide the engineering required to turn these architectural requirements into reliable institutional assets.',
+      },
+      additionalResources: {
+        title: 'Additional Resources',
+        items: [
+          {
+            title: 'Deep Dive: The Decision Snapshot',
+            description: 'Technical anatomy of the atomic unit of institutional evidence.',
+            href: '/foundations/snapshot',
+          },
+          {
+            title: 'Conceptual Reference',
+            description: 'Complete reference documentation on Decision Observability Infrastructure.',
+            href: '/foundations/conceptual-reference',
+          },
+          {
+            title: 'FAQ',
+            description: 'Quick answers on security, performance, integration, and compliance.',
+            href: '/faq',
+          },
+          {
+            title: 'Illustrative Scenario',
+            description: 'A concrete comparison: audit at D+180 with and without Horizon.',
+            href: '/credit-illustrative-scenario',
+          },
+        ],
+      },
+    },
+    framework: {
+      label: 'Foundations | Part 1',
+      title: 'The Automated Decision Authority Framework',
+      subtitle: 'Decoupling Integrity from Complexity',
+      backToHub: 'Back to Foundations',
+      backToHubHref: '/foundations',
+      paradox: {
+        title: 'The Paradox of Automated Trust',
+        content: 'Institutional trust in automated systems is facing a structural paradox: as decisions accelerate and become more autonomous, the ability to prove them erodes.',
+        explanation: 'Current systems fail to provide certainty because they attempt to solve two contradictory problems within the same layer: **Preservation** (freezing the past) and **Analysis** (interpreting the past). The **Automated Decision Authority Framework** resolves this by mandating a strict architectural decoupling: **Integrity must be separated from Complexity.**',
+      },
+      threeLayers: {
+        title: 'The Three Layers of Decision Authority',
+        intro: 'To establish true governance, the **Decision Observability Infrastructure (DOI)** must be organized into three specialized layers. This ensures that the **integrity of evidence** is never contaminated by the **complexity of analysis**.',
+        headers: ['Layer', 'Functional Name', 'Focus', 'Primary Objective'],
+        rows: [
+          {
+            layer: 'Layer 0',
+            name: 'Decision Evidence',
+            focus: 'Truth',
+            objective: 'Passive capture and cryptographic sealing of facts at the Point of No Return.',
+          },
+          {
+            layer: 'Layer 1',
+            name: 'Decision Observability',
+            focus: 'Clarity',
+            objective: 'Reconstruction of context, lineage, and investigation-ready interfaces.',
+          },
+          {
+            layer: 'Layer 2',
+            name: 'Decision Intelligence',
+            focus: 'Alignment',
+            objective: 'Monitoring of outcome quality, bias detection, and policy performance.',
+          },
+        ],
+      },
+      layer0: {
+        title: 'Layer 0: The Sovereign Foundation',
+        intro: '**Layer 0 (instantiated by Horizon)** is the foundational layer of the framework. It is intentionally "blind" and non-analytical. Its sole purpose is to act as a **Decision Ledger** - an immutable witness of what was executed.',
+        points: [
+          {
+            title: 'Evidence cannot be retrofitted',
+            text: 'When an automated decision is challenged, you either possess the native proof captured at T₀, or you are forced into a narrative reconstruction.',
+          },
+          {
+            title: 'Structural Neutrality',
+            text: 'Layer 0 does not judge or evaluate. It guarantees that the facts exist, exactly as they were at the precise moment the decision became irreversible.',
+          },
+          {
+            title: 'Integrity First',
+            text: 'By keeping Layer 0 separate, the bank ensures that even if its analysis tools (Layer 1) or its risk policies (Layer 2) change over time, the underlying evidence remains stable, original, and irrefutable.',
+          },
+        ],
+      },
+      axiom: {
+        title: 'The "Point of No Return" Axiom',
+        content: 'A decision becomes an institutional fact the moment it is externalized (e.g., a credit is rejected). Once this **Point of No Return** is passed, the original factual state - including transient data and the specific version of the logic applied - begins to dissolve.',
+        conclusion: 'The Framework establishes that **evidence must be produced at execution-time, or it is forfeit.** Any attempt to "rebuild" this state later is a reconstruction, not a proof. This is the baseline for **Automated Decision Governance.**',
+      },
+      nextPart: {
+        text: 'Continue to Part 2',
+        title: 'Decision Evidence with Horizon',
+        href: '/foundations/implementation',
+      },
+    },
+    snapshot: {
+      title: 'Technical Focus: The Decision Snapshot Anatomy',
+      subtitle: 'The Atomic Unit of Institutional Evidence',
+      backToHub: 'Back to Foundations',
+      backToHubHref: '/foundations',
+      introduction: {
+        title: 'Introduction',
+        content: 'The **Decision Snapshot** is the immutable, self-contained artifact produced by Horizon at the exact moment of execution (T₀).',
+        explanation: 'Unlike application logs, which are mutable streams of operational data designed for debugging, a Decision Snapshot is a **cryptographically sealed institutional declaration**. It is designed to sustain hostile forensic scrutiny years after the originating system has been decommissioned.',
+        conclusion: 'This document outlines the logical structure and technical properties of this atomic unit of evidence.',
+      },
+      structure: {
+        title: '1. Logical Structure: The Cryptographic Onion',
+        intro: 'A Decision Snapshot is composed of three inseparable layers. The outer layers provide context and security to the inner raw data, forming a single, verifiable object.',
+        layers: [
+          {
+            id: 'A',
+            name: 'The Business Payload',
+            subtitle: 'The "What"',
+            description: 'This is the raw, untouched evidence. Horizon captures the inputs consumed and the outputs produced by the decision engine at the point of no return.',
+            points: [
+              { title: 'Data Purity', text: 'The payload is captured verbatim. Horizon performs no transformation, normalization, or enrichment on this layer.' },
+              { title: 'Schema Agnostic', text: 'The structure of the payload is defined entirely by the client institution\'s business logic.' },
+            ],
+          },
+          {
+            id: 'B',
+            name: 'The Context Envelope',
+            subtitle: 'The "When, Where, Who"',
+            description: 'This layer provides the standardized metadata required for indexing, retrieval, and governance.',
+            points: [
+              { title: 'Global Decision ID', text: 'A unique, collision-resistant identifier for the execution event.' },
+              { title: 'Accurate Timestamp (T₀)', text: 'A high-precision timestamp captured at the instant of execution, synchronized with reliable time sources.' },
+              { title: 'System Reference (System_Ref)', text: 'A critical identifier specifying the exact version of the logic, model, or policy in authority (e.g., credit-scoring-engine-v4.2.1-beta).' },
+            ],
+          },
+          {
+            id: 'C',
+            name: 'The Integrity Seal',
+            subtitle: 'The "Proof"',
+            description: 'The outermost layer is a cryptographic signature that binds the Envelope and the Payload together.',
+            points: [
+              { title: 'Mechanism', text: 'The contents of Layers A and B are serialized canonically and hashed using a strong algorithm (e.g., SHA-256). This hash is then signed using the institution\'s private key.' },
+              { title: 'Guarantee', text: 'Any alteration to a single bit within the Payload or Context will result in a mismatch during hash re-computation, immediately invalidating the seal.' },
+            ],
+          },
+        ],
+      },
+      properties: {
+        title: '2. Key Technical Properties',
+        items: [
+          {
+            title: 'Canonical Serialization',
+            description: 'To ensure repeatable hashing across different systems and languages, snapshots employ canonical serialization. This guarantees that the logical order of data fields does not affect the resulting cryptographic hash, preventing false positives during verification.',
+          },
+          {
+            title: 'Cryptographic Chaining',
+            description: 'Snapshots are not isolated islands. Each new snapshot\'s Integrity Seal incorporates the hash of the preceding snapshot\'s seal.',
+            outcome: 'This creates an unbroken chronological chain (similar to a Merkle chain or blockchain structure).',
+            security: 'It becomes computationally infeasible to insert, delete, or reorder a decision record in the past without breaking the chain of custody for all subsequent records.',
+          },
+          {
+            title: 'Self-Containment & Portability',
+            description: 'A snapshot is designed to be verifiable "offline." It contains all the necessary context within its envelope. An auditor does not need access to the original production database to verify what data was used in a decision five years prior.',
+          },
+        ],
+      },
+      verification: {
+        title: '3. The Verification Model (Sovereign)',
+        subtitle: 'Why it works',
+        intro: 'The verification process is designed to be autonomous and standard-based. It does not rely on Asplenz proprietary technology to prove the truth.',
+        steps: [
+          { number: '1', title: 'Public Key Availability', text: 'The institution publishes the Public Key corresponding to the Private Key used for signing by Horizon (stored in an HSM or secure vault).' },
+          { number: '2', title: 'Standard computation', text: 'A verifier (internal audit tool, regulator script) takes the Snapshot object.' },
+          { number: '3', title: 'Re-Hashing', text: 'It separates the seal from the content, canonically serializes the content, and computes the hash.' },
+          { number: '4', title: 'Signature Validation', text: 'It uses the Public Key to decrypt the Integrity Seal and compares the two hashes. If they match, the evidence is mathematically proven to be authentic and unaltered.' },
+        ],
+      },
+      cta: {
+        text: 'Questions about technical integration?',
+        linkText: 'Read the FAQ',
+        href: '/faq',
+      },
+    },
+    implementation: {
+      label: 'Foundations | Part 2',
+      title: 'Decision Evidence Implementation',
+      subtitle: 'Instantiating Layer 0 with Horizon',
+      backToHub: 'Back to Foundations',
+      backToHubHref: '/foundations',
+      intro: {
+        title: 'From Framework to Infrastructure',
+        content: 'While the *Automated Decision Authority Framework* defines the rules for integrity, **Horizon** provides the physical infrastructure to enforce them. As the reference implementation of **Layer 0**, Horizon is designed to be a passive, high-performance observer that captures decision facts without interfering with the primary business logic.',
+      },
+      nonBlocking: {
+        title: '1. The Non-Blocking Capture Pattern',
+        intro: 'The most critical requirement for a Layer 0 is **operational neutrality**. Horizon must not slow down the lending engine or introduce new points of failure in the decision path.',
+        explanation: 'To achieve this, Horizon utilizes an **asynchronous, "fire-and-forget" pattern**. The capture call is offloaded to a background process, ensuring that the customer\'s credit response time remains unaffected.',
+        codeExample: `# Integration at the Point of No Return
+# The business decision is finalized, then evidence is sealed.
+
+horizon.capture(
+    input=application_data,    # Raw financials, scores, context
+    output=credit_decision,   # Approved/Rejected + Terms
+    system_ref="lending_v2.1" # The specific authority version
+)
+
+# Business flow continues instantly
+send_response_to_customer(credit_decision)`,
+      },
+      deployment: {
+        title: '2. Deployment Archetypes: Total Sovereignty',
+        intro: 'Horizon is an **in-perimeter** solution. To maintain absolute evidence sovereignty, no data ever leaves the institution\'s secure environment. It adapts to existing architectures through two primary archetypes:',
+        archetypes: [
+          {
+            title: 'Embedded (SDK)',
+            text: 'For high-frequency environments where microsecond latency is a requirement.',
+          },
+          {
+            title: 'Service (API)',
+            text: 'For cloud-native microservices architectures requiring a centralized evidence ledger.',
+          },
+        ],
+        securityGuarantee: 'Horizon requires no external network access to sign, seal, or verify snapshots. The institution remains the sole owner of the cryptographic keys and the resulting ledger.',
+      },
+      systemRef: {
+        title: '3. The "System_Ref" Authority',
+        content: 'A Decision Snapshot is only as valuable as the context of its authority. Horizon enforces the inclusion of a `System_Ref` -a unique identifier for the specific version of the logic, model, or rule-set that was in power at the moment of execution.',
+        conclusion: 'This ensures that five years after a decision, the bank can identify exactly which "version of the truth" was applied, even if the source code or the AI model has long since evolved.',
+      },
+      passive: {
+        title: '4. Passive Observation vs. Active Validation',
+        intro: 'Horizon does not sit *in* the critical path; it sits *beside* it.',
+        points: [
+          {
+            title: 'It does not validate',
+            text: 'Horizon does not decide if a loan should be granted.',
+          },
+          {
+            title: 'It does not transform',
+            text: 'It records data exactly as consumed and produced.',
+          },
+          {
+            title: 'It is fault-tolerant',
+            text: 'If the capture layer experiences a disruption, the core business engine continues to function. Evidence is decoupled from execution to protect continuity.',
+          },
+        ],
+      },
+      nextPart: {
+        text: 'Deep Dive',
+        title: 'The Decision Snapshot Anatomy',
+        href: '/foundations/snapshot',
+      },
+      cta: {
+        text: 'Continue to Part 3 of the Foundations.',
+        linkText: 'Read Observability & Intelligence',
+        href: '/foundations/observability',
+      },
+      ctaSecondary: {
+        text: 'Want to dive into technical details?',
+        linkText: 'Read the Technical Focus',
+        href: '/foundations/snapshot',
+      },
+    },
+    observability: {
+      label: 'Foundations | Part 3',
+      title: 'Observability & Intelligence',
+      subtitle: 'From Silent Evidence to Active Governance',
+      backToHub: 'Back to Foundations',
+      backToHubHref: '/foundations',
+      transition: {
+        title: 'Introduction: Making Truth Actionable',
+        content: 'The first two pillars of the Foundations ensure that an institution possesses the **Truth** (immutable facts captured by Horizon). This provides the essential foundation for **The Decision Authority Stack**: a tiered architecture where every layer of analysis is anchored in a sovereign record.',
+        emphasis: '**All observability capabilities are strictly derived from the immutable evidence captured by Horizon at Layer 0 (Decision Evidence).** Layer 1 and Layer 2 represent the subsequent analytical levels of the Stack, transforming silent cryptographic snapshots into a clear, navigable, and strategic map of the institution\'s automated life.',
+      },
+      layer1: {
+        title: '1. Layer 1: Decision Observability',
+        subtitle: 'The Investigation Engine',
+        intro: 'Decision Observability is the ability to reconstruct the "why" behind the "what." While Horizon records the execution, **Asplenz Insights** provides the interface to interrogate it.',
+        points: [
+          {
+            title: 'Contextual Reconstruction',
+            text: 'Reassembling the environment of a decision (market conditions, policy versions, and team authority) at any point in history.',
+          },
+          {
+            title: 'Lineage & Trajectory',
+            text: 'Visualizing how a specific customer data point traveled through multiple models to result in a final credit decision.',
+          },
+          {
+            title: 'Human-in-the-Loop Integration',
+            text: 'Providing investigators with a high-fidelity workspace where evidence is pre-correlated, reducing investigation time from weeks to hours.',
+          },
+        ],
+      },
+      layer2: {
+        title: '2. Layer 2: Decision Intelligence',
+        subtitle: 'Strategic Governance',
+        intro: 'Once observability is established at scale, the institution can move from individual cases to global patterns. This is the realm of **Automated Decision Governance.**',
+        points: [
+          {
+            title: 'Policy Drift Detection',
+            text: 'Comparing execution facts against intended risk policies. Early warning when automated systems deviate from strategic intent.',
+          },
+          {
+            title: 'Bias & Fairness Auditing',
+            text: 'Analyzing aggregated snapshots for systematic skews in outcomes. Native compliance with AI Act and ethical lending mandates.',
+          },
+          {
+            title: 'Operational Feedback',
+            text: 'Identifying "edge cases" where models struggle or produce inconsistent results to drive continuous improvement.',
+          },
+        ],
+      },
+      goldenRule: {
+        title: '3. The Golden Rule: Interpretation Cannot Corrupt Evidence',
+        content: 'In the Asplenz architecture, Layers 1 and 2 are strictly consumers of Layer 0.',
+        points: [
+          {
+            title: 'One-Way Integrity',
+            text: 'Insights can analyze, tag, and annotate snapshots, but it can **never modify** the original record.',
+          },
+          {
+            title: 'Separation of Concerns',
+            text: 'Your investigation tools can evolve, your AI models can change - but the underlying **Decision Ledger** remains the sovereign, untouched reference point.',
+          },
+        ],
+      },
+      conclusion: {
+        title: 'Conclusion: The Future of the Sovereign Institution',
+        content: 'By completing the transition from Layer 0 to Layer 2, a bank moves from a **reactive posture** to a **proactive governance**. As decisions become more automated, the institution becomes more accountable, not less.',
+      },
+      cta: {
+        text: 'Questions about capabilities or integration?',
+        linkText: 'Consult the FAQ',
+        href: '/faq',
+      },
+      ctaSecondary: {
+        text: 'For strategic decision-makers:',
+        linkText: 'Read the Executive Briefing',
+        href: '/executive-briefing',
+      },
+    },
+    executiveBriefing: {
+      label: 'Strategic Note: The Board Briefing',
+      title: 'Safeguarding Institutional Authority in Automated Lending',
+      subtitle: 'A briefing for leadership on automated lending risks.',
+      backToHome: 'Back to home',
+      executiveSummary: {
+        title: 'Executive Summary',
+        content: 'As lending operations transition from human-centric to model-centric (AI/ML), the bank\'s traditional audit trails are becoming obsolete. The "Reconstruction Paradox" creates a liability: the inability to mathematically prove the factual basis of a past automated decision.',
+        conclusion: 'Asplenz provides the infrastructure to convert this systemic risk into a sovereign institutional asset.',
+      },
+      risk: {
+        title: '1. The Risk: The Erosion of Proof',
+        intro: 'In a regulated environment, a "probable narrative" is not evidence. Without a **dedicated Decision Evidence Layer (Layer 0)**  - a foundational level of truth that is independent of your operational systems  - the bank is exposed to:',
+        points: [
+          {
+            title: 'Regulatory Fragility',
+            text: 'Inability to meet the transparency mandates of the EU AI Act.',
+          },
+          {
+            title: 'Operational Friction',
+            text: 'High-cost "Task Forces" required for every complex audit or litigation.',
+          },
+          {
+            title: 'Loss of Sovereignty',
+            text: 'Dependence on mutable logs that dissolve as systems evolve.',
+          },
+        ],
+      },
+      solution: {
+        title: '2. The Solution: Decision Authority',
+        intro: 'By deploying **Horizon**, the bank establishes a **Decision Ledger**. This is the "Black Box" of your automated systems: a governance safeguard that ensures:',
+        points: [
+          {
+            title: 'Contemporaneous Evidence',
+            text: 'Proof is captured at the moment of execution, not reconstructed later.',
+          },
+          {
+            title: 'Cryptographic Certainty',
+            text: 'Decisions are sealed and immutable, providing absolute defensibility in court or audit.',
+          },
+        ],
+      },
+      recommendation: {
+        title: '3. Strategic Recommendation',
+        content: 'We recommend the immediate integration of Decision Observability Infrastructure (DOI) as a core component of the bank\'s Risk & Compliance architecture. This investment future-proofs the institution, ensuring that as decisions accelerate, **Accountability** remains a constant.',
+      },
+      cta: {
+        text: 'Ready to discuss implementation?',
+        linkText: 'Request a CRO Briefing',
+        href: '/contact',
+      },
+    },
+    conceptualReference: {
+      label: 'Reference Documentation',
+      title: 'Decision Observability Infrastructure',
+      subtitle: 'Evidence before questions',
+      backToHub: 'Back to Foundations',
+      backToHubHref: '/foundations',
+      introduction: {
+        title: 'Introduction',
+        content: 'This white paper presents the operational foundations of **execution-time evidence** for automated and semi-automated decision systems operating in institutional contexts.',
+        audience: 'It is intended for organizations that must establish, over time, what was actually executed when decisions become irreversible  - independently of how systems, models, data, or teams later evolve.',
+        note: 'This document is intentionally non-promotional. It focuses on factual preservation rather than explanation, justification, or evaluation.',
+      },
+      executiveSummary: {
+        title: 'Executive Summary',
+        content: 'Organizations increasingly rely on automated and semi-automated decision systems whose outputs carry durable operational, legal, financial, and reputational consequences. These systems evolve continuously: models are retrained, rules are adjusted, data sources change, infrastructures are refactored, and teams rotate. Yet the decisions produced by these systems often remain examinable long after the technical conditions that produced them have disappeared.',
+        problem: 'In most organizations, the factual state of past decisions is not preserved at execution time. When questions arise, institutions attempt to reconstruct what happened using logs, traces, configuration repositories, dashboards, tickets, and human recollection. This process is inherently fragile, costly, and uncertain. It produces narratives rather than facts.',
+        solution: 'Decision Observability Infrastructure addresses this structural gap. It introduces an execution-time evidence layer whose sole purpose is to capture, at the point of no return, the complete factual state of a decision and preserve it as an immutable, self-contained artifact.',
+        conclusion: 'The infrastructure does not explain, justify, or evaluate decisions. It preserves what was executed. By doing so, it reduces operational effort, limits uncertainty, and restores durable factual authority without altering institutional control or governance.',
+      },
+      problemStatement: {
+        title: 'Problem Statement',
+        subtitle: 'Reconstruction is not evidence',
+        intro: 'Most decision systems do not preserve factual execution states. They leave behind logs, metrics, and traces designed for observability, not evidentiary certainty. When decisions are later questioned, organizations reconstruct narratives under constraints that did not exist at execution time.',
+        consequences: [
+          'fragmented and incomplete factual baselines,',
+          'divergence between teams and interpretations,',
+          'hindsight bias embedded into explanations,',
+          'escalating operational cost over time.',
+        ],
+        conclusion: 'These failures are structural, not accidental. They arise from a mismatch between what execution systems are designed to retain and what institutions later require to establish facts.',
+      },
+      corePrinciple: {
+        title: 'Core Principle',
+        subtitle: 'Capture at the point of no return',
+        intro: 'A decision becomes a fact when it is executed. At that moment:',
+        points: [
+          'specific inputs are consumed,',
+          'specific logic is applied,',
+          'under a specific execution context,',
+          'producing a specific outcome.',
+        ],
+        conclusion: 'Once this moment passes, the original factual state cannot be reconstituted with certainty. Evidence must therefore be produced at execution time, not inferred later.',
+      },
+      snapshotArtifact: {
+        title: 'Decision Snapshot Artifact',
+        intro: 'A **Decision Snapshot Artifact** is the canonical execution-time record produced by the system itself. It is not a log, trace, report, or explanation. It constitutes the institutional declaration of record of what existed at execution time.',
+        statement: 'Statements about execution-time reality are therefore statements about the contents of this artifact.',
+        propertiesTitle: 'Invariant properties',
+        properties: [
+          { title: 'Completeness', text: 'all inputs, context, logic state, and outputs present at execution time are embedded.' },
+          { title: 'Temporal integrity', text: 'the execution timestamp is cryptographically bound.' },
+          { title: 'Immutability', text: 'artifacts are append-only and non-modifiable.' },
+          { title: 'Ordering', text: 'verifiable sequencing across decisions.' },
+          { title: 'Authenticity', text: 'cryptographic proof of origin and integrity.' },
+        ],
+        warning: 'If establishing execution-time facts requires querying external systems, reconstruction has already begun.',
+      },
+      comparison: {
+        title: 'Evidence vs Reconstruction',
+        headers: ['Reconstruction', 'Execution-time Evidence'],
+        rows: [
+          ['Narrative assembled after outcome', 'Fact declared before examination'],
+          ['Depends on surviving traces', 'Self-contained artifact'],
+          ['Subject to hindsight bias', 'Preserves knowledge at Time T'],
+          ['Cost increases over time', 'Cost fixed at execution'],
+        ],
+        conclusion: 'Decision Observability Infrastructure does not improve reconstruction. It makes reconstruction unnecessary within its perimeter.',
+      },
+      automatedDecisions: {
+        title: 'Automated Decisions',
+        intro: 'Automated decisions are execution-time events composed of volatile elements:',
+        elements: [
+          'input data,',
+          'decision logic (rules, models, configurations),',
+          'execution context,',
+          'produced outputs.',
+        ],
+        explanation: 'Logs capture fragments of these elements. They do not preserve the execution as a whole. Because these components evolve independently, post-hoc reconstruction cannot reliably re-establish factual state.',
+        conclusion: 'Execution-time capture is therefore not optional. It is the only way to preserve factual certainty.',
+      },
+      separation: {
+        title: 'Separation of Execution and Evaluation',
+        intro: 'Decision Observability Infrastructure distinguishes:',
+        items: [
+          { title: 'Executions', text: 'immutable facts declared at Time T.' },
+          { title: 'Evaluations', text: 'human or institutional assessments produced later, explicitly timestamped and linked.' },
+        ],
+        conclusion: 'This separation structurally prevents hindsight bias by ensuring that later knowledge does not contaminate execution-time facts.',
+      },
+      institutionalContexts: {
+        title: 'Institutional Contexts',
+        intro: 'Execution-time evidence becomes critical wherever organizations must reliably answer questions about past decisions, including:',
+        contexts: [
+          'regulatory or audit review,',
+          'internal investigations and post-mortems,',
+          'client or partner inquiries,',
+          'long-term accountability across system lifecycles.',
+        ],
+        conclusion: 'The infrastructure does not prescribe governance, interpretation, or disclosure. It provides a shared factual baseline upon which institutional discretion operates.',
+      },
+      operationalImpact: {
+        title: 'Operational Impact',
+        intro: 'Decision Observability Infrastructure does not change what institutions choose to decide, record, or disclose. It changes the cost and fragility of establishing facts.',
+        reduces: [
+          'cross-team coordination during reviews,',
+          'dependency on legacy systems,',
+          'time spent reconstructing past states,',
+          'uncertainty during examination.',
+        ],
+        conclusion: 'What changes is not authority or intent. It is operational effort.',
+      },
+      principles: {
+        title: 'Principles and Boundaries',
+        intro: 'Decision Observability Infrastructure is governed by the following boundaries:',
+        items: [
+          'Captures facts, not explanations.',
+          'Neutral to interpretation, judgment, and governance.',
+          'Independent of source system lifecycle.',
+          'Non-intrusive to decision logic.',
+          'Append-only, immutable, and verifiable by design.',
+        ],
+        conclusion: 'The infrastructure ends where interpretation begins.',
+      },
+      availability: {
+        title: 'Availability and Adoption',
+        content: 'Decision Observability Infrastructure is implemented as a bounded capability and introduced through controlled, intra-perimeter validation deployments.',
+        clarification: 'These deployments are not platform adoptions. They exist to allow institutions to examine the operational and institutional acceptability of execution-time evidence produced by their own systems. A determination that the capability should not be pursued is considered a valid outcome of this stage.',
+      },
+      conclusion: {
+        title: 'Conclusion',
+        problem: 'Automated decision systems do not fail because institutions are unable to act. They fail when, over time, institutions can no longer establish with certainty what was actually executed, under which conditions, and with what information.',
+        limitation: 'Post-hoc reconstruction is structurally incapable of providing this certainty. It assembles narratives after outcomes are known, using traces that were never designed to serve as durable evidence.',
+        solution: 'Decision Observability Infrastructure restores factual continuity by ensuring that execution-time evidence exists before questions arise.',
+        final: 'It does not impose interpretation, governance, or judgment. It preserves the factual ground upon which institutional discretion operates. Evidence exists only at execution time. Preserving it is not a methodological choice. It is a structural necessity.',
+      },
+      nextStep: {
+        title: 'Next Step',
+        content: 'If you want to examine how these principles apply to your own decision systems or institutional constraints, you can initiate a discussion.',
+        linkText: 'Contact us',
+        href: '/contact',
+      },
     },
     operationalReality: {
       title: 'The Cost of Post-hoc Decision Reconstruction',
@@ -637,235 +1220,106 @@ When the execution occurred:`,
         linkText: 'The Cost of Reconstruction',
         href: '/foundations/operational-reality',
       },
-    },
-    conceptualReference: {
-      title: 'Decision Observability Infrastructure',
-      docType: 'White Paper',
-      subtitle: 'Reference Documentation',
-      tagline: 'Evidence before questions',
-      backToHub: 'Back to documentation hub',
-      sections: [
-        {
-          title: 'Introduction',
-          content: `This white paper presents the operational foundations of **execution-time evidence** for automated and semi-automated decision systems operating in institutional contexts.
-
-It is intended for organizations that must establish, over time, what was actually executed when decisions become irreversible — independently of how systems, models, data, or teams later evolve.
-
-This document is intentionally non-promotional. It focuses on factual preservation rather than explanation, justification, or evaluation.`,
+      cta: {
+        forCRO: {
+          text: 'For strategic decision-makers:',
+          linkText: 'Read the Executive Briefing',
+          href: '/executive-briefing',
         },
-        {
-          title: 'Executive Summary',
-          content: `Organizations increasingly rely on automated and semi-automated decision systems whose outputs carry durable operational, legal, financial, and reputational consequences. These systems evolve continuously: models are retrained, rules are adjusted, data sources change, infrastructures are refactored, and teams rotate. Yet the decisions produced by these systems often remain examinable long after the technical conditions that produced them have disappeared.
-
-In most organizations, the factual state of past decisions is not preserved at execution time. When questions arise, institutions attempt to reconstruct what happened using logs, traces, configuration repositories, dashboards, tickets, and human recollection. This process is inherently fragile, costly, and uncertain. It produces narratives rather than facts.
-
-Decision Observability Infrastructure addresses this structural gap. It introduces an execution-time evidence layer whose sole purpose is to capture, at the point of no return, the complete factual state of a decision and preserve it as an immutable, self-contained artifact. This artifact exists independently of the future evolution of the system that produced it.
-
-The infrastructure does not explain, justify, or evaluate decisions. It preserves what was executed. By doing so, it reduces operational effort, limits uncertainty, and restores durable factual authority without altering institutional control or governance.`,
+        forCTO: {
+          text: 'For technical architects:',
+          linkText: 'Explore the Technical Focus',
+          href: '/foundations/snapshot',
         },
-        {
-          title: 'Problem Statement',
-          subtitle: 'Reconstruction is not evidence',
-          content: `Most decision systems do not preserve factual execution states. They leave behind logs, metrics, and traces designed for observability, not evidentiary certainty. When decisions are later questioned, organizations reconstruct narratives under constraints that did not exist at execution time.
-
-This leads to:`,
-          points: [
-            'fragmented and incomplete factual baselines,',
-            'divergence between teams and interpretations,',
-            'hindsight bias embedded into explanations,',
-            'escalating operational cost over time.',
-          ],
-          conclusion: 'These failures are structural, not accidental. They arise from a mismatch between what execution systems are designed to retain and what institutions later require to establish facts.',
-        },
-        {
-          title: 'Core Principle',
-          subtitle: 'Capture at the point of no return',
-          content: `A decision becomes a fact when it is executed. At that moment:`,
-          points: [
-            'specific inputs are consumed,',
-            'specific logic is applied,',
-            'under a specific execution context,',
-            'producing a specific outcome.',
-          ],
-          conclusion: 'Once this moment passes, the original factual state cannot be reconstituted with certainty. Evidence must therefore be produced at execution time, not inferred later.',
-        },
-        {
-          title: 'Decision Snapshot Artifact',
-          content: `A **Decision Snapshot Artifact** is the canonical execution-time record produced by the system itself. It is not a log, trace, report, or explanation. It constitutes the institutional declaration of record of what existed at execution time.
-
-Statements about execution-time reality are therefore statements about the contents of this artifact.`,
-          propertiesTitle: 'Invariant properties',
-          properties: [
-            { name: 'Completeness', description: 'all inputs, context, logic state, and outputs present at execution time are embedded.' },
-            { name: 'Temporal integrity', description: 'the execution timestamp is cryptographically bound.' },
-            { name: 'Immutability', description: 'artifacts are append-only and non-modifiable.' },
-            { name: 'Ordering', description: 'verifiable sequencing across decisions.' },
-            { name: 'Authenticity', description: 'cryptographic proof of origin and integrity.' },
-          ],
-          note: 'If establishing execution-time facts requires querying external systems, reconstruction has already begun.',
-        },
-        {
-          title: 'Evidence vs Reconstruction',
-          comparisonTable: {
-            headers: ['Reconstruction', 'Execution-time Evidence'],
-            rows: [
-              ['Narrative assembled after outcome', 'Fact declared before examination'],
-              ['Depends on surviving traces', 'Self-contained artifact'],
-              ['Subject to hindsight bias', 'Preserves knowledge at Time T'],
-              ['Cost increases over time', 'Cost fixed at execution'],
-            ],
-          },
-          conclusion: 'Decision Observability Infrastructure does not improve reconstruction. It makes reconstruction unnecessary within its perimeter.',
-        },
-        {
-          title: 'Automated Decisions',
-          content: `Automated decisions are execution-time events composed of volatile elements:`,
-          points: [
-            'input data,',
-            'decision logic (rules, models, configurations),',
-            'execution context,',
-            'produced outputs.',
-          ],
-          conclusion: 'Logs capture fragments of these elements. They do not preserve the execution as a whole. Because these components evolve independently, post-hoc reconstruction cannot reliably re-establish factual state. Execution-time capture is therefore not optional. It is the only way to preserve factual certainty.',
-        },
-        {
-          title: 'Separation of Execution and Evaluation',
-          content: 'Decision Observability Infrastructure distinguishes:',
-          definitions: [
-            { term: 'Executions', definition: 'immutable facts declared at Time T.' },
-            { term: 'Evaluations', definition: 'human or institutional assessments produced later, explicitly timestamped and linked.' },
-          ],
-          conclusion: 'This separation structurally prevents hindsight bias by ensuring that later knowledge does not contaminate execution-time facts.',
-        },
-        {
-          title: 'Institutional Contexts',
-          content: 'Execution-time evidence becomes critical wherever organizations must reliably answer questions about past decisions, including:',
-          points: [
-            'regulatory or audit review,',
-            'internal investigations and post-mortems,',
-            'client or partner inquiries,',
-            'long-term accountability across system lifecycles.',
-          ],
-          conclusion: 'The infrastructure does not prescribe governance, interpretation, or disclosure. It provides a shared factual baseline upon which institutional discretion operates.',
-        },
-        {
-          title: 'Operational Impact',
-          content: `Decision Observability Infrastructure does not change what institutions choose to decide, record, or disclose. It changes the cost and fragility of establishing facts.
-
-It reduces:`,
-          points: [
-            'cross-team coordination during reviews,',
-            'dependency on legacy systems,',
-            'time spent reconstructing past states,',
-            'uncertainty during examination.',
-          ],
-          conclusion: 'What changes is not authority or intent. It is operational effort.',
-        },
-        {
-          title: 'Principles and Boundaries',
-          content: 'Decision Observability Infrastructure is governed by the following boundaries:',
-          boundaries: [
-            'Captures facts, not explanations.',
-            'Neutral to interpretation, judgment, and governance.',
-            'Independent of source system lifecycle.',
-            'Non-intrusive to decision logic.',
-            'Append-only, immutable, and verifiable by design.',
-          ],
-          conclusion: 'The infrastructure ends where interpretation begins.',
-        },
-        {
-          title: 'Availability and Adoption',
-          content: `Decision Observability Infrastructure is implemented as a bounded capability and introduced through controlled, intra-perimeter validation deployments.
-
-These deployments are not platform adoptions. They exist to allow institutions to examine the operational and institutional acceptability of execution-time evidence produced by their own systems. A determination that the capability should not be pursued is considered a valid outcome of this stage.`,
-        },
-      ],
-      conclusion: {
-        title: 'Conclusion',
-        content: `Automated decision systems do not fail because institutions are unable to act. They fail when, over time, institutions can no longer establish with certainty what was actually executed, under which conditions, and with what information.
-
-Post-hoc reconstruction is structurally incapable of providing this certainty. It assembles narratives after outcomes are known, using traces that were never designed to serve as durable evidence. Decision Observability Infrastructure restores factual continuity by ensuring that execution-time evidence exists before questions arise.
-
-It does not impose interpretation, governance, or judgment. It preserves the factual ground upon which institutional discretion operates. Evidence exists only at execution time. Preserving it is not a methodological choice. It is a structural necessity.`,
-      },
-      nextStep: {
-        title: 'Next step',
-        content: 'If you want to examine how these principles apply to your own decision systems or institutional constraints, you can initiate a discussion.',
       },
     },
     faq: {
       title: 'Frequently Asked Questions',
+      subtitle: 'Securing Decision Authority',
       backToHome: 'Back to home',
       categories: [
         {
-          name: 'Terminology',
+          name: 'I. Terminology',
           questions: [
             {
-              q: 'What is Decision Observability Infrastructure?',
-              a: 'A Decision Observability Infrastructure is a technical layer that produces Decision Snapshots at execution time. It makes automated decisions observable and auditable.',
+              q: 'What is Decision Observability Infrastructure (DOI)?',
+              a: 'DOI is a specialized technical layer dedicated to the capture and preservation of decision facts at the point of execution. It ensures that automated decisions are not just logged, but made structurally observable and auditable.',
             },
             {
               q: 'What is a Decision Snapshot?',
-              a: 'A Decision Snapshot is the verifiable record of what was decided at execution time. It is the evidence — the decision fact as established.',
+              a: 'A Decision Snapshot is the verifiable record of what was decided at the moment of execution (T₀). It is the evidence - the decision fact as established.',
             },
             {
               q: 'What is a Decision Snapshot Artifact?',
-              a: 'A Decision Snapshot Artifact is the technical materialization of the Decision Snapshot: a signed, immutable, and self-contained object, preserved independently of source systems.',
+              a: 'It is the technical materialization of a snapshot: a signed, immutable, and self-contained object. It carries all the data required for its own verification, preserved independently of the source systems.',
             },
           ],
         },
         {
-          name: 'General',
+          name: 'II. Strategy & Business Value',
           questions: [
             {
-              q: 'Why not do this with logs?',
-              a: 'Logs are useful, but often scattered, reconstructed, and dependent on source IS. Horizon aims for autonomous, stable and usable decision evidence.',
+              q: 'Why not use application logs?',
+              a: 'Logs are designed for technical debugging, not for institutional proof. They are mutable, fragmented, and depend on the persistence of source systems. Horizon is Layer 0 (Decision Evidence): it creates an independent Decision Ledger. Unlike logs, a Horizon Snapshot is irrefutable and mathematically sealed.',
             },
             {
-              q: 'What is the recommended scope to start with?',
-              a: 'The right approach is targeted: one critical use case, instrumentation at the decision point, then gradual extension. Avoid "capture everything".',
+              q: 'What is the immediate ROI of Horizon?',
+              a: 'The ROI is triggered by a single regulatory inquiry or legal challenge. By replacing weeks of "post-hoc reconstruction" (typically costing between €500,000 and €1M per major audit) with instant evidence retrieval, Horizon pays for itself through the elimination of operational investigation overhead.',
             },
           ],
         },
         {
-          name: 'Data & Integration',
+          name: 'III. Data & Sovereignty',
           questions: [
             {
-              q: 'Does Horizon store sensitive data?',
-              a: 'Horizon does not ingest operational data flows. It preserves declared decision facts at execution time, according to schemas and boundaries defined by the institution. Data minimization, retention, and sensitivity classification remain fully under institutional control.',
+              q: 'Does Horizon store sensitive data (PII)?',
+              a: 'Horizon captures only the data you choose to transmit. It supports selective hashing or masking of sensitive fields before the record is sealed. Data minimization, retention policies, and sensitivity classification remain entirely under your institution\'s control.',
             },
             {
-              q: 'How is the content of a decision snapshot defined?',
-              a: 'Horizon defines a set of standard fields. Each institution defines system-specific fields and provides the schema used to populate the decision snapshot.',
+              q: 'Do our decision snapshots leave our infrastructure?',
+              a: 'No. Horizon is deployed in-perimeter. All captured data, ledgers, and signing keys remain under your institution\'s exclusive control. Asplenz has zero access to your decision data.',
             },
             {
-              q: 'Who decides what data is captured?',
-              a: 'Horizon does not decide what is relevant. Clients define the schema and the data provided for each system.',
+              q: 'Who defines what data is captured?',
+              a: 'The institution defines the schema and the specific fields for each system. Horizon provides a set of standard fields (Context Envelope) but the business payload is entirely defined by the client to reflect their specific risk models.',
+            },
+          ],
+        },
+        {
+          name: 'IV. Performance & Integration',
+          questions: [
+            {
+              q: 'Will Horizon slow down my lending engine?',
+              a: 'No. Horizon utilizes an asynchronous capture model (fire-and-forget). The capture call is processed in the background and never blocks the core business execution flow. The impact on your decision latency is zero.',
             },
             {
               q: 'How does Horizon integrate into existing systems?',
-              a: 'Asplenz provides a lightweight SDK that is integrated at the institution\'s decision point. Integration details are discussed on a case-by-case basis to reflect system constraints, security requirements, and institutional context. Technical documentation is available upon request.',
+              a: 'Asplenz provides a lightweight SDK that is integrated at the "Point of No Return" (where the decision is finalized). It acts as a passive observer and requires no modification of your business logic or database schemas.',
             },
           ],
         },
         {
-          name: 'Positioning',
+          name: 'V. Regulation & Compliance',
           questions: [
             {
-              q: 'Does Horizon influence or participate in decision-making?',
-              a: 'No. Horizon is a passive infrastructure component. It observes and records decision execution data, but never evaluates or makes decisions.',
+              q: 'How does Horizon assist with EU AI Act compliance?',
+              a: 'The AI Act imposes strict ex-post traceability obligations for "high-risk" systems like automated lending. Horizon directly addresses this requirement by providing an immediate factual demonstration capability. Horizon makes your compliance provable to a regulator.',
             },
             {
-              q: 'Is Horizon tied to specific regulatory frameworks?',
-              a: 'No. Horizon is a technical infrastructure agnostic to regulatory regimes. It produces signed execution-time artifacts that institutions may use within their own regulatory processes.',
+              q: 'Is Horizon compatible with GDPR Article 22?',
+              a: 'Yes. Article 22 governs automated decision-making and the associated rights of individuals. Horizon ensures that the exact factual state of the decision - the specific data seen by the engine at T₀ - is available and irrefutable, allowing for accurate and fact-based explanations.',
             },
           ],
         },
       ],
+      cta: {
+        text: 'Request a technical briefing - CRO/CISO Level',
+        href: '/contact',
+      },
       keyQuestions: [
         {
-          q: 'Why not do this with logs?',
-          a: 'Logs are useful, but often scattered, reconstructed, and dependent on source IS. Horizon aims for autonomous, stable and usable decision evidence.',
+          q: 'Why not use application logs?',
+          a: 'Logs are designed for technical debugging, not for institutional proof. They are mutable, fragmented, and depend on the persistence of source systems. Horizon creates an independent Decision Ledger with irrefutable, mathematically sealed snapshots.',
         },
         {
           q: 'Does Horizon influence or participate in decision-making?',
@@ -873,11 +1327,96 @@ It does not impose interpretation, governance, or judgment. It preserves the fac
         },
         {
           q: 'Does Horizon store sensitive data?',
-          a: 'Horizon does not ingest operational data flows. It preserves declared decision facts at execution time, according to schemas and boundaries defined by the institution.',
+          a: 'Horizon captures only the data you choose to transmit. It supports selective hashing or masking of sensitive fields. Data remains entirely under your institution\'s control.',
         },
       ],
       viewAll: 'View all questions',
       viewAllHref: '/faq',
+    },
+    creditIllustrativeScenario: {
+      backToHome: 'Back to Home',
+      title: 'Illustrative Scenario: The 180-Day Audit Challenge',
+      subtitle: 'From Fragile Reconstruction to Factual Authority',
+      context: {
+        title: 'The Context',
+        content: 'Consider a major retail bank processing **50,000 automated credit applications per day**. Decisions are made by a complex engine integrating real-time debt ratios, third-party credit scores, and internal risk models.',
+        event: '**The Event:** 180 days after a specific loan rejection, a regulatory body (or a legal representative) challenges the decision, citing a potential bias or lack of transparency. The bank is required to prove the exact factual basis of that specific decision.',
+      },
+      scenarioA: {
+        title: 'Scenario A: Post-hoc Reconstruction (Without Horizon)',
+        intro: '*The bank relies on traditional logs and database backups.*',
+        steps: [
+          {
+            title: 'The Investigation Crisis',
+            text: 'The Risk team contacts IT. IT discovers that the production database has been updated 12 times since the decision. The original input data has been overwritten or archived in a cold-storage data lake.',
+          },
+          {
+            title: 'The Manual Excavation',
+            text: 'A "Task Force" of 6 people (Data Engineers, Risk Analysts, Legal) is formed. They spend 4 weeks attempting to correlate server logs with archived data extracts to "guess" what the system saw at T₀.',
+          },
+          {
+            title: 'The Result: A Narrative',
+            text: 'The bank produces a 40-page report explaining what "likely happened."',
+          },
+          {
+            title: 'The Weakness',
+            text: 'The evidence is a **reconstruction**. It is subject to hindsight bias. The regulator notes that the bank cannot mathematically prove that the data used in the report is exactly what the engine consumed six months ago. **The responsibility for the proof implicitly falls back on the institution\'s risk leadership.**',
+          },
+        ],
+        cost: '~€450,000 in operational overhead',
+        result: 'Residual regulatory fine for "Lack of Process Traceability."',
+      },
+      scenarioB: {
+        title: 'Scenario B: Execution-time Evidence (With Horizon)',
+        intro: '*The bank has implemented Horizon as its Decision Ledger (Layer 0).*',
+        steps: [
+          {
+            title: 'The Instant Retrieval',
+            text: 'The Internal Auditor enters the `Decision_ID` into the system. Horizon immediately retrieves the **Decision Snapshot** captured 180 days ago.',
+          },
+          {
+            title: 'The Factual Proof',
+            text: 'The snapshot contains the exact **Inputs**, the **System Reference** (the specific model version), and the **Output** as they existed at the Point of No Return.',
+          },
+          {
+            title: 'The Mathematical Seal',
+            text: 'The auditor runs a verification script. The **Integrity Seal** matches. It is mathematically proven that this record has not been altered since the moment of execution.',
+          },
+          {
+            title: 'The Result: A Fact',
+            text: 'The bank provides a 1-page certificate of evidence. The case is closed in 48 hours. **No interpretation is required. The evidence stands independently of any narrative.**',
+          },
+        ],
+        cost: 'Near zero (Internal Audit time)',
+        result: 'Total Regulatory De-risking.',
+      },
+      comparison: {
+        title: 'Operational Comparison',
+        headers: ['Metric', 'Scenario A (Reconstruction)', 'Scenario B (Horizon)'],
+        rows: [
+          ['Time to Answer', '8 - 12 Weeks', '< 24 Hours'],
+          ['Resource Mobilization', 'Cross-functional Task Force', '1 Authorized Auditor'],
+          ['Nature of Output', 'Analytical Narrative (Probable)', 'Factual Proof (Certain)'],
+          ['Data Integrity', 'Fragile (Post-hoc correlation)', 'Absolute (Cryptographic seal)'],
+          ['Institutional Risk', 'High (Exposed to challenge)', 'Null (Sovereign authority)'],
+        ],
+      },
+      conclusion: {
+        title: 'Conclusion',
+        content: 'This scenario demonstrates that **evidence cannot be retrofitted**.',
+        statement: 'Authority is established at execution time - or it is never established. By deploying Horizon as its Decision Ledger, the bank stops being a defendant trying to justify its past. It becomes an **Authority** capable of producing the truth on demand.',
+      },
+      ctas: {
+        snapshot: 'Explore the Technical Snapshot',
+        snapshotHref: '/foundations/snapshot',
+        contact: 'Request a CRO Briefing',
+        contactHref: '/contact',
+      },
+      faqLink: {
+        text: 'How is this possible? Read the',
+        linkText: 'full FAQ',
+        href: '/faq',
+      },
     },
   },
   fr: {
@@ -885,9 +1424,23 @@ It does not impose interpretation, governance, or judgment. It preserves the fac
     brandShort: 'ASPLENZ',
     tagline: 'Le Registre Décisionnel pour la Gestion du Risque Crédit',
     nav: {
-      documentation: 'Documentation',
+      documentation: 'Fondations',
+      foundationsOverview: 'Vue d\'ensemble',
+      foundationsPart1: 'Partie 1 : Le Cadre',
+      foundationsPart2: 'Partie 2 : Implémentation',
+      foundationsPart3: 'Partie 3 : Observabilité',
+      conceptualReference: 'Référence Conceptuelle',
+      executiveBriefing: 'Briefing Exécutif',
+      faq: 'FAQ',
       contact: 'Contact',
       menu: 'Menu',
+    },
+    footer: {
+      product: 'Produit',
+      expertise: 'Expertise',
+      company: 'Entreprise',
+      home: 'Accueil',
+      copyright: '© 2025 Horizon par Asplenz. Tous droits réservés.',
     },
     hero: {
       title: 'Arrêtez de reconstruire. Commencez à prouver.',
@@ -982,6 +1535,11 @@ It does not impose interpretation, governance, or judgment. It preserves the fac
       ],
       note: 'Horizon n\'analyse ni ne juge les décisions. Il garantit que les faits existent.',
     },
+    faqTeaser: {
+      text: 'Des questions sur l\'intégration ou la conformité ?',
+      linkText: 'Consultez la FAQ complète',
+      href: '/faq',
+    },
     bridge: {
       label: 'ÉTABLISSEZ VOTRE AUTORITÉ FACTUELLE',
       title: 'Le coût d\'une seule investigation majeure dépasse le coût d\'une décennie de preuves structurelles.',
@@ -1025,7 +1583,7 @@ Bien que nous puissions affirmer qu'un système est en fonction, nous peinons à
           title: '2. L\'échec de la reconstruction a posteriori',
           content: `En l'absence d'une couche d'observabilité dédiée aux décisions, les organisations s'appuient sur la **reconstruction a posteriori**. Il s'agit d'une tentative réactive de rebâtir une décision passée en utilisant des traces disparates.
 
-Cette approche mène au **paradoxe de la reconstruction** : plus un système devient complexe, dynamique et rapide, plus sa reconstruction devient coûteuse et incertaine. Dans des environnements systémiques, un récit reconstruit — aussi cohérent soit-il — ne peut se substituer à une preuve factuelle.`,
+Cette approche mène au **paradoxe de la reconstruction** : plus un système devient complexe, dynamique et rapide, plus sa reconstruction devient coûteuse et incertaine. Dans des environnements systémiques, un récit reconstruit  - aussi cohérent soit-il  - ne peut se substituer à une preuve factuelle.`,
         },
         {
           title: '3. Définition de l\'Infrastructure d\'Observabilité Décisionnelle (DOI)',
@@ -1083,7 +1641,7 @@ Un Snapshot de décision standard encapsule trois dimensions :`,
       sections: [
         {
           title: '1. Principe fondamental : l\'observateur passif',
-          content: 'Horizon opère comme un observateur non intrusif des systèmes décisionnels. Il n\'interfère pas avec le flux de décision, ne le valide pas et ne le modifie pas. Il capture l\'état factuel au **Point de non-retour** — l\'instant précis où une décision est finalisée et sur le point d\'être externalisée — et le préserve comme une preuve immuable.',
+          content: 'Horizon opère comme un observateur non intrusif des systèmes décisionnels. Il n\'interfère pas avec le flux de décision, ne le valide pas et ne le modifie pas. Il capture l\'état factuel au **Point de non-retour**  - l\'instant précis où une décision est finalisée et sur le point d\'être externalisée  - et le préserve comme une preuve immuable.',
           points: [
             { name: 'Un risque logique nul', description: 'Horizon ne peut modifier ni l\'issue, ni le cheminement d\'une décision.' },
             { name: 'Focus sur la préservation', description: 'Horizon garantit que même si le système source est modifié ou déclassé, la preuve reste intacte et accessible.' },
@@ -1147,36 +1705,600 @@ notifier_decision_client(resultat_decision)`,
       ],
     },
     hub: {
-      title: 'Guide de lecture Horizon',
-      intro: 'L\'observabilité décisionnelle est une nouvelle exigence architecturale. Pour vous aider à naviguer dans notre cadre de référence, nous avons organisé notre documentation par perspective.',
-      chooseEntry: 'Choisissez votre point d\'entrée :',
+      label: 'Fondations : Aperçu',
+      title: 'Gouvernance & Autorité des Décisions Automatisées',
+      subtitle: 'Principes et architecture pour les systèmes régulés',
       backToHome: 'Retour à l\'accueil',
-      perspectives: [
-        {
-          letter: 'A',
-          title: 'Foundations : Perspective Architecturale & Systémique',
-          audience: 'Pour les Directions Techniques (CTO), Architectes en Chef et Responsables Ingénierie.',
-          description: 'Analysez la lacune structurelle des environnements modernes et la définition de l\'**Infrastructure d\'Observabilité Décisionnelle (DOI)** en tant que nouvelle couche passive.',
-          linkText: 'Aller à la Partie 1 : Le concept de DOI',
-          href: '/foundations/doi',
-        },
-        {
-          letter: 'B',
-          title: 'Horizon : Perspective Implémentation & Preuve',
-          audience: 'Pour les Gestionnaires de Risques, Auditeurs Internes et Responsables Techniques.',
-          description: 'Découvrez le cycle de vie du **Snapshot de décision**, l\'intégrité cryptographique des enregistrements et la manière dont Horizon s\'intègre sans interférer avec la logique métier.',
-          linkText: 'Aller à la Partie 2 : L\'implémentation Horizon',
-          href: '/horizon',
-        },
-        {
-          letter: 'C',
-          title: 'Perspective Formelle & Conceptuelle',
-          audience: 'Pour les institutions nécessitant des définitions formelles.',
-          description: 'Définition formelle de la **preuve à l\'exécution** et des limites conceptuelles de l\'Infrastructure d\'Observabilité Décisionnelle. Livre blanc non promotionnel.',
-          linkText: 'Aller à la Référence Conceptuelle',
-          href: '/foundations/conceptual-reference',
-        },
-      ],
+      introduction: {
+        title: 'Introduction',
+        content: 'Les institutions modernes s\'appuient de plus en plus sur des **décisions automatisées** pour fonctionner à grande échelle. À mesure que ces décisions s\'accélèrent en fréquence et en complexité, les notions traditionnelles d\'auditabilité, de responsabilité et de preuve commencent à faillir.',
+        conclusion: 'Ce corpus documentaire décrit les principes architecturaux nécessaires pour établir la **gouvernance des décisions automatisées** - la capacité de préserver une autorité sur chaque fait d\'exécution, indépendamment des technologies, des fournisseurs ou des réglementations. Ces documents apportent une réponse structurelle à l\'érosion de la certitude factuelle dans les environnements automatisés.',
+      },
+      whatCovered: {
+        title: 'Ce que couvrent les Fondations',
+        intro: 'Les Fondations établissent une norme rigoureuse sur la manière dont les systèmes critiques doivent traiter leur propre historique d\'exécution. Cette architecture définit :',
+        points: [
+          {
+            title: 'La Souveraineté de la Preuve',
+            description: 'Comment les faits des décisions automatisées doivent être capturés pour rester probants et irréfutables.',
+          },
+          {
+            title: 'Le Découplage Architectural',
+            description: 'Pourquoi l\'intégrité (Layer 0) et l\'analyse (Layer 1) ne peuvent pas coexister dans la même couche technique.',
+          },
+          {
+            title: 'La Chaîne de Confiance',
+            description: 'Comment l\'investigation, l\'observabilité et l\'intelligence se construisent sur des faits immuables et contemporains de l\'action.',
+          },
+          {
+            title: 'Les Classes de Systèmes',
+            description: 'Quels types de systèmes critiques requièrent une autorité décisionnelle native par conception.',
+          },
+        ],
+      },
+      doiCategory: {
+        title: 'La Catégorie : Decision Observability Infrastructure (DOI)',
+        content: 'Ensemble, les principes énoncés dans ces documents définissent une nouvelle classe de système : l\'**Infrastructure d\'Observabilité Décisionnelle (DOI)**.',
+        description: 'Une DOI est la couche d\'infrastructure spécialisée nécessaire pour implémenter la **Gouvernance des Décisions Automatisées**. Elle garantit qu\'une institution n\'aura jamais à s\'appuyer sur une reconstruction a posteriori fragile pour expliquer ses actes.',
+        quote: 'La DOI est la réalisation technique du cadre de Gouvernance & Autorité des Décisions Automatisées.',
+      },
+      pillars: {
+        title: 'Les Trois Piliers',
+        intro: 'Les Fondations sont organisées en trois parties séquentielles, allant de la logique de gouvernance à la réalité technique :',
+        items: [
+          {
+            number: '1',
+            title: 'Le Cadre de l\'Autorité Décisionnelle Automatisée',
+            description: 'Comment l\'intégrité de la décision est préservée par la séparation stratégique entre la Preuve et l\'Analyse.',
+            linkText: 'Lire Fondations | Partie 1',
+            href: '/foundations/framework',
+          },
+          {
+            number: '2',
+            title: 'La Preuve Décisionnelle avec Horizon',
+            description: 'Comment le Layer 0 peut être implémenté comme un "Registre Décisionnel" passif pour les systèmes automatisés.',
+            linkText: 'Lire Fondations | Partie 2',
+            href: '/foundations/implementation',
+          },
+          {
+            number: '3',
+            title: 'Observabilité & Intelligence',
+            description: 'Comment l\'investigation, la reconstruction de contexte et le reporting de gouvernance s\'appuient sur le socle des faits immuables.',
+            linkText: 'Lire Fondations | Partie 3',
+            href: '/foundations/observability',
+          },
+        ],
+      },
+      implementation: {
+        title: 'Implémentation',
+        content: 'Asplenz conçoit des systèmes de production qui instancient ces principes dans des environnements critiques. Notre rôle est de fournir l\'ingénierie nécessaire pour transformer ces exigences architecturales en actifs institutionnels fiables.',
+      },
+      additionalResources: {
+        title: 'Ressources Complémentaires',
+        items: [
+          {
+            title: 'Deep Dive : Le Snapshot Décisionnel',
+            description: 'Anatomie technique de l\'unité atomique de preuve institutionnelle.',
+            href: '/foundations/snapshot',
+          },
+          {
+            title: 'Référence Conceptuelle',
+            description: 'Documentation de référence complète sur l\'Infrastructure d\'Observabilité Décisionnelle.',
+            href: '/foundations/conceptual-reference',
+          },
+          {
+            title: 'FAQ',
+            description: 'Réponses rapides sur la sécurité, la performance, l\'intégration et la conformité.',
+            href: '/faq',
+          },
+          {
+            title: 'Scénario Illustratif',
+            description: 'Une comparaison concrète : audit à J+180 avec et sans Horizon.',
+            href: '/credit-illustrative-scenario',
+          },
+        ],
+      },
+    },
+    framework: {
+      label: 'Fondations | Partie 1',
+      title: 'Le Cadre de l\'Autorité Décisionnelle Automatisée',
+      subtitle: 'Découpler l\'Intégrité de la Complexité',
+      backToHub: 'Retour aux Fondations',
+      backToHubHref: '/foundations',
+      paradox: {
+        title: 'Le Paradoxe de la Confiance Automatisée',
+        content: 'La confiance institutionnelle dans les systèmes automatisés fait face à un paradoxe structurel : à mesure que les décisions s\'accélèrent et deviennent plus autonomes, la capacité à les prouver s\'érode.',
+        explanation: 'Les systèmes actuels échouent à fournir une certitude car ils tentent de résoudre deux problèmes contradictoires au sein de la même couche : la **Préservation** (figer le passé) et l\'**Analyse** (interpréter le passé). Le **Cadre de l\'Autorité Décisionnelle Automatisée** résout ce paradoxe par un découplage architectural strict : **l\'Intégrité doit être séparée de la Complexité.**',
+      },
+      threeLayers: {
+        title: 'Les Trois Couches de l\'Autorité Décisionnelle',
+        intro: 'Pour établir une véritable gouvernance, l\'**Infrastructure d\'Observabilité Décisionnelle (DOI)** doit être organisée en trois couches spécialisées. Cette séparation garantit que l\'**intégrité de la preuve** n\'est jamais contaminée par la **complexité de l\'analyse**.',
+        headers: ['Couche', 'Nom Fonctionnel', 'Focus', 'Objectif Principal'],
+        rows: [
+          {
+            layer: 'Layer 0',
+            name: 'Preuve Décisionnelle',
+            focus: 'Vérité',
+            objective: 'Capture passive et scellement cryptographique des faits au Point de Non-Retour.',
+          },
+          {
+            layer: 'Layer 1',
+            name: 'Observabilité Décisionnelle',
+            focus: 'Clarté',
+            objective: 'Reconstruction du contexte, lignage et interfaces d\'investigation.',
+          },
+          {
+            layer: 'Layer 2',
+            name: 'Intelligence Décisionnelle',
+            focus: 'Alignement',
+            objective: 'Suivi de la qualité des résultats, détection de biais et performance des politiques.',
+          },
+        ],
+      },
+      layer0: {
+        title: 'Layer 0 : La Fondation Souveraine',
+        intro: 'La **Couche 0 (instanciée par Horizon)** est la couche fondatrice du cadre. Elle est intentionnellement « aveugle » et non analytique. Son unique but est de servir de **Registre Décisionnel (Decision Ledger)** - un témoin immuable de ce qui a été exécuté.',
+        points: [
+          {
+            title: 'La preuve ne peut pas être reconstruite après coup',
+            text: 'Lorsqu\'une décision automatisée est contestée, soit vous possédez la preuve native capturée à T₀, soit vous êtes contraint à un récit de reconstruction.',
+          },
+          {
+            title: 'Neutralité Structurelle',
+            text: 'La Couche 0 ne juge ni n\'évalue. Elle garantit que les faits existent, exactement tels qu\'ils étaient au moment précis où la décision est devenue irréversible.',
+          },
+          {
+            title: 'L\'Intégrité d\'abord',
+            text: 'En gardant la Couche 0 séparée, la banque garantit que même si ses outils d\'analyse (Layer 1) ou ses politiques de risque (Layer 2) évoluent, la preuve sous-jacente reste stable, originale et irréfutable.',
+          },
+        ],
+      },
+      axiom: {
+        title: 'L\'Axiome du « Point de Non-Retour »',
+        content: 'Une décision devient un fait institutionnel au moment où elle est externalisée (ex : un crédit est refusé). Une fois ce **Point de Non-Retour** franchi, l\'état factuel d\'origine - incluant les données volatiles et la version spécifique de la logique appliquée - commence à se dissoudre.',
+        conclusion: 'Le Cadre établit que **la preuve doit être produite au moment de l\'exécution, sous peine d\'être perdue.** Toute tentative de « rebâtir » cet état ultérieurement constitue une reconstruction, pas une preuve. C\'est le socle de la **Gouvernance des Décisions Automatisées.**',
+      },
+      nextPart: {
+        text: 'Continuer vers la Partie 2',
+        title: 'La Preuve Décisionnelle avec Horizon',
+        href: '/foundations/implementation',
+      },
+    },
+    snapshot: {
+      title: 'Focus Technique : Anatomie du Snapshot Décisionnel',
+      subtitle: 'L\'Unité Atomique de Preuve Institutionnelle',
+      backToHub: 'Retour aux Fondations',
+      backToHubHref: '/foundations',
+      introduction: {
+        title: 'Introduction',
+        content: 'Le **Snapshot Décisionnel** est l\'artéfact immuable et auto-contenu produit par Horizon au moment exact de l\'exécution (T₀).',
+        explanation: 'Contrairement aux logs applicatifs, qui sont des flux de données opérationnelles mutables conçus pour le débogage, un Snapshot Décisionnel est une **déclaration institutionnelle scellée cryptographiquement**. Il est conçu pour résister à un examen médico-légal hostile des années après la mise hors service du système d\'origine.',
+        conclusion: 'Ce document présente la structure logique et les propriétés techniques de cette unité atomique de preuve.',
+      },
+      structure: {
+        title: '1. Structure Logique : L\'Oignon Cryptographique',
+        intro: 'Un Snapshot Décisionnel est composé de trois couches inséparables. Les couches externes fournissent le contexte et la sécurité aux données brutes internes, formant un objet unique et vérifiable.',
+        layers: [
+          {
+            id: 'A',
+            name: 'Le Payload Métier',
+            subtitle: 'Le "Quoi"',
+            description: 'C\'est la preuve brute, intacte. Horizon capture les entrées consommées et les sorties produites par le moteur de décision au point de non-retour.',
+            points: [
+              { title: 'Pureté des Données', text: 'Le payload est capturé verbatim. Horizon n\'effectue aucune transformation, normalisation ou enrichissement sur cette couche.' },
+              { title: 'Agnostique au Schéma', text: 'La structure du payload est entièrement définie par la logique métier de l\'institution cliente.' },
+            ],
+          },
+          {
+            id: 'B',
+            name: 'L\'Enveloppe de Contexte',
+            subtitle: 'Le "Quand, Où, Qui"',
+            description: 'Cette couche fournit les métadonnées standardisées nécessaires à l\'indexation, à la récupération et à la gouvernance.',
+            points: [
+              { title: 'ID de Décision Global', text: 'Un identifiant unique et résistant aux collisions pour l\'événement d\'exécution.' },
+              { title: 'Horodatage Précis (T₀)', text: 'Un horodatage de haute précision capturé à l\'instant de l\'exécution, synchronisé avec des sources de temps fiables.' },
+              { title: 'Référence Système (System_Ref)', text: 'Un identifiant critique spécifiant la version exacte de la logique, du modèle ou de la politique faisant autorité (ex: moteur-score-credit-v4.2.1-beta).' },
+            ],
+          },
+          {
+            id: 'C',
+            name: 'Le Sceau d\'Intégrité',
+            subtitle: 'La "Preuve"',
+            description: 'La couche la plus externe est une signature cryptographique qui lie l\'Enveloppe et le Payload ensemble.',
+            points: [
+              { title: 'Mécanisme', text: 'Le contenu des Couches A et B est sérialisé de manière canonique et haché à l\'aide d\'un algorithme fort (ex: SHA-256). Ce hachage est ensuite signé à l\'aide de la clé privée de l\'institution.' },
+              { title: 'Garantie', text: 'Toute altération d\'un seul bit dans le Payload ou le Contexte entraînera une non-correspondance lors du re-calcul du hachage, invalidant immédiatement le sceau.' },
+            ],
+          },
+        ],
+      },
+      properties: {
+        title: '2. Propriétés Techniques Clés',
+        items: [
+          {
+            title: 'Sérialisation Canonique',
+            description: 'Pour garantir un hachage répétable entre différents systèmes et langages, les snapshots utilisent une sérialisation canonique. Cela garantit que l\'ordre logique des champs de données n\'affecte pas le hachage cryptographique résultant, évitant les faux positifs lors de la vérification.',
+          },
+          {
+            title: 'Chaînage Cryptographique',
+            description: 'Les snapshots ne sont pas des îlots isolés. Le Sceau d\'Intégrité de chaque nouveau snapshot intègre le hachage du sceau du snapshot précédent.',
+            outcome: 'Cela crée une chaîne chronologique ininterrompue (similaire à une structure de chaîne de Merkle ou blockchain).',
+            security: 'Il devient informatiquement infaisable d\'insérer, de supprimer ou de réorganiser un enregistrement de décision dans le passé sans briser la chaîne de contrôle pour tous les enregistrements ultérieurs.',
+          },
+          {
+            title: 'Auto-contenance et Portabilité',
+            description: 'Un snapshot est conçu pour être vérifiable "hors ligne". Il contient tout le contexte nécessaire dans son enveloppe. Un auditeur n\'a pas besoin d\'accéder à la base de données de production d\'origine pour vérifier quelles données ont été utilisées dans une décision cinq ans auparavant.',
+          },
+        ],
+      },
+      verification: {
+        title: '3. Le Modèle de Vérification (Souverain)',
+        subtitle: 'Pourquoi ça marche',
+        intro: 'Le processus de vérification est conçu pour être autonome et basé sur des standards. Il ne dépend pas d\'une technologie propriétaire Asplenz pour prouver la vérité.',
+        steps: [
+          { number: '1', title: 'Disponibilité de la Clé Publique', text: 'L\'institution publie la Clé Publique correspondant à la Clé Privée utilisée pour la signature par Horizon (stockée dans un HSM ou un coffre-fort sécurisé).' },
+          { number: '2', title: 'Calcul standard', text: 'Un vérificateur (outil d\'audit interne, script du régulateur) prend l\'objet Snapshot.' },
+          { number: '3', title: 'Re-Hachage', text: 'Il sépare le sceau du contenu, sérialise le contenu de manière canonique et calcule le hachage.' },
+          { number: '4', title: 'Validation de Signature', text: 'Il utilise la Clé Publique pour déchiffrer le Sceau d\'Intégrité et compare les deux hachages. S\'ils correspondent, il est mathématiquement prouvé que la preuve est authentique et non altérée.' },
+        ],
+      },
+      cta: {
+        text: 'Questions sur l\'intégration technique ?',
+        linkText: 'Consultez la FAQ',
+        href: '/faq',
+      },
+    },
+    implementation: {
+      label: 'Fondations | Partie 2',
+      title: 'Implémentation de la Preuve Décisionnelle',
+      subtitle: 'Instancier le Layer 0 avec Horizon',
+      backToHub: 'Retour aux Fondations',
+      backToHubHref: '/foundations',
+      intro: {
+        title: 'Du Cadre à l\'Infrastructure',
+        content: 'Alors que le *Cadre de l\'Autorité Décisionnelle Automatisée* définit les règles d\'intégrité, **Horizon** fournit l\'infrastructure physique pour les appliquer. En tant qu\'implémentation de référence du **Layer 0**, Horizon est conçu pour être un observateur passif de haute performance qui capture les faits décisionnels sans interférer avec la logique métier primaire.',
+      },
+      nonBlocking: {
+        title: '1. Le Modèle de Capture Non-Bloquant',
+        intro: 'L\'exigence la plus critique pour un Layer 0 est la **neutralité opérationnelle**. Horizon ne doit pas ralentir le moteur de crédit ni introduire de nouveaux points de défaillance dans le flux de décision.',
+        explanation: 'Pour ce faire, Horizon utilise un **modèle asynchrone ("fire-and-forget")**. L\'appel de capture est déporté vers un processus d\'arrière-plan, garantissant que le temps de réponse au client reste inchangé.',
+        codeExample: `# Intégration au Point de Non-Retour
+# La décision métier est finalisée, puis la preuve est scellée.
+
+horizon.capture(
+    input=application_data,    # Données financières, scores, contexte
+    output=credit_decision,   # Approuvé/Refusé + Conditions
+    system_ref="lending_v2.1" # La version spécifique de l'autorité
+)
+
+# Le flux métier continue instantanément
+envoyer_reponse_au_client(credit_decision)`,
+      },
+      deployment: {
+        title: '2. Archétypes de Déploiement : Souveraineté Totale',
+        intro: 'Horizon est une solution **in-perimeter**. Pour maintenir une souveraineté absolue sur la preuve, aucune donnée ne quitte l\'environnement sécurisé de l\'institution. Il s\'adapte aux architectures existantes via deux archétypes principaux :',
+        archetypes: [
+          {
+            title: 'SDK Embarqué',
+            text: 'Pour les environnements à haute fréquence où la latence se compte en microsecondes.',
+          },
+          {
+            title: 'Service (API)',
+            text: 'Pour les architectures de microservices cloud-native nécessitant un registre de preuves centralisé.',
+          },
+        ],
+        securityGuarantee: 'Horizon ne nécessite aucun accès réseau externe pour signer, sceller ou vérifier les snapshots. L\'institution reste l\'unique propriétaire des clés cryptographiques et du registre résultant.',
+      },
+      systemRef: {
+        title: '3. L\'Autorité du "System_Ref"',
+        content: 'Un Snapshot Décisionnel n\'a de valeur que par le contexte de son autorité. Horizon impose l\'inclusion d\'une `System_Ref`  - un identifiant unique de la version spécifique de la logique, du modèle ou des règles qui faisaient autorité au moment de l\'exécution.',
+        conclusion: 'Cela garantit que cinq ans après une décision, la banque peut identifier exactement quelle "version de la vérité" a été appliquée, même si le code source ou le modèle d\'IA a évolué depuis longtemps.',
+      },
+      passive: {
+        title: '4. Observation Passive vs Validation Active',
+        intro: 'Horizon ne se situe pas *dans* le chemin critique ; il se situe *à côté*.',
+        points: [
+          {
+            title: 'Il ne valide pas',
+            text: 'Horizon ne décide pas si un prêt doit être accordé.',
+          },
+          {
+            title: 'Il ne transforme pas',
+            text: 'Il enregistre les données exactement telles qu\'elles ont été consommées et produites.',
+          },
+          {
+            title: 'Il est tolérant aux pannes',
+            text: 'Si la couche de capture subit une interruption, le moteur métier continue de fonctionner. La preuve est découplée de l\'exécution pour protéger la continuité.',
+          },
+        ],
+      },
+      nextPart: {
+        text: 'Deep Dive',
+        title: 'L\'Anatomie du Snapshot Décisionnel',
+        href: '/foundations/snapshot',
+      },
+      cta: {
+        text: 'Continuez vers la Partie 3 des Fondations.',
+        linkText: 'Lire Observabilité & Intelligence',
+        href: '/foundations/observability',
+      },
+      ctaSecondary: {
+        text: 'Envie d\'approfondir les détails techniques ?',
+        linkText: 'Lire le Focus Technique',
+        href: '/foundations/snapshot',
+      },
+    },
+    observability: {
+      label: 'Fondations | Partie 3',
+      title: 'Observabilité & Intelligence',
+      subtitle: 'De la Preuve Silencieuse à la Gouvernance Active',
+      backToHub: 'Retour aux Fondations',
+      backToHubHref: '/foundations',
+      transition: {
+        title: 'Introduction : Rendre la Vérité Actionnable',
+        content: 'Les deux premiers piliers des Fondations garantissent qu\'une institution possède la **Vérité** (les faits immuables capturés par Horizon). Ils constituent le socle indispensable de **La Pile de l\'Autorité Décisionnelle (The Decision Authority Stack)** : une architecture à plusieurs niveaux où chaque strate d\'analyse est ancrée dans un registre souverain.',
+        emphasis: '**Toutes les capacités d\'observabilité dérivent exclusivement des preuves immuables capturées par Horizon au Layer 0 (Preuve Décisionnelle).** Le Layer 1 et le Layer 2 représentent les niveaux analytiques suivants de la Pile, transformant les snapshots cryptographiques silencieux en une cartographie claire et stratégique de la vie automatisée de l\'institution.',
+      },
+      layer1: {
+        title: '1. Layer 1 : L\'Observabilité Décisionnelle',
+        subtitle: 'Le Moteur d\'Enquête',
+        intro: 'L\'Observabilité Décisionnelle est la capacité de reconstruire le « pourquoi » derrière le « quoi ». Alors qu\'Horizon enregistre l\'exécution, **Asplenz Insights** fournit l\'interface pour l\'interroger.',
+        points: [
+          {
+            title: 'Reconstruction Contextuelle',
+            text: 'Réassembler l\'environnement d\'une décision (conditions de marché, versions des politiques) à n\'importe quel point de l\'histoire.',
+          },
+          {
+            title: 'Lignage et Trajectoire',
+            text: 'Visualiser comment un point de donnée client a traversé plusieurs modèles pour aboutir à une décision de crédit finale.',
+          },
+          {
+            title: 'Investigation Augmentée (Human-in-the-Loop)',
+            text: 'Offrir aux enquêteurs un espace de travail où les preuves sont pré-corrélées, réduisant le temps d\'enquête de plusieurs semaines à quelques heures.',
+          },
+        ],
+      },
+      layer2: {
+        title: '2. Layer 2 : L\'Intelligence Décisionnelle',
+        subtitle: 'Gouvernance Stratégique',
+        intro: 'Une fois l\'observabilité établie à grande échelle, l\'institution peut passer de l\'analyse de cas individuels à l\'analyse de modèles globaux. C\'est le domaine de la **Gouvernance des Décisions Automatisées.**',
+        points: [
+          {
+            title: 'Détection de Dérive (Drift)',
+            text: 'Alerte précoce lorsque les systèmes automatisés dévient de l\'intention stratégique ou des politiques de risque.',
+          },
+          {
+            title: 'Audit de Biais & Équité',
+            text: 'Analyse des snapshots agrégés pour détecter des distorsions de résultats. Conformité native avec l\'AI Act.',
+          },
+          {
+            title: 'Feedback Opérationnel',
+            text: 'Identification des "cas limites" où les modèles produisent des résultats inconsistants pour permettre une amélioration continue.',
+          },
+        ],
+      },
+      goldenRule: {
+        title: '3. La Règle d\'Or : L\'Interprétation ne peut Corrompre la Preuve',
+        content: 'Dans l\'architecture Asplenz, les Layers 1 et 2 sont strictement des consommateurs du Layer 0.',
+        points: [
+          {
+            title: 'Intégrité Unidirectionnelle',
+            text: 'Insights peut analyser et annoter les snapshots, mais il ne peut **jamais modifier** l\'enregistrement original.',
+          },
+          {
+            title: 'Séparation des Responsabilités',
+            text: 'Vos outils d\'enquête peuvent évoluer, vos modèles d\'IA peuvent changer - mais le **Registre Décisionnel** sous-jacent reste la référence souveraine et intacte.',
+          },
+        ],
+      },
+      conclusion: {
+        title: 'Conclusion : Le Futur de l\'Institution Souveraine',
+        content: 'En achevant la transition du Layer 0 au Layer 2, une banque passe d\'une **posture réactive** à une **gouvernance proactive**. À mesure que les décisions s\'automatisent, l\'institution devient plus responsable, et non l\'inverse.',
+      },
+      cta: {
+        text: 'Questions sur les capacités ou l\'intégration ?',
+        linkText: 'Consulter la FAQ',
+        href: '/faq',
+      },
+      ctaSecondary: {
+        text: 'Pour les décideurs stratégiques :',
+        linkText: 'Lire le Briefing Exécutif',
+        href: '/executive-briefing',
+      },
+    },
+    executiveBriefing: {
+      label: 'Note Stratégique : Briefing COMEX',
+      title: 'Sécuriser l\'Autorité Institutionnelle dans le Crédit Automatisé',
+      subtitle: 'Un briefing pour les dirigeants sur les risques du crédit automatisé.',
+      backToHome: 'Retour à l\'accueil',
+      executiveSummary: {
+        title: 'Résumé Exécutif',
+        content: 'À mesure que les opérations de crédit passent d\'un modèle humain à un modèle algorithmique (IA/ML), les pistes d\'audit traditionnelles deviennent obsolètes. Le « Paradoxe de la Reconstruction » crée un risque juridique : l\'incapacité de prouver mathématiquement la base factuelle d\'une décision passée.',
+        conclusion: 'Asplenz fournit l\'infrastructure pour transformer ce risque systémique en un actif souverain.',
+      },
+      risk: {
+        title: '1. Le Risque : L\'Érosion de la Preuve',
+        intro: 'Dans un environnement régulé, un « récit probable » n\'est pas une preuve. Sans une **couche de preuve dédiée (Layer 0)**  - un socle de vérité indépendant de vos systèmes opérationnels  - la banque s\'expose à :',
+        points: [
+          {
+            title: 'Fragilité Réglementaire',
+            text: 'Incapacité à satisfaire aux mandats de transparence de l\'AI Act.',
+          },
+          {
+            title: 'Friction Opérationnelle',
+            text: 'Coût élevé des « Task Forces » mobilisées pour chaque audit ou litige.',
+          },
+          {
+            title: 'Perte de Souveraineté',
+            text: 'Dépendance à des logs mutables qui se dissolvent avec l\'évolution des systèmes.',
+          },
+        ],
+      },
+      solution: {
+        title: '2. La Solution : L\'Autorité Décisionnelle',
+        intro: 'En déployant **Horizon**, la banque établit un **Registre Décisionnel**. C\'est la « Boîte Noire » de vos systèmes automatisés : une garantie de gouvernance qui assure :',
+        points: [
+          {
+            title: 'Preuve Contemporaine',
+            text: 'La preuve est capturée au moment de l\'exécution, pas reconstruite après coup.',
+          },
+          {
+            title: 'Certitude Cryptographique',
+            text: 'Les décisions sont scellées et immuables, offrant une défendabilité absolue devant un régulateur ou un tribunal.',
+          },
+        ],
+      },
+      recommendation: {
+        title: '3. Recommandation Stratégique',
+        content: 'Nous recommandons l\'intégration immédiate de l\'Infrastructure d\'Observabilité Décisionnelle (DOI) comme composante centrale de l\'architecture Risque & Conformité. Cet investissement pérennise l\'institution, garantissant qu\'à mesure que les décisions s\'automatisent, la **Responsabilité** demeure une constante.',
+      },
+      cta: {
+        text: 'Prêt à discuter de l\'implémentation ?',
+        linkText: 'Demander un Briefing CRO',
+        href: '/contact',
+      },
+    },
+    conceptualReference: {
+      label: 'Documentation de référence',
+      title: 'Infrastructure d\'Observabilité Décisionnelle',
+      subtitle: 'La preuve avant les questions',
+      backToHub: 'Retour aux Fondations',
+      backToHubHref: '/foundations',
+      introduction: {
+        title: 'Introduction',
+        content: 'Ce livre blanc présente les fondations opérationnelles de la **preuve à l\'exécution** pour les systèmes de décision automatisés et semi-automatisés opérant dans des contextes institutionnels.',
+        audience: 'Il s\'adresse aux organisations qui doivent établir, avec le temps, ce qui a réellement été exécuté lorsque les décisions deviennent irréversibles  - indépendamment de l\'évolution ultérieure des systèmes, des modèles, des données ou des équipes.',
+        note: 'Ce document est volontairement non promotionnel. Il se concentre sur la préservation factuelle plutôt que sur l\'explication, la justification ou l\'évaluation.',
+      },
+      executiveSummary: {
+        title: 'Résumé opérationnel',
+        content: 'Les organisations s\'appuient de plus en plus sur des systèmes de décision dont les résultats entraînent des conséquences opérationnelles, juridiques, financières et réputationnelles durables. Ces systèmes évoluent continuellement : les modèles sont ré-entraînés, les règles ajustées, les sources de données modifiées, les infrastructures refondues et les équipes renouvelées.',
+        problem: 'Dans la plupart des organisations, l\'état factuel des décisions passées n\'est pas préservé au moment de l\'exécution. Lorsque des questions surgissent, les institutions tentent de reconstruire ce qui s\'est passé à l\'aide de logs, de traces, de référentiels de configuration, de tableaux de bord et de souvenirs humains. Ce processus est intrinsèquement fragile, coûteux et incertain. Il produit des récits plutôt que des faits.',
+        solution: 'L\'Infrastructure d\'Observabilité Décisionnelle comble cette lacune structurelle. Elle introduit une couche de preuve à l\'exécution dont le seul but est de capturer, au point de non-retour, l\'état factuel complet d\'une décision et de le préserver sous la forme d\'un artefact immuable et auto-contenu.',
+        conclusion: 'L\'infrastructure n\'explique, ne justifie, ni n\'évalue les décisions. Elle préserve ce qui a été exécuté. Ce faisant, elle réduit l\'effort opérationnel, limite l\'incertitude et restaure une autorité factuelle durable sans altérer le contrôle institutionnel ou la gouvernance.',
+      },
+      problemStatement: {
+        title: 'Énoncé du problème',
+        subtitle: 'La reconstruction n\'est pas une preuve',
+        intro: 'La plupart des systèmes de décision ne préservent pas les états d\'exécution factuels. Ils laissent derrière eux des logs, des métriques et des traces conçus pour l\'observabilité, et non pour la certitude probante.',
+        consequences: [
+          'des bases factuelles fragmentées et incomplètes,',
+          'des divergences entre les équipes et les interprétations,',
+          'un biais de rétrospective intégré aux explications,',
+          'une augmentation exponentielle des coûts opérationnels au fil du temps.',
+        ],
+        conclusion: 'Ces défaillances sont structurelles. Elles découlent d\'une inadéquation entre ce que les systèmes d\'exécution sont conçus pour conserver et ce dont les institutions ont besoin plus tard pour établir les faits.',
+      },
+      corePrinciple: {
+        title: 'Principe central',
+        subtitle: 'Capturer au point de non-retour',
+        intro: 'Une décision devient un fait lorsqu\'elle est exécutée. À cet instant :',
+        points: [
+          'des entrées spécifiques sont consommées,',
+          'une logique spécifique est appliquée,',
+          'dans un contexte d\'exécution spécifique,',
+          'produisant un résultat spécifique.',
+        ],
+        conclusion: 'Une fois ce moment passé, l\'état factuel d\'origine ne peut plus être reconstitué avec certitude. La preuve doit donc être produite au moment de l\'exécution, et non déduite plus tard.',
+      },
+      snapshotArtifact: {
+        title: 'Artefact de Snapshot Décisionnel',
+        intro: 'Un **Artefact de Snapshot Décisionnel** est l\'enregistrement canonique de l\'exécution produit par le système lui-même. Ce n\'est ni un log, ni une trace, ni un rapport, ni une explication. Il constitue la déclaration institutionnelle de ce qui existait au moment de l\'exécution.',
+        statement: 'Toute affirmation sur la réalité de l\'exécution est donc une affirmation sur le contenu de cet artefact.',
+        propertiesTitle: 'Propriétés invariantes',
+        properties: [
+          { title: 'Complétude', text: 'toutes les entrées, le contexte, l\'état de la logique et les résultats présents à l\'exécution sont intégrés.' },
+          { title: 'Intégrité temporelle', text: 'l\'horodatage de l\'exécution est lié par cryptographie.' },
+          { title: 'Immuabilité', text: 'les artefacts sont en ajout exclusif (append-only) et non modifiables.' },
+          { title: 'Ordonnancement', text: 'séquençage vérifiable entre les décisions.' },
+          { title: 'Authenticité', text: 'preuve cryptographique de l\'origine et de l\'intégrité.' },
+        ],
+        warning: 'Si l\'établissement des faits nécessite d\'interroger des systèmes externes, la reconstruction a déjà commencé.',
+      },
+      comparison: {
+        title: 'Preuve vs Reconstruction',
+        headers: ['Reconstruction', 'Preuve à l\'exécution'],
+        rows: [
+          ['Récit assemblé après le résultat', 'Fait déclaré avant l\'examen'],
+          ['Dépend des traces survivantes', 'Artefact auto-contenu'],
+          ['Soumise au biais de rétrospective', 'Préserve la connaissance au temps T'],
+          ['Coût croissant avec le temps', 'Coût fixe à l\'exécution'],
+        ],
+        conclusion: 'L\'Infrastructure d\'Observabilité Décisionnelle n\'améliore pas la reconstruction. Elle la rend inutile dans son périmètre.',
+      },
+      automatedDecisions: {
+        title: 'Décisions automatisées',
+        intro: 'Les décisions automatisées sont des événements d\'exécution composés d\'éléments volatils :',
+        elements: [
+          'les données d\'entrée,',
+          'la logique de décision (règles, modèles, configurations),',
+          'le contexte d\'exécution,',
+          'les résultats produits.',
+        ],
+        explanation: 'Les logs capturent des fragments de ces éléments. Ils ne préservent pas l\'exécution dans son ensemble. Comme ces composantes évoluent indépendamment, la reconstruction a posteriori ne peut rétablir l\'état factuel de manière fiable.',
+        conclusion: 'La capture à l\'exécution est donc la seule voie vers la certitude factuelle.',
+      },
+      separation: {
+        title: 'Séparation de l\'Exécution et de l\'Évaluation',
+        intro: 'L\'Infrastructure d\'Observabilité Décisionnelle distingue :',
+        items: [
+          { title: 'Les Exécutions', text: 'faits immuables déclarés au temps T.' },
+          { title: 'Les Évaluations', text: 'appréciations humaines ou institutionnelles produites ultérieurement, explicitement datées et liées.' },
+        ],
+        conclusion: 'Cette séparation empêche structurellement le biais de rétrospective en garantissant que les connaissances ultérieures ne contaminent pas les faits d\'exécution.',
+      },
+      institutionalContexts: {
+        title: 'Contextes institutionnels',
+        intro: 'La preuve à l\'exécution devient critique partout où les organisations doivent répondre de manière fiable à des questions sur des décisions passées, incluant :',
+        contexts: [
+          'les revues réglementaires ou d\'audit,',
+          'les enquêtes internes et les analyses post-mortem,',
+          'les demandes d\'informations des clients ou partenaires,',
+          'la responsabilité à long terme à travers les cycles de vie des systèmes.',
+        ],
+        conclusion: 'L\'infrastructure ne prescrit ni la gouvernance, ni l\'interprétation, ni la divulgation. Elle fournit un socle factuel partagé sur lequel s\'exerce le pouvoir discrétionnaire de l\'institution.',
+      },
+      operationalImpact: {
+        title: 'Impact opérationnel',
+        intro: 'L\'Infrastructure d\'Observabilité Décisionnelle ne change pas ce que les institutions choisissent de décider ou d\'enregistrer. Elle change le coût et la fragilité de l\'établissement des faits.',
+        reduces: [
+          'la coordination entre équipes lors des revues,',
+          'la dépendance aux systèmes hérités (legacy),',
+          'le temps passé à reconstruire des états passés,',
+          'l\'incertitude lors de l\'examen.',
+        ],
+        conclusion: 'Ce qui change n\'est pas l\'autorité ou l\'intention. C\'est l\'effort opérationnel.',
+      },
+      principles: {
+        title: 'Principes et limites',
+        intro: 'L\'Infrastructure d\'Observabilité Décisionnelle est régie par les limites suivantes :',
+        items: [
+          'Capture les faits, pas les explications.',
+          'Neutre vis-à-vis de l\'interprétation, du jugement et de la gouvernance.',
+          'Indépendante du cycle de vie du système source.',
+          'Non intrusive pour la logique de décision.',
+          'Conçue par défaut comme immuable, vérifiable et en ajout exclusif.',
+        ],
+        conclusion: 'L\'infrastructure s\'arrête là où l\'interprétation commence.',
+      },
+      availability: {
+        title: 'Disponibilité et adoption',
+        content: 'L\'Infrastructure d\'Observabilité Décisionnelle est implémentée comme une capacité délimitée et introduite par des déploiements de validation contrôlés, intra-périmètre.',
+        clarification: 'Ces déploiements ne sont pas des adoptions de plateforme. Ils existent pour permettre aux institutions d\'examiner l\'acceptabilité opérationnelle et institutionnelle de la preuve à l\'exécution produite par leurs propres systèmes. La décision de ne pas poursuivre est considérée comme un résultat valide de cette étape.',
+      },
+      conclusion: {
+        title: 'Conclusion',
+        problem: 'Les systèmes de décision automatisés ne faiblissent pas parce que les institutions sont incapables d\'agir. Ils faiblissent lorsque, avec le temps, les institutions ne peuvent plus établir avec certitude ce qui a réellement été exécuté, dans quelles conditions et avec quelles informations.',
+        limitation: 'La reconstruction a posteriori est structurellement incapable de fournir cette certitude. Elle assemble des récits une fois les résultats connus, en utilisant des traces qui n\'ont jamais été conçues pour servir de preuve durable.',
+        solution: 'L\'Infrastructure d\'Observabilité Décisionnelle restaure la continuité factuelle en garantissant que la preuve existe avant que les questions ne surgissent.',
+        final: 'Elle ne dicte ni l\'interprétation, ni le jugement. Elle préserve le terrain factuel sur lequel s\'exerce la discrétion institutionnelle. La preuve n\'existe qu\'au moment de l\'exécution. Sa préservation n\'est pas un choix méthodologique, c\'est une nécessité structurelle.',
+      },
+      nextStep: {
+        title: 'Étape suivante',
+        content: 'Si vous souhaitez examiner comment ces principes s\'appliquent à vos propres systèmes de décision ou contraintes institutionnelles, vous pouvez initier une discussion.',
+        linkText: 'Nous contacter',
+        href: '/contact',
+      },
     },
     operationalReality: {
       title: 'Le coût de la reconstruction de décision a posteriori',
@@ -1516,235 +2638,106 @@ Au moment de l'exécution :`,
         linkText: 'Le coût de la reconstruction',
         href: '/foundations/operational-reality',
       },
-    },
-    conceptualReference: {
-      title: 'Infrastructure d\'Observabilité Décisionnelle',
-      docType: 'Livre Blanc',
-      subtitle: 'Documentation de référence',
-      tagline: 'La preuve avant les questions',
-      backToHub: 'Retour au hub documentation',
-      sections: [
-        {
-          title: 'Introduction',
-          content: `Ce livre blanc présente les fondations opérationnelles de la **preuve à l'exécution** pour les systèmes de décision automatisés et semi-automatisés opérant dans des contextes institutionnels.
-
-Il s'adresse aux organisations qui doivent établir, avec le temps, ce qui a réellement été exécuté lorsque les décisions deviennent irréversibles — indépendamment de l'évolution ultérieure des systèmes, des modèles, des données ou des équipes.
-
-Ce document est volontairement non promotionnel. Il se concentre sur la préservation factuelle plutôt que sur l'explication, la justification ou l'évaluation.`,
+      cta: {
+        forCRO: {
+          text: 'Pour les décideurs stratégiques :',
+          linkText: 'Lire le Briefing Exécutif',
+          href: '/executive-briefing',
         },
-        {
-          title: 'Résumé opérationnel',
-          content: `Les organisations s'appuient de plus en plus sur des systèmes de décision dont les résultats entraînent des conséquences opérationnelles, juridiques, financières et réputationnelles durables. Ces systèmes évoluent continuellement : les modèles sont ré-entraînés, les règles ajustées, les sources de données modifiées, les infrastructures refondues et les équipes renouvelées. Pourtant, les décisions produites restent souvent examinables bien après que les conditions techniques ayant présidé à leur création ont disparu.
-
-Dans la plupart des organisations, l'état factuel des décisions passées n'est pas préservé au moment de l'exécution. Lorsque des questions surgissent, les institutions tentent de reconstruire ce qui s'est passé à l'aide de logs, de traces, de référentiels de configuration, de tableaux de bord et de souvenirs humains. Ce processus est intrinsèquement fragile, coûteux et incertain. Il produit des récits plutôt que des faits.
-
-L'Infrastructure d'Observabilité Décisionnelle comble cette lacune structurelle. Elle introduit une couche de preuve à l'exécution dont le seul but est de capturer, au point de non-retour, l'état factuel complet d'une décision et de le préserver sous la forme d'un artefact immuable et auto-contenu. Cet artefact existe indépendamment de l'évolution future du système qui l'a produit.
-
-L'infrastructure n'explique, ne justifie, ni n'évalue les décisions. Elle préserve ce qui a été exécuté. Ce faisant, elle réduit l'effort opérationnel, limite l'incertitude et restaure une autorité factuelle durable sans altérer le contrôle institutionnel ou la gouvernance.`,
+        forCTO: {
+          text: 'Pour les architectes techniques :',
+          linkText: 'Explorer le Focus Technique',
+          href: '/foundations/snapshot',
         },
-        {
-          title: 'Énoncé du problème',
-          subtitle: 'La reconstruction n\'est pas une preuve',
-          content: `La plupart des systèmes de décision ne préservent pas les états d'exécution factuels. Ils laissent derrière eux des logs, des métriques et des traces conçus pour l'observabilité, et non pour la certitude probante. Lorsque les décisions sont contestées plus tard, les organisations reconstruisent des récits sous des contraintes qui n'existaient pas au moment de l'exécution.
-
-Cela conduit à :`,
-          points: [
-            'des bases factuelles fragmentées et incomplètes,',
-            'des divergences entre les équipes et les interprétations,',
-            'un biais de rétrospective intégré aux explications,',
-            'une augmentation exponentielle des coûts opérationnels au fil du temps.',
-          ],
-          conclusion: 'Ces défaillances sont structurelles. Elles découlent d\'une inadéquation entre ce que les systèmes d\'exécution sont conçus pour conserver et ce dont les institutions ont besoin plus tard pour établir les faits.',
-        },
-        {
-          title: 'Principe central',
-          subtitle: 'Capturer au point de non-retour',
-          content: `Une décision devient un fait lorsqu'elle est exécutée. À cet instant :`,
-          points: [
-            'des entrées spécifiques sont consommées,',
-            'une logique spécifique est appliquée,',
-            'dans un contexte d\'exécution spécifique,',
-            'produisant un résultat spécifique.',
-          ],
-          conclusion: 'Une fois ce moment passé, l\'état factuel d\'origine ne peut plus être reconstitué avec certitude. La preuve doit donc être produite au moment de l\'exécution, et non déduite plus tard.',
-        },
-        {
-          title: 'Artefact de Snapshot Décisionnel',
-          content: `Un **Artefact de Snapshot Décisionnel** est l'enregistrement canonique de l'exécution produit par le système lui-même. Ce n'est ni un log, ni une trace, ni un rapport, ni une explication. Il constitue la déclaration institutionnelle de ce qui existait au moment de l'exécution.
-
-Toute affirmation sur la réalité de l'exécution est donc une affirmation sur le contenu de cet artefact.`,
-          propertiesTitle: 'Propriétés invariantes',
-          properties: [
-            { name: 'Complétude', description: 'toutes les entrées, le contexte, l\'état de la logique et les résultats présents à l\'exécution sont intégrés.' },
-            { name: 'Intégrité temporelle', description: 'l\'horodatage de l\'exécution est lié par cryptographie.' },
-            { name: 'Immuabilité', description: 'les artefacts sont en ajout exclusif (append-only) et non modifiables.' },
-            { name: 'Ordonnancement', description: 'séquençage vérifiable entre les décisions.' },
-            { name: 'Authenticité', description: 'preuve cryptographique de l\'origine et de l\'intégrité.' },
-          ],
-          note: 'Si l\'établissement des faits nécessite d\'interroger des systèmes externes, la reconstruction a déjà commencé.',
-        },
-        {
-          title: 'Preuve vs Reconstruction',
-          comparisonTable: {
-            headers: ['Reconstruction', 'Preuve à l\'exécution'],
-            rows: [
-              ['Récit assemblé après le résultat', 'Fait déclaré avant l\'examen'],
-              ['Dépend des traces survivantes', 'Artefact auto-contenu'],
-              ['Soumise au biais de rétrospective', 'Préserve la connaissance au temps T'],
-              ['Coût croissant avec le temps', 'Coût fixe à l\'exécution'],
-            ],
-          },
-          conclusion: 'L\'Infrastructure d\'Observabilité Décisionnelle n\'améliore pas la reconstruction. Elle la rend inutile dans son périmètre.',
-        },
-        {
-          title: 'Décisions automatisées',
-          content: `Les décisions automatisées sont des événements d'exécution composés d'éléments volatils :`,
-          points: [
-            'les données d\'entrée,',
-            'la logique de décision (règles, modèles, configurations),',
-            'le contexte d\'exécution,',
-            'les résultats produits.',
-          ],
-          conclusion: 'Les logs capturent des fragments de ces éléments. Ils ne préservent pas l\'exécution dans son ensemble. Comme ces composantes évoluent indépendamment, la reconstruction a posteriori ne peut rétablir l\'état factuel de manière fiable. La capture à l\'exécution est donc la seule voie vers la certitude factuelle.',
-        },
-        {
-          title: 'Séparation de l\'Exécution et de l\'Évaluation',
-          content: 'L\'Infrastructure d\'Observabilité Décisionnelle distingue :',
-          definitions: [
-            { term: 'Les Exécutions', definition: 'faits immuables déclarés au temps T.' },
-            { term: 'Les Évaluations', definition: 'appréciations humaines ou institutionnelles produites ultérieurement, explicitement datées et liées.' },
-          ],
-          conclusion: 'Cette séparation empêche structurellement le biais de rétrospective en garantissant que les connaissances ultérieures ne contaminent pas les faits d\'exécution.',
-        },
-        {
-          title: 'Contextes institutionnels',
-          content: 'La preuve à l\'exécution devient critique partout où les organisations doivent répondre de manière fiable à des questions sur des décisions passées, incluant :',
-          points: [
-            'les revues réglementaires ou d\'audit,',
-            'les enquêtes internes et les analyses post-mortem,',
-            'les demandes d\'informations des clients ou partenaires,',
-            'la responsabilité à long terme à travers les cycles de vie des systèmes.',
-          ],
-          conclusion: 'L\'infrastructure ne prescrit ni la gouvernance, ni l\'interprétation, ni la divulgation. Elle fournit un socle factuel partagé sur lequel s\'exerce le pouvoir discrétionnaire de l\'institution.',
-        },
-        {
-          title: 'Impact opérationnel',
-          content: `L'Infrastructure d'Observabilité Décisionnelle ne change pas ce que les institutions choisissent de décider ou d'enregistrer. Elle change le coût et la fragilité de l'établissement des faits.
-
-Elle réduit :`,
-          points: [
-            'la coordination entre équipes lors des revues,',
-            'la dépendance aux systèmes hérités (legacy),',
-            'le temps passé à reconstruire des états passés,',
-            'l\'incertitude lors de l\'examen.',
-          ],
-          conclusion: 'Ce qui change n\'est pas l\'autorité ou l\'intention. C\'est l\'effort opérationnel.',
-        },
-        {
-          title: 'Principes et limites',
-          content: 'L\'Infrastructure d\'Observabilité Décisionnelle est régie par les limites suivantes :',
-          boundaries: [
-            'Capture les faits, pas les explications.',
-            'Neutre vis-à-vis de l\'interprétation, du jugement et de la gouvernance.',
-            'Indépendante du cycle de vie du système source.',
-            'Non intrusive pour la logique de décision.',
-            'Conçue par défaut comme immuable, vérifiable et en ajout exclusif.',
-          ],
-          conclusion: 'L\'infrastructure s\'arrête là où l\'interprétation commence.',
-        },
-        {
-          title: 'Disponibilité et adoption',
-          content: `L'Infrastructure d'Observabilité Décisionnelle est implémentée comme une capacité délimitée et introduite par des déploiements de validation contrôlés, intra-périmètre.
-
-Ces déploiements ne sont pas des adoptions de plateforme. Ils existent pour permettre aux institutions d'examiner l'acceptabilité opérationnelle et institutionnelle de la preuve à l'exécution produite par leurs propres systèmes. La décision de ne pas poursuivre est considérée comme un résultat valide de cette étape.`,
-        },
-      ],
-      conclusion: {
-        title: 'Conclusion',
-        content: `Les systèmes de décision automatisés ne faiblissent pas parce que les institutions sont incapables d'agir. Ils faiblissent lorsque, avec le temps, les institutions ne peuvent plus établir avec certitude ce qui a réellement été exécuté, dans quelles conditions et avec quelles informations.
-
-La reconstruction a posteriori est structurellement incapable de fournir cette certitude. Elle assemble des récits une fois les résultats connus, en utilisant des traces qui n'ont jamais été conçues pour servir de preuve durable. L'Infrastructure d'Observabilité Décisionnelle restaure la continuité factuelle en garantissant que la preuve existe avant que les questions ne surgissent.
-
-Elle ne dicte ni l'interprétation, ni le jugement. Elle préserve le terrain factuel sur lequel s'exerce la discrétion institutionnelle. La preuve n'existe qu'au moment de l'exécution. Sa préservation n'est pas un choix méthodologique, c'est une nécessité structurelle.`,
-      },
-      nextStep: {
-        title: 'Étape suivante',
-        content: 'Si vous souhaitez examiner comment ces principes s\'appliquent à vos propres systèmes de décision ou contraintes institutionnelles, vous pouvez initier une discussion.',
       },
     },
     faq: {
-      title: 'Questions fréquentes',
+      title: 'Questions Fréquentes',
+      subtitle: 'Sécuriser l\'Autorité Décisionnelle',
       backToHome: 'Retour à l\'accueil',
       categories: [
         {
-          name: 'Terminologie',
+          name: 'I. Terminologie',
           questions: [
             {
-              q: 'Qu\'est-ce que la Decision Observability Infrastructure ?',
-              a: 'Une infrastructure d\'observabilité décisionnelle est une couche technique qui produit des Decision Snapshots au moment de l\'exécution. Elle rend les décisions automatisées observables et auditables.',
+              q: 'Qu\'est-ce que la Decision Observability Infrastructure (DOI) ?',
+              a: 'La DOI est une couche technique spécialisée dédiée à la capture et à la préservation des faits décisionnels au moment de l\'exécution. Elle garantit que les décisions automatisées ne sont pas seulement loguées, mais rendues structurellement observables et auditables.',
             },
             {
               q: 'Qu\'est-ce qu\'un Decision Snapshot ?',
-              a: 'Un Decision Snapshot est l\'enregistrement vérifiable de ce qui a été décidé au moment de l\'exécution. C\'est la preuve — le fait décisionnel tel qu\'il est établi.',
+              a: 'Un Decision Snapshot est l\'enregistrement vérifiable de ce qui a été décidé au moment de l\'exécution (T₀). C\'est la preuve - le fait décisionnel tel qu\'il est établi.',
             },
             {
               q: 'Qu\'est-ce qu\'un Decision Snapshot Artifact ?',
-              a: 'Un Decision Snapshot Artifact est la matérialisation technique du Decision Snapshot : un objet signé, immuable et auto-contenu, préservé indépendamment des systèmes sources.',
+              a: 'C\'est la matérialisation technique du snapshot : un objet signé, immuable et auto-contenu. Il porte toutes les données nécessaires à sa propre vérification, préservé indépendamment des systèmes sources.',
             },
           ],
         },
         {
-          name: 'Général',
+          name: 'II. Stratégie et Valeur Métier',
           questions: [
             {
-              q: 'Pourquoi ne pas faire ça avec des logs ?',
-              a: 'Les logs sont utiles, mais souvent dispersés, reconstitués, et dépendants du SI source. Horizon vise une preuve décisionnelle autonome, stable et exploitable.',
+              q: 'Pourquoi ne pas utiliser des logs applicatifs ?',
+              a: 'Les logs sont conçus pour le débogage technique, pas pour la preuve institutionnelle. Ils sont mutables, fragmentés et dépendent de la persistance des systèmes sources. Horizon est le Layer 0 (Preuve Décisionnelle) : il crée un Registre Décisionnel indépendant. Contrairement aux logs, un Snapshot Horizon est irréfutable et scellé mathématiquement.',
             },
             {
-              q: 'Quel périmètre pour commencer ?',
-              a: 'La bonne approche est ciblée : un use case critique, instrumentation au point de décision, puis extension progressive. Éviter "capturer tout".',
+              q: 'Quel est le ROI immédiat d\'Horizon ?',
+              a: 'Le ROI est déclenché par une seule enquête réglementaire ou contestation juridique. En remplaçant des semaines de "reconstruction a posteriori" (coûtant généralement entre 500 000 € et 1 M€ par audit majeur) par une extraction de preuve instantanée, Horizon s\'amortit par l\'élimination des frais d\'investigation.',
             },
           ],
         },
         {
-          name: 'Données & Intégration',
+          name: 'III. Données et Souveraineté',
           questions: [
             {
-              q: 'Horizon stocke-t-il des données sensibles ?',
-              a: 'Horizon n\'ingère pas les flux de données opérationnels. Il préserve les faits décisionnels déclarés au moment de l\'exécution, selon des schémas et périmètres définis par l\'institution. La minimisation des données, la rétention et la classification de sensibilité restent entièrement sous contrôle institutionnel.',
+              q: 'Horizon stocke-t-il des données sensibles (PII) ?',
+              a: 'Horizon capture uniquement les données que vous choisissez de lui transmettre. Il supporte le hachage sélectif ou le masquage des champs sensibles avant le scellement. La minimisation des données, la rétention et la classification de sensibilité restent entièrement sous le contrôle de votre institution.',
             },
             {
-              q: 'Comment le contenu d\'un snapshot décisionnel est-il défini ?',
-              a: 'Horizon définit un ensemble de champs standards. Chaque institution définit les champs spécifiques au système et fournit le schéma utilisé pour alimenter le snapshot décisionnel.',
+              q: 'Nos snapshots décisionnels quittent-ils notre infrastructure ?',
+              a: 'Non. Horizon est déployé in-perimeter. Toutes les données, les registres et les clés de signature restent sous le contrôle exclusif de votre institution. Asplenz n\'a aucun accès à vos données.',
             },
             {
               q: 'Qui décide quelles données sont capturées ?',
-              a: 'Horizon ne décide pas de ce qui est pertinent. Les clients définissent le schéma et les données fournies pour chaque système.',
-            },
-            {
-              q: 'Comment Horizon s\'intègre-t-il aux systèmes existants ?',
-              a: 'Asplenz fournit un SDK léger qui s\'intègre au point de décision de l\'institution. Les détails d\'intégration sont discutés au cas par cas pour refléter les contraintes système, les exigences de sécurité et le contexte institutionnel. La documentation technique est disponible sur demande.',
+              a: 'L\'institution définit le schéma et les champs spécifiques pour chaque système. Horizon fournit un ensemble de champs standards (Enveloppe de Contexte), mais le contenu métier est entièrement défini par le client.',
             },
           ],
         },
         {
-          name: 'Positionnement',
+          name: 'IV. Performance et Intégration',
           questions: [
             {
-              q: 'Horizon influence-t-il ou participe-t-il à la prise de décision ?',
-              a: 'Non. Horizon est un composant d\'infrastructure passif. Il observe et enregistre les données d\'exécution des décisions, mais n\'évalue ni ne prend jamais de décision.',
+              q: 'L\'ajout d\'une couche de preuve va-t-il ralentir mon moteur de crédit ?',
+              a: 'Non. Horizon utilise un modèle de capture asynchrone (fire-and-forget). L\'appel est traité en arrière-plan et ne bloque jamais le flux métier. L\'impact sur la latence de vos décisions est nul.',
             },
             {
-              q: 'Horizon est-il lié à des cadres réglementaires spécifiques ?',
-              a: 'Non. Horizon est une infrastructure technique agnostique aux régimes réglementaires. Il produit des artefacts signés au moment de l\'exécution que les institutions peuvent utiliser dans leurs propres processus réglementaires.',
+              q: 'Comment Horizon s\'intègre-t-il aux systèmes existants ?',
+              a: 'Asplenz fournit un SDK léger qui s\'intègre au "Point de Non-Retour" (là où la décision est finalisée). Il agit comme un observateur passif et ne nécessite aucune modification de votre logique métier.',
+            },
+          ],
+        },
+        {
+          name: 'V. Réglementation et Conformité',
+          questions: [
+            {
+              q: 'Comment Horizon aide-t-il à la conformité avec l\'AI Act européen ?',
+              a: 'L\'AI Act impose des obligations de traçabilité ex-post pour les systèmes "à haut risque". Horizon répond directement à cette exigence en fournissant une capacité de démonstration factuelle immédiate. Horizon rend votre conformité démontrable devant un régulateur.',
+            },
+            {
+              q: 'Horizon est-il compatible avec l\'Article 22 du RGPD ?',
+              a: 'Oui. L\'Article 22 encadre les décisions automatisées et les droits associés. Horizon garantit que l\'état factuel exact de la décision - les données précises vues par le moteur à T₀ - est disponible et irréfutable, permettant de fournir des explications basées sur des faits réels.',
             },
           ],
         },
       ],
+      cta: {
+        text: 'Demander un briefing technique - Niveau CRO/CISO',
+        href: '/contact',
+      },
       keyQuestions: [
         {
-          q: 'Pourquoi ne pas faire ça avec des logs ?',
-          a: 'Les logs sont utiles, mais souvent dispersés, reconstitués, et dépendants du SI source. Horizon vise une preuve décisionnelle autonome, stable et exploitable.',
+          q: 'Pourquoi ne pas utiliser des logs applicatifs ?',
+          a: 'Les logs sont conçus pour le débogage technique, pas pour la preuve institutionnelle. Ils sont mutables, fragmentés et dépendent de la persistance des systèmes sources. Horizon crée un Registre Décisionnel indépendant avec des snapshots irréfutables et scellés mathématiquement.',
         },
         {
           q: 'Horizon influence-t-il ou participe-t-il à la prise de décision ?',
@@ -1752,11 +2745,96 @@ Elle ne dicte ni l'interprétation, ni le jugement. Elle préserve le terrain fa
         },
         {
           q: 'Horizon stocke-t-il des données sensibles ?',
-          a: 'Horizon n\'ingère pas les flux de données opérationnels. Il préserve les faits décisionnels déclarés au moment de l\'exécution, selon des schémas et périmètres définis par l\'institution.',
+          a: 'Horizon capture uniquement les données que vous choisissez de lui transmettre. Il supporte le hachage sélectif ou le masquage des champs sensibles. Les données restent entièrement sous le contrôle de votre institution.',
         },
       ],
       viewAll: 'Voir toutes les questions',
       viewAllHref: '/faq',
+    },
+    creditIllustrativeScenario: {
+      backToHome: 'Retour à l\'accueil',
+      title: 'Scénario Illustratif : Le défi de l\'audit à J+180',
+      subtitle: 'Du récit fragile à l\'autorité factuelle',
+      context: {
+        title: 'Le Contexte',
+        content: 'Considérez une grande banque de détail traitant **50 000 demandes de crédit automatisées par jour**. Les décisions sont prises par un moteur complexe intégrant des ratios d\'endettement en temps réel, des scores de crédit tiers et des modèles de risque internes.',
+        event: '**L\'Événement :** 180 jours après un refus de prêt spécifique, un organisme de réglementation (ou un représentant juridique) conteste la décision, invoquant un biais potentiel ou un manque de transparence. La banque est tenue de prouver la base factuelle exacte de cette décision spécifique.',
+      },
+      scenarioA: {
+        title: 'Scénario A : Reconstruction a posteriori (Sans Horizon)',
+        intro: '*La banque s\'appuie sur les logs traditionnels et les sauvegardes de base de données.*',
+        steps: [
+          {
+            title: 'La Crise d\'Investigation',
+            text: 'L\'équipe Risque contacte l\'IT. L\'IT découvre que la base de données de production a été mise à jour 12 fois depuis la décision. Les données d\'entrée originales ont été écrasées ou archivées dans un data lake.',
+          },
+          {
+            title: 'L\'Excavation Manuelle',
+            text: 'Une "Task Force" de 6 personnes est constituée. Ils passent 4 semaines à tenter de corréler les logs serveurs avec des extraits de données archivées pour « deviner » ce que le système a vu à T₀.',
+          },
+          {
+            title: 'Le Résultat : Un Récit',
+            text: 'La banque produit un rapport de 40 pages expliquant ce qui s\'est « probablement passé ».',
+          },
+          {
+            title: 'La Faiblesse',
+            text: 'La preuve est une **reconstruction**. Elle est sujette au biais de rétrospective. Le régulateur note que la banque ne peut pas prouver mathématiquement que les données utilisées dans le rapport sont exactement celles que le moteur a consommées il y a six mois. **La responsabilité de la preuve revient implicitement à la direction du risque.**',
+          },
+        ],
+        cost: '~450 000 € en frais opérationnels',
+        result: 'Amende réglementaire résiduelle pour « Manque de traçabilité des processus ».',
+      },
+      scenarioB: {
+        title: 'Scénario B : Preuve à l\'exécution (Avec Horizon)',
+        intro: '*La banque a implémenté Horizon comme son Registre Décisionnel (Decision Ledger).*',
+        steps: [
+          {
+            title: 'L\'Extraction Instantanée',
+            text: 'L\'auditeur interne saisit l\'identifiant de la décision (`Decision_ID`). Horizon récupère immédiatement le **Snapshot Décisionnel** capturé il y a 180 jours.',
+          },
+          {
+            title: 'La Preuve Factuelle',
+            text: 'Le snapshot contient les **Entrées** exactes, la **Référence Système** (version du modèle) et la **Sortie** telles qu\'elles existaient au Point de Non-Retour.',
+          },
+          {
+            title: 'Le Sceau Mathématique',
+            text: 'L\'auditeur exécute un script de vérification. Le **Sceau d\'Intégrité** correspond. Il est prouvé mathématiquement que cet enregistrement n\'a pas été modifié depuis son exécution.',
+          },
+          {
+            title: 'Le Résultat : Un Fait',
+            text: 'La banque fournit un certificat de preuve d\'une page. L\'affaire est classée en 48 heures. **Aucune interprétation n\'est requise. La preuve existe indépendamment de tout récit.**',
+          },
+        ],
+        cost: 'Presque nul (temps de l\'auditeur interne)',
+        result: 'Désensibilisation totale du risque réglementaire.',
+      },
+      comparison: {
+        title: 'Comparaison Opérationnelle',
+        headers: ['Métrique', 'Scénario A (Reconstruction)', 'Scénario B (Horizon)'],
+        rows: [
+          ['Délai de Réponse', '8 - 12 Semaines', '< 24 Heures'],
+          ['Mobilisation Ressources', 'Task Force Transverse', '1 Auditeur Autorisé'],
+          ['Nature du Résultat', 'Récit Analytique (Probable)', 'Preuve Factuelle (Certaine)'],
+          ['Intégrité des Données', 'Fragile (Corrélation a posteriori)', 'Absolue (Sceau cryptographique)'],
+          ['Risque Institutionnel', 'Élevé (Exposé à la contestation)', 'Nul (Autorité souveraine)'],
+        ],
+      },
+      conclusion: {
+        title: 'Conclusion',
+        content: 'Ce scénario démontre que **la preuve ne peut pas être reconstruite après coup**.',
+        statement: 'L\'autorité se construit à l\'exécution - ou elle ne se construit jamais. En déployant Horizon comme son Registre Décisionnel, la banque cesse d\'être un défendeur tentant de justifier son passé. Elle devient une **Autorité** capable de produire la vérité sur demande.',
+      },
+      ctas: {
+        snapshot: 'Explorer le Snapshot Technique',
+        snapshotHref: '/foundations/snapshot',
+        contact: 'Demander un Briefing CRO',
+        contactHref: '/contact',
+      },
+      faqLink: {
+        text: 'Comment est-ce possible ? Consultez la',
+        linkText: 'FAQ complète',
+        href: '/faq',
+      },
     },
   },
 }

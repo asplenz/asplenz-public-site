@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
 import { getContent } from '@/lib/content'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import { MailIcon, CalendarIcon } from '../components/icons'
 
 export default function ContactPage() {
@@ -85,11 +86,7 @@ export default function ContactPage() {
         </div>
       </main>
 
-      <footer className="py-8 px-6 border-t border-gray-200 bg-white">
-        <div className="max-w-7xl mx-auto text-center text-sm text-gray-600">
-          <p>&copy; 2025 Horizon by Asplenz. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

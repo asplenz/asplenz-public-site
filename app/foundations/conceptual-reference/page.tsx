@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
 import { getContent } from '@/lib/content'
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 export default function ConceptualReferencePage() {
   const { lang } = useLang()
@@ -14,14 +15,16 @@ export default function ConceptualReferencePage() {
       .split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g)
       .map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) {
-          return <strong key={i} className="text-[#1A5187]">{part.slice(2, -2)}</strong>
+          return <strong key={i} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>
         }
         if (part.startsWith('*') && part.endsWith('*')) {
-          return <em key={i}>{part.slice(1, -1)}</em>
+          return <em key={i} className="italic">{part.slice(1, -1)}</em>
         }
         return part
       })
   }
+
+  const content = t.conceptualReference
 
   return (
     <div className="min-h-screen bg-white">
@@ -30,183 +33,375 @@ export default function ConceptualReferencePage() {
       <main className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
           <Link
-            href="/foundations"
+            href={content?.backToHubHref || '/foundations'}
             className="inline-flex items-center gap-2 text-[#1A5187] hover:underline mb-8"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            {t.conceptualReference.backToHub}
+            {content?.backToHub}
           </Link>
 
-          <p className="text-sm font-semibold text-[#1A5187] uppercase tracking-wider mb-2">
-            {t.conceptualReference.docType}
-          </p>
+          {/* Header */}
+          <div className="border-l-4 border-[#1A5187] pl-6 mb-12">
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-3">
+              {content?.label}
+            </p>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              {content?.title}
+            </h1>
+            <p className="text-lg text-gray-600 italic">
+              {content?.subtitle}
+            </p>
+          </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            {t.conceptualReference.title}
-          </h1>
+          <hr className="border-gray-200 my-8" />
 
-          <p className="text-xl text-gray-600 mb-4">
-            {t.conceptualReference.subtitle}
-          </p>
+          {/* Introduction */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {content?.introduction?.title}
+            </h2>
+            <p className="text-gray-700 mb-4">
+              {renderMarkdown(content?.introduction?.content || '')}
+            </p>
+            <p className="text-gray-700 mb-4">
+              {content?.introduction?.audience}
+            </p>
+            <p className="text-gray-600 italic text-sm">
+              {content?.introduction?.note}
+            </p>
+          </section>
 
-          <p className="text-lg text-[#1A5187] font-medium italic mb-12">
-            {t.conceptualReference.tagline}
-          </p>
+          <hr className="border-gray-200 my-8" />
 
-          <div className="space-y-12">
-            {t.conceptualReference.sections.map((section, idx) => (
-              <section key={idx}>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                  {section.title}
-                </h2>
+          {/* Executive Summary */}
+          <section className="mb-12 bg-gray-50 p-6 rounded-lg">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {content?.executiveSummary?.title}
+            </h2>
+            <p className="text-gray-700 mb-4">
+              {content?.executiveSummary?.content}
+            </p>
+            <p className="text-gray-700 mb-4">
+              {content?.executiveSummary?.problem}
+            </p>
+            <p className="text-gray-700 mb-4">
+              {content?.executiveSummary?.solution}
+            </p>
+            <p className="text-gray-800 font-medium">
+              {content?.executiveSummary?.conclusion}
+            </p>
+          </section>
 
-                {'subtitle' in section && section.subtitle && (
-                  <h3 className="text-lg font-semibold text-[#1A5187] mb-4">
-                    {section.subtitle}
-                  </h3>
-                )}
+          <hr className="border-gray-200 my-8" />
 
-                {'content' in section && section.content && (
-                  <div className="text-gray-700 mb-6">
-                    {section.content.split('\n\n').map((paragraph, pIdx) => (
-                      <p key={pIdx} className="mb-4">
-                        {renderMarkdown(paragraph)}
-                      </p>
-                    ))}
+          {/* Problem Statement */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              {content?.problemStatement?.title}
+            </h2>
+            <h3 className="text-lg text-[#1A5187] font-medium mb-4">
+              {content?.problemStatement?.subtitle}
+            </h3>
+            <p className="text-gray-700 mb-4">
+              {content?.problemStatement?.intro}
+            </p>
+            <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4 ml-4">
+              {content?.problemStatement?.consequences?.map((item: string, idx: number) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+            <p className="text-gray-700">
+              {content?.problemStatement?.conclusion}
+            </p>
+          </section>
+
+          <hr className="border-gray-200 my-8" />
+
+          {/* Core Principle */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              {content?.corePrinciple?.title}
+            </h2>
+            <h3 className="text-lg text-[#1A5187] font-medium mb-4">
+              {content?.corePrinciple?.subtitle}
+            </h3>
+            <p className="text-gray-700 mb-4">
+              {content?.corePrinciple?.intro}
+            </p>
+            <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4 ml-4">
+              {content?.corePrinciple?.points?.map((item: string, idx: number) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+            <p className="text-gray-800 font-medium">
+              {content?.corePrinciple?.conclusion}
+            </p>
+          </section>
+
+          <hr className="border-gray-200 my-8" />
+
+          {/* Decision Snapshot Artifact */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {content?.snapshotArtifact?.title}
+            </h2>
+            <p className="text-gray-700 mb-4">
+              {renderMarkdown(content?.snapshotArtifact?.intro || '')}
+            </p>
+            <p className="text-gray-700 mb-6">
+              {content?.snapshotArtifact?.statement}
+            </p>
+
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              {content?.snapshotArtifact?.propertiesTitle}
+            </h3>
+            <div className="space-y-3 mb-6">
+              {content?.snapshotArtifact?.properties?.map((prop: { title: string; text: string }, idx: number) => (
+                <div key={idx} className="flex gap-3">
+                  <span className="text-[#1A5187] mt-1">•</span>
+                  <div>
+                    <span className="font-semibold text-gray-900">{prop.title}</span> – {' '}
+                    <span className="text-gray-700">{prop.text}</span>
                   </div>
-                )}
+                </div>
+              ))}
+            </div>
 
-                {'points' in section && section.points && (
-                  <ul className="list-disc list-inside text-gray-700 mb-4 space-y-1">
-                    {section.points.map((point, pointIdx) => (
-                      <li key={pointIdx}>{point}</li>
+            <p className="text-gray-800 italic bg-amber-50 border-l-4 border-amber-400 pl-4 py-2">
+              {content?.snapshotArtifact?.warning}
+            </p>
+          </section>
+
+          <hr className="border-gray-200 my-8" />
+
+          {/* Evidence vs Reconstruction */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              {content?.comparison?.title}
+            </h2>
+            <div className="overflow-x-auto mb-6">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr>
+                    {content?.comparison?.headers?.map((header: string, idx: number) => (
+                      <th
+                        key={idx}
+                        className={`p-3 text-left font-semibold border-b-2 border-gray-300 ${
+                          idx === 0 ? 'bg-red-50 text-red-800' : 'bg-green-50 text-green-800'
+                        }`}
+                      >
+                        {header}
+                      </th>
                     ))}
-                  </ul>
-                )}
+                  </tr>
+                </thead>
+                <tbody>
+                  {content?.comparison?.rows?.map((row: string[], rowIdx: number) => (
+                    <tr key={rowIdx} className="border-b border-gray-200">
+                      {row.map((cell: string, cellIdx: number) => (
+                        <td
+                          key={cellIdx}
+                          className={`p-3 ${
+                            cellIdx === 0 ? 'text-gray-700 bg-red-50/50' : 'text-gray-700 bg-green-50/50'
+                          }`}
+                        >
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-gray-800 font-medium">
+              {content?.comparison?.conclusion}
+            </p>
+          </section>
 
-                {'conclusion' in section && section.conclusion && (
-                  <p className="text-gray-700 mt-4">
-                    {renderMarkdown(section.conclusion)}
-                  </p>
-                )}
+          <hr className="border-gray-200 my-8" />
 
-                {'propertiesTitle' in section && section.propertiesTitle && (
-                  <div className="mt-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                      {section.propertiesTitle}
-                    </h3>
-                    {'properties' in section && section.properties && (
-                      <div className="grid gap-3">
-                        {section.properties.map((prop, propIdx) => (
-                          <div key={propIdx} className="p-3 bg-gray-50 border border-gray-200 rounded-lg border-l-4 border-l-[#1A5187]">
-                            <span className="font-semibold text-[#1A5187]">{prop.name}</span>
-                            <span className="text-gray-700"> – {prop.description}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    {'note' in section && section.note && (
-                      <blockquote className="mt-4 border-l-4 border-gray-300 pl-4 py-2 bg-gray-50 rounded-r-lg">
-                        <p className="text-sm text-gray-600 italic">
-                          {section.note}
-                        </p>
-                      </blockquote>
-                    )}
+          {/* Automated Decisions */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {content?.automatedDecisions?.title}
+            </h2>
+            <p className="text-gray-700 mb-4">
+              {content?.automatedDecisions?.intro}
+            </p>
+            <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4 ml-4">
+              {content?.automatedDecisions?.elements?.map((item: string, idx: number) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+            <p className="text-gray-700 mb-4">
+              {content?.automatedDecisions?.explanation}
+            </p>
+            <p className="text-gray-800 font-medium">
+              {content?.automatedDecisions?.conclusion}
+            </p>
+          </section>
+
+          <hr className="border-gray-200 my-8" />
+
+          {/* Separation of Execution and Evaluation */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {content?.separation?.title}
+            </h2>
+            <p className="text-gray-700 mb-4">
+              {content?.separation?.intro}
+            </p>
+            <div className="space-y-3 mb-4">
+              {content?.separation?.items?.map((item: { title: string; text: string }, idx: number) => (
+                <div key={idx} className="flex gap-3">
+                  <span className="text-[#1A5187] mt-1">•</span>
+                  <div>
+                    <span className="font-semibold text-gray-900">{item.title}</span> – {' '}
+                    <span className="text-gray-700">{item.text}</span>
                   </div>
-                )}
+                </div>
+              ))}
+            </div>
+            <p className="text-gray-700">
+              {content?.separation?.conclusion}
+            </p>
+          </section>
 
-                {'comparisonTable' in section && section.comparisonTable && (
-                  <div className="overflow-x-auto mt-6">
-                    <table className="w-full border-collapse">
-                      <thead>
-                        <tr className="bg-[#1A5187] text-white">
-                          {section.comparisonTable.headers.map((header, hIdx) => (
-                            <th key={hIdx} className="px-4 py-3 text-left font-semibold text-sm">
-                              {header}
-                            </th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {section.comparisonTable.rows.map((row, rowIdx) => (
-                          <tr key={rowIdx} className={rowIdx % 2 === 0 ? 'bg-white' : 'bg-gray-100'}>
-                            {row.map((cell, cellIdx) => (
-                              <td key={cellIdx} className="px-4 py-3 border-b border-gray-200 text-gray-700 text-sm">
-                                {cell}
-                              </td>
-                            ))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
+          <hr className="border-gray-200 my-8" />
 
-                {'definitions' in section && section.definitions && (
-                  <div className="grid gap-3 mt-4">
-                    {section.definitions.map((def, defIdx) => (
-                      <div key={defIdx} className="p-3 bg-gray-50 border border-gray-200 rounded-lg">
-                        <span className="font-semibold text-[#1A5187]">{def.term}</span>
-                        <span className="text-gray-700"> – {def.definition}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+          {/* Institutional Contexts */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {content?.institutionalContexts?.title}
+            </h2>
+            <p className="text-gray-700 mb-4">
+              {content?.institutionalContexts?.intro}
+            </p>
+            <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4 ml-4">
+              {content?.institutionalContexts?.contexts?.map((item: string, idx: number) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+            <p className="text-gray-700">
+              {content?.institutionalContexts?.conclusion}
+            </p>
+          </section>
 
-                {'boundaries' in section && section.boundaries && (
-                  <ul className="list-disc list-inside text-gray-700 mb-4 space-y-1">
-                    {section.boundaries.map((boundary, bIdx) => (
-                      <li key={bIdx}>{boundary}</li>
-                    ))}
-                  </ul>
-                )}
-              </section>
-            ))}
+          <hr className="border-gray-200 my-8" />
 
-            <section className="border-t border-gray-200 pt-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.conceptualReference.conclusion.title}
-              </h2>
-              <div className="text-gray-700">
-                {t.conceptualReference.conclusion.content.split('\n\n').map((paragraph, pIdx) => (
-                  <p key={pIdx} className="mb-4">
-                    {renderMarkdown(paragraph)}
-                  </p>
-                ))}
-              </div>
-            </section>
+          {/* Operational Impact */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {content?.operationalImpact?.title}
+            </h2>
+            <p className="text-gray-700 mb-4">
+              {content?.operationalImpact?.intro}
+            </p>
+            <p className="text-gray-700 mb-2">{lang === 'en' ? 'It reduces:' : 'Elle réduit :'}</p>
+            <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4 ml-4">
+              {content?.operationalImpact?.reduces?.map((item: string, idx: number) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+            <p className="text-gray-800 font-medium">
+              {content?.operationalImpact?.conclusion}
+            </p>
+          </section>
 
-            <section className="bg-[#1A5187]/5 border border-[#1A5187]/20 rounded-lg p-6">
-              <h2 className="text-xl font-bold text-[#1A5187] mb-3">
-                {t.conceptualReference.nextStep.title}
-              </h2>
-              <p className="text-gray-700">
-                {t.conceptualReference.nextStep.content}
+          <hr className="border-gray-200 my-8" />
+
+          {/* Principles and Boundaries */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {content?.principles?.title}
+            </h2>
+            <p className="text-gray-700 mb-4">
+              {content?.principles?.intro}
+            </p>
+            <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4 ml-4">
+              {content?.principles?.items?.map((item: string, idx: number) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+            <p className="text-gray-800 font-medium italic">
+              {content?.principles?.conclusion}
+            </p>
+          </section>
+
+          <hr className="border-gray-200 my-8" />
+
+          {/* Availability and Adoption */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {content?.availability?.title}
+            </h2>
+            <p className="text-gray-700 mb-4">
+              {content?.availability?.content}
+            </p>
+            <p className="text-gray-700">
+              {content?.availability?.clarification}
+            </p>
+          </section>
+
+          <hr className="border-gray-200 my-8" />
+
+          {/* Conclusion */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {content?.conclusion?.title}
+            </h2>
+            <p className="text-gray-700 mb-4">
+              {content?.conclusion?.problem}
+            </p>
+            <p className="text-gray-700 mb-4">
+              {content?.conclusion?.limitation}
+            </p>
+            <p className="text-gray-700 mb-4">
+              {content?.conclusion?.solution}
+            </p>
+            <blockquote className="border-l-4 border-[#1A5187] pl-6 py-4 bg-gray-50 rounded-r-lg">
+              <p className="text-gray-800">
+                {content?.conclusion?.final}
               </p>
-            </section>
+            </blockquote>
+          </section>
+
+          {/* Next Step CTA */}
+          <div className="mt-12 p-6 bg-[#1A5187]/5 border border-[#1A5187]/20 rounded-lg">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">
+              {content?.nextStep?.title}
+            </h3>
+            <p className="text-gray-700 mb-4">
+              {content?.nextStep?.content}
+            </p>
+            <Link
+              href={content?.nextStep?.href || '/contact'}
+              className="inline-flex items-center gap-2 text-[#1A5187] font-semibold hover:underline"
+            >
+              {content?.nextStep?.linkText}
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
 
           <div className="mt-16 pt-8 border-t border-gray-200">
             <Link
-              href="/foundations"
+              href={content?.backToHubHref || '/foundations'}
               className="inline-flex items-center gap-2 text-[#1A5187] hover:underline"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              {t.conceptualReference.backToHub}
+              {content?.backToHub}
             </Link>
           </div>
         </div>
       </main>
 
-      <footer className="py-8 px-6 border-t border-gray-200 bg-white">
-        <div className="max-w-7xl mx-auto text-center text-sm text-gray-600">
-          <p>&copy; 2025 Horizon by Asplenz. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

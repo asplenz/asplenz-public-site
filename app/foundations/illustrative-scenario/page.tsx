@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
 import { getContent } from '@/lib/content'
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 export default function IllustrativeScenarioPage() {
   const { lang } = useLang()
@@ -305,7 +306,35 @@ export default function IllustrativeScenarioPage() {
             </p>
           </section>
 
-          <div className="mt-16 pt-8 border-t border-gray-200 flex flex-col sm:flex-row gap-4">
+          {/* Dual CTA for different audiences */}
+          <div className="mt-12 grid md:grid-cols-2 gap-6">
+            <div className="p-6 bg-[#1A5187]/5 border border-[#1A5187]/20 rounded-lg">
+              <p className="text-gray-600 mb-3">{content.cta?.forCRO?.text}</p>
+              <Link
+                href={content.cta?.forCRO?.href || '/executive-briefing'}
+                className="inline-flex items-center gap-2 text-[#1A5187] font-semibold hover:underline"
+              >
+                {content.cta?.forCRO?.linkText}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+            <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg">
+              <p className="text-gray-600 mb-3">{content.cta?.forCTO?.text}</p>
+              <Link
+                href={content.cta?.forCTO?.href || '/foundations/snapshot'}
+                className="inline-flex items-center gap-2 text-[#1A5187] font-semibold hover:underline"
+              >
+                {content.cta?.forCTO?.linkText}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-8 pt-8 border-t border-gray-200 flex flex-col sm:flex-row gap-4">
             <Link
               href="/foundations/operational-reality"
               className="inline-flex items-center gap-2 text-[#1A5187] hover:underline"
@@ -328,11 +357,7 @@ export default function IllustrativeScenarioPage() {
         </div>
       </main>
 
-      <footer className="py-8 px-6 border-t border-gray-200 bg-white">
-        <div className="max-w-7xl mx-auto text-center text-sm text-gray-600">
-          <p>&copy; 2025 Horizon by Asplenz. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
