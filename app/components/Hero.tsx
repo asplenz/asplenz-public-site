@@ -29,20 +29,20 @@ export default function Hero() {
             )}
           </p>
 
-          {(t.hero.highlight || t.hero.subtext) && (
-            <p className="text-lg mb-2">
-              <strong className="text-[#1A5187]">{t.hero.highlight}</strong>{' '}
-              {t.hero.subtext}
-            </p>
-          )}
-
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-10">
-            <Link
-              href="/contact"
-              className="px-6 py-3 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-center"
-            >
-              {t.hero.cta1}
-            </Link>
+            <div className="flex flex-col">
+              <Link
+                href="/contact"
+                className="px-6 py-3 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-center"
+              >
+                {t.hero.cta1}
+              </Link>
+              {t.hero.subtext && (
+                <p className="text-sm text-gray-500 mt-2 text-center">
+                  {t.hero.subtext}
+                </p>
+              )}
+            </div>
             <Link
               href="/foundations"
               className="inline-flex items-center gap-2 text-[#1A5187] font-medium hover:underline"

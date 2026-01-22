@@ -68,6 +68,11 @@ export default function FAQPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </Link>
+            {t.faq.cta?.subtext && (
+              <p className="text-sm text-gray-500 mt-3">
+                {t.faq.cta.subtext}
+              </p>
+            )}
           </div>
 
           <div className="mt-12 pt-8 border-t border-gray-200">
