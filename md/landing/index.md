@@ -1,10 +1,14 @@
 # **[ENGLISH VERSION]**
 
-## **Stop Reconstructing. Start Proving.**
+**DECISION OBSERVABILITY INFRASTRUCTURE (DOI)**
 
-### **The Decision Ledger for Automated Credit Risk Management**
+## **The Foundation of Decision Authority**
 
-**When an automated credit decision is challenged, can you produce the exact factual state of the execution — immediately, without reconstruction, and with mathematical certainty?**
+# **Stop Reconstructing. Start Proving.**
+
+Automated systems evolve. Decisions are permanent. When an automated decision is challenged, whether clinical or financial, produce the exact factual state of the execution, **immediately, without reconstruction, and with mathematical certainty.**
+
+*A factual, execution-time record of what actually happened.*
 
 ---
 
@@ -57,7 +61,9 @@ Horizon is designed to be profitable from the first regulatory inquiry or legal 
 
 **The cost of a single major investigation exceeds the cost of a decade of structural evidence.**
 
-👉 **[Request a CRO-Level Technical Briefing]**
+👉 **[Request a Decision Evidence Briefing]**
+*For Risk, Compliance, and Risk Technology leaders*
+
 👉 **[Read the Foundations]**
 
 ---
@@ -66,11 +72,15 @@ Horizon is designed to be profitable from the first regulatory inquiry or legal 
 
 # **[VERSION FRANÇAISE]**
 
-## **Arrêtez de reconstruire. Commencez à prouver.**
+**INFRASTRUCTURE D'OBSERVABILITÉ DÉCISIONNELLE (DOI)**
 
-### **Le Registre Décisionnel pour la Gestion du Risque Crédit**
+## **Le Socle de l'Autorité Décisionnelle**
 
-**Lorsqu'une décision de crédit automatisée est contestée, pouvez-vous produire l'état factuel exact de l'exécution — immédiatement, sans reconstruction et avec une certitude mathématique ?**
+# **Cessez de reconstruire. Commencez à prouver.**
+
+Les systèmes automatisés évoluent. Les décisions sont permanentes. Lorsqu'une décision automatisée est contestée, qu'elle soit clinique ou financière, produisez l'état factuel exact de l'exécution, **immédiatement, sans reconstruction, et avec une certitude mathématique.**
+
+*Un enregistrement factuel, au moment de l'exécution, de ce qui s'est réellement passé.*
 
 ---
 
@@ -123,6 +133,8 @@ Horizon est conçu pour être rentable dès la première enquête réglementaire
 
 **Le coût d'une seule investigation majeure dépasse le coût d'une décennie de preuves structurelles.**
 
-👉 **[Demander un briefing technique – Niveau CRO]**
+👉 **[Demander un Briefing Decision Evidence]**
+*Pour les responsables Risk, Compliance et Risk Technology*
+
 👉 **[Explorer les Fondations]**
 

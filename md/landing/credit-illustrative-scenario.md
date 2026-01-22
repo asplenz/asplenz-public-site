@@ -58,7 +58,7 @@ This scenario demonstrates that **evidence cannot be retrofitted**.
 
 Authority is established at execution time — or it is never established. By deploying Horizon as its Decision Ledger, the bank stops being a defendant trying to justify its past. It becomes an **Authority** capable of producing the truth on demand.
 
-👉 **[Download the CRO Business Case →]**
+👉 **[Discuss This Audit Scenario →]**
 👉 **[Explore the Technical Snapshot →]**
 
 ---
@@ -125,6 +125,6 @@ Ce scénario démontre que **la preuve ne peut pas être reconstruite après cou
 
 L’autorité se construit à l’exécution — ou elle ne se construit jamais. En déployant Horizon comme son Registre Décisionnel, la banque cesse d'être un défendeur tentant de justifier son passé. Elle devient une **Autorité** capable de produire la vérité sur demande.
 
-👉 **[Télécharger le Business Case pour les CRO →]**
+👉 **[Discuter de ce Scénario d'Audit →]**
 👉 **[Explorer le Snapshot Technique →]**
 

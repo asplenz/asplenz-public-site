@@ -124,7 +124,8 @@
 
 ---
 
-👉 **[Demander un briefing technique – Niveau CRO/CISO]**
+👉 **[Demander un Briefing Decision Evidence]**
+*Généralement suivi par les responsables Risk Technology, Compliance et Risk*
 
 ---
 

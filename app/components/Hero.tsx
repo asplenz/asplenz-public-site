@@ -13,21 +13,33 @@ export default function Hero() {
     <section className="pt-32 pb-20 px-6">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <p className="text-sm uppercase tracking-wider text-gray-500 mb-4">{t.tagline}</p>
+          <p className="text-sm uppercase tracking-wider text-gray-500 mb-2">{t.tagline}</p>
+
+          {t.hero.topTitle && (
+            <h2 className="text-xl md:text-2xl font-semibold text-[#1A5187] mb-4">
+              {t.hero.topTitle}
+            </h2>
+          )}
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
             {t.hero.title}
           </h1>
 
-          <p className="text-xl font-semibold text-gray-800 max-w-xl mt-6">
+          <p className="text-lg text-gray-700 max-w-xl">
             {t.hero.descriptionParts.map((part: { text: string; bold: boolean }, idx: number) =>
               part.bold ? (
-                <strong key={idx} className="font-bold">{part.text}</strong>
+                <strong key={idx} className="font-bold text-gray-900">{part.text}</strong>
               ) : (
                 <span key={idx}>{part.text}</span>
               )
             )}
           </p>
+
+          {t.hero.bottomText && (
+            <p className="text-base text-gray-500 italic mt-4">
+              {t.hero.bottomText}
+            </p>
+          )}
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-10">
             <div className="flex flex-col">
