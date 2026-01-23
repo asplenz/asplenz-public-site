@@ -621,19 +621,24 @@ send_response_to_customer(credit_decision)`,
         title: 'Introduction: Making Truth Actionable',
         content: 'The first two pillars of the Foundations ensure that an institution possesses the **Truth** (immutable facts captured by Horizon). This provides the essential foundation for **The Decision Authority Stack**: a tiered architecture where every layer of analysis is anchored in a sovereign record.',
         emphasis: '**All observability capabilities are strictly derived from the immutable evidence captured by Horizon at Layer 0 (Decision Evidence).** Layer 1 and Layer 2 represent the subsequent analytical levels of the Stack, transforming silent cryptographic snapshots into a clear, navigable, and strategic map of the institution\'s automated life.',
+        guardrail: '**Decision Observability is strictly read-only.** It exposes existing execution facts without inference, enrichment, or interpretation.',
+      },
+      layerSeparation: {
+        layer1: 'Layer 1 (Observability): Examine what happened, based on immutable facts.',
+        layer2: 'Layer 2 (Intelligence): Interpret those facts to produce insights, metrics, or judgments.',
       },
       layer1: {
         title: '1. Layer 1: Decision Observability',
-        subtitle: 'The Investigation Engine',
-        intro: 'Decision Observability is the ability to reconstruct the "why" behind the "what." While Horizon records the execution, **Asplenz Insights** provides the interface to interrogate it.',
+        subtitle: 'The Examination Engine',
+        intro: 'Decision Observability is the ability to expose the factual execution context behind a decision, without interpretation. While Horizon records the execution, **Asplenz Insights** provides the interface to examine it.',
         points: [
           {
-            title: 'Contextual Reconstruction',
-            text: 'Reassembling the environment of a decision (market conditions, policy versions, and team authority) at any point in history.',
+            title: 'Contextual Reassembly',
+            text: 'Exposing the environment of a decision (market conditions, policy versions, and team authority) at any point in history, based solely on preserved facts.',
           },
           {
             title: 'Lineage & Trajectory',
-            text: 'Visualizing how a specific customer data point traveled through multiple models to result in a final credit decision.',
+            text: 'Visualizing how a specific customer data point traveled through multiple models to result in a final decision, without inference.',
           },
           {
             title: 'Human-in-the-Loop Integration',
@@ -644,7 +649,7 @@ send_response_to_customer(credit_decision)`,
       layer2: {
         title: '2. Layer 2: Decision Intelligence',
         subtitle: 'Strategic Governance',
-        intro: 'Once observability is established at scale, the institution can move from individual cases to global patterns. This is the realm of **Automated Decision Governance.**',
+        intro: 'Once observability is established at scale, the institution can move from individual cases to global patterns. This is the realm of **Automated Decision Governance.** Layer 2 interprets the facts exposed by Layer 1.',
         points: [
           {
             title: 'Policy Drift Detection',
@@ -662,11 +667,11 @@ send_response_to_customer(credit_decision)`,
       },
       goldenRule: {
         title: '3. The Golden Rule: Interpretation Cannot Corrupt Evidence',
-        content: 'In the Asplenz architecture, Layers 1 and 2 are strictly consumers of Layer 0.',
+        content: 'In the Asplenz architecture, Layers 1 and 2 are strictly consumers of Layer 0. Layer 1 exposes facts. Layer 2 interprets them. Neither can alter them.',
         points: [
           {
             title: 'One-Way Integrity',
-            text: 'Insights can analyze, tag, and annotate snapshots, but it can **never modify** the original record.',
+            text: 'Insights can examine, tag, and annotate snapshots, but it can **never modify** the original record.',
           },
           {
             title: 'Separation of Concerns',
@@ -2041,19 +2046,24 @@ envoyer_reponse_au_client(credit_decision)`,
         title: 'Introduction : Rendre la Vérité Actionnable',
         content: 'Les deux premiers piliers des Fondations garantissent qu\'une institution possède la **Vérité** (les faits immuables capturés par Horizon). Ils constituent le socle indispensable de **La Pile de l\'Autorité Décisionnelle (The Decision Authority Stack)** : une architecture à plusieurs niveaux où chaque strate d\'analyse est ancrée dans un registre souverain.',
         emphasis: '**Toutes les capacités d\'observabilité dérivent exclusivement des preuves immuables capturées par Horizon au Layer 0 (Preuve Décisionnelle).** Le Layer 1 et le Layer 2 représentent les niveaux analytiques suivants de la Pile, transformant les snapshots cryptographiques silencieux en une cartographie claire et stratégique de la vie automatisée de l\'institution.',
+        guardrail: '**L\'Observabilité Décisionnelle est strictement en lecture seule.** Elle expose les faits d\'exécution existants sans inférence, enrichissement ou interprétation.',
+      },
+      layerSeparation: {
+        layer1: 'Layer 1 (Observabilité) : Examiner ce qui s\'est passé, sur la base de faits immuables.',
+        layer2: 'Layer 2 (Intelligence) : Interpréter ces faits pour produire des insights, métriques ou jugements.',
       },
       layer1: {
         title: '1. Layer 1 : L\'Observabilité Décisionnelle',
-        subtitle: 'Le Moteur d\'Enquête',
-        intro: 'L\'Observabilité Décisionnelle est la capacité de reconstruire le « pourquoi » derrière le « quoi ». Alors qu\'Horizon enregistre l\'exécution, **Asplenz Insights** fournit l\'interface pour l\'interroger.',
+        subtitle: 'Le Moteur d\'Examen',
+        intro: 'L\'Observabilité Décisionnelle est la capacité d\'exposer le contexte factuel d\'exécution d\'une décision, sans interprétation. Alors qu\'Horizon enregistre l\'exécution, **Asplenz Insights** fournit l\'interface pour l\'examiner.',
         points: [
           {
-            title: 'Reconstruction Contextuelle',
-            text: 'Réassembler l\'environnement d\'une décision (conditions de marché, versions des politiques) à n\'importe quel point de l\'histoire.',
+            title: 'Réassemblage Contextuel',
+            text: 'Exposer l\'environnement d\'une décision (conditions de marché, versions des politiques) à n\'importe quel point de l\'histoire, sur la base des seuls faits préservés.',
           },
           {
             title: 'Lignage et Trajectoire',
-            text: 'Visualiser comment un point de donnée client a traversé plusieurs modèles pour aboutir à une décision de crédit finale.',
+            text: 'Visualiser comment un point de donnée client a traversé plusieurs modèles pour aboutir à une décision finale, sans inférence.',
           },
           {
             title: 'Investigation Augmentée (Human-in-the-Loop)',
@@ -2064,7 +2074,7 @@ envoyer_reponse_au_client(credit_decision)`,
       layer2: {
         title: '2. Layer 2 : L\'Intelligence Décisionnelle',
         subtitle: 'Gouvernance Stratégique',
-        intro: 'Une fois l\'observabilité établie à grande échelle, l\'institution peut passer de l\'analyse de cas individuels à l\'analyse de modèles globaux. C\'est le domaine de la **Gouvernance des Décisions Automatisées.**',
+        intro: 'Une fois l\'observabilité établie à grande échelle, l\'institution peut passer de l\'analyse de cas individuels à l\'analyse de modèles globaux. C\'est le domaine de la **Gouvernance des Décisions Automatisées.** Le Layer 2 interprète les faits exposés par le Layer 1.',
         points: [
           {
             title: 'Détection de Dérive (Drift)',
@@ -2082,11 +2092,11 @@ envoyer_reponse_au_client(credit_decision)`,
       },
       goldenRule: {
         title: '3. La Règle d\'Or : L\'Interprétation ne peut Corrompre la Preuve',
-        content: 'Dans l\'architecture Asplenz, les Layers 1 et 2 sont strictement des consommateurs du Layer 0.',
+        content: 'Dans l\'architecture Asplenz, les Layers 1 et 2 sont strictement des consommateurs du Layer 0. Le Layer 1 expose les faits. Le Layer 2 les interprète. Aucun ne peut les altérer.',
         points: [
           {
             title: 'Intégrité Unidirectionnelle',
-            text: 'Insights peut analyser et annoter les snapshots, mais il ne peut **jamais modifier** l\'enregistrement original.',
+            text: 'Insights peut examiner, taguer et annoter les snapshots, mais il ne peut **jamais modifier** l\'enregistrement original.',
           },
           {
             title: 'Séparation des Responsabilités',

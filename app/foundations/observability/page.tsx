@@ -62,10 +62,29 @@ export default function ObservabilityPage() {
             <p className="text-gray-700 mb-4">
               {renderMarkdown(content?.transition?.content || '')}
             </p>
-            <p className="text-gray-800 bg-[#1A5187]/5 border-l-4 border-[#1A5187] pl-4 py-2">
+            <p className="text-gray-800 bg-[#1A5187]/5 border-l-4 border-[#1A5187] pl-4 py-2 mb-4">
               {renderMarkdown(content?.transition?.emphasis || '')}
             </p>
+            {content?.transition?.guardrail && (
+              <p className="text-gray-900 font-semibold bg-amber-50 border-l-4 border-amber-400 pl-4 py-2">
+                {renderMarkdown(content?.transition?.guardrail || '')}
+              </p>
+            )}
           </section>
+
+          {/* Layer Separation */}
+          {content?.layerSeparation && (
+            <section className="mb-8 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+              <div className="space-y-2">
+                <p className="text-gray-800">
+                  <span className="font-semibold text-[#1A5187]">•</span> {content?.layerSeparation?.layer1}
+                </p>
+                <p className="text-gray-800">
+                  <span className="font-semibold text-amber-600">•</span> {content?.layerSeparation?.layer2}
+                </p>
+              </div>
+            </section>
+          )}
 
           <hr className="border-gray-200 my-8" />
 
