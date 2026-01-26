@@ -144,7 +144,7 @@ export default function QuickStartPage() {
               {content.whatHorizonDoesNot.items.map((item: { label: string; description: string }, idx: number) => (
                 <li key={idx} className="flex items-start gap-2">
                   <span className="font-semibold text-gray-900">{item.label}</span>
-                  <span className="text-gray-600">— {item.description}</span>
+                  <span className="text-gray-600">- {item.description}</span>
                 </li>
               ))}
             </ul>
