@@ -10,56 +10,56 @@ export default function Hero() {
   const t = getContent(lang)
 
   return (
-    <section className="pt-32 pb-20 px-6">
+    <section className="pt-32 pb-6 px-6">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <p className="text-sm uppercase tracking-wider text-gray-500 mb-2">{t.tagline}</p>
-
-          {t.hero.topTitle && (
-            <h2 className="text-xl md:text-2xl font-semibold text-[#1A5187] mb-4">
-              {t.hero.topTitle}
-            </h2>
-          )}
-
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            {t.hero.title}
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 leading-tight">
+            {t.hero.headline}
           </h1>
-
-          <p className="text-lg text-gray-700 max-w-xl">
-            {t.hero.descriptionParts.map((part: { text: string; bold: boolean }, idx: number) =>
-              part.bold ? (
-                <strong key={idx} className="font-bold text-gray-900">{part.text}</strong>
-              ) : (
-                <span key={idx}>{part.text}</span>
-              )
-            )}
+          <p className="text-lg text-[#1A5187] mb-6">
+            {t.hero.headlineSubtext}
           </p>
 
-          {t.hero.bottomText && (
-            <p className="text-base text-gray-500 italic mt-4">
-              {t.hero.bottomText}
-            </p>
-          )}
+          <p className="text-lg text-gray-700 mb-6">
+            {t.hero.subheadline}
+          </p>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-10">
-            <div className="flex flex-col">
-              <Link
-                href="/contact"
+          <ul className="space-y-3 mb-8">
+            {t.hero.bullets.map((bullet: string, idx: number) => (
+              <li key={idx} className="flex items-start gap-3">
+                <span className="text-[#1A5187] mt-1">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <span className="text-gray-700">{bullet}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <a
+                href="#how-horizon-seals"
                 className="px-6 py-3 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-center"
               >
-                {t.hero.cta1}
-              </Link>
-              {t.hero.subtext && (
-                <p className="text-sm text-gray-500 mt-2 text-center">
-                  {t.hero.subtext}
-                </p>
-              )}
+                {t.common.cta_primary}
+              </a>
+              <a
+                href="#post-incident-timeline"
+                className="inline-flex items-center gap-2 text-gray-600 font-medium hover:text-[#1A5187] hover:underline"
+              >
+                {t.common.cta_view_timeline}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
             </div>
             <Link
               href="/foundations"
               className="inline-flex items-center gap-2 text-[#1A5187] font-medium hover:underline"
             >
-              {t.hero.cta2}
+              {t.common.cta_secondary}
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -70,7 +70,7 @@ export default function Hero() {
         <div className="hidden md:block">
           <Image
             src="/hero.png"
-            alt="Financial document automation"
+            alt="Horizon - Incident evidence infrastructure"
             width={600}
             height={400}
             className="rounded-lg"

@@ -1,0 +1,137 @@
+{
+  "common": {
+    "cta_primary": "Parcourir un incident réel",
+    "cta_secondary": "Voir l’architecture",
+    "cta_request_overview": "Demander une présentation technique",
+    "cta_discuss_use_case": "Discuter d’un cas post-mortem"
+  },
+  "hero": {
+    "headline": "Quand un incident survient, prouvez ce qui a été déclaré — avant que les souvenirs ne réécrivent tout.",
+    "subheadline": "Horizon est une infrastructure neutre, append-only, qui scelle les faits de sécurité et de crise au moment où ils sont déclarés, sans décider, sans approuver et sans interférer avec les opérations de réponse.",
+    "bullets": {
+      "b1": "Capturer les faits pendant l’incident, pas après",
+      "b2": "Preuve indépendante, vérifiable cryptographiquement",
+      "b3": "Aucun workflow, aucune approbation, aucune friction opérationnelle"
+    }
+  },
+  "problem": {
+    "title": "Les incidents ne dérapent pas en temps réel. Ils dérapent après.",
+    "intro": "Pendant un incident majeur :",
+    "bullets": {
+      "b1": "les décisions sont urgentes,",
+      "b2": "les canaux sont informels,",
+      "b3": "les validations sont verbales,",
+      "b4": "les actions précèdent la documentation."
+    },
+    "questions_intro": "Quelques semaines plus tard, les questions arrivent :",
+    "questions": {
+      "q1": "Qui savait quoi, et quand ?",
+      "q2": "Qu’est-ce qui a été déclaré — et par qui ?",
+      "q3": "Quelles décisions ont été prises sous pression ?",
+      "q4": "Quelle preuve existe réellement ?"
+    },
+    "reconstruction": "À ce moment-là, la réalité est reconstruite à partir d’emails, de chats, de traces partielles et de mémoire humaine.",
+    "conclusion": "Cette reconstruction est fragile."
+  },
+  "positioning": {
+    "title": "Horizon n’est pas un outil de réponse à incident.",
+    "does_not_intro": "Horizon ne :",
+    "does_not": {
+      "d1": "coordonne pas la réponse,",
+      "d2": "n’approuve pas les actions,",
+      "d3": "ne bloque pas les décisions,",
+      "d4": "n’applique pas de règles de sécurité."
+    },
+    "witness": "Il agit comme un témoin technique.",
+    "what_it_does_intro": "Quand un fait est déclaré pendant un incident, Horizon :",
+    "what_it_does": {
+      "w1": "le scelle,",
+      "w2": "le date",
+      "w3": "le relie cryptographiquement au reste du registre d’incident."
+    },
+    "footer": "Rien de plus. Rien de moins."
+  },
+  "how": {
+    "title": "Comment Horizon capture le réel pendant une crise",
+    "step1": {
+      "title": "Les faits sont déclarés là où ils existent déjà",
+      "bullets": {
+        "b1": "Outils de sécurité (API)",
+        "b2": "Email",
+        "b3": "Exports de chat",
+        "b4": "Interface minimale de déclaration si nécessaire"
+      },
+      "footer": "Aucun nouveau workflow. Aucune dépendance opérationnelle."
+    },
+    "step2": {
+      "title": "Horizon scelle, il ne juge pas",
+      "intro": "Pour chaque fait déclaré, Horizon :",
+      "bullets": {
+        "b1": "attribue un timestamp autoritatif unique (sealed_at),",
+        "b2": "stocke le payload comme donnée opaque,",
+        "b3": "chaîne le fait de manière immuable au précédent."
+      },
+      "footer": "Horizon n’interprète ni la sévérité, ni la légitimité, ni la justesse."
+    },
+    "step3": {
+      "title": "Les faits forment un Facts Stream append-only",
+      "bullets": {
+        "b1": "Pas de machine d’état",
+        "b2": "Pas de “incident ouvert / clos”",
+        "b3": "Pas d’ordre ni de causalité imposés"
+      },
+      "note": "Un fait d’exécution peut être scellé avant un fait d’approbation. Ce n’est pas un bug — c’est une preuve."
+    }
+  },
+  "post_incident": {
+    "title": "Conçu pour l’examen post-incident.",
+    "intro": "Après un incident, Horizon permet de montrer :",
+    "bullets": {
+      "b1": "ce qui a été déclaré,",
+      "b2": "par qui,",
+      "b3": "quand Horizon en a eu la preuve,",
+      "b4": "dans quel enchaînement factuel,",
+      "b5": "et quelles évaluations ont été déclarées ensuite."
+    },
+    "footer": "Sans interpréter des logs. Sans reconstruire une narration."
+  },
+  "evaluations": {
+    "title": "Séparer les faits des évaluations.",
+    "intro": "Un fait peut être déclaré comme l’évaluation d’un autre fait :",
+    "examples": {
+      "e1": "« cette action était conforme »,",
+      "e2": "« cette décision violait la politique »,",
+      "e3": "« ce risque a été accepté »."
+    },
+    "horizon": "Horizon scelle l’évaluation, la relie au fait évalué, et n’en interprète pas le sens.",
+    "footer": "Cela structure la preuve sans transformer Horizon en juge."
+  },
+  "why": {
+    "title": "Pourquoi les CISO utilisent Horizon",
+    "bullets": {
+      "b1": "Les incidents échappent aux workflows idéaux",
+      "b2": "La réalité est jugée après coup",
+      "b3": "L’exposition personnelle et organisationnelle est réelle",
+      "b4": "Les logs sont nécessaires mais insuffisants"
+    },
+    "footer": "Horizon fournit une preuve indépendante, pas des explications."
+  },
+  "not": {
+    "title": "Ce que Horizon n’est pas",
+    "bullets": {
+      "b1": "Pas un SIEM",
+      "b2": "Pas un SOAR",
+      "b3": "Pas une plateforme IR",
+      "b4": "Pas un moteur de conformité",
+      "b5": "Pas un système de décision"
+    },
+    "footer": "Horizon les complète en enregistrant ce qu’ils ne peuvent pas garantir."
+  },
+  "signature": {
+    "one_liner": "Horizon fournit une preuve incontestable de ce qui a été déclaré pendant un incident de sécurité, par qui, et quand cela a été scellé.",
+    "short": "Le system of record des faits d’incident."
+  },
+  "final": {
+    "title": "Arrêtez de reconstruire les incidents. Scellez-les."
+  }
+}

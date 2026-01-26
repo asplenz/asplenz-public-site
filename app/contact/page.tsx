@@ -27,62 +27,84 @@ export default function ContactPage() {
             {t.contact?.backToHome || 'Back to home'}
           </Link>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            {t.contact?.title || 'Contact Asplenz'}
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            {t.contact?.title || 'Discuss your use case'}
           </h1>
 
-          <p className="text-lg text-gray-700 mb-10">
-            {t.contact?.intro || 'Horizon is designed for regulated institutions evaluating decision evidence infrastructure. We welcome inquiries from risk, compliance, and technical leaders.'}
+          <p className="text-lg text-gray-700 mb-2">
+            {t.contact?.intro}
+          </p>
+          <p className="text-gray-600 mb-12">
+            {t.contact?.introDetail}
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            {/* Schedule a Call */}
-            <a
-              href="https://app.cal.eu/asplenz/institutional-acceptability?overlayCalendar=true"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-6 bg-[#1A5187] text-white rounded-lg hover:bg-[#143d66] transition-all group"
-            >
-              <CalendarIcon className="w-8 h-8 mb-4" />
-              <h2 className="text-xl font-semibold mb-2">
-                {t.contact?.scheduleTitle || 'Schedule a Briefing'}
-              </h2>
-              <p className="text-white/80 text-sm mb-4">
-                {t.contact?.scheduleDescription || 'Book a 30-minute technical or risk briefing with our team.'}
-              </p>
-              <span className="inline-flex items-center gap-2 font-medium group-hover:underline">
-                {t.contact?.scheduleButton || 'Choose a time'}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </a>
+          <hr className="border-gray-200 mb-12" />
 
-            {/* Email */}
-            <a
-              href="mailto:contact@asplenz.com"
-              className="p-6 bg-gray-50 border border-gray-200 rounded-lg hover:border-[#1A5187] transition-all group"
-            >
-              <MailIcon className="w-8 h-8 mb-4 text-[#1A5187]" />
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                {t.contact?.emailTitle || 'Send an Email'}
-              </h2>
-              <p className="text-gray-700 text-sm mb-4">
-                {t.contact?.emailDescription || 'For general inquiries or if you prefer written communication.'}
+          {/* Option 1 - Schedule a Briefing */}
+          <div className="mb-12">
+            <h2 className="text-sm text-gray-500 uppercase tracking-wide mb-4">Option 1</h2>
+
+            <div className="bg-white border border-gray-200 rounded-lg p-6">
+              <CalendarIcon className="w-8 h-8 mb-4 text-[#1A5187]" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {t.contact?.scheduleTitle}
+              </h3>
+              <p className="text-gray-700 mb-6">
+                {t.contact?.scheduleDescription}
               </p>
-              <span className="inline-flex items-center gap-2 text-[#1A5187] font-medium group-hover:underline">
-                contact@asplenz.com
+
+              <div className="space-y-3 mb-6 text-sm">
+                <div className="flex gap-2">
+                  <span className="text-gray-500 w-20">{t.contact?.scheduleScope}:</span>
+                  <span className="text-gray-700">{t.contact?.scheduleScopeItems?.join(', ')}</span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-gray-500 w-20">{t.contact?.scheduleAudience}:</span>
+                  <span className="text-gray-700">{t.contact?.scheduleAudienceItems?.join(', ')}</span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-gray-500 w-20">{t.contact?.scheduleFormat}:</span>
+                  <span className="text-gray-700">{t.contact?.scheduleFormatValue}</span>
+                </div>
+              </div>
+
+              <a
+                href="https://app.cal.eu/asplenz/institutional-acceptability?overlayCalendar=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-colors"
+              >
+                {t.contact?.scheduleButton}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </span>
-            </a>
+              </a>
+            </div>
           </div>
 
-          {/* Note */}
-          <p className="text-sm text-gray-500 text-center">
-            {t.contact?.note || 'We typically respond within 24-48 hours on business days.'}
-          </p>
+          <hr className="border-gray-200 mb-12" />
+
+          {/* Option 2 - Send an Email */}
+          <div>
+            <h2 className="text-sm text-gray-500 uppercase tracking-wide mb-4">Option 2</h2>
+
+            <div className="bg-white border border-gray-200 rounded-lg p-6">
+              <MailIcon className="w-8 h-8 mb-4 text-[#1A5187]" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {t.contact?.emailTitle}
+              </h3>
+              <p className="text-gray-700 mb-6">
+                {t.contact?.emailDescription}
+              </p>
+
+              <a
+                href="mailto:contact@asplenz.com"
+                className="inline-flex items-center gap-2 text-[#1A5187] font-medium hover:underline"
+              >
+                contact@asplenz.com
+              </a>
+            </div>
+          </div>
         </div>
       </main>
 

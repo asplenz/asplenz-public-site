@@ -1,12 +1,17 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
+import CategoryFraming from './components/CategoryFraming'
 import Problem from './components/Problem'
-import Solution from './components/Solution'
-import Impact from './components/Impact'
-import Safeguards from './components/Safeguards'
-import FAQTeaser from './components/FAQTeaser'
-import CTA from './components/CTA'
+import HowHorizonSeals from './components/HowHorizonSeals'
+import PostIncidentTimeline from './components/PostIncidentTimeline'
+import HowHorizonWorks from './components/HowHorizonWorks'
+import PostIncident from './components/PostIncident'
+import WhyCISOs from './components/WhyCISOs'
+import WhoElse from './components/WhoElse'
+import WhatHorizonIsNot from './components/WhatHorizonIsNot'
+import Signature from './components/Signature'
+import FinalCTA from './components/FinalCTA'
 
 export default function HomePage() {
   return (
@@ -15,12 +20,17 @@ export default function HomePage() {
 
       <main>
         <Hero />
+        <CategoryFraming />
         <Problem />
-        <Solution />
-        <Impact />
-        <Safeguards />
-        <FAQTeaser />
-        <CTA />
+        <HowHorizonSeals />
+        <PostIncidentTimeline />
+        <HowHorizonWorks />
+        <PostIncident />
+        <WhyCISOs />
+        <WhoElse />
+        <WhatHorizonIsNot />
+        <Signature />
+        <FinalCTA />
       </main>
 
       <Footer />

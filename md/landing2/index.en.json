@@ -1,0 +1,137 @@
+{
+  "common": {
+    "cta_primary": "Walk through a real incident",
+    "cta_secondary": "See the architecture",
+    "cta_request_overview": "Request a technical overview",
+    "cta_discuss_use_case": "Discuss a post-mortem use case"
+  },
+  "hero": {
+    "headline": "When an incident happens, prove what was declared — before memories rewrite it.",
+    "subheadline": "Horizon is a neutral, append-only infrastructure that seals security and crisis facts as they are declared, without deciding, approving, or interfering with response operations.",
+    "bullets": {
+      "b1": "Capture facts during real incidents, not after",
+      "b2": "Independent, cryptographically verifiable evidence",
+      "b3": "No workflow, no approval, no operational friction"
+    }
+  },
+  "problem": {
+    "title": "Incidents don’t fail in real time. They fail after.",
+    "intro": "During a major security incident:",
+    "bullets": {
+      "b1": "decisions are urgent,",
+      "b2": "channels are informal,",
+      "b3": "approvals are verbal,",
+      "b4": "actions happen before documentation."
+    },
+    "questions_intro": "Weeks later, the questions arrive:",
+    "questions": {
+      "q1": "Who knew what, and when?",
+      "q2": "What was declared — and by whom?",
+      "q3": "Which decisions were taken under pressure?",
+      "q4": "What evidence actually exists?"
+    },
+    "reconstruction": "At that point, reality is reconstructed from emails, chat logs, partial system traces, and human memory.",
+    "conclusion": "That reconstruction is fragile."
+  },
+  "positioning": {
+    "title": "Horizon is not an incident response tool.",
+    "does_not_intro": "Horizon does not:",
+    "does_not": {
+      "d1": "coordinate response,",
+      "d2": "approve actions,",
+      "d3": "block decisions,",
+      "d4": "enforce security rules."
+    },
+    "witness": "It acts as a technical witness.",
+    "what_it_does_intro": "When a fact is declared during an incident, Horizon:",
+    "what_it_does": {
+      "w1": "seals it,",
+      "w2": "timestamps it",
+      "w3": "links it cryptographically to the rest of the incident record."
+    },
+    "footer": "Nothing more. Nothing less."
+  },
+  "how": {
+    "title": "How Horizon captures reality during a crisis",
+    "step1": {
+      "title": "Facts are declared where they already happen",
+      "bullets": {
+        "b1": "Security tools (API)",
+        "b2": "Email",
+        "b3": "Chat exports",
+        "b4": "Minimal declaration interface if needed"
+      },
+      "footer": "No new workflow. No operational dependency."
+    },
+    "step2": {
+      "title": "Horizon seals, it does not judge",
+      "intro": "For each declared fact, Horizon:",
+      "bullets": {
+        "b1": "assigns a single authoritative timestamp (sealed_at),",
+        "b2": "stores the payload as opaque data,",
+        "b3": "chains it immutably to the previous fact."
+      },
+      "footer": "Horizon does not interpret severity, legitimacy, or correctness."
+    },
+    "step3": {
+      "title": "Facts form an append-only Facts Stream",
+      "bullets": {
+        "b1": "No state machine",
+        "b2": "No “incident open / closed”",
+        "b3": "No enforced order or causality"
+      },
+      "note": "An execution may be sealed before an approval. That is not a bug — it is evidence."
+    }
+  },
+  "post_incident": {
+    "title": "Built for post-incident scrutiny.",
+    "intro": "After an incident, Horizon allows you to show:",
+    "bullets": {
+      "b1": "what was declared,",
+      "b2": "by whom,",
+      "b3": "when Horizon received proof of it,",
+      "b4": "in what factual sequence,",
+      "b5": "and which evaluations were later declared."
+    },
+    "footer": "Without log interpretation. Without narrative reconstruction."
+  },
+  "evaluations": {
+    "title": "Separate facts from evaluations.",
+    "intro": "A fact can be declared as an evaluation of another fact:",
+    "examples": {
+      "e1": "“this action was compliant”,",
+      "e2": "“this decision violated policy”,",
+      "e3": "“this was accepted risk”."
+    },
+    "horizon": "Horizon seals the evaluation, links it to the evaluated fact, and does not interpret the meaning.",
+    "footer": "This preserves audit structure without turning Horizon into a judge."
+  },
+  "why": {
+    "title": "Why CISOs use Horizon",
+    "bullets": {
+      "b1": "Incidents escape ideal workflows",
+      "b2": "Reality is judged after the fact",
+      "b3": "Personal and organizational exposure is real",
+      "b4": "Logs are necessary but insufficient"
+    },
+    "footer": "Horizon provides independent evidence, not explanations."
+  },
+  "not": {
+    "title": "What Horizon is not",
+    "bullets": {
+      "b1": "Not a SIEM",
+      "b2": "Not a SOAR",
+      "b3": "Not an IR platform",
+      "b4": "Not a compliance engine",
+      "b5": "Not a decision system"
+    },
+    "footer": "Horizon complements them by recording what they cannot guarantee."
+  },
+  "signature": {
+    "one_liner": "Horizon provides indisputable evidence of what was declared during a security incident, by whom, and when it was sealed.",
+    "short": "The system of record for incident facts."
+  },
+  "final": {
+    "title": "Stop reconstructing incidents. Seal them."
+  }
+}

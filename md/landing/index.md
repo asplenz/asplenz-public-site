@@ -1,140 +1,313 @@
-# **[ENGLISH VERSION]**
+### English Version
 
-**DECISION OBSERVABILITY INFRASTRUCTURE (DOI)**
+**Horizon** **The Foundation of Decision Authority** **Stop Reconstructing. Start Proving.** When a critical operational decision is questioned, explanations are not enough.
 
-## **The Foundation of Decision Authority**
+Only facts captured at the moment of execution matter.
 
-# **Stop Reconstructing. Start Proving.**
-
-Automated systems evolve. Decisions are permanent. When an automated decision is challenged, whether clinical or financial, produce the exact factual state of the execution, **immediately, without reconstruction, and with mathematical certainty.**
-
-*A factual, execution-time record of what actually happened.*
+Horizon provides indisputable evidence for decisions taken at the Point of No Return — when actions become irreversible.
 
 ---
 
-### **The Problem: The Hidden Cost of Reconstruction**
+### The Problem
 
-Most banking institutions rely on **Post-hoc Reconstruction**. When a regulator or an auditor asks for proof, teams spend weeks digging through disparate logs, data extracts, and human memories to "rebuild" what happened.
+In critical situations — production incidents, emergency overrides, exceptional actions — decisions are often taken under pressure, outside normal workflows.
 
-* **Reconstruction is a Narrative:** It is an interpretation of the past, not a proof of the fact. It is subject to hindsight bias and data gaps.
-* **Reconstruction is Volatile:** Credit inputs (3rd party scores, real-time debt ratios) are transient. They dissolve after execution, leaving the bank's defense structurally fragile.
-* **Reconstruction is Costly:** A single regulatory look-back can mobilize a cross-functional team for months, costing up to €1M in operational overhead.
+Days later, when the incident is reviewed:
 
-**In critical lending, if evidence was not captured at the source, it does not exist.**
+* Approvals are reconstructed after the fact.
+* Timelines are debated.
+* Responsibilities are blurred.
+* Evidence is fragile.
 
----
+Organizations remember.
 
-### **The Solution: Horizon — The Decision Ledger (Layer 0)**
-
-Horizon is a passive infrastructure layer designed to capture and seal your critical credit decisions at the **Point of No Return**. This is the moment where institutions are most exposed: a contested automated decision with no native evidence.
-
-* **Factual Integrity:** Every decision is captured with its exact inputs and outputs, sealed via cryptographic hash-linking.
-* **Structural Examinability:** Shift from "rebuilding the past" to "retrieving the truth" through a dedicated, independent repository of evidence.
-* **AI Act Readiness:** The EU AI Act classifies automated lending as **high-risk**, requiring strict ex-post traceability. **Horizon does not make you compliant; it makes your compliance provable** by demonstrating the exact factual state of any decision upon request.
+But they cannot always prove.
 
 ---
 
-### **The Economics of Evidence**
+### What Horizon Does
 
-Horizon is designed to be profitable from the first regulatory inquiry or legal challenge.
+Horizon captures and seals the factual reality of a critical decision at execution time.
 
-| **Manual Reconstruction** | **Horizon Decision Ledger** |
-| --- | --- |
-| **Effort:** 8 to 12 weeks of investigation. | **Effort:** Immediate API retrieval. |
-| **Team:** Risk, IT, Legal, Data Engineering. | **Team:** 1 Authorized Auditor. |
-| **Reliability:** Probable (Narrative-based). | **Reliability:** Irrefutable (Mathematically sealed). |
-| **Estimated Cost:** ~€600,000 per major case. | **Estimated Cost:** Fixed infrastructure. |
+Here, a decision means a formal authorization for an irreversible action.
 
----
+Horizon records:
 
-### **Institutional Safeguards**
+* **Who** took responsibility.
+* **When** the authorization occurred.
+* **Under which** authorized context.
+* **Which** irreversible execution followed.
 
-* **Zero Latency Impact:** The asynchronous capture architecture ensures that your lending engine’s performance is never compromised.
-* **In-Perimeter Sovereignty:** Horizon is deployed within your secure infrastructure. No data ever leaves your organization’s control.
-* **Passive Observer:** Horizon requires no modification of your business logic and no changes to your existing database schemas.
+This evidence is:
 
-> **Important:** Horizon does not analyze, score, or judge decisions. It guarantees that the facts exist.
+* Append-only.
+* Immutable.
+* Independent from operational systems.
 
----
+Horizon does not evaluate decisions.
 
-### **Establish Factual Authority.**
-
-**The cost of a single major investigation exceeds the cost of a decade of structural evidence.**
-
-👉 **[Request a Decision Evidence Briefing]**
-*For Risk, Compliance, and Risk Technology leaders*
-
-👉 **[Read the Foundations]**
+It guarantees that the fact of the authorization cannot be denied.
 
 ---
 
----
+### What Horizon Does NOT Do
 
-# **[VERSION FRANÇAISE]**
+* Horizon does not block actions.
+* Horizon does not enforce workflows.
+* Horizon does not judge compliance.
+* Horizon does not replace ServiceNow or operational tools.
 
-**INFRASTRUCTURE D'OBSERVABILITÉ DÉCISIONNELLE (DOI)**
-
-## **Le Socle de l'Autorité Décisionnelle**
-
-# **Cessez de reconstruire. Commencez à prouver.**
-
-Les systèmes automatisés évoluent. Les décisions sont permanentes. Lorsqu'une décision automatisée est contestée, qu'elle soit clinique ou financière, produisez l'état factuel exact de l'exécution, **immédiatement, sans reconstruction, et avec une certitude mathématique.**
-
-*Un enregistrement factuel, au moment de l'exécution, de ce qui s'est réellement passé.*
+Horizon exists outside execution, as a neutral and sovereign system of proof.
 
 ---
 
-### **Le Problème : Le coût caché de la reconstruction**
+### Why Existing Tools Are Not Enough
 
-La plupart des institutions bancaires s'appuient sur la **reconstruction a posteriori**. Lorsqu'un régulateur ou un auditeur exige une preuve, les équipes passent des semaines à fouiller dans des logs disparates, des extraits de données et des souvenirs humains pour tenter de « rebâtir » le passé.
+Workflow, ticketing, and monitoring tools prove that a process exists.
 
-* **La reconstruction est un récit :** C'est une interprétation du passé, pas une preuve du fait. Elle est soumise au biais de rétrospective et aux lacunes de données.
-* **La reconstruction est instable :** Les données de crédit (scores tiers, ratios d'endettement) sont volatiles. Elles se dissolvent après l'exécution, rendant la défense de la banque fragile.
-* **La reconstruction est coûteuse :** Un seul cycle d'audit peut mobiliser une équipe transverse pendant des mois, coûtant jusqu'à 1M€ en frais opérationnels.
+They do not provide independent proof that:
 
-**Dans le crédit critique, si la preuve n'a pas été capturée à la source, elle n'existe pas.**
+* An authorization happened before execution.
+* It was not reconstructed afterward.
+* The evidence is neutral to the teams involved.
 
----
-
-### **La Solution : Horizon — Le Registre Décisionnel (Layer 0)**
-
-Horizon est une couche d'infrastructure passive conçue pour capturer et sceller vos décisions de crédit au **Point de non-retour**. C’est précisément à ce moment — une décision automatisée contestée sans preuve native — que l’exposition institutionnelle est maximale.
-
-* **Intégrité Factuelle :** Chaque décision est capturée avec ses entrées et sorties exactes, scellée par chaînage de hash cryptographique.
-* **Examinabilité Structurelle :** Passez de la « reconstruction du passé » à l'« extraction de la vérité » via un référentiel de preuves dédié et indépendant.
-* **Préparation à l'AI Act :** Le règlement européen classe le crédit automatisé comme **« à haut risque »**, imposant une traçabilité ex-post stricte. **Horizon ne vous rend pas conforme ; il rend votre conformité démontrable** en prouvant l'état factuel de n'importe quelle décision à la demande.
+In a serious incident, the proof system cannot be part of the system under investigation.
 
 ---
 
-### **L'Économie de la Preuve**
+### Choose Your Context
 
-Horizon est conçu pour être rentable dès la première enquête réglementaire ou contestation juridique.
+Horizon is a single evidence infrastructure, applicable across different high-stakes contexts.
 
-| **Reconstruction Manuelle** | **Registre Décisionnel Horizon** |
-| --- | --- |
-| **Effort :** 8 à 12 semaines d'investigation. | **Effort :** Extraction immédiate via API. |
-| **Équipe :** Risque, IT, Juridique, Data. | **Équipe :** 1 Auditeur autorisé. |
-| **Fiabilité :** Probable (Basée sur un récit). | **Fiabilité :** Irréfutable (Scellée mathématiquement). |
-| **Coût estimé :** ~600 000 € par dossier majeur. | **Coût estimé :** Infrastructure fixe. |
+#### Path 1 — Critical Operations (Primary)
+
+* **Context**: Production incidents, emergency changes, exceptional overrides.
+* **The core question**: “Who authorized this under pressure — and can we prove it?”
+* **Horizon provides**: Immediate, factual evidence of human responsibility, captured before execution, and preserved independently.
+* *This is Horizon’s primary use case.*
+
+#### Path 2 — Regulated Automated Systems (Secondary)
+
+* 
+**Context**: High-risk automated systems, including environments subject to the EU AI Act and national strategies like Saudi Vision 2030 or UAE AI Strategy 2031.
+
+
+* **The core question**: “Can we prove the exact system state at execution time?”
+* **Horizon provides**: Immutable evidence of system configuration, inputs, and execution context, preserved independently from the automated system itself.
+* Horizon does not explain automated outcomes. It preserves the factual execution state required for regulatory defensibility.
+
+
 
 ---
 
-### **Garanties Institutionnelles**
+### The CRO Value
 
-* **Impact nul sur la latence :** L'architecture de capture asynchrone garantit que la performance de votre moteur d'octroi n'est jamais compromise.
-* **Souveraineté In-Perimeter :** Horizon est déployé au sein de votre infrastructure sécurisée. Aucune donnée ne quitte le contrôle de votre organisation.
-* **Observateur Passif :** Horizon ne nécessite aucune modification de votre logique métier ni de vos schémas de base de données.
+The day after a major incident, Horizon allows you to answer immediately:
 
-> **Note :** Horizon n’analyse ni ne juge les décisions. Il garantit que les faits existent.
+* Was a formal authorization taken?
+* By whom, and in which role?
+* At what exact moment?
+* Which execution followed this authorization?
+
+Before RCA conclusions. Before narratives diverge. Before pressure escalates.
 
 ---
 
-### **Établissez votre Autorité Factuelle.**
+### Operational Characteristics
 
-**Le coût d'une seule investigation majeure dépasse le coût d'une décennie de preuves structurelles.**
+* **Passive by design** — zero operational interference.
+* **Asynchronous capture** — no latency added.
+* 
+**Sovereign deployment** — inside your security perimeter.
 
-👉 **[Demander un Briefing Decision Evidence]**
-*Pour les responsables Risk, Compliance et Risk Technology*
 
-👉 **[Explorer les Fondations]**
+* **Neutral by nature** — facts only, no interpretation.
 
+---
+
+### Why This Matters
+
+Root Cause Analysis explains failures.
+
+Evidence of governance protects the institution.
+
+Both are necessary.
+
+Only one must exist immediately.
+
+---
+
+### Scope Clarification
+
+Horizon captures evidence of authorization and execution context — not business outcomes, not intent, and not correctness.
+
+This separation is intentional and foundational.
+
+---
+
+**In One Sentence** Horizon ensures that when critical decisions are challenged, the facts are already sealed.
+
+👉 **Request a CRO Briefing** A 30-minute discussion focused on incident governance and regulatory defensibility.
+
+👉 **Read the Foundations** Architecture, principles, and long-term vision.
+
+**Horizon** *Decision authority does not come from memory. It comes from proof.*
+
+---
+
+### Version Française
+
+**Horizon** **Le Socle de l'Autorité Décisionnelle** **Cessez de reconstruire. Commencez à prouver.**
+
+Lorsqu'une décision opérationnelle critique est remise en question, les explications ne suffisent pas.
+
+Seuls importent les faits capturés au moment de l'exécution.
+
+Horizon fournit une preuve indiscutable pour les décisions prises au Point de Non-Retour — là où les actions deviennent irréversibles.
+
+---
+
+### Le Problème
+
+Dans les situations critiques — incidents de production, bypass d'urgence, actions exceptionnelles — les décisions sont souvent prises sous pression, en dehors des workflows habituels.
+
+Plusieurs jours plus tard, lors de la revue d'incident :
+
+* Les approbations sont reconstruites après coup.
+* La chronologie est débattue.
+* Les responsabilités sont floues.
+* Les preuves sont fragiles.
+
+L'organisation se souvient.
+
+Mais elle ne peut pas toujours prouver.
+
+---
+
+### Ce que fait Horizon
+
+Horizon capture et scelle la réalité factuelle d'une décision critique au moment de l'exécution.
+
+Ici, une décision désigne une autorisation formelle pour une action irréversible.
+
+Horizon enregistre :
+
+* **Qui** a pris la responsabilité.
+* **Quand** l'autorisation a eu lieu.
+* **Dans quel** contexte autorisé.
+* **Quelle** exécution irréversible a suivi.
+
+Cette preuve est :
+
+* En ajout uniquement (append-only).
+* Immuable.
+* Indépendante des systèmes opérationnels.
+
+Horizon n'évalue pas les décisions.
+
+Il garantit que le fait de l'autorisation ne peut être nié.
+
+---
+
+### Ce que Horizon ne fait PAS
+
+* Horizon ne bloque pas les actions.
+* Horizon n'impose pas de workflows.
+* Horizon ne juge pas la conformité.
+* Horizon ne remplace pas ServiceNow ou les outils opérationnels.
+
+Horizon existe en dehors de l'exécution, comme un système de preuve neutre et souverain.
+
+---
+
+### Pourquoi les outils existants ne suffisent pas
+
+Les outils de workflow, de ticketing et de monitoring prouvent qu'un processus existe.
+
+Ils ne fournissent pas de preuve indépendante que :
+
+* Une autorisation a eu lieu avant l'exécution.
+* Elle n'a pas été reconstruite après coup.
+* La preuve est neutre vis-à-vis des équipes impliquées.
+
+Lors d'un incident grave, le système de preuve ne peut pas faire partie du système faisant l'objet de l'enquête.
+
+---
+
+### Choisissez votre contexte
+
+Horizon est une infrastructure de preuve unique, applicable à différents contextes à fort enjeu.
+
+#### Axe 1 — Opérations Critiques (Primaire)
+
+* **Contexte** : Incidents de production, changements d'urgence, dépassements exceptionnels.
+* **La question centrale** : « Qui a autorisé cela sous pression — et pouvons-nous le prouver ? »
+* **Horizon apporte** : Une preuve factuelle immédiate de la responsabilité humaine, capturée avant l'exécution et préservée de manière indépendante.
+* *C'est le cas d'usage prioritaire de Horizon.*
+
+#### Axe 2 — Systèmes Automatisés Régulés (Secondaire)
+
+* 
+**Contexte** : Systèmes automatisés à haut risque, incluant les environnements soumis à l'IA Act de l'UE ou aux stratégies nationales (Saudi Vision 2030, UAE AI Strategy 2031).
+
+
+* **La question centrale** : « Pouvons-nous prouver l'état exact du système au moment de l'exécution ? »
+* **Horizon apporte** : Une preuve immuable de la configuration du système, des entrées et du contexte d'exécution, préservée indépendamment du système automatisé lui-même.
+* Horizon n'explique pas les résultats automatisés. Il préserve l'état factuel d'exécution requis pour la défendabilité réglementaire.
+
+
+
+---
+
+### La Valeur CRO
+
+Le lendemain d'un incident majeur, Horizon vous permet de répondre immédiatement :
+
+* Une autorisation formelle a-t-elle été prise ?
+* Par qui, et sous quel rôle ?
+* À quel moment exact ?
+* Quelle exécution a suivi cette autorisation ?
+
+Avant les conclusions du RCA (Root Cause Analysis). Avant que les récits ne divergent. Avant que la pression ne s'intensifie.
+
+---
+
+### Caractéristiques Opérationnelles
+
+* **Passif par conception** — zéro interférence opérationnelle.
+* **Capture asynchrone** — aucune latence ajoutée.
+* 
+**Déploiement souverain** — à l'intérieur de votre périmètre de sécurité.
+
+
+* **Neutre par nature** — des faits uniquement, aucune interprétation.
+
+---
+
+### Pourquoi c'est capital
+
+Le Root Cause Analysis explique les défaillances.
+
+La preuve de gouvernance protège l'institution.
+
+Les deux sont nécessaires.
+
+Seul l'un d'eux doit exister immédiatement.
+
+---
+
+### Clarification du Périmètre
+
+Horizon capture la preuve de l'autorisation et le contexte d'exécution — pas les résultats métier, pas l'intention, et pas la justesse de la décision.
+
+Cette séparation est intentionnelle et fondamentale.
+
+---
+
+**En une phrase** Horizon garantit que lorsque des décisions critiques sont contestées, les faits sont déjà scellés.
+
+👉 **Demander un Briefing CRO** Une discussion de 30 minutes centrée sur la gouvernance des incidents et la défendabilité réglementaire.
+
+👉 **Lire les Fondations** Architecture, principes et vision à long terme.
+
+**Horizon** *L'autorité décisionnelle ne vient pas de la mémoire. Elle vient de la preuve.*
