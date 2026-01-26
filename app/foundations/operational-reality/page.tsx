@@ -35,16 +35,6 @@ export default function OperationalRealityPage() {
 
       <main className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <Link
-            href="/foundations"
-            className="inline-flex items-center gap-2 text-[#1A5187] hover:underline mb-8"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            {content.backToHub}
-          </Link>
-
           <p className="text-sm font-semibold text-[#1A5187] uppercase tracking-wider mb-2">
             {content.docType}
           </p>
@@ -307,36 +297,6 @@ export default function OperationalRealityPage() {
             </p>
           </section>
 
-          {/* Link to Illustrative Scenario */}
-          <section className="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-lg">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              {content.illustrativeScenarioLink.title}
-            </h3>
-            <p className="text-gray-700 mb-4">
-              {content.illustrativeScenarioLink.text}
-            </p>
-            <Link
-              href={content.illustrativeScenarioLink.href}
-              className="inline-flex items-center gap-2 text-[#1A5187] font-medium hover:underline"
-            >
-              {content.illustrativeScenarioLink.linkText}
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </section>
-
-          <div className="mt-16 pt-8 border-t border-gray-200">
-            <Link
-              href="/foundations"
-              className="inline-flex items-center gap-2 text-[#1A5187] hover:underline"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              {content.backToHub}
-            </Link>
-          </div>
         </div>
       </main>
 

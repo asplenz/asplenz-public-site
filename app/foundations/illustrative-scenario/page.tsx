@@ -35,16 +35,6 @@ export default function IllustrativeScenarioPage() {
 
       <main className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <Link
-            href="/foundations/operational-reality"
-            className="inline-flex items-center gap-2 text-[#1A5187] hover:underline mb-8"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            {content.backToHub}
-          </Link>
-
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
             {content.title}
           </h1>
@@ -306,54 +296,6 @@ export default function IllustrativeScenarioPage() {
             </p>
           </section>
 
-          {/* Dual CTA for different audiences */}
-          <div className="mt-12 grid md:grid-cols-2 gap-6">
-            <div className="p-6 bg-[#1A5187]/5 border border-[#1A5187]/20 rounded-lg">
-              <p className="text-gray-600 mb-3">{content.cta?.forCRO?.text}</p>
-              <Link
-                href={content.cta?.forCRO?.href || '/executive-briefing'}
-                className="inline-flex items-center gap-2 text-[#1A5187] font-semibold hover:underline"
-              >
-                {content.cta?.forCRO?.linkText}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-            <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg">
-              <p className="text-gray-600 mb-3">{content.cta?.forCTO?.text}</p>
-              <Link
-                href={content.cta?.forCTO?.href || '/foundations/snapshot'}
-                className="inline-flex items-center gap-2 text-[#1A5187] font-semibold hover:underline"
-              >
-                {content.cta?.forCTO?.linkText}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-
-          <div className="mt-8 pt-8 border-t border-gray-200 flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/foundations/operational-reality"
-              className="inline-flex items-center gap-2 text-[#1A5187] hover:underline"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              {lang === 'en' ? 'Back to Operational Reality' : 'Retour à la Réalité Opérationnelle'}
-            </Link>
-            <Link
-              href="/foundations"
-              className="inline-flex items-center gap-2 text-[#1A5187] hover:underline"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              {lang === 'en' ? 'Back to documentation hub' : 'Retour au hub de documentation'}
-            </Link>
-          </div>
         </div>
       </main>
 
