@@ -18,18 +18,12 @@ export default function FinalCTA() {
           {content.title}
         </h2>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+        <div className="flex justify-center">
           <Link
             href="/contact"
             className="px-8 py-4 bg-white text-[#1A5187] font-medium rounded hover:bg-gray-100 transition-all"
           >
             {t.common.cta_discuss_use_case}
-          </Link>
-          <Link
-            href="/foundations"
-            className="px-8 py-4 border border-white/30 text-white font-medium rounded hover:bg-white/10 transition-all"
-          >
-            {t.common.cta_request_overview}
           </Link>
         </div>
       </div>

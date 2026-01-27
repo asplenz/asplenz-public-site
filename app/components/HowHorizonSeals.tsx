@@ -53,7 +53,7 @@ export default function HowHorizonSeals() {
           </div>
 
           {/* Right: JSON Example */}
-          <div>
+          <div className="min-w-0">
             <p className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
               {content.exampleTitle}
             </p>

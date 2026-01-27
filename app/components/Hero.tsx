@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
 import { getContent } from '@/lib/content'
 
@@ -37,33 +36,22 @@ export default function Hero() {
             ))}
           </ul>
 
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <a
-                href="#how-horizon-seals"
-                className="px-6 py-3 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-center"
-              >
-                {t.common.cta_primary}
-              </a>
-              <a
-                href="#post-incident-timeline"
-                className="inline-flex items-center gap-2 text-gray-600 font-medium hover:text-[#1A5187] hover:underline"
-              >
-                {t.common.cta_view_timeline}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-            <Link
-              href="/foundations"
-              className="inline-flex items-center gap-2 text-[#1A5187] font-medium hover:underline"
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <a
+              href="#how-horizon-seals"
+              className="px-6 py-3 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-center"
             >
-              {t.common.cta_secondary}
+              {t.common.cta_primary}
+            </a>
+            <a
+              href="#post-incident-timeline"
+              className="inline-flex items-center gap-2 text-gray-600 font-medium hover:text-[#1A5187] hover:underline"
+            >
+              {t.common.cta_view_timeline}
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </Link>
+            </a>
           </div>
         </div>
 
