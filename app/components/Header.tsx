@@ -43,28 +43,35 @@ export default function Header() {
         </Link>
 
         {/* Desktop navigation */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-5">
           <Link
-            href="/"
+            href="/problem"
             className="text-gray-700 hover:text-[#1A5187] font-medium text-sm transition-colors"
           >
-            {t.nav.overview}
+            {t.nav.theProblem}
           </Link>
 
           <Link
-            href="/proof-model"
+            href="/shift"
             className="text-gray-700 hover:text-[#1A5187] font-medium text-sm transition-colors"
           >
-            {t.nav.proofModel}
+            {t.nav.theShift}
           </Link>
 
-          {/* Documentation Dropdown */}
+          <Link
+            href="/horizon"
+            className="text-gray-700 hover:text-[#1A5187] font-medium text-sm transition-colors"
+          >
+            {t.nav.horizon}
+          </Link>
+
+          {/* Proof Dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setDocsOpen(!docsOpen)}
               className="flex items-center gap-1 text-gray-700 hover:text-[#1A5187] font-medium text-sm transition-colors"
             >
-              {t.nav.documentation}
+              {t.nav.proof}
               <svg
                 className={`w-4 h-4 transition-transform ${docsOpen ? 'rotate-180' : ''}`}
                 fill="none"
@@ -96,7 +103,7 @@ export default function Header() {
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1A5187] transition-colors"
                   onClick={() => setDocsOpen(false)}
                 >
-                  {t.nav.quickStart}
+                  {t.nav.firstSeal}
                 </Link>
               </div>
             )}
@@ -106,7 +113,7 @@ export default function Header() {
             href="/contact"
             className="px-4 py-2 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-sm"
           >
-            {t.nav.contact}
+            {t.nav.talkToUs}
           </Link>
 
           <button
@@ -118,7 +125,7 @@ export default function Header() {
         </div>
 
         {/* Mobile: Language toggle + Hamburger */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={toggleLang}
             className="px-2 py-1 border border-gray-300 text-gray-700 font-medium rounded hover:border-[#1A5187] hover:text-[#1A5187] transition-all text-sm"
@@ -146,28 +153,36 @@ export default function Header() {
 
       {/* Mobile menu dropdown */}
       {menuOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white">
+        <div className="lg:hidden border-t border-gray-200 bg-white">
           <div className="px-6 py-4 space-y-2">
             <Link
-              href="/"
+              href="/problem"
               className="block py-2 text-gray-700 hover:text-[#1A5187] font-medium transition-colors"
               onClick={() => setMenuOpen(false)}
             >
-              {t.nav.overview}
+              {t.nav.theProblem}
             </Link>
 
             <Link
-              href="/proof-model"
+              href="/shift"
               className="block py-2 text-gray-700 hover:text-[#1A5187] font-medium transition-colors"
               onClick={() => setMenuOpen(false)}
             >
-              {t.nav.proofModel}
+              {t.nav.theShift}
             </Link>
 
-            {/* Documentation section */}
+            <Link
+              href="/horizon"
+              className="block py-2 text-gray-700 hover:text-[#1A5187] font-medium transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              {t.nav.horizon}
+            </Link>
+
+            {/* Proof section */}
             <div className="py-2">
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                {t.nav.documentation}
+                {t.nav.proof}
               </p>
               <div className="space-y-1 pl-2 border-l-2 border-gray-200">
                 <Link
@@ -189,7 +204,7 @@ export default function Header() {
                   className="block py-1.5 text-gray-700 hover:text-[#1A5187] transition-colors text-sm"
                   onClick={() => setMenuOpen(false)}
                 >
-                  {t.nav.quickStart}
+                  {t.nav.firstSeal}
                 </Link>
               </div>
             </div>
@@ -199,7 +214,7 @@ export default function Header() {
               className="block px-4 py-2 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-center"
               onClick={() => setMenuOpen(false)}
             >
-              {t.nav.contact}
+              {t.nav.talkToUs}
             </Link>
           </div>
         </div>

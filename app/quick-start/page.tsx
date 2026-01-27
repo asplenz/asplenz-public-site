@@ -2,6 +2,7 @@
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import PageNav from '../components/PageNav'
 import { useLang } from '@/lib/LangContext'
 import { getContent } from '@/lib/content'
 
@@ -161,6 +162,8 @@ export default function QuickStartPage() {
             <p className="text-gray-700 mb-2">{content.verifyChain.result}</p>
             <p className="text-gray-600 text-sm italic">{content.verifyChain.note}</p>
           </section>
+
+          <PageNav current="/quick-start" />
         </div>
       </main>
 

@@ -2,6 +2,7 @@
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import PageNav from '../components/PageNav'
 import { useLang } from '@/lib/LangContext'
 import { getContent } from '@/lib/content'
 
@@ -213,6 +214,8 @@ export default function ProofSemanticPage() {
               <strong>Note:</strong> {content.finalNote}
             </p>
           </div>
+
+          <PageNav current="/proof-semantic" />
         </div>
       </main>
 

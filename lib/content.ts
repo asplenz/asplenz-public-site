@@ -7,11 +7,17 @@ export const content = {
     tagline: 'Decision Observability Infrastructure (DOI)',
     nav: {
       overview: 'Overview',
-      documentation: 'Documentation',
+      theProblem: 'The Problem',
+      theShift: 'The Shift',
+      horizon: 'Horizon',
+      proof: 'Proof',
       proofModel: 'Proof Model',
       proofSemantic: 'Proof Semantics',
       quickStart: 'Quick Start',
+      firstSeal: 'First Seal',
       verification: 'Verification',
+      documentation: 'Documentation',
+      talkToUs: 'Talk to us',
       contact: 'Contact',
       menu: 'Menu',
     },
@@ -34,6 +40,102 @@ export const content = {
     categoryFraming: {
       definition: 'Horizon is Decision Evidence Infrastructure.',
       clarification: 'It produces verifiable facts about decisions without interpreting, enforcing, or governing them.',
+    },
+    theProblem: {
+      title: 'The Problem',
+      sections: [
+        {
+          title: 'Decisions live everywhere, and nowhere',
+          content: 'Today, corporate decisions live nowhere in particular. They appear in fragments, scattered across a multitude of tools that were never designed to hold them. A discussion begins in Slack, continues via email, is clarified orally during a meeting, is settled over the phone, and then sometimes leaves an indirect trace in a Jira ticket or a ServiceNow form. The action itself is executed elsewhere still - in a terminal, a cloud console, or an automated system - while applications log what they can in files designed for diagnostics, not for proof. At the moment, this dispersion is not a problem. Teams understand each other, the decision flows, the organization moves forward.',
+        },
+        {
+          title: 'The question always comes later',
+          content: 'The difficulty only appears later, when one tries to establish what actually happened. At that point, there is no single point to turn to. One must reconstruct. We gather what remains: messages extracted from Slack, screenshots attached to emails, PDFs exported from business tools, tickets modified multiple times, technical logs that are difficult to interpret outside their original context. Very quickly, it becomes clear that this material is incomplete. Some discussions were never written down, some exchanges took place orally, some messages were deleted, some logs were purged, some people are no longer there. What is missing can no longer be recovered.',
+        },
+        {
+          title: 'Reconstruction replaces proof',
+          content: 'Faced with these absences, reconstruction inevitably becomes interpretive. Gaps are filled with memories, assumed intentions, and reasoning formulated after the fact. A coherent story takes shape, often in good faith, sometimes under pressure, but always influenced by the context in which the question is asked. This narrative may seem solid, but it no longer constitutes proof. The elements produced - screenshots, PDF exports, isolated emails - do not carry their own integrity. They do not allow an independent third party to verify that they have not been modified, selected, or taken out of context. They ask to be believed, and as soon as a piece of evidence asks to be believed, it ceases to be binding.',
+        },
+        {
+          title: 'Time works against certainty',
+          content: 'Over time, this fragility only worsens. Tools evolve, formats change, systems are updated, and retention policies erase what was not intended to last. Memories alter, certainties shift. Six months later, or sometimes a year later, the decision only exists as a narrative the organization is capable of producing about itself. This narrative may be honest, precise, and detailed, but it remains vulnerable to doubt because it relies on a late reconstruction of a reality that was never captured.',
+        },
+        {
+          title: 'Tools were never designed for proof',
+          content: 'The problem is not that companies lack tools. On the contrary, they use too many, each optimized for a specific function. Slack facilitates discussion, email structures communication, Jira organizes work, ServiceNow frames processes, technical systems execute, logs observe. But none of these tools is intended to freeze the moment a decision becomes irreversible, nor to attest that an authority declared something at a specific time. The decision traverses systems without ever being fully inscribed in them. It exists in action, but not as an autonomous, independently verifiable fact.',
+        },
+        {
+          title: 'Explaining is not proving',
+          content: 'When the question is finally asked - often long after the events - the organization can no longer show what happened. It can only explain it. And explaining, as rigorously as possible, is never equivalent to proving. This is not a problem of discipline, nor of method, nor of goodwill. It is a structural problem. As long as it remains invisible, organizations will continue to believe they can explain later, only to discover, too late, that explaining is not proving.',
+        },
+      ],
+    },
+    theShift: {
+      title: 'The Shift',
+      sections: [
+        {
+          title: 'The reflex to improve what exists',
+          content: 'Faced with the fragility of evidence, the natural reaction of organizations is almost always the same. We seek to improve what already exists. We add mandatory fields, reinforce validation workflows, keep logs longer, and ask teams to write more. The effort is sincere, often costly, and sometimes even effective in the short term. Yet, the problem does not go away.',
+        },
+        {
+          title: 'More structure does not create proof',
+          content: 'These responses rest on an implicit assumption: if tools are organized well enough, evidence will eventually emerge. But organization does not produce proof; it produces coherence. Workflows impose a path, but they do not guarantee that the actual decision was made within that path. Logs describe what systems do, not what authorities declare. Documentation formalizes narratives, almost always after the fact. In every case, the evidence remains derivative.',
+        },
+        {
+          title: 'An entire missing category',
+          content: 'What is missing is not an additional rule, another tool, or better human discipline. An entire category of infrastructure is missing: a decision evidence infrastructure. Its role is not to decide, nor to govern, nor to control. Its role is to capture the existence of a decisional fact at the precise moment it occurs - before any interpretation, before any reconstruction. As long as this category does not exist, every attempt at proof relies on secondary traces, which are fragile by nature.',
+        },
+        {
+          title: 'From reconstruction to anchoring',
+          content: 'This is where the shift lies. It is no longer about reconstructing after the fact, nor analyzing more finely, nor governing more strictly. It is about recognizing that certain facts must be anchored at the moment they exist, before time, systems, and interpretations alter them. Evidence is not deduced. It is anchored, or it is lost.',
+        },
+        {
+          title: 'A clear boundary',
+          content: 'From this observation, a clear boundary emerges. On one side are the systems that decide, execute, communicate, and analyze. On the other is an infrastructure of factual, neutral, and independent anchoring, whose role is not to intervene, but to attest. This shift does not make decisions better. It makes their existence less debatable.',
+        },
+        {
+          title: 'What this shift makes possible',
+          content: 'Once this shift is made, the nature of the question of proof changes. It ceases to be a fragile exercise in justification and becomes a problem of verification. Not because organizations have better control, but because they finally possess facts that do not need to be narrated.',
+        },
+      ],
+    },
+    horizonAbout: {
+      title: 'Horizon',
+      subtitle: 'A Decision Evidence Infrastructure',
+      sections: [
+        {
+          title: 'An infrastructure of proof',
+          content: 'Horizon is an infrastructure of proof. It exists for a simple reason: to allow an organization to rely on facts, rather than narratives, when a critical decision is called into question.',
+        },
+        {
+          title: 'Outside the decision system',
+          content: 'Horizon does not help decide. It does not control action. It does not impose any process. It intentionally stands outside the decision-making system.\n\nThis stance is not a shortcoming, but a prerequisite. As soon as a system validates, authorizes, or blocks, it becomes a stakeholder in the decision. The evidence it produces then ceases to be neutral.',
+        },
+        {
+          title: 'What Horizon records',
+          content: 'What Horizon captures are declared facts: that an intention was expressed, that information was transmitted, that a result was observed. It infers nothing. It qualifies nothing.\n\nIt solely guarantees that these facts existed, at a specific point in time, and that they can be independently verified.',
+        },
+        {
+          title: 'No workflow, no interface to decide',
+          content: 'Horizon does not seek to replace existing tools. Decisions continue to originate where they actually occur: in human exchanges, business systems, or contexts of urgency or exception. Horizon adapts to these environments without requiring decision-makers to change their habits or learn a new interface.',
+        },
+        {
+          title: 'Invisible when it matters',
+          content: 'This discretion is essential. Horizon is not a destination where people go to work. It is a silent layer, present at the moment facts are expressed, invisible to operations, but fully accessible after the fact for those who must establish what truly happened.',
+        },
+        {
+          title: 'Facts, not explanations',
+          content: 'What Horizon provides is neither an analysis, nor an explanation, nor a justification. It is factual material, intended to be examined by others: auditors, risk teams, legal experts, or regulatory authorities. All interpretation belongs to these entities, outside the system.',
+        },
+        {
+          title: 'What Horizon does not promise',
+          content: 'Horizon does not make decisions better. It does not prevent errors. It does not guarantee that rules were followed.\n\nIt guarantees something more fundamental: that certain facts exist, that they are dated, and that they cannot be denied a posteriori.',
+        },
+        {
+          title: 'Why it exists',
+          content: 'In a world where decisions are fast, distributed, and contestable, Horizon does not simplify reality. It makes it verifiable.',
+        },
+      ],
     },
     howHorizonSeals: {
       title: 'How Horizon seals facts',
@@ -330,7 +432,7 @@ export const content = {
       status: 'Canonical · Public · Stable · Reference version',
     },
     quickStart: {
-      title: 'Quick Start',
+      title: 'First Seal',
       subtitle: 'Seal a Fact in 5 Minutes',
       audience: 'Audience: CTO · Staff Engineer · SRE',
       oneEndpoint: {
@@ -2049,11 +2151,17 @@ When the execution occurred:`,
     tagline: 'Infrastructure d\'Observabilité Décisionnelle (DOI)',
     nav: {
       overview: 'Vue d\'ensemble',
-      documentation: 'Documentation',
+      theProblem: 'Le Problème',
+      theShift: 'Le Déplacement',
+      horizon: 'Horizon',
+      proof: 'Preuve',
       proofModel: 'Modèle de Preuve',
       proofSemantic: 'Sémantique de la Preuve',
       quickStart: 'Démarrage rapide',
+      firstSeal: 'Premier Scellement',
       verification: 'Vérification',
+      documentation: 'Documentation',
+      talkToUs: 'Nous parler',
       contact: 'Contact',
       menu: 'Menu',
     },
@@ -2076,6 +2184,102 @@ When the execution occurred:`,
     categoryFraming: {
       definition: 'Horizon est une Infrastructure de Preuve Décisionnelle.',
       clarification: 'Il produit des faits vérifiables sur les décisions, sans les interpréter, les imposer ou les gouverner.',
+    },
+    theProblem: {
+      title: 'The Problem',
+      sections: [
+        {
+          title: 'Decisions live everywhere, and nowhere',
+          content: 'Aujourd\'hui, les décisions des entreprises ne vivent nulle part en particulier. Elles apparaissent par fragments, disséminées dans une multitude d\'outils qui n\'ont jamais été conçus pour les contenir. Une discussion commence dans Slack, se prolonge par email, se précise à l\'oral lors d\'une réunion, se tranche au téléphone, puis laisse parfois une trace indirecte dans un ticket Jira ou un formulaire ServiceNow. L\'action, elle, s\'exécute ailleurs encore, dans un terminal, une console cloud ou un système automatisé, pendant que les applications consignent ce qu\'elles peuvent dans des fichiers de logs pensés pour le diagnostic, non pour la preuve. Sur le moment, cette dispersion n\'est pas un problème. Les équipes se comprennent, la décision circule, l\'organisation avance.',
+        },
+        {
+          title: 'The question always comes later',
+          content: 'La difficulté n\'apparaît que plus tard, lorsque l\'on cherche à établir ce qui s\'est réellement passé. À ce moment-là, il n\'existe aucun point unique vers lequel se tourner. Il faut reconstruire. On rassemble ce qui reste : des messages extraits de Slack, des captures d\'écran jointes à des emails, des PDF exportés depuis des outils métiers, des tickets modifiés plusieurs fois, des logs techniques difficiles à interpréter hors de leur contexte initial. Très vite, on s\'aperçoit que cette matière est incomplète. Certaines discussions n\'ont jamais été écrites, certains échanges ont eu lieu à l\'oral, certains messages ont été supprimés, certains logs ont été purgés, certaines personnes ne sont plus là. Ce qui manque ne peut plus être récupéré.',
+        },
+        {
+          title: 'Reconstruction replaces proof',
+          content: 'Face à ces absences, la reconstruction devient inévitablement interprétative. On comble les vides avec des souvenirs, des intentions supposées, des raisonnements formulés après coup. Une histoire cohérente se forme, souvent de bonne foi, parfois sous contrainte, toujours influencée par le contexte dans lequel la question est posée. Ce récit peut sembler solide, mais il ne constitue plus une preuve. Les éléments produits - captures d\'écran, exports PDF, emails isolés - ne portent pas leur propre intégrité. Ils ne permettent pas à un tiers indépendant de vérifier qu\'ils n\'ont pas été modifiés, sélectionnés ou sortis de leur contexte. Ils demandent à être crus, et dès qu\'une preuve demande à être crue, elle cesse d\'être opposable.',
+        },
+        {
+          title: 'Time works against certainty',
+          content: 'Avec le temps, cette fragilité ne fait que s\'accentuer. Les outils évoluent, les formats changent, les systèmes sont mis à jour, les politiques de rétention effacent ce qui n\'était pas destiné à durer. Les souvenirs s\'altèrent, les certitudes se déplacent. Six mois plus tard, parfois un an plus tard, la décision n\'existe plus que sous la forme d\'un récit que l\'organisation est capable de produire sur elle-même. Ce récit peut être honnête, précis, détaillé, mais il reste vulnérable au doute, parce qu\'il repose sur une reconstruction tardive d\'un réel qui n\'a jamais été capturé.',
+        },
+        {
+          title: 'Tools were never designed for proof',
+          content: 'Le problème n\'est pas que les entreprises manquent d\'outils. Au contraire, elles en utilisent trop, chacun optimisé pour une fonction particulière. Slack facilite la discussion, l\'email structure la communication, Jira organise le travail, ServiceNow encadre les processus, les systèmes techniques exécutent, les logs observent. Mais aucun de ces outils n\'a pour vocation de figer l\'instant où une décision devient irréversible, ni d\'attester qu\'une autorité a déclaré quelque chose à un moment précis. La décision traverse les systèmes sans jamais s\'y inscrire pleinement. Elle existe dans l\'action, mais pas comme un fait autonome, vérifiable indépendamment.',
+        },
+        {
+          title: 'Explaining is not proving',
+          content: 'Lorsque la question est finalement posée - souvent bien après les événements - l\'organisation ne peut plus montrer ce qui s\'est passé. Elle peut seulement l\'expliquer. Et expliquer, aussi rigoureusement que possible, n\'est jamais équivalent à prouver. Ce n\'est pas un problème de discipline, ni de méthode, ni de bonne volonté. C\'est un problème structurel. Tant qu\'il restera invisible, les organisations continueront de croire qu\'elles pourront expliquer plus tard, pour découvrir, trop tard, qu\'expliquer n\'est pas prouver.',
+        },
+      ],
+    },
+    theShift: {
+      title: 'Le Déplacement',
+      sections: [
+        {
+          title: 'Le réflexe d\'améliorer l\'existant',
+          content: 'Face à la fragilité de la preuve, la réaction naturelle des organisations est presque toujours la même. On cherche à améliorer ce qui existe déjà. On ajoute des champs obligatoires, on renforce les workflows de validation, on conserve les logs plus longtemps, on demande aux équipes d\'écrire davantage. L\'effort est sincère, souvent coûteux, parfois même efficace sur le court terme. Pourtant, le problème ne disparaît pas.',
+        },
+        {
+          title: 'Plus de structure ne crée pas de preuve',
+          content: 'Ces réponses reposent sur une hypothèse implicite : si les outils sont suffisamment bien organisés, la preuve finira par émerger. Or l\'organisation ne produit pas de preuve. Elle produit de la cohérence. Les workflows imposent un chemin, mais ne garantissent pas que la décision réelle a été prise dans ce chemin. Les logs décrivent ce que les systèmes font, pas ce que les autorités déclarent. La documentation formalise des récits, presque toujours après coup. Dans tous les cas, la preuve reste dérivée.',
+        },
+        {
+          title: 'Une catégorie entière manquante',
+          content: 'Ce qui manque n\'est pas une règle supplémentaire, ni un outil de plus, ni une meilleure discipline humaine. Il manque une catégorie entière d\'infrastructure : une infrastructure de preuve des décisions. Son rôle n\'est pas de décider, ni de gouverner, ni de contrôler. Son rôle est de capturer l\'existence d\'un fait décisionnel au moment précis où il se produit, avant toute interprétation, avant toute reconstruction. Tant que cette catégorie n\'existe pas, toute tentative de preuve repose sur des traces secondaires, fragiles par nature.',
+        },
+        {
+          title: 'De la reconstruction à l\'ancrage',
+          content: 'Le déplacement est là. Il ne s\'agit plus de reconstruire après coup, ni d\'analyser plus finement, ni de gouverner plus strictement. Il s\'agit de reconnaître que certains faits doivent être ancrés au moment où ils existent, avant que le temps, les systèmes et les interprétations ne les altèrent. La preuve ne se déduit pas. Elle s\'ancre, ou elle se perd.',
+        },
+        {
+          title: 'Une frontière claire',
+          content: 'À partir de ce constat, une frontière devient nette. D\'un côté, les systèmes qui décident, exécutent, communiquent et analysent. De l\'autre, une infrastructure d\'ancrage factuel, neutre et indépendante, dont le rôle n\'est pas d\'intervenir, mais d\'attester. Ce déplacement ne rend pas les décisions meilleures. Il rend leur existence moins discutable.',
+        },
+        {
+          title: 'Ce que ce déplacement rend possible',
+          content: 'Une fois ce déplacement opéré, la question de la preuve change de nature. Elle cesse d\'être un exercice fragile de justification pour devenir un problème de vérification. Non pas parce que les organisations contrôlent mieux, mais parce qu\'elles disposent enfin de faits qui n\'ont pas besoin d\'être racontés.',
+        },
+      ],
+    },
+    horizonAbout: {
+      title: 'Horizon',
+      subtitle: 'Une infrastructure de preuve',
+      sections: [
+        {
+          title: 'Une infrastructure de preuve',
+          content: 'Horizon est une infrastructure de preuve. Elle existe pour une raison simple : permettre à une organisation de s\'appuyer sur des faits, et non sur des récits, lorsqu\'une décision critique est remise en question.',
+        },
+        {
+          title: 'En dehors du système décisionnel',
+          content: 'Horizon n\'aide pas à décider. Il ne contrôle pas l\'action. Il n\'impose aucun processus. Il se tient volontairement en dehors du système décisionnel.\n\nCette posture n\'est pas un manque, mais une condition. Dès lors qu\'un système valide, autorise ou bloque, il devient partie prenante de la décision. La preuve qu\'il produit cesse alors d\'être neutre.',
+        },
+        {
+          title: 'Ce qu\'Horizon enregistre',
+          content: 'Ce qu\'Horizon capture, ce sont des faits déclarés : qu\'une intention a été exprimée, qu\'une information a été transmise, qu\'un résultat a été observé. Il n\'en déduit rien. Il ne qualifie rien.\n\nIl garantit uniquement que ces faits ont existé, à un moment donné, et qu\'ils peuvent être vérifiés indépendamment.',
+        },
+        {
+          title: 'Pas de workflow, pas d\'interface pour décider',
+          content: 'Horizon ne cherche pas à remplacer les outils existants. Les décisions continuent de naître là où elles naissent réellement : dans des échanges humains, des systèmes métiers, des contextes d\'urgence ou d\'exception. Horizon s\'adapte à ces lieux sans demander aux décideurs de changer leurs habitudes ni d\'apprendre une nouvelle interface.',
+        },
+        {
+          title: 'Invisible quand cela compte',
+          content: 'Cette discrétion est essentielle. Horizon n\'est pas une destination où l\'on va travailler. C\'est une couche silencieuse, présente au moment où les faits s\'expriment, invisible pour l\'opérationnel, mais pleinement accessible après coup pour ceux qui doivent établir ce qui s\'est réellement passé.',
+        },
+        {
+          title: 'Des faits, pas des explications',
+          content: 'Ce que fournit Horizon n\'est ni une analyse, ni une explication, ni une justification. C\'est une matière factuelle, destinée à être examinée par d\'autres : auditeurs, équipes risque, juristes, autorités de contrôle. Toute interprétation appartient à ces instances, hors du système.',
+        },
+        {
+          title: 'Ce qu\'Horizon ne promet pas',
+          content: 'Horizon ne rend pas les décisions meilleures. Il ne prévient pas les erreurs. Il ne garantit pas que les règles ont été respectées.\n\nIl garantit quelque chose de plus fondamental : que certains faits existent, qu\'ils sont datés, et qu\'ils ne peuvent pas être niés a posteriori.',
+        },
+        {
+          title: 'Pourquoi il existe',
+          content: 'Dans un monde où les décisions sont rapides, distribuées et contestables, Horizon ne simplifie pas la réalité. Il la rend vérifiable.',
+        },
+      ],
     },
     howHorizonSeals: {
       title: 'Comment Horizon scelle les faits',
@@ -2371,7 +2575,7 @@ When the execution occurred:`,
       status: 'Canonique · Public · Stable · Version de référence',
     },
     quickStart: {
-      title: 'Démarrage rapide',
+      title: 'Premier Scellement',
       subtitle: 'Sceller un fait en 5 minutes',
       audience: 'Audience : CTO · Staff Engineer · SRE',
       oneEndpoint: {
