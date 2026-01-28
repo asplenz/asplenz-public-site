@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import PageNav from '../components/PageNav'
@@ -56,9 +57,14 @@ export default function QuickStartPage() {
           <p className="text-xl text-[#1A5187] font-medium mb-2">
             {content.subtitle}
           </p>
-          <p className="text-gray-600 mb-12">
+          <p className="text-gray-600 mb-4">
             {content.audience}
           </p>
+          {content.disclaimer && (
+            <p className="text-gray-500 italic text-sm mb-12">
+              {content.disclaimer}
+            </p>
+          )}
 
           {/* One Endpoint */}
           <section className="mb-12">
@@ -66,7 +72,10 @@ export default function QuickStartPage() {
             <pre className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm font-mono mb-4">
               {content.oneEndpoint.code}
             </pre>
-            <p className="text-gray-600 text-sm">{content.oneEndpoint.note}</p>
+            <p className="text-gray-600 text-sm mb-2">{content.oneEndpoint.note}</p>
+            {content.oneEndpoint.clarification && (
+              <p className="text-gray-500 text-sm italic">{content.oneEndpoint.clarification}</p>
+            )}
           </section>
 
           {/* One Request */}
@@ -75,15 +84,21 @@ export default function QuickStartPage() {
             <pre className="bg-gray-900 text-green-400 rounded-lg p-4 overflow-x-auto text-sm font-mono mb-4">
               {requestExample}
             </pre>
-            <p className="text-gray-600 text-sm">{content.oneRequest.note}</p>
+            <p className="text-gray-600 text-sm mb-2">{content.oneRequest.note}</p>
+            {content.oneRequest.clarification && (
+              <p className="text-gray-500 text-sm italic">{content.oneRequest.clarification}</p>
+            )}
           </section>
 
           {/* One Response */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">{content.oneResponse.title}</h2>
-            <pre className="bg-gray-900 text-blue-400 rounded-lg p-4 overflow-x-auto text-sm font-mono">
+            <pre className="bg-gray-900 text-blue-400 rounded-lg p-4 overflow-x-auto text-sm font-mono mb-4">
               {responseExample}
             </pre>
+            {content.oneResponse.clarification && (
+              <p className="text-gray-500 text-sm italic">{content.oneResponse.clarification}</p>
+            )}
           </section>
 
           <hr className="border-gray-200 my-8" />
@@ -96,7 +111,14 @@ export default function QuickStartPage() {
                 <li key={idx}>{step}</li>
               ))}
             </ol>
-            <p className="text-gray-600 italic">{content.whatHappened.note}</p>
+            <p className="text-gray-600 italic mb-2">{content.whatHappened.note}</p>
+            {content.whatHappened.verificationLink && (
+              <p className="text-sm">
+                <Link href="/verification" className="text-[#1A5187] hover:underline">
+                  {content.whatHappened.verificationLink}
+                </Link>
+              </p>
+            )}
           </section>
 
           <hr className="border-gray-200 my-8" />
@@ -108,7 +130,10 @@ export default function QuickStartPage() {
             <pre className="bg-gray-900 text-yellow-400 rounded-lg p-4 overflow-x-auto text-sm font-mono mb-4">
               {idempotencyExample}
             </pre>
-            <p className="text-gray-700 font-medium">{content.idempotency.result}</p>
+            <p className="text-gray-700 font-medium mb-2">{content.idempotency.result}</p>
+            {content.idempotency.clarification && (
+              <p className="text-gray-500 text-sm italic">{content.idempotency.clarification}</p>
+            )}
           </section>
 
           <hr className="border-gray-200 my-8" />
@@ -116,7 +141,7 @@ export default function QuickStartPage() {
           {/* Storage Guarantees */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">{content.storageGuarantees.title}</h2>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mb-4">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-200">
@@ -134,6 +159,9 @@ export default function QuickStartPage() {
                 </tbody>
               </table>
             </div>
+            {content.storageGuarantees.clarification && (
+              <p className="text-gray-500 text-sm italic">{content.storageGuarantees.clarification}</p>
+            )}
           </section>
 
           <hr className="border-gray-200 my-8" />
@@ -141,7 +169,7 @@ export default function QuickStartPage() {
           {/* What Horizon Does Not Do */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">{content.whatHorizonDoesNot.title}</h2>
-            <ul className="space-y-3">
+            <ul className="space-y-3 mb-4">
               {content.whatHorizonDoesNot.items.map((item: { label: string; description: string }, idx: number) => (
                 <li key={idx} className="flex items-start gap-2">
                   <span className="font-semibold text-gray-900">{item.label}</span>
@@ -149,6 +177,13 @@ export default function QuickStartPage() {
                 </li>
               ))}
             </ul>
+            {content.whatHorizonDoesNot.proofSemanticsLink && (
+              <p className="text-sm">
+                <Link href="/proof-semantic" className="text-[#1A5187] hover:underline">
+                  {content.whatHorizonDoesNot.proofSemanticsLink}
+                </Link>
+              </p>
+            )}
           </section>
 
           <hr className="border-gray-200 my-8" />
@@ -160,10 +195,13 @@ export default function QuickStartPage() {
               {content.verifyChain.code}
             </pre>
             <p className="text-gray-700 mb-2">{content.verifyChain.result}</p>
-            <p className="text-gray-600 text-sm italic">{content.verifyChain.note}</p>
+            <p className="text-gray-600 text-sm italic mb-2">{content.verifyChain.note}</p>
+            {content.verifyChain.clarification && (
+              <p className="text-gray-500 text-sm italic">{content.verifyChain.clarification}</p>
+            )}
           </section>
 
-          <PageNav current="/quick-start" />
+          <PageNav current="/first-seal" />
         </div>
       </main>
 

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
 import { getContent } from '@/lib/content'
 import Header from '../components/Header'
@@ -27,10 +28,28 @@ export default function ShiftPage() {
             {content.sections.map((section: { title: string; content: string }, idx: number) => (
               <section key={idx}>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">{section.title}</h2>
-                <p className="text-gray-700 leading-relaxed">{section.content}</p>
+                <p className="text-gray-700 leading-relaxed whitespace-pre-line">{section.content}</p>
               </section>
             ))}
           </div>
+
+          {content.closingLine && (
+            <p className="mt-12 text-lg text-gray-600 italic">
+              {content.closingLine}
+            </p>
+          )}
+
+          {content.horizonLink && (
+            <p className="mt-8">
+              <Link
+                href="/horizon"
+                className="text-[#1A5187] hover:underline inline-flex items-center gap-2"
+              >
+                {content.horizonLink}
+                <span aria-hidden="true">→</span>
+              </Link>
+            </p>
+          )}
 
           <PageNav current="/shift" />
         </div>

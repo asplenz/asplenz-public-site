@@ -185,6 +185,13 @@ export default function UnderstandingProofPage() {
               </div>
             </div>
 
+            {/* Timeline note */}
+            {content.chapter2.timelineNote && (
+              <p className="text-gray-600 dark:text-gray-400 text-sm italic mb-8">
+                {content.chapter2.timelineNote}
+              </p>
+            )}
+
             {/* What timeline shows / doesn't show */}
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <div>

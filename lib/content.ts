@@ -71,6 +71,7 @@ export const content = {
           content: 'When the question is finally asked - often long after the events - the organization can no longer show what happened. It can only explain it. And explaining, as rigorously as possible, is never equivalent to proving. This is not a problem of discipline, nor of method, nor of goodwill. It is a structural problem. As long as it remains invisible, organizations will continue to believe they can explain later, only to discover, too late, that explaining is not proving.',
         },
       ],
+      closingLine: 'What is missing is not another tool, but a way to preserve reality before it disappears.',
     },
     theShift: {
       title: 'The Shift',
@@ -97,9 +98,11 @@ export const content = {
         },
         {
           title: 'What this shift makes possible',
-          content: 'Once this shift is made, the nature of the question of proof changes. It ceases to be a fragile exercise in justification and becomes a problem of verification. Not because organizations have better control, but because they finally possess facts that do not need to be narrated.',
+          content: 'Once this shift is made, the nature of the question of proof changes. It ceases to be a fragile exercise in justification and becomes a problem of verification. Not because organizations have better control, but because they finally possess facts that do not need to be narrated.\n\nThis shift changes the question from "Can we reconstruct what happened?" to "Can we independently verify what was captured?"',
         },
       ],
+      closingLine: 'Without anchoring at the moment of declaration, verification remains an exercise in interpretation.',
+      horizonLink: 'Explore how Horizon implements this shift',
     },
     horizonAbout: {
       title: 'Horizon',
@@ -107,7 +110,7 @@ export const content = {
       sections: [
         {
           title: 'An infrastructure of proof',
-          content: 'Horizon is an infrastructure of proof. It exists for a simple reason: to allow an organization to rely on facts, rather than narratives, when a critical decision is called into question.',
+          content: 'Horizon is an infrastructure of proof. Factual evidence for decisions when they matter most.\n\nIt exists for a simple reason: to allow an organization to rely on facts, rather than narratives, when a critical decision is called into question.',
         },
         {
           title: 'Outside the decision system',
@@ -138,6 +141,7 @@ export const content = {
           content: 'In a world where decisions are fast, distributed, and contestable, Horizon does not simplify reality. It makes it verifiable.',
         },
       ],
+      proofLink: 'For the boundary of what evidence means, see Proof Semantics.',
     },
     howHorizonSeals: {
       title: 'How Horizon seals facts',
@@ -469,17 +473,21 @@ export const content = {
       title: 'First Seal',
       subtitle: 'Seal a Fact in 5 Minutes',
       audience: 'Audience: CTO · Staff Engineer · SRE',
+      disclaimer: 'This page shows how to seal a fact technically. It does not explain how to interpret its meaning.',
       oneEndpoint: {
         title: 'One Endpoint',
-        code: 'POST /v2/streams/{stream_id}/facts\nContent-Type: application/json',
+        code: 'POST /streams/{stream_id}/facts\nContent-Type: application/json',
         note: 'A stream is identified by stream_id, provided by the client in the URL. If no stream with that ID exists, Horizon creates it implicitly when the first fact is sealed.',
+        clarification: 'The only identifier you manage is stream_id; Horizon does not impose any business semantics on it.',
       },
       oneRequest: {
         title: 'One Request',
         note: 'In production deployments, tenant_id is typically derived from authentication context rather than provided in the payload.',
+        clarification: 'Your payload is opaque to Horizon. It is recorded exactly as provided.',
       },
       oneResponse: {
         title: 'One Response',
+        clarification: 'Fields such as fact_hash and prev_hash are used for integrity and verification, not business logic.',
       },
       whatHappened: {
         title: 'What Happened',
@@ -490,11 +498,13 @@ export const content = {
           'Horizon stored the fact (append-only)',
         ],
         note: 'Horizon did not interpret custom_payload. That\'s your data.',
+        verificationLink: 'See Verification to learn how to independently verify the chain.',
       },
       idempotency: {
         title: 'Idempotency',
         intro: 'Add client_ref to make the request idempotent:',
         result: 'Same client_ref → same fact returned. No duplicate sealing.',
+        clarification: 'Idempotency does not alter the proof. It prevents duplication only.',
       },
       storageGuarantees: {
         title: 'Storage Guarantees',
@@ -505,6 +515,7 @@ export const content = {
           { property: 'Tenant isolation', guarantee: 'Facts scoped by tenant_id' },
           { property: 'Proof authority', guarantee: 'sealed_at_ms assigned by Horizon' },
         ],
+        clarification: 'These properties hold even if the client system is compromised, because any modification is detectable.',
       },
       whatHorizonDoesNot: {
         title: 'What Horizon Does Not Do',
@@ -514,18 +525,20 @@ export const content = {
           { label: 'No validation', description: 'Your payload, your schema' },
           { label: 'No business logic', description: 'Seal facts, nothing else' },
         ],
+        proofSemanticsLink: 'For the semantic boundary of what a sealed fact proves and does not prove, see Proof Semantics.',
       },
       verifyChain: {
         title: 'Verify Chain Integrity',
-        code: 'POST /v2/streams/{stream_id}/verify',
+        code: 'POST /streams/{stream_id}/verify',
         result: 'Returns { "valid": true } if hash chain is intact.',
         note: 'Verification recomputes hashes and signatures. It does not interpret facts or assert correctness.',
+        clarification: 'Verification results only attest that the recorded sequence hasn\'t been tampered with.',
       },
     },
     understandingProof: {
       title: 'Understanding Horizon Proofs',
       status: 'Informative · Public',
-      purpose: 'Explain how Horizon evidence is produced and how it can be read: without redefining its meaning.',
+      purpose: 'Explain how Horizon evidence is produced and how it can be read — with a concrete example — without redefining its meaning.',
       intro: [
         'This document complements Proof Semantics.',
         'It does not redefine what a Horizon proof means.',
@@ -548,6 +561,7 @@ export const content = {
       chapter2: {
         title: 'Reading a proof – Timeline example',
         intro: 'This section illustrates how Horizon evidence can be examined once facts have been sealed. The example below shows a post-incident timeline, ordered by sealing time (sealed_at).',
+        timelineNote: 'This example illustrates one way to examine sealed facts; it does not imply any interpretation beyond what is defined in Proof Semantics.',
         shows: {
           title: 'What the timeline shows:',
           items: [
@@ -586,6 +600,7 @@ export const content = {
       subtitle: 'What a Sealed Fact Proves - and What It Doesn\'t',
       status: 'Canonical · Public · Reference',
       appliesTo: 'Applies to: All Horizon deployments',
+      intro: 'This document defines semantic boundaries of what Horizon evidence technically proves.',
       sections: [
         {
           title: '1. Purpose of This Document',
@@ -2308,6 +2323,7 @@ When the execution occurred:`,
           content: 'Lorsque la question est finalement posée - souvent bien après les événements - l\'organisation ne peut plus montrer ce qui s\'est passé. Elle peut seulement l\'expliquer. Et expliquer, aussi rigoureusement que possible, n\'est jamais équivalent à prouver. Ce n\'est pas un problème de discipline, ni de méthode, ni de bonne volonté. C\'est un problème structurel. Tant qu\'il restera invisible, les organisations continueront de croire qu\'elles pourront expliquer plus tard, pour découvrir, trop tard, qu\'expliquer n\'est pas prouver.',
         },
       ],
+      closingLine: 'Ce qui manque n\'est pas un nouvel outil, mais un moyen de préserver la réalité avant qu\'elle ne disparaisse.',
     },
     theShift: {
       title: 'Le Déplacement',
@@ -2334,9 +2350,11 @@ When the execution occurred:`,
         },
         {
           title: 'Ce que ce déplacement rend possible',
-          content: 'Une fois ce déplacement opéré, la question de la preuve change de nature. Elle cesse d\'être un exercice fragile de justification pour devenir un problème de vérification. Non pas parce que les organisations contrôlent mieux, mais parce qu\'elles disposent enfin de faits qui n\'ont pas besoin d\'être racontés.',
+          content: 'Une fois ce déplacement opéré, la question de la preuve change de nature. Elle cesse d\'être un exercice fragile de justification pour devenir un problème de vérification. Non pas parce que les organisations contrôlent mieux, mais parce qu\'elles disposent enfin de faits qui n\'ont pas besoin d\'être racontés.\n\nCe déplacement transforme la question de « Peut-on reconstruire ce qui s\'est passé ? » en « Peut-on vérifier indépendamment ce qui a été capturé ? »',
         },
       ],
+      closingLine: 'Sans ancrage au moment de la déclaration, la vérification reste un exercice d\'interprétation.',
+      horizonLink: 'Découvrir comment Horizon réalise ce déplacement',
     },
     horizonAbout: {
       title: 'Horizon',
@@ -2344,7 +2362,7 @@ When the execution occurred:`,
       sections: [
         {
           title: 'Une infrastructure de preuve',
-          content: 'Horizon est une infrastructure de preuve. Elle existe pour une raison simple : permettre à une organisation de s\'appuyer sur des faits, et non sur des récits, lorsqu\'une décision critique est remise en question.',
+          content: 'Horizon est une infrastructure de preuve. Des faits vérifiables pour les décisions qui comptent.\n\nElle existe pour une raison simple : permettre à une organisation de s\'appuyer sur des faits, et non sur des récits, lorsqu\'une décision critique est remise en question.',
         },
         {
           title: 'En dehors du système décisionnel',
@@ -2375,6 +2393,7 @@ When the execution occurred:`,
           content: 'Dans un monde où les décisions sont rapides, distribuées et contestables, Horizon ne simplifie pas la réalité. Il la rend vérifiable.',
         },
       ],
+      proofLink: 'Pour la définition précise de ce que signifie la preuve, voir Sémantique de la Preuve.',
     },
     howHorizonSeals: {
       title: 'Comment Horizon scelle les faits',
@@ -2705,17 +2724,21 @@ When the execution occurred:`,
       title: 'Premier Scellement',
       subtitle: 'Sceller un fait en 5 minutes',
       audience: 'Audience : CTO · Staff Engineer · SRE',
+      disclaimer: 'Cette page montre comment sceller un fait techniquement. Elle n\'explique pas comment interpréter sa signification.',
       oneEndpoint: {
         title: 'Un seul point de terminaison',
-        code: 'POST /v2/streams/{stream_id}/facts\nContent-Type: application/json',
+        code: 'POST /streams/{stream_id}/facts\nContent-Type: application/json',
         note: 'Un flux est identifié par stream_id, fourni par le client dans l\'URL. Si aucun flux avec cet ID n\'existe, Horizon le crée implicitement lors du scellement du premier fait.',
+        clarification: 'Le seul identifiant que vous gérez est stream_id ; Horizon n\'impose aucune sémantique métier sur celui-ci.',
       },
       oneRequest: {
         title: 'Une seule requête',
         note: 'Dans les déploiements en production, le tenant_id est généralement dérivé du contexte d\'authentification plutôt que fourni dans la charge utile.',
+        clarification: 'Votre charge utile est opaque pour Horizon. Elle est enregistrée exactement telle que fournie.',
       },
       oneResponse: {
         title: 'Une seule réponse',
+        clarification: 'Les champs comme fact_hash et prev_hash servent à l\'intégrité et à la vérification, pas à la logique métier.',
       },
       whatHappened: {
         title: 'Ce qu\'il s\'est passé',
@@ -2726,11 +2749,13 @@ When the execution occurred:`,
           'Horizon a stocké le fait (en ajout uniquement / append-only)',
         ],
         note: 'Horizon n\'a pas interprété custom_payload. Ce sont vos données.',
+        verificationLink: 'Voir Vérification pour apprendre à vérifier la chaîne de manière indépendante.',
       },
       idempotency: {
         title: 'Idempotence',
         intro: 'Ajoutez client_ref pour rendre la requête idempotente :',
         result: 'Même client_ref → même fait retourné. Pas de double scellement.',
+        clarification: 'L\'idempotence ne modifie pas la preuve. Elle empêche uniquement la duplication.',
       },
       storageGuarantees: {
         title: 'Garanties de stockage',
@@ -2741,6 +2766,7 @@ When the execution occurred:`,
           { property: 'Isolation des tenants', guarantee: 'Les faits sont cloisonnés par tenant_id' },
           { property: 'Autorité de preuve', guarantee: 'sealed_at_ms est attribué par Horizon' },
         ],
+        clarification: 'Ces propriétés sont garanties même si le système client est compromis, car toute modification est détectable.',
       },
       whatHorizonDoesNot: {
         title: 'Ce qu\'Horizon ne fait pas',
@@ -2750,18 +2776,20 @@ When the execution occurred:`,
           { label: 'Aucune validation', description: 'Votre charge utile, votre schéma' },
           { label: 'Aucune logique métier', description: 'Scelle les faits, rien d\'autre' },
         ],
+        proofSemanticsLink: 'Pour la frontière sémantique de ce qu\'un fait scellé prouve et ne prouve pas, voir Sémantique de la Preuve.',
       },
       verifyChain: {
         title: 'Vérifier l\'intégrité de la chaîne',
-        code: 'POST /v2/streams/{stream_id}/verify',
+        code: 'POST /streams/{stream_id}/verify',
         result: 'Retourne { "valid": true } si la chaîne de hachage est intacte.',
         note: 'La vérification recalcule les hachages et les signatures. Elle n\'interprète pas les faits et ne se prononce pas sur leur exactitude.',
+        clarification: 'Les résultats de vérification attestent uniquement que la séquence enregistrée n\'a pas été altérée.',
       },
     },
     understandingProof: {
       title: 'Comprendre les preuves Horizon',
       status: 'Informatif · Public',
-      purpose: 'Expliquer comment les preuves Horizon sont produites et comment elles peuvent être lues : sans en redéfinir le sens.',
+      purpose: 'Expliquer comment les preuves Horizon sont produites et comment elles peuvent être lues — avec un exemple concret — sans en redéfinir le sens.',
       intro: [
         'Ce document complète Proof Semantics.',
         'Il ne redéfinit pas la signification d\'une preuve Horizon.',
@@ -2784,6 +2812,7 @@ When the execution occurred:`,
       chapter2: {
         title: 'Lire une preuve – Exemple de chronologie',
         intro: 'Cette section illustre comment les preuves Horizon peuvent être examinées une fois les faits scellés. L\'exemple ci-dessous montre une chronologie post-incident, ordonnée par heure de scellement (sealed_at).',
+        timelineNote: 'Cet exemple illustre une façon d\'examiner les faits scellés ; il n\'implique aucune interprétation au-delà de ce qui est défini dans Proof Semantics.',
         shows: {
           title: 'Ce que la chronologie montre :',
           items: [
@@ -2822,6 +2851,7 @@ When the execution occurred:`,
       subtitle: 'Ce qu\'un Fait Scellé Prouve - et ce qu\'il ne prouve pas',
       status: 'Canonique · Public · Référence',
       appliesTo: 'S\'applique à : Tous les déploiements Horizon',
+      intro: 'Ce document définit les frontières sémantiques de ce que les preuves Horizon établissent techniquement.',
       sections: [
         {
           title: '1. Objet de ce document',

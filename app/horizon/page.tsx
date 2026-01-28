@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
 import { getContent } from '@/lib/content'
 import Header from '../components/Header'
@@ -38,6 +39,17 @@ export default function HorizonPage() {
               </section>
             ))}
           </div>
+
+          {content.proofLink && (
+            <p className="mt-12 text-gray-600">
+              <Link
+                href="/proof-semantic"
+                className="text-[#1A5187] hover:underline"
+              >
+                {content.proofLink}
+              </Link>
+            </p>
+          )}
 
           <PageNav current="/horizon" />
         </div>

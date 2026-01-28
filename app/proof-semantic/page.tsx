@@ -26,7 +26,11 @@ export default function ProofSemanticPage() {
             {content.subtitle}
           </p>
           <p className="text-sm text-gray-500 mb-2">{content.status}</p>
-          <p className="text-sm text-gray-500 mb-12">{content.appliesTo}</p>
+          <p className="text-sm text-gray-500 mb-6">{content.appliesTo}</p>
+
+          {content.intro && (
+            <p className="text-gray-700 mb-12">{content.intro}</p>
+          )}
 
           {content.sections.map((section: any, idx: number) => (
             <section key={idx} className="mb-10">

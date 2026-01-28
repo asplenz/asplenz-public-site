@@ -32,6 +32,12 @@ export default function ProblemPage() {
             ))}
           </div>
 
+          {content.closingLine && (
+            <p className="mt-12 text-lg text-gray-600 italic">
+              {content.closingLine}
+            </p>
+          )}
+
           <PageNav current="/problem" />
         </div>
       </main>

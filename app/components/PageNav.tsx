@@ -11,7 +11,7 @@ const pageOrder = [
   { href: '/horizon', labelKey: 'horizon' },
   { href: '/proof-semantic', labelKey: 'proofSemantic' },
   { href: '/verification', labelKey: 'verification' },
-  { href: '/quick-start', labelKey: 'firstSeal' },
+  { href: '/first-seal', labelKey: 'firstSeal' },
 ] as const
 
 export default function PageNav({ current }: { current: string }) {
