@@ -164,11 +164,9 @@ export const content = {
     hero: {
       headline: 'Horizon seals declared facts.',
       headlineSubtext: 'Declared by humans or systems. Sealed without interpretation.',
-      subheadline: 'Horizon is a neutral, append-only infrastructure that seals security and crisis facts as they are declared, without deciding, approving, or interfering with response operations.',
+      subheadline: 'Horizon is a neutral, append-only proof infrastructure that captures facts at the moment they are declared, so they can be independently verified later.',
       bullets: [
-        'Capture facts during real incidents, not after',
-        'Independent, cryptographically verifiable evidence',
-        'No workflow, no approval, no operational friction',
+        'No workflow. No approval. No operational friction.',
       ],
       image: 'hero.png',
     },
@@ -2308,11 +2306,9 @@ When the execution occurred:`,
     hero: {
       headline: 'Horizon scelle les faits déclarés.',
       headlineSubtext: 'Déclaré par des humains ou des systèmes. Scellé sans interprétation.',
-      subheadline: 'Horizon est une infrastructure neutre, append-only, qui scelle les faits de sécurité et de crise au moment où ils sont déclarés, sans décider, sans approuver et sans interférer avec les opérations de réponse.',
+      subheadline: 'Horizon est une infrastructure de preuve neutre et append-only qui capture des faits au moment où ils sont déclarés, pour qu\'ils puissent être vérifiés indépendamment plus tard.',
       bullets: [
-        'Capturer les faits pendant l\'incident, pas après',
-        'Preuve indépendante, vérifiable cryptographiquement',
-        'Aucun workflow, aucune approbation, aucune friction opérationnelle',
+        'Aucun workflow. Aucune approbation. Aucune friction opérationnelle.',
       ],
       image: 'hero.png',
     },

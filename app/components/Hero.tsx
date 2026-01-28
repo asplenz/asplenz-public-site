@@ -23,18 +23,9 @@ export default function Hero() {
             {t.hero.subheadline}
           </p>
 
-          <ul className="space-y-3 mb-8">
-            {t.hero.bullets.map((bullet: string, idx: number) => (
-              <li key={idx} className="flex items-start gap-3">
-                <span className="text-[#1A5187] mt-1">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </span>
-                <span className="text-gray-700">{bullet}</span>
-              </li>
-            ))}
-          </ul>
+          <p className="text-gray-700 font-medium mb-8">
+            {t.hero.bullets[0]}
+          </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <a

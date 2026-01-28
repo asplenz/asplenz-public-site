@@ -2,16 +2,11 @@
 
 # Horizon seals declared facts.
 
-Horizon is a neutral, append-only infrastructure that seals security and crisis facts as they are declared, without deciding, approving, or interfering with response operations.
+Declared by humans or systems. Sealed without interpretation.
 
-- Capture facts during real incidents, not after
-- Independent, cryptographically verifiable evidence
-- No workflow, no approval, no operational friction
+Horizon is a neutral, append-only proof infrastructure that captures facts at the moment they are declared, so they can be independently verified later.
 
----
-
-**Horizon is Decision Evidence Infrastructure.**
-It produces verifiable facts about decisions without interpreting, enforcing, or governing them.
+No workflow. No approval. No operational friction.
 
 ---
 
@@ -157,16 +152,11 @@ Horizon complements them by recording what they cannot guarantee.
 
 # Horizon scelle les faits déclarés.
 
-Horizon est une infrastructure neutre, append-only, qui scelle les faits de sécurité et de crise au moment où ils sont déclarés, sans décider, sans approuver et sans interférer avec les opérations de réponse.
+Déclarés par des humains ou des systèmes. Scellés sans interprétation.
 
-- Capturer les faits pendant l'incident, pas après
-- Preuve indépendante, vérifiable cryptographiquement
-- Aucun workflow, aucune approbation, aucune friction opérationnelle
+Horizon est une infrastructure de preuve neutre et append-only qui capture des faits au moment où ils sont déclarés, pour qu'ils puissent être vérifiés indépendamment plus tard.
 
----
-
-**Horizon est une Infrastructure de Preuve Décisionnelle.**
-Il produit des faits vérifiables sur les décisions, sans les interpréter, les imposer ou les gouverner.
+Aucun workflow. Aucune approbation. Aucune friction opérationnelle.
 
 ---
 
