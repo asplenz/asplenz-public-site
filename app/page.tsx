@@ -1,17 +1,12 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
-import CategoryFraming from './components/CategoryFraming'
+import WhatHorizonRecords from './components/WhatHorizonRecords'
 import Problem from './components/Problem'
-import HowHorizonSeals from './components/HowHorizonSeals'
-import PostIncidentTimeline from './components/PostIncidentTimeline'
-import HowHorizonWorks from './components/HowHorizonWorks'
-import PostIncident from './components/PostIncident'
-import WhyCISOs from './components/WhyCISOs'
-import WhoElse from './components/WhoElse'
-import WhatHorizonIsNot from './components/WhatHorizonIsNot'
-import Signature from './components/Signature'
-import FinalCTA from './components/FinalCTA'
+import HorizonDoesNot from './components/HorizonDoesNot'
+import WhatThisEnables from './components/WhatThisEnables'
+import Foundations from './components/Foundations'
+import ContactCTA from './components/ContactCTA'
 
 export default function HomePage() {
   return (
@@ -20,17 +15,12 @@ export default function HomePage() {
 
       <main>
         <Hero />
-        <CategoryFraming />
+        <WhatHorizonRecords />
         <Problem />
-        <HowHorizonSeals />
-        <PostIncidentTimeline />
-        <HowHorizonWorks />
-        <PostIncident />
-        <WhyCISOs />
-        <WhoElse />
-        <WhatHorizonIsNot />
-        <Signature />
-        <FinalCTA />
+        <HorizonDoesNot />
+        <WhatThisEnables />
+        <Foundations />
+        <ContactCTA />
       </main>
 
       <Footer />

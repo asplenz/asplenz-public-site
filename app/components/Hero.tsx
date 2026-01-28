@@ -10,8 +10,8 @@ export default function Hero() {
 
   return (
     <section className="pt-32 pb-6 px-6">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <div>
+      <div className="max-w-5xl mx-auto flex items-center gap-12">
+        <div className="max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 leading-tight">
             {t.hero.headline}
           </h1>
@@ -27,31 +27,20 @@ export default function Hero() {
             {t.hero.bullets[0]}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <a
-              href="#how-horizon-seals"
-              className="px-6 py-3 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-center"
-            >
-              {t.common.cta_primary}
-            </a>
-            <a
-              href="#post-incident-timeline"
-              className="inline-flex items-center gap-2 text-gray-600 font-medium hover:text-[#1A5187] hover:underline"
-            >
-              {t.common.cta_view_timeline}
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
+          <a
+            href="/horizon"
+            className="inline-block px-6 py-3 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-center"
+          >
+            {t.common.cta_hero}
+          </a>
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden md:block shrink-0">
           <Image
             src="/hero.png"
             alt="Horizon - Incident evidence infrastructure"
-            width={600}
-            height={400}
+            width={400}
+            height={300}
             className="rounded-lg"
             priority
           />

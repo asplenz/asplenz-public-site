@@ -92,11 +92,11 @@ export default function Header() {
                   {t.nav.proofSemantic}
                 </Link>
                 <Link
-                  href="/verification"
+                  href="/understanding-proof"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1A5187] transition-colors"
                   onClick={() => setDocsOpen(false)}
                 >
-                  {t.nav.verification}
+                  {t.nav.understandingProof}
                 </Link>
                 <Link
                   href="/quick-start"
@@ -104,6 +104,13 @@ export default function Header() {
                   onClick={() => setDocsOpen(false)}
                 >
                   {t.nav.firstSeal}
+                </Link>
+                <Link
+                  href="/verification"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1A5187] transition-colors"
+                  onClick={() => setDocsOpen(false)}
+                >
+                  {t.nav.verification}
                 </Link>
               </div>
             )}
@@ -193,11 +200,11 @@ export default function Header() {
                   {t.nav.proofSemantic}
                 </Link>
                 <Link
-                  href="/verification"
+                  href="/understanding-proof"
                   className="block py-1.5 text-gray-700 hover:text-[#1A5187] transition-colors text-sm"
                   onClick={() => setMenuOpen(false)}
                 >
-                  {t.nav.verification}
+                  {t.nav.understandingProof}
                 </Link>
                 <Link
                   href="/quick-start"
@@ -205,6 +212,13 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                 >
                   {t.nav.firstSeal}
+                </Link>
+                <Link
+                  href="/verification"
+                  className="block py-1.5 text-gray-700 hover:text-[#1A5187] transition-colors text-sm"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.verification}
                 </Link>
               </div>
             </div>
