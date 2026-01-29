@@ -10,12 +10,22 @@ export default function Header() {
   const { lang, toggleLang } = useLang()
   const t = getContent(lang)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [foundationsOpen, setFoundationsOpen] = useState(false)
+  const [perspectivesOpen, setPerspectivesOpen] = useState(false)
   const [docsOpen, setDocsOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const foundationsRef = useRef<HTMLDivElement>(null)
+  const perspectivesRef = useRef<HTMLDivElement>(null)
+  const docsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (foundationsRef.current && !foundationsRef.current.contains(event.target as Node)) {
+        setFoundationsOpen(false)
+      }
+      if (perspectivesRef.current && !perspectivesRef.current.contains(event.target as Node)) {
+        setPerspectivesOpen(false)
+      }
+      if (docsRef.current && !docsRef.current.contains(event.target as Node)) {
         setDocsOpen(false)
       }
     }
@@ -23,8 +33,14 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
+  const closeAllDropdowns = () => {
+    setFoundationsOpen(false)
+    setPerspectivesOpen(false)
+    setDocsOpen(false)
+  }
+
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50">
+    <header className="fixed top-0 left-0 right-0 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-700 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           <Image
@@ -34,44 +50,137 @@ export default function Header() {
             height={40}
             className="h-10 w-auto"
           />
-          <span className="text-[#1A5187] font-bold text-xl hidden sm:inline">
+          <span className="text-[#1A5187] dark:text-blue-400 font-bold text-xl hidden sm:inline">
             {t.brand}
           </span>
-          <span className="text-[#1A5187] font-bold text-xl sm:hidden">
+          <span className="text-[#1A5187] dark:text-blue-400 font-bold text-xl sm:hidden">
             {t.brandShort}
           </span>
         </Link>
 
         {/* Desktop navigation */}
         <div className="hidden lg:flex items-center gap-5">
-          <Link
-            href="/problem"
-            className="text-gray-700 hover:text-[#1A5187] font-medium text-sm transition-colors"
-          >
-            {t.nav.theProblem}
-          </Link>
-
-          <Link
-            href="/shift"
-            className="text-gray-700 hover:text-[#1A5187] font-medium text-sm transition-colors"
-          >
-            {t.nav.theShift}
-          </Link>
-
-          <Link
-            href="/horizon"
-            className="text-gray-700 hover:text-[#1A5187] font-medium text-sm transition-colors"
-          >
-            {t.nav.horizon}
-          </Link>
-
-          {/* Proof Dropdown */}
-          <div className="relative" ref={dropdownRef}>
+          {/* Foundations Dropdown */}
+          <div className="relative" ref={foundationsRef}>
             <button
-              onClick={() => setDocsOpen(!docsOpen)}
-              className="flex items-center gap-1 text-gray-700 hover:text-[#1A5187] font-medium text-sm transition-colors"
+              onClick={() => {
+                setFoundationsOpen(!foundationsOpen)
+                setPerspectivesOpen(false)
+                setDocsOpen(false)
+              }}
+              className="flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 font-medium text-sm transition-colors"
             >
-              {t.nav.proof}
+              {t.nav.foundations}
+              <svg
+                className={`w-4 h-4 transition-transform ${foundationsOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {foundationsOpen && (
+              <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2">
+                <Link
+                  href="/foundations/problem"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
+                  onClick={() => setFoundationsOpen(false)}
+                >
+                  {t.nav.theProblem}
+                </Link>
+                <Link
+                  href="/foundations/shift"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
+                  onClick={() => setFoundationsOpen(false)}
+                >
+                  {t.nav.theShift}
+                </Link>
+                <Link
+                  href="/foundations/horizon"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
+                  onClick={() => setFoundationsOpen(false)}
+                >
+                  {t.nav.horizon}
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Perspectives Dropdown */}
+          <div className="relative" ref={perspectivesRef}>
+            <button
+              onClick={() => {
+                setPerspectivesOpen(!perspectivesOpen)
+                setFoundationsOpen(false)
+                setDocsOpen(false)
+              }}
+              className="flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 font-medium text-sm transition-colors"
+            >
+              {t.nav.perspectives}
+              <svg
+                className={`w-4 h-4 transition-transform ${perspectivesOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {perspectivesOpen && (
+              <div className="absolute top-full left-0 mt-2 w-56 bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2">
+                <Link
+                  href="/perspectives/audit-risk"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
+                  onClick={() => setPerspectivesOpen(false)}
+                >
+                  {t.nav.auditRisk}
+                </Link>
+                <Link
+                  href="/perspectives/security"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
+                  onClick={() => setPerspectivesOpen(false)}
+                >
+                  {t.nav.security}
+                </Link>
+                <Link
+                  href="/perspectives/engineering"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
+                  onClick={() => setPerspectivesOpen(false)}
+                >
+                  {t.nav.engineering}
+                </Link>
+                <Link
+                  href="/perspectives/legal"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
+                  onClick={() => setPerspectivesOpen(false)}
+                >
+                  {t.nav.legal}
+                </Link>
+                <Link
+                  href="/perspectives/ai-governance"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
+                  onClick={() => setPerspectivesOpen(false)}
+                >
+                  {t.nav.aiGovernance}
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Documentation Dropdown */}
+          <div className="relative" ref={docsRef}>
+            <button
+              onClick={() => {
+                setDocsOpen(!docsOpen)
+                setFoundationsOpen(false)
+                setPerspectivesOpen(false)
+              }}
+              className="flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 font-medium text-sm transition-colors"
+            >
+              {t.nav.documentation}
               <svg
                 className={`w-4 h-4 transition-transform ${docsOpen ? 'rotate-180' : ''}`}
                 fill="none"
@@ -83,31 +192,31 @@ export default function Header() {
             </button>
 
             {docsOpen && (
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2">
+              <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2">
                 <Link
-                  href="/proof-semantic"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1A5187] transition-colors"
+                  href="/docs/proof-semantics"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
                   onClick={() => setDocsOpen(false)}
                 >
                   {t.nav.proofSemantic}
                 </Link>
                 <Link
-                  href="/understanding-proof"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1A5187] transition-colors"
+                  href="/docs/understanding-proof"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
                   onClick={() => setDocsOpen(false)}
                 >
                   {t.nav.understandingProof}
                 </Link>
                 <Link
-                  href="/first-seal"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1A5187] transition-colors"
+                  href="/docs/first-seal"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
                   onClick={() => setDocsOpen(false)}
                 >
                   {t.nav.firstSeal}
                 </Link>
                 <Link
-                  href="/verification"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1A5187] transition-colors"
+                  href="/docs/verification"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
                   onClick={() => setDocsOpen(false)}
                 >
                   {t.nav.verification}
@@ -125,7 +234,7 @@ export default function Header() {
 
           <button
             onClick={toggleLang}
-            className="px-3 py-2 border border-gray-300 text-gray-700 font-medium rounded hover:border-[#1A5187] hover:text-[#1A5187] transition-all text-sm"
+            className="px-3 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded hover:border-[#1A5187] hover:text-[#1A5187] dark:hover:border-blue-400 dark:hover:text-blue-400 transition-all text-sm"
           >
             {t.langSwitch}
           </button>
@@ -135,14 +244,14 @@ export default function Header() {
         <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={toggleLang}
-            className="px-2 py-1 border border-gray-300 text-gray-700 font-medium rounded hover:border-[#1A5187] hover:text-[#1A5187] transition-all text-sm"
+            className="px-2 py-1 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded hover:border-[#1A5187] hover:text-[#1A5187] dark:hover:border-blue-400 dark:hover:text-blue-400 transition-all text-sm"
           >
             {t.langSwitch}
           </button>
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="p-2 text-gray-700 hover:text-[#1A5187] transition-colors"
+            className="p-2 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors"
             aria-label={t.nav.menu}
           >
             {menuOpen ? (
@@ -160,62 +269,112 @@ export default function Header() {
 
       {/* Mobile menu dropdown */}
       {menuOpen && (
-        <div className="lg:hidden border-t border-gray-200 bg-white">
+        <div className="lg:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900">
           <div className="px-6 py-4 space-y-2">
-            <Link
-              href="/problem"
-              className="block py-2 text-gray-700 hover:text-[#1A5187] font-medium transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              {t.nav.theProblem}
-            </Link>
-
-            <Link
-              href="/shift"
-              className="block py-2 text-gray-700 hover:text-[#1A5187] font-medium transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              {t.nav.theShift}
-            </Link>
-
-            <Link
-              href="/horizon"
-              className="block py-2 text-gray-700 hover:text-[#1A5187] font-medium transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              {t.nav.horizon}
-            </Link>
-
-            {/* Proof section */}
+            {/* Foundations section */}
             <div className="py-2">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                {t.nav.proof}
+              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
+                {t.nav.foundations}
               </p>
-              <div className="space-y-1 pl-2 border-l-2 border-gray-200">
+              <div className="space-y-1 pl-2 border-l-2 border-gray-200 dark:border-gray-700">
                 <Link
-                  href="/proof-semantic"
-                  className="block py-1.5 text-gray-700 hover:text-[#1A5187] transition-colors text-sm"
+                  href="/foundations/problem"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.theProblem}
+                </Link>
+                <Link
+                  href="/foundations/shift"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.theShift}
+                </Link>
+                <Link
+                  href="/foundations/horizon"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.horizon}
+                </Link>
+              </div>
+            </div>
+
+            {/* Perspectives section */}
+            <div className="py-2">
+              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
+                {t.nav.perspectives}
+              </p>
+              <div className="space-y-1 pl-2 border-l-2 border-gray-200 dark:border-gray-700">
+                <Link
+                  href="/perspectives/audit-risk"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.auditRisk}
+                </Link>
+                <Link
+                  href="/perspectives/security"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.security}
+                </Link>
+                <Link
+                  href="/perspectives/engineering"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.engineering}
+                </Link>
+                <Link
+                  href="/perspectives/legal"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.legal}
+                </Link>
+                <Link
+                  href="/perspectives/ai-governance"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.aiGovernance}
+                </Link>
+              </div>
+            </div>
+
+            {/* Documentation section */}
+            <div className="py-2">
+              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
+                {t.nav.documentation}
+              </p>
+              <div className="space-y-1 pl-2 border-l-2 border-gray-200 dark:border-gray-700">
+                <Link
+                  href="/docs/proof-semantics"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
                   onClick={() => setMenuOpen(false)}
                 >
                   {t.nav.proofSemantic}
                 </Link>
                 <Link
-                  href="/understanding-proof"
-                  className="block py-1.5 text-gray-700 hover:text-[#1A5187] transition-colors text-sm"
+                  href="/docs/understanding-proof"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
                   onClick={() => setMenuOpen(false)}
                 >
                   {t.nav.understandingProof}
                 </Link>
                 <Link
-                  href="/first-seal"
-                  className="block py-1.5 text-gray-700 hover:text-[#1A5187] transition-colors text-sm"
+                  href="/docs/first-seal"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
                   onClick={() => setMenuOpen(false)}
                 >
                   {t.nav.firstSeal}
                 </Link>
                 <Link
-                  href="/verification"
-                  className="block py-1.5 text-gray-700 hover:text-[#1A5187] transition-colors text-sm"
+                  href="/docs/verification"
+                  className="block py-1.5 text-gray-700 dark:text-gray-300 hover:text-[#1A5187] dark:hover:text-blue-400 transition-colors text-sm"
                   onClick={() => setMenuOpen(false)}
                 >
                   {t.nav.verification}

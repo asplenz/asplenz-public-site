@@ -13,16 +13,26 @@ export default function WhatThisEnables() {
   return (
     <section className="py-12 px-6">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8">
           {content.title}
         </h2>
-        <div className="space-y-4">
-          {content.paragraphs.map((paragraph: string, idx: number) => (
-            <p key={idx} className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              {paragraph}
-            </p>
+
+        {/* Intro */}
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+          {content.intro}
+        </p>
+
+        {/* Not resolve bullets */}
+        <div className="text-gray-700 dark:text-gray-300 mb-6 space-y-1">
+          {content.notResolve.map((line: string, idx: number) => (
+            <p key={idx}>{line}</p>
           ))}
         </div>
+
+        {/* Preserves */}
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
+          {content.preserves}
+        </p>
       </div>
     </section>
   )

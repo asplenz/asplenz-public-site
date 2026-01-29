@@ -1,163 +1,243 @@
-[Version anglaise]
+[VERSION EN]
 
-# Horizon seals declared facts.
+### **Horizon**
 
-Declared by humans or systems. Sealed without interpretation.
+**Horizon seals declared facts.**
+Declared by humans or systems.
+Sealed without interpretation.
 
-Horizon is a neutral, append-only proof infrastructure that captures facts at the moment they are declared, so they can be independently verified later.
+When decisions are taken under pressure and later contested, Horizon preserves what was actually declared, at the moment it mattered.
 
-No workflow. No approval. No operational friction.
+Horizon is a neutral, append-only proof infrastructure that captures facts when they are declared, so they can be independently verified later.
+
+No workflow.
+No approval.
+No operational friction.
 
 ---
 
-## What Horizon records
+### **The problem**
+
+When critical events unfold, decisions are taken before documentation exists.
+
+Communication is informal.
+Approvals are verbal.
+Actions precede records.
+
+Weeks or months later, facts must be reconstructed from logs, messages, screenshots, and testimonies. That reconstruction cannot be independently verified. There is no neutral anchor for what was known at a given moment.
+
+This is not a tooling problem. It appears only when facts must survive time, pressure, and dispute.
+
+---
+
+### **What Horizon records**
 
 Horizon records declared facts.
-Facts declared by humans or by systems.
 
-Facts recorded as they are expressed, without interpretation or judgment.
-Horizon does not infer intent, assess validity, or derive meaning.
+Declared by humans or systems.
+Recorded as expressed, without interpretation or judgment.
+Sealed at declaration time.
+
+Horizon does not infer intent.
+It does not assess validity.
+It does not derive meaning.
 
 It records that something was declared, by whom, and when.
-What is recorded is independent of workflows, tools, and outcomes.
-
-It exists as a fact: nothing more, nothing less.
+Nothing more. Nothing less.
 
 ---
 
-## When context vanishes and facts are contested
+### **What Horizon is not**
 
-When a critical event unfolds (operational, technical, or human: incidents, failures, reports, exceptions, deviations, crises), decisions are taken under pressure. Communication channels are informal. Approvals are verbal. Actions happen before documentation. Facts exist in the moment, but they are not captured as facts.
+Horizon is not a system of action or governance.
 
-Weeks or months later (audits, disputes, investigations), the questions arrive.
+* Not a workflow engine
+* Not a decision system
+* Not a compliance engine
+* Not a security platform (SIEM, SOAR, IR)
 
-Who knew what, and when. What was actually declared, and by whom. Which decisions were made under pressure, and on what basis. What evidence exists that something was known, shared, or validated at that moment.
+Horizon does not exist to run, control, or optimize operations.
 
-By then, reality no longer exists as a set of facts. It must be reconstructed.
+### **What Horizon does not do**
 
-Communications are searched. Logs are exported. Screenshots are gathered. Testimonies are collected. Each source is partial, contextual, and open to interpretation. The narrative depends on who reconstructs it, and why.
+Horizon does not intervene in any process.
 
-That reconstruction cannot be verified independently. There is no neutral anchor, no proof of what was known at a given moment, and no way to distinguish what was declared from what was later inferred.
+* Does not decide or approve
+* Does not block or enforce
+* Does not judge outcomes
+* Does not trigger actions
 
-This is the moment when organizations realize that the problem is not what they decided, but that the facts themselves were never captured when they existed.
+Horizon never participates in execution.
 
----
-
-## What Horizon does not do
-
-Horizon does not decide, approve, or enforce anything.
-It does not run workflows, block actions, or judge outcomes.
-
-It is not a SIEM, a SOAR, an IR platform, a compliance engine, or a decision system.
-
-Horizon records declarations and seals them as facts.
-All interpretation happens elsewhere.
+It only records declared facts and seals them.
 
 ---
 
-## What this enables
+### **What this enables**
 
-By sealing facts when they are declared, Horizon makes post-incident analysis possible **without reconstruction**.
-
-It allows organizations to establish **what was declared, by whom, and when**: even when systems have changed and context is gone.
+By sealing facts when they are declared, Horizon makes post-incident analysis possible without reconstruction. Facts remain verifiable even when systems change, access is revoked, or context disappears.
 
 Horizon does not resolve ambiguity.
-It preserves the factual ground on which ambiguity can be examined.
+It does not assign responsibility.
+It does not explain decisions.
+
+It preserves the factual ground on which those questions can be examined elsewhere.
 
 ---
 
-### Foundations
+### **How Horizon is read, depending on responsibility**
 
-- [The Problem](/problem) ·Why post-incident proof fails
-- [The Shift](/shift) ·From reconstruction to sealed facts
-- [Horizon](/horizon) ·The proof infrastructure
-- [Proof](/proof-semantic) ·How Horizon evidence works
+Horizon is a neutral infrastructure of proof. Its value appears differently depending on who examines the facts after an incident.
 
----
+Choose the perspective that matches your responsibility :
 
-### Contact
+* **Audit & Risk** : Independent verification of post-incident facts.
+* **Security (CISO)** : Integrity that remains detectable after system compromise.
+* **Engineering (CTO)** : Externalized proof without runtime or architectural impact.
+* **Legal** : Neutral facts, separated from interpretation.
+* **AI & Data Governance** : Stable reference points in evolving systems.
 
-[Discuss a real situation](/contact)
-
----
-
-[Version française]
-
-# Horizon scelle les faits déclarés.
-
-Déclarés par des humains ou des systèmes. Scellés sans interprétation.
-
-Horizon est une infrastructure de preuve neutre et append-only qui capture des faits au moment où ils sont déclarés, pour qu'ils puissent être vérifiés indépendamment plus tard.
-
-Aucun workflow. Aucune approbation. Aucune friction opérationnelle.
+**[→ View perspectives]**
 
 ---
 
-## Ce que Horizon enregistre
+### **Foundations**
+
+* **The Problem** : Why post-incident proof fails
+* **The Shift** : From reconstruction to sealed facts
+* **Horizon** : The proof infrastructure
+* **Proof** : How Horizon evidence works
+
+---
+
+### **Contact**
+
+If you are facing a situation where facts may later be contested, you can discuss a real context with the Horizon team.
+
+**[→ Contact]**
+
+---
+
+---
+
+[VERSION FR]
+
+### **Horizon**
+
+**Horizon scelle les faits déclarés.**
+Déclarés par des humains ou des systèmes.
+Scellés sans interprétation.
+
+Quand des décisions sont prises sous pression et contestées plus tard, Horizon préserve ce qui a été réellement déclaré, au moment où cela comptait.
+
+Horizon est une infrastructure de preuve neutre et append-only qui capture les faits au moment où ils sont déclarés, afin qu'ils puissent être vérifiés indépendamment plus tard.
+
+Aucun workflow.
+Aucune approbation.
+Aucune friction opérationnelle.
+
+---
+
+### **Le problème**
+
+Lorsque des événements critiques surviennent, les décisions sont prises avant que la documentation n'existe.
+
+La communication est informelle.
+Les approbations sont verbales.
+Les actions précèdent les enregistrements.
+
+Des semaines ou des mois plus tard, les faits doivent être reconstruits à partir de logs, de messages, de captures d'écran et de témoignages. Cette reconstruction ne peut être vérifiée de manière indépendante. Il n'y a pas d'ancre neutre pour ce qui était connu à un instant donné.
+
+Ce n'est pas un problème d'outillage. Il n'apparaît que lorsque les faits doivent survivre au temps, à la pression et à la contestation.
+
+---
+
+### **Ce que Horizon enregistre**
 
 Horizon enregistre des faits déclarés.
-Des faits déclarés par des humains ou par des systèmes.
 
-Des faits enregistrés tels qu'ils sont exprimés, sans interprétation ni jugement.
-Horizon ne déduit pas d'intention, n'évalue pas la validité et ne dérive aucun sens.
+Déclarés par des humains ou des systèmes.
+Enregistrés tels qu'exprimés, sans interprétation ni jugement.
+Scellés au moment de la déclaration.
+
+Horizon ne déduit aucune intention.
+Il n'évalue pas la validité.
+Il ne dérive aucun sens.
 
 Il enregistre que quelque chose a été déclaré, par qui, et quand.
-Ce qui est enregistré est indépendant des workflows, des outils et des résultats.
-
-Il existe en tant que fait : rien de plus, rien de moins.
+Rien de plus. Rien de moins.
 
 ---
 
-## Quand le contexte disparaît et que les faits sont contestés
+### **Ce que Horizon n'est pas**
 
-Lorsqu'un événement critique survient (opérationnel, technique ou humain : incidents, défaillances, signalements, exceptions, déviations, crises), les décisions sont prises sous pression. Les canaux de communication sont informels. Les validations sont verbales. Les actions précèdent la documentation. Les faits existent sur le moment, mais ils ne sont pas capturés en tant que faits.
+Horizon n'est pas un système d'action ou de gouvernance.
 
-Des semaines ou des mois plus tard (audits, litiges, enquêtes), les questions arrivent.
+* Pas un moteur de workflow
+* Pas un système de décision
+* Pas un moteur de conformité
+* Pas une plateforme de sécurité (SIEM, SOAR, IR)
 
-Qui savait quoi, et quand ? Qu'est-ce qui a réellement été déclaré, et par qui ? Quelles décisions ont été prises sous pression, et sur quelle base ? Quelle preuve existe qu'une information était connue, partagée ou validée à ce moment-là ?
+Horizon n'existe pas pour exécuter, contrôler ou optimiser les opérations.
 
-À ce stade, la réalité n'existe plus en tant qu'ensemble de faits. Elle doit être reconstruite.
+### **Ce que Horizon ne fait pas**
 
-On fouille les échanges, on extrait des logs, on rassemble des captures d'écran, on recueille des témoignages. Chaque source est partielle, contextuelle et sujette à interprétation. Le récit dépend de qui le reconstruit, et pourquoi.
+Horizon n'intervient dans aucun processus.
 
-Cette reconstruction ne peut être vérifiée indépendamment. Il n'y a pas d'ancrage neutre, pas de preuve de ce qui était connu à un moment donné, et aucun moyen de distinguer ce qui a été déclaré de ce qui a été inféré après coup.
+* Ne décide ni n'approuve
+* Ne bloque ni n'impose
+* Ne juge pas les résultats
+* Ne déclenche pas d'actions
 
-C'est à ce moment que les organisations réalisent que le problème n'est pas ce qu'elles ont décidé, mais que les faits eux-mêmes n'ont jamais été capturés au moment où ils existaient.
+Horizon ne participe jamais à l'exécution.
 
----
-
-## Ce que Horizon ne fait pas
-
-Horizon ne décide pas, n'approuve pas et n'impose rien.
-Il n'exécute pas de workflows, ne bloque pas d'actions et ne juge pas les résultats.
-
-Ce n'est pas un SIEM, un SOAR, une plateforme d'IR, un moteur de conformité ou un système de décision.
-
-Horizon enregistre des déclarations et les scelle en tant que faits.
-Toute l'interprétation se fait ailleurs.
+Il enregistre uniquement les faits déclarés et les scelle.
 
 ---
 
-## Ce que cela permet
+### **Ce que cela permet**
 
-En scellant les faits au moment où ils sont déclarés, Horizon rend l'analyse post-incident possible **sans reconstruction**.
-
-Il permet aux organisations d'établir **ce qui a été déclaré, par qui, et quand** : même lorsque les systèmes ont changé et que le contexte a disparu.
+En scellant les faits au moment où ils sont déclarés, Horizon rend l'analyse post-incident possible sans reconstruction. Les faits restent vérifiables même lorsque les systèmes changent, que les accès sont révoqués ou que le contexte disparaît.
 
 Horizon ne lève pas l'ambiguïté.
-Il préserve le terrain factuel sur lequel l'ambiguïté peut être examinée.
+Il n'assigne pas de responsabilité.
+Il n'explique pas les décisions.
+
+Il préserve le terrain factuel sur lequel ces questions peuvent être examinées ailleurs.
 
 ---
 
-### Fondements
+### **Comment Horizon est lu, selon votre responsabilité**
 
-- [Le Problème](/problem) ·Pourquoi la preuve post-incident échoue
-- [Le Déplacement](/shift) ·De la reconstruction aux faits scellés
-- [Horizon](/horizon) ·L'infrastructure de preuve
-- [Preuve](/proof-semantic) ·Comment fonctionne la preuve Horizon
+Horizon est une infrastructure de preuve neutre. Sa valeur se manifeste différemment selon la personne qui examine les faits après un incident.
+
+Choisissez la perspective qui correspond à votre responsabilité :
+
+* **Audit & Risque** : Vérification indépendante des faits post-incident.
+* **Sécurité (RSSI)** : Une intégrité qui reste détectable après la compromission du système.
+* **Engineering (CTO)** : Une preuve externalisée sans impact sur l'exécution ou l'architecture.
+* **Juridique** : Des faits neutres, séparés de l'interprétation.
+* **Gouvernance de l'IA et des Données** : Des points de référence stables dans des systèmes évolutifs.
+
+**[→ Voir les perspectives]**
 
 ---
 
-### Contact
+### **Fondations**
 
-[Discuter d'une situation réelle](/contact)
+* **Le Problème** : Pourquoi la preuve post-incident échoue
+* **Le Shift** : Passer de la reconstruction aux faits scellés
+* **Horizon** : L'infrastructure de preuve
+* **Preuve** : Comment fonctionne la preuve Horizon
+
+---
+
+### **Contact**
+
+Si vous faites face à une situation où les faits pourraient être contestés plus tard, vous pouvez discuter d'un contexte réel avec l'équipe Horizon.
+
+**[→ Contact]**
+
+---
+
+Souhaitez-vous que je prépare maintenant une version courte de la page "Foundations" pour lier ces concepts entre eux ?

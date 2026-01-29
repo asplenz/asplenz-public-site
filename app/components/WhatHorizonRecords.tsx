@@ -11,17 +11,31 @@ export default function WhatHorizonRecords() {
   return (
     <section className="py-12 px-6 bg-gray-50 dark:bg-slate-800">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-10">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8">
           {content.title}
         </h2>
 
-        <div className="space-y-6">
-          {content.paragraphs.map((paragraph: string, idx: number) => (
-            <p key={idx} className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
-              {paragraph}
-            </p>
+        {/* Intro */}
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+          {content.intro}
+        </p>
+
+        {/* Bullets */}
+        <ul className="text-gray-700 dark:text-gray-300 mb-8 space-y-1">
+          {content.bullets.map((bullet: string, idx: number) => (
+            <li key={idx}>{bullet}</li>
           ))}
-        </div>
+        </ul>
+
+        {/* No infer */}
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          {content.noInfer}
+        </p>
+
+        {/* Independent */}
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
+          {content.independent}
+        </p>
       </div>
     </section>
   )

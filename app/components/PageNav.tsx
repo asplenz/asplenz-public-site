@@ -6,12 +6,13 @@ import { getContent } from '@/lib/content'
 
 const pageOrder = [
   { href: '/', labelKey: 'home' },
-  { href: '/problem', labelKey: 'theProblem' },
-  { href: '/shift', labelKey: 'theShift' },
-  { href: '/horizon', labelKey: 'horizon' },
-  { href: '/proof-semantic', labelKey: 'proofSemantic' },
-  { href: '/verification', labelKey: 'verification' },
-  { href: '/first-seal', labelKey: 'firstSeal' },
+  { href: '/foundations/problem', labelKey: 'theProblem' },
+  { href: '/foundations/shift', labelKey: 'theShift' },
+  { href: '/foundations/horizon', labelKey: 'horizon' },
+  { href: '/docs/proof-semantics', labelKey: 'proofSemantic' },
+  { href: '/docs/understanding-proof', labelKey: 'understandingProof' },
+  { href: '/docs/first-seal', labelKey: 'firstSeal' },
+  { href: '/docs/verification', labelKey: 'verification' },
 ] as const
 
 export default function PageNav({ current }: { current: string }) {

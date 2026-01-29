@@ -19,16 +19,22 @@ export default function Hero() {
             {t.hero.headlineSubtext}
           </p>
 
-          <p className="text-lg text-gray-700 mb-6">
+          <p className="text-lg text-gray-700 mb-4">
             {t.hero.subheadline}
           </p>
 
-          <p className="text-gray-700 font-medium mb-8">
-            {t.hero.bullets[0]}
+          <p className="text-gray-700 mb-6">
+            {t.hero.description}
           </p>
 
+          <ul className="text-gray-700 font-medium mb-8 space-y-1">
+            {t.hero.bullets.map((bullet: string, idx: number) => (
+              <li key={idx}>• {bullet}</li>
+            ))}
+          </ul>
+
           <a
-            href="/horizon"
+            href="/foundations/horizon"
             className="inline-block px-6 py-3 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-all text-center"
           >
             {t.common.cta_hero}

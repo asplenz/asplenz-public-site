@@ -7,9 +7,16 @@ export const content = {
     tagline: 'Decision Observability Infrastructure (DOI)',
     nav: {
       overview: 'Overview',
+      foundations: 'Foundations',
       theProblem: 'The Problem',
       theShift: 'The Shift',
       horizon: 'Horizon',
+      perspectives: 'Perspectives',
+      auditRisk: 'Audit & Risk',
+      security: 'Security',
+      engineering: 'Engineering',
+      legal: 'Legal',
+      aiGovernance: 'AI & Data Governance',
       proof: 'Proof',
       proofModel: 'Proof Model',
       proofSemantic: 'Proof Semantics',
@@ -170,64 +177,98 @@ export const content = {
     hero: {
       headline: 'Horizon seals declared facts.',
       headlineSubtext: 'Declared by humans or systems. Sealed without interpretation.',
-      subheadline: 'Horizon is a neutral, append-only proof infrastructure that captures facts at the moment they are declared, so they can be independently verified later.',
+      subheadline: 'When decisions are taken under pressure and later contested, Horizon preserves what was actually declared, at the moment it mattered.',
+      description: 'Horizon is a neutral, append-only proof infrastructure that captures facts when they are declared, so they can be independently verified later.',
       bullets: [
-        'No workflow. No approval. No operational friction.',
+        'No workflow.',
+        'No approval.',
+        'No operational friction.',
       ],
       image: 'hero.png',
     },
+    problem: {
+      title: 'The problem',
+      intro: 'When critical events unfold, decisions are taken before documentation exists.',
+      bulletsCommunication: [
+        'Communication is informal.',
+        'Approvals are verbal.',
+        'Actions precede records.',
+      ],
+      reconstruction: 'Weeks or months later, facts must be reconstructed from logs, messages, screenshots, and testimonies. That reconstruction cannot be independently verified. There is no neutral anchor for what was known at a given moment.',
+      notTooling: 'This is not a tooling problem. It appears only when facts must survive time, pressure, and dispute.',
+    },
     whatHorizonRecords: {
       title: 'What Horizon records',
-      paragraphs: [
-        'Horizon records declared facts.\nFacts declared by humans or by systems.',
-        'Facts recorded as they are expressed, without interpretation or judgment.\nHorizon does not infer intent, assess validity, or derive meaning.',
-        'It records that something was declared, by whom, and when.\nWhat is recorded is independent of workflows, tools, and outcomes.',
-        'It exists as a fact: nothing more, nothing less.',
+      intro: 'Horizon records declared facts.',
+      bullets: [
+        'Declared by humans or systems.',
+        'Recorded as expressed, without interpretation or judgment.',
+        'Sealed at declaration time.',
       ],
-    },
-    problem: {
-      title: 'When context vanishes and facts are contested',
-      paragraphs: [
-        'When a critical event unfolds (operational, technical, or human: incidents, failures, reports, exceptions, deviations, crises), decisions are taken under pressure. Channels become informal. Approvals are given verbally. Actions happen immediately, often before anything has been written down. At that moment, speed matters more than traceability, and no one is thinking about proof.',
-        'Weeks or months later (audits, disputes, investigations), the questions arrive.',
-        'Who knew what, and when. What was actually declared, and by whom. Which decisions were taken under pressure, and based on what information. What evidence still exists that can be examined independently.',
-        'By then, reality no longer exists as a set of facts. It must be reconstructed.',
-        'Communications are searched. Logs are exported. Testimonies and screenshots are assembled. Human memory fills the gaps. A coherent narrative eventually emerges, often honest, sometimes confident, but fragile by nature.',
-        'That reconstruction cannot be verified independently. It depends on what remains, on what was kept, and on the perception of those who are still there to explain it. Over time, what cannot be proven becomes debatable. What becomes debatable eventually becomes contestable.',
-        'This is the moment when organizations realize that the problem is not what they decided, but that the facts themselves were never captured when they existed.',
-      ],
+      noInfer: 'Horizon does not infer intent. It does not assess validity. It does not derive meaning.',
+      independent: 'It records that something was declared, by whom, and when. Nothing more. Nothing less.',
     },
     horizonDoesNot: {
-      title: 'What Horizon does not do',
-      paragraphs: [
-        'Horizon does not decide, approve, or enforce anything.',
-        'It does not run workflows, block actions, or judge outcomes.',
-        'It is not a SIEM, a SOAR, an IR platform, a compliance engine, or a decision system.',
-        'Horizon records declarations and seals them as facts.',
-        'All interpretation happens elsewhere.',
-      ],
+      title: 'Clear boundaries',
+      isNot: {
+        title: 'What Horizon is not',
+        intro: 'Horizon is not a system of action or governance.',
+        bullets: [
+          'Not a workflow engine',
+          'Not a decision system',
+          'Not a compliance engine',
+          'Not a security platform (SIEM, SOAR, IR)',
+        ],
+        closing: 'Horizon does not exist to run, control, or optimize operations.',
+      },
+      doesNot: {
+        title: 'What Horizon does not do',
+        intro: 'Horizon does not intervene in any process.',
+        bullets: [
+          'Does not decide or approve',
+          'Does not block or enforce',
+          'Does not judge outcomes',
+          'Does not trigger actions',
+        ],
+        closing: 'Horizon never participates in execution.',
+      },
+      finalLine: 'It only records declared facts and seals them.',
     },
     whatThisEnables: {
       title: 'What this enables',
-      paragraphs: [
-        'By sealing facts when they are declared, Horizon makes post-incident analysis possible without reconstruction.',
-        'It allows organizations to establish what was declared, by whom, and when: even when systems have changed and context is gone.',
+      intro: 'By sealing facts when they are declared, Horizon makes post-incident analysis possible without reconstruction. Facts remain verifiable even when systems change, access is revoked, or context disappears.',
+      notResolve: [
         'Horizon does not resolve ambiguity.',
-        'It preserves the factual ground on which ambiguity can be examined.',
+        'It does not assign responsibility.',
+        'It does not explain decisions.',
+      ],
+      preserves: 'It preserves the factual ground on which those questions can be examined elsewhere.',
+    },
+    indexPerspectives: {
+      title: 'How Horizon is read, depending on responsibility',
+      intro: 'Horizon is a neutral infrastructure of proof. Its value appears differently depending on who examines the facts after an incident.',
+      chooseText: 'Choose the perspective that matches your responsibility:',
+      links: [
+        { label: 'Audit & Risk', description: 'Independent verification of post-incident facts.', href: '/perspectives/audit-risk' },
+        { label: 'Security (CISO)', description: 'Integrity that remains detectable after system compromise.', href: '/perspectives/security' },
+        { label: 'Engineering (CTO)', description: 'Externalized proof without runtime or architectural impact.', href: '/perspectives/engineering' },
+        { label: 'Legal', description: 'Neutral facts, separated from interpretation.', href: '/perspectives/legal' },
+        { label: 'AI & Data Governance', description: 'Stable reference points in evolving systems.', href: '/perspectives/ai-governance' },
       ],
     },
     indexFoundations: {
       title: 'Foundations',
       links: [
-        { label: 'The Problem', description: 'Why post-incident proof fails', href: '/problem' },
-        { label: 'The Shift', description: 'From reconstruction to sealed facts', href: '/shift' },
-        { label: 'Horizon', description: 'The proof infrastructure', href: '/horizon' },
-        { label: 'Proof', description: 'How Horizon evidence works', href: '/proof-semantic' },
+        { label: 'The Problem', description: 'Why post-incident proof fails', href: '/foundations/problem' },
+        { label: 'The Shift', description: 'From reconstruction to sealed facts', href: '/foundations/shift' },
+        { label: 'Horizon', description: 'The proof infrastructure', href: '/foundations/horizon' },
+        { label: 'Proof', description: 'How Horizon evidence works', href: '/docs/understanding-proof' },
       ],
     },
-    indexContactCTA: {
+    indexContact: {
       title: 'Contact',
-      cta: 'Discuss a real situation',
+      text: 'If you are facing a situation where facts may later be contested, you can discuss a real context with the Horizon team.',
+      cta: 'Contact',
     },
     howHorizonWorks: {
       title: 'How Horizon seals facts',
@@ -2252,6 +2293,289 @@ When the execution occurred:`,
         href: '/faq',
       },
     },
+    // Perspective Pages
+    auditRiskPage: {
+      title: 'Audit & Risk Perspective',
+      subtitle: 'For audit, risk, and internal control teams responsible for post-incident truth.',
+      reality: {
+        title: 'The reality of your role',
+        content: 'You investigate events after they happened.\n\nEvidence reaches you late, extracted from systems you do not operate, already filtered, explained, or summarized by others. You depend on narratives, screenshots, exports, and assurances that data "has not been altered".\n\nYour challenge is not analysis. It is establishing whether a fact can still be trusted at all.',
+      },
+      fit: {
+        title: 'Where Horizon fits',
+        content: 'Horizon provides an independent infrastructure of proof.\n\nIt does not assess compliance. It does not interpret responsibility. It does not validate decisions.\n\nIt records declared facts and seals them at the moment they are submitted, producing evidence that can be verified without relying on the operational systems that generated it.\n\nHorizon exists so that audit does not depend on trust in IT-controlled data.',
+      },
+      provides: {
+        title: 'What Horizon provides to Audit & Risk',
+        bullets: [
+          'An append-only record of declared facts',
+          'Independent timestamps assigned at sealing time',
+          'Cryptographic integrity that makes later alteration detectable',
+          'Exportable proof bundles verifiable outside Horizon',
+        ],
+        nothingMore: 'Nothing more.',
+      },
+      doesNot: {
+        title: 'What Horizon does not do',
+        bullets: [
+          'Does not decide whether a process is compliant',
+          'Does not replace audit methodology',
+          'Does not qualify responsibility or intent',
+          'Does not explain what should have happened',
+        ],
+        closing: 'Horizon produces facts. Audit produces conclusions.',
+      },
+      afterIncident: {
+        title: 'After an incident, you can establish',
+        intro: 'Using Horizon, you can verify:',
+        bullets: [
+          'Whether a declaration existed',
+          'When it was sealed',
+          'Who declared it',
+          'Whether it was altered afterward',
+        ],
+        closing: 'You no longer need to reconstruct events from memory, tickets, or log excerpts. You verify integrity first, interpretation second.',
+      },
+      whyMatters: {
+        title: 'Why this matters for Audit & Risk',
+        content: 'Audit credibility depends on independence.\n\nWhen evidence is produced and stored by the same systems that executed the actions, integrity can only be assumed. Horizon introduces a structural separation between action and proof.\n\nThis separation allows audit to operate on facts that are immutable by design, not by policy.',
+      },
+      changes: {
+        title: 'What Horizon changes',
+        before: ['Evidence is reconstructed', 'Integrity is assumed', 'Verification is indirect'],
+        after: ['Facts are sealed at declaration time', 'Integrity is verifiable', 'Proof is autonomous'],
+      },
+      next: {
+        title: 'View how facts are sealed',
+        description: 'This example shows a real post-incident timeline composed of sealed facts, their timestamps, and their integrity hashes, exactly as an auditor would review them.',
+        href: '/docs/proof-semantics',
+      },
+    },
+    securityPage: {
+      title: 'Security Perspective',
+      subtitle: 'For CISOs and security teams responsible for post-incident integrity.',
+      reality: {
+        title: 'The reality of your role',
+        content: 'You operate in environments where compromise is assumed.\n\nAttackers escalate privileges. Logs are erased, altered, or selectively preserved. By the time the incident is contained, traces are already incomplete.\n\nYour challenge is not detection. It is establishing which facts still exist after the systems have been touched.',
+      },
+      fit: {
+        title: 'Where Horizon fits',
+        content: 'Horizon provides a passive, external layer of proof.\n\nIt does not detect attacks. It does not block actions. It does not secure infrastructure. It records declared facts outside the execution path and seals them in a way that makes later modification detectable, even if the originating systems are fully compromised.\n\nHorizon exists to preserve post-incident integrity, not to prevent incidents.',
+      },
+      provides: {
+        title: 'What Horizon provides to Security',
+        bullets: [
+          'A passive channel to declare security-relevant facts',
+          'Evidence sealed independently from security tooling',
+          'Append-only integrity that survives administrative access',
+          'Proof that remains verifiable after system compromise',
+        ],
+        nothingMore: 'Nothing more.',
+      },
+      doesNot: {
+        title: 'What Horizon does not do',
+        bullets: [
+          'Does not prevent or detect attacks',
+          'Does not replace SIEM, EDR, or logging platforms',
+          'Does not harden infrastructure',
+          'Does not qualify intent or responsibility',
+        ],
+        closing: 'Horizon is not part of the defensive stack. It is the witness that remains when defenses fail.',
+      },
+      afterIncident: {
+        title: 'After an incident, you can establish',
+        intro: 'Using Horizon, you can verify:',
+        bullets: [
+          'Which facts were declared before, during, or after the incident',
+          'When those facts were sealed',
+          'Whether any trace was altered afterward',
+        ],
+        closing: 'You no longer depend solely on logs that may have been cleaned or reconstructed.',
+      },
+      whyMatters: {
+        title: 'Why this matters for Security',
+        content: 'Security tools operate inside the system they protect. When that system is compromised, their output becomes suspect.\n\nHorizon introduces an external point of truth. It does not claim immunity. It provides detectability of tampering, which is the only property that survives total compromise.\n\nThis shifts post-incident discussions from "what do we believe?" to "what can we verify?".',
+      },
+      changes: {
+        title: 'What Horizon changes',
+        before: ['Traces are mutable', 'Integrity is assumed', 'Forensics depends on trust'],
+        after: ['Facts are sealed externally', 'Integrity is verifiable', 'Forensics starts from proof, not belief'],
+      },
+      next: {
+        title: 'View how facts are sealed',
+        description: 'This example shows a post-incident timeline composed of sealed facts, their timestamps, and their integrity hashes, exactly as reviewed during security forensics.',
+        href: '/docs/proof-semantics',
+      },
+    },
+    engineeringPage: {
+      title: 'Engineering Perspective',
+      subtitle: 'For CTOs and system architects responsible for reliable systems and long-term integrity.',
+      reality: {
+        title: 'The reality of your role',
+        content: 'You design systems that must evolve.\n\nThey change, scale, are patched, reconfigured, and operated by many hands. They must allow correction, rollback, override, and deletion to remain usable. Yet you are often asked to prove, after the fact, what those systems did and why.\n\nYour challenge is not execution. It is producing proof from systems that cannot be frozen.',
+      },
+      fit: {
+        title: 'Where Horizon fits',
+        content: 'Horizon provides a separate infrastructure for proof.\n\nIt does not participate in execution. It does not validate flows. It does not enforce models or workflows. It receives declared facts and seals them outside your operational systems, so proof does not depend on the mutability of production infrastructure.\n\nHorizon exists to resolve a structural conflict: systems that act cannot also be their own immutable record.',
+      },
+      provides: {
+        title: 'What Horizon provides to Engineering',
+        bullets: [
+          'A passive API to declare facts',
+          'No dependency in the execution path',
+          'No imposed schema or workflow',
+          'Append-only integrity handled externally',
+        ],
+        nothingMore: 'Nothing more.',
+      },
+      doesNot: {
+        title: 'What Horizon does not do',
+        bullets: [
+          'Does not validate actions',
+          'Does not store secrets or business data',
+          'Does not replace logs or observability tools',
+          'Does not impose runtime constraints',
+        ],
+        closing: 'Horizon is not an operational component. It is an external evidence layer.',
+      },
+      afterIncident: {
+        title: 'After an incident, you can establish',
+        intro: 'Using Horizon, you can verify:',
+        bullets: [
+          'What was declared by your systems or operators',
+          'When it was sealed',
+          'Whether it was altered afterward',
+        ],
+        closing: 'Without hardening logs, freezing databases, or rebuilding audit pipelines.',
+      },
+      whyMatters: {
+        title: 'Why this matters for Engineering',
+        content: 'Building systems that act is already complex. Building systems that must also prove their own past creates a conflict of responsibility.\n\nHorizon removes that burden. By externalizing proof, you keep operational systems flexible while ensuring that declared facts remain verifiable over time.',
+      },
+      changes: {
+        title: 'What Horizon changes',
+        before: ['Proof is embedded in mutable systems', 'Integrity relies on access control', 'Architects carry the burden of immutability'],
+        after: ['Proof is externalized', 'Integrity is verifiable independently', 'Responsibility for immutability is removed from production systems'],
+      },
+      next: {
+        title: 'View how facts are sealed',
+        description: 'This example shows how a declared fact is sealed, timestamped, and appended to an immutable chain, without impacting system execution.',
+        href: '/docs/proof-semantics',
+      },
+    },
+    legalPage: {
+      title: 'Legal Perspective',
+      subtitle: 'For legal, general counsel, and legal operations teams responsible for factual clarity.',
+      reality: {
+        title: 'The reality of your role',
+        content: 'You operate where interpretation begins after the facts.\n\nDisputes arise when narratives diverge. Evidence is challenged because its origin, integrity, or timing is uncertain. What should be factual becomes debatable.\n\nYour challenge is not argumentation. It is establishing whether a fact can be relied upon before it is interpreted.',
+      },
+      fit: {
+        title: 'Where Horizon fits',
+        content: 'Horizon provides a neutral infrastructure for factual records.\n\nIt does not assess legality. It does not qualify responsibility. It does not issue judgments or conclusions. It records declared facts and seals their existence at a specific point in time, producing evidence whose integrity can be verified independently of the systems and people involved.\n\nHorizon exists to separate fact from interpretation.',
+      },
+      provides: {
+        title: 'What Horizon provides to Legal',
+        bullets: [
+          'Neutral, non-qualifying factual records',
+          'Independent timestamps assigned at sealing time',
+          'Detectable integrity for declared facts',
+          'Evidence that can be verified without testimony or system trust',
+        ],
+        nothingMore: 'Nothing more.',
+      },
+      doesNot: {
+        title: 'What Horizon does not do',
+        bullets: [
+          'Does not determine legal compliance',
+          'Does not assess liability or fault',
+          'Does not replace legal analysis',
+          'Does not assert evidentiary weight',
+        ],
+        closing: 'Horizon records facts. Legal interpretation remains entirely human and contextual.',
+      },
+      afterIncident: {
+        title: 'After an incident or dispute, you can establish',
+        intro: 'Using Horizon, you can verify:',
+        bullets: [
+          'That a declaration existed',
+          'When it was sealed',
+          'Who declared it',
+          'Whether it was altered afterward',
+        ],
+        closing: 'Without relying solely on recollection, internal attestations, or reconstructed timelines.',
+      },
+      whyMatters: {
+        title: 'Why this matters for Legal',
+        content: 'Legal reasoning depends on stable premises. When the integrity of facts is disputed, the discussion shifts from substance to credibility.\n\nHorizon provides a factual baseline that precedes interpretation and survives organizational or technical change. This allows legal teams to argue from verified facts, not reconstructed narratives.',
+      },
+      changes: {
+        title: 'What Horizon changes',
+        before: ['Facts are debated', 'Integrity is asserted', 'Narratives dominate'],
+        after: ['Facts are sealed', 'Integrity is verifiable', 'Interpretation starts from stable ground'],
+      },
+      next: {
+        title: 'View how facts are sealed',
+        description: 'This example shows a sealed factual timeline, its timestamps, and integrity markers, exactly as reviewed during legal analysis.',
+        href: '/docs/proof-semantics',
+      },
+    },
+    aiGovernancePage: {
+      title: 'AI & Data Governance Perspective',
+      subtitle: 'For teams responsible for long-term traceability of automated systems.',
+      reality: {
+        title: 'The reality of your role',
+        content: 'You govern systems that evolve by design.\n\nModels are retrained. Inputs are replaced. Outputs are overwritten or aggregated. Decision paths disappear as systems optimize themselves.\n\nYour challenge is not performance. It is preserving stable factual reference points in systems built to change.',
+      },
+      fit: {
+        title: 'Where Horizon fits',
+        content: 'Horizon provides a neutral infrastructure for sealing declared facts.\n\nIt does not evaluate models. It does not explain decisions. It does not enforce governance rules. It records declared inputs, outputs, or observations at a specific moment in time and seals them independently from learning systems.\n\nHorizon exists to ensure that facts do not drift as systems evolve.',
+      },
+      provides: {
+        title: 'What Horizon provides to AI & Data Governance',
+        bullets: [
+          'Sealed records of declared inputs or outputs',
+          'Independent timestamps at declaration time',
+          'Append-only integrity outside training pipelines',
+          'Evidence that remains verifiable after model updates',
+        ],
+        nothingMore: 'Nothing more.',
+      },
+      doesNot: {
+        title: 'What Horizon does not do',
+        bullets: [
+          'Does not explain model behavior',
+          'Does not ensure fairness or bias mitigation',
+          'Does not enforce regulatory compliance',
+          'Does not monitor performance or drift',
+        ],
+        closing: 'Horizon does not govern AI. It preserves facts around it.',
+      },
+      afterIncident: {
+        title: 'After an incident or review, you can establish',
+        intro: 'Using Horizon, you can verify:',
+        bullets: [
+          'What data or output was declared',
+          'When it was sealed',
+          'Whether it was altered afterward',
+        ],
+        closing: 'Even if models, datasets, or pipelines have since changed.',
+      },
+      whyMatters: {
+        title: 'Why this matters for AI & Data Governance',
+        content: 'AI systems rewrite their own past. Logs are pruned. Training data is replaced. Outputs are no longer reproducible.\n\nHorizon introduces fixed reference points that remain stable while systems evolve. This allows governance and oversight to operate on facts, not on reconstructed or simulated histories.',
+      },
+      changes: {
+        title: 'What Horizon changes',
+        before: ['AI traces drift', 'Historical outputs are lost', 'Governance relies on approximations'],
+        after: ['Facts are sealed', 'Integrity is verifiable', 'Oversight starts from stable records'],
+      },
+      next: {
+        title: 'View how facts are sealed',
+        description: 'This example shows how declared AI-related facts are sealed, timestamped, and appended to an immutable chain, independent of model lifecycle.',
+        href: '/docs/proof-semantics',
+      },
+    },
   },
   fr: {
     brand: 'HORIZON par ASPLENZ',
@@ -2259,9 +2583,16 @@ When the execution occurred:`,
     tagline: 'Infrastructure d\'Observabilité Décisionnelle (DOI)',
     nav: {
       overview: 'Vue d\'ensemble',
+      foundations: 'Fondations',
       theProblem: 'Le Problème',
       theShift: 'Le Déplacement',
       horizon: 'Horizon',
+      perspectives: 'Perspectives',
+      auditRisk: 'Audit & Risque',
+      security: 'Sécurité',
+      engineering: 'Engineering',
+      legal: 'Juridique',
+      aiGovernance: 'Gouvernance IA & Data',
       proof: 'Preuve',
       proofModel: 'Modèle de Preuve',
       proofSemantic: 'Sémantique de la Preuve',
@@ -2421,65 +2752,99 @@ When the execution occurred:`,
     },
     hero: {
       headline: 'Horizon scelle les faits déclarés.',
-      headlineSubtext: 'Déclaré par des humains ou des systèmes. Scellé sans interprétation.',
-      subheadline: 'Horizon est une infrastructure de preuve neutre et append-only qui capture des faits au moment où ils sont déclarés, pour qu\'ils puissent être vérifiés indépendamment plus tard.',
+      headlineSubtext: 'Déclarés par des humains ou des systèmes. Scellés sans interprétation.',
+      subheadline: 'Quand des décisions sont prises sous pression et contestées plus tard, Horizon préserve ce qui a été réellement déclaré, au moment où cela comptait.',
+      description: 'Horizon est une infrastructure de preuve neutre et append-only qui capture les faits au moment où ils sont déclarés, afin qu\'ils puissent être vérifiés indépendamment plus tard.',
       bullets: [
-        'Aucun workflow. Aucune approbation. Aucune friction opérationnelle.',
+        'Aucun workflow.',
+        'Aucune approbation.',
+        'Aucune friction opérationnelle.',
       ],
       image: 'hero.png',
     },
+    problem: {
+      title: 'Le problème',
+      intro: 'Lorsque des événements critiques surviennent, les décisions sont prises avant que la documentation n\'existe.',
+      bulletsCommunication: [
+        'La communication est informelle.',
+        'Les approbations sont verbales.',
+        'Les actions précèdent les enregistrements.',
+      ],
+      reconstruction: 'Des semaines ou des mois plus tard, les faits doivent être reconstruits à partir de logs, de messages, de captures d\'écran et de témoignages. Cette reconstruction ne peut être vérifiée de manière indépendante. Il n\'y a pas d\'ancre neutre pour ce qui était connu à un instant donné.',
+      notTooling: 'Ce n\'est pas un problème d\'outillage. Il n\'apparaît que lorsque les faits doivent survivre au temps, à la pression et à la contestation.',
+    },
     whatHorizonRecords: {
       title: 'Ce que Horizon enregistre',
-      paragraphs: [
-        'Horizon enregistre des faits déclarés.\nDes faits déclarés par des humains ou par des systèmes.',
-        'Des faits enregistrés tels qu\'ils sont exprimés, sans interprétation ni jugement.\nHorizon ne déduit pas d\'intention, n\'évalue pas la validité et ne dérive aucun sens.',
-        'Il enregistre que quelque chose a été déclaré, par qui, et quand.\nCe qui est enregistré est indépendant des workflows, des outils et des résultats.',
-        'Il existe en tant que fait : rien de plus, rien de moins.',
+      intro: 'Horizon enregistre des faits déclarés.',
+      bullets: [
+        'Déclarés par des humains ou des systèmes.',
+        'Enregistrés tels qu\'exprimés, sans interprétation ni jugement.',
+        'Scellés au moment de la déclaration.',
       ],
-    },
-    problem: {
-      title: 'Quand le contexte disparaît et que les faits sont contestés',
-      paragraphs: [
-        'Lorsqu\'un événement critique survient (opérationnel, technique ou humain : incidents, pannes, signalements, exceptions, déviations, crises), les décisions sont prises sous pression. Les canaux deviennent informels. Les approbations sont verbales. L\'action est immédiate, souvent avant même que quoi que ce soit n\'ait été consigné. À cet instant, l\'urgence prime sur la traçabilité, et personne ne pense à la preuve.',
-        'Des semaines ou des mois plus tard (audits, litiges, enquêtes), les questions arrivent.',
-        'Qui savait quoi, et quand ? Qu\'est-ce qui a été réellement déclaré, et par qui ? Quelles décisions ont été prises dans l\'urgence, et sur la base de quelles informations ? Quelles preuves subsistent qui puissent être examinées de manière indépendante ?',
-        'À ce stade, la réalité n\'existe plus en tant qu\'ensemble de faits. Elle doit être reconstruite.',
-        'On fouille les échanges, on extrait des logs, on rassemble des témoignages et des captures d\'écran. La mémoire humaine comble les vides. Un récit cohérent finit par émerger, souvent honnête, parfois assuré, mais fragile par nature.',
-        'Cette reconstruction ne peut être vérifiée indépendamment. Elle dépend de ce qu\'il reste, de ce qui a été conservé, et de la perception de ceux qui sont encore là pour l\'expliquer. Avec le temps, ce qui ne peut être prouvé devient débattable. Ce qui devient débattable finit par être contesté.',
-        'C\'est à ce moment que les organisations réalisent que le problème n\'est pas ce qu\'elles ont décidé, mais que les faits eux-mêmes n\'ont jamais été capturés au moment où ils existaient.',
-      ],
+      noInfer: 'Horizon ne déduit aucune intention. Il n\'évalue pas la validité. Il ne dérive aucun sens.',
+      independent: 'Il enregistre que quelque chose a été déclaré, par qui, et quand. Rien de plus. Rien de moins.',
     },
     horizonDoesNot: {
-      title: 'Ce que Horizon ne fait pas',
-      paragraphs: [
-        'Horizon ne décide pas, n\'approuve pas et n\'impose rien.',
-        'Il n\'exécute pas de workflows, ne bloque pas d\'actions et ne juge pas les résultats.',
-        'Ce n\'est pas un SIEM, un SOAR, une plateforme d\'IR, un moteur de conformité ou un système de décision.',
-        'Horizon enregistre des déclarations et les scelle en tant que faits.',
-        'Toute l\'interprétation se fait ailleurs.',
-      ],
+      title: 'Des frontières claires',
+      isNot: {
+        title: 'Ce que Horizon n\'est pas',
+        intro: 'Horizon n\'est pas un système d\'action ou de gouvernance.',
+        bullets: [
+          'Pas un moteur de workflow',
+          'Pas un système de décision',
+          'Pas un moteur de conformité',
+          'Pas une plateforme de sécurité (SIEM, SOAR, IR)',
+        ],
+        closing: 'Horizon n\'existe pas pour exécuter, contrôler ou optimiser les opérations.',
+      },
+      doesNot: {
+        title: 'Ce que Horizon ne fait pas',
+        intro: 'Horizon n\'intervient dans aucun processus.',
+        bullets: [
+          'Ne décide ni n\'approuve',
+          'Ne bloque ni n\'impose',
+          'Ne juge pas les résultats',
+          'Ne déclenche pas d\'actions',
+        ],
+        closing: 'Horizon ne participe jamais à l\'exécution.',
+      },
+      finalLine: 'Il enregistre uniquement les faits déclarés et les scelle.',
     },
     whatThisEnables: {
       title: 'Ce que cela permet',
-      paragraphs: [
-        'En scellant les faits au moment où ils sont déclarés, Horizon rend l\'analyse post-incident possible sans reconstruction.',
-        'Il permet aux organisations d\'établir ce qui a été déclaré, par qui, et quand : même lorsque les systèmes ont changé et que le contexte a disparu.',
+      intro: 'En scellant les faits au moment où ils sont déclarés, Horizon rend l\'analyse post-incident possible sans reconstruction. Les faits restent vérifiables même lorsque les systèmes changent, que les accès sont révoqués ou que le contexte disparaît.',
+      notResolve: [
         'Horizon ne lève pas l\'ambiguïté.',
-        'Il préserve le terrain factuel sur lequel l\'ambiguïté peut être examinée.',
+        'Il n\'assigne pas de responsabilité.',
+        'Il n\'explique pas les décisions.',
+      ],
+      preserves: 'Il préserve le terrain factuel sur lequel ces questions peuvent être examinées ailleurs.',
+    },
+    indexPerspectives: {
+      title: 'Comment Horizon est lu, selon votre responsabilité',
+      intro: 'Horizon est une infrastructure de preuve neutre. Sa valeur se manifeste différemment selon la personne qui examine les faits après un incident.',
+      chooseText: 'Choisissez la perspective qui correspond à votre responsabilité :',
+      links: [
+        { label: 'Audit & Risque', description: 'Vérification indépendante des faits post-incident.', href: '/perspectives/audit-risk' },
+        { label: 'Sécurité (RSSI)', description: 'Une intégrité qui reste détectable après la compromission du système.', href: '/perspectives/security' },
+        { label: 'Engineering (CTO)', description: 'Une preuve externalisée sans impact sur l\'exécution ou l\'architecture.', href: '/perspectives/engineering' },
+        { label: 'Juridique', description: 'Des faits neutres, séparés de l\'interprétation.', href: '/perspectives/legal' },
+        { label: 'Gouvernance de l\'IA et des Données', description: 'Des points de référence stables dans des systèmes évolutifs.', href: '/perspectives/ai-governance' },
       ],
     },
     indexFoundations: {
-      title: 'Fondements',
+      title: 'Fondations',
       links: [
-        { label: 'Le Problème', description: 'Pourquoi la preuve post-incident échoue', href: '/problem' },
-        { label: 'Le Déplacement', description: 'De la reconstruction aux faits scellés', href: '/shift' },
-        { label: 'Horizon', description: 'L\'infrastructure de preuve', href: '/horizon' },
-        { label: 'Preuve', description: 'Comment fonctionne la preuve Horizon', href: '/proof-semantic' },
+        { label: 'Le Problème', description: 'Pourquoi la preuve post-incident échoue', href: '/foundations/problem' },
+        { label: 'Le Basculement', description: 'De la reconstruction aux faits scellés', href: '/foundations/shift' },
+        { label: 'Horizon', description: 'L\'infrastructure de preuve', href: '/foundations/horizon' },
+        { label: 'La Preuve', description: 'Comment fonctionnent les preuves Horizon', href: '/docs/understanding-proof' },
       ],
     },
-    indexContactCTA: {
+    indexContact: {
       title: 'Contact',
-      cta: 'Discuter d\'une situation réelle',
+      text: 'Si vous faites face à une situation où les faits pourraient être contestés plus tard, vous pouvez discuter d\'un contexte réel avec l\'équipe Horizon.',
+      cta: 'Contact',
     },
     howHorizonWorks: {
       title: 'Comment Horizon scelle les faits',
@@ -4501,6 +4866,289 @@ Au moment de l'exécution :`,
         text: 'Comment est-ce possible ? Consultez la',
         linkText: 'FAQ complète',
         href: '/faq',
+      },
+    },
+    // Perspective Pages
+    auditRiskPage: {
+      title: 'Perspective Audit & Risque',
+      subtitle: 'Pour les équipes d\'audit, de risque et de contrôle interne responsables de la vérité post-incident.',
+      reality: {
+        title: 'La réalité de votre rôle',
+        content: 'Vous enquêtez sur les événements après qu\'ils se sont produits.\n\nLes preuves vous parviennent tardivement, extraites de systèmes que vous n\'opérez pas, déjà filtrées, expliquées ou résumées par d\'autres. Vous dépendez de récits, de captures d\'écran, d\'exports et d\'assurances selon lesquelles les données « n\'ont pas été altérées ».\n\nVotre défi n\'est pas l\'analyse. Il s\'agit d\'établir si un fait peut encore être cru du tout.',
+      },
+      fit: {
+        title: 'Où Horizon se situe',
+        content: 'Horizon fournit une infrastructure de preuve indépendante.\n\nIl n\'évalue pas la conformité. Il n\'interprète pas la responsabilité. Il ne valide pas les décisions.\n\nIl enregistre les faits déclarés et les scelle au moment où ils sont soumis, produisant des preuves qui peuvent être vérifiées sans dépendre des systèmes opérationnels qui les ont générées.\n\nHorizon existe pour que l\'audit ne dépende pas de la confiance envers les données contrôlées par l\'informatique.',
+      },
+      provides: {
+        title: 'Ce que Horizon apporte à l\'Audit & au Risque',
+        bullets: [
+          'Un enregistrement append-only des faits déclarés',
+          'Des horodatages indépendants assignés au moment du scellement',
+          'Une intégrité cryptographique qui rend toute altération ultérieure détectable',
+          'Des dossiers de preuve (proof bundles) exportables et vérifiables hors d\'Horizon',
+        ],
+        nothingMore: 'Rien de plus.',
+      },
+      doesNot: {
+        title: 'Ce que Horizon ne fait pas',
+        bullets: [
+          'Ne décide pas si un processus est conforme',
+          'Ne remplace pas la méthodologie d\'audit',
+          'Ne qualifie ni la responsabilité ni l\'intention',
+          'N\'explique pas ce qui aurait dû se passer',
+        ],
+        closing: 'Horizon produit des faits. L\'audit produit des conclusions.',
+      },
+      afterIncident: {
+        title: 'Après un incident, vous pouvez établir',
+        intro: 'En utilisant Horizon, vous pouvez vérifier :',
+        bullets: [
+          'Si une déclaration a existé',
+          'Quand elle a été scellée',
+          'Qui l\'a déclarée',
+          'Si elle a été altérée par la suite',
+        ],
+        closing: 'Vous n\'avez plus besoin de reconstruire les événements à partir de souvenirs, de tickets ou d\'extraits de logs. Vous vérifiez l\'intégrité d\'abord, l\'interprétation ensuite.',
+      },
+      whyMatters: {
+        title: 'Pourquoi cela compte pour l\'Audit & le Risque',
+        content: 'La crédibilité de l\'audit dépend de l\'indépendance.\n\nLorsque les preuves sont produites et stockées par les mêmes systèmes qui ont exécuté les actions, l\'intégrité ne peut être que présumée. Horizon introduit une séparation structurelle entre l\'action et la preuve.\n\nCette séparation permet à l\'audit d\'opérer sur des faits immuables par conception (by design), et non par politique.',
+      },
+      changes: {
+        title: 'Ce que Horizon change',
+        before: ['Les preuves sont reconstruites', 'L\'intégrité est présumée', 'La vérification est indirecte'],
+        after: ['Les faits sont scellés au moment de la déclaration', 'L\'intégrité est vérifiable', 'La preuve est autonome'],
+      },
+      next: {
+        title: 'Voir comment les faits sont scellés',
+        description: 'Cet exemple montre une véritable chronologie post-incident composée de faits scellés, de leurs horodatages et de leurs hachages d\'intégrité, exactement comme un auditeur les examinerait.',
+        href: '/docs/proof-semantics',
+      },
+    },
+    securityPage: {
+      title: 'Perspective Sécurité',
+      subtitle: 'Pour les RSSI et les équipes de sécurité responsables de l\'intégrité post-incident.',
+      reality: {
+        title: 'La réalité de votre rôle',
+        content: 'Vous opérez dans des environnements où la compromission est présumée.\n\nLes attaquants pratiquent l\'escalade de privilèges. Les logs sont effacés, altérés ou préservés sélectivement. Au moment où l\'incident est maîtrisé, les traces sont déjà incomplètes.\n\nVotre défi n\'est pas la détection. Il s\'agit d\'établir quels faits existent encore après que les systèmes ont été touchés.',
+      },
+      fit: {
+        title: 'Où Horizon se situe',
+        content: 'Horizon fournit une couche de preuve passive et externe.\n\nIl ne détecte pas les attaques. Il ne bloque pas les actions. Il ne sécurise pas l\'infrastructure. Il enregistre les faits déclarés en dehors du chemin d\'exécution et les scelle de manière à rendre toute modification ultérieure détectable, même si les systèmes d\'origine sont totalement compromis.\n\nHorizon existe pour préserver l\'intégrité post-incident, non pour prévenir les incidents.',
+      },
+      provides: {
+        title: 'Ce que Horizon apporte à la Sécurité',
+        bullets: [
+          'Un canal passif pour déclarer des faits pertinents pour la sécurité',
+          'Des preuves scellées indépendamment des outils de sécurité',
+          'Une intégrité append-only qui survit aux accès administratifs',
+          'Une preuve qui reste vérifiable après la compromission du système',
+        ],
+        nothingMore: 'Rien de plus.',
+      },
+      doesNot: {
+        title: 'Ce que Horizon ne fait pas',
+        bullets: [
+          'Ne prévient ni ne détecte les attaques',
+          'Ne remplace pas les plateformes SIEM, EDR ou de journalisation',
+          'Ne durcit pas l\'infrastructure',
+          'Ne qualifie ni l\'intention ni la responsabilité',
+        ],
+        closing: 'Horizon ne fait pas partie de la stack défensive. C\'est le témoin qui reste quand les défenses échouent.',
+      },
+      afterIncident: {
+        title: 'Après un incident, vous pouvez établir',
+        intro: 'En utilisant Horizon, vous pouvez vérifier :',
+        bullets: [
+          'Quels faits ont été déclarés avant, pendant ou après l\'incident',
+          'Quand ces faits ont été scellés',
+          'Si une trace quelconque a été altérée par la suite',
+        ],
+        closing: 'Vous ne dépendez plus uniquement de logs qui pourraient avoir été nettoyés ou reconstruits.',
+      },
+      whyMatters: {
+        title: 'Pourquoi cela compte pour la Sécurité',
+        content: 'Les outils de sécurité opèrent à l\'intérieur du système qu\'ils protègent. Lorsque ce système est compromis, leur sortie devient suspecte.\n\nHorizon introduit un point de vérité externe. Il ne prétend pas à l\'immunité. Il offre une détectabilité de l\'altération, qui est la seule propriété survivant à une compromission totale.\n\nCela déplace les discussions post-incident de « que croyons-nous ? » à « que pouvons-nous vérifier ? ».',
+      },
+      changes: {
+        title: 'Ce que Horizon change',
+        before: ['Les traces sont mutables', 'L\'intégrité est présumée', 'La forensique dépend de la confiance'],
+        after: ['Les faits sont scellés de manière externe', 'L\'intégrité est vérifiable', 'La forensique part de la preuve, non de la croyance'],
+      },
+      next: {
+        title: 'Voir comment les faits sont scellés',
+        description: 'Cet exemple montre une chronologie post-incident composée de faits scellés, de leurs horodatages et de leurs hachages d\'intégrité, exactement telle qu\'examinée lors d\'une analyse forensique de sécurité.',
+        href: '/docs/proof-semantics',
+      },
+    },
+    engineeringPage: {
+      title: 'Perspective Engineering',
+      subtitle: 'Pour les CTO et architectes système responsables de la fiabilité des systèmes et de l\'intégrité à long terme.',
+      reality: {
+        title: 'La réalité de votre rôle',
+        content: 'Vous concevez des systèmes qui doivent évoluer.\n\nIls changent, montent en charge, sont patchés, reconfigurés et opérés par de nombreuses mains. Ils doivent permettre la correction, le rollback, l\'override et la suppression pour rester utilisables. Pourtant, on vous demande souvent de prouver, après coup, ce que ces systèmes ont fait et pourquoi.\n\nVotre défi n\'est pas l\'exécution. C\'est de produire des preuves à partir de systèmes qui ne peuvent pas être figés.',
+      },
+      fit: {
+        title: 'Où Horizon se situe',
+        content: 'Horizon fournit une infrastructure de preuve séparée.\n\nIl ne participe pas à l\'exécution. Il ne valide pas les flux. Il n\'impose ni modèles ni workflows. Il reçoit les faits déclarés et les scelle en dehors de vos systèmes opérationnels, de sorte que la preuve ne dépend pas de la mutabilité de l\'infrastructure de production.\n\nHorizon existe pour résoudre un conflit structurel : les systèmes qui agissent ne peuvent pas être en même temps leur propre enregistrement immuable.',
+      },
+      provides: {
+        title: 'Ce que Horizon apporte à l\'Engineering',
+        bullets: [
+          'Une API passive pour déclarer des faits',
+          'Aucune dépendance dans le chemin d\'exécution',
+          'Aucun schéma ou workflow imposé',
+          'Une intégrité append-only gérée de manière externe',
+        ],
+        nothingMore: 'Rien de plus.',
+      },
+      doesNot: {
+        title: 'Ce que Horizon ne fait pas',
+        bullets: [
+          'Ne valide pas les actions',
+          'Ne stocke pas de secrets ou de données métier',
+          'Ne remplace pas les logs ou les outils d\'observabilité',
+          'N\'impose pas de contraintes au runtime',
+        ],
+        closing: 'Horizon n\'est pas un composant opérationnel. C\'est une couche de preuve externe.',
+      },
+      afterIncident: {
+        title: 'Après un incident, vous pouvez établir',
+        intro: 'En utilisant Horizon, vous pouvez vérifier :',
+        bullets: [
+          'Ce qui a été déclaré par vos systèmes ou opérateurs',
+          'Quand cela a été scellé',
+          'Si cela a été altéré par la suite',
+        ],
+        closing: 'Sans durcir les logs, figer les bases de données ou reconstruire des pipelines d\'audit.',
+      },
+      whyMatters: {
+        title: 'Pourquoi cela compte pour l\'Engineering',
+        content: 'Construire des systèmes qui agissent est déjà complexe. Construire des systèmes qui doivent également prouver leur propre passé crée un conflit de responsabilité.\n\nHorizon supprime ce fardeau. En externalisant la preuve, vous maintenez la flexibilité des systèmes opérationnels tout en garantissant que les faits déclarés restent vérifiables dans le temps.',
+      },
+      changes: {
+        title: 'Ce que Horizon change',
+        before: ['La preuve est intégrée dans des systèmes mutables', 'L\'intégrité repose sur le contrôle d\'accès', 'Les architectes portent le fardeau de l\'immuabilité'],
+        after: ['La preuve est externalisée', 'L\'intégrité est vérifiable indépendamment', 'La responsabilité de l\'immutabilité est retirée des systèmes de production'],
+      },
+      next: {
+        title: 'Voir comment les faits sont scellés',
+        description: 'Cet exemple montre comment un fait déclaré est scellé, horodaté et ajouté à une chaîne immuable, sans impact sur l\'exécution du système.',
+        href: '/docs/proof-semantics',
+      },
+    },
+    legalPage: {
+      title: 'Perspective Juridique',
+      subtitle: 'Pour les équipes juridiques, les secrétariats généraux et les legal operations responsables de la clarté factuelle.',
+      reality: {
+        title: 'La réalité de votre rôle',
+        content: 'Vous intervenez là où l\'interprétation commence après les faits.\n\nLes litiges surviennent lorsque les récits divergent. Les preuves sont contestées parce que leur origine, leur intégrité ou leur timing sont incertains. Ce qui devrait être factuel devient débattable.\n\nVotre défi n\'est pas l\'argumentation. Il s\'agit d\'établir si un fait est fiable avant qu\'il ne soit interprété.',
+      },
+      fit: {
+        title: 'Où Horizon se situe',
+        content: 'Horizon fournit une infrastructure neutre pour les enregistrements factuels.\n\nIl n\'évalue pas la légalité. Il ne qualifie pas la responsabilité. Il n\'émet ni jugements ni conclusions. Il enregistre les faits déclarés et scelle leur existence à un instant précis, produisant des preuves dont l\'intégrité peut être vérifiée indépendamment des systèmes et des personnes impliqués.\n\nHorizon existe pour séparer le fait de l\'interprétation.',
+      },
+      provides: {
+        title: 'Ce que Horizon apporte au Juridique',
+        bullets: [
+          'Des enregistrements factuels neutres et non qualifiés',
+          'Des horodatages indépendants assignés au moment du scellement',
+          'Une intégrité détectable pour les faits déclarés',
+          'Une preuve qui peut être vérifiée sans témoignage ni confiance système',
+        ],
+        nothingMore: 'Rien de plus.',
+      },
+      doesNot: {
+        title: 'Ce que Horizon ne fait pas',
+        bullets: [
+          'Ne détermine pas la conformité légale',
+          'N\'évalue pas la responsabilité ou la faute',
+          'Ne remplace pas l\'analyse juridique',
+          'N\'affirme pas de valeur probante',
+        ],
+        closing: 'Horizon enregistre des faits. L\'interprétation juridique reste entièrement humaine et contextuelle.',
+      },
+      afterIncident: {
+        title: 'Après un incident ou un litige, vous pouvez établir',
+        intro: 'En utilisant Horizon, vous pouvez vérifier :',
+        bullets: [
+          'Qu\'une déclaration a existé',
+          'Quand elle a été scellée',
+          'Qui l\'a déclarée',
+          'Si elle a été altérée par la suite',
+        ],
+        closing: 'Sans dépendre uniquement de souvenirs, d\'attestations internes ou de chronologies reconstruites.',
+      },
+      whyMatters: {
+        title: 'Pourquoi cela compte pour le Juridique',
+        content: 'Le raisonnement juridique dépend de prémisses stables. Lorsque l\'intégrité des faits est contestée, la discussion passe du fond à la crédibilité.\n\nHorizon fournit un socle factuel qui précède l\'interprétation et survit aux changements organisationnels ou techniques. Cela permet aux équipes juridiques d\'argumenter à partir de faits vérifiés, et non de récits reconstruits.',
+      },
+      changes: {
+        title: 'Ce que Horizon change',
+        before: ['Les faits sont débattus', 'L\'intégrité est affirmée', 'Les récits dominent'],
+        after: ['Les faits sont scellés', 'L\'intégrité est vérifiable', 'L\'interprétation part d\'un sol stable'],
+      },
+      next: {
+        title: 'Voir comment les faits sont scellés',
+        description: 'Cet exemple montre une chronologie factuelle scellée, ses horodatages et ses marqueurs d\'intégrité, exactement telle qu\'examinée lors d\'une analyse juridique.',
+        href: '/docs/proof-semantics',
+      },
+    },
+    aiGovernancePage: {
+      title: 'Perspective Gouvernance de l\'IA et des Données',
+      subtitle: 'Pour les équipes responsables de la traçabilité à long terme des systèmes automatisés.',
+      reality: {
+        title: 'La réalité de votre rôle',
+        content: 'Vous gouvernez des systèmes qui évoluent par conception.\n\nLes modèles sont réentraînés. Les entrées sont remplacées. Les sorties sont écrasées ou agrégées. Les chemins de décision disparaissent à mesure que les systèmes s\'optimisent eux-mêmes.\n\nVotre défi n\'est pas la performance. Il s\'agit de préserver des points de référence factuels stables dans des systèmes conçus pour changer.',
+      },
+      fit: {
+        title: 'Où Horizon se situe',
+        content: 'Horizon fournit une infrastructure neutre pour sceller les faits déclarés.\n\nIl n\'évalue pas les modèles. Il n\'explique pas les décisions. Il n\'impose pas de règles de gouvernance. Il enregistre les entrées, les sorties ou les observations déclarées à un instant précis et les scelle indépendamment des systèmes d\'apprentissage.\n\nHorizon existe pour garantir que les faits ne dérivent pas à mesure que les systèmes évoluent.',
+      },
+      provides: {
+        title: 'Ce que Horizon apporte à la Gouvernance de l\'IA et des Données',
+        bullets: [
+          'Des enregistrements scellés des entrées ou sorties déclarées',
+          'Des horodatages indépendants au moment de la déclaration',
+          'Une intégrité append-only en dehors des pipelines d\'entraînement',
+          'Une preuve qui reste vérifiable après la mise à jour des modèles',
+        ],
+        nothingMore: 'Rien de plus.',
+      },
+      doesNot: {
+        title: 'Ce que Horizon ne fait pas',
+        bullets: [
+          'N\'explique pas le comportement du modèle',
+          'N\'assure pas l\'équité ou l\'atténuation des biais',
+          'N\'impose pas la conformité réglementaire',
+          'Ne surveille pas la performance ou la dérive',
+        ],
+        closing: 'Horizon ne gouverne pas l\'IA. Il préserve les faits qui l\'entourent.',
+      },
+      afterIncident: {
+        title: 'Après un incident ou une révision, vous pouvez établir',
+        intro: 'En utilisant Horizon, vous pouvez vérifier :',
+        bullets: [
+          'Quelles données ou sorties ont été déclarées',
+          'Quand elles ont été scellées',
+          'Si elles ont été altérées par la suite',
+        ],
+        closing: 'Même si les modèles, les jeux de données ou les pipelines ont changé depuis.',
+      },
+      whyMatters: {
+        title: 'Pourquoi cela compte pour la Gouvernance de l\'IA et des Données',
+        content: 'Les systèmes d\'IA réécrivent leur propre passé. Les logs sont élagués. Les données d\'entraînement sont remplacées. Les sorties ne sont plus reproductibles.\n\nHorizon introduit des points de référence fixes qui restent stables pendant que les systèmes évoluent. Cela permet à la gouvernance et à la surveillance d\'opérer sur des faits, et non sur des histoires reconstruites ou simulées.',
+      },
+      changes: {
+        title: 'Ce que Horizon change',
+        before: ['Les traces de l\'IA dérivent', 'Les sorties historiques sont perdues', 'La gouvernance repose sur des approximations'],
+        after: ['Les faits sont scellés', 'L\'intégrité est vérifiable', 'La surveillance part de registres stables'],
+      },
+      next: {
+        title: 'Voir comment les faits sont scellés',
+        description: 'Cet exemple montre comment les faits déclarés liés à l\'IA sont scellés, horodatés et ajoutés à une chaîne immuable, indépendamment du cycle de vie du modèle.',
+        href: '/docs/proof-semantics',
       },
     },
   },
