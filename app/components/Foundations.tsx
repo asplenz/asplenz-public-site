@@ -12,12 +12,12 @@ export default function Foundations() {
   if (!content) return null
 
   return (
-    <section className="py-12 px-6 bg-gray-50 dark:bg-slate-800">
+    <section className="py-8 px-6 bg-gray-50 dark:bg-slate-800">
       <div className="max-w-5xl mx-auto">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
           {content.title}
         </h3>
-        <ul className="space-y-3">
+        <ul className="space-y-2">
           {content.links.map((link: { label: string; description: string; href: string }, idx: number) => (
             <li key={idx}>
               <Link

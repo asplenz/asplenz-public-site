@@ -12,21 +12,21 @@ export default function Perspectives() {
   if (!content) return null
 
   return (
-    <section className="py-12 px-6 bg-gray-50 dark:bg-slate-800">
+    <section className="py-8 px-6 bg-gray-50 dark:bg-slate-800">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
           {content.title}
         </h2>
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
           {content.intro}
         </p>
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
           {content.chooseText}
         </p>
 
-        <ul className="space-y-3">
+        <ul className="space-y-2">
           {content.links.map((link: { label: string; description: string; href: string }, idx: number) => (
             <li key={idx}>
               <Link
