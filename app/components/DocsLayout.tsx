@@ -111,26 +111,26 @@ export default function DocsLayout({ children }: DocsLayoutProps) {
       <Header />
       <div className="pt-16 flex">
         {/* Sidebar */}
-        <aside className="w-64 min-h-[calc(100vh-4rem)] border-r border-[var(--border)] bg-[var(--bg-secondary)] fixed left-0 top-16 overflow-y-auto">
-          <nav className="p-4">
-            <div className="mb-4">
+        <aside className="w-64 h-[calc(100vh-4rem)] border-r border-[var(--border)] bg-[var(--bg-secondary)] fixed left-0 top-16 overflow-y-auto">
+          <nav className="p-3">
+            <div className="mb-2">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-[var(--text-muted)] hover:text-[var(--accent)] text-sm transition-colors"
+                className="inline-flex items-center gap-1.5 text-[var(--text-muted)] hover:text-[var(--accent)] text-sm transition-colors"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
                 {lang === 'en' ? 'Back to Home' : 'Retour à l\'accueil'}
               </Link>
             </div>
-            <ul className="space-y-1">
+            <ul className="space-y-0.5">
               {docsNav.map((item) => (
                 <li key={item.href}>
                   {item.children ? (
                     <div>
                       <span
-                        className={`block px-3 py-2 text-sm font-semibold ${
+                        className={`block px-2 py-1 text-sm font-semibold ${
                           isParentActive(item)
                             ? 'text-[var(--accent)]'
                             : 'text-[var(--text-primary)]'
@@ -138,12 +138,12 @@ export default function DocsLayout({ children }: DocsLayoutProps) {
                       >
                         {item.title}
                       </span>
-                      <ul className="ml-3 border-l border-[var(--border)] pl-3 space-y-1">
+                      <ul className="ml-2 border-l border-[var(--border)] pl-2 space-y-0">
                         {item.children.map((child) => (
                           <li key={child.href}>
                             <Link
                               href={child.href}
-                              className={`block px-3 py-1.5 text-sm rounded transition-colors ${
+                              className={`block px-2 py-1 text-sm rounded transition-colors ${
                                 isActive(child.href)
                                   ? 'text-[var(--accent)] bg-[var(--accent)]/10'
                                   : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]'
@@ -158,7 +158,7 @@ export default function DocsLayout({ children }: DocsLayoutProps) {
                   ) : (
                     <Link
                       href={item.href}
-                      className={`block px-3 py-2 text-sm rounded transition-colors ${
+                      className={`block px-2 py-1 text-sm rounded transition-colors ${
                         isActive(item.href)
                           ? 'text-[var(--accent)] bg-[var(--accent)]/10 font-medium'
                           : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]'
