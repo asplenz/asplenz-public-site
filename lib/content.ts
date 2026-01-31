@@ -76,7 +76,7 @@ export const content = {
           },
         ],
       },
-      quote: '"What is sealed becomes a reference."',
+      quote: 'What is sealed becomes a reference.',
       closing: 'Horizon is a factual, neutral, and independent proof infrastructure. It does not make decisions better; it makes their existence less debatable.',
       ctas: {
         briefing: 'Request a strategic briefing',
@@ -871,7 +871,7 @@ export const content = {
           },
         ],
       },
-      quote: '"Ce qui est scellé devient une référence."',
+      quote: 'Ce qui est scellé devient une référence.',
       closing: 'Horizon est une infrastructure de preuve factuelle, neutre et indépendante. Elle ne rend pas vos décisions meilleures ; elle rend leur existence indiscutable.',
       ctas: {
         briefing: 'Demander une présentation stratégique',

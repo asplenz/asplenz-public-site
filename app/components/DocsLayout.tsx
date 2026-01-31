@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Header from './Header'
@@ -98,6 +99,7 @@ export default function DocsLayout({ children }: DocsLayoutProps) {
   const { lang } = useLang()
   const pathname = usePathname()
   const docsNav = lang === 'en' ? docsNavEn : docsNavFr
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const isActive = (href: string) => pathname === href
   const isParentActive = (item: NavItem) => {
@@ -106,81 +108,139 @@ export default function DocsLayout({ children }: DocsLayoutProps) {
     return false
   }
 
+  const handleLinkClick = () => {
+    setSidebarOpen(false)
+  }
+
+  const SidebarContent = () => (
+    <>
+      <div className="mb-2">
+        <Link
+          href="/"
+          onClick={handleLinkClick}
+          className="inline-flex items-center gap-1.5 text-[var(--text-muted)] hover:text-[var(--accent)] text-sm transition-colors min-h-[44px] md:min-h-0"
+        >
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          {lang === 'en' ? 'Back to Home' : 'Retour à l\'accueil'}
+        </Link>
+      </div>
+      <ul className="space-y-0.5">
+        {docsNav.map((item) => (
+          <li key={item.href}>
+            {item.children ? (
+              <div>
+                <span
+                  className={`block px-2 py-1 md:py-1 text-sm font-semibold min-h-[44px] md:min-h-0 flex items-center ${
+                    isParentActive(item)
+                      ? 'text-[var(--accent)]'
+                      : 'text-[var(--text-primary)]'
+                  }`}
+                >
+                  {item.title}
+                </span>
+                <ul className="ml-2 border-l border-[var(--border)] pl-2 space-y-0">
+                  {item.children.map((child) => (
+                    <li key={child.href}>
+                      <Link
+                        href={child.href}
+                        onClick={handleLinkClick}
+                        className={`block px-2 py-2 md:py-1 text-sm rounded transition-colors min-h-[44px] md:min-h-0 flex items-center ${
+                          isActive(child.href)
+                            ? 'text-[var(--accent)] bg-[var(--accent)]/10'
+                            : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]'
+                        }`}
+                      >
+                        {child.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <Link
+                href={item.href}
+                onClick={handleLinkClick}
+                className={`block px-2 py-2 md:py-1 text-sm rounded transition-colors min-h-[44px] md:min-h-0 flex items-center ${
+                  isActive(item.href)
+                    ? 'text-[var(--accent)] bg-[var(--accent)]/10 font-medium'
+                    : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]'
+                }`}
+              >
+                {item.title}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
       <Header />
+
+      {/* Mobile menu button */}
+      <button
+        onClick={() => setSidebarOpen(true)}
+        className="md:hidden fixed top-[1.1rem] right-20 z-50 p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+        aria-label="Open menu"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black/60 z-40"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Mobile sidebar drawer */}
+      <aside
+        className={`md:hidden fixed left-0 top-0 h-full w-72 bg-[var(--bg-secondary)] z-50 transform transition-transform duration-300 ease-in-out ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="flex items-center justify-between p-4 border-b border-[var(--border)]">
+          <span className="text-[var(--text-primary)] font-semibold text-sm">
+            {lang === 'en' ? 'Documentation' : 'Documentation'}
+          </span>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="p-2 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors"
+            aria-label="Close menu"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <nav className="p-4 overflow-y-auto h-[calc(100%-60px)]">
+          <SidebarContent />
+        </nav>
+      </aside>
+
       <div className="pt-16 flex">
-        {/* Sidebar */}
-        <aside className="w-64 h-[calc(100vh-4rem)] border-r border-[var(--border)] bg-[var(--bg-secondary)] fixed left-0 top-16 overflow-y-auto">
+        {/* Desktop Sidebar */}
+        <aside className="hidden md:block w-64 h-[calc(100vh-4rem)] border-r border-[var(--border)] bg-[var(--bg-secondary)] fixed left-0 top-16 overflow-y-auto">
           <nav className="p-3">
-            <div className="mb-2">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-1.5 text-[var(--text-muted)] hover:text-[var(--accent)] text-sm transition-colors"
-              >
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                {lang === 'en' ? 'Back to Home' : 'Retour à l\'accueil'}
-              </Link>
-            </div>
-            <ul className="space-y-0.5">
-              {docsNav.map((item) => (
-                <li key={item.href}>
-                  {item.children ? (
-                    <div>
-                      <span
-                        className={`block px-2 py-1 text-sm font-semibold ${
-                          isParentActive(item)
-                            ? 'text-[var(--accent)]'
-                            : 'text-[var(--text-primary)]'
-                        }`}
-                      >
-                        {item.title}
-                      </span>
-                      <ul className="ml-2 border-l border-[var(--border)] pl-2 space-y-0">
-                        {item.children.map((child) => (
-                          <li key={child.href}>
-                            <Link
-                              href={child.href}
-                              className={`block px-2 py-1 text-sm rounded transition-colors ${
-                                isActive(child.href)
-                                  ? 'text-[var(--accent)] bg-[var(--accent)]/10'
-                                  : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]'
-                              }`}
-                            >
-                              {child.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className={`block px-2 py-1 text-sm rounded transition-colors ${
-                        isActive(item.href)
-                          ? 'text-[var(--accent)] bg-[var(--accent)]/10 font-medium'
-                          : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]'
-                      }`}
-                    >
-                      {item.title}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <SidebarContent />
           </nav>
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 ml-64 min-h-[calc(100vh-4rem)]">
-          <div className="max-w-4xl mx-auto px-8 py-12">
+        <main className="flex-1 md:ml-64 min-h-[calc(100vh-4rem)]">
+          <div className="max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
             {children}
           </div>
         </main>
       </div>
-      <div className="ml-64">
+      <div className="md:ml-64">
         <Footer />
       </div>
     </div>
