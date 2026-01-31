@@ -1,114 +1,105 @@
 'use client'
 
-import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
 import { getContent } from '@/lib/content'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import { MailIcon, CalendarIcon } from '../components/icons'
+import PageLayout from '@/app/components/PageLayout'
 
 export default function ContactPage() {
   const { lang } = useLang()
   const t = getContent(lang)
+  const content = t.contact
+
+  const renderMarkdown = (text: string) => {
+    return text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/).map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={i} className="text-[var(--text-primary)]">{part.slice(2, -2)}</strong>
+      }
+      if (part.startsWith('*') && part.endsWith('*')) {
+        return <em key={i}>{part.slice(1, -1)}</em>
+      }
+      return part
+    })
+  }
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <PageLayout>
+      <article>
+        <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-6">{content.title}</h1>
+        <p className="text-lg text-[var(--text-secondary)] mb-4">{renderMarkdown(content.intro)}</p>
+        <p className="text-[var(--text-muted)] mb-12">{renderMarkdown(content.purpose)}</p>
 
-      <main className="pt-32 pb-20 px-6">
-        <div className="max-w-2xl mx-auto">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-[#1A5187] hover:underline mb-8"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            {t.contact?.backToHome || 'Back to home'}
-          </Link>
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Option 1 - Schedule */}
+          <div className="p-6 bg-[var(--bg-card)] rounded-lg border border-[var(--border)]">
+            <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-4">{content.option1.title}</h2>
+            <p className="text-[var(--text-secondary)] mb-6">{renderMarkdown(content.option1.description)}</p>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            {t.contact?.title || 'Discuss your use case'}
-          </h1>
-
-          <p className="text-lg text-gray-700 mb-2">
-            {t.contact?.intro}
-          </p>
-          <p className="text-gray-600 mb-12">
-            {t.contact?.introDetail}
-          </p>
-
-          <hr className="border-gray-200 mb-12" />
-
-          {/* Option 1 - Schedule a Briefing */}
-          <div className="mb-12">
-            <h2 className="text-sm text-gray-500 uppercase tracking-wide mb-4">Option 1</h2>
-
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <CalendarIcon className="w-8 h-8 mb-4 text-[#1A5187]" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {t.contact?.scheduleTitle}
-              </h3>
-              <p className="text-gray-700 mb-6">
-                {t.contact?.scheduleDescription}
-              </p>
-
-              <div className="space-y-3 mb-6 text-sm">
-                <div className="flex gap-2">
-                  <span className="text-gray-500 w-20">{t.contact?.scheduleScope}:</span>
-                  <span className="text-gray-700">{t.contact?.scheduleScopeItems?.join(', ')}</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-gray-500 w-20">{t.contact?.scheduleAudience}:</span>
-                  <span className="text-gray-700">{t.contact?.scheduleAudienceItems?.join(', ')}</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-gray-500 w-20">{t.contact?.scheduleFormat}:</span>
-                  <span className="text-gray-700">{t.contact?.scheduleFormatValue}</span>
-                </div>
+            <div className="space-y-4 mb-6">
+              <div>
+                <p className="font-medium text-[var(--text-primary)]">{content.option1.scope.title}</p>
+                <ul className="mt-1 space-y-1">
+                  {content.option1.scope.items.map((item, idx) => (
+                    <li key={idx} className="text-[var(--text-muted)] text-sm flex items-center gap-2">
+                      <span className="text-[var(--accent)]">•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <a
-                href="https://app.cal.eu/asplenz/institutional-acceptability?overlayCalendar=true"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1A5187] text-white font-medium rounded hover:bg-[#143d66] transition-colors"
-              >
-                {t.contact?.scheduleButton}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
+              <div>
+                <p className="font-medium text-[var(--text-primary)]">{content.option1.audience.title}</p>
+                <ul className="mt-1 space-y-1">
+                  {content.option1.audience.items.map((item, idx) => (
+                    <li key={idx} className="text-[var(--text-muted)] text-sm flex items-center gap-2">
+                      <span className="text-[var(--accent)]">•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <p className="font-medium text-[var(--text-primary)]">{content.option1.format.title}</p>
+                <ul className="mt-1 space-y-1">
+                  {content.option1.format.items.map((item, idx) => (
+                    <li key={idx} className="text-[var(--text-muted)] text-sm flex items-center gap-2">
+                      <span className="text-[var(--accent)]">•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
+
+            <a
+              href="mailto:contact@asplenz.com?subject=Horizon%20Briefing%20Request"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
+            >
+              {content.option1.cta}
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
           </div>
 
-          <hr className="border-gray-200 mb-12" />
+          {/* Option 2 - Email */}
+          <div className="p-6 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)]">
+            <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-4">{content.option2.title}</h2>
+            <p className="text-[var(--text-secondary)] mb-6">{content.option2.description}</p>
 
-          {/* Option 2 - Send an Email */}
-          <div>
-            <h2 className="text-sm text-gray-500 uppercase tracking-wide mb-4">Option 2</h2>
-
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <MailIcon className="w-8 h-8 mb-4 text-[#1A5187]" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {t.contact?.emailTitle}
-              </h3>
-              <p className="text-gray-700 mb-6">
-                {t.contact?.emailDescription}
-              </p>
-
-              <a
-                href="mailto:contact@asplenz.com"
-                className="inline-flex items-center gap-2 text-[#1A5187] font-medium hover:underline"
-              >
-                contact@asplenz.com
-              </a>
-            </div>
+            <a
+              href={`mailto:${content.option2.email}`}
+              className="inline-flex items-center gap-2 text-[var(--accent)] font-medium hover:text-[var(--accent-hover)] transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              {content.option2.email}
+            </a>
           </div>
         </div>
-      </main>
-
-      <Footer />
-    </div>
+      </article>
+    </PageLayout>
   )
 }

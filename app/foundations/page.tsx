@@ -1,71 +1,94 @@
 'use client'
 
-import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Link from 'next/link'
+import Header from '@/app/components/Header'
+import Footer from '@/app/components/Footer'
 
 export default function FoundationsPage() {
   const { lang } = useLang()
 
-  const foundations = [
-    {
-      href: '/foundations/problem',
-      title: lang === 'fr' ? 'Le Problème' : 'The Problem',
-      description: lang === 'fr'
-        ? 'Pourquoi la preuve post-incident échoue'
-        : 'Why post-incident proof fails',
+  const sections = {
+    en: {
+      title: 'Foundations',
+      subtitle: 'Understanding the problem Horizon solves',
+      cards: [
+        {
+          title: 'The Problem',
+          description: 'Decisions live everywhere, and nowhere. When scrutiny arrives, you can only explain, you cannot prove.',
+          href: '/foundations/problem',
+        },
+        {
+          title: 'The Shift',
+          description: 'From late reconstruction to native capture. Horizon anchors facts at the moment they exist.',
+          href: '/foundations/shift',
+        },
+        {
+          title: 'Horizon',
+          description: 'A neutral witness. Infrastructure that records what you declare, exactly as you declare it.',
+          href: '/foundations/horizon',
+        },
+      ],
     },
-    {
-      href: '/foundations/shift',
-      title: lang === 'fr' ? 'Le Basculement' : 'The Shift',
-      description: lang === 'fr'
-        ? 'De la reconstruction aux faits scellés'
-        : 'From reconstruction to sealed facts',
+    fr: {
+      title: 'Fondations',
+      subtitle: 'Comprendre le problème que résout Horizon',
+      cards: [
+        {
+          title: 'Le Problème',
+          description: 'Les décisions vivent partout, et nulle part. Quand l\'examen arrive, vous ne pouvez qu\'expliquer, vous ne pouvez pas prouver.',
+          href: '/foundations/problem',
+        },
+        {
+          title: 'Le Déplacement',
+          description: 'De la reconstitution tardive à la capture native. Horizon ancre les faits au moment où ils existent.',
+          href: '/foundations/shift',
+        },
+        {
+          title: 'Horizon',
+          description: 'Un témoin neutre. Une infrastructure qui enregistre ce que vous déclarez, exactement comme vous le déclarez.',
+          href: '/foundations/horizon',
+        },
+      ],
     },
-    {
-      href: '/foundations/horizon',
-      title: 'Horizon',
-      description: lang === 'fr'
-        ? "L'infrastructure de preuve"
-        : 'The proof infrastructure',
-    },
-  ]
+  }
+
+  const t = sections[lang]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[var(--bg-primary)]">
       <Header />
+      <main className="pt-24 pb-12">
+        <div className="max-w-4xl mx-auto px-6">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent-hover)] mb-6 text-sm transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            {lang === 'en' ? 'Back to Home' : 'Retour à l\'accueil'}
+          </Link>
 
-      <main className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            {lang === 'fr' ? 'Fondations' : 'Foundations'}
-          </h1>
-          <p className="text-xl text-gray-600 mb-12">
-            {lang === 'fr'
-              ? 'La thèse sur laquelle repose Horizon.'
-              : 'The thesis on which Horizon is built.'}
-          </p>
+          <p className="text-sm font-medium text-[var(--accent)] uppercase tracking-wider mb-2">{t.title}</p>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-6">{t.subtitle}</h1>
 
-          <div className="space-y-6">
-            {foundations.map((item, idx) => (
+          <div className="grid md:grid-cols-2 gap-4">
+            {t.cards.map((card, idx) => (
               <Link
                 key={idx}
-                href={item.href}
-                className="block p-6 border border-gray-200 rounded-lg hover:border-[#1A5187] hover:bg-gray-50 transition-all group"
+                href={card.href}
+                className="block p-5 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg hover:border-[var(--accent)] transition-colors group"
               >
-                <h2 className="text-xl font-bold text-gray-900 group-hover:text-[#1A5187] mb-2">
-                  {item.title}
+                <h2 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-2">
+                  {card.title}
                 </h2>
-                <p className="text-gray-600">
-                  {item.description}
-                </p>
+                <p className="text-[var(--text-muted)] text-sm">{card.description}</p>
               </Link>
             ))}
           </div>
         </div>
       </main>
-
       <Footer />
     </div>
   )
