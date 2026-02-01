@@ -11,29 +11,18 @@ export default function Home() {
   const { lang } = useLang()
   const t = getContent(lang)
 
-  // Helper to render markdown-style bold text, code, and line breaks
+  // Helper to render markdown-style bold and italic text
   const renderMarkdown = (text: string) => {
-    // First split by double newlines to create paragraphs
-    const paragraphs = text.split(/\n\n/)
-
-    return paragraphs.map((paragraph, pIndex) => {
-      const parts = paragraph.split(/(\*\*[^*]+\*\*|`[^`]+`)/).map((part, i) => {
-        if (part.startsWith('**') && part.endsWith('**')) {
-          return <strong key={i} className="text-[var(--text-primary)]">{part.slice(2, -2)}</strong>
-        }
-        if (part.startsWith('`') && part.endsWith('`')) {
-          return <code key={i} className="px-1.5 py-0.5 bg-[var(--bg-card)] border border-[var(--border)] rounded text-[var(--accent)] text-sm font-mono">{part.slice(1, -1)}</code>
-        }
-        return part
-      })
-
-      // Wrap each paragraph in a div with margin (except the first one)
-      return (
-        <span key={pIndex} className={pIndex > 0 ? 'block mt-3' : ''}>
-          {parts}
-        </span>
-      )
+    const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/).map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={i} className="text-[var(--text-primary)]">{part.slice(2, -2)}</strong>
+      }
+      if (part.startsWith('*') && part.endsWith('*')) {
+        return <em key={i} className="text-[var(--text-secondary)]">{part.slice(1, -1)}</em>
+      }
+      return part
     })
+    return parts
   }
 
   return (
@@ -41,32 +30,33 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-28 pb-6 px-6 relative overflow-hidden">
-        {/* Grid pattern background */}
+      <section className="pt-28 pb-16 px-6 relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30" />
-
         <div className="max-w-6xl mx-auto relative">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] leading-tight mb-6 opacity-0 animate-fade-in-up">
                 {t.index.hero.title}
               </h1>
-              <p className="text-xl text-[var(--text-secondary)] mb-8 opacity-0 animate-fade-in-up animate-delay-100">
-                {t.index.hero.tagline}
+              <p className="text-2xl text-[var(--accent)] mb-6 opacity-0 animate-fade-in-up animate-delay-100">
+                {t.index.hero.subtitle}
               </p>
-              <div className="flex flex-wrap gap-4 opacity-0 animate-fade-in-up animate-delay-200">
-                <Link
-                  href="/foundations"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
+              <p className="text-lg text-[var(--text-secondary)] mb-10 opacity-0 animate-fade-in-up animate-delay-200">
+                {renderMarkdown(t.index.hero.description)}
+              </p>
+              <div className="flex flex-col sm:flex-row items-start gap-4 opacity-0 animate-fade-in-up animate-delay-300">
+                <a
+                  href="#ai-accountability"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
                 >
                   {t.index.hero.cta1}
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
-                </Link>
+                </a>
                 <Link
-                  href="/docs"
-                  className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border-light)] text-[var(--text-secondary)] font-medium rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                  href="/contact"
+                  className="inline-flex items-center py-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors underline underline-offset-4"
                 >
                   {t.index.hero.cta2}
                 </Link>
@@ -87,28 +77,153 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Reality Section */}
-      <section className="pt-8 pb-12 px-6 bg-[var(--bg-secondary)]">
+      {/* The Problem Section */}
+      <section className="py-16 px-6 bg-[var(--bg-secondary)]">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
+            {t.index.problem.title}
+          </h2>
+          <p className="text-2xl text-[var(--accent)] mb-1">
+            {t.index.problem.subtitle}
+          </p>
+          <p className="text-2xl text-[var(--accent)] mb-12">
+            {t.index.problem.subtitle2}
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            {t.index.problem.blocks.map((block, idx) => (
+              <div key={idx} className="p-6 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg text-left">
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
+                  {block.title}
+                </h3>
+                <p className="text-[var(--text-secondary)] text-sm">
+                  {block.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-xl font-bold text-[var(--accent)]">{t.index.problem.conclusion}</p>
+        </div>
+      </section>
+
+      {/* What the World Now Requires Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-10">
+            {t.index.worldRequires.title}
+          </h2>
+
+          <blockquote className="text-2xl md:text-3xl font-medium text-[var(--accent)] mb-8 leading-relaxed">
+            {t.index.worldRequires.quote}
+          </blockquote>
+
+          <p className="text-[var(--text-secondary)] mb-4">{t.index.worldRequires.requiredBy}</p>
+          <p className="text-lg text-[var(--text-primary)] mb-10">{renderMarkdown(t.index.worldRequires.conclusion)}</p>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {t.index.worldRequires.pillars.map((pillar, idx) => (
+              <div key={idx} className="p-4 border-t-2 border-[var(--accent)]">
+                <p className="text-[var(--text-primary)] font-semibold">{pillar}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* The Solution Section */}
+      <section className="py-16 px-6 bg-[var(--bg-secondary)]">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
+            {t.index.solution.title}
+          </h2>
+          <p className="text-xl text-[var(--accent)] mb-6">
+            {t.index.solution.subtitle}
+          </p>
+
+          <p className="text-lg text-[var(--text-secondary)] mb-1">{t.index.solution.intro}</p>
+          <p className="text-lg text-[var(--text-secondary)] mb-12">{renderMarkdown(t.index.solution.intro2)}</p>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            {t.index.solution.blocks.map((block, idx) => (
+              <div key={idx} className="p-6 bg-[var(--bg-card)] border border-[var(--accent)] rounded-lg text-left">
+                <h3 className="text-lg font-semibold text-[var(--accent)] mb-3">
+                  {block.title}
+                </h3>
+                <p className="text-[var(--text-secondary)] text-sm">
+                  {block.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-lg text-[var(--text-primary)] mb-6">{renderMarkdown(t.index.solution.conclusion)}</p>
+          <Link href="/foundations" className="text-sm text-[var(--text-muted)] hover:text-[var(--accent)] underline underline-offset-4 transition-colors">
+            {t.index.contextLinks.solutionLink} →
+          </Link>
+        </div>
+      </section>
+
+      {/* Primary Use Case Section */}
+      <section id="ai-accountability" className="py-16 px-6 scroll-mt-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="hidden md:block relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent)]/10 to-transparent rounded-lg blur-2xl" />
+              <Image
+                src="/primary.png"
+                alt={lang === 'en' ? 'AI System Accountability illustration' : 'Illustration de la responsabilité des systèmes IA'}
+                width={500}
+                height={350}
+                className="rounded-lg border border-[var(--border)] relative z-10"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-6">
+                {t.index.primaryUseCase.title}
+              </h2>
+
+              <p className="text-[var(--text-secondary)] mb-6">{t.index.primaryUseCase.intro}</p>
+
+              <ul className="list-disc list-inside text-[var(--text-secondary)] mb-8 space-y-1">
+                {t.index.primaryUseCase.items.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+
+              <p className="text-lg text-[var(--accent)]">{renderMarkdown(t.index.primaryUseCase.conclusion)}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What You Can Prove Section */}
+      <section className="py-16 px-6 bg-[var(--bg-secondary)]">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-6">
-                {t.index.reality.title}
+                {t.index.whatYouCanProve.title}
               </h2>
-              <p className="text-lg text-[var(--text-secondary)] mb-6">
-                {renderMarkdown(t.index.reality.content)}
-              </p>
-              <div className="p-6 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg">
-                <p className="text-[var(--accent)] font-medium">
-                  {lang === 'en' ? 'The Risk:' : 'Le risque :'} <span className="text-[var(--text-secondary)]">{t.index.reality.risk}</span>
-                </p>
-              </div>
+
+              <p className="text-[var(--text-secondary)] mb-6">{t.index.whatYouCanProve.intro}</p>
+
+              <ul className="list-disc list-inside text-[var(--text-secondary)] mb-8 space-y-1">
+                {t.index.whatYouCanProve.items.map((item, idx) => (
+                  <li key={idx}>
+                    <strong className="text-[var(--text-primary)]">{item.label}</strong>
+                    {item.text && ` ${item.text}`}
+                  </li>
+                ))}
+              </ul>
+
+              <p className="text-xl font-bold text-[var(--accent)]">{renderMarkdown(t.index.whatYouCanProve.conclusion)}</p>
             </div>
             <div className="hidden md:block relative">
               <div className="absolute inset-0 bg-gradient-to-l from-[var(--accent)]/10 to-transparent rounded-lg blur-2xl" />
               <Image
-                src="/reality.png"
-                alt={lang === 'en' ? 'Fragmented decisions illustration' : 'Illustration des décisions fragmentées'}
+                src="/registry.png"
+                alt={lang === 'en' ? 'Decision registry illustration' : 'Illustration du registre de décisions'}
                 width={500}
                 height={350}
                 className="rounded-lg border border-[var(--border)] relative z-10"
@@ -118,123 +233,216 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Paradigm Shift */}
-      <section className="py-10 px-6">
-        <div className="max-w-3xl mx-auto">
-          <blockquote className="border-l-4 border-[var(--accent)] pl-6 py-4">
-            <p className="text-2xl font-semibold text-[var(--accent)] mb-4">
-              {t.index.paradigm.intro}
-            </p>
-            <p className="text-lg text-[var(--text-secondary)]">
-              {t.index.paradigm.content}
-            </p>
-          </blockquote>
+      {/* How Horizon Works Section */}
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-10 text-center">
+            {t.index.howItWorks.title}
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="space-y-8">
+                {t.index.howItWorks.steps.map((step, idx) => (
+                  <div key={idx} className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-[var(--accent)] text-[var(--bg-primary)] rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0">
+                      {step.number}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-1">{step.title}</h3>
+                      <p className="text-[var(--text-secondary)] text-sm">{step.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-lg text-[var(--text-primary)] mt-8 mb-4">{renderMarkdown(t.index.howItWorks.conclusion)}</p>
+              <Link href="/docs" className="text-sm text-[var(--text-muted)] hover:text-[var(--accent)] underline underline-offset-4 transition-colors">
+                {t.index.contextLinks.howItWorksLink} →
+              </Link>
+            </div>
+            <div className="hidden md:block relative">
+              <div className="absolute inset-0 bg-gradient-to-l from-[var(--accent)]/10 to-transparent rounded-lg blur-2xl" />
+              <Image
+                src="/how.png"
+                alt={lang === 'en' ? 'How Horizon works illustration' : 'Illustration du fonctionnement d\'Horizon'}
+                width={500}
+                height={400}
+                className="rounded-lg border border-[var(--border)] relative z-10"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Use Cases Section */}
-      <section id="use-cases" className="pt-8 pb-12 px-6 bg-[var(--bg-secondary)] scroll-mt-20">
+      {/* What Horizon Replaces Section */}
+      <section className="py-16 px-6 bg-[var(--bg-secondary)]">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-8 text-center">
-            {t.index.useCases.title}
+            {t.index.whatReplaces.title}
           </h2>
-          <div className="max-w-4xl mx-auto">
-            {t.index.useCases.items.map((item, idx) => (
-              <div
-                key={idx}
-                className="py-6 border-b border-[var(--border)] last:border-b-0"
-              >
-                <div className="flex items-start gap-3 mb-3">
-                  <span className="text-2xl">{item.icon}</span>
-                  <div>
-                    <h3 className="text-lg font-bold text-[var(--text-primary)]">
-                      {item.title}
-                    </h3>
-                    <p className="text-[var(--text-muted)] text-sm italic">
-                      {item.subtitle}
-                    </p>
-                  </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="hidden md:block relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent)]/10 to-transparent rounded-lg blur-2xl" />
+              <Image
+                src="/what-replaces.png"
+                alt={lang === 'en' ? 'What Horizon replaces illustration' : 'Illustration de ce que Horizon remplace'}
+                width={500}
+                height={350}
+                className="rounded-lg border border-[var(--border)] relative z-10"
+              />
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-[var(--border)]">
+                    <th className="text-left py-3 px-4 text-[var(--text-muted)]">{lang === 'en' ? 'Today' : 'Aujourd\'hui'}</th>
+                    <th className="text-left py-3 px-4 text-[var(--accent)]">{lang === 'en' ? 'With Horizon' : 'Avec Horizon'}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {t.index.whatReplaces.rows.map((row, idx) => (
+                    <tr key={idx} className="border-b border-[var(--border)]">
+                      <td className="py-3 px-4 text-[var(--text-secondary)]">{row.today}</td>
+                      <td className="py-3 px-4 text-[var(--text-primary)] font-medium">{row.horizon}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Does and Does Not Section */}
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-8 text-center">
+            {t.index.doesAndDoesNot.title}
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="hidden md:block relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent)]/10 to-transparent rounded-lg blur-2xl" />
+              <Image
+                src="/what.png"
+                alt={lang === 'en' ? 'What Horizon does and does not do' : 'Ce que Horizon fait et ne fait pas'}
+                width={500}
+                height={350}
+                className="rounded-lg border border-[var(--border)] relative z-10"
+              />
+            </div>
+            <div>
+              <div className="space-y-6 mb-8">
+                <div className="p-6 bg-[var(--bg-card)] border border-[var(--accent)] rounded-lg">
+                  <p className="text-[var(--text-secondary)]">{renderMarkdown(t.index.doesAndDoesNot.does)}</p>
                 </div>
-                <div className="mt-4">
-                  <p className="text-[var(--accent)] text-sm mb-4 italic">
-                    {item.challenge}
-                  </p>
-                  <div className="text-[var(--text-secondary)] text-sm">
-                    {renderMarkdown(item.value)}
-                  </div>
+                <div className="p-6 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg">
+                  <p className="text-[var(--text-secondary)]">{renderMarkdown(t.index.doesAndDoesNot.doesNot)}</p>
                 </div>
               </div>
+              <p className="text-lg text-[var(--text-primary)]">{renderMarkdown(t.index.doesAndDoesNot.conclusion)}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Expand Section */}
+      <section className="py-16 px-6 bg-[var(--bg-secondary)]">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-6">
+            {t.index.expand.title}
+          </h2>
+
+          <p className="text-[var(--text-secondary)] mb-6">{t.index.expand.intro}</p>
+
+          <ul className="list-disc list-inside text-[var(--text-secondary)] mb-8 space-y-1">
+            {t.index.expand.items.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+
+          <p className="text-lg text-[var(--accent)]">{renderMarkdown(t.index.expand.conclusion)}</p>
+        </div>
+      </section>
+
+      {/* Why Horizon Is Different Section */}
+      <section className="py-16 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-8">
+            {t.index.whyDifferent.title}
+          </h2>
+
+          <p className="text-xl text-[var(--text-secondary)] mb-4">{renderMarkdown(t.index.whyDifferent.question)}</p>
+          <p className="text-2xl text-[var(--accent)]">{renderMarkdown(t.index.whyDifferent.answer)}</p>
+        </div>
+      </section>
+
+      {/* CTA and Final Quote Section */}
+      <section className="py-20 px-6 bg-[var(--bg-secondary)] relative overflow-hidden">
+        <div className="absolute inset-0 grid-pattern opacity-20" />
+        <div className="max-w-3xl mx-auto text-center relative">
+          <p className="text-xl text-[var(--text-primary)] mb-2">
+            {renderMarkdown(t.index.cta.line1)}
+          </p>
+          <p className="text-xl text-[var(--accent)] mb-10">
+            {renderMarkdown(t.index.cta.line2)}
+          </p>
+
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors mb-12"
+          >
+            {lang === 'en' ? 'Contact Us' : 'Contactez-nous'}
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Link>
+
+          <div className="border-t border-[var(--border)] pt-10">
+            {t.index.finalQuote.lines.map((line, idx) => (
+              <p key={idx} className={`text-2xl font-bold ${idx === t.index.finalQuote.lines.length - 1 ? 'text-[var(--accent)]' : 'text-[var(--text-primary)]'}`}>
+                {line}
+              </p>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pillars Section */}
-      <section className="pt-8 pb-12 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-8 text-center">
-            {t.index.pillars.title}
+      {/* Deep Dive Section */}
+      <section className="py-16 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-10 text-center">
+            {t.index.deepDive.title}
           </h2>
+
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="hidden md:flex items-start justify-center">
-              <Image
-                src="/pillars.png"
-                alt={lang === 'en' ? 'Pillars of Horizon' : 'Piliers d\'Horizon'}
-                width={350}
-                height={500}
-                className="rounded-lg border border-[var(--border)]"
-              />
-            </div>
-            <div className="md:col-span-2">
-              <div className="grid md:grid-cols-2 gap-4">
-                {t.index.pillars.items.map((pillar, idx) => (
-                  <div
-                    key={idx}
-                    className="p-5 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg card-hover"
-                  >
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-2 h-2 bg-[var(--accent)] rounded-full animate-pulse-glow" />
-                      <h3 className="text-base font-semibold text-[var(--text-primary)]">
-                        {pillar.title}
-                      </h3>
-                    </div>
-                    <p className="text-[var(--text-secondary)] text-sm">
-                      {renderMarkdown(pillar.description)}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Quote & Closing */}
-      <section className="py-20 px-6 bg-[var(--bg-secondary)] relative overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-20" />
-        <div className="max-w-3xl mx-auto text-center relative">
-          <p className="text-3xl md:text-4xl font-bold text-[var(--accent)] mb-8">
-            {t.index.quote}
-          </p>
-          <p className="text-xl text-[var(--text-secondary)] mb-12">
-            {t.index.closing}
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
-            >
-              {t.index.ctas.briefing}
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+            <Link href="/foundations" className="group p-6 border border-[var(--border)] rounded-lg hover:border-[var(--accent)] transition-colors">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">
+                {t.index.deepDive.foundations.title}
+              </h3>
+              <p className="text-sm text-[var(--text-muted)]">
+                {t.index.deepDive.foundations.description}
+              </p>
             </Link>
-            <Link
-              href="/docs/compliance/auditor-guide"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border-light)] text-[var(--text-secondary)] font-medium rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
-            >
-              {t.index.ctas.verification}
+
+            <Link href="/perspectives" className="group p-6 border border-[var(--border)] rounded-lg hover:border-[var(--accent)] transition-colors">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">
+                {t.index.deepDive.perspectives.title}
+              </h3>
+              <p className="text-sm text-[var(--text-muted)]">
+                {t.index.deepDive.perspectives.description}
+              </p>
+            </Link>
+
+            <Link href="/docs" className="group p-6 border border-[var(--border)] rounded-lg hover:border-[var(--accent)] transition-colors">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">
+                {t.index.deepDive.docs.title}
+              </h3>
+              <p className="text-sm text-[var(--text-muted)]">
+                {t.index.deepDive.docs.description}
+              </p>
             </Link>
           </div>
         </div>

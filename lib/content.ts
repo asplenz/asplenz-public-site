@@ -15,72 +15,159 @@ export const content = {
     // Landing page (index.md)
     index: {
       hero: {
-        title: 'The Native Proof Infrastructure.',
-        tagline: 'End the era of narrative reconstruction. Secure the scrutiny of your critical decisions.',
-        cta1: 'Discover the Shift',
-        cta2: 'Get Started',
+        title: 'Decision Governance',
+        subtitle: 'Prove every decision that puts your organization at risk.',
+        description: '**Horizon is a system of record that seals and preserves critical decisions.** It provides immutable, audit-ready evidence of who decided what, when, and under which context. Starting with AI systems.',
+        cta1: 'Explore AI Accountability',
+        cta2: 'Talk to an expert',
       },
-      reality: {
-        title: 'The Reality: Explaining is not proving.',
-        content: 'Today, corporate decisions live in fragments: a **Slack** discussion, an **email** agreement, an oral clarification, and an indirect trace in a **Jira** ticket. When the moment of audit or scrutiny arrives, you can no longer show what happened; you can only attempt to explain it.',
-        risk: 'Late reconstruction is inevitably interpretive and remains vulnerable to doubt.',
-      },
-      paradigm: {
-        intro: 'Horizon shifts the paradigm.',
-        content: "We don't manage your processes; we anchor your facts at the moment they exist. Horizon provides a proof infrastructure that captures decisions at the source, before time and interpretations alter them.",
-      },
-      useCases: {
-        title: 'A factual infrastructure for your critical challenges',
-        items: [
+      problem: {
+        title: 'The Problem',
+        subtitle: 'Decisions exist.',
+        subtitle2: 'Proof does not.',
+        blocks: [
           {
-            icon: '🇪🇺',
-            title: 'AI Governance & Compliance (AI Act)',
-            subtitle: 'Independent Accountability Layer',
-            challenge: 'Establishing "Reasonable Diligence" and human oversight without creating security friction or depending on the MLOps tools being audited.',
-            value: 'Horizon operates as a neutral, append-only fact store sitting strictly **outside your operational stack**.\n\n**Separation of Duties:** decouple execution (MLOps) from evidence (Horizon) for indisputable audit trails.\n\n**Zero-Access Architecture:** we never access your models or your data; we only anchor the cryptographic proof of your governance actions.\n\n**Audit-Ready Mastery:** attest to your operational control before regulatory bodies with facts that cannot be altered by the systems they describe.',
+            title: 'Fragmented Decisions',
+            description: 'Emails, tickets, chat messages, PDFs written after the fact.',
           },
           {
-            icon: '🛡️',
-            title: 'Cyber Resilience & Crisis Management',
-            subtitle: 'Isolated Evidence Layer',
-            challenge: 'In a crisis, speed trumps documentation. Post-incident audits require evidence that could not have been compromised along with your systems.',
-            value: 'Horizon operates as an immutable evidence layer **completely isolated from your operational infrastructure**.\n\n**Compromise-Proof Records:** even if attackers gain admin access, sealed facts remain mathematically unalterable.\n\n**Independent Timeline:** your crisis decisions are anchored outside the systems being defended.\n\n**Forensic Authority:** demonstrate your response integrity to regulators with evidence that could not have been planted or modified post-breach.',
+            title: 'Reconstruction After the Fact',
+            description: 'When accountability matters, teams try to piece together what happened.',
           },
           {
-            icon: '🏭',
-            title: 'Sovereign Operations & Critical Sectors',
-            subtitle: 'Independent Vault for Operational Facts',
-            challenge: 'Maintaining absolute accountability in high-security environments where internal registries are primary targets for sophisticated threats or internal compromise.',
-            value: 'Horizon provides a mathematically verifiable layer that ensures **the sovereignty of your evidence**, even in the most restricted environments.\n\n**Air-Gapped Readiness:** deployable in isolated environments to guarantee that proof remains autonomous and verifiable without external dependencies.\n\n**Tamper-Proof Architecture:** any attempt to alter or delete an anchored fact is mathematically detectable, ensuring the total integrity of your operational history.\n\n**Strategic Autonomy:** take back control of your evidence. Horizon ensures that once a fact is sealed, its existence and timing can no longer be denied, even by the system that created it.',
+            title: 'Accountability Breaks',
+            description: 'Audits become stressful. Individuals are exposed. Compliance is fragile.',
           },
         ],
+        conclusion: 'That is no longer sufficient.',
       },
-      pillars: {
-        title: 'The Pillars of Horizon Infrastructure',
-        items: [
-          {
-            title: 'Native Integrity',
-            description: 'Facts cannot be modified or deleted without detection thanks to cryptographic chaining.',
-          },
-          {
-            title: 'Total Neutrality',
-            description: 'Horizon does not interpret your data (your payload is opaque) and imposes no business workflows.',
-          },
-          {
-            title: 'Authoritative Timestamping',
-            description: 'Every fact receives a certified, immutable timestamp assigned by Horizon, serving as definitive evidence during audits or reviews.',
-          },
-          {
-            title: 'Independent Verification',
-            description: 'Any auditor can verify chain integrity autonomously, without access to your internal systems.',
-          },
+      worldRequires: {
+        title: 'What the World Now Requires',
+        quote: '"Show us the decision, exactly as it was declared, at the moment it was taken."',
+        requiredBy: 'This is now required by regulators, auditors, insurers, and boards.',
+        conclusion: 'What matters is no longer explanation, but **proof**.',
+        pillars: [
+          'Proof over narratives',
+          'Accountability over process',
+          'Facts over reconstruction',
         ],
       },
-      quote: 'What is sealed becomes a reference.',
-      closing: 'Horizon is a factual, neutral, and independent proof infrastructure. It does not make decisions better; it makes their existence less debatable.',
-      ctas: {
-        briefing: 'Schedule a Strategic Briefing',
-        verification: 'Access the Verification Guide',
+      solution: {
+        title: 'The Solution',
+        subtitle: 'A System of Record for Decisions',
+        intro: 'Horizon does not govern decisions.',
+        intro2: 'It governs the **proof of decisions**.',
+        blocks: [
+          {
+            title: 'Declare',
+            description: 'A human explicitly states a decision and its context.',
+          },
+          {
+            title: 'Seal',
+            description: 'The decision is timestamped and made immutable.',
+          },
+          {
+            title: 'Prove',
+            description: 'The decision can be verified independently, anytime.',
+          },
+        ],
+        conclusion: '**Once sealed, a decision cannot be altered, rewritten, or disputed.**',
+      },
+      primaryUseCase: {
+        title: 'Primary Use Case: AI System Accountability',
+        intro: 'AI systems amplify risk: decisions are frequent, consequences are systemic, and context disappears quickly. Horizon provides definitive proof for:',
+        items: [
+          'Go / No-Go production approvals',
+          'Acceptance of residual AI risk',
+          'Model and data validation sign-offs',
+          'Deployment authorizations',
+          'Emergency overrides',
+          'Post-incident decisions',
+        ],
+        conclusion: '**This enables human oversight by design and AI Act audit readiness.**',
+      },
+      whatYouCanProve: {
+        title: 'What You Can Prove with Horizon',
+        intro: 'For every AI system, Horizon preserves:',
+        items: [
+          { label: 'Who', text: 'approved or rejected it' },
+          { label: 'What', text: 'risk was accepted' },
+          { label: 'When', text: 'the decision was made' },
+          { label: 'Under which context', text: '' },
+          { label: 'With which supporting evidence', text: '' },
+        ],
+        conclusion: '**Not explanations. Facts.**',
+      },
+      howItWorks: {
+        title: 'How Horizon Works',
+        steps: [
+          { number: '1', title: 'A decision is declared', description: 'A human authority declares a decision via UI, API, or email.' },
+          { number: '2', title: 'Horizon seals it', description: 'The decision is cryptographically sealed and appended to an immutable record.' },
+          { number: '3', title: 'Proof is permanent', description: 'The decision can be verified and exported at any time, independently.' },
+        ],
+        conclusion: '**No interpretation. No retroactive justification. No reconstruction.**',
+      },
+      whatReplaces: {
+        title: 'What Horizon Replaces',
+        rows: [
+          { today: 'Emails and chat approvals', horizon: 'Sealed decision records' },
+          { today: 'Tickets and comments', horizon: 'Structured, attributable decisions' },
+          { today: 'Static PDFs', horizon: 'Living decision timelines' },
+          { today: 'Manual reconstruction', horizon: 'Immediate, verifiable proof' },
+          { today: 'Stressful audits', horizon: 'Audit-ready evidence' },
+        ],
+      },
+      doesAndDoesNot: {
+        title: 'What Horizon Does and Does Not Do',
+        does: '**Horizon Does:** Preserve decisions exactly as declared, guarantee immutability, provide independent verification, protect decision-makers with factual evidence.',
+        doesNot: '**Horizon Does Not:** Judge decision quality, enforce business rules, validate compliance, replace existing tools.',
+        conclusion: '**This neutrality is what makes the evidence defensible.**',
+      },
+      expand: {
+        title: 'Start with AI. Expand Everywhere.',
+        intro: 'Organizations begin with AI accountability. Horizon then extends naturally to:',
+        items: [
+          'Cyber and crisis response',
+          'Operational overrides',
+          'Strategic arbitrations',
+          'Regulated industry compliance',
+        ],
+        conclusion: '**One system of record. One source of truth for decision evidence.**',
+      },
+      whyDifferent: {
+        title: 'Why Horizon Is Different',
+        question: 'Most systems answer: *"What did the system do?"*',
+        answer: '**Horizon answers: "Who decided to take this risk?"**',
+      },
+      cta: {
+        line1: 'Stop reconstructing decisions. Start proving them.',
+        line2: 'Talk to us about Horizon for Decision Governance.',
+      },
+      finalQuote: {
+        lines: [
+          'Systems act.',
+          'People decide.',
+          'Horizon proves.',
+        ],
+      },
+      deepDive: {
+        title: 'Go Deeper',
+        foundations: {
+          title: 'Foundations',
+          description: 'Understand the philosophy of the Shift and the architecture of proof.',
+        },
+        perspectives: {
+          title: 'Perspectives',
+          description: 'Discover how Horizon protects Legal, Audit, and CISO roles.',
+        },
+        docs: {
+          title: 'Documentation',
+          description: 'Explore the API and technical integration.',
+        },
+      },
+      contextLinks: {
+        solutionLink: 'Learn more about the proof architecture',
+        howItWorksLink: 'See the technical documentation',
       },
     },
 
@@ -810,72 +897,159 @@ export const content = {
     // Landing page (index.md)
     index: {
       hero: {
-        title: 'L\'infrastructure de preuve native.',
-        tagline: 'Mettez fin à l\'ère de la reconstitution narrative. Sécurisez l\'examen de vos décisions critiques.',
-        cta1: 'Comprendre la Bascule',
-        cta2: 'Démarrer',
+        title: 'Gouvernance des décisions',
+        subtitle: 'Prouvez chaque décision qui expose votre organisation à un risque.',
+        description: '**Horizon est un système de référence qui scelle et préserve les décisions critiques.** Il fournit une preuve immuable et prête pour l\'audit de qui a décidé quoi, quand, et dans quel contexte. En commençant par les systèmes d\'IA.',
+        cta1: 'Explorer le cas d\'usage : Responsabilité IA',
+        cta2: 'Parler à un expert',
       },
-      reality: {
-        title: 'Le constat : Expliquer n\'est pas prouver.',
-        content: 'Aujourd\'hui, les décisions de votre entreprise sont fragmentées : une discussion dans **Slack**, un accord par **email**, une précision à l\'oral et une trace indirecte dans un ticket **Jira**. Lorsque vient le moment de l\'audit ou de l\'examen, vous ne pouvez plus montrer ce qui s\'est passé ; vous ne pouvez que tenter de l\'expliquer.',
-        risk: 'Cette reconstruction tardive est inévitablement interprétative et fragile face au doute.',
-      },
-      paradigm: {
-        intro: 'Horizon change de paradigme.',
-        content: 'Nous ne gérons pas vos processus, nous ancrons vos faits au moment où ils existent. Horizon fournit une infrastructure de preuve qui capture la décision à la source, avant que le temps et les interprétations ne l\'altèrent.',
-      },
-      useCases: {
-        title: 'Une infrastructure factuelle pour vos enjeux critiques',
-        items: [
+      problem: {
+        title: 'Le Problème',
+        subtitle: 'Les décisions existent.',
+        subtitle2: 'Pas leurs preuves.',
+        blocks: [
           {
-            icon: '🇪🇺',
-            title: 'Gouvernance de l\'IA & Conformité (IA Act)',
-            subtitle: 'Couche d\'Imputabilité Indépendante',
-            challenge: 'Établir une « Diligence Raisonnable » et un contrôle humain effectif sans créer de friction sécuritaire, ni dépendre des outils MLOps faisant l\'objet de l\'audit.',
-            value: 'Horizon opère comme un registre de faits neutre et immuable, situé strictement **en dehors de votre stack opérationnelle**.\n\n**Séparation des Responsabilités :** découplez l\'exécution (MLOps) de la preuve (Horizon) pour des pistes d\'audit indiscutables.\n\n**Architecture Zéro-Accès :** nous ne touchons ni à vos modèles, ni à vos données ; nous ancrons uniquement la preuve cryptographique de vos actions de gouvernance.\n\n**Maîtrise Certifiée :** attestez de votre contrôle opérationnel devant les autorités avec des faits qui ne peuvent être altérés par les systèmes qu\'ils décrivent.',
+            title: 'Décisions fragmentées',
+            description: 'E-mails, tickets, messages instantanés, rapports PDF rédigés après coup.',
           },
           {
-            icon: '🛡️',
-            title: 'Résilience Cyber & Gestion de Crise',
-            subtitle: 'Couche de Preuve Isolée',
-            challenge: 'En pleine crise, la vitesse prime sur la documentation. Les audits post-incident exigent des preuves qui n\'ont pas pu être compromises en même temps que vos systèmes.',
-            value: 'Horizon opère comme une couche de preuve immuable, totalement **isolée de votre infrastructure opérationnelle**.\n\n**Registres Inviolables :** même si les attaquants obtiennent un accès admin, les faits scellés restent mathématiquement inaltérables.\n\n**Chronologie Indépendante :** vos décisions de crise sont ancrées en dehors des systèmes défendus.\n\n**Autorité Forensique :** démontrez l\'intégrité de votre réponse aux régulateurs avec des preuves qui n\'ont pas pu être plantées ou modifiées après la brèche.',
+            title: 'Reconstruction a posteriori',
+            description: 'Quand l\'imputabilité est requise, les équipes tentent de reconstituer ce qui s\'est passé.',
           },
           {
-            icon: '🏭',
-            title: 'Opérations Souveraines & Secteurs Critiques',
-            subtitle: 'Coffre-fort Indépendant pour Faits Opérationnels',
-            challenge: 'Maintenir une imputabilité absolue dans des environnements de haute sécurité où les registres internes sont des cibles privilégiées pour les menaces sophistiquées ou les compromissions internes.',
-            value: 'Horizon fournit une couche de vérification mathématique qui garantit la **souveraineté de vos preuves**, même dans les environnements les plus restreints.\n\n**Compatibilité Air-Gapped :** déployable en environnement isolé pour garantir que la preuve reste autonome et vérifiable sans dépendances externes.\n\n**Architecture Infalsifiable :** toute tentative d\'altération ou de suppression d\'un fait ancré est mathématiquement détectable, garantissant l\'intégrité totale de votre historique.\n\n**Autonomie Stratégique :** reprenez le contrôle de vos preuves. Horizon garantit qu\'une fois un fait scellé, son existence et sa chronologie ne peuvent plus être niées, même par le système qui l\'a créé.',
+            title: 'L\'imputabilité se brise',
+            description: 'Les audits deviennent stressants. Les individus sont exposés. La conformité est fragile.',
           },
         ],
+        conclusion: 'Ce n\'est plus suffisant.',
       },
-      pillars: {
-        title: 'Les garanties de l\'infrastructure Horizon',
-        items: [
-          {
-            title: 'Intégrité Native',
-            description: 'Les faits ne peuvent être ni modifiés ni supprimés sans que cela ne soit détecté grâce au chaînage cryptographique.',
-          },
-          {
-            title: 'Neutralité Totale',
-            description: 'Horizon n\'interprète pas vos données (votre charge utile est opaque) et n\'impose aucun workflow métier.',
-          },
-          {
-            title: 'Horodatage d\'Autorité',
-            description: 'Chaque fait reçoit un horodatage certifié et immuable attribué par Horizon, faisant foi de manière indiscutable lors des examens.',
-          },
-          {
-            title: 'Indépendance de Vérification',
-            description: 'Tout auditeur peut vérifier l\'intégrité de la chaîne de manière autonome, sans accès à vos systèmes internes.',
-          },
+      worldRequires: {
+        title: 'Ce que le monde exige désormais',
+        quote: '« Montrez-nous la décision, exactement telle qu\'elle a été déclarée, au moment où elle a été prise. »',
+        requiredBy: 'C\'est désormais exigé par les régulateurs, les auditeurs, les assureurs et les conseils d\'administration.',
+        conclusion: 'Ce qui compte n\'est plus l\'explication, mais la **preuve**.',
+        pillars: [
+          'La preuve plutôt que les récits',
+          'L\'imputabilité plutôt que le processus',
+          'Les faits plutôt que la reconstruction',
         ],
       },
-      quote: 'Ce qui est scellé devient une référence.',
-      closing: 'Horizon est une infrastructure de preuve factuelle, neutre et indépendante. Elle ne rend pas vos décisions meilleures. Elle rend leur existence indiscutable.',
-      ctas: {
-        briefing: 'Programmer un Briefing Stratégique',
-        verification: 'Accéder au Guide de Vérification',
+      solution: {
+        title: 'La Solution',
+        subtitle: 'Un Système de Référence pour les Décisions',
+        intro: 'Horizon ne gouverne pas les décisions.',
+        intro2: 'Il gouverne la **preuve des décisions**.',
+        blocks: [
+          {
+            title: 'Déclarer',
+            description: 'Un humain énonce explicitement une décision et son contexte.',
+          },
+          {
+            title: 'Sceller',
+            description: 'La décision est horodatée et rendue immuable.',
+          },
+          {
+            title: 'Prouver',
+            description: 'La décision peut être vérifiée de manière indépendante, à tout moment.',
+          },
+        ],
+        conclusion: '**Une fois scellée, une décision ne peut être ni altérée, ni réécrite, ni contestée.**',
+      },
+      primaryUseCase: {
+        title: 'Cas d\'Usage Primaire : Responsabilité des Systèmes d\'IA',
+        intro: 'Les systèmes d\'IA amplifient les risques : les décisions sont fréquentes, les conséquences sont systémiques et le contexte disparaît rapidement. Horizon fournit une preuve définitive pour :',
+        items: [
+          'Les approbations Go / No-Go de mise en production',
+          'L\'acceptation du risque IA résiduel',
+          'La validation des modèles et des données',
+          'Les autorisations de déploiement',
+          'Les forçages d\'urgence (overrides)',
+          'Les décisions post-incident',
+        ],
+        conclusion: '**Cela permet un contrôle humain par conception et une préparation immédiate aux audits de l\'IA Act.**',
+      },
+      whatYouCanProve: {
+        title: 'Ce que vous pouvez prouver avec Horizon',
+        intro: 'Pour chaque système d\'IA, Horizon préserve :',
+        items: [
+          { label: 'Qui', text: 'a approuvé ou rejeté' },
+          { label: 'Quel', text: 'risque a été accepté' },
+          { label: 'Quand', text: 'la décision a été prise' },
+          { label: 'Dans quel contexte', text: '' },
+          { label: 'Avec quelles preuves à l\'appui', text: '' },
+        ],
+        conclusion: '**Pas des explications. Des faits.**',
+      },
+      howItWorks: {
+        title: 'Fonctionnement d\'Horizon',
+        steps: [
+          { number: '1', title: 'Une décision est déclarée', description: 'Une autorité humaine déclare une décision via l\'interface, l\'API ou e-mail.' },
+          { number: '2', title: 'Horizon la scelle', description: 'La décision est scellée cryptographiquement et ajoutée à un registre immuable.' },
+          { number: '3', title: 'La preuve est permanente', description: 'La décision peut être vérifiée et exportée à tout moment, de manière indépendante.' },
+        ],
+        conclusion: '**Pas d\'interprétation. Pas de justification rétroactive. Pas de reconstruction.**',
+      },
+      whatReplaces: {
+        title: 'Ce que Horizon remplace',
+        rows: [
+          { today: 'Approbations par e-mail et chat', horizon: 'Registres de décision scellés' },
+          { today: 'Tickets et commentaires', horizon: 'Décisions structurées et attribuées' },
+          { today: 'Rapports PDF statiques', horizon: 'Chronologies de décision vivantes' },
+          { today: 'Reconstruction manuelle', horizon: 'Preuve immédiate et vérifiable' },
+          { today: 'Audits stressants', horizon: 'Preuves prêtes pour l\'audit' },
+        ],
+      },
+      doesAndDoesNot: {
+        title: 'Ce que Horizon fait et ne fait pas',
+        does: '**Horizon fait :** Préserve les décisions exactement comme déclarées, garantit l\'immuabilité, fournit une vérification indépendante, protège les décideurs avec des preuves factuelles.',
+        doesNot: '**Horizon ne fait pas :** Juge la qualité des décisions, impose des règles métier, valide la conformité, remplace les outils existants.',
+        conclusion: '**Cette neutralité est ce qui rend la preuve défendable.**',
+      },
+      expand: {
+        title: 'Commencez par l\'IA. Étendez partout.',
+        intro: 'Les organisations commencent par la responsabilité de l\'IA. Horizon s\'étend ensuite naturellement à :',
+        items: [
+          'La réponse cyber et la gestion de crise',
+          'Les forçages opérationnels',
+          'Les arbitrages stratégiques',
+          'La conformité en secteurs réglementés',
+        ],
+        conclusion: '**Un seul système de référence. Une seule source de vérité pour la preuve décisionnelle.**',
+      },
+      whyDifferent: {
+        title: 'Pourquoi Horizon est différent',
+        question: 'La plupart des systèmes répondent à : *« Qu\'est-ce que le système a fait ? »*',
+        answer: '**Horizon répond : « Qui a décidé de prendre ce risque ? »**',
+      },
+      cta: {
+        line1: 'Cessez de reconstruire vos décisions. Commencez à les prouver.',
+        line2: 'Parlons ensemble d\'Horizon pour la Gouvernance de Décision.',
+      },
+      finalQuote: {
+        lines: [
+          'Les systèmes agissent.',
+          'Les humains décident.',
+          'Horizon prouve.',
+        ],
+      },
+      deepDive: {
+        title: 'Approfondir',
+        foundations: {
+          title: 'Fondations',
+          description: 'Comprendre la philosophie de la Bascule et l\'architecture de la preuve.',
+        },
+        perspectives: {
+          title: 'Perspectives',
+          description: 'Découvrez comment Horizon protège les rôles Legal, Audit et CISO.',
+        },
+        docs: {
+          title: 'Documentation',
+          description: 'Explorez l\'API et l\'intégration technique.',
+        },
+      },
+      contextLinks: {
+        solutionLink: 'En savoir plus sur l\'architecture de preuve',
+        howItWorksLink: 'Voir la documentation technique',
       },
     },
 
