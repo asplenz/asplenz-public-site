@@ -137,7 +137,7 @@ export const content = {
       whyDifferent: {
         title: 'Why Horizon Is Different',
         question: 'Most systems answer: *"What did the system do?"*',
-        answer: '**Horizon answers: "Who decided to take this risk?"**',
+        answer: '**Horizon answers: "How was this risk assessed and approved?"**',
       },
       cta: {
         line1: 'Stop reconstructing decisions. Start proving them.',
@@ -1019,7 +1019,7 @@ export const content = {
       whyDifferent: {
         title: 'Pourquoi Horizon est différent',
         question: 'La plupart des systèmes répondent à : *« Qu\'est-ce que le système a fait ? »*',
-        answer: '**Horizon répond : « Qui a décidé de prendre ce risque ? »**',
+        answer: '**Horizon répond : « Comment ce risque a-t-il été évalué et approuvé ? »**',
       },
       cta: {
         line1: 'Cessez de reconstruire vos décisions. Commencez à les prouver.',
