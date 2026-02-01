@@ -11,16 +11,28 @@ export default function Home() {
   const { lang } = useLang()
   const t = getContent(lang)
 
-  // Helper to render markdown-style bold text and code
+  // Helper to render markdown-style bold text, code, and line breaks
   const renderMarkdown = (text: string) => {
-    return text.split(/(\*\*[^*]+\*\*|`[^`]+`)/).map((part, i) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        return <strong key={i} className="text-[var(--text-primary)]">{part.slice(2, -2)}</strong>
-      }
-      if (part.startsWith('`') && part.endsWith('`')) {
-        return <code key={i} className="px-1.5 py-0.5 bg-[var(--bg-card)] border border-[var(--border)] rounded text-[var(--accent)] text-sm font-mono">{part.slice(1, -1)}</code>
-      }
-      return part
+    // First split by double newlines to create paragraphs
+    const paragraphs = text.split(/\n\n/)
+
+    return paragraphs.map((paragraph, pIndex) => {
+      const parts = paragraph.split(/(\*\*[^*]+\*\*|`[^`]+`)/).map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong key={i} className="text-[var(--text-primary)]">{part.slice(2, -2)}</strong>
+        }
+        if (part.startsWith('`') && part.endsWith('`')) {
+          return <code key={i} className="px-1.5 py-0.5 bg-[var(--bg-card)] border border-[var(--border)] rounded text-[var(--accent)] text-sm font-mono">{part.slice(1, -1)}</code>
+        }
+        return part
+      })
+
+      // Wrap each paragraph in a div with margin (except the first one)
+      return (
+        <span key={pIndex} className={pIndex > 0 ? 'block mt-3' : ''}>
+          {parts}
+        </span>
+      )
     })
   }
 
@@ -126,56 +138,33 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-8 text-center">
             {t.index.useCases.title}
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-2">
-              <div className="grid gap-4">
-                {t.index.useCases.items.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-6 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg card-hover"
-                  >
-                    <div className="flex items-start gap-3 mb-3">
-                      <span className="text-2xl">{item.icon}</span>
-                      <div>
-                        <h3 className="text-lg font-bold text-[var(--text-primary)]">
-                          {item.title}
-                        </h3>
-                        <p className="text-[var(--text-muted)] text-sm italic">
-                          {item.subtitle}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-4 mt-4">
-                      <div>
-                        <p className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">
-                          {lang === 'en' ? 'The Challenge' : 'Le défi'}
-                        </p>
-                        <p className="text-[var(--text-secondary)] text-sm">
-                          {item.challenge}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-wider mb-1">
-                          {lang === 'en' ? 'The Horizon Value' : 'L\'apport d\'Horizon'}
-                        </p>
-                        <p className="text-[var(--text-secondary)] text-sm">
-                          {renderMarkdown(item.value)}
-                        </p>
-                      </div>
-                    </div>
+          <div className="max-w-4xl mx-auto">
+            {t.index.useCases.items.map((item, idx) => (
+              <div
+                key={idx}
+                className="py-6 border-b border-[var(--border)] last:border-b-0"
+              >
+                <div className="flex items-start gap-3 mb-3">
+                  <span className="text-2xl">{item.icon}</span>
+                  <div>
+                    <h3 className="text-lg font-bold text-[var(--text-primary)]">
+                      {item.title}
+                    </h3>
+                    <p className="text-[var(--text-muted)] text-sm italic">
+                      {item.subtitle}
+                    </p>
                   </div>
-                ))}
+                </div>
+                <div className="mt-4">
+                  <p className="text-[var(--accent)] text-sm mb-4 italic">
+                    {item.challenge}
+                  </p>
+                  <div className="text-[var(--text-secondary)] text-sm">
+                    {renderMarkdown(item.value)}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="hidden md:flex items-start justify-center">
-              <Image
-                src="/infra.png"
-                alt={lang === 'en' ? 'Factual infrastructure' : 'Infrastructure factuelle'}
-                width={350}
-                height={500}
-                className="rounded-lg border border-[var(--border)]"
-              />
-            </div>
+            ))}
           </div>
         </div>
       </section>
