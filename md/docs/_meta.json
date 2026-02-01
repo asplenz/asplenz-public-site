@@ -1,0 +1,84 @@
+{
+  "index": {
+    "title": "Introduction",
+    "type": "page"
+  },
+  "---strategic": {
+    "type": "separator",
+    "title": "Strategic"
+  },
+  "proof-semantics": {
+    "title": "Proof Semantics",
+    "href": "/technical/proof-semantics"
+  },
+  "sovereignty": {
+    "title": "Security & Sovereignty",
+    "href": "/security/sovereignty"
+  },
+  "---getting-started": {
+    "type": "separator",
+    "title": "Getting Started"
+  },
+  "first-seal": {
+    "title": "First Seal",
+    "href": "/technical/first-seal"
+  },
+  "core-concepts": {
+    "title": "Core Concepts",
+    "href": "/technical/core-concepts"
+  },
+  "quickstart": {
+    "title": "Quickstart",
+    "href": "/foundations/quickstart"
+  },
+  "---integration": {
+    "type": "separator",
+    "title": "Integration"
+  },
+  "api-reference": {
+    "title": "API Reference",
+    "href": "/technical/api-reference"
+  },
+  "integration-guide": {
+    "title": "Integration Guide",
+    "href": "/technical/integration-guide"
+  },
+  "channels": {
+    "title": "Channels",
+    "type": "menu",
+    "items": {
+      "api": {
+        "title": "API",
+        "href": "/technical/channels/api"
+      },
+      "email": {
+        "title": "Email",
+        "href": "/technical/channels/email"
+      },
+      "webapp": {
+        "title": "Webapp",
+        "href": "/technical/channels/webapp"
+      }
+    }
+  },
+  "---compliance": {
+    "type": "separator",
+    "title": "Compliance"
+  },
+  "auditor-guide": {
+    "title": "Auditor's Guide",
+    "href": "/compliance/auditor-guide"
+  },
+  "guarantees": {
+    "title": "Guarantees",
+    "href": "/technical/guarantees"
+  },
+  "---reference": {
+    "type": "separator",
+    "title": "Reference"
+  },
+  "faq": {
+    "title": "FAQ",
+    "href": "/faq"
+  }
+}

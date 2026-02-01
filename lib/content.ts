@@ -17,8 +17,8 @@ export const content = {
       hero: {
         title: 'The Native Proof Infrastructure.',
         tagline: 'End the era of narrative reconstruction. Secure the scrutiny of your critical decisions.',
-        cta1: 'Explore technical docs',
-        cta2: 'Discuss a use case',
+        cta1: 'Discover the Shift',
+        cta2: 'Get Started',
       },
       reality: {
         title: 'The Reality: Explaining is not proving.',
@@ -68,7 +68,7 @@ export const content = {
           },
           {
             title: 'Authoritative Timestamping',
-            description: 'Each fact receives a unique timestamp (`sealed_at_ms`) assigned by Horizon, serving as the definitive reference during scrutiny.',
+            description: 'Every fact receives a certified, immutable timestamp assigned by Horizon, serving as definitive evidence during audits or reviews.',
           },
           {
             title: 'Independent Verification',
@@ -79,7 +79,7 @@ export const content = {
       quote: 'What is sealed becomes a reference.',
       closing: 'Horizon is a factual, neutral, and independent proof infrastructure. It does not make decisions better; it makes their existence less debatable.',
       ctas: {
-        briefing: 'Request a strategic briefing',
+        briefing: 'Schedule a Strategic Briefing',
         verification: 'Access the Verification Guide',
       },
     },
@@ -812,8 +812,8 @@ export const content = {
       hero: {
         title: 'L\'infrastructure de preuve native.',
         tagline: 'Mettez fin à l\'ère de la reconstitution narrative. Sécurisez l\'examen de vos décisions critiques.',
-        cta1: 'Consulter la documentation technique',
-        cta2: 'Échanger sur un cas d\'usage',
+        cta1: 'Comprendre la Bascule',
+        cta2: 'Démarrer',
       },
       reality: {
         title: 'Le constat : Expliquer n\'est pas prouver.',
@@ -863,7 +863,7 @@ export const content = {
           },
           {
             title: 'Horodatage d\'Autorité',
-            description: 'Chaque fait reçoit un horodatage unique (`sealed_at_ms`) attribué par Horizon, faisant foi lors des examens.',
+            description: 'Chaque fait reçoit un horodatage certifié et immuable attribué par Horizon, faisant foi de manière indiscutable lors des examens.',
           },
           {
             title: 'Indépendance de Vérification',
@@ -872,9 +872,9 @@ export const content = {
         ],
       },
       quote: 'Ce qui est scellé devient une référence.',
-      closing: 'Horizon est une infrastructure de preuve factuelle, neutre et indépendante. Elle ne rend pas vos décisions meilleures ; elle rend leur existence indiscutable.',
+      closing: 'Horizon est une infrastructure de preuve factuelle, neutre et indépendante. Elle ne rend pas vos décisions meilleures. Elle rend leur existence indiscutable.',
       ctas: {
-        briefing: 'Demander une présentation stratégique',
+        briefing: 'Programmer un Briefing Stratégique',
         verification: 'Accéder au Guide de Vérification',
       },
     },

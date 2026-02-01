@@ -44,7 +44,7 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap gap-4 opacity-0 animate-fade-in-up animate-delay-200">
                 <Link
-                  href="/docs"
+                  href="/foundations"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
                 >
                   {t.index.hero.cta1}
@@ -53,7 +53,7 @@ export default function Home() {
                   </svg>
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/docs"
                   className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border-light)] text-[var(--text-secondary)] font-medium rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
                 >
                   {t.index.hero.cta2}
