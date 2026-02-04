@@ -41,8 +41,11 @@ export default function Home() {
               <p className="text-2xl text-[var(--accent)] mb-6 opacity-0 animate-fade-in-up animate-delay-100">
                 {t.index.hero.subtitle}
               </p>
-              <p className="text-lg text-[var(--text-secondary)] mb-10 opacity-0 animate-fade-in-up animate-delay-200">
+              <p className="text-lg text-[var(--text-secondary)] mb-4 opacity-0 animate-fade-in-up animate-delay-200">
                 {renderMarkdown(t.index.hero.description)}
+              </p>
+              <p className="text-[var(--text-secondary)] opacity-80 mb-6 opacity-0 animate-fade-in-up animate-delay-200">
+                {t.index.hero.hook}
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 opacity-0 animate-fade-in-up animate-delay-300">
                 <a
@@ -114,20 +117,24 @@ export default function Home() {
             {t.index.worldRequires.title}
           </h2>
 
-          <blockquote className="text-2xl md:text-3xl font-medium text-[var(--accent)] mb-8 leading-relaxed">
+          <blockquote className="text-2xl md:text-3xl font-medium text-[var(--accent)] mb-3 leading-relaxed">
             {t.index.worldRequires.quote}
           </blockquote>
+
+          <p className="text-[var(--text-secondary)] mb-8">{t.index.worldRequires.anchor}</p>
 
           <p className="text-[var(--text-secondary)] mb-4">{t.index.worldRequires.requiredBy}</p>
           <p className="text-lg text-[var(--text-primary)] mb-10">{renderMarkdown(t.index.worldRequires.conclusion)}</p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 mb-6">
             {t.index.worldRequires.pillars.map((pillar, idx) => (
               <div key={idx} className="p-4 border-t-2 border-[var(--accent)]">
                 <p className="text-[var(--text-primary)] font-semibold">{pillar}</p>
               </div>
             ))}
           </div>
+
+          <p className="text-[var(--text-primary)] font-medium mt-6">{renderMarkdown(t.index.worldRequires.beforeExecution)}</p>
         </div>
       </section>
 
@@ -155,6 +162,15 @@ export default function Home() {
                 </p>
               </div>
             ))}
+          </div>
+
+          <div className="max-w-md mx-auto bg-[var(--bg-primary)] rounded-md px-5 py-4 mb-8 text-left">
+            <p className="text-sm text-[var(--text-primary)] font-medium mb-3">{t.index.solution.recordTitle}</p>
+            <ul className="text-sm text-[var(--text-secondary)] space-y-1">
+              {t.index.solution.record.map((item, idx) => (
+                <li key={idx}>– {item}</li>
+              ))}
+            </ul>
           </div>
 
           <p className="text-lg text-[var(--text-primary)] mb-6">{renderMarkdown(t.index.solution.conclusion)}</p>

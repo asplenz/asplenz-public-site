@@ -18,6 +18,7 @@ export const content = {
         title: 'Decision Governance',
         subtitle: 'Prove every decision that puts your organization at risk.',
         description: '**Horizon is a system of record that seals and preserves critical decisions.** It provides immutable, audit-ready evidence of who decided what, when, and under which context. Starting with AI systems.',
+        hook: 'A model goes live. A risk is accepted. Accountability begins.',
         cta1: 'Explore AI Accountability',
         cta2: 'Talk to an expert',
       },
@@ -44,6 +45,7 @@ export const content = {
       worldRequires: {
         title: 'What the World Now Requires',
         quote: '"Show us the decision, exactly as it was declared, at the moment it was taken."',
+        anchor: 'This is no longer theoretical. It\'s already being asked.',
         requiredBy: 'This is now required by regulators, auditors, insurers, and boards.',
         conclusion: 'What matters is no longer explanation, but **proof**.',
         pillars: [
@@ -51,6 +53,7 @@ export const content = {
           'Accountability over process',
           'Facts over reconstruction',
         ],
+        beforeExecution: '**Horizon captures decisions before execution, not explanations after the fact.**',
       },
       solution: {
         title: 'The Solution',
@@ -70,6 +73,14 @@ export const content = {
             title: 'Prove',
             description: 'The decision can be verified independently, anytime.',
           },
+        ],
+        recordTitle: 'Each sealed decision includes:',
+        record: [
+          'Decision statement',
+          'Decision owner',
+          'Time & context',
+          'Supporting material (if any)',
+          'Immutable proof reference',
         ],
         conclusion: '**Once sealed, a decision cannot be altered, rewritten, or disputed.**',
       },
@@ -121,7 +132,7 @@ export const content = {
         title: 'What Horizon Does and Does Not Do',
         does: '**Horizon Does:** Preserve decisions exactly as declared, guarantee immutability, provide independent verification, protect decision-makers with factual evidence.',
         doesNot: '**Horizon Does Not:** Judge decision quality, enforce business rules, validate compliance, replace existing tools.',
-        conclusion: '**This neutrality is what makes the evidence defensible.**',
+        conclusion: '**Neutrality is what makes the evidence defensible.**',
       },
       expand: {
         title: 'Start with AI. Expand Everywhere.',
@@ -900,6 +911,7 @@ export const content = {
         title: 'Gouvernance des décisions',
         subtitle: 'Prouvez chaque décision qui expose votre organisation à un risque.',
         description: '**Horizon est un système de référence qui scelle et préserve les décisions critiques.** Il fournit une preuve immuable et prête pour l\'audit de qui a décidé quoi, quand, et dans quel contexte. En commençant par les systèmes d\'IA.',
+        hook: 'Un modèle entre en production. Un risque est accepté. L\'imputabilité commence.',
         cta1: 'Explorer le cas d\'usage : Responsabilité IA',
         cta2: 'Parler à un expert',
       },
@@ -926,6 +938,7 @@ export const content = {
       worldRequires: {
         title: 'Ce que le monde exige désormais',
         quote: '« Montrez-nous la décision, exactement telle qu\'elle a été déclarée, au moment où elle a été prise. »',
+        anchor: 'Ce n\'est plus théorique. C\'est déjà ce qui est demandé.',
         requiredBy: 'C\'est désormais exigé par les régulateurs, les auditeurs, les assureurs et les conseils d\'administration.',
         conclusion: 'Ce qui compte n\'est plus l\'explication, mais la **preuve**.',
         pillars: [
@@ -933,6 +946,7 @@ export const content = {
           'L\'imputabilité plutôt que le processus',
           'Les faits plutôt que la reconstruction',
         ],
+        beforeExecution: '**Horizon capture les décisions avant leur exécution, pas les explications après coup.**',
       },
       solution: {
         title: 'La Solution',
@@ -952,6 +966,14 @@ export const content = {
             title: 'Prouver',
             description: 'La décision peut être vérifiée de manière indépendante, à tout moment.',
           },
+        ],
+        recordTitle: 'Chaque décision scellée inclut :',
+        record: [
+          'Énoncé de la décision',
+          'Propriétaire de la décision',
+          'Horodatage et contexte',
+          'Éléments à l\'appui (le cas échéant)',
+          'Référence de preuve immuable',
         ],
         conclusion: '**Une fois scellée, une décision ne peut être ni altérée, ni réécrite, ni contestée.**',
       },
@@ -1003,7 +1025,7 @@ export const content = {
         title: 'Ce que Horizon fait et ne fait pas',
         does: '**Horizon fait :** Préserve les décisions exactement comme déclarées, garantit l\'immuabilité, fournit une vérification indépendante, protège les décideurs avec des preuves factuelles.',
         doesNot: '**Horizon ne fait pas :** Juge la qualité des décisions, impose des règles métier, valide la conformité, remplace les outils existants.',
-        conclusion: '**Cette neutralité est ce qui rend la preuve défendable.**',
+        conclusion: '**La neutralité est ce qui rend la preuve défendable.**',
       },
       expand: {
         title: 'Commencez par l\'IA. Étendez partout.',
