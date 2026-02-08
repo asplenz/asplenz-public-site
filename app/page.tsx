@@ -21,7 +21,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid md:grid-cols-[3fr_2fr] gap-6 items-center">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] leading-tight mb-4 opacity-0 animate-fade-in-up whitespace-nowrap">
+              <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] leading-tight mb-4 opacity-0 animate-fade-in-up md:whitespace-nowrap">
                 {t.index.hero.subtitle.split('\n').map((line, i) => (
                   <span key={i}>{i > 0 && <br />}{line}</span>
                 ))}
