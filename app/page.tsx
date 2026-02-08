@@ -32,7 +32,8 @@ export default function Home() {
               <p className="text-[var(--text-secondary)] mb-6 opacity-0 animate-fade-in-up animate-delay-200">
                 {t.index.hero.hook}
               </p>
-              <div className="flex flex-wrap gap-3 mb-10 opacity-0 animate-fade-in-up animate-delay-200">
+              <div className="flex flex-wrap items-center gap-3 mb-10 opacity-0 animate-fade-in-up animate-delay-200">
+                <span className="text-sm text-[var(--text-muted)] font-medium">{t.index.hero.taglineLabel}</span>
                 {t.index.hero.tagline.split('.').filter(Boolean).map((word, i) => (
                   <span key={i} className="px-4 py-1.5 rounded-full border border-[var(--accent)] text-[var(--accent)] text-sm font-medium tracking-wide">
                     {word.trim()}
