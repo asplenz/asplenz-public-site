@@ -16,25 +16,29 @@ export default function Home() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-28 pb-20 px-6 md:px-32 relative overflow-hidden">
+      <section className="pt-40 pb-20 px-6 md:px-32 relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30" />
         <div className="max-w-6xl mx-auto relative z-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] leading-tight mb-10 opacity-0 animate-fade-in-up">
-            {t.index.hero.subtitle.split('\n').map((line, i) => (
-              <span key={i}>{i > 0 && <br />}{line}</span>
-            ))}
-          </h1>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="grid md:grid-cols-[3fr_2fr] gap-6 items-center">
             <div>
-              <p className="text-xl text-[var(--accent)] mb-4 opacity-0 animate-fade-in-up animate-delay-100">
+              <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] leading-tight mb-4 opacity-0 animate-fade-in-up whitespace-nowrap">
+                {t.index.hero.subtitle.split('\n').map((line, i) => (
+                  <span key={i}>{i > 0 && <br />}{line}</span>
+                ))}
+              </h1>
+              <p className="text-xl text-[var(--accent)] mb-2 opacity-0 animate-fade-in-up animate-delay-100">
                 {t.index.hero.description}
               </p>
-              <p className="text-[var(--text-secondary)] mb-2 opacity-0 animate-fade-in-up animate-delay-200">
+              <p className="text-[var(--text-secondary)] mb-6 opacity-0 animate-fade-in-up animate-delay-200">
                 {t.index.hero.hook}
               </p>
-              <p className="text-[var(--text-secondary)] mb-10 opacity-0 animate-fade-in-up animate-delay-200">
-                {t.index.hero.tagline}
-              </p>
+              <div className="flex flex-wrap gap-3 mb-10 opacity-0 animate-fade-in-up animate-delay-200">
+                {t.index.hero.tagline.split('.').filter(Boolean).map((word, i) => (
+                  <span key={i} className="px-4 py-1.5 rounded-full border border-[var(--accent)] text-[var(--accent)] text-sm font-medium tracking-wide">
+                    {word.trim()}
+                  </span>
+                ))}
+              </div>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors opacity-0 animate-fade-in-up animate-delay-300"
