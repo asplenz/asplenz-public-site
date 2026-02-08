@@ -17,7 +17,7 @@ export const content = {
       hero: {
         subtitle: 'When accountability is questioned.\nProof must already exist.',
         description: 'Horizon is a system of record for critical decisions.',
-        hook: 'It captures decisions as immutable facts, before they need to be explained.',
+        hook: 'It captures decisions as immutable **facts**, *before they need to be explained*.',
         taglineLabel: 'Decisions:',
         tagline: 'Human. Automated. AI-driven.',
         cta: 'Talk to an expert',
@@ -53,7 +53,7 @@ export const content = {
       whatDoes: {
         title: 'What Horizon does',
         lines: [
-          'Horizon records decisions as facts.',
+          'Horizon records decisions as **facts**.',
           'Not workflows.',
           'Not policies.',
           'Not explanations.',
@@ -84,7 +84,7 @@ export const content = {
           'an automated system',
           'an AI system',
         ],
-        conclusion: 'Horizon records the fact that it happened, and under whose authority.',
+        conclusion: 'Horizon records the **fact** that it happened, and *under whose authority*.',
       },
       notJudged: {
         title: 'Decisions are not judged. They are proven.',
@@ -101,7 +101,7 @@ export const content = {
           'under which declared context',
           'with which justification or authority',
         ],
-        conclusion: 'Neutrality is what makes the proof defensible.',
+        conclusion: '**Neutrality** is what makes the proof defensible.',
       },
       aiAccountability: {
         title: 'Built for AI accountability, not limited to AI',
@@ -119,7 +119,7 @@ export const content = {
           'automated approvals and overrides',
           'post-incident decisions',
         ],
-        conclusion: 'This enables human accountability, even when decisions are automated.',
+        conclusion: 'This enables human **accountability**, *even when decisions are automated*.',
       },
       incidentReady: {
         title: 'Incident-ready by design',
@@ -168,7 +168,7 @@ export const content = {
           'Not a governance platform',
           'Not an AI explainability tool',
         ],
-        conclusion: 'Horizon exists after decisions are made, not before.',
+        conclusion: 'Horizon exists *after decisions are made*, not before.',
       },
       simpleQuestion: {
         title: 'One simple question',
@@ -913,7 +913,7 @@ export const content = {
       hero: {
         subtitle: 'Quand la responsabilité est mise en cause.\nLa preuve doit déjà exister.',
         description: 'Horizon est le système de référence pour les décisions critiques.',
-        hook: 'Il capture les décisions sous forme de faits immuables, avant même qu\'elles n\'aient besoin d\'être justifiées.',
+        hook: 'Il capture les décisions sous forme de **faits** immuables, *avant même qu\'elles n\'aient besoin d\'être justifiées*.',
         taglineLabel: 'Décisions :',
         tagline: 'Humaines. Automatisées. Pilotées par l\'IA.',
         cta: 'Parler à un expert',
@@ -949,7 +949,7 @@ export const content = {
       whatDoes: {
         title: 'Ce que fait Horizon',
         lines: [
-          'Horizon enregistre les décisions comme des faits.',
+          'Horizon enregistre les décisions comme des **faits**.',
           'Pas des workflows.',
           'Pas des procédures.',
           'Pas des explications.',
@@ -980,7 +980,7 @@ export const content = {
           'd\'un système automatisé',
           'd\'un système d\'IA',
         ],
-        conclusion: 'Horizon enregistre le fait qu\'elle a eu lieu, et sous quelle autorité.',
+        conclusion: 'Horizon enregistre le **fait** qu\'elle a eu lieu, et *sous quelle autorité*.',
       },
       notJudged: {
         title: 'Les décisions ne sont pas jugées. Elles sont prouvées.',
@@ -997,7 +997,7 @@ export const content = {
           'dans quel contexte déclaré',
           'avec quelle justification ou autorité',
         ],
-        conclusion: 'C\'est cette neutralité qui rend la preuve opposable.',
+        conclusion: 'C\'est cette **neutralité** qui rend la preuve opposable.',
       },
       aiAccountability: {
         title: 'Conçu pour la responsabilité de l\'IA, mais pas seulement',
@@ -1015,7 +1015,7 @@ export const content = {
           'les approbations et contournements automatisés',
           'les décisions post-incident',
         ],
-        conclusion: 'Cela garantit une responsabilité humaine, même lorsque les décisions sont automatisées.',
+        conclusion: 'Cela garantit une **responsabilité** humaine, *même lorsque les décisions sont automatisées*.',
       },
       incidentReady: {
         title: 'Prêt pour l\'incident, par conception',
@@ -1064,7 +1064,7 @@ export const content = {
           'Ni une plateforme de gouvernance',
           'Ni un outil d\'explicabilité de l\'IA',
         ],
-        conclusion: 'Horizon intervient après la prise de décision, pas avant.',
+        conclusion: 'Horizon intervient *après la prise de décision*, pas avant.',
       },
       simpleQuestion: {
         title: 'Une question simple',

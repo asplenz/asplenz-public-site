@@ -11,6 +11,18 @@ export default function Home() {
   const { lang } = useLang()
   const t = getContent(lang)
 
+  const renderInline = (text: string) => {
+    return text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/).map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <span key={i} className="font-semibold text-[var(--text-primary)]">{part.slice(2, -2)}</span>
+      }
+      if (part.startsWith('*') && part.endsWith('*')) {
+        return <em key={i} className="text-[var(--text-muted)]">{part.slice(1, -1)}</em>
+      }
+      return part
+    })
+  }
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
       <Header />
@@ -21,25 +33,20 @@ export default function Home() {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid md:grid-cols-[3fr_2fr] gap-6 items-center">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] leading-tight mb-4 opacity-0 animate-fade-in-up md:whitespace-nowrap">
+              <h1 className="font-bold leading-tight mb-4 opacity-0 animate-fade-in-up md:whitespace-nowrap" style={{ fontSize: 'clamp(40px, 5vw, 64px)', letterSpacing: '-0.02em' }}>
                 {t.index.hero.subtitle.split('\n').map((line, i) => (
-                  <span key={i}>{i > 0 && <br />}{line}</span>
+                  <span key={i} className={i === 0 ? 'text-[var(--text-muted)]' : 'text-[var(--text-primary)]'}>{i > 0 && <br />}{line}</span>
                 ))}
               </h1>
-              <p className="text-xl text-[var(--accent)] mb-2 opacity-0 animate-fade-in-up animate-delay-100">
+              <p className="text-xl text-[var(--text-secondary)] font-medium mb-2 opacity-0 animate-fade-in-up animate-delay-100">
                 {t.index.hero.description}
               </p>
-              <p className="text-[var(--text-secondary)] mb-6 opacity-0 animate-fade-in-up animate-delay-200">
-                {t.index.hero.hook}
+              <p className="text-lg text-[var(--text-muted)] mb-6 opacity-0 animate-fade-in-up animate-delay-200">
+                {renderInline(t.index.hero.hook)}
               </p>
-              <div className="flex flex-wrap items-center gap-3 mb-10 opacity-0 animate-fade-in-up animate-delay-200">
-                <span className="text-sm text-[var(--text-muted)] font-medium">{t.index.hero.taglineLabel}</span>
-                {t.index.hero.tagline.split('.').filter(Boolean).map((word, i) => (
-                  <span key={i} className="px-4 py-1.5 rounded-full border border-[var(--accent)] text-[var(--accent)] text-sm font-medium tracking-wide">
-                    {word.trim()}
-                  </span>
-                ))}
-              </div>
+              <p className="text-sm font-medium text-[var(--accent)] uppercase tracking-[0.04em] mb-10 opacity-0 animate-fade-in-up animate-delay-200">
+                {t.index.hero.tagline}
+              </p>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors opacity-0 animate-fade-in-up animate-delay-300"
@@ -66,7 +73,7 @@ export default function Home() {
       <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
-          <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-10">
+          <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-10">
             {t.index.reality.title}
           </h2>
           <div>
@@ -94,7 +101,7 @@ export default function Home() {
                 ))}
               </ul>
               <p className="text-[var(--text-primary)] font-medium">{t.index.reality.conclusion1}</p>
-              <p className="text-[var(--accent)] font-medium">{t.index.reality.conclusion2}</p>
+              <p className="text-[var(--text-primary)] font-medium">{t.index.reality.conclusion2}</p>
           </div>
           </div>
         </div>
@@ -105,7 +112,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-8">
+              <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
                 {t.index.breaks.title}
               </h2>
               <ul className="list-disc list-inside text-[var(--text-secondary)] mb-6 space-y-1">
@@ -113,7 +120,7 @@ export default function Home() {
                   <li key={idx}>{item}</li>
                 ))}
               </ul>
-              <p className="text-[var(--accent)] font-medium">{t.index.breaks.conclusion}</p>
+              <p className="text-[var(--text-primary)] font-medium">{t.index.breaks.conclusion}</p>
             </div>
             <div className="hidden md:block relative">
               <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent)]/20 to-transparent rounded-lg blur-3xl" />
@@ -133,12 +140,16 @@ export default function Home() {
       <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
-            <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-8">
+            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
               {t.index.whatDoes.title}
             </h2>
             <div className="mb-6 space-y-1">
               {t.index.whatDoes.lines.map((line, idx) => (
-                <p key={idx} className={idx === 0 ? 'text-[var(--text-primary)] font-medium' : 'text-[var(--text-secondary)]'}>{line}</p>
+                <p key={idx} className={
+                  idx === 0 ? 'text-[var(--text-primary)] font-medium' :
+                  idx === t.index.whatDoes.lines.length - 1 ? 'text-[var(--text-primary)] font-semibold text-lg' :
+                  'text-[var(--text-muted)] font-semibold text-lg'
+                }>{renderInline(line)}</p>
               ))}
             </div>
             <p className="text-[var(--text-secondary)] mb-4">{t.index.whatDoes.listIntro}</p>
@@ -147,7 +158,7 @@ export default function Home() {
                 <li key={idx}>{item}</li>
               ))}
             </ul>
-            <p className="text-[var(--text-primary)] font-medium">{t.index.whatDoes.conclusion}</p>
+            <p className="text-[var(--text-primary)] font-medium">{renderInline(t.index.whatDoes.conclusion)}</p>
           </div>
         </div>
       </section>
@@ -156,7 +167,7 @@ export default function Home() {
       <section className="py-16 px-6 md:px-32">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
-            <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-8">
+            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
               {t.index.whatCounts.title}
             </h2>
             <p className="text-[var(--text-secondary)] mb-4">{t.index.whatCounts.intro}</p>
@@ -172,7 +183,7 @@ export default function Home() {
                 <li key={idx}>{item}</li>
               ))}
             </ul>
-            <p className="text-[var(--text-primary)] font-medium">{t.index.whatCounts.conclusion}</p>
+            <p className="text-[var(--text-primary)] font-medium">{renderInline(t.index.whatCounts.conclusion)}</p>
           </div>
         </div>
       </section>
@@ -181,12 +192,12 @@ export default function Home() {
       <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
-            <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-8">
+            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
               {t.index.notJudged.title}
             </h2>
             <div className="mb-6 space-y-1">
               {t.index.notJudged.lines.map((line, idx) => (
-                <p key={idx} className="text-[var(--text-secondary)]">{line}</p>
+                <p key={idx} className="text-[var(--text-muted)] font-medium">{line}</p>
               ))}
             </div>
             <p className="text-[var(--text-secondary)] mb-4">{t.index.notJudged.preservesIntro}</p>
@@ -195,7 +206,7 @@ export default function Home() {
                 <li key={idx}>{item}</li>
               ))}
             </ul>
-            <p className="text-[var(--text-primary)] font-medium">{t.index.notJudged.conclusion}</p>
+            <p className="text-[var(--text-primary)] font-medium">{renderInline(t.index.notJudged.conclusion)}</p>
           </div>
         </div>
       </section>
@@ -205,7 +216,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-8">
+              <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
                 {t.index.aiAccountability.title}
               </h2>
               <p className="text-[var(--text-secondary)] mb-4">{t.index.aiAccountability.intro}</p>
@@ -220,7 +231,7 @@ export default function Home() {
                   <li key={idx}>{item}</li>
                 ))}
               </ul>
-              <p className="text-[var(--text-primary)] font-medium">{t.index.aiAccountability.conclusion}</p>
+              <p className="text-[var(--text-primary)] font-medium">{renderInline(t.index.aiAccountability.conclusion)}</p>
             </div>
             <div className="hidden md:block relative">
               <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent)]/20 to-transparent rounded-lg blur-3xl" />
@@ -241,7 +252,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-8">
+              <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
                 {t.index.incidentReady.title}
               </h2>
           <p className="text-[var(--text-secondary)] mb-4">{t.index.incidentReady.intro}</p>
@@ -276,7 +287,7 @@ export default function Home() {
       <section className="py-16 px-6 md:px-32">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
-            <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-8">
+            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
               {t.index.replaces.title}
           </h2>
           <ul className="text-[var(--text-secondary)] mb-8 space-y-2">
@@ -301,7 +312,7 @@ export default function Home() {
       <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
-            <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-8">
+            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
               {t.index.whoFor.title}
           </h2>
           <div className="space-y-4">
@@ -321,7 +332,7 @@ export default function Home() {
       <section className="py-16 px-6 md:px-32">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
-            <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-8">
+            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
               {t.index.whatIsNot.title}
             </h2>
             <ul className="list-disc list-inside text-[var(--text-secondary)] mb-6 space-y-1">
@@ -329,7 +340,7 @@ export default function Home() {
                 <li key={idx}>{item}</li>
               ))}
             </ul>
-            <p className="text-[var(--text-primary)] font-medium">{t.index.whatIsNot.conclusion}</p>
+            <p className="text-[var(--text-primary)] font-medium">{renderInline(t.index.whatIsNot.conclusion)}</p>
           </div>
         </div>
       </section>
@@ -339,11 +350,11 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-center md:text-left">
-              <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-6">
-                {t.index.simpleQuestion.title}
+              <p className="text-sm text-[var(--text-muted)] uppercase tracking-wider mb-4">{t.index.simpleQuestion.title}</p>
+              <h2 className="text-[32px] font-semibold text-[var(--text-primary)] mb-4">
+                {t.index.simpleQuestion.question}
               </h2>
-              <p className="text-xl text-[var(--accent)] mb-4">{t.index.simpleQuestion.question}</p>
-              <p className="text-[var(--text-secondary)] mb-10">{t.index.simpleQuestion.answer}</p>
+              <p className="text-lg text-[var(--text-muted)] font-medium mb-10">{t.index.simpleQuestion.answer}</p>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
@@ -370,7 +381,7 @@ export default function Home() {
         <div className="absolute inset-0 grid-pattern opacity-20" />
         <div className="max-w-xl mx-auto text-center relative">
           {t.index.finalQuote.lines.map((line, idx) => (
-            <p key={idx} className={`text-2xl font-bold ${idx === t.index.finalQuote.lines.length - 1 ? 'text-[var(--accent)]' : 'text-[var(--text-primary)]'}`}>
+            <p key={idx} className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em]">
               {line}
             </p>
           ))}
