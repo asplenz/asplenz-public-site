@@ -1,333 +1,299 @@
-Voici la landing page complète, déclinée en **Anglais** et en **Français**, respectant scrupuleusement la structure et l'intensité du contenu validé.
+[Version EN]
+
+**New landing page — Horizon**
+
+**Hero**
+When accountability is questioned, proof must already exist.
+Horizon is a system of record for critical decisions.
+It captures decisions as immutable facts — before they need to be explained.
+Human. Automated. AI-driven.
+
+**The reality organizations face**
+Every organization makes decisions that carry risk.
+Some are human.
+Some are automated.
+Some are delegated to AI systems.
+Most are not provable.
+When something goes wrong, teams rely on:
+
+* logs never designed for accountability
+* emails written after the fact
+* narratives reconstructed under pressure
+
+That is not proof.
+That is exposure.
+
+**What breaks when proof is missing**
+
+* Audits turn into investigations
+* Individuals become personally exposed
+* Decisions are judged on explanations, not facts
+* Accountability becomes fragile
+At that point, it’s already too late.
+
+**What Horizon does**
+Horizon records decisions as facts.
+Not workflows.
+Not policies.
+Not explanations.
+Decisions.
+
+Each decision is:
+
+* explicitly declared
+* time-stamped
+* sealed
+* independently verifiable
+
+Once recorded, it cannot be altered, rewritten, or disputed.
+
+**What counts as a decision**
+A decision exists when an outcome can affect reality.
+For example:
+
+* an approval or rejection
+* an authorization or override
+* an acceptance of risk
+* a system-triggered action
+
+Whether the decision comes from:
+
+* a human
+* an automated system
+* an AI system
+
+Horizon records the fact that it happened — and under whose authority.
+
+**Decisions are not judged. They are proven.**
+Horizon does not decide.
+Horizon does not validate.
+Horizon does not enforce rules.
+It preserves:
+
+* what was decided
+* by whom or by which system
+* when
+* under which declared context
+* with which justification or authority
+
+Neutrality is what makes the proof defensible.
+
+**Built for AI accountability — not limited to AI**
+AI systems amplify risk:
+
+* decisions scale instantly
+* context disappears quickly
+* responsibility becomes blurred
+
+Horizon provides definitive proof for:
+
+* production go / no-go approvals
+* acceptance of residual AI risk
+* model and data validation sign-offs
+* automated approvals and overrides
+* post-incident decisions
+
+This enables human accountability — even when decisions are automated.
+
+**Incident-ready by design**
+Decisions exist:
+
+* before incidents
+* during incidents
+* after incidents
+
+Horizon links decisions to incidents when needed, and preserves:
+
+* timelines
+* snapshots
+* complete proof packages
+
+When accountability is questioned, the facts are already there.
+
+**What Horizon replaces**
+
+* Email approvals → sealed decision records
+* Tickets and comments → attributable decisions
+* Static PDFs → decision timelines
+* Manual reconstruction → immediate proof
+
+Less stress.
+Less exposure.
+More certainty.
+
+**Who Horizon is for**
+
+* **Legal & Compliance**: Defend decisions with facts, not narratives.
+* **Risk & AI Governance**: Demonstrate accountability without relying on fragile systems.
+* **Audit**: Rely on independent, verifiable evidence.
+* **Executives**: Reduce exposure as automation scales.
+
+**What Horizon is not**
+
+* Not a decision engine
+* Not a policy engine
+* Not a governance platform
+* Not an AI explainability tool
+Horizon exists after decisions are made, not before.
+
+**One simple question**
+Which decision would you need to prove tomorrow?
+Horizon starts there.
+
+**Talk to an expert**
+
+**Footer**
+Systems act.
+People decide.
+Horizon proves.
 
 ---
 
-## **[ENGLISH VERSION]**
+[Version FR]
 
-# **Horizon for Decision Governance**
+**Nouvelle page de présentation — Horizon**
 
-## **Prove every decision that puts your organization at risk.**
+**Hero**
+Quand la responsabilité est mise en cause, la preuve doit déjà exister.
+Horizon est le système de référence pour les décisions critiques.
+Il capture les décisions sous forme de faits immuables — avant même qu'elles n'aient besoin d'être justifiées.
+Humaines. Automatisées. Pilotées par l'IA.
 
-**Horizon is a system of record that seals and preserves critical decisions.**
-It provides immutable, audit-ready evidence of who decided what, when, and under which context — starting with AI systems.
+**La réalité des organisations**
+Toute organisation prend des décisions porteuses de risques.
+Certaines sont humaines.
+Certaines sont automatisées.
+D'autres sont déléguées à des systèmes d'IA.
+La plupart ne sont pas prouvables.
+En cas de problème, les équipes s'appuient sur :
 
----
+* des logs qui n'ont jamais été conçus pour établir des responsabilités
+* des emails rédigés après coup
+* des récits reconstitués sous pression
 
-### **The Problem**
+Ce ne sont pas des preuves.
+C'est une exposition au risque.
 
-#### **Critical decisions exist. Proof does not.**
+**Les conséquences d'une preuve manquante**
 
-Organizations make high-stakes decisions every day:
+* Les audits se transforment en enquêtes
+* Les individus se retrouvent exposés personnellement
+* Les décisions sont jugées sur des explications, pas sur des faits
+* La chaîne de responsabilité devient fragile
+À ce stade, il est déjà trop tard.
 
-* Approving AI systems for production
-* Accepting operational or regulatory risk
-* Authorizing emergency actions
-* Signing off on compliance obligations
+**Ce que fait Horizon**
+Horizon enregistre les décisions comme des faits.
+Pas des workflows.
+Pas des procédures.
+Pas des explications.
+Des décisions.
 
-**These decisions are documented through:**
+Chaque décision est :
 
-* Emails and chats
-* Tickets and comments
-* PDFs written after the fact
-* Logs that record actions, not intent
+* explicitement déclarée
+* horodatée
+* scellée
+* vérifiable de manière indépendante
 
-**When accountability is required, teams are asked:**
+Une fois enregistrée, elle ne peut être ni altérée, ni réécrite, ni contestée.
 
-> *Who decided this? Why was the risk accepted? What was known at the time?*
+**Ce qui constitue une décision**
+Une décision existe dès lors qu'un résultat peut impacter la réalité.
+Par exemple :
 
-**And the answer is usually:**
+* une approbation ou un rejet
+* une autorisation ou un passage outre (*override*)
+* une acceptation de risque
+* une action déclenchée par un système
 
-> *“We can reconstruct it.”*
+Que la décision vienne :
 
-**That is no longer sufficient.**
+* d'un humain
+* d'un système automatisé
+* d'un système d'IA
 
----
+Horizon enregistre le fait qu'elle a eu lieu — et sous quelle autorité.
 
-### **What the World Now Requires**
+**Les décisions ne sont pas jugées. Elles sont prouvées.**
+Horizon ne décide pas.
+Horizon ne valide pas.
+Horizon n'impose pas de règles.
+Il préserve :
 
-Regulators, auditors, insurers, and boards no longer accept narratives. They ask:
+* ce qui a été décidé
+* par qui ou par quel système
+* quand
+* dans quel contexte déclaré
+* avec quelle justification ou autorité
 
-> **“Show us the decision, exactly as it was declared, at the moment it was taken.”**
+C’est cette neutralité qui rend la preuve opposable.
 
-Without tamper-proof evidence:
+**Conçu pour la responsabilité de l'IA — mais pas seulement**
+Les systèmes d'IA amplifient les risques :
 
-* Accountability is contested
-* Compliance is fragile
-* Individuals and organizations are exposed
+* les décisions passent à l'échelle instantanément
+* le contexte s'efface rapidement
+* la responsabilité devient floue
 
----
+Horizon fournit une preuve irréfutable pour :
 
-### **The Solution**
+* les validations de mise en production (go / no-go)
+* l'acceptation des risques résiduels liés à l'IA
+* les signatures de validation de modèles et de données
+* les approbations et contournements automatisés
+* les décisions post-incident
 
-#### **A System of Record for Decisions**
+Cela garantit une responsabilité humaine — même lorsque les décisions sont automatisées.
 
-Horizon is not a governance engine. It does not evaluate, enforce, or judge decisions. **Horizon records decisions as facts.**
+**Prêt pour l'incident, par conception**
+Les décisions existent :
 
-Each declared decision is:
+* avant l'incident
+* pendant l'incident
+* après l'incident
 
-* Explicitly stated
-* Attributed to a human authority
-* Timestamped
-* Cryptographically sealed
-* Appended to an immutable timeline
-* Independently verifiable
+Horizon lie les décisions aux incidents si nécessaire et préserve :
 
-**Once sealed, a decision cannot be altered, rewritten, or disputed.**
+* les chronologies des faits
+* des captures instantanées (*snapshots*)
+* des dossiers de preuve complets
 
----
+Quand la responsabilité est questionnée, les faits sont déjà là.
 
-### **Primary Use Case: AI System Accountability**
+**Ce que Horizon remplace**
 
-AI systems amplify risk: decisions are frequent, consequences are systemic, and context disappears quickly. Horizon provides definitive proof for:
+* Approbations par email → Registres de décisions scellés
+* Tickets et commentaires → Décisions attribuables
+* PDF statiques → Chronologies décisionnelles
+* Reconstitution manuelle → Preuve immédiate
 
-* Go / No-Go production approvals
-* Acceptance of residual AI risk
-* Model and data validation sign-offs
-* Deployment authorizations
-* Emergency overrides
-* Post-incident decisions
+Moins de stress.
+Moins d'exposition.
+Plus de certitude.
 
-**This enables human oversight by design and AI Act audit readiness.**
+**À qui s'adresse Horizon**
 
----
+* **Juridique & Conformité** : Défendez vos décisions avec des faits, pas des récits.
+* **Risques & Gouvernance de l'IA** : Démontrez votre responsabilité sans dépendre de systèmes fragiles.
+* **Audit** : Appuyez-vous sur des preuves indépendantes et vérifiables.
+* **Dirigeants** : Réduisez votre exposition à mesure que l'automatisation se généralise.
 
-### **What You Can Prove with Horizon**
+**Ce que Horizon n'est pas**
 
-For every AI system, Horizon preserves:
+* Ni un moteur de décision
+* Ni un gestionnaire de règles
+* Ni une plateforme de gouvernance
+* Ni un outil d'explicabilité de l'IA
+Horizon intervient après la prise de décision, pas avant.
 
-* **Who** approved or rejected it
-* **What** risk was accepted
-* **When** the decision was made
-* **Under which context**
-* **With which supporting evidence**
+**Une question simple**
+Quelle décision devriez-vous être capable de prouver demain ?
+Horizon commence là.
 
-**Not explanations. Facts.**
+**Parler à un expert**
 
----
-
-### **How Horizon Works**
-
-1. **A decision is declared**: A human authority declares a decision via UI, API, or email.
-2. **Horizon seals it**: The decision is cryptographically sealed and appended to an immutable record.
-3. **Proof is permanent**: The decision can be verified and exported at any time — independently.
-
-**No interpretation. No retroactive justification. No reconstruction.**
-
----
-
-### **What Horizon Replaces**
-
-| Today | With Horizon |
-| --- | --- |
-| Emails and chat approvals | **Sealed decision records** |
-| Tickets and comments | **Structured, attributable decisions** |
-| Static PDFs | **Living decision timelines** |
-| Manual reconstruction | **Immediate, verifiable proof** |
-| Stressful audits | **Audit-ready evidence** |
-
----
-
-### **What Horizon Does — and Does Not Do**
-
-* **Horizon Does**: Preserve decisions exactly as declared, guarantee immutability, provide independent verification, protect decision-makers with factual evidence.
-* **Horizon Does Not**: Judge decision quality, enforce business rules, validate compliance, replace existing tools.
-
-**This neutrality is what makes the evidence defensible.**
-
----
-
-### **Start with AI. Expand Everywhere.**
-
-Organizations begin with AI accountability. Horizon then extends naturally to:
-
-* Cyber and crisis response
-* Operational overrides
-* Strategic arbitrations
-* Regulated industry compliance
-
-**One system of record. One source of truth for decision evidence.**
-
----
-
-### **Why Horizon Is Different**
-
-Most systems answer: *“What did the system do?”*
-**Horizon answers: “Who decided to take this risk?”**
-
----
-
-**Stop reconstructing decisions. Start proving them.**
-**Talk to us about Horizon for Decision Governance.**
-
-> **Systems act.**
-> **People decide.**
-> **Horizon proves.**
-
----
-
----
-
-## **[VERSION FRANÇAISE]**
-
-# **Horizon pour la Gouvernance de Décision**
-
-## **Prouvez chaque décision qui expose votre organisation à un risque.**
-
-**Horizon est un système de référence qui scelle et préserve les décisions critiques.**
-Il fournit une preuve immuable et prête pour l'audit de qui a décidé quoi, quand, et dans quel contexte — en commençant par les systèmes d'IA.
-
----
-
-### **Le Problème**
-
-#### **Les décisions critiques existent. Pas leurs preuves.**
-
-Les organisations prennent chaque jour des décisions à enjeux élevés :
-
-* Approbation de la mise en production de systèmes d'IA
-* Acceptation de risques opérationnels ou réglementaires
-* Autorisation d'actions d'urgence
-* Validation d'obligations de conformité
-
-**Ces décisions sont documentées via :**
-
-* Des e-mails et des discussions instantanées
-* Des tickets et des commentaires
-* Des rapports PDF rédigés après coup
-* Des logs qui enregistrent des actions, pas des intentions
-
-**Quand l'imputabilité est requise, on demande aux équipes :**
-
-> *Qui a décidé cela ? Pourquoi le risque a-t-il été accepté ? Que savait-on à ce moment-là ?*
-
-**Et la réponse est généralement :**
-
-> *« Nous pouvons le reconstruire. »*
-
-**Ce n'est plus suffisant.**
-
----
-
-### **Ce que le monde exige désormais**
-
-Les régulateurs, les auditeurs, les assureurs et les conseils d'administration n'acceptent plus les récits. Ils demandent :
-
-> **« Montrez-nous la décision, exactement telle qu'elle a été déclarée, au moment où elle a été prise. »**
-
-Sans preuve infalsifiable :
-
-* L'imputabilité est contestée
-* La conformité est fragile
-* Les individus et les organisations sont exposés
-
----
-
-### **La Solution**
-
-#### **Un Système de Référence pour les Décisions**
-
-Horizon n'est pas un moteur de gouvernance. Il n'évalue pas, n'impose pas et ne juge pas les décisions. **Horizon enregistre les décisions comme des faits.**
-
-Chaque décision déclarée est :
-
-* Énoncée explicitement
-* Attribuée à une autorité humaine
-* Horodatée
-* Scellée par cryptographie
-* Ajoutée à une chronologie immuable
-* Vérifiable de manière indépendante
-
-**Une fois scellée, une décision ne peut être ni altérée, ni réécrite, ni contestée.**
-
----
-
-### **Cas d'Usage Primaire : Responsabilité des Systèmes d'IA**
-
-Les systèmes d'IA amplifient les risques : les décisions sont fréquentes, les conséquences sont systémiques et le contexte disparaît rapidement. Horizon fournit une preuve définitive pour :
-
-* Les approbations Go / No-Go de mise en production
-* L'acceptation du risque IA résiduel
-* La validation des modèles et des données
-* Les autorisations de déploiement
-* Les forçages d'urgence (overrides)
-* Les décisions post-incident
-
-**Cela permet un contrôle humain par conception et une préparation immédiate aux audits de l'IA Act.**
-
----
-
-### **Ce que vous pouvez prouver avec Horizon**
-
-Pour chaque système d'IA, Horizon préserve :
-
-* **Qui** a approuvé ou rejeté
-* **Quel** risque a été accepté
-* **Quand** la décision a été prise
-* **Dans quel contexte**
-* **Avec quelles preuves à l'appui**
-
-**Pas des explications. Des faits.**
-
----
-
-### **Fonctionnement d'Horizon**
-
-1. **Une décision est déclarée** : Une autorité humaine déclare une décision via l'interface, l'API ou e-mail.
-2. **Horizon la scelle** : La décision est scellée cryptographiquement et ajoutée à un registre immuable.
-3. **La preuve est permanente** : La décision peut être vérifiée et exportée à tout moment — de manière indépendante.
-
-**Pas d'interprétation. Pas de justification rétroactive. Pas de reconstruction.**
-
----
-
-### **Ce que Horizon remplace**
-
-| Aujourd'hui | Avec Horizon |
-| --- | --- |
-| Approbations par e-mail et chat | **Registres de décision scellés** |
-| Tickets et commentaires | **Décisions structurées et attribuées** |
-| Rapports PDF statiques | **Chronologies de décision vivantes** |
-| Reconstruction manuelle | **Preuve immédiate et vérifiable** |
-| Audits stressants | **Preuves prêtes pour l'audit** |
-
----
-
-### **Ce que Horizon fait — et ne fait pas**
-
-* **Horizon fait** : Préserve les décisions exactement comme déclarées, garantit l'immuabilité, fournit une vérification indépendante, protège les décideurs avec des preuves factuelles.
-* **Horizon ne fait pas** : Juge la qualité des décisions, impose des règles métier, valide la conformité, remplace les outils existants.
-
-**Cette neutralité est ce qui rend la preuve défendable.**
-
----
-
-### **Commencez par l'IA. Étendez partout.**
-
-Les organisations commencent par la responsabilité de l'IA. Horizon s'étend ensuite naturellement à :
-
-* La réponse cyber et la gestion de crise
-* Les forçages opérationnels
-* Les arbitrages stratégiques
-* La conformité en secteurs réglementés
-
-**Un seul système de référence. Une seule source de vérité pour la preuve décisionnelle.**
-
----
-
-### **Pourquoi Horizon est différent**
-
-La plupart des systèmes répondent à : *« Qu'est-ce que le système a fait ? »*
-**Horizon répond : « Qui a décidé de prendre ce risque ? »**
-
----
-
-**Cessez de reconstruire vos décisions. Commencez à les prouver.**
-**Parlons ensemble d'Horizon pour la Gouvernance de Décision.**
-
-> **Les systèmes agissent.**
-> **Les humains décident.**
-> **Horizon prouve.**
-
----
-
-Souhaitez-vous que je prépare le prompt pour Claude Code afin d'intégrer ces deux versions dans vos fichiers de site ?
+**Pied de page**
+Les systèmes agissent.
+Les humains décident.
+Horizon prouve.
