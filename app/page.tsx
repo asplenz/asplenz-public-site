@@ -33,7 +33,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid md:grid-cols-[3fr_2fr] gap-6 items-center">
             <div>
-              <h1 className="font-bold leading-tight mb-4 opacity-0 animate-fade-in-up md:whitespace-nowrap" style={{ fontSize: 'clamp(40px, 5vw, 64px)', letterSpacing: '-0.02em' }}>
+              <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4 opacity-0 animate-fade-in-up" style={{ letterSpacing: '-0.02em' }}>
                 {t.index.hero.subtitle.split('\n').map((line, i) => (
                   <span key={i} className={i === 0 ? 'text-[var(--text-muted)]' : 'text-[var(--text-primary)]'}>{i > 0 && <br />}{line}</span>
                 ))}
@@ -193,7 +193,9 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
             <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
-              {t.index.notJudged.title}
+              {t.index.notJudged.title.split('\n').map((line, i) => (
+                <span key={i}>{i > 0 && <br />}{line}</span>
+              ))}
             </h2>
             <div className="mb-6 space-y-1">
               {t.index.notJudged.lines.map((line, idx) => (

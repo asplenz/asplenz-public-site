@@ -87,7 +87,7 @@ export const content = {
         conclusion: 'Horizon records the **fact** that it happened, and *under whose authority*.',
       },
       notJudged: {
-        title: 'Decisions are not judged. They are proven.',
+        title: 'Horizon does not judge decisions.\nIt proves them.',
         lines: [
           'Horizon does not decide.',
           'Horizon does not validate.',
@@ -983,7 +983,7 @@ export const content = {
         conclusion: 'Horizon enregistre le **fait** qu\'elle a eu lieu, et *sous quelle autorité*.',
       },
       notJudged: {
-        title: 'Les décisions ne sont pas jugées. Elles sont prouvées.',
+        title: 'Horizon ne juge pas les décisions.\nIl les prouve.',
         lines: [
           'Horizon ne décide pas.',
           'Horizon ne valide pas.',
