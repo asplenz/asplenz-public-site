@@ -31,6 +31,12 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <Link
+            href="/horizon"
+            className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium text-sm transition-colors"
+          >
+            {t.nav.horizon}
+          </Link>
+          <Link
             href="/foundations"
             className="text-[var(--text-secondary)] hover:text-[var(--accent)] font-medium text-sm transition-colors"
           >
@@ -86,6 +92,13 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-[var(--bg-secondary)] border-t border-[var(--border)]">
           <nav className="px-6 py-4 space-y-2">
+            <Link
+              href="/horizon"
+              className="block py-2 text-[var(--accent)] font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t.nav.horizon}
+            </Link>
             <Link
               href="/foundations"
               className="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent)]"

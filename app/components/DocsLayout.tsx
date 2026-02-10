@@ -16,23 +16,12 @@ interface NavItem {
 const docsNavEn: NavItem[] = [
   { title: 'Overview', href: '/docs' },
   {
-    title: 'Technical',
+    title: 'Integration',
     href: '/docs/technical',
     children: [
-      { title: 'First Seal', href: '/docs/technical/first-seal' },
-      { title: 'Core Concepts', href: '/docs/technical/core-concepts' },
+      { title: 'First Sealed Fact', href: '/docs/technical/first-seal' },
       { title: 'API Reference', href: '/docs/technical/api-reference' },
-      { title: 'Proof Semantics', href: '/docs/technical/proof-semantics' },
       { title: 'Guarantees', href: '/docs/technical/guarantees' },
-    ],
-  },
-  {
-    title: 'Channels',
-    href: '/docs/channels',
-    children: [
-      { title: 'API Channel', href: '/docs/channels/api' },
-      { title: 'Email Channel', href: '/docs/channels/email' },
-      { title: 'Webapp Channel', href: '/docs/channels/webapp' },
     ],
   },
   {
@@ -49,29 +38,17 @@ const docsNavEn: NavItem[] = [
       { title: "Auditor's Guide", href: '/docs/compliance/auditor-guide' },
     ],
   },
-  { title: 'FAQ', href: '/docs/faq' },
 ]
 
 const docsNavFr: NavItem[] = [
   { title: 'Aperçu', href: '/docs' },
   {
-    title: 'Technique',
+    title: 'Intégration',
     href: '/docs/technical',
     children: [
       { title: 'Premier Scellement', href: '/docs/technical/first-seal' },
-      { title: 'Concepts Fondamentaux', href: '/docs/technical/core-concepts' },
       { title: 'Référence API', href: '/docs/technical/api-reference' },
-      { title: 'Sémantique de Preuve', href: '/docs/technical/proof-semantics' },
       { title: 'Garanties', href: '/docs/technical/guarantees' },
-    ],
-  },
-  {
-    title: 'Canaux',
-    href: '/docs/channels',
-    children: [
-      { title: 'Canal API', href: '/docs/channels/api' },
-      { title: 'Canal Email', href: '/docs/channels/email' },
-      { title: 'Canal Webapp', href: '/docs/channels/webapp' },
     ],
   },
   {
@@ -88,7 +65,6 @@ const docsNavFr: NavItem[] = [
       { title: "Guide de l'Auditeur", href: '/docs/compliance/auditor-guide' },
     ],
   },
-  { title: 'FAQ', href: '/docs/faq' },
 ]
 
 interface DocsLayoutProps {

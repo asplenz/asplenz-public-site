@@ -102,8 +102,21 @@ export default function PerspectiveContent({ title, subtitle, sections, next, la
         </section>
       ))}
 
-      {next && (
-        <div className="mt-12 pt-8 border-t border-[var(--border)]">
+      <div className="mt-12 pt-8 border-t border-[var(--border)] space-y-4">
+        <Link
+          href="/horizon"
+          className="block p-6 bg-[var(--accent)]/10 border border-[var(--accent)]/30 rounded-lg hover:border-[var(--accent)] transition-colors"
+        >
+          <p className="font-semibold text-[var(--accent)] mb-1">
+            {lang === 'en' ? 'Discover Horizon in depth' : 'Découvrir Horizon en profondeur'}
+          </p>
+          <p className="text-[var(--text-muted)] text-sm">
+            {lang === 'en'
+              ? 'Decision proof infrastructure: how it works, modules, product status, and vision.'
+              : 'Infrastructure de preuve décisionnelle : fonctionnement, modules, statut produit et vision.'}
+          </p>
+        </Link>
+        {next && (
           <Link
             href="/docs/technical/first-seal"
             className="block p-6 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg hover:border-[var(--accent)] transition-colors"
@@ -111,8 +124,8 @@ export default function PerspectiveContent({ title, subtitle, sections, next, la
             <p className="font-semibold text-[var(--accent)] mb-1">{next.title}</p>
             <p className="text-[var(--text-muted)] text-sm">{next.description}</p>
           </Link>
-        </div>
-      )}
+        )}
+      </div>
     </article>
   )
 }
