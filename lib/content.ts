@@ -410,11 +410,7 @@ export const content = {
       cta: {
         intro: 'If decisions in your organization can be questioned later, whether during an incident, an audit, or a court case,',
         emphasis: '**Horizon is the proof layer you are missing.**',
-        actions: [
-          'Request a conversation',
-          'See a live demonstration',
-          'Discuss a design partnership',
-        ],
+        action: 'Request a conversation',
       },
     },
 
@@ -1539,11 +1535,7 @@ export const content = {
       cta: {
         intro: 'Si les décisions de votre organisation peuvent être remises en question, lors d\'un incident, d\'un audit ou d\'un procès,',
         emphasis: '**Horizon est la couche de preuve qui vous manque.**',
-        actions: [
-          'Demander un échange',
-          'Voir une démonstration en direct',
-          'Discuter d\'un partenariat de conception',
-        ],
+        action: 'Demander un échange',
       },
     },
 

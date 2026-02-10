@@ -379,20 +379,12 @@ export default function HorizonPage() {
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-lg text-[var(--text-secondary)] mb-4 max-w-2xl mx-auto">{h.cta.intro}</p>
           <p className="text-xl text-[var(--text-primary)] font-semibold mb-10">{renderInline(h.cta.emphasis)}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
-            >
-              {h.cta.actions[0]}
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[var(--accent)] text-[var(--accent)] font-medium rounded-lg hover:bg-[var(--accent)]/10 transition-colors"
-            >
-              {h.cta.actions[1]}
-            </Link>
-          </div>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
+          >
+            {h.cta.action}
+          </Link>
         </div>
       </section>
 
