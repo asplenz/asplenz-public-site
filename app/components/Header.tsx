@@ -22,9 +22,8 @@ export default function Header() {
             height={28}
             className="opacity-90"
           />
-          <span className="text-[var(--text-muted)] text-lg">|</span>
           <span className="text-[var(--text-primary)] font-semibold text-sm uppercase tracking-widest">
-            Horizon
+            Asplenz
           </span>
         </Link>
 
