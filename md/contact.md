@@ -1,72 +1,181 @@
-# Contact & Strategic Briefing
+**[English]**
+
+# Contact & Evidence Briefing
 
 ---
 
-## [ENGLISH]
+## Discuss Your Decision Architecture
 
-### Discuss your use case
+This page is intended for leaders who carry accountability, not operational workload:
 
-This briefing is intended for leaders responsible for **Security (CISO)**, **Risk**, **Compliance**, and **Risk Technology** in regulated environments.
+* Chief Information Security Officer
+* Chief Risk Officer
+* Head of Compliance
+* CTO or CIO
+* Board-level decision owners
 
-The purpose is to discuss **evidence requirements**, **post-incident scrutiny**, and **integration constraints** — *not* to sell a workflow or a tool.
+The purpose is to examine how decisions are declared, recorded, and defended under scrutiny.
 
-#### Option 1 — Schedule a Strategic Briefing
-
-Book a **30-minute technical or risk briefing** with the Asplenz team to discuss the anchoring of your critical facts.
-
-* **Scope**: Decision evidence, post-incident proof, and audit verification.
-* **Audience**: CISO, Risk, Legal, or CTO.
-* **Format**: Technical, factual, and strictly non-commercial.
-
-**[Action: Schedule a briefing (Cal.com)](https://app.cal.eu/asplenz/institutional-acceptability)**
-
-#### Option 2 — General Inquiries
-
-For administrative questions, partnership requests, or if you prefer written communication.
-
-* **Email**: contact@asplenz.com
-* **Entity**: Asplenz (Paris, France)
-
-#### Sovereignty & Privacy by Design
-
-Horizon is built on a **Zero-Knowledge** factual architecture:
-
-* **Opaque Payloads**: Asplenz never has access to the content of your facts; only their cryptographic hashes and timestamps are stored in the immutable ledger.
-* **Tenant Isolation**: Your data remains strictly scoped to your organization, ensuring that evidence is siloed and protected.
-* **Independent Verification**: You can verify the integrity of your facts using your own public keys, without depending on Asplenz's internal systems.
+If your organization cannot produce defensible evidence of a critical decision within 48 hours of an incident, audit, or regulatory request, this discussion is relevant.
 
 ---
 
-## [FRANÇAIS]
+# Choose Your Path
 
-### Échanger sur un cas d'usage
+## Book a Product Demonstration
 
-Ce briefing est destiné aux responsables de la **Sécurité (RSSI)**, des **Risques**, de la **Conformité** et des **Technologies de Risque** en environnements réglementés.
+For organizations evaluating Horizon for internal deployment or institutional review.
 
-L'objectif est d'aborder les **exigences de preuve**, les **audits post-incident** et les **contraintes d'intégration** — *non* de vendre un workflow ou un outil.
+This session includes:
 
-#### Option 1 — Programmer un Briefing Stratégique
+* a structured walkthrough of the proof architecture
+* demonstration of decision sealing and artifact generation
+* explanation of integration model and API structure
+* discussion of deployment constraints
 
-Réservez un **briefing technique ou de risque de 30 minutes** avec l'équipe Asplenz pour discuter de l'ancrage de vos faits critiques.
+Duration: 30 minutes
+Audience: Risk, Legal, Security, or Technology leadership
 
-* **Périmètre**: Preuve de décision, intégrité post-incident, audit et vérification.
-* **Audience**: RSSI, Risk Managers, Juridique ou CTO.
-* **Format**: Technique, factuel et strictement non-commercial.
+**Book a demo →**
 
-**[Action : Programmer un briefing (Cal.com)](https://app.cal.eu/asplenz/institutional-acceptability)**
+---
 
-#### Option 2 — Demandes Générales
+## Join the Design Partner Programme
 
-Pour toute question administrative, demande de partenariat ou si vous préférez une communication écrite.
+For regulated organizations willing to validate decision proof architecture on one critical system over a structured 8-week engagement.
 
-* **Email**: contact@asplenz.com
-* **Entité**: Asplenz (Paris, France)
+Programme scope:
 
-#### Souveraineté et Confidentialité par Construction
+* one system
+* one decision type
+* one clear proof objective
+* validation under realistic audit or incident scenario
 
-Horizon repose sur une architecture factuelle **Zero-Knowledge** :
+Limited to 2 to 3 organizations.
 
-* **Payloads Opaques**: Asplenz n'a jamais accès au contenu de vos faits ; seuls leurs hachages cryptographiques et leurs horodatages sont stockés dans le registre immuable.
-* **Isolation des Tenants**: Vos données restent strictement cantonnées à votre organisation, garantissant que les preuves sont cloisonnées et protégées.
-* **Vérification Indépendante**: Vous pouvez vérifier l'intégrité de vos faits à l'aide de vos propres clés publiques, sans dépendre des systèmes internes d'Asplenz.
+This is not a pilot of workflows.
+It is a validation of evidence architecture.
 
+**Join the design partner programme →**
+
+---
+
+## Written or Strategic Inquiries
+
+For partnership discussions, regulatory dialogue, institutional exchange, or written communication:
+
+Email: [contact@asplenz.com](mailto:contact@asplenz.com)
+Entity: Asplenz, Paris, France
+
+---
+
+## Independence by Design
+
+Horizon is built so that evidence remains defensible even if operational systems fail.
+
+**Payload neutrality**
+The customer defines and transmits the payload, in encrypted form or in plaintext. Horizon stores the payload as received and does not attempt to access or interpret its content.
+
+**Cryptographic anchoring**
+Hashes, signatures, and timestamps are appended to an immutable proof chain to ensure integrity.
+
+**Tenant isolation**
+Organizational evidence remains strictly segregated within each tenant.
+
+**Independent verification**
+Proof artifacts can be validated cryptographically without reliance on Horizon’s internal systems.
+
+Evidence must survive scrutiny.
+Infrastructure must survive systems.
+
+---
+
+**[Français]**
+
+# Briefing Contact & Preuve
+
+---
+
+## Discutez de votre architecture de décision
+
+Cette page est destinée aux dirigeants qui portent la responsabilité (accountability), et non la charge opérationnelle :
+
+* Responsable de la Sécurité des Systèmes d'Information (RSSI)
+* Directeur des Risques (CRO)
+* Responsable de la Conformité
+* CTO ou CIO
+* Détenteurs de décisions au niveau du conseil d'administration
+
+L'objectif est d'examiner comment les décisions sont déclarées, enregistrées et défendues sous observation.
+
+Si votre organisation ne peut pas produire de preuves défendables d'une décision critique dans les 48 heures suivant un incident, un audit ou une demande réglementaire, cette discussion est pertinente.
+
+---
+
+# Choisissez votre parcours
+
+## Réserver une démonstration du produit
+
+Pour les organisations évaluant Horizon pour un déploiement interne ou un examen institutionnel.
+
+Cette session comprend :
+
+* une présentation structurée de l'architecture de preuve
+* une démonstration du scellement des décisions et de la génération d'artefacts
+* une explication du modèle d'intégration et de la structure de l'API
+* une discussion sur les contraintes de déploiement
+
+Durée : 30 minutes
+Audience : Direction des Risques, Juridique, Sécurité ou Technologie
+
+**Réserver une démo →**
+
+---
+
+## Rejoindre le programme partenaire design (Design Partner Programme)
+
+Pour les organisations réglementées souhaitant valider l'architecture de preuve de décision sur un système critique au cours d'un engagement structuré de 8 semaines.
+
+Périmètre du programme :
+
+* un système
+* un type de décision
+* un objectif de preuve clair
+* une validation dans le cadre d'un scénario réaliste d'audit ou d'incident
+
+Limité à 2 ou 3 organisations.
+
+Il ne s'agit pas d'un pilote de workflows.
+C'est une validation d'architecture de preuve.
+
+**Rejoindre le programme partenaire design →**
+
+---
+
+## Demandes écrites ou stratégiques
+
+Pour les discussions de partenariat, le dialogue réglementaire, les échanges institutionnels ou la communication écrite :
+
+Email : [contact@asplenz.com](mailto:contact@asplenz.com)
+Entité : Asplenz, Paris, France
+
+---
+
+## L'indépendance par conception
+
+Horizon est construit de manière à ce que les preuves restent défendables même en cas de défaillance des systèmes opérationnels.
+
+**Neutralité de la charge utile (Payload)**
+Le client définit et transmet la charge utile, sous forme chiffrée ou en clair. Horizon stocke la charge utile telle qu'elle a été reçue et ne tente pas d'accéder à son contenu ni de l'interpréter.
+
+**Ancrage cryptographique**
+Les hachages, signatures et horodatages sont ajoutés à une chaîne de preuve immuable pour garantir l'intégrité.
+
+**Isolation des tenants**
+Les preuves de l'organisation restent strictement ségréguées au sein de chaque environnement client (tenant).
+
+**Vérification indépendante**
+Les artefacts de preuve peuvent être validés par cryptographie sans dépendre des systèmes internes d'Horizon.
+
+La preuve doit survivre à l'examen.
+L'infrastructure doit survivre aux systèmes.

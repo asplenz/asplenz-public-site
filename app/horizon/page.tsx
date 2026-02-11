@@ -48,169 +48,120 @@ export default function HorizonPage() {
         </div>
       </section>
 
-      {/* The Reality Organizations Face */}
+      {/* Governance Defines Responsibility */}
       <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-xl">
+            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
+              {h.governance.title}
+            </h2>
+            <p className="text-[var(--text-secondary)] mb-4">{h.governance.p1}</p>
+            <p className="text-[var(--text-secondary)] mb-4">{h.governance.p2}</p>
+            <p className="text-[var(--text-primary)] font-medium mb-6">{renderInline(h.governance.p3)}</p>
+            <p className="text-[var(--text-secondary)]">{renderInline(h.governance.p4a)}</p>
+            <p className="text-[var(--text-primary)] font-medium">{renderInline(h.governance.p4b)}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Decisions Happen. Proof Doesn't Scale. */}
+      <section className="py-16 px-6 md:px-32">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
             <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
               {h.reality.title}
             </h2>
-            <p className="text-[var(--text-primary)] font-medium mb-4">{h.reality.intro}</p>
-            <div className="space-y-1 mb-8">
-              {h.reality.lines.map((line, idx) => (
-                <p key={idx} className="text-[var(--text-secondary)]">{renderInline(line)}</p>
-              ))}
-            </div>
-            <p className="text-[var(--text-secondary)] mb-4">{h.reality.examplesIntro}</p>
-            <ul className="list-disc list-inside text-[var(--text-secondary)] mb-8 space-y-1">
-              {h.reality.examples.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-            <p className="text-[var(--text-secondary)] mb-4">{h.reality.questionsIntro}</p>
-            <ul className="space-y-2 mb-8">
-              {h.reality.questions.map((q, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2.5 flex-shrink-0" />
-                  <span className="text-[var(--text-primary)] font-medium">{q}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-[var(--text-muted)] font-medium">{h.reality.conclusion1}</p>
-            <p className="text-[var(--text-primary)] font-semibold">{renderInline(h.reality.conclusion2)}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Why This Is No Longer Acceptable */}
-      <section className="py-16 px-6 md:px-32">
-        <div className="max-w-6xl mx-auto">
-          <div className="max-w-xl">
-            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
-              {h.whyNotAcceptable.title}
-            </h2>
-            <p className="text-[var(--text-secondary)] mb-6">{h.whyNotAcceptable.intro}</p>
+            <p className="text-[var(--text-secondary)] mb-4">{h.reality.p1}</p>
+            <p className="text-[var(--text-secondary)] mb-4">{h.reality.p2}</p>
+            <p className="text-[var(--text-secondary)] mb-4">{h.reality.p3}</p>
+            <p className="text-[var(--text-secondary)] mb-6">{h.reality.p4}</p>
+            <p className="text-[var(--text-secondary)] mb-4">{h.reality.p5}</p>
             <blockquote className="border-l-4 border-[var(--accent)] pl-6 py-2 mb-8">
               <p className="text-[var(--text-primary)] font-medium text-lg italic">
-                {h.whyNotAcceptable.quote}
+                {h.reality.quote}
               </p>
             </blockquote>
-            <p className="text-[var(--text-secondary)] mb-4">{h.whyNotAcceptable.appliesIntro}</p>
-            <ul className="list-disc list-inside text-[var(--text-secondary)] mb-8 space-y-1">
-              {h.whyNotAcceptable.applies.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-            <p className="text-[var(--text-muted)] font-medium">{h.whyNotAcceptable.conclusion1}</p>
-            <p className="text-[var(--text-primary)] font-semibold">{renderInline(h.whyNotAcceptable.conclusion2)}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* The Insight */}
-      <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
-        <div className="max-w-6xl mx-auto">
-          <div className="max-w-xl">
-            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
-              {h.insight.title}
-            </h2>
-            <p className="text-xl text-[var(--text-primary)] font-semibold mb-4">{renderInline(h.insight.main)}</p>
-            <p className="text-[var(--text-secondary)] mb-8">{h.insight.hook}</p>
-            <p className="text-[var(--text-secondary)] mb-4">{h.insight.proofIntro}</p>
-            <div className="space-y-3">
-              {h.insight.proofItems.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <span className="text-[var(--accent)] font-semibold min-w-[120px]">{item.term}</span>
-                  <span className="text-[var(--text-muted)]">—</span>
-                  <span className="text-[var(--text-secondary)]">{item.description}</span>
-                </div>
-              ))}
-            </div>
+            <p className="text-[var(--text-secondary)] mb-1">{h.reality.p6}</p>
+            <p className="text-[var(--text-secondary)] mb-6">{h.reality.p7}</p>
+            <p className="text-[var(--text-primary)] font-semibold">{renderInline(h.reality.conclusion)}</p>
           </div>
         </div>
       </section>
 
       {/* The Solution */}
-      <section className="py-16 px-6 md:px-32">
-        <div className="max-w-6xl mx-auto">
-          <div className="max-w-xl">
-            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-2">
-              {h.solution.title}
-            </h2>
-            <p className="text-[var(--text-muted)] text-sm uppercase tracking-wider mb-8">{h.solution.subtitle}</p>
-            <p className="text-xl text-[var(--text-primary)] font-semibold mb-4">{renderInline(h.solution.main)}</p>
-            <p className="text-[var(--text-secondary)] mb-4">{h.solution.description}</p>
-            <ul className="list-disc list-inside text-[var(--text-secondary)] mb-8 space-y-1">
-              {h.solution.sources.map((s, idx) => (
-                <li key={idx}>{s}</li>
-              ))}
-            </ul>
-            <p className="text-[var(--text-muted)] font-medium">{h.solution.conclusion1}</p>
-            <p className="text-[var(--text-primary)] font-semibold">{renderInline(h.solution.conclusion2)}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* What Horizon Does */}
       <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
             <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
-              {h.whatDoes.title}
+              {h.solution.title}
             </h2>
-            <p className="text-[var(--text-secondary)] mb-4">{h.whatDoes.intro}</p>
-            <ul className="list-disc list-inside text-[var(--text-secondary)] mb-8 space-y-1">
-              {h.whatDoes.items.map((item, idx) => (
-                <li key={idx}>{item}</li>
+            <p className="text-xl text-[var(--text-primary)] font-semibold mb-4">{renderInline(h.solution.main)}</p>
+            <p className="text-[var(--text-secondary)] mb-6">{h.solution.p1}</p>
+            <p className="text-[var(--text-secondary)] mb-1">{h.solution.p2}</p>
+            <p className="text-[var(--text-primary)] font-medium mb-6">{renderInline(h.solution.p3)}</p>
+            <p className="text-[var(--text-secondary)] mb-4">{h.solution.intro}</p>
+            <ul className="space-y-2 mb-8">
+              {h.solution.items.map((item, idx) => (
+                <li key={idx} className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2.5 flex-shrink-0" />
+                  <span className="text-[var(--text-secondary)]">{item}</span>
+                </li>
               ))}
             </ul>
-            <p className="text-[var(--text-primary)] font-medium">{h.whatDoes.conclusion}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* What Horizon Does Not Do */}
-      <section className="py-16 px-6 md:px-32">
-        <div className="max-w-6xl mx-auto">
-          <div className="max-w-xl">
-            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
-              {h.whatDoesNot.title}
-            </h2>
-            <p className="text-[var(--text-secondary)] mb-4">{renderInline(h.whatDoesNot.intro)}</p>
-            <ul className="list-disc list-inside text-[var(--text-secondary)] mb-8 space-y-1">
-              {h.whatDoesNot.items.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-            <p className="text-[var(--text-primary)] font-semibold">{renderInline(h.whatDoesNot.conclusion)}</p>
+            <p className="text-[var(--text-primary)] font-medium">{h.solution.conclusion}</p>
           </div>
         </div>
       </section>
 
       {/* How Horizon Works */}
-      <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
+      <section className="py-16 px-6 md:px-32">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-10">
             {h.howItWorks.title}
           </h2>
-          <div className="grid md:grid-cols-4 gap-6 mb-10">
+          <div className="space-y-4 mb-10 max-w-xl">
             {h.howItWorks.steps.map((s, idx) => (
-              <div key={idx} className="relative">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="w-8 h-8 rounded-full border border-[var(--accent)] text-[var(--accent)] flex items-center justify-center text-sm font-semibold flex-shrink-0">
-                    {idx + 1}
-                  </span>
-                  {idx < 3 && <div className="hidden md:block flex-1 h-px bg-[var(--border-light)]" />}
-                </div>
-                <p className="text-[var(--text-primary)] font-medium mb-1">{s.step}</p>
-                <p className="text-[var(--text-muted)] text-sm">{s.detail}</p>
+              <div key={idx} className="flex items-start gap-4">
+                <span className="w-7 h-7 rounded-full border border-[var(--accent)] text-[var(--accent)] flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">
+                  {idx + 1}
+                </span>
+                <p className="text-[var(--text-secondary)]">
+                  <span className="text-[var(--text-primary)] font-medium">{s.step}</span>
+                  {s.detail && <span className="text-[var(--text-muted)]"> ({s.detail})</span>}
+                </p>
               </div>
             ))}
           </div>
-          <div className="space-y-1">
-            {h.howItWorks.conclusions.map((line, idx) => (
-              <p key={idx} className="text-[var(--text-muted)] font-medium">{line}</p>
-            ))}
+          <p className="text-[var(--text-muted)] font-medium">{h.howItWorks.conclusion}</p>
+        </div>
+      </section>
+
+      {/* Separation of Layers */}
+      <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-10">
+            {h.layers.title}
+          </h2>
+          <div className="max-w-2xl mb-10 p-5 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg overflow-x-auto">
+            <table className="font-mono text-sm w-full">
+              <tbody>
+                {h.layers.rows.map((row, idx) => (
+                  <tr key={idx}>
+                    <td className={`py-1.5 pr-4 whitespace-nowrap ${row.target === 'Horizon' ? 'text-[var(--accent)] font-semibold' : 'text-[var(--text-secondary)]'}`}>
+                      {row.label}
+                    </td>
+                    <td className="py-1.5 px-3 text-[var(--text-muted)]">&rarr;</td>
+                    <td className={`py-1.5 pl-4 whitespace-nowrap ${row.target === 'Horizon' ? 'text-[var(--accent)] font-semibold' : 'text-[var(--text-muted)]'}`}>
+                      {row.target}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="max-w-xl">
+            <p className="text-[var(--text-primary)] font-medium mb-2">{renderInline(h.layers.p1)}</p>
+            <p className="text-[var(--text-secondary)]">{h.layers.p2}</p>
           </div>
         </div>
       </section>
@@ -221,8 +172,7 @@ export default function HorizonPage() {
           <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-4">
             {h.proofNotLogging.title}
           </h2>
-          <p className="text-[var(--text-muted)] mb-1">{h.proofNotLogging.intro1}</p>
-          <p className="text-[var(--text-primary)] font-medium mb-8">{renderInline(h.proofNotLogging.intro2)}</p>
+          <p className="text-[var(--text-secondary)] mb-8">{h.proofNotLogging.intro}</p>
           <div className="overflow-x-auto mb-8">
             <table className="w-full max-w-2xl">
               <thead>
@@ -245,14 +195,30 @@ export default function HorizonPage() {
         </div>
       </section>
 
-      {/* Modules */}
+      {/* What Horizon Is Not */}
       <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-xl">
+            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
+              {h.whatIsNot.title}
+            </h2>
+            <p className="text-[var(--text-secondary)] mb-4">{h.whatIsNot.p1}</p>
+            <p className="text-[var(--text-secondary)] mb-6">{h.whatIsNot.p2}</p>
+            <p className="text-[var(--text-secondary)] mb-1">{h.whatIsNot.p3}</p>
+            <p className="text-[var(--text-primary)] font-medium mb-4">{h.whatIsNot.p4}</p>
+            <p className="text-[var(--text-secondary)] mb-6">{h.whatIsNot.p5}</p>
+            <p className="text-[var(--text-primary)] font-semibold">{renderInline(h.whatIsNot.conclusion)}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* One Proof Platform. Multiple Domains. */}
+      <section className="py-16 px-6 md:px-32">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-4">
             {h.modules.title}
           </h2>
-          <p className="text-[var(--text-primary)] font-medium mb-2">{renderInline(h.modules.intro)}</p>
-          <p className="text-[var(--text-secondary)] mb-10">{renderInline(h.modules.subtitle)}</p>
+          <p className="text-[var(--text-secondary)] mb-10">{h.modules.intro}</p>
           <div className="grid md:grid-cols-2 gap-4 mb-8">
             {h.modules.items.map((mod, idx) => (
               <div key={idx} className="p-5 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg">
@@ -261,28 +227,25 @@ export default function HorizonPage() {
               </div>
             ))}
           </div>
-          <p className="text-[var(--text-muted)] font-medium">{h.modules.conclusion1}</p>
-          <p className="text-[var(--text-primary)] font-medium">{h.modules.conclusion2}</p>
+          <p className="text-[var(--text-muted)] font-medium max-w-xl">{h.modules.conclusion}</p>
         </div>
       </section>
 
       {/* Beachhead: AI Accountability */}
-      <section className="py-16 px-6 md:px-32">
+      <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
             <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
               {h.beachhead.title}
             </h2>
-            <p className="text-[var(--text-secondary)] mb-4">{h.beachhead.intro}</p>
-            <ul className="list-disc list-inside text-[var(--text-secondary)] mb-6 space-y-1">
-              {h.beachhead.risks.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
+            <p className="text-[var(--text-secondary)] mb-6">{h.beachhead.intro}</p>
             <p className="text-[var(--text-secondary)] mb-4">{h.beachhead.proofIntro}</p>
-            <ul className="list-disc list-inside text-[var(--text-secondary)] mb-8 space-y-1">
+            <ul className="space-y-2 mb-8">
               {h.beachhead.proofs.map((item, idx) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2.5 flex-shrink-0" />
+                  <span className="text-[var(--text-secondary)]">{item}</span>
+                </li>
               ))}
             </ul>
             <p className="text-[var(--text-primary)] font-medium">{renderInline(h.beachhead.conclusion)}</p>
@@ -291,7 +254,7 @@ export default function HorizonPage() {
       </section>
 
       {/* Who Horizon Is For */}
-      <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
+      <section className="py-16 px-6 md:px-32">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
             <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
@@ -306,14 +269,14 @@ export default function HorizonPage() {
                 </li>
               ))}
             </ul>
-            <p className="text-[var(--text-primary)] font-medium">{renderInline(h.whoFor.conclusion1)}</p>
-            <p className="text-[var(--text-muted)] font-medium">{h.whoFor.conclusion2}</p>
+            <p className="text-[var(--text-secondary)] mb-1">{h.whoFor.conclusion1}</p>
+            <p className="text-[var(--text-primary)] font-medium">{h.whoFor.conclusion2}</p>
           </div>
         </div>
       </section>
 
       {/* Why Now */}
-      <section className="py-16 px-6 md:px-32">
+      <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
             <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
@@ -326,17 +289,18 @@ export default function HorizonPage() {
                   <span className="w-6 h-6 rounded-full border border-[var(--accent)] text-[var(--accent)] flex items-center justify-center text-xs font-semibold flex-shrink-0 mt-0.5">
                     {idx + 1}
                   </span>
-                  <span className="text-[var(--text-secondary)] text-lg">{item}</span>
+                  <span className="text-[var(--text-secondary)]">{renderInline(item)}</span>
                 </li>
               ))}
             </ol>
+            <p className="text-[var(--text-secondary)] mb-4">{h.whyNow.p1}</p>
             <p className="text-[var(--text-primary)] font-medium">{h.whyNow.conclusion}</p>
           </div>
         </div>
       </section>
 
       {/* Product Status */}
-      <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
+      <section className="py-16 px-6 md:px-32">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
             <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
@@ -353,14 +317,13 @@ export default function HorizonPage() {
                 </li>
               ))}
             </ul>
-            <p className="text-[var(--text-muted)] font-medium">{h.productStatus.conclusion1}</p>
-            <p className="text-[var(--text-primary)] font-semibold">{renderInline(h.productStatus.conclusion2)}</p>
+            <p className="text-[var(--text-primary)] font-semibold">{renderInline(h.productStatus.conclusion)}</p>
           </div>
         </div>
       </section>
 
       {/* The Vision */}
-      <section className="py-20 px-6 md:px-32 relative overflow-hidden">
+      <section className="py-20 px-6 md:px-32 bg-[var(--bg-secondary)] relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-20" />
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="max-w-xl">
@@ -375,15 +338,19 @@ export default function HorizonPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 md:px-32 bg-[var(--bg-secondary)]">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-lg text-[var(--text-secondary)] mb-4 max-w-2xl mx-auto">{h.cta.intro}</p>
-          <p className="text-xl text-[var(--text-primary)] font-semibold mb-10">{renderInline(h.cta.emphasis)}</p>
+      <section className="py-20 px-6 md:px-32">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-xl">
+            <p className="text-lg text-[var(--text-secondary)] mb-10">{h.cta.intro}</p>
+          </div>
           <Link
             href="/contact"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
           >
             {h.cta.action}
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </Link>
         </div>
       </section>
