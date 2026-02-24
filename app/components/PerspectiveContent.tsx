@@ -17,15 +17,31 @@ interface NextLink {
   description: string
 }
 
+interface BottomLink {
+  href: string
+  label: { en: string; fr: string }
+  description: { en: string; fr: string }
+}
+
 interface PerspectiveContentProps {
   title: string
   subtitle: string
   sections: Section[]
   next?: NextLink
   lang: 'en' | 'fr'
+  productName?: string
+  bottomLink?: BottomLink
 }
 
-export default function PerspectiveContent({ title, subtitle, sections, next, lang }: PerspectiveContentProps) {
+export default function PerspectiveContent({ title, subtitle, sections, next, lang, productName = 'Evidence', bottomLink }: PerspectiveContentProps) {
+  const resolvedBottomLink: BottomLink = bottomLink ?? {
+    href: '/evidence',
+    label: { en: 'Discover Evidence in depth', fr: 'Découvrir Evidence en profondeur' },
+    description: {
+      en: 'Decision proof infrastructure: how it works, modules, product status, and vision.',
+      fr: 'Infrastructure de preuve décisionnelle : fonctionnement, modules, statut produit et vision.',
+    },
+  }
   const renderMarkdown = (text: string) => {
     return text.split(/(\*\*[^*]+\*\*)/).map((part, i) => {
       if (part.startsWith('**') && part.endsWith('**')) {
@@ -73,7 +89,7 @@ export default function PerspectiveContent({ title, subtitle, sections, next, la
             <div className="grid md:grid-cols-2 gap-6 mt-6">
               <div className="p-4 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg">
                 <p className="font-semibold text-[var(--text-primary)] mb-2">
-                  {lang === 'en' ? 'Before Horizon:' : 'Avant Horizon :'}
+                  {lang === 'en' ? `Before ${productName}:` : `Avant ${productName} :`}
                 </p>
                 <ul className="space-y-1">
                   {section.before.map((item, bIdx) => (
@@ -86,7 +102,7 @@ export default function PerspectiveContent({ title, subtitle, sections, next, la
               </div>
               <div className="p-4 bg-[var(--accent)]/10 border border-[var(--accent)]/30 rounded-lg">
                 <p className="font-semibold text-[var(--text-primary)] mb-2">
-                  {lang === 'en' ? 'With Horizon:' : 'Avec Horizon :'}
+                  {lang === 'en' ? `With ${productName}:` : `Avec ${productName} :`}
                 </p>
                 <ul className="space-y-1">
                   {section.after.map((item, aIdx) => (
@@ -104,21 +120,19 @@ export default function PerspectiveContent({ title, subtitle, sections, next, la
 
       <div className="mt-12 pt-8 border-t border-[var(--border)] space-y-4">
         <Link
-          href="/horizon"
+          href={resolvedBottomLink.href}
           className="block p-6 bg-[var(--accent)]/10 border border-[var(--accent)]/30 rounded-lg hover:border-[var(--accent)] transition-colors"
         >
           <p className="font-semibold text-[var(--accent)] mb-1">
-            {lang === 'en' ? 'Discover Horizon in depth' : 'Découvrir Horizon en profondeur'}
+            {lang === 'en' ? resolvedBottomLink.label.en : resolvedBottomLink.label.fr}
           </p>
           <p className="text-[var(--text-muted)] text-sm">
-            {lang === 'en'
-              ? 'Decision proof infrastructure: how it works, modules, product status, and vision.'
-              : 'Infrastructure de preuve décisionnelle : fonctionnement, modules, statut produit et vision.'}
+            {lang === 'en' ? resolvedBottomLink.description.en : resolvedBottomLink.description.fr}
           </p>
         </Link>
         {next && (
           <Link
-            href="/docs/technical/first-seal"
+            href="/evidence/docs/first-seal"
             className="block p-6 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg hover:border-[var(--accent)] transition-colors"
           >
             <p className="font-semibold text-[var(--accent)] mb-1">{next.title}</p>

@@ -15,7 +15,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>('en')
 
   useEffect(() => {
-    const saved = localStorage.getItem('horizon-lang') as Lang | null
+    const saved = localStorage.getItem('asplenz-lang') as Lang | null
     if (saved && (saved === 'en' || saved === 'fr')) {
       setLang(saved)
     } else {
@@ -29,7 +29,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
 
   const handleSetLang = (newLang: Lang) => {
     setLang(newLang)
-    localStorage.setItem('horizon-lang', newLang)
+    localStorage.setItem('asplenz-lang', newLang)
   }
 
   const toggleLang = () => {

@@ -1,24 +1,12 @@
 'use client'
 
-import { useLang } from '@/lib/LangContext'
-import { getContent } from '@/lib/content'
-import PageLayout from '@/app/components/PageLayout'
-import PerspectiveContent from '@/app/components/PerspectiveContent'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
-export default function LegalPage() {
-  const { lang } = useLang()
-  const t = getContent(lang)
-  const content = t.perspectives.legal
-
-  return (
-    <PageLayout backHref="/perspectives" backLabel={lang === 'en' ? 'Back to Perspectives' : 'Retour aux Perspectives'}>
-      <PerspectiveContent
-        title={content.title}
-        subtitle={content.subtitle}
-        sections={content.sections}
-        next={content.next}
-        lang={lang}
-      />
-    </PageLayout>
-  )
+export default function LegalRedirect() {
+  const router = useRouter()
+  useEffect(() => {
+    router.replace('/evidence/perspectives/legal')
+  }, [router])
+  return null
 }

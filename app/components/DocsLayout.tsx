@@ -13,68 +13,81 @@ interface NavItem {
   children?: NavItem[]
 }
 
-const docsNavEn: NavItem[] = [
-  { title: 'Overview', href: '/docs' },
+const defaultDocsNavEn: NavItem[] = [
+  { title: 'Overview', href: '/evidence/docs' },
   {
     title: 'Integration',
-    href: '/docs/technical',
+    href: '/evidence/docs',
     children: [
-      { title: 'First Sealed Fact', href: '/docs/technical/first-seal' },
-      { title: 'API Reference', href: '/docs/technical/api-reference' },
-      { title: 'Guarantees', href: '/docs/technical/guarantees' },
+      { title: 'First Sealed Fact', href: '/evidence/docs/first-seal' },
+      { title: 'API Reference', href: '/evidence/docs/api-reference' },
+      { title: 'Guarantees', href: '/evidence/docs/guarantees' },
     ],
   },
   {
     title: 'Security',
-    href: '/docs/security',
+    href: '/evidence/docs',
     children: [
-      { title: 'Sovereignty', href: '/docs/security/sovereignty' },
+      { title: 'Sovereignty', href: '/evidence/docs/sovereignty' },
     ],
   },
   {
     title: 'Compliance',
-    href: '/docs/compliance',
+    href: '/evidence/docs',
     children: [
-      { title: "Auditor's Guide", href: '/docs/compliance/auditor-guide' },
+      { title: "Auditor's Guide", href: '/evidence/docs/auditor-guide' },
     ],
   },
 ]
 
-const docsNavFr: NavItem[] = [
-  { title: 'Aperçu', href: '/docs' },
+const defaultDocsNavFr: NavItem[] = [
+  { title: 'Aperçu', href: '/evidence/docs' },
   {
     title: 'Intégration',
-    href: '/docs/technical',
+    href: '/evidence/docs',
     children: [
-      { title: 'Premier Scellement', href: '/docs/technical/first-seal' },
-      { title: 'Référence API', href: '/docs/technical/api-reference' },
-      { title: 'Garanties', href: '/docs/technical/guarantees' },
+      { title: 'Premier Scellement', href: '/evidence/docs/first-seal' },
+      { title: 'Référence API', href: '/evidence/docs/api-reference' },
+      { title: 'Garanties', href: '/evidence/docs/guarantees' },
     ],
   },
   {
     title: 'Sécurité',
-    href: '/docs/security',
+    href: '/evidence/docs',
     children: [
-      { title: 'Souveraineté', href: '/docs/security/sovereignty' },
+      { title: 'Souveraineté', href: '/evidence/docs/sovereignty' },
     ],
   },
   {
     title: 'Conformité',
-    href: '/docs/compliance',
+    href: '/evidence/docs',
     children: [
-      { title: "Guide de l'Auditeur", href: '/docs/compliance/auditor-guide' },
+      { title: "Guide de l'Auditeur", href: '/evidence/docs/auditor-guide' },
     ],
   },
 ]
 
 interface DocsLayoutProps {
   children: React.ReactNode
+  navItems?: { en: NavItem[]; fr: NavItem[] }
+  backLink?: { href: string; label: { en: string; fr: string } }
+  title?: { en: string; fr: string }
 }
 
-export default function DocsLayout({ children }: DocsLayoutProps) {
+export default function DocsLayout({ children, navItems, backLink, title }: DocsLayoutProps) {
   const { lang } = useLang()
   const pathname = usePathname()
-  const docsNav = lang === 'en' ? docsNavEn : docsNavFr
+  const resolvedBackLink = backLink ?? {
+    href: '/evidence',
+    label: { en: 'Back to Evidence', fr: 'Retour à Evidence' },
+  }
+  const resolvedTitle = title ?? {
+    en: 'Evidence Documentation',
+    fr: 'Documentation Evidence',
+  }
+  const docsNav = navItems
+    ? (lang === 'en' ? navItems.en : navItems.fr)
+    : (lang === 'en' ? defaultDocsNavEn : defaultDocsNavFr)
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const isActive = (href: string) => pathname === href
@@ -92,14 +105,14 @@ export default function DocsLayout({ children }: DocsLayoutProps) {
     <>
       <div className="mb-2">
         <Link
-          href="/"
+          href={resolvedBackLink.href}
           onClick={handleLinkClick}
           className="inline-flex items-center gap-1.5 text-[var(--text-muted)] hover:text-[var(--accent)] text-sm transition-colors min-h-[44px] md:min-h-0"
         >
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          {lang === 'en' ? 'Back to Home' : 'Retour à l\'accueil'}
+          {lang === 'en' ? resolvedBackLink.label.en : resolvedBackLink.label.fr}
         </Link>
       </div>
       <ul className="space-y-0.5">
@@ -184,7 +197,7 @@ export default function DocsLayout({ children }: DocsLayoutProps) {
       >
         <div className="flex items-center justify-between p-4 border-b border-[var(--border)]">
           <span className="text-[var(--text-primary)] font-semibold text-sm">
-            {lang === 'en' ? 'Documentation' : 'Documentation'}
+            {lang === 'en' ? resolvedTitle.en : resolvedTitle.fr}
           </span>
           <button
             onClick={() => setSidebarOpen(false)}

@@ -1,229 +1,265 @@
-## [Version EN]
-
-**Hero**
-When accountability is questioned, proof must already exist.
-**Horizon is a system of record for critical decisions.**
-It captures decisions as immutable facts — before they need to be explained.
-Human. Automated. AI-driven.
+Voici la version optimisée pour la conversion, traduite en conservant la précision technique et la structure logique "Tension → Solution → Preuve".
 
 ---
 
-**The reality organizations face**
-Every organization makes decisions that carry risk. Some are human. Some are automated. Some are delegated to AI systems.
-**Most are not provable.**
-When something goes wrong, teams rely on:
+### **English Version**
 
-* Logs never designed for accountability
-* Emails written after the fact
-* Narratives reconstructed under pressure
+**Govern AI-driven engineering before it turns into risk.**
 
-**That is not proof. That is exposure.**
+AI agents generate code.
 
----
+Your organization still owns the consequences.
 
-**What breaks when proof is missing**
+**Asplenz Knowledge** gives your agents a structured decision layer — so they don’t guess.
 
-* **Audits** turn into investigations.
-* **Individuals** become personally exposed.
-* **Decisions** are judged on explanations, not facts.
-* **Accountability** becomes fragile.
-
-At that point, it’s already too late.
+**[Start with Knowledge]** *Secondary link: [See pricing]*
 
 ---
 
-**What Horizon does**
-Horizon records decisions as facts. Not workflows. Not policies. Not explanations. **Decisions.**
+**AI velocity changed. Governance didn’t.**
 
-Each decision is:
+AI-assisted development is becoming default in many teams.
 
-* Explicitly declared
-* Time-stamped
-* Sealed
-* Independently verifiable
+Agents now:
 
-Once recorded, it cannot be altered, rewritten, or disputed.
+* introduce dependencies
+* modify APIs
+* refactor architecture
+* deploy infrastructure
 
-**Responsibility does not end at decision time.**
-A decision creates accountability. What follows — monitoring results, assessments, status checks — extends it.
-These declared follow-up facts are recorded as **evaluations**, sealed and linked to the original decision. Together, they form a **sealed timeline of accountability.**
+But they don’t know:
 
----
+* your architectural decisions
+* your non-negotiable security invariants
+* which exceptions were approved
+* what must never change
 
-**What counts as a decision / evaluation**
-| **Decisions** (The Commitment) | **Evaluations** (The Follow-up) |
-| :--- | :--- |
-| An approval or rejection | A monitoring result after a go-live |
-| An authorization or override | A compliance check after an authorization |
-| An acceptance of risk | A risk assessment update after an acceptance |
-| A system-triggered action | A declared observation after the fact |
+**Without a declared decision layer, agents guess.**
 
 ---
 
-**Decisions are not judged. They are proven.**
-Horizon does not decide, validate, or enforce rules. It preserves:
+**Asplenz Knowledge** **Operational Decision Governance for AI Systems**
 
-* **What** was decided
-* **By whom** or by which system
-* **When** and under which context
-* **With which** justification or authority
+Knowledge is a declarative system of record for:
 
-**Neutrality is what makes the proof defensible.**
+* **Invariants** — constraints that must never be violated
+* **Rules** — directives that guide implementation
+* **Decisions** — documented architectural choices
+* **Overrides** — governed, time-bound exceptions
 
----
+Agents query this normative state before acting.
 
-**Built for AI accountability**
-AI systems amplify risk: decisions scale instantly, context disappears, and responsibility becomes blurred. Horizon provides definitive proof for:
+Knowledge does not block execution; it exposes the applicable decision state. Your ecosystem decides.
 
-* Production go / no-go approvals
-* Acceptance of residual AI risk
-* Model and data validation sign-offs
-* Automated approvals and overrides
+*MCP-native (Model Context Protocol compatible). Built for modern AI coding environments and CI pipelines.*
 
-**This enables human accountability — even when decisions are automated.**
+**[Explore Knowledge]**
 
 ---
 
-**What Horizon replaces**
+**From declaration to enforcement** *Declaring rules is not enough.*
 
-* **Email approvals** → Sealed decision records
-* **Tickets and comments** → Attributable decisions
-* **Manual reconstruction** → Immediate proof
-* **Scattered evidence** → Sealed evaluation timelines
+**Knowledge Verifier (Premium Add-on)** Knowledge Verifier analyzes every Pull Request against your declared normative state.
 
----
+It:
 
-**Who Horizon is for**
+* Resolves applicable scope
+* Detects invariant and rule violations
+* Validates override usage
+* Enforces Implementation Report citations
+* Produces a CI-ready verdict (pass | warn | fail)
+* Generates a human-readable Compliance Report
 
-* **Legal & Compliance**: Defend decisions with facts, not narratives.
-* **Risk & AI Governance**: Demonstrate accountability without relying on fragile systems.
-* **Audit**: Rely on independent, verifiable evidence.
-* **Executives**: Reduce exposure as automation scales.
+**You choose the mode:**
 
----
-
-**One simple question**
-Which decision would you need to prove tomorrow?
-And what happened after — can you prove that too?
-**Horizon starts there.**
-
-**[Talk to an expert]**
-
-> **Systems act. People decide. Horizon proves.**
+* Report-only
+* Fail on blocking violations
+* Strict (citation enforced)
 
 ---
 
----
+**What operational governance looks like**
 
-## [Version FR]
+Instead of:
 
-**Accroche**
-Quand la redevabilité est remise en question, la preuve doit déjà exister.
-**Horizon est le système d'enregistrement de référence pour vos décisions critiques.**
-Il capture les décisions comme des faits immuables — avant même qu’elles n’aient besoin d’être expliquées.
-Humaines. Automatisées. Pilotées par l'IA.
+*“We think this change is fine.”*
 
----
+You get:
 
-**La réalité des organisations**
-Chaque organisation prend des décisions porteuses de risques. Certaines sont humaines. D'autres sont automatisées. Certaines sont déléguées à des systèmes d'IA.
-**La plupart ne sont pas prouvables.**
-Quand un problème survient, les équipes s'appuient sur :
+**PR #847 — payment-service**
 
-* Des logs qui n'ont jamais été conçus pour la redevabilité
-* Des e-mails écrits après coup
-* Des récits reconstitués sous la pression
+* Invariants checked: 3
+* Rules (mandatory): 2
+* Violations: 0
+* Overrides used: ovr-d4e5 (expires 2025-03-01)
+* Citations validated: yes
 
-**Ce n'est pas de la preuve. C'est de l'exposition au risque.**
+**Verdict: PASS**
+No blocking violations detected.
 
----
+Every merge becomes explicitly evaluated against declared constraints.
 
-**Les conséquences de l'absence de preuve**
-
-* **Les audits** se transforment en enquêtes.
-* **Les individus** se retrouvent personnellement exposés.
-* **Les décisions** sont jugées sur des explications, pas sur des faits.
-* **La redevabilité** devient fragile.
-
-À ce stade, il est déjà trop tard.
+No tribal knowledge. No invisible assumptions.
 
 ---
 
-**Ce que fait Horizon**
-Horizon enregistre les décisions comme des faits. Pas des workflows. Pas des politiques. Pas des explications. **Des décisions.**
+**Who this is for**
 
-Chaque décision est :
-
-* Explicitement déclarée
-* Horodatée
-* Scellée
-* Vérifiable de manière indépendante
-
-Une fois enregistrée, elle ne peut être modifiée, réécrite ou contestée.
-
-**La responsabilité ne s'arrête pas au moment de la décision.**
-Une décision crée une responsabilité. Ce qui suit — résultats de monitoring, évaluations, vérifications — la prolonge.
-Ces faits de suivi sont enregistrés en tant qu'**évaluations**, scellés et liés à la décision originale. Ensemble, ils forment une **chronologie scellée de la redevabilité.**
+* Engineering teams using AI coding tools
+* Organizations introducing autonomous agents
+* Platform & security teams defining invariants
+* CTOs who want velocity without architectural drift
 
 ---
 
-**Qu'est-ce qu'une décision / une évaluation ?**
-| **Décisions** (L'engagement) | **Évaluations** (Le suivi) |
-| :--- | :--- |
-| Une approbation ou un rejet | Un résultat de monitoring après mise en service |
-| Une autorisation ou une dérogation | Un contrôle de conformité après autorisation |
-| Une acceptation de risque | Une mise à jour de l'évaluation après acceptation |
-| Une action déclenchée par un système | Une observation déclarée après coup |
+**A note on Evidence** Asplenz also builds **Evidence** — an independent product for sealing high-stakes decisions and generating cryptographically verifiable proof artifacts.
+
+Evidence addresses a different layer of governance: immutable proof for critical commitments.
+
+**[Explore Evidence]**
 
 ---
 
-**Les décisions ne sont pas jugées. Elles sont prouvées.**
-Horizon ne décide pas, ne valide pas et n'applique pas de règles. Il préserve :
+**Start governing decisions at AI speed**
 
-* **Ce qui** a été décidé
-* **Par qui** ou par quel système
-* **Quand** et dans quel contexte déclaré
-* **Avec quelle** justification ou autorité
+**[Start with Knowledge]** *[See pricing]* | *[Talk to us]*
 
-**C’est sa neutralité qui rend la preuve opposable.**
+Agents act.
 
----
+Organizations remain accountable.
 
-**Conçu pour la redevabilité de l'IA**
-Les systèmes d'IA amplifient les risques : les décisions passent à l'échelle instantanément, le contexte disparaît et la responsabilité devient floue. Horizon fournit une preuve définitive pour :
-
-* Les approbations de mise en production (Go / No-go)
-* L'acceptation du risque résiduel de l'IA
-* La validation des modèles et des données
-* Les approbations et dérogations automatisées
-
-**Horizon permet de maintenir une responsabilité humaine, même lorsque les décisions sont automatisées.**
+**Asplenz Knowledge** makes that sustainable.
 
 ---
 
-**Ce qu'Horizon remplace**
+### **Version Française**
 
-* **Approbations par e-mail** → Enregistrements de décision scellés
-* **Tickets et commentaires** → Décisions attribuables
-* **Reconstruction manuelle** → Preuve immédiate
-* **Preuves de suivi éparpillées** → Chronologies d'évaluation scellées
+**Gouvernez l'ingénierie pilotée par l'IA avant qu'elle ne devienne un risque.**
 
----
+Les agents IA génèrent du code.
 
-**À qui s'adresse Horizon**
+Votre organisation en assume toujours les conséquences.
 
-* **Juridique & Conformité** : Défendez vos décisions avec des faits, pas des récits.
-* **Gouvernance des Risques et de l'IA** : Démontrez votre redevabilité sans dépendre de systèmes fragiles.
-* **Audit** : Appuyez-vous sur des preuves indépendantes et vérifiables.
-* **Dirigeants** : Réduisez votre exposition à mesure que l'automatisation progresse.
+**Asplenz Knowledge** offre à vos agents une couche de décision structurée — pour qu'ils cessent d'improviser.
+
+**[Démarrer avec Knowledge]** *Lien secondaire : [Voir les tarifs]*
 
 ---
 
-**Une question simple**
-Quelle décision devriez-vous prouver demain ?
-Et ce qu'il s'est passé après — pouvez-vous le prouver aussi ?
-**Horizon commence là.**
+**La vélocité de l'IA a changé. Pas la gouvernance.**
 
-**[Parler à un expert]**
+Le développement assisté par l'IA devient la norme pour de nombreuses équipes.
 
-> **Les systèmes agissent. Les humains décident. Horizon prouve.**
+Désormais, les agents :
+
+* introduisent des dépendances
+* modifient les API
+* refactorisent l'architecture
+* déploient l'infrastructure
+
+Mais ils ignorent :
+
+* vos décisions d'architecture
+* vos invariants de sécurité non négociables
+* quelles exceptions ont été approuvées
+* ce qui ne doit jamais changer
+
+**Sans une couche de décision déclarée, les agents improvisent.**
+
+---
+
+**Asplenz Knowledge** **Gouvernance opérationnelle des décisions pour les systèmes d'IA**
+
+Knowledge est un système d'enregistrement déclaratif pour vos :
+
+* **Invariants** — contraintes qui ne doivent jamais être transgressées
+* **Règles** — directives qui guident l'implémentation
+* **Décisions** — choix architecturaux documentés
+* **Dérogations (Overrides)** — exceptions gouvernées et limitées dans le temps
+
+Les agents interrogent cet état normatif avant d'agir.
+
+Knowledge ne bloque pas l'exécution ; il expose l'état décisionnel applicable. Votre écosystème décide.
+
+*Natif MCP (compatible Model Context Protocol). Conçu pour les environnements de codage IA modernes et les pipelines CI.*
+
+**[Explorer Knowledge]**
+
+---
+
+**De la déclaration à l'application** *Déclarer des règles ne suffit pas.*
+
+**Knowledge Verifier (Add-on Premium)** Knowledge Verifier analyse chaque Pull Request par rapport à votre état normatif déclaré.
+
+Ses capacités :
+
+* Résolution du périmètre applicable
+* Détection des violations d'invariants et de règles
+* Validation de l'utilisation des dérogations
+* Vérification des citations des rapports d'implémentation
+* Production d'un verdict prêt pour la CI (pass | warn | fail)
+* Génération d'un rapport de conformité lisible par l'humain
+
+**Choisissez votre mode :**
+
+* Rapport uniquement
+* Échec sur violations bloquantes
+* Strict (citations obligatoires)
+
+---
+
+**À quoi ressemble la gouvernance opérationnelle**
+
+Au lieu de :
+
+*« Nous pensons que cette modification est correcte. »*
+
+Vous obtenez :
+
+**PR #847 — payment-service**
+
+* Invariants vérifiés : 3
+* Règles (obligatoires) : 2
+* Violations : 0
+* Dérogations utilisées : ovr-d4e5 (expire le 01-03-2025)
+* Citations validées : oui
+
+**Verdict : PASS**
+Aucune violation bloquante détectée.
+
+Chaque fusion est explicitement évaluée face aux contraintes déclarées.
+
+Plus de savoir tribal. Plus d'hypothèses invisibles.
+
+---
+
+**À qui cela s'adresse**
+
+* Équipes d'ingénierie utilisant des outils de codage IA
+* Organisations introduisant des agents autonomes
+* Équipes Plateforme & Sécurité définissant des invariants
+* CTO souhaitant de la vélocité sans dérive architecturale
+
+---
+
+**Note sur Evidence** Asplenz développe également **Evidence** — un produit indépendant pour sceller les décisions critiques et générer des preuves cryptographiquement vérifiables.
+
+Evidence répond à une couche différente de la gouvernance : la preuve immuable pour les engagements critiques.
+
+**[Explorer Evidence]**
+
+---
+
+**Gouvernez vos décisions à la vitesse de l'IA**
+
+**[Démarrer avec Knowledge]** *[Voir les tarifs]* | *[Nous contacter]*
+
+Les agents agissent.
+
+Les organisations restent responsables.
+
+**Asplenz Knowledge** rend cela viable.
+
+---
+
+Souhaitez-vous que je décline cette structure pour une cible spécifique (**CTO Enterprise** vs **Adoption technique agile**) ou que nous passions à la page produit **Knowledge** ?

@@ -1,11 +1,7 @@
-'use client'
-
-import DocsLayout from '@/app/components/DocsLayout'
-
-export default function DocsRootLayout({
+export default function DocsRedirectLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return <DocsLayout>{children}</DocsLayout>
+  return <>{children}</>
 }

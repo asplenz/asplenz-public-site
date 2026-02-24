@@ -3,8 +3,8 @@ import './globals.css'
 import { LangProvider } from '@/lib/LangContext'
 
 export const metadata: Metadata = {
-  title: 'Horizon - Decision Evidence Infrastructure',
-  description: 'Horizon seals declared facts. A neutral, append-only proof infrastructure that captures facts when they are declared.',
+  title: 'Asplenz — Knowledge & Evidence for Decisions',
+  description: 'Knowledge governs your decisions. Evidence proves them. Asplenz provides decision infrastructure for AI-native organizations.',
   icons: {
     icon: '/icon.png',
   },

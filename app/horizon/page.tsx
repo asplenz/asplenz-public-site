@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 export default function HorizonPage() {
   const router = useRouter()
   useEffect(() => {
-    router.replace('/')
+    router.replace('/evidence')
   }, [router])
   return null
 }

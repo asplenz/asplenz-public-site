@@ -1,59 +1,51 @@
 'use client'
 
 import { useLang } from '@/lib/LangContext'
+import { getContent } from '@/lib/content'
 import Link from 'next/link'
 import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
 
 export default function FoundationsPage() {
   const { lang } = useLang()
+  const t = getContent(lang)
 
   const sections = {
     en: {
       title: 'Foundations',
-      subtitle: 'Understanding the problem Horizon solves',
+      subtitle: 'Asplenz addresses a structural problem: decisions are not treated as first-class organizational assets. These two pages explore the problem and the shift required.',
       cards: [
         {
           title: 'The Problem',
-          description: 'Decisions live everywhere, and nowhere. When scrutiny arrives, you can only explain, you cannot prove.',
+          description: 'Decisions live everywhere, and nowhere. AI agents act without organizational memory. When something goes wrong, proof must be reconstructed from fragments. Both gaps — governance before the action, proof after the decision — share the same root.',
           href: '/foundations/problem',
         },
         {
           title: 'The Shift',
-          description: 'From late reconstruction to native capture. Horizon anchors facts at the moment they exist.',
+          description: 'Improving existing tools is not enough. Two entire categories of infrastructure are missing: a normative layer for governance, and a proof layer for accountability. Knowledge and Evidence make these shifts possible.',
           href: '/foundations/shift',
-        },
-        {
-          title: 'Horizon',
-          description: 'A neutral witness. Infrastructure that records what you declare, exactly as you declare it.',
-          href: '/foundations/horizon',
         },
       ],
     },
     fr: {
       title: 'Fondations',
-      subtitle: 'Comprendre le problème que résout Horizon',
+      subtitle: 'Asplenz adresse un problème structurel : les décisions ne sont pas traitées comme des actifs organisationnels de premier ordre. Ces deux pages explorent le problème et le déplacement nécessaire.',
       cards: [
         {
           title: 'Le Problème',
-          description: 'Les décisions vivent partout, et nulle part. Quand l\'examen arrive, vous ne pouvez qu\'expliquer, vous ne pouvez pas prouver.',
+          description: 'Les décisions vivent partout, et nulle part. Les agents IA agissent sans mémoire organisationnelle. Quand quelque chose tourne mal, la preuve doit être reconstruite à partir de fragments. Les deux déficits — la gouvernance avant l\'action, la preuve après la décision — partagent la même racine.',
           href: '/foundations/problem',
         },
         {
           title: 'Le Déplacement',
-          description: 'De la reconstitution tardive à la capture native. Horizon ancre les faits au moment où ils existent.',
+          description: 'Améliorer les outils existants ne suffit pas. Deux catégories entières d\'infrastructure sont manquantes : une couche normative pour la gouvernance, et une couche de preuve pour la redevabilité. Knowledge et Evidence rendent ces déplacements possibles.',
           href: '/foundations/shift',
-        },
-        {
-          title: 'Horizon',
-          description: 'Un témoin neutre. Une infrastructure qui enregistre ce que vous déclarez, exactement comme vous le déclarez.',
-          href: '/foundations/horizon',
         },
       ],
     },
   }
 
-  const t = sections[lang]
+  const s = sections[lang]
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
@@ -70,11 +62,11 @@ export default function FoundationsPage() {
             {lang === 'en' ? 'Back to Home' : 'Retour à l\'accueil'}
           </Link>
 
-          <p className="text-sm font-medium text-[var(--accent)] uppercase tracking-wider mb-2">{t.title}</p>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-6">{t.subtitle}</h1>
+          <p className="text-sm font-medium text-[var(--accent)] uppercase tracking-wider mb-2">{s.title}</p>
+          <p className="text-[var(--text-secondary)] mb-8 max-w-2xl">{s.subtitle}</p>
 
           <div className="grid md:grid-cols-2 gap-4">
-            {t.cards.map((card, idx) => (
+            {s.cards.map((card, idx) => (
               <Link
                 key={idx}
                 href={card.href}

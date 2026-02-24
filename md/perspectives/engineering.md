@@ -1,155 +1,139 @@
-[VERSION EN]
+# Engineering Perspective
 
-### **Engineering Perspective**
+> Route: /perspectives/engineering
 
-For CTOs and system architects responsible for reliable systems and long-term integrity.
+**For CTOs, system architects, and engineering leaders responsible for reliable systems and governed agent workflows.**
 
-**The reality of your role**
+## The reality of your role
 
-You design systems that must evolve.
+Your teams ship fast. Your agents ship faster.
 
-They change, scale, are patched, reconfigured, and operated by many hands. They must allow correction, rollback, override, and deletion to remain usable. Yet you are often asked to prove, after the fact, what those systems did and why.
+AI coding agents generate PRs, refactor services, add dependencies, configure infrastructure. They follow instructions -- but not necessarily yours. Your architecture decisions live in Confluence pages nobody reads. Your security constraints are implicit. Your exceptions are invisible.
 
-Your challenge is not execution. It is producing proof from systems that cannot be frozen.
+You don't have an execution problem. You have a governance problem.
 
-**Where Horizon fits**
+## Where Knowledge fits
 
-Horizon provides a separate infrastructure for proof.
+Knowledge provides a structured, queryable source of truth for your technical decisions.
 
-It does not participate in execution. It does not validate flows. It does not enforce models or workflows. It receives declared facts and seals them outside your operational systems, so proof does not depend on the mutability of production infrastructure.
+It doesn't replace your tools. It doesn't block your agents. It gives them a system to consult before acting -- and gives you a system to verify what they did.
 
-Horizon exists to resolve a structural conflict: systems that act cannot also be their own immutable record.
+## What Knowledge provides to Engineering
 
-**What Horizon provides to Engineering**
+- Architecture decisions -- structured, versioned, with reasoning
+- Security invariants -- explicit, checkable by agents and CI
+- Active rules -- configurable directives that agents follow
+- Governed overrides -- exceptions that are approved, time-limited, traceable
+- Human approvals -- for critical actions that need a checkpoint
+- Usage references -- which rules were followed, diverged, by whom
+- Real-time propagation -- agents learn about rule changes immediately
 
-* A passive API to declare facts
-* No dependency in the execution path
-* No imposed schema or workflow
-* Append-only integrity handled externally
-* Nothing more.
+## What Knowledge does not do
 
-**What Horizon does not do**
+- Does not block deployments (unless your CI calls `check()` and acts on it)
+- Does not replace code review
+- Does not make decisions for you
+- Does not generate code
 
-* Does not validate actions
-* Does not store secrets or business data
-* Does not replace logs or observability tools
-* Does not impose runtime constraints
+## After a PR, you can establish
 
-Horizon is not an operational component. It is an external evidence layer.
+Using Knowledge, you can verify:
 
-**After an incident, you can establish**
+- Which architecture decisions the agent consulted
+- Which invariants were verified
+- Which rules were followed or diverged (and why)
+- Whether an approval was requested and by whom it was granted
+- The complete Implementation Report with `knowledge://` references
 
-Using Horizon, you can verify:
+Without asking the agent. Without reading Slack history. Without guessing.
 
-* What was declared by your systems or operators
-* When it was sealed
-* Whether it was altered afterward
+## When proof matters
 
-Without hardening logs, freezing databases, or rebuilding audit pipelines.
+Some engineering decisions carry legal weight: production go-live, security exceptions, compliance overrides.
 
-**Why this matters for Engineering**
+For those, Asplenz offers **Evidence** -- a cryptographic proof layer that seals decisions as immutable, independently verifiable facts. Evidence is separate from Knowledge. It exists for when accountability is questioned, not just governance.
 
-Building systems that act is already complex. Building systems that must also prove their own past creates a conflict of responsibility.
+## What Knowledge changes
 
-Horizon removes that burden. By externalizing proof, you keep operational systems flexible while ensuring that declared facts remain verifiable over time.
+| Before | After |
+|---|---|
+| Decisions are scattered across Confluence, Slack, and heads | Decisions are structured, versioned, and queryable |
+| Agents code without context | Agents check rules before generating code |
+| Exceptions are invisible | Exceptions are governed and approved |
+| Reviews lack reasoning | Reviews include Implementation Reports with full traceability |
 
-**What Horizon changes**
+## Next
 
-Before Horizon:
-
-* Proof is embedded in mutable systems
-* Integrity relies on access control
-* Architects carry the burden of immutability
-
-With Horizon:
-
-* Proof is externalized
-* Integrity is verifiable independently
-* Responsibility for immobility is removed from production systems
-
-**Next**
-
-**View how facts are sealed**
-This example shows how a declared fact is sealed, timestamped, and appended to an immutable chain, without impacting system execution.
-
-**Editorial note (do not display)**
-This page intentionally avoids: claims of performance or scalability, promises of security, overlap with logging or observability products. It exists to let engineering leaders see Horizon as a structural separation, not another moving part.
+**Start free** -- Install the MCP server, create your first scope, and record your first decision.
 
 ---
 
-[VERSION FR]
+## FR
 
-### **Perspective Engineering**
+# Perspective Engineering
 
-Pour les CTO et architectes système responsables de la fiabilité des systèmes et de l'intégrité à long terme.
+> Route: /perspectives/engineering
 
-**La réalité de votre rôle**
+**Pour les CTO, architectes systeme et leaders engineering responsables de systemes fiables et de workflows d'agents gouvernes.**
 
-Vous concevez des systèmes qui doivent évoluer.
+## La realite de votre role
 
-Ils changent, montent en charge, sont patchés, reconfigurés et opérés par de nombreuses mains. Ils doivent permettre la correction, le rollback, l'override et la suppression pour rester utilisables. Pourtant, on vous demande souvent de prouver, après coup, ce que ces systèmes ont fait et pourquoi.
+Vos equipes livrent vite. Vos agents livrent encore plus vite.
 
-Votre défi n'est pas l'exécution. C'est de produire des preuves à partir de systèmes qui ne peuvent pas être figés.
+Les agents de coding IA generent des PR, refactorent des services, ajoutent des dependances, configurent l'infrastructure. Ils suivent des instructions -- mais pas necessairement les votres. Vos decisions d'architecture vivent dans des pages Confluence que personne ne lit. Vos contraintes de securite sont implicites. Vos exceptions sont invisibles.
 
-**Où Horizon se situe**
+Vous n'avez pas un probleme d'execution. Vous avez un probleme de gouvernance.
 
-Horizon fournit une infrastructure de preuve séparée.
+## Ou Knowledge se situe
 
-Il ne participe pas à l'exécution. Il ne valide pas les flux. Il n'impose ni modèles ni workflows. Il reçoit les faits déclarés et les scelle en dehors de vos systèmes opérationnels, de sorte que la preuve ne dépend pas de la mutabilité de l'infrastructure de production.
+Knowledge fournit une source de verite structuree et interrogeable pour vos decisions techniques.
 
-Horizon existe pour résoudre un conflit structurel : les systèmes qui agissent ne peuvent pas être en même temps leur propre enregistrement immuable.
+Il ne remplace pas vos outils. Il ne bloque pas vos agents. Il leur donne un systeme a consulter avant d'agir -- et il vous donne un systeme pour verifier ce qu'ils ont fait.
 
-**Ce que Horizon apporte à l'Engineering**
+## Ce que Knowledge apporte a l'Engineering
 
-* Une API passive pour déclarer des faits
-* Aucune dépendance dans le chemin d'exécution
-* Aucun schéma ou workflow imposé
-* Une intégrité append-only gérée de manière externe
-* Rien de plus.
+- Decisions d'architecture -- structurees, versionnees, avec raisonnement
+- Invariants de securite -- explicites, verifiables par les agents et le CI
+- Regles actives -- directives configurables que les agents suivent
+- Overrides gouvernes -- exceptions approuvees, limitees dans le temps, tracables
+- Approbations humaines -- pour les actions critiques qui necessitent un checkpoint
+- References d'usage -- quelles regles ont ete suivies, contournees, par qui
+- Propagation temps reel -- les agents apprennent les changements de regles immediatement
 
-**Ce que Horizon ne fait pas**
+## Ce que Knowledge ne fait pas
 
-* Ne valide pas les actions
-* Ne stocke pas de secrets ou de données métier
-* Ne remplace pas les logs ou les outils d'observabilité
-* N'impose pas de contraintes au runtime
+- Ne bloque pas les deploiements (sauf si votre CI appelle `check()` et agit en consequence)
+- Ne remplace pas la code review
+- Ne prend pas de decisions a votre place
+- Ne genere pas de code
 
-Horizon n'est pas un composant opérationnel. C'est une couche de preuve externe.
+## Apres une PR, vous pouvez etablir
 
-**Après un incident, vous pouvez établir**
+En utilisant Knowledge, vous pouvez verifier :
 
-En utilisant Horizon, vous pouvez vérifier :
+- Quelles decisions d'architecture l'agent a consultees
+- Quels invariants ont ete verifies
+- Quelles regles ont ete suivies ou contournees (et pourquoi)
+- Si une approbation a ete demandee et par qui elle a ete accordee
+- L'Implementation Report complet avec les references `knowledge://`
 
-* Ce qui a été déclaré par vos systèmes ou opérateurs
-* Quand cela a été scellé
-* Si cela a été altéré par la suite
+Sans interroger l'agent. Sans lire l'historique Slack. Sans deviner.
 
-Sans durcir les logs, figer les bases de données ou reconstruire des pipelines d'audit.
+## Quand la preuve compte
 
-**Pourquoi cela compte pour l'Engineering**
+Certaines decisions engineering ont un poids juridique : mise en production, exceptions securite, derogations de conformite.
 
-Construire des systèmes qui agissent est déjà complexe. Construire des systèmes qui doivent également prouver leur propre passé crée un conflit de responsabilité.
+Pour celles-ci, Asplenz propose **Evidence** -- une couche de preuve cryptographique qui scelle les decisions comme des faits immuables et verifiables de maniere independante. Evidence est separe de Knowledge. Il existe pour quand la redevabilite est remise en question, pas juste la gouvernance.
 
-Horizon supprime ce fardeau. En externalisant la preuve, vous maintenez la flexibilité des systèmes opérationnels tout en garantissant que les faits déclarés restent vérifiables dans le temps.
+## Ce que Knowledge change
 
-**Ce que Horizon change**
+| Avant | Apres |
+|---|---|
+| Les decisions sont dispersees entre Confluence, Slack et les tetes | Les decisions sont structurees, versionnees et interrogeables |
+| Les agents codent sans contexte | Les agents verifient les regles avant de generer du code |
+| Les exceptions sont invisibles | Les exceptions sont gouvernees et approuvees |
+| Les reviews manquent de raisonnement | Les reviews incluent des Implementation Reports avec tracabilite complete |
 
-Avant Horizon :
+## Suivant
 
-* La preuve est intégrée dans des systèmes mutables
-* L'intégrité repose sur le contrôle d'accès
-* Les architectes portent le fardeau de l'immuabilité
-
-Avec Horizon :
-
-* La preuve est externalisée
-* L'intégrité est vérifiable indépendamment
-* La responsabilité de l'immobilité est retirée des systèmes de production
-
-**Suivant**
-
-**Voir comment les faits sont scellés**
-Cet exemple montre comment un fait déclaré est scellé, horodaté et ajouté à une chaîne immuable, sans impact sur l'exécution du système.
-
-**Note éditoriale (ne pas afficher)**
-Cette page évite intentionnellement : les affirmations de performance ou de scalabilité, les promesses de sécurité, le chevauchement avec les produits de logging ou d'observabilité. Elle existe pour permettre aux leaders techniques de voir Horizon comme une séparation structurelle, pas comme une pièce mobile supplémentaire.
+**Commencer gratuitement** -- Installez le serveur MCP, creez votre premier scope et enregistrez votre premiere decision.
