@@ -321,25 +321,9 @@ export default function Header() {
       label: t.nav.evidence,
       children: [
         { label: t.nav.overview, href: '/evidence' },
-        {
-          label: t.nav.perspectives,
-          href: '/evidence/perspectives',
-          submenu: [
-            { label: 'Legal', href: '/evidence/perspectives/legal' },
-            { label: 'Security', href: '/evidence/perspectives/security' },
-            { label: 'Audit & Risk', href: '/evidence/perspectives/audit-risk' },
-            { label: 'AI Governance', href: '/evidence/perspectives/ai-governance' },
-          ],
-        },
+        { label: t.nav.aiRegistry, href: '/evidence/ai-registry' },
         { label: t.nav.docs, href: '/evidence/docs' },
         { label: t.nav.pricing, href: '/evidence/pricing' },
-      ],
-    },
-    {
-      label: t.nav.foundations,
-      children: [
-        { label: t.nav.theProblem, href: '/foundations/problem' },
-        { label: t.nav.theShift, href: '/foundations/shift' },
       ],
     },
     {

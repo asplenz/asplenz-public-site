@@ -17,9 +17,14 @@ export default function WhyAsplenzPage() {
         </h1>
 
         {/* Intro lines */}
-        <div className="space-y-4 mb-12">
+        <div className="space-y-4 mb-6">
           {w.intro.map((line: string, i: number) => (
-            <p key={i} className={i === w.intro.length - 1 ? 'text-[var(--text-primary)] font-semibold' : 'text-[var(--text-secondary)]'}>
+            <p key={i} className="text-[var(--text-secondary)]">{line}</p>
+          ))}
+        </div>
+        <div className="space-y-3 mb-12">
+          {w.introClosing.map((line: string, i: number) => (
+            <p key={i} className={i === w.introClosing.length - 1 ? 'text-[var(--text-primary)] font-semibold' : 'text-[var(--text-secondary)]'}>
               {line}
             </p>
           ))}
@@ -41,11 +46,13 @@ export default function WhyAsplenzPage() {
               </li>
             ))}
           </ul>
-          {w.governance.closing.map((line: string, i: number) => (
-            <p key={i} className={`text-sm ${i === w.governance.closing.length - 1 ? 'text-[var(--text-primary)] font-semibold' : 'text-[var(--text-secondary)]'} mb-2`}>
-              {line}
-            </p>
-          ))}
+          <div className="space-y-2">
+            {w.governance.closing.map((line: string, i: number) => (
+              <p key={i} className={i === w.governance.closing.length - 1 ? 'text-[var(--text-primary)] font-semibold text-sm' : 'text-[var(--text-secondary)] text-sm'}>
+                {line}
+              </p>
+            ))}
+          </div>
         </section>
 
         {/* Two governance layers */}
@@ -71,14 +78,7 @@ export default function WhyAsplenzPage() {
               <p key={i} className="text-[var(--text-secondary)] text-sm">{line}</p>
             ))}
           </div>
-          <ul className="space-y-2">
-            {w.layers.philosophy.map((line: string, i: number) => (
-              <li key={i} className="flex items-start gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0" />
-                <span className="text-[var(--text-primary)] text-sm font-medium">{line}</span>
-              </li>
-            ))}
-          </ul>
+          <p className="text-[var(--text-primary)] font-semibold text-sm">{w.layers.philosophy}</p>
         </section>
 
         {/* Infrastructure, not consultancy */}
@@ -86,9 +86,7 @@ export default function WhyAsplenzPage() {
           <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-4">{w.infrastructure.title}</h2>
           <div className="space-y-3">
             {w.infrastructure.body.map((line: string, i: number) => (
-              <p key={i} className={i === w.infrastructure.body.length - 1 ? 'text-[var(--text-primary)] font-semibold text-sm' : 'text-[var(--text-secondary)]'}>
-                {line}
-              </p>
+              <p key={i} className="text-[var(--text-secondary)]">{line}</p>
             ))}
           </div>
         </section>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" font-family="'JetBrains Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace">
+  <!-- Terminal window -->
+  <rect width="720" height="520" rx="10" fill="#0F172A"/>
+
+  <!-- Title bar -->
+  <rect width="720" height="38" rx="10" fill="#1e293b"/>
+  <rect y="28" width="720" height="10" fill="#1e293b"/>
+  <!-- Window dots -->
+  <circle cx="20" cy="19" r="6" fill="#ef4444"/>
+  <circle cx="40" cy="19" r="6" fill="#eab308"/>
+  <circle cx="60" cy="19" r="6" fill="#22c55e"/>
+  <!-- Title -->
+  <text x="360" y="24" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="500">GitHub Actions — knowledge-verifier</text>
+
+  <!-- Terminal content -->
+  <!-- Command -->
+  <text x="20" y="68" fill="#22d3ee" font-size="12.5">$</text>
+  <text x="34" y="68" fill="#e2e8f0" font-size="12.5"> python -m knowledge_verifier --config .knowledge-verifier.yml</text>
+
+  <!-- Blank line -->
+
+  <!-- Header -->
+  <text x="20" y="98" fill="#a78bfa" font-size="12.5" font-weight="700">Knowledge Verifier v1.0</text>
+
+  <!-- PR info -->
+  <text x="20" y="122" fill="#94a3b8" font-size="12.5">PR #847</text>
+  <text x="72" y="122" fill="#e2e8f0" font-size="12.5">Add public health endpoint to payments API</text>
+  <text x="20" y="140" fill="#94a3b8" font-size="12.5">Author</text>
+  <text x="72" y="140" fill="#e2e8f0" font-size="12.5">sarah.chen</text>
+  <text x="20" y="158" fill="#94a3b8" font-size="12.5">Files</text>
+  <text x="72" y="158" fill="#e2e8f0" font-size="12.5">7 changed (src/api/**, src/payments/**)</text>
+
+  <!-- Separator -->
+  <text x="20" y="182" fill="#334155" font-size="12.5">────────────────────────────────────────────────────────────</text>
+
+  <!-- Scope resolution -->
+  <text x="20" y="206" fill="#22d3ee" font-size="12.5">Resolving scopes...</text>
+  <text x="20" y="226" fill="#22c55e" font-size="12.5">  ✓</text>
+  <text x="42" y="226" fill="#e2e8f0" font-size="12.5">Engineering</text>
+  <text x="152" y="226" fill="#64748b" font-size="12.5">scp-e1134c6636d7</text>
+  <text x="310" y="226" fill="#94a3b8" font-size="12.5">3 invariants, 4 rules</text>
+
+  <!-- Citation parsing -->
+  <text x="20" y="256" fill="#22d3ee" font-size="12.5">Parsing citations...</text>
+  <text x="20" y="276" fill="#22c55e" font-size="12.5">  ✓</text>
+  <text x="42" y="276" fill="#e2e8f0" font-size="12.5">Implementation Report found</text>
+  <text x="20" y="296" fill="#e2e8f0" font-size="12.5">    inv-8a3f1b2c4d5e</text>
+  <text x="200" y="296" fill="#22c55e" font-size="12.5">cited</text>
+  <text x="250" y="296" fill="#64748b" font-size="12.5">No deploy on Friday after 16:00</text>
+  <text x="20" y="314" fill="#e2e8f0" font-size="12.5">    inv-2f7a9c4e1b3d</text>
+  <text x="200" y="314" fill="#22c55e" font-size="12.5">cited</text>
+  <text x="250" y="314" fill="#64748b" font-size="12.5">All public APIs require auth</text>
+  <text x="20" y="332" fill="#e2e8f0" font-size="12.5">    inv-6d8b3e5f2a1c</text>
+  <text x="200" y="332" fill="#22c55e" font-size="12.5">cited</text>
+  <text x="250" y="332" fill="#64748b" font-size="12.5">No PII in logs</text>
+  <text x="20" y="350" fill="#e2e8f0" font-size="12.5">    rul-4c1e7a9b3f2d</text>
+  <text x="200" y="350" fill="#22c55e" font-size="12.5">cited</text>
+  <text x="250" y="350" fill="#64748b" font-size="12.5">API changes must update OpenAPI spec</text>
+  <text x="20" y="368" fill="#e2e8f0" font-size="12.5">    rul-9f3b2d7e1a4c</text>
+  <text x="200" y="368" fill="#eab308" font-size="12.5">uncited</text>
+  <text x="262" y="368" fill="#64748b" font-size="12.5">Include integration tests (advisory)</text>
+
+  <!-- Separator -->
+  <text x="20" y="396" fill="#334155" font-size="12.5">────────────────────────────────────────────────────────────</text>
+
+  <!-- Analysis summary -->
+  <text x="20" y="420" fill="#22d3ee" font-size="12.5">Analysis</text>
+  <text x="20" y="440" fill="#e2e8f0" font-size="12.5">  Blocking invariants</text>
+  <text x="200" y="440" fill="#22c55e" font-size="12.5">3/3 cited</text>
+  <text x="20" y="458" fill="#e2e8f0" font-size="12.5">  Mandatory rules</text>
+  <text x="200" y="458" fill="#22c55e" font-size="12.5">1/1 cited</text>
+  <text x="20" y="476" fill="#e2e8f0" font-size="12.5">  Advisory rules</text>
+  <text x="200" y="476" fill="#eab308" font-size="12.5">0/1 cited</text>
+  <text x="280" y="476" fill="#64748b" font-size="12.5">(not required)</text>
+
+  <!-- Verdict -->
+  <rect x="20" y="492" width="680" height="2" fill="#22c55e" opacity="0.3"/>
+  <text x="20" y="512" fill="#22c55e" font-size="14" font-weight="700">VERDICT: PASS</text>
+  <text x="170" y="512" fill="#64748b" font-size="12.5">gating=fail-on-blocking  exit=0</text>
+</svg>

@@ -242,12 +242,6 @@ export default function KnowledgePage() {
           >
             {k.ctas.secondary}
           </Link>
-          <Link
-            href={k.ctas.tertiaryHref}
-            className="inline-flex items-center gap-2 px-8 py-3 border border-[var(--border)] text-[var(--text-secondary)] font-medium rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
-          >
-            {k.ctas.tertiary}
-          </Link>
         </div>
         <p className="text-[var(--text-muted)] font-semibold">{k.ctas.tagline}</p>
       </section>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 260" font-family="'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-auto">
+      <path d="M 0 0 L 10 3.5 L 0 7" fill="none" stroke="#cbd5e1" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-auto">
+      <path d="M 0 0 L 10 3.5 L 0 7" fill="none" stroke="#16a34a" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-auto">
+      <path d="M 0 0 L 10 3.5 L 0 7" fill="none" stroke="#d97706" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-auto">
+      <path d="M 0 0 L 10 3.5 L 0 7" fill="none" stroke="#dc2626" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="260" fill="#0F172A" rx="8"/>
+
+  <!-- Step 1: PR Submitted -->
+  <rect x="30" y="72" width="145" height="64" rx="6" fill="#f9fafb" stroke="#000" stroke-width="1.5"/>
+  <text x="102" y="99" text-anchor="middle" fill="#000" font-weight="700" font-size="16">PR Submitted</text>
+  <text x="102" y="120" text-anchor="middle" fill="#000" font-size="13">title, body, files</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="175" y1="104" x2="210" y2="104" stroke="#cbd5e1" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Step 2: Verifier -->
+  <rect x="218" y="72" width="140" height="64" rx="6" fill="#eff6ff" stroke="#000" stroke-width="1.5"/>
+  <text x="288" y="99" text-anchor="middle" fill="#000" font-weight="700" font-size="16">Verifier</text>
+  <text x="288" y="120" text-anchor="middle" fill="#000" font-size="13">CI pipeline step</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="358" y1="104" x2="393" y2="104" stroke="#cbd5e1" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Step 3: Resolve Scopes -->
+  <rect x="401" y="72" width="155" height="64" rx="6" fill="#f9fafb" stroke="#000" stroke-width="1.5"/>
+  <text x="478" y="99" text-anchor="middle" fill="#000" font-weight="700" font-size="16">Resolve Scopes</text>
+  <text x="478" y="120" text-anchor="middle" fill="#000" font-size="13">files → Knowledge API</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="556" y1="104" x2="591" y2="104" stroke="#cbd5e1" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Step 4: Analyze -->
+  <rect x="599" y="72" width="145" height="64" rx="6" fill="#f9fafb" stroke="#000" stroke-width="1.5"/>
+  <text x="671" y="99" text-anchor="middle" fill="#000" font-weight="700" font-size="16">Analyze</text>
+  <text x="671" y="120" text-anchor="middle" fill="#000" font-size="13">citations + normative</text>
+
+  <!-- Arrow 4→verdict (splits into 3) -->
+  <line x1="744" y1="104" x2="782" y2="104" stroke="#cbd5e1" stroke-width="1.8"/>
+
+  <!-- Branch point dot -->
+  <circle cx="782" cy="104" r="4" fill="#cbd5e1"/>
+
+  <!-- Top branch: pass -->
+  <path d="M 782 104 Q 794 44, 826 44" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <rect x="834" y="22" width="100" height="44" rx="22" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.8"/>
+  <text x="884" y="50" text-anchor="middle" fill="#16a34a" font-weight="800" font-size="17">PASS</text>
+
+  <!-- Middle branch: warn -->
+  <line x1="782" y1="104" x2="828" y2="104" stroke="#d97706" stroke-width="2" marker-end="url(#arrow-amber)"/>
+  <rect x="834" y="82" width="100" height="44" rx="22" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+  <text x="884" y="110" text-anchor="middle" fill="#d97706" font-weight="800" font-size="17">WARN</text>
+
+  <!-- Bottom branch: fail -->
+  <path d="M 782 104 Q 794 164, 826 164" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+  <rect x="834" y="142" width="100" height="44" rx="22" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8"/>
+  <text x="884" y="170" text-anchor="middle" fill="#dc2626" font-weight="800" font-size="17">FAIL</text>
+
+  <!-- Subtitle -->
+  <text x="480" y="232" text-anchor="middle" fill="#fff" font-size="13">Knowledge Verifier — CI/CD Compliance Pipeline</text>
+</svg>

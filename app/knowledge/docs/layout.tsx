@@ -11,6 +11,15 @@ const knowledgeDocsNavEn = [
   { title: 'Agent Integration', href: '/knowledge/docs/agent-integration' },
   { title: 'Security & Permissions', href: '/knowledge/docs/security-and-permissions' },
   { title: 'FAQ', href: '/knowledge/docs/faq' },
+  {
+    title: 'Use Cases',
+    href: '/knowledge/docs/use-cases/governed-ai-agents',
+    children: [
+      { title: 'Governed AI Agents', href: '/knowledge/docs/use-cases/governed-ai-agents' },
+      { title: 'Compliance-Ready CI/CD', href: '/knowledge/docs/use-cases/compliance-ready-cicd' },
+      { title: 'Team Decision Memory', href: '/knowledge/docs/use-cases/team-decision-memory' },
+    ],
+  },
 ]
 
 const knowledgeDocsNavFr = [
@@ -22,6 +31,15 @@ const knowledgeDocsNavFr = [
   { title: 'Int\u00e9gration agents', href: '/knowledge/docs/agent-integration' },
   { title: 'S\u00e9curit\u00e9 & Permissions', href: '/knowledge/docs/security-and-permissions' },
   { title: 'FAQ', href: '/knowledge/docs/faq' },
+  {
+    title: 'Cas d\u0027usage',
+    href: '/knowledge/docs/use-cases/governed-ai-agents',
+    children: [
+      { title: 'Agents IA gouvern\u00e9s', href: '/knowledge/docs/use-cases/governed-ai-agents' },
+      { title: 'CI/CD conforme', href: '/knowledge/docs/use-cases/compliance-ready-cicd' },
+      { title: 'M\u00e9moire d\u00e9cisionnelle', href: '/knowledge/docs/use-cases/team-decision-memory' },
+    ],
+  },
 ]
 
 export default function KnowledgeDocsLayout({

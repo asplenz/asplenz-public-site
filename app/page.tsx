@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLang } from '@/lib/LangContext'
 import { getContent } from '@/lib/content'
 import Header from './components/Header'
@@ -164,9 +165,20 @@ export default function Home() {
             <p className="text-[var(--accent)] font-medium mb-4">
               {t.index.verifier.subtitle}
             </p>
-            <p className="text-[var(--text-secondary)] mb-6">
+            <p className="text-[var(--text-secondary)] mb-8">
               {t.index.verifier.description}
             </p>
+          </div>
+          <div className="mb-10">
+            <Image
+              src="/verifier-flow.svg"
+              alt="Knowledge Verifier flow"
+              width={720}
+              height={195}
+              className="w-full max-w-[720px]"
+            />
+          </div>
+          <div className="max-w-xl">
             <p className="text-sm font-semibold text-[var(--text-primary)] mb-3">{t.index.verifier.capabilitiesTitle}</p>
             <ul className="space-y-2 mb-8">
               {t.index.verifier.capabilities.map((item, i) => (
@@ -199,19 +211,15 @@ export default function Home() {
             <p className="text-sm text-[var(--text-muted)] mb-2">{t.index.whatChanges.instead}</p>
             <p className="text-[var(--text-muted)] italic mb-8">{t.index.whatChanges.insteadQuote}</p>
             <p className="text-sm text-[var(--text-primary)] font-semibold mb-4">{t.index.whatChanges.youGet}</p>
-            <div className="p-6 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg mb-6">
-              <p className="text-sm font-semibold text-[var(--text-primary)] mb-4">{t.index.whatChanges.pr.title}</p>
-              <ul className="space-y-2 mb-4">
-                {t.index.whatChanges.pr.items.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0" />
-                    <span className="text-[var(--text-secondary)] text-sm font-mono">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="text-sm font-semibold text-green-400">{t.index.whatChanges.pr.verdict}</p>
-              <p className="text-sm text-green-400/80">{t.index.whatChanges.pr.verdictDetail}</p>
-            </div>
+          <div className="mb-8">
+            <Image
+              src="/verifier-output.svg"
+              alt="Verifier output"
+              width={720}
+              height={520}
+              className="w-full max-w-[720px]"
+            />
+          </div>
             <p className="text-[var(--text-secondary)] mb-2">{t.index.whatChanges.after1}</p>
             <p className="text-[var(--text-primary)] font-medium">{t.index.whatChanges.after2}</p>
           </div>
@@ -237,29 +245,106 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. A note on Evidence */}
+      {/* 7. Different by design */}
       <section className="py-16 px-6 md:px-32">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-xl">
-            <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-6">
-              {t.index.evidenceNote.title}
+            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-6">
+              {(t.index as any).differentByDesign.title}
             </h2>
-            <p className="text-[var(--text-secondary)] mb-4">{renderInline(t.index.evidenceNote.p1)}</p>
-            <p className="text-[var(--text-muted)] mb-8">{t.index.evidenceNote.p2}</p>
-            <Link
-              href={t.index.evidenceNote.ctaHref}
-              className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border)] text-[var(--text-secondary)] font-medium rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
-            >
-              {t.index.evidenceNote.cta}
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </Link>
+            <p className="text-sm text-[var(--text-muted)] mb-3">{(t.index as any).differentByDesign.intro}</p>
+            <ul className="space-y-2 mb-6">
+              {(t.index as any).differentByDesign.isNot.map((item: string, i: number) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-muted)] mt-2 flex-shrink-0" />
+                  <span className="text-[var(--text-muted)] text-sm">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-[var(--text-secondary)] mb-6">{(t.index as any).differentByDesign.contrast}</p>
+            <p className="text-sm font-semibold text-[var(--text-primary)] mb-3">{(t.index as any).differentByDesign.governsTitle}</p>
+            <ul className="space-y-2 mb-6">
+              {(t.index as any).differentByDesign.governsItems.map((item: string, i: number) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0" />
+                  <span className="text-[var(--text-secondary)] text-sm">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-[var(--text-primary)] font-semibold text-sm">{(t.index as any).differentByDesign.closing}</p>
           </div>
         </div>
       </section>
 
-      {/* 8. Final CTAs */}
+      {/* 8. A note on Evidence */}
+      <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-xl mb-10">
+            <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-6">
+              {t.index.evidenceNote.title}
+            </h2>
+            <p className="text-[var(--text-secondary)] mb-4">{renderInline(t.index.evidenceNote.p1)}</p>
+            <p className="text-[var(--text-muted)] mb-4">{t.index.evidenceNote.p2}</p>
+            <p className="text-[var(--text-secondary)] mb-8">{(t.index as any).evidenceNote.p3}</p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href={t.index.evidenceNote.ctaHref}
+                className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border)] text-[var(--text-secondary)] font-medium rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors text-sm"
+              >
+                {t.index.evidenceNote.cta}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
+              <Link
+                href={(t.index as any).evidenceNote.ctaSecondaryHref}
+                className="inline-flex items-center justify-center px-6 py-3 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors text-sm"
+              >
+                {(t.index as any).evidenceNote.ctaSecondary}
+              </Link>
+            </div>
+          </div>
+          <Image
+            src="/evidence-compliance-dashboard.svg"
+            alt="Evidence compliance dashboard"
+            width={675}
+            height={461}
+            className="max-w-full"
+          />
+        </div>
+      </section>
+
+      {/* 9. Human-readable. System-executable. */}
+      <section className="py-16 px-6 md:px-32">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-xl">
+            <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">
+              {(t.index as any).humanReadable.title}
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              {(['engineers', 'ci', 'agents'] as const).map((key) => {
+                const group = (t.index as any).humanReadable[key]
+                return (
+                  <div key={key} className="p-4 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg">
+                    <p className="text-sm font-semibold text-[var(--text-primary)] mb-3">{group.label}</p>
+                    <ul className="space-y-2">
+                      {group.items.map((item: string, i: number) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="w-1 h-1 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0" />
+                          <span className="text-[var(--text-muted)] text-xs">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              })}
+            </div>
+            <p className="text-[var(--text-primary)] font-semibold">{(t.index as any).humanReadable.closing}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. Final CTAs */}
       <section className="py-16 px-6 md:px-32 bg-[var(--bg-secondary)]">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-[28px] font-semibold text-[var(--text-primary)] mb-8">

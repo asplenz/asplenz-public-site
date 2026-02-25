@@ -892,4 +892,349 @@ Currently, each scope is fully isolated. Entries in one scope cannot reference o
 
 The \`resolve()\` operation returns a \`normative_hash\` — a fingerprint of the current state. By comparing this hash across calls, consumers can detect whether any invariant, rule, or override was added, modified, or removed since their last check.`,
   },
+  'use-cases/governed-ai-agents': {
+    title: 'Governed AI Agents',
+    content: `
+## The Problem
+
+Autonomous agents make decisions. Some of those decisions violate organizational constraints that were never communicated to the agent, or that were communicated once and forgotten. Post-hoc review catches violations after the damage is done. There is no mechanism to enforce constraints at decision time, and no structured trail proving the agent considered them.
+
+## How Knowledge Solves It
+
+Knowledge provides a normative layer that agents query before acting. The agent calls \`resolve()\` with its scope and receives all applicable invariants, rules, and overrides. It then evaluates its intended action against that normative state. If a blocking invariant applies, the agent stops. If an approval-gated rule applies, the agent requests human approval and waits. After acting, the agent records a reference — a structured trace proving it consulted Knowledge.
+
+### Agent Flow
+
+\`\`\`
+Agent receives task
+    |
+    v
+resolve(scope="Engineering")
+    |
+    v
+Receives:
+  - 3 blocking invariants
+  - 5 mandatory rules
+  - 2 active overrides
+    |
+    v
+Agent evaluates intended action
+    |
+    |-- Blocked by invariant -> STOP, report violation
+    |-- Requires approval   -> request_approval(), WAIT
+    +-- Allowed             -> proceed
+    |
+    v
+record_reference(entry_id, context_ref, status="followed")
+\`\`\`
+
+### What the Agent Sees
+
+When an agent calls \`resolve()\`, it receives a deterministic snapshot:
+
+\`\`\`json
+{
+  "scope": { "id": "scp-e1134c6636d7", "name": "Engineering" },
+  "normative_state": {
+    "blocking_invariants": [
+      {
+        "invariant_id": "inv-8a3f...",
+        "constraint": "No production deployment on Friday after 16:00 UTC"
+      }
+    ],
+    "mandatory_rules": [
+      {
+        "rule_id": "rul-2b7c...",
+        "current_version": {
+          "directive": "All API changes must include OpenAPI spec update"
+        }
+      }
+    ],
+    "active_overrides": []
+  },
+  "normative_hash": "sha256:a1b2c3..."
+}
+\`\`\`
+
+The \`normative_hash\` is a content hash of the full normative state. If the hash hasn't changed since the agent's last query, the constraints haven't changed.
+
+### Approval Gates
+
+Some rules and invariants require human approval before they can be overridden. When an agent encounters one:
+
+1. The agent calls \`request_approval()\` with the trigger entry, the intended action, and a justification.
+2. Knowledge creates a pending approval request and notifies the required role.
+3. A human with the right role reviews and decides (approve or reject).
+4. If approved, Knowledge automatically creates a scoped override and the agent proceeds.
+5. The entire chain — request, decision, override — is recorded as events.
+
+No silent escalation. No assumed authority. The agent waits.
+
+## Example: CI Agent Deploying to Production
+
+An agent managing deployments receives a request to deploy \`v2.3.1\` to production on Friday at 17:30 UTC.
+
+**Step 1**: Agent resolves the Engineering scope.
+
+**Step 2**: Knowledge returns invariant \`inv-8a3f...\`: "No production deployment on Friday after 16:00 UTC." No active override exists.
+
+**Step 3**: Agent stops the deployment. It records a reference with status \`cited\` against the invariant and reports:
+
+> Deployment blocked. Invariant inv-8a3f prohibits Friday production deployments after 16:00 UTC. Rescheduling to Monday 09:00 UTC.
+
+**Step 4**: If the deployment is urgent, a human can create an override with justification. The agent re-resolves, sees the override, and proceeds — with a full audit trail.
+
+## What It Produces
+
+Every agent interaction with Knowledge generates:
+
+| Artifact | Purpose |
+|----------|---------|
+| **Reference** | Proof the agent consulted a specific entry (with status: cited, followed, verified, or diverged) |
+| **Event log** | Chronological record of normative changes, approvals, and overrides |
+| **Normative hash** | Cryptographic proof of what the agent saw at decision time |
+| **Approval chain** | Request, decision, and resulting override linked together |
+
+This is not logging. It is structured, queryable evidence that the agent operated within declared constraints — or documented exactly why it didn't.`,
+  },
+  'use-cases/compliance-ready-cicd': {
+    title: 'Compliance-Ready CI/CD',
+    content: `
+## The Problem
+
+Teams declare engineering rules — "all API changes need tests," "no deploys on Friday," "database migrations require review" — but enforcement is manual. Rules live in wiki pages, Slack messages, or engineers' heads. CI pipelines check syntax and tests, but not organizational constraints. When an audit asks "did this PR comply with your stated rules?", the answer requires hours of manual reconstruction.
+
+## How Knowledge Solves It
+
+The Knowledge Verifier runs in your CI pipeline as a gate. It reads the PR context (title, body, changed files, commits), resolves the applicable Knowledge scopes based on which files were modified, and checks whether the PR cites the relevant normative entries. It produces a machine-readable verdict and a human-readable report.
+
+### Pipeline Flow
+
+\`\`\`
+PR opened / updated
+    |
+    v
+CI triggers Verifier
+    |
+    v
+Verifier reads:
+  - PR title, body, author
+  - Changed files list
+  - Commit messages
+    |
+    v
+Maps files -> scopes (via config)
+  src/api/** -> Engineering
+  infra/**   -> Operations
+    |
+    v
+Resolves each scope via Knowledge API
+    |
+    v
+Parses citations from PR body
+  (inv-xxx, rul-yyy, ovr-zzz)
+    |
+    v
+3-axis analysis:
+  A. Conformity (applicable entries)
+  B. Override validity
+  C. Citation coverage
+    |
+    v
+Verdict: pass / warn / fail
+    |
+    v
+Outputs:
+  - verifier-result.json (machine)
+  - verifier-report.md   (human)
+\`\`\`
+
+### Implementation Report
+
+The Verifier looks for an \`## Implementation Report\` section in the PR body where the author documents how they addressed each applicable normative entry:
+
+\`\`\`markdown
+## Implementation Report
+
+- inv-8a3f1b2c4d5e: Followed — deployment scheduled within allowed window
+- rul-2b7c9e4f1a3d: Followed — OpenAPI spec updated in commit a1b2c3d
+- rul-6f8e2a1b3c4d: Overridden — see ovr-9d1e3f5a7b2c (approved for hotfix)
+\`\`\`
+
+Each citation links the PR to a specific Knowledge entry with a clear status. The Verifier validates that cited IDs exist and that referenced overrides are active.
+
+### Gating Modes
+
+The Verifier supports three modes, configured per repository:
+
+| Mode | Behavior | When to Use |
+|------|----------|-------------|
+| **report-only** | Always exits 0, generates report | Initial adoption — see what would fail without blocking |
+| **fail-on-blocking** | Exits 1 only if blocking invariants are uncited | Standard operation — invariants block, rules warn |
+| **strict** | Exits 1 on any uncited mandatory entry | Regulated environments — full citation coverage required |
+
+Start with \`report-only\`. Review reports for a few weeks. Promote to \`fail-on-blocking\` once the team is comfortable. Use \`strict\` only where regulatory requirements demand it.
+
+## Example: GitHub Actions Integration
+
+\`\`\`yaml
+- name: Knowledge Compliance Check
+  run: |
+    python -m knowledge_verifier \\
+      --config .knowledge-verifier.yml
+  env:
+    KNOWLEDGE_API_URL: \${{ secrets.KNOWLEDGE_API_URL }}
+    KNOWLEDGE_API_KEY: \${{ secrets.KNOWLEDGE_API_KEY }}
+\`\`\`
+
+The Verifier detects GitHub Actions automatically via \`GITHUB_EVENT_PATH\` and extracts PR context from the webhook payload. No additional configuration needed for PR metadata.
+
+### Scope Mapping
+
+The configuration file maps file paths to Knowledge scopes:
+
+\`\`\`yaml
+scope_mappings:
+  - scope: "Engineering"
+    paths: ["src/**", "lib/**", "apps/**"]
+  - scope: "Operations"
+    paths: ["infra/**", "deploy/**", ".github/**"]
+
+default_scope: "Engineering"
+gating_mode: "fail-on-blocking"
+\`\`\`
+
+When a PR modifies \`src/api/routes.py\` and \`infra/terraform/main.tf\`, the Verifier resolves both Engineering and Operations scopes and checks compliance against both.
+
+## What It Produces
+
+| Output | Format | Content |
+|--------|--------|---------|
+| \`verifier-result.json\` | JSON | Verdict, violations, warnings, citations, per-scope analysis |
+| \`verifier-report.md\` | Markdown | Verdict banner, blocking violations, applicable normative state, citation coverage, recommended actions |
+
+The JSON result can be consumed by other tools (dashboards, audit systems, notification bots). The Markdown report is designed for PR comments.
+
+### Report Excerpt
+
+\`\`\`
+## Knowledge Compliance Report
+
+**Verdict: PASS**
+
+### Engineering (scp-e1134c6636d7)
+- 3 invariants applicable, 3 cited
+- 2 mandatory rules applicable, 2 cited
+- 1 advisory rule applicable, 0 cited (advisory — not required)
+
+### Citation Coverage
+| Entry | Status | Location |
+|-------|--------|----------|
+| inv-8a3f... | cited | implementation_report |
+| rul-2b7c... | cited | implementation_report |
+\`\`\`
+
+This report is the compliance artifact. It proves what was checked, what was found, and what the author documented — without requiring anyone to manually trace the decision chain after the fact.`,
+  },
+  'use-cases/team-decision-memory': {
+    title: 'Team Decision Memory',
+    content: `
+## The Problem
+
+Engineering teams make hundreds of decisions. Most are never written down. The ones that are get buried in Confluence pages, Notion docs, or Slack threads that no one searches. Six months later, a new engineer asks "why did we choose PostgreSQL over DynamoDB?" and the answer is either lost or reconstructed from memory — incomplete, biased, and unverifiable.
+
+Architecture Decision Records (ADRs) were supposed to fix this. In practice, they decay. They live in markdown files that nobody updates, with no structure, no search, no connection to the rules they inform. A decision about database choice has no link to the invariant it created ("never use eventual consistency for financial transactions"). The decision exists. The constraint exists. But they are not connected.
+
+## How Knowledge Solves It
+
+Knowledge treats decisions as first-class entities with structure, scope, and relationships. A decision is not a document — it is a record with an author, a timestamp, context, reasoning, and tags. It lives in a scope (Engineering, Product, Operations) and can be linked to the invariants and rules it produced.
+
+### Recording a Decision
+
+\`\`\`
+POST /api/v1/scopes/{scope_id}/decisions
+{
+  "decision": "Use PostgreSQL for all transactional data stores",
+  "context": "Evaluated PostgreSQL, DynamoDB, and CockroachDB for the payment service migration",
+  "reasoning": "PostgreSQL provides ACID guarantees without operational complexity of distributed databases. DynamoDB's eventual consistency model is incompatible with financial transaction requirements. CockroachDB adds unnecessary complexity for our current scale.",
+  "author": "sarah.chen",
+  "author_type": "human",
+  "tags": ["database", "infrastructure", "payments"]
+}
+\`\`\`
+
+The decision is immutable once created. Context and reasoning are preserved exactly as recorded. No one edits it later to match a different narrative.
+
+### Connecting Decisions to Constraints
+
+When a decision produces a rule or invariant, create a typed link:
+
+\`\`\`
+Decision: "Use PostgreSQL for all transactional data stores"
+    |
+    |-- creates -> Invariant: "No eventual consistency for financial transactions"
+    |-- creates -> Rule: "All new services must use PostgreSQL unless exempted"
+    +-- supersedes -> Decision: "Evaluate NoSQL for payment service" (earlier exploration)
+\`\`\`
+
+These links are queryable. When someone asks "why does this invariant exist?", the answer is one API call away — follow the \`creates\` link back to the decision, read the reasoning.
+
+### Searching Decisions
+
+Knowledge provides structured search across all scopes:
+
+\`\`\`
+POST /api/v1/search
+{
+  "query": "database",
+  "scope_id": "scp-e1134c6636d7",
+  "entry_type": "decision",
+  "limit": 10
+}
+\`\`\`
+
+Results include the decision text, context excerpt, author, and creation date. Filter by scope, entry type, author, tags, or date range. No more digging through wikis.
+
+### The Graph
+
+Decisions, invariants, and rules form a directed graph. Knowledge tracks typed relations between them:
+
+| Relation | Meaning |
+|----------|---------|
+| \`depends_on\` | Entry B requires entry A to be valid |
+| \`supersedes\` | Entry B replaces entry A |
+| \`contradicts\` | Entry B conflicts with entry A (needs resolution) |
+
+This graph answers questions that flat documents cannot:
+- "What depends on this invariant?" — find all rules and decisions linked to it
+- "What did this decision supersede?" — trace the evolution of a choice
+- "Are there contradictions?" — find entries explicitly marked as conflicting
+
+## Example: Onboarding a New Engineer
+
+A new engineer joins the team. Instead of reading 47 Confluence pages of varying freshness, they:
+
+**Step 1**: Browse scopes — Engineering, Product, Operations. Each scope shows counts: 12 decisions, 4 invariants, 6 rules.
+
+**Step 2**: Read the invariants first — these are the hard constraints. "No production deployment on Friday after 16:00 UTC." "All public APIs must require authentication." Four invariants, each with a rationale and a link to the decision that created it.
+
+**Step 3**: Search for their domain. "Search: payments" returns 3 decisions, 1 invariant, 2 rules — all scoped to Engineering. They read the PostgreSQL decision, see the reasoning, follow the link to the "no eventual consistency" invariant.
+
+**Step 4**: Check the graph to understand how entries relate. The PostgreSQL decision links to 2 rules and 1 invariant. One rule was updated last month (new version with relaxed conditions for read replicas).
+
+The engineer now understands not just *what* the rules are, but *why* they exist and *how* they evolved. This took 15 minutes, not 3 days.
+
+## What It Produces
+
+| Capability | What You Get |
+|------------|-------------|
+| **Structured decisions** | Every decision has context, reasoning, author, and tags — not just a title |
+| **Linked constraints** | Decisions are connected to the invariants and rules they produced |
+| **Scoped organization** | Decisions belong to scopes, not folders — browse by domain, not by file path |
+| **Searchable history** | Full-text search across all entries, filterable by type, author, scope, date |
+| **Relation graph** | Visual and queryable graph of how entries depend on, supersede, or contradict each other |
+| **Immutable record** | Decisions cannot be edited after creation — the historical record is preserved |
+
+This is not a wiki. It is a structured registry where decisions are recorded once, linked to their consequences, and retrievable by anyone who needs them — months or years later, with full context intact.`,
+  },
 }

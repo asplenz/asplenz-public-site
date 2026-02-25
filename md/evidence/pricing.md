@@ -4,13 +4,30 @@
 
 **Pricing**
 
-Evidence is designed for legally significant decisions and regulated environments. Deployments are tailored to your organization’s risk profile, integration requirements, and verification needs.
+Evidence is designed for legally significant decisions and regulated environments. Deployments are tailored to your organization's risk profile, integration requirements, and verification needs.
 
 ---
 
-### **Enterprise — Custom**
+### **Start free with the AI Registry**
 
-Evidence is offered exclusively as an enterprise product. Pricing depends on:
+Before you prove decisions, you need to know what systems you're deciding about.
+
+The AI Registry is a free module within Evidence. It lets you inventory your AI systems, classify them under the EU AI Act, and see exactly where your proof gaps are — at no cost.
+
+* Up to 10 AI systems
+* Full AI Act compliance fields (risk classification, human oversight, risk assessment)
+* Compliance dashboard with gap analysis
+* CSV and PDF export
+
+You'll navigate the full Evidence interface. Decision sealing, proof chains, and verification features are visible — and available when you're ready.
+
+**[Start your AI Registry — Free]**
+
+---
+
+### **Evidence — Custom**
+
+Evidence is offered as an enterprise product. Pricing depends on:
 
 * **Deployment model** (hosted or dedicated environment)
 * **Expected sealing volume**
@@ -30,6 +47,7 @@ Evidence is offered exclusively as an enterprise product. Pricing depends on:
 * **Secure API access**
 * **Role-based access control (RBAC)**
 * **Audit support**
+* **Unlimited AI systems** in the registry
 
 ---
 
@@ -45,10 +63,11 @@ Evidence is offered exclusively as an enterprise product. Pricing depends on:
 
 ### **Typical engagement model**
 
-1. **Discovery call** — Understand your regulatory and operational requirements.
-2. **Technical validation** — Review the integration and verification model.
-3. **Deployment plan** — Define environment, access model, and retention.
-4. **Go-live** — Begin sealing legally significant decisions.
+1. **Start with the AI Registry** — Inventory your AI systems for free. See your compliance gaps.
+2. **Discovery call** — Discuss your regulatory and operational requirements.
+3. **Technical validation** — Review the integration and verification model.
+4. **Deployment plan** — Define environment, access model, and retention.
+5. **Go-live** — Begin sealing legally significant decisions.
 
 ---
 
@@ -59,6 +78,7 @@ Evidence can be deployed:
 * As a standalone proof infrastructure.
 * Alongside **Asplenz Knowledge**.
 * Integrated with existing governance or compliance workflows.
+* Starting from the **free AI Registry** as an entry point.
 
 **There is no required dependency between products.**
 
@@ -72,6 +92,8 @@ Evidence addresses legally significant commitments. Deployment requirements vary
 
 ---
 
+---
+
 ### **Version Française**
 
 **Scellez vos décisions critiques avec confiance**
@@ -82,9 +104,26 @@ Evidence est conçu pour les décisions à portée juridique et les environnemen
 
 ---
 
-### **Enterprise — Sur mesure**
+### **Commencez gratuitement avec le Registre IA**
 
-Evidence est proposé exclusivement comme produit Enterprise. Le tarif dépend des facteurs suivants :
+Avant de prouver vos décisions, vous devez savoir sur quels systèmes elles portent.
+
+Le Registre IA est un module gratuit au sein d'Evidence. Il vous permet d'inventorier vos systèmes d'IA, de les classifier selon l'EU AI Act, et de voir précisément où se trouvent vos lacunes de preuve — sans aucun coût.
+
+* Jusqu'à 10 systèmes IA
+* Tous les champs de conformité AI Act (classification des risques, supervision humaine, évaluation des risques)
+* Tableau de bord de conformité avec analyse des lacunes
+* Export CSV et PDF
+
+Vous naviguez dans l'interface complète d'Evidence. Le scellement des décisions, les chaînes de preuve et les fonctionnalités de vérification sont visibles — et disponibles quand vous êtes prêt.
+
+**[Démarrer le Registre IA — Gratuit]**
+
+---
+
+### **Evidence — Sur mesure**
+
+Evidence est proposé comme produit Enterprise. Le tarif dépend des facteurs suivants :
 
 * **Modèle de déploiement** (hébergé ou environnement dédié)
 * **Volume de scellement** attendu
@@ -104,6 +143,7 @@ Evidence est proposé exclusivement comme produit Enterprise. Le tarif dépend d
 * **Accès API sécurisé**
 * **Contrôle d'accès basé sur les rôles (RBAC)**
 * **Support à l'audit**
+* **Systèmes IA illimités** dans le registre
 
 ---
 
@@ -119,10 +159,11 @@ Evidence est proposé exclusivement comme produit Enterprise. Le tarif dépend d
 
 ### **Modèle d'engagement type**
 
-1. **Appel de découverte** — Comprendre vos exigences réglementaires et opérationnelles.
-2. **Validation technique** — Réviser le modèle d'intégration et de vérification.
-3. **Plan de déploiement** — Définir l'environnement, le modèle d'accès et la rétention.
-4. **Mise en production** — Début du scellement des décisions critiques.
+1. **Commencez par le Registre IA** — Inventoriez vos systèmes IA gratuitement. Visualisez vos lacunes de conformité.
+2. **Appel de découverte** — Échangez sur vos exigences réglementaires et opérationnelles.
+3. **Validation technique** — Révisez le modèle d'intégration et de vérification.
+4. **Plan de déploiement** — Définissez l'environnement, le modèle d'accès et la rétention.
+5. **Mise en production** — Début du scellement des décisions critiques.
 
 ---
 
@@ -133,6 +174,7 @@ Evidence peut être déployé :
 * Comme une infrastructure de preuve autonome.
 * En parallèle de **Asplenz Knowledge**.
 * Intégré à vos flux de gouvernance ou de conformité existants.
+* En démarrant par le **Registre IA gratuit** comme point d'entrée.
 
 **Il n'y a aucune dépendance obligatoire entre les produits.**
 
@@ -143,7 +185,3 @@ Evidence peut être déployé :
 Evidence traite des engagements à portée juridique. Les exigences de déploiement varient selon l'exposition réglementaire, la tolérance au risque, la juridiction et le modèle de gouvernance interne. C'est pourquoi la tarification est structurée par organisation.
 
 **[Contacter le service commercial]**
-
----
-
-Souhaitez-vous que j'adapte cette structure pour une audience spécifique (CISO technique vs Juridique) ou que nous passions à la documentation d'intégration d'Evidence ?

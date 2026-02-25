@@ -4,52 +4,48 @@
 
 **Free**
 
-* 1 scope
-* 100 entries
+* 5 scopes / 5 repos
+* Unlimited entries
 * MCP + API access
+* Knowledge Verifier — report-only (100 PRs/month)
+* Community support
 * [Start for free]
 
-**Team — €299/mo**
+**Pro — €249/mo**
 
-* 3 scopes
+* 15 scopes / 15 repos
 * Unlimited entries
+* Knowledge Verifier — report-only (unlimited)
 * Approval-required overrides
+* Basic conformity metrics
 * Webhook event distribution
-* [Start with Team]
+* Email support
+* [Start with Pro]
 
-**Business — €799/mo**
+**Business — €899/mo**
 
-* 10 scopes
+* 50 scopes / 50 repos
 * Unlimited entries
-* **Governance dashboard (Overrides + Coverage)**
+* Knowledge Verifier — fail-on-blocking + strict mode
+* Override lifecycle dashboard
 * Cross-scope visibility
 * Expiration alerts
 * Full event distribution
-* Knowledge Verifier (report-only mode included)
+* Role-based access
+* Advanced metrics & trend reports
+* Priority support
 * [Start with Business]
 
 **Enterprise — Custom**
 
-* Unlimited scopes
+* Unlimited scopes & repos
 * Advanced governance analytics
 * Cross-scope enforcement policies
-* **Evidence bridge**
+* Evidence bridge
 * SSO & audit log
-* Advanced Verifier controls
-* Dedicated support
+* Dedicated support & onboarding
+* VPC / on-premise deployment (option)
 * [Contact Sales]
-
----
-
-**Add-on: Knowledge Verifier (Premium Gating)**
-
-Turn declaration into automated enforcement in your CI/CD pipeline.
-
-* **Fail-on-blocking:** Automatically block PRs with critical violations.
-* **Strict mode:** Enforce mandatory decision citations.
-* **Cross-scope CI policies:** Standardize enforcement across the organization.
-
-*Available as a paid add-on for Business and Enterprise plans.*
 
 ---
 
@@ -57,55 +53,47 @@ Turn declaration into automated enforcement in your CI/CD pipeline.
 
 **Tarifs**
 
-**Gratuit (Free)**
+**Gratuit**
 
-* 1 périmètre (scope)
-* 100 entrées
+* 5 périmètres / 5 repos
+* Entrées illimitées
 * Accès MCP + API
+* Knowledge Verifier — rapport uniquement (100 PR/mois)
+* Support communautaire
 * [Démarrer gratuitement]
 
-**Team — 299 €/mois**
+**Pro — 249 €/mois**
 
-* 3 périmètres
+* 15 périmètres / 15 repos
 * Entrées illimitées
-* Dérogations (overrides) avec approbation requise
+* Knowledge Verifier — rapport uniquement (illimité)
+* Dérogations avec approbation requise
+* Métriques de conformité basiques
 * Distribution d'événements via webhook
-* [Choisir Team]
+* Support email
+* [Choisir Pro]
 
-**Business — 799 €/mois**
+**Business — 899 €/mois**
 
-* 10 périmètres
+* 50 périmètres / 50 repos
 * Entrées illimitées
-* **Tableau de bord de gouvernance (Dérogations + Couverture)**
-* Visibilité multi-périmètres (cross-scope)
+* Knowledge Verifier — échec sur blocage + mode strict
+* Tableau de bord cycle de vie des dérogations
+* Visibilité multi-périmètres
 * Alertes d'expiration
 * Distribution complète d'événements
-* Knowledge Verifier (mode rapport uniquement inclus)
+* Contrôle d'accès par rôle
+* Métriques avancées et rapports de tendances
+* Support prioritaire
 * [Choisir Business]
 
 **Enterprise — Sur mesure**
 
-* Périmètres illimités
+* Périmètres et repos illimités
 * Analytique de gouvernance avancée
 * Politiques d'application multi-périmètres
-* **Pont vers Evidence (Evidence bridge)**
+* Pont vers Evidence
 * SSO et journaux d'audit
-* Contrôles Verifier avancés
-* Support dédié
+* Support dédié et onboarding
+* Déploiement VPC / on-premise (option)
 * [Contacter le service commercial]
-
----
-
-**Add-on : Knowledge Verifier (Premium Gating)**
-
-Transformez la déclaration en application automatisée dans vos pipelines CI/CD.
-
-* **Échec sur blocage (Fail-on-blocking) :** Bloquez automatiquement les PR présentant des violations critiques.
-* **Mode strict :** Rendez obligatoires les citations de décisions.
-* **Politiques CI multi-périmètres :** Standardisez l'application des règles à l'échelle de l'organisation.
-
-*Disponible en option payante pour les forfaits Business et Enterprise.*
-
----
-
-Would you like me to focus on the conversion optimization of the pricing table or analyze how these price points compare to market standards?
