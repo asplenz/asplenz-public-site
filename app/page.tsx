@@ -220,6 +220,7 @@ export default function Home() {
               className="w-full max-w-[720px]"
             />
           </div>
+            <p className="text-[var(--accent)] font-medium text-sm mb-6">{(t.index.whatChanges as any).impact}</p>
             <p className="text-[var(--text-secondary)] mb-2">{t.index.whatChanges.after1}</p>
             <p className="text-[var(--text-primary)] font-medium">{t.index.whatChanges.after2}</p>
           </div>
@@ -271,7 +272,20 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <p className="text-[var(--text-primary)] font-semibold text-sm">{(t.index as any).differentByDesign.closing}</p>
+            <p className="text-[var(--text-primary)] font-semibold text-sm mb-8">{(t.index as any).differentByDesign.closing}</p>
+            <p className="text-[var(--text-secondary)] mb-8">{(t.index as any).differentByDesign.graph}</p>
+          </div>
+          <div className="mb-8">
+            <Image
+              src="/decision-graph.png"
+              alt="Decision graph"
+              width={1500}
+              height={830}
+              className="w-full rounded-lg"
+            />
+          </div>
+          <div className="max-w-xl">
+            <p className="text-[var(--text-primary)] font-semibold text-sm">{(t.index as any).differentByDesign.graphClosing}</p>
           </div>
         </div>
       </section>
