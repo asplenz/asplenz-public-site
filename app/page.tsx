@@ -138,7 +138,8 @@ export default function Home() {
             </div>
             <p className="text-[var(--text-secondary)] mb-4">{t.index.knowledge.after1}</p>
             <p className="text-[var(--text-secondary)] mb-6">{t.index.knowledge.after2}</p>
-            <p className="text-sm text-[var(--text-muted)] italic mb-8">{t.index.knowledge.note}</p>
+            <p className="text-sm text-[var(--text-muted)] italic mb-4">{t.index.knowledge.note}</p>
+            <p className="text-sm text-[var(--text-secondary)] mb-8">{(t.index.knowledge as any).onDemand}</p>
             <Link
               href={t.index.knowledge.ctaHref}
               className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-[var(--bg-primary)] font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
