@@ -369,7 +369,13 @@ export default function Header() {
         </nav>
 
         {/* Right-side controls */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <Link
+            href="/contact"
+            className="hidden md:inline-flex px-4 py-2 text-sm font-medium text-white bg-[var(--accent)] hover:bg-[var(--accent-hover)] rounded transition-colors"
+          >
+            {t.nav.ctaStart}
+          </Link>
           <button
             onClick={toggleLang}
             className="px-3 py-1.5 text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] border border-[var(--border-light)] rounded hover:border-[var(--accent)] transition-all"

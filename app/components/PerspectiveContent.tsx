@@ -94,7 +94,7 @@ export default function PerspectiveContent({ title, subtitle, sections, next, la
                 <ul className="space-y-1">
                   {section.before.map((item, bIdx) => (
                     <li key={bIdx} className="text-[var(--text-muted)] text-sm flex items-start gap-2">
-                      <span className="text-red-400">×</span>
+                      <span className="text-[var(--red)]">×</span>
                       {item}
                     </li>
                   ))}

@@ -184,7 +184,7 @@ export default function DocsLayout({ children, navItems, backLink, title }: Docs
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black/60 z-40"
+          className="md:hidden fixed inset-0 bg-[#0D0D0D]/30 z-40"
           onClick={() => setSidebarOpen(false)}
         />
       )}
