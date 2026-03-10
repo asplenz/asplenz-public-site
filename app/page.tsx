@@ -122,7 +122,7 @@ export default function HomePage() {
           <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-4">
             {ix.levels.tag}
           </p>
-          <h2 className="font-serif text-3xl md:text-4xl text-[var(--text-primary)] mb-4 flex flex-wrap items-center gap-x-5 gap-y-2">
+          <h2 className="font-serif text-2xl md:text-4xl text-[var(--text-primary)] mb-4 flex flex-nowrap items-center gap-x-3 md:gap-x-5">
             {ix.levels.title.replace(/\.$/, '').split('. ').map((word: string, i: number) => (
               <span key={i} className="flex items-center gap-2">
                 {i > 0 && <span className="text-[var(--border)] font-sans font-light">·</span>}
@@ -260,7 +260,8 @@ export default function HomePage() {
           <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-4">{ix.comparison.tag}</p>
           <h2 className="font-serif text-3xl md:text-4xl text-[var(--text-primary)] mb-4">{ix.comparison.title}</h2>
           <p className="text-[var(--text-secondary)] mb-12 max-w-2xl">{ix.comparison.sub}</p>
-          <div className="border border-[var(--border)] rounded-xl overflow-hidden">
+          <div className="overflow-x-auto">
+          <div className="border border-[var(--border)] rounded-xl overflow-hidden min-w-[560px]">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-[var(--border)]">
@@ -283,6 +284,7 @@ export default function HomePage() {
                 ))}
               </tbody>
             </table>
+          </div>
           </div>
         </div>
       </section>

@@ -82,7 +82,7 @@ export const content = {
           badge: 'Level 2 — Formalize',
           tag: 'Living registry',
           title: 'Validate the drafts. They become structured, versioned entries.',
-          desc: 'Four entry types organized by scopes and namespaces. Every rule is anchored to the decision that justifies it.',
+          desc: 'Four entry types organized by scopes and namespaces — fed by extraction or created directly in the web interface. Every rule is anchored to the decision that justifies it.',
           concepts: {
             cards: [
               { n: 1, badge: 'Invariants', badgeColor: 'red', title: 'Absolute constraints', desc: 'Non-negotiable limits. Blocking: if an agent violates one, the action is stopped. Some require human approval before any override.', example: 'e.g. "Maximum exposure of 5% per issuer."' },
@@ -1749,7 +1749,7 @@ export const content = {
           badge: 'Niveau 2 — Formaliser',
           tag: 'Registre vivant',
           title: 'Validez les drafts. Ils deviennent des entrées structurées, versionnées.',
-          desc: 'Quatre types d\'entrées organisés par scopes et namespaces. Chaque règle est ancrée dans la décision qui la justifie.',
+          desc: 'Quatre types d\'entrées organisés par scopes et namespaces — alimentés par l\'extraction ou créés directement dans l\'interface web. Chaque règle est ancrée dans la décision qui la justifie.',
           concepts: {
             cards: [
               { n: 1, badge: 'Invariants', badgeColor: 'red', title: 'Contraintes absolues', desc: 'Des limites non négociables. Bloquantes : si un agent les viole, l\'action est stoppée. Certaines requièrent une approbation humaine avant toute dérogation.', example: 'Ex : "Exposition maximale de 5% par émetteur."' },
