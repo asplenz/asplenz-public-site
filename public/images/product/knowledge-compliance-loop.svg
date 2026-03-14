@@ -1,0 +1,57 @@
+<svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <marker id="loop-arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#6366f1"/>
+    </marker>
+  </defs>
+
+  <!-- Step 0: Extract -->
+  <rect x="40" y="40" width="180" height="200" rx="12" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="130" y="70" text-anchor="middle" font-size="12" fill="#a855f7" font-weight="700" letter-spacing="0.05em">0. EXTRACT</text>
+  <line x1="70" y1="82" x2="190" y2="82" stroke="#a855f7" stroke-width="0.5" opacity="0.4"/>
+  <text x="130" y="108" text-anchor="middle" font-size="12" fill="#3b0764">Scan sources</text>
+  <text x="130" y="132" text-anchor="middle" font-size="12" fill="#3b0764">LLM analysis</text>
+  <text x="130" y="156" text-anchor="middle" font-size="12" fill="#3b0764">Human review</text>
+  <text x="130" y="186" text-anchor="middle" font-size="11" fill="#7e22ce" font-style="italic">Nothing enters</text>
+  <text x="130" y="202" text-anchor="middle" font-size="11" fill="#7e22ce" font-style="italic">without approval</text>
+
+  <!-- Step 1: Record -->
+  <rect x="260" y="40" width="180" height="200" rx="12" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="350" y="70" text-anchor="middle" font-size="12" fill="#6366f1" font-weight="700" letter-spacing="0.05em">1. RECORD</text>
+  <line x1="290" y1="82" x2="410" y2="82" stroke="#6366f1" stroke-width="0.5" opacity="0.4"/>
+  <text x="350" y="108" text-anchor="middle" font-size="12" fill="#1e1b4b">Decisions</text>
+  <text x="350" y="132" text-anchor="middle" font-size="12" fill="#1e1b4b">Context</text>
+  <text x="350" y="156" text-anchor="middle" font-size="12" fill="#1e1b4b">Reasoning</text>
+  <text x="350" y="186" text-anchor="middle" font-size="11" fill="#4338ca" font-style="italic">Immutable</text>
+  <text x="350" y="202" text-anchor="middle" font-size="11" fill="#4338ca" font-style="italic">historical record</text>
+
+  <!-- Step 2: Enforce -->
+  <rect x="480" y="40" width="180" height="200" rx="12" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="570" y="70" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="700" letter-spacing="0.05em">2. ENFORCE</text>
+  <line x1="510" y1="82" x2="630" y2="82" stroke="#ef4444" stroke-width="0.5" opacity="0.4"/>
+  <text x="570" y="108" text-anchor="middle" font-size="12" fill="#450a0a">Invariants block</text>
+  <text x="570" y="132" text-anchor="middle" font-size="12" fill="#450a0a">Rules direct</text>
+  <text x="570" y="156" text-anchor="middle" font-size="12" fill="#450a0a">Overrides govern</text>
+  <text x="570" y="180" text-anchor="middle" font-size="12" fill="#450a0a">Approvals gate</text>
+  <text x="570" y="210" text-anchor="middle" font-size="11" fill="#dc2626" font-style="italic">No silent bypass</text>
+
+  <!-- Step 3: Trace -->
+  <rect x="700" y="40" width="150" height="200" rx="12" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="775" y="70" text-anchor="middle" font-size="12" fill="#16a34a" font-weight="700" letter-spacing="0.05em">3. TRACE</text>
+  <line x1="725" y1="82" x2="825" y2="82" stroke="#22c55e" stroke-width="0.5" opacity="0.4"/>
+  <text x="775" y="108" text-anchor="middle" font-size="12" fill="#052e16">References</text>
+  <text x="775" y="132" text-anchor="middle" font-size="12" fill="#052e16">followed</text>
+  <text x="775" y="156" text-anchor="middle" font-size="12" fill="#052e16">diverged</text>
+  <text x="775" y="186" text-anchor="middle" font-size="12" fill="#052e16">Events</text>
+  <text x="775" y="206" text-anchor="middle" font-size="11" fill="#15803d" font-style="italic">Log everything</text>
+
+  <!-- Arrows between steps -->
+  <line x1="220" y1="140" x2="260" y2="140" stroke="#6366f1" stroke-width="2" marker-end="url(#loop-arrow)"/>
+  <line x1="440" y1="140" x2="480" y2="140" stroke="#6366f1" stroke-width="2" marker-end="url(#loop-arrow)"/>
+  <line x1="660" y1="140" x2="700" y2="140" stroke="#6366f1" stroke-width="2" marker-end="url(#loop-arrow)"/>
+
+  <!-- Feedback loop arrow (bottom) -->
+  <path d="M775,240 L775,300 L130,300 L130,240" stroke="#6366f1" stroke-width="1.5" fill="none" marker-end="url(#loop-arrow)" stroke-dasharray="8,4"/>
+  <rect x="380" y="288" width="120" height="22" rx="4" fill="white"/>
+  <text x="440" y="303" text-anchor="middle" font-size="11" fill="#6366f1" font-weight="500">continuous loop</text>
+</svg>

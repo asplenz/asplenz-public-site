@@ -24,6 +24,18 @@ export const content = {
       whyAsplenz: 'Why Asplenz',
       aiRegistry: 'AI Registry',
       ctaStart: 'Get started free',
+      // New nav
+      product: 'Product',
+      howItWorks: 'How it works',
+      extraction: 'Automatic Extraction',
+      aiAgents: 'AI Agents',
+      ciVerifier: 'CI Verifier',
+      gettingStarted: 'Getting Started',
+      concepts: 'Concepts',
+      integrations: 'Integrations',
+      apiReference: 'API Reference',
+      blog: 'Blog',
+      signIn: 'Sign in',
     },
 
     // Homepage - Landing page
@@ -1691,6 +1703,18 @@ export const content = {
       whyAsplenz: 'Pourquoi Asplenz',
       aiRegistry: 'Registre IA',
       ctaStart: 'Démarrer gratuitement',
+      // New nav
+      product: 'Produit',
+      howItWorks: 'Comment ça marche',
+      extraction: 'Extraction automatique',
+      aiAgents: 'Agents IA',
+      ciVerifier: 'Vérificateur CI',
+      gettingStarted: 'Démarrer',
+      concepts: 'Concepts',
+      integrations: 'Intégrations',
+      apiReference: 'Référence API',
+      blog: 'Blog',
+      signIn: 'Se connecter',
     },
 
     // Homepage - Landing page
