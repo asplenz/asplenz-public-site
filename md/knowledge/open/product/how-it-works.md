@@ -77,6 +77,35 @@ Un **override** est une exception gouvernée — une dérogation explicite et ap
 
 Les overrides répondent à la question : **« Pourquoi cette règle n'a-t-elle pas été suivie ? »**
 
+### Comment les types travaillent ensemble
+
+Les quatre types ne sont pas interchangeables — chacun a un rôle distinct dans le cycle de vie du knowledge :
+
+```
+1. CAPTURE     Quelqu'un dit "on prend PostgreSQL"
+               → Decision enregistrée (fait historique, immuable)
+
+2. STRUCTURE   L'équipe en dérive une directive opérationnelle
+               → Rule créée : "Tout nouveau service transactionnel doit utiliser PostgreSQL"
+               → Invariant créé : "Pas de base NoSQL pour les données transactionnelles"
+
+3. ENFORCE     Un agent veut créer un service avec MongoDB
+               → knowledge_check → BLOQUÉ par l'invariant
+               → L'agent explique POURQUOI en citant la decision d'origine
+
+4. EXCEPTION   Le service legacy a besoin de MongoDB temporairement
+               → Override créé avec justification, conditions et date d'expiration
+```
+
+| Type | Rôle | Qui le produit | Qui le consomme |
+|------|------|---------------|-----------------|
+| **Decision** | Mémoire — le *pourquoi* | Humains (via bot, dashboard, agent) | Humains (audit, contexte), agents (explication) |
+| **Invariant** | Garde-fou — le *jamais* | Humains (après réflexion) | Agents et CI (enforcement bloquant) |
+| **Rule** | Directive — le *comment* | Humains (dérivé des decisions) | Agents et CI (enforcement, advisory ou mandatory) |
+| **Override** | Exception — le *malgré tout* | Humains (avec approbation) | Agents et CI (dérogation temporaire) |
+
+Sans les decisions, les rules n'ont pas de provenance. Sans les rules, les decisions ne sont pas appliquées. Sans les overrides, le système est rigide. Les quatre types forment un cycle complet : **capturer → structurer → appliquer → tracer**.
+
 ---
 
 ## Comment les entrées se connectent
@@ -110,10 +139,10 @@ La plupart des équipes ont déjà des règles — elles ne sont simplement pas 
 La CLI `knowledge extract` scanne vos sources et utilise une analyse LLM pour faire émerger les règles, décisions et contraintes implicites :
 
 ```bash
-knowledge extract --scope Engineering --source ./docs --source ./README.md
+knowledge extract --scope Engineering --namespace payments --source ./docs --source ./README.md
 ```
 
-La CLI lit chaque fichier correspondant aux patterns configurés, les découpe en chunks, et envoie chaque chunk dans le pipeline d'extraction. Le LLM identifie :
+Le LLM analyse le contenu et identifie :
 
 - **Candidats invariant** : contraintes absolues (« Tous les endpoints doivent exiger une authentification »)
 - **Candidats rule** : directives actives (« Utiliser les conventional commits »)
@@ -123,34 +152,15 @@ Chaque extraction inclut un score de confiance, l'extrait source qui l'a motivé
 
 ### Validation humaine
 
-Rien n'est publié sans validation humaine. Chaque extraction devient un **draft** dans la file de revue :
+Rien n'est publié sans validation humaine. Chaque extraction devient un **draft** dans la file de revue. Les reviewers voient le contexte source, le niveau de confiance, et les relations détectées avec les entrées existantes. Trois actions : **Approuver**, **Rejeter** ou **Éditer**.
 
-```
-knowledge extract → 47 chunks analysés → 12 drafts générés
+### Déduplication sémantique
 
-Draft dsd-8a3f (invariant, confiance : 0.91)
-  Contrainte : "Tous les endpoints API doivent exiger une authentification"
-  Source : docs/security.md, ligne 42
-  → Approuver | Rejeter | Éditer
-```
-
-Les reviewers voient le contexte source, le niveau de confiance, et les relations détectées avec les entrées existantes (doublons, remplacements, tensions). Les drafts approuvés deviennent de vraies entrées dans le registre. Les drafts rejetés sont supprimés.
-
-### Déduplication
-
-Le pipeline d'extraction compare chaque candidat aux entrées existantes par similarité sémantique. Les doublons exacts sont supprimés silencieusement. Les quasi-doublons sont signalés avec une relation `REPLACES` pour que les reviewers décident si la nouvelle version doit remplacer l'ancienne.
+Le pipeline compare chaque candidat aux entrées existantes. Les doublons exacts sont éliminés silencieusement, les quasi-doublons signalés pour que les reviewers décident. Vous pouvez ré-extraire régulièrement sans risque de doublons.
 
 ### API d'ingestion
 
-Pour les intégrations custom, les équipes peuvent pousser des documents directement via l'API :
-
-```bash
-curl -X POST http://localhost:8090/api/v1/distill/stream \
-  -H "Authorization: Bearer kn_..." \
-  -d '{"scope_id": "scp-...", "documents": [{"content": "..."}], "auto_run": true}'
-```
-
-Cela permet l'extraction depuis n'importe quelle source : wikis internes, exports Confluence, digests Slack ou artefacts CI.
+Pour les sources qui ne sont pas sur disque — exports Confluence, digests Slack, wikis internes, artefacts CI — l'API REST permet de pousser des documents directement dans le pipeline d'extraction.
 
 ---
 
@@ -220,6 +230,8 @@ Knowledge → Créé dec-4f2a, lié à la rule existante rul-7b1c (stratégie de
 ```
 
 Les agents peuvent chercher, vérifier la conformité, résoudre le contexte applicable, enregistrer des decisions, demander des approbations et enregistrer des traces d'usage — le tout via le même protocole.
+
+Quand un agent demande une approbation, Knowledge peut notifier les personnes concernées via **webhook** (Slack, Teams, ou tout système externe) avec une signature ECDSA pour garantir l'authenticité. L'agent peut fournir un `callback_url` pour être notifié automatiquement quand l'approbation est traitée — sans polling.
 
 ### Bot Slack & Teams
 
@@ -380,6 +392,35 @@ An **override** is a governed exception — an explicit, approved deviation from
 
 Overrides answer the question: **"Why was this rule not followed?"**
 
+### How the Types Work Together
+
+The four types are not interchangeable — each plays a distinct role in the knowledge lifecycle:
+
+```
+1. CAPTURE     Someone says "we're going with PostgreSQL"
+               → Decision recorded (historical fact, immutable)
+
+2. STRUCTURE   The team derives an operational directive
+               → Rule created: "All new transactional services must use PostgreSQL"
+               → Invariant created: "No NoSQL databases for transactional data"
+
+3. ENFORCE     An agent wants to create a service with MongoDB
+               → knowledge_check → BLOCKED by the invariant
+               → The agent explains WHY by citing the original decision
+
+4. EXCEPTION   The legacy service needs MongoDB temporarily
+               → Override created with justification, conditions, and expiry date
+```
+
+| Type | Role | Who produces it | Who consumes it |
+|------|------|----------------|-----------------|
+| **Decision** | Memory — the *why* | Humans (via bot, dashboard, agent) | Humans (audit, context), agents (explanation) |
+| **Invariant** | Guardrail — the *never* | Humans (after deliberation) | Agents and CI (blocking enforcement) |
+| **Rule** | Directive — the *how* | Humans (derived from decisions) | Agents and CI (enforcement, advisory or mandatory) |
+| **Override** | Exception — the *despite* | Humans (with approval) | Agents and CI (temporary deviation) |
+
+Without decisions, rules have no provenance. Without rules, decisions are not enforced. Without overrides, the system is rigid. The four types form a complete cycle: **capture → structure → enforce → trace**.
+
 ---
 
 ## How Entries Connect
@@ -413,10 +454,10 @@ Most teams already have rules — they're just not structured. They live in READ
 The `knowledge extract` CLI scans your sources and uses LLM analysis to surface implicit rules, decisions, and constraints:
 
 ```bash
-knowledge extract --scope Engineering --source ./docs --source ./README.md
+knowledge extract --scope Engineering --namespace payments --source ./docs --source ./README.md
 ```
 
-The CLI reads every file matching the configured patterns, splits them into chunks, and sends each chunk through an extraction pipeline. The LLM identifies:
+The LLM analyzes the content and identifies:
 
 - **Invariant candidates**: absolute constraints ("All endpoints must require authentication")
 - **Rule candidates**: active directives ("Use conventional commits")
@@ -426,34 +467,15 @@ Each extraction includes a confidence score, the source excerpt that motivated i
 
 ### Human Review
 
-Nothing is published without human validation. Every extraction becomes a **draft** in the review queue:
+Nothing is published without human validation. Every extraction becomes a **draft** in the review queue. Reviewers see the source context, confidence level, and any detected relations to existing entries. Three actions: **Approve**, **Reject**, or **Edit**.
 
-```
-knowledge extract → 47 chunks analyzed → 12 drafts generated
+### Semantic Deduplication
 
-Draft dsd-8a3f (invariant, confidence: 0.91)
-  Constraint: "All API endpoints must require authentication"
-  Source: docs/security.md, line 42
-  → Approve | Reject | Edit
-```
-
-Reviewers see the source context, confidence level, and any detected relations to existing entries (duplicates, replacements, tensions). Approved drafts become real entries in the registry. Rejected drafts are discarded.
-
-### Deduplication
-
-The extraction pipeline compares every candidate against existing entries using semantic similarity. Exact duplicates are discarded silently. Near-matches are flagged with a `REPLACES` relation so reviewers can decide whether the new version should supersede the old one.
+The pipeline compares every candidate against existing entries. Exact duplicates are discarded silently, near-matches are flagged so reviewers can decide. You can re-extract regularly without risking duplicates.
 
 ### Ingestion API
 
-For custom integrations, teams can push documents directly via the API:
-
-```bash
-curl -X POST http://localhost:8090/api/v1/distill/stream \
-  -H "Authorization: Bearer kn_..." \
-  -d '{"scope_id": "scp-...", "documents": [{"content": "..."}], "auto_run": true}'
-```
-
-This enables extraction from any source: internal wikis, Confluence exports, Slack digests, or CI artifacts.
+For sources that don't live on disk — Confluence exports, Slack digests, internal wikis, CI artifacts — the REST API lets you push documents directly into the extraction pipeline.
 
 ---
 
@@ -523,6 +545,8 @@ Knowledge → Created dec-4f2a, linked to existing rule rul-7b1c (caching strate
 ```
 
 Agents can search, check compliance, resolve applicable context, record decisions, request approvals, and record usage traces — all through the same protocol.
+
+When an agent requests an approval, Knowledge can notify the right people via **webhook** (Slack, Teams, or any external system) with an ECDSA signature to guarantee authenticity. The agent can provide a `callback_url` to be notified automatically when the approval is resolved — no polling needed.
 
 ### Slack & Teams Bot
 

@@ -154,9 +154,8 @@ export default function Header() {
       label: t.nav.docs,
       children: [
         { label: t.nav.gettingStarted, href: '/docs/getting-started' },
-        { label: t.nav.concepts, href: '/docs/concepts/decisions' },
-        { label: t.nav.integrations, href: '/docs/integrations/claude-mcp' },
-        { label: t.nav.apiReference, href: '/docs/integrations/api-reference' },
+        { label: t.nav.concepts, href: '/docs/concepts' },
+        { label: t.nav.extraction, href: '/docs/extraction' },
       ],
     },
     { label: t.nav.pricing, href: '/pricing' },

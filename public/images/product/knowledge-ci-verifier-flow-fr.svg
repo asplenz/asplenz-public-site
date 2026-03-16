@@ -1,0 +1,74 @@
+<svg viewBox="0 0 680 580" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <marker id="cv-arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#6366f1"/>
+    </marker>
+    <marker id="cv-arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#22c55e"/>
+    </marker>
+    <marker id="cv-arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="cv-arrow-amber" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <!-- Step 1 -->
+  <rect x="170" y="16" width="340" height="44" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="340" y="43" text-anchor="middle" font-size="13" fill="#1e293b">Le développeur ouvre une PR</text>
+
+  <line x1="340" y1="60" x2="340" y2="92" stroke="#6366f1" stroke-width="1.5" marker-end="url(#cv-arrow)"/>
+
+  <!-- Step 2 -->
+  <rect x="170" y="92" width="340" height="44" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="340" y="119" text-anchor="middle" font-size="13" fill="#1e1b4b">Le CI déclenche le Knowledge Verifier</text>
+
+  <line x1="340" y1="136" x2="340" y2="168" stroke="#6366f1" stroke-width="1.5" marker-end="url(#cv-arrow)"/>
+
+  <!-- Step 3 -->
+  <rect x="170" y="168" width="340" height="52" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="340" y="190" text-anchor="middle" font-size="12" fill="#4338ca" font-weight="600">Mapping de scopes</text>
+  <text x="340" y="208" text-anchor="middle" font-size="11" fill="#1e1b4b">fichiers modifiés → scopes Knowledge</text>
+
+  <line x1="340" y1="220" x2="340" y2="252" stroke="#6366f1" stroke-width="1.5" marker-end="url(#cv-arrow)"/>
+
+  <!-- Step 4 -->
+  <rect x="170" y="252" width="340" height="52" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="340" y="274" text-anchor="middle" font-size="12" fill="#4338ca" font-weight="600">Récupération des contraintes</text>
+  <text x="340" y="292" text-anchor="middle" font-size="11" fill="#1e1b4b">invariants + rules mandatory + rules advisory</text>
+
+  <line x1="340" y1="304" x2="340" y2="336" stroke="#6366f1" stroke-width="1.5" marker-end="url(#cv-arrow)"/>
+
+  <!-- Step 5 -->
+  <rect x="140" y="336" width="400" height="68" rx="10" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="340" y="358" text-anchor="middle" font-size="12" fill="#7e22ce" font-weight="600">Analyse sur trois axes</text>
+  <text x="340" y="376" text-anchor="middle" font-size="11" fill="#3b0764">Les invariants sont-ils respectés ?</text>
+  <text x="340" y="392" text-anchor="middle" font-size="11" fill="#3b0764">Les rules mandatory suivies ? Les citations valides ?</text>
+
+  <line x1="340" y1="404" x2="340" y2="436" stroke="#6366f1" stroke-width="1.5" marker-end="url(#cv-arrow)"/>
+
+  <!-- Step 6: Verdict -->
+  <text x="340" y="452" text-anchor="middle" font-size="12" fill="#1e293b" font-weight="600">Verdict</text>
+
+  <!-- PASS -->
+  <line x1="240" y1="460" x2="110" y2="500" stroke="#22c55e" stroke-width="1.5" marker-end="url(#cv-arrow-green)"/>
+  <rect x="36" y="500" width="150" height="44" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="111" y="519" text-anchor="middle" font-size="13" fill="#16a34a" font-weight="700">PASS</text>
+  <text x="111" y="535" text-anchor="middle" font-size="10" fill="#052e16">toutes les contraintes OK</text>
+
+  <!-- WARN -->
+  <line x1="340" y1="460" x2="340" y2="500" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#cv-arrow-amber)"/>
+  <rect x="265" y="500" width="150" height="44" rx="8" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="340" y="519" text-anchor="middle" font-size="13" fill="#d97706" font-weight="700">WARN</text>
+  <text x="340" y="535" text-anchor="middle" font-size="10" fill="#451a03">violations advisory</text>
+
+  <!-- FAIL -->
+  <line x1="440" y1="460" x2="570" y2="500" stroke="#ef4444" stroke-width="1.5" marker-end="url(#cv-arrow-red)"/>
+  <rect x="495" y="500" width="150" height="44" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="570" y="519" text-anchor="middle" font-size="13" fill="#ef4444" font-weight="700">FAIL</text>
+  <text x="570" y="535" text-anchor="middle" font-size="10" fill="#450a0a">invariant ou rule violé</text>
+
+  <!-- Bottom -->
+  <text x="340" y="572" text-anchor="middle" font-size="11" fill="#64748b" font-style="italic">Rapport publié sur la PR (JSON + Markdown)</text>
+</svg>

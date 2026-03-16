@@ -20,7 +20,7 @@ const content = {
         {
           name: 'Decisions',
           badge: 'Immuable',
-          desc: 'Un fait historique — ce qui a été décidé, par qui, quand, et pourquoi. Les decisions sont immuables : une fois enregistrées, elles ne peuvent pas être modifiées.',
+          desc: 'Un fait historique  -  ce qui a été décidé, par qui, quand, et pourquoi. Les decisions sont immuables : une fois enregistrées, elles ne peuvent pas être modifiées.',
           question: '« Pourquoi cette règle existe-t-elle ? »',
           code: `{
   "decision": "Utiliser PostgreSQL pour tous les data stores transactionnels",
@@ -33,18 +33,18 @@ const content = {
         {
           name: 'Invariants',
           badge: 'Bloquant',
-          desc: 'Une contrainte absolue — quelque chose qui ne doit jamais être violé. Les invariants sont bloquants : si une action entre en conflit avec un invariant, l\'action est stoppée.',
+          desc: 'Une contrainte absolue  -  quelque chose qui ne doit jamais être violé. Les invariants sont bloquants : si une action entre en conflit avec un invariant, l\'action est stoppée.',
           question: '« Qu\'est-ce qui ne doit jamais arriver ? »',
           code: `{
   "constraint": "Tous les endpoints API publics doivent exiger une authentification",
-  "rationale": "Baseline sécurité — aucune exception sans approbation explicite",
+  "rationale": "Baseline sécurité  -  aucune exception sans approbation explicite",
   "requires_approval": true
 }`,
         },
         {
           name: 'Rules',
           badge: 'Versionné',
-          desc: 'Une directive active — quelque chose qui doit être suivi. Les rules sont versionnées : quand les exigences changent, une nouvelle version est créée tandis que l\'historique est préservé.',
+          desc: 'Une directive active  -  quelque chose qui doit être suivi. Les rules sont versionnées : quand les exigences changent, une nouvelle version est créée tandis que l\'historique est préservé.',
           question: '« Que devons-nous faire ? »',
           code: `{
   "directive": "Toutes les PRs doivent être revues par au moins un membre de l'équipe",
@@ -54,11 +54,11 @@ const content = {
         {
           name: 'Overrides',
           badge: 'Gouverné',
-          desc: 'Une exception gouvernée — une dérogation explicite et approuvée à une rule ou un invariant. Les overrides ne sont pas des contournements. Ce sont des preuves documentées.',
+          desc: 'Une exception gouvernée  -  une dérogation explicite et approuvée à une rule ou un invariant. Les overrides ne sont pas des contournements. Ce sont des preuves documentées.',
           question: '« Pourquoi cette règle n\'a-t-elle pas été suivie ? »',
           code: `{
   "target": "rule:rul-9c2a",
-  "justification": "Le gateway de paiement legacy nécessite REST — migration gRPC prévue au Q3",
+  "justification": "Le gateway de paiement legacy nécessite REST  -  migration gRPC prévue au Q3",
   "conditions": "S'applique uniquement au service payment-gateway-v2",
   "expires": "2026-09-30",
   "approved_by": "sarah.chen"
@@ -66,17 +66,42 @@ const content = {
         },
       ],
     },
+    typesWork: {
+      tag: 'Comment les types travaillent ensemble',
+      intro: 'Les quatre types ne sont pas interchangeables - chacun a un rôle distinct dans le cycle de vie du knowledge :',
+      code: `1. CAPTURE     Quelqu'un dit "on prend PostgreSQL"
+               → Decision enregistrée (fait historique, immuable)
+
+2. STRUCTURE   L'équipe en dérive une directive opérationnelle
+               → Rule créée : "Tout nouveau service transactionnel doit utiliser PostgreSQL"
+               → Invariant créé : "Pas de base NoSQL pour les données transactionnelles"
+
+3. ENFORCE     Un agent veut créer un service avec MongoDB
+               → knowledge_check → BLOQUÉ par l'invariant
+               → L'agent explique POURQUOI en citant la decision d'origine
+
+4. EXCEPTION   Le service legacy a besoin de MongoDB temporairement
+               → Override créé avec justification, conditions et date d'expiration`,
+      headers: ['Type', 'Rôle', 'Qui le produit', 'Qui le consomme'],
+      rows: [
+        ['Decision', 'Mémoire - le pourquoi', 'Humains (via bot, dashboard, agent)', 'Humains (audit, contexte), agents (explication)'],
+        ['Invariant', 'Garde-fou - le jamais', 'Humains (après réflexion)', 'Agents et CI (enforcement bloquant)'],
+        ['Rule', 'Directive - le comment', 'Humains (dérivé des decisions)', 'Agents et CI (enforcement, advisory ou mandatory)'],
+        ['Override', 'Exception - le malgré tout', 'Humains (avec approbation)', 'Agents et CI (dérogation temporaire)'],
+      ],
+      summary: 'Sans les decisions, les rules n\'ont pas de provenance. Sans les rules, les decisions ne sont pas appliquées. Sans les overrides, le système est rigide. Les quatre types forment un cycle complet : capturer → structurer → appliquer → tracer.',
+    },
     relations: {
       tag: 'Comment les entrées se connectent',
-      body: 'Les entités sont liées entre elles par des relations typées : depends_on, supersedes, replaces, contradicts, in_tension_with. Ce graphe signifie qu\'on peut toujours remonter au pourquoi d\'une contrainte — il suffit de suivre les liens jusqu\'à la decision.',
+      body: 'Les entités sont liées entre elles par des relations typées : depends_on, supersedes, replaces, contradicts, in_tension_with. Ce graphe signifie qu\'on peut toujours remonter au pourquoi d\'une contrainte  -  il suffit de suivre les liens jusqu\'à la decision.',
     },
     scopes: {
       tag: 'Scopes et organisation',
-      body: 'Knowledge est organisé en scopes — des domaines comme Engineering, Product, Operations ou Security. Chaque scope contient ses propres decisions, invariants et rules. Au sein d\'un scope, les namespaces permettent une subdivision plus fine (ex : payments, auth, infra). Pour les organisations multi-entités, les tenants assurent l\'isolation.',
+      body: 'Knowledge est organisé en scopes  -  des domaines comme Engineering, Product, Operations ou Security. Chaque scope contient ses propres decisions, invariants et rules. Au sein d\'un scope, les namespaces permettent une subdivision plus fine (ex : payments, auth, infra). Pour les organisations multi-entités, les tenants assurent l\'isolation.',
     },
     extraction: {
       tag: 'Partez de ce que vous avez déjà',
-      intro: 'La plupart des équipes ont déjà des règles — elles ne sont simplement pas structurées. Elles vivent dans des READMEs, des docs d\'architecture, des runbooks, des commentaires de code et des fichiers CLAUDE.md. Knowledge les extrait automatiquement.',
+      intro: 'La plupart des équipes ont déjà des règles  -  elles ne sont simplement pas structurées. Elles vivent dans des READMEs, des docs d\'architecture, des runbooks, des commentaires de code et des fichiers CLAUDE.md. Knowledge les extrait automatiquement.',
       steps: [
         {
           title: 'Extraction automatique',
@@ -132,14 +157,14 @@ curl -X POST http://localhost:8090/api/v1/check \\
         },
         {
           name: 'MCP pour les agents IA',
-          desc: 'Les agents IA (Claude, Cursor, etc.) se connectent via MCP et interagissent en langage naturel. Knowledge expose 6 outils que les agents appellent avant, pendant et après leurs actions.',
+          desc: "Les agents IA (Claude, Cursor, etc.) se connectent via MCP et interagissent en langage naturel. Knowledge expose 6 outils que les agents appellent avant, pendant et après leurs actions. Quand un agent demande une approbation, Knowledge peut notifier les personnes concernées via webhook (Slack, Teams, ou tout système externe) avec une signature ECDSA pour garantir l'authenticité. L'agent peut fournir un callback_url pour être notifié automatiquement quand l'approbation est traitée — sans polling.",
           examples: [
             {
               label: 'Vérifier avant d\'agir',
               code: `Utilisateur : "Est-ce que je peux déployer vendredi soir ?"
 Agent → knowledge_check(scope="Engineering", intended_action="Déployer vendredi soir")
 Knowledge → Conflit : invariant inv-8a3f "Pas de déploiement le vendredi après 16h UTC"
-Agent : "Non — bloqué par l'invariant inv-8a3f."`,
+Agent : "Non  -  bloqué par l'invariant inv-8a3f."`,
             },
             {
               label: 'Résoudre le contexte avant de coder',
@@ -195,7 +220,7 @@ L'utilisateur clique [Valider] → l'entrée est publiée dans le registre`,
   → Le Verifier résout le scope Engineering
   → Conflit : invariant inv-2b1c "Pas de dépendances sous licence AGPL"
   → Aucun override enregistré pour cet invariant
-  → Verdict : FAIL ✗ — invariant inv-2b1c violé`,
+  → Verdict : FAIL ✗  -  invariant inv-2b1c violé`,
             },
           ],
         },
@@ -209,15 +234,15 @@ L'utilisateur clique [Valider] → l'entrée est publiée dans le registre`,
         { n: '2', label: 'Enforce', desc: 'Les invariants bloquent, les rules dirigent, les overrides gouvernent les exceptions, les approbations gatent les actions à risque.' },
         { n: '3', label: 'Trace', desc: 'Les références prouvent ce qui a été consulté, les events loguent chaque changement.' },
       ],
-      body: 'La boucle commence par l\'extraction — peuplez le registre à partir de ce que votre équipe a déjà. Ensuite elle tourne en continu : chaque requête d\'agent, chaque check de PR, chaque décision d\'approbation s\'ajoute à la trace.',
+      body: 'La boucle commence par l\'extraction  -  peuplez le registre à partir de ce que votre équipe a déjà. Ensuite elle tourne en continu : chaque requête d\'agent, chaque check de PR, chaque décision d\'approbation s\'ajoute à la trace.',
     },
     security: {
       tag: 'Sécurité et contrôle d\'accès',
       items: [
-        'Clés API avec permissions — chaque clé a un ensemble spécifique d\'opérations autorisées',
+        'Clés API avec permissions  -  chaque clé a un ensemble spécifique d\'opérations autorisées',
         'Hiérarchie de rôles : developer → senior-dev → tech-lead → admin',
-        'Accès par scope — les clés peuvent être restreintes à des scopes spécifiques',
-        'Isolation tenant — les déploiements multi-tenant assurent une séparation complète des données',
+        'Accès par scope  -  les clés peuvent être restreintes à des scopes spécifiques',
+        'Isolation tenant  -  les déploiements multi-tenant assurent une séparation complète des données',
       ],
     },
     cta: {
@@ -243,7 +268,7 @@ L'utilisateur clique [Valider] → l'entrée est publiée dans le registre`,
         {
           name: 'Decisions',
           badge: 'Immutable',
-          desc: 'A historical fact — what was decided, by whom, when, and why. Decisions are immutable: once recorded, they cannot be edited. The historical record is preserved exactly as it was captured.',
+          desc: 'A historical fact  -  what was decided, by whom, when, and why. Decisions are immutable: once recorded, they cannot be edited. The historical record is preserved exactly as it was captured.',
           question: '"Why does this rule exist?"',
           code: `{
   "decision": "Use PostgreSQL for all transactional data stores",
@@ -256,18 +281,18 @@ L'utilisateur clique [Valider] → l'entrée est publiée dans le registre`,
         {
           name: 'Invariants',
           badge: 'Blocking',
-          desc: 'An absolute constraint — something that must never be violated. Invariants are blocking: if an action conflicts with an invariant, the action is stopped.',
+          desc: 'An absolute constraint  -  something that must never be violated. Invariants are blocking: if an action conflicts with an invariant, the action is stopped.',
           question: '"What must never happen?"',
           code: `{
   "constraint": "All public API endpoints must require authentication",
-  "rationale": "Security baseline — no exceptions without explicit approval",
+  "rationale": "Security baseline  -  no exceptions without explicit approval",
   "requires_approval": true
 }`,
         },
         {
           name: 'Rules',
           badge: 'Versioned',
-          desc: 'An active directive — something that should be followed. Rules are versioned: when requirements change, a new version is created while the history is preserved.',
+          desc: 'An active directive  -  something that should be followed. Rules are versioned: when requirements change, a new version is created while the history is preserved.',
           question: '"What should we do?"',
           code: `{
   "directive": "All PRs must be reviewed by at least one team member",
@@ -277,29 +302,54 @@ L'utilisateur clique [Valider] → l'entrée est publiée dans le registre`,
         {
           name: 'Overrides',
           badge: 'Governed',
-          desc: 'A governed exception — an explicit, approved deviation from a rule or invariant. Overrides are not workarounds. They are documented proof that the organization acknowledged a constraint, decided to deviate, and recorded why.',
+          desc: 'A governed exception  -  an explicit, approved deviation from a rule or invariant. Overrides are not workarounds. They are documented proof that the organization acknowledged a constraint, decided to deviate, and recorded why.',
           question: '"Why was this rule not followed?"',
           code: `{
   "target": "rule:rul-9c2a",
-  "justification": "Legacy payment gateway requires REST — gRPC migration planned for Q3",
+  "justification": "Legacy payment gateway requires REST  -  gRPC migration planned for Q3",
   "conditions": "Applies only to payment-gateway-v2 service",
-  "expires": "2025-09-30",
+  "expires": "2026-09-30",
   "approved_by": "sarah.chen"
 }`,
         },
       ],
     },
+    typesWork: {
+      tag: 'How the Types Work Together',
+      intro: 'The four types are not interchangeable - each plays a distinct role in the knowledge lifecycle:',
+      code: `1. CAPTURE     Someone says "we're going with PostgreSQL"
+               → Decision recorded (historical fact, immutable)
+
+2. STRUCTURE   The team derives an operational directive
+               → Rule created: "All new transactional services must use PostgreSQL"
+               → Invariant created: "No NoSQL databases for transactional data"
+
+3. ENFORCE     An agent wants to create a service with MongoDB
+               → knowledge_check → BLOCKED by the invariant
+               → The agent explains WHY by citing the original decision
+
+4. EXCEPTION   The legacy service needs MongoDB temporarily
+               → Override created with justification, conditions, and expiry date`,
+      headers: ['Type', 'Role', 'Who produces it', 'Who consumes it'],
+      rows: [
+        ['Decision', 'Memory - the why', 'Humans (via bot, dashboard, agent)', 'Humans (audit, context), agents (explanation)'],
+        ['Invariant', 'Guardrail - the never', 'Humans (after deliberation)', 'Agents and CI (blocking enforcement)'],
+        ['Rule', 'Directive - the how', 'Humans (derived from decisions)', 'Agents and CI (enforcement, advisory or mandatory)'],
+        ['Override', 'Exception - the despite', 'Humans (with approval)', 'Agents and CI (temporary deviation)'],
+      ],
+      summary: 'Without decisions, rules have no provenance. Without rules, decisions are not enforced. Without overrides, the system is rigid. The four types form a complete cycle: capture → structure → enforce → trace.',
+    },
     relations: {
       tag: 'How Entries Connect',
-      body: 'Entities link to each other through typed relations: depends_on, supersedes, replaces, contradicts, in_tension_with. This graph means you can always trace why a constraint exists — follow the links back to the decision.',
+      body: 'Entities link to each other through typed relations: depends_on, supersedes, replaces, contradicts, in_tension_with. This graph means you can always trace why a constraint exists  -  follow the links back to the decision.',
     },
     scopes: {
       tag: 'Scopes and Organization',
-      body: 'Knowledge is organized into scopes — domains like Engineering, Product, Operations, or Security. Each scope contains its own decisions, invariants, and rules. Within a scope, namespaces allow further subdivision (e.g., payments, auth, infra). For multi-entity organizations, tenants provide isolation.',
+      body: 'Knowledge is organized into scopes  -  domains like Engineering, Product, Operations, or Security. Each scope contains its own decisions, invariants, and rules. Within a scope, namespaces allow further subdivision (e.g., payments, auth, infra). For multi-entity organizations, tenants provide isolation.',
     },
     extraction: {
       tag: 'Start from What You Have',
-      intro: 'Most teams already have rules — they\'re just not structured. They live in READMEs, architecture docs, runbooks, code comments, and CLAUDE.md files. Knowledge extracts them automatically.',
+      intro: 'Most teams already have rules  -  they\'re just not structured. They live in READMEs, architecture docs, runbooks, code comments, and CLAUDE.md files. Knowledge extracts them automatically.',
       steps: [
         {
           title: 'Automatic Extraction',
@@ -355,14 +405,14 @@ curl -X POST http://localhost:8090/api/v1/check \\
         },
         {
           name: 'MCP for AI Agents',
-          desc: 'AI agents (Claude, Cursor, etc.) connect via MCP and interact using natural language. Knowledge exposes 6 tools that agents call before, during, and after acting.',
+          desc: 'AI agents (Claude, Cursor, etc.) connect via MCP and interact using natural language. Knowledge exposes 6 tools that agents call before, during, and after acting. When an agent requests an approval, Knowledge can notify the right people via webhook (Slack, Teams, or any external system) with an ECDSA signature to guarantee authenticity. The agent can provide a callback_url to be notified automatically when the approval is resolved — no polling needed.',
           examples: [
             {
               label: 'Check before acting',
               code: `User: "Can I deploy on Friday evening?"
 Agent → knowledge_check(scope="Engineering", intended_action="Deploy on Friday evening")
 Knowledge → Conflict: invariant inv-8a3f "No Friday deploys after 16:00 UTC"
-Agent: "No — blocked by invariant inv-8a3f."`,
+Agent: "No  -  blocked by invariant inv-8a3f."`,
             },
             {
               label: 'Resolve context before coding',
@@ -382,7 +432,7 @@ Knowledge → Created dec-4f2a, linked to existing rule rul-7b1c`,
         },
         {
           name: 'Slack & Teams Bot',
-          desc: 'The Knowledge Bot monitors a dedicated channel (#knowledge) and automatically detects decisions, invariants, and rules in your team\'s messages. When a message contains knowledge, the bot posts a structured summary in the thread with Validate, Edit, or Ignore buttons. The bot also supports message forwarding and runs via Socket Mode (Slack) or HTTP (Teams) — no public URL required for Slack.',
+          desc: 'The Knowledge Bot monitors a dedicated channel (#knowledge) and automatically detects decisions, invariants, and rules in your team\'s messages. When a message contains knowledge, the bot posts a structured summary in the thread with Validate, Edit, or Ignore buttons. The bot also supports message forwarding and runs via Socket Mode (Slack) or HTTP (Teams)  -  no public URL required for Slack.',
           examples: [
             {
               label: 'Capture from Slack',
@@ -418,7 +468,7 @@ User clicks [Validate] → entry is published to the registry`,
   → Verifier resolves Engineering scope
   → Conflict: invariant inv-2b1c "No AGPL-licensed dependencies"
   → No override registered for this invariant
-  → Verdict: FAIL ✗ — invariant inv-2b1c violated`,
+  → Verdict: FAIL ✗  -  invariant inv-2b1c violated`,
             },
           ],
         },
@@ -432,15 +482,15 @@ User clicks [Validate] → entry is published to the registry`,
         { n: '2', label: 'Enforce', desc: 'Invariants block, rules direct, overrides govern exceptions, approvals gate high-risk actions.' },
         { n: '3', label: 'Trace', desc: 'References prove what was consulted, events log every change.' },
       ],
-      body: 'The loop starts with extraction — populate the registry from what your team already has. Then it runs continuously: every agent query, every PR check, every approval decision adds to the trail.',
+      body: 'The loop starts with extraction  -  populate the registry from what your team already has. Then it runs continuously: every agent query, every PR check, every approval decision adds to the trail.',
     },
     security: {
       tag: 'Security and Access Control',
       items: [
-        'API keys with permissions — each key has a specific set of allowed operations',
+        'API keys with permissions  -  each key has a specific set of allowed operations',
         'Role hierarchy: developer → senior-dev → tech-lead → admin',
-        'Scope-level access — keys can be restricted to specific scopes',
-        'Tenant isolation — multi-tenant deployments ensure complete data separation',
+        'Scope-level access  -  keys can be restricted to specific scopes',
+        'Tenant isolation  -  multi-tenant deployments ensure complete data separation',
       ],
     },
     cta: {
@@ -507,6 +557,36 @@ export default function Page() {
         </div>
       </section>
 
+      {/* How types work together */}
+      <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-5">{t.typesWork.tag}</p>
+          <p className="text-[var(--text-secondary)] mb-6 leading-relaxed max-w-2xl">{t.typesWork.intro}</p>
+          <div className="max-w-2xl mb-8"><CodeBlock code={t.typesWork.code} /></div>
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-[var(--border)]">
+                  {t.typesWork.headers.map((h, i) => (
+                    <th key={i} className="text-left py-2 pr-4 font-semibold text-[var(--text-primary)] font-mono text-xs uppercase tracking-wide">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {t.typesWork.rows.map((row, i) => (
+                  <tr key={i} className="border-b border-[var(--border-light)]">
+                    {row.map((cell, j) => (
+                      <td key={j} className={`py-2.5 pr-4 text-[var(--text-secondary)] leading-relaxed${j === 0 ? ' font-semibold text-[var(--text-primary)]' : ''}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{t.typesWork.summary}</p>
+        </div>
+      </section>
+
       {/* Relations graph */}
       <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
         <div className="max-w-5xl mx-auto">
@@ -514,7 +594,7 @@ export default function Page() {
           <p className="text-[var(--text-secondary)] mb-8 leading-relaxed">{t.relations.body}</p>
           <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-6 flex justify-center">
             <Image
-              src="/images/product/knowledge-entry-relations.svg"
+              src={`/images/product/knowledge-entry-relations-${lang}.svg`}
               alt="Entry relations graph"
               width={700}
               height={400}
@@ -531,7 +611,7 @@ export default function Page() {
           <p className="text-[var(--text-secondary)] mb-8 leading-relaxed">{t.scopes.body}</p>
           <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-6 flex justify-center">
             <Image
-              src="/images/product/knowledge-scopes-tree.svg"
+              src={`/images/product/knowledge-scopes-tree-${lang}.svg`}
               alt="Scopes and namespaces"
               width={700}
               height={400}
@@ -589,7 +669,7 @@ export default function Page() {
           <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-5">{t.loop.tag}</p>
           <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-6 flex justify-center mb-10">
             <Image
-              src="/images/product/knowledge-compliance-loop.svg"
+              src={`/images/product/knowledge-compliance-loop-${lang}.svg`}
               alt="Compliance loop"
               width={700}
               height={360}

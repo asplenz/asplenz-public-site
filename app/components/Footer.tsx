@@ -17,9 +17,8 @@ const columns = [
     heading: 'Docs',
     links: [
       { label: 'Getting Started', href: '/docs/getting-started' },
-      { label: 'Concepts', href: '/docs/concepts/decisions' },
-      { label: 'Integrations', href: '/docs/integrations/claude-mcp' },
-      { label: 'API Reference', href: '/docs/integrations/api-reference' },
+      { label: 'Concepts', href: '/docs/concepts' },
+      { label: 'Extraction', href: '/docs/extraction' },
       { label: 'Changelog', href: '/changelog' },
     ],
   },

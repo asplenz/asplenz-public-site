@@ -10,27 +10,13 @@ Knowledge solves the cold-start problem: point the CLI at your existing sources 
 
 ## How It Works
 
-```
-Your existing docs, repos, runbooks
-    |
-    v
-knowledge extract --scope Engineering --source ./docs
-    |
-    v
-LLM analyzes each chunk, identifies rules and constraints
-    |
-    v
-Semantic deduplication filters noise
-    |
-    v
-Typed drafts appear in your dashboard
-    |
-    +-- Approve --> published to registry
-    +-- Edit --> modify then approve
-    +-- Reject --> discarded
+Point the CLI at your existing sources. Knowledge analyzes the content, identifies implicit rules and constraints, and surfaces them as typed drafts in your dashboard. You review each one — approve, edit, or reject. Nothing is published without human validation.
+
+```bash
+knowledge extract --scope Engineering --namespace payments --source ./docs --source ./CLAUDE.md
 ```
 
-Nothing is published without human review.
+Semantic deduplication ensures you can re-extract regularly without flooding the registry.
 
 ---
 
@@ -61,52 +47,40 @@ Historical choices with context and reasoning.
 Point at directories or specific files. The CLI reads everything matching your patterns.
 
 ```bash
-knowledge extract --scope Engineering \
+knowledge extract --scope Engineering --namespace infra \
   --source ./docs --pattern "**/*.md" \
   --source ./src --pattern "**/README.md" \
   --source . --pattern "CLAUDE.md"
 ```
 
 ### Git repositories
-Scan a working copy by glob pattern. No git history parsing — the LLM analyzes current file contents.
+Point the CLI at any repository and filter by glob pattern. Knowledge analyzes source files — code, configuration, infrastructure definitions — and surfaces implicit rules and constraints that are not documented anywhere.
 
 ```bash
-knowledge extract --scope Engineering --source /path/to/repo --pattern "**/*.md"
+knowledge extract --scope Engineering --source /path/to/repo --pattern "**/*.{ts,py,yaml,md}"
 ```
 
-### Stream API
-For sources that don't live on disk — Confluence exports, Slack digests, wiki pages, CI artifacts — push documents directly via the API.
-
-```bash
-curl -X POST http://localhost:8090/api/v1/distill/stream \
-  -H "Authorization: Bearer kn_..." \
-  -d '{"scope_id": "scp-...", "documents": [{"content": "..."}], "auto_run": true}'
-```
+### Ingestion API
+For sources that don't live on disk — Confluence exports, Slack digests, wiki pages, CI artifacts — push documents directly via the REST API. See the [API documentation](/docs/api) for details.
 
 ---
 
 ## Smart Deduplication
 
-Every extraction is compared against existing entries using semantic similarity:
+Every extraction is compared against existing entries using semantic similarity. Exact duplicates are automatically filtered out and logged in the extraction report. Near-matches are flagged with a REPLACES relation and appear in the review queue alongside the existing entry, so you can compare both versions and decide whether the new one should replace the old one.
 
-| Similarity | Result |
-|-----------|--------|
-| >= 0.92 | Exact duplicate — silently discarded |
-| >= 0.80 | Similar — draft linked to existing entry for review |
-| < 0.80 | New — draft created |
-
-Run extraction quarterly without flooding your registry with entries you already have.
+This means you can re-extract regularly — quarterly, after a major rewrite, or whenever new docs appear — without worrying about polluting your registry.
 
 ---
 
 ## Human Review
 
-Every extraction becomes a draft visible in the dashboard:
+Nothing is published without validation. Every extraction becomes a draft visible in the dashboard, showing:
 
-- **Content** with type classification and confidence score (0.6 – 1.0)
-- **Source excerpt** that motivated the extraction
-- **Detected relations** — duplicates, replacements, tensions with existing entries
-- **LLM explanation** of why this was identified
+- The proposed entry with its detected type (Invariant, Rule, or Decision) and confidence score
+- The source excerpt that motivated the extraction
+- Detected relations to existing entries — duplicates, replacements, tensions
+- An explanation of why this was identified
 
 Three actions: **Approve** (publishes to registry), **Reject** (discards), or **Edit** (modify before approving).
 
@@ -127,9 +101,11 @@ Three actions: **Approve** (publishes to registry), **Reject** (discards), or **
 ## Get Started
 
 ```bash
-knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md
+knowledge extract --scope Engineering --namespace payments --source ./docs --source ./CLAUDE.md
 ```
 
 Review the drafts in your dashboard. Approve the good ones, reject the noise. Your registry is populated.
 
-[Getting Started Guide](/docs/getting-started) · [Extraction Documentation](/docs/extraction) · [Pricing](/pricing)
+[Full Extraction Documentation →](/docs/extraction)
+
+[Getting Started Guide](/docs/getting-started)

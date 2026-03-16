@@ -1,0 +1,30 @@
+<svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+  <!-- Scope box -->
+  <rect x="20" y="20" width="440" height="280" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="40" y="50" font-size="10" fill="#64748b" font-weight="600" letter-spacing="0.05em">SCOPE</text>
+  <text x="40" y="70" font-size="16" fill="#1e293b" font-weight="700">Engineering</text>
+
+  <!-- global namespace -->
+  <rect x="60" y="100" width="160" height="40" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="140" y="125" text-anchor="middle" font-size="13" fill="#1e1b4b" font-weight="600">global</text>
+  <text x="230" y="125" font-size="11" fill="#64748b" font-style="italic">par défaut</text>
+
+  <!-- payments namespace -->
+  <rect x="60" y="160" width="160" height="40" rx="8" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="140" y="185" text-anchor="middle" font-size="13" fill="#3b0764" font-weight="600">payments</text>
+
+  <!-- payments/stripe namespace (nested) -->
+  <line x1="140" y1="200" x2="140" y2="220" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="140" y1="220" x2="200" y2="220" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4"/>
+  <rect x="200" y="210" width="180" height="36" rx="8" fill="#faf5ff" stroke="#a855f7" stroke-width="1"/>
+  <text x="290" y="233" text-anchor="middle" font-size="12" fill="#3b0764">payments/stripe</text>
+
+  <!-- infrastructure namespace -->
+  <rect x="60" y="264" width="160" height="40" rx="8" fill="#ecfdf5" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="140" y="289" text-anchor="middle" font-size="13" fill="#14532d" font-weight="600">infrastructure</text>
+
+  <!-- Access level badges -->
+  <rect x="300" y="100" width="140" height="28" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <circle cx="316" cy="114" r="5" fill="#22c55e"/>
+  <text x="326" y="118" font-size="10" fill="#475569">reader / contributor / admin</text>
+</svg>

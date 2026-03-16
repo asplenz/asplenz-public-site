@@ -1,3 +1,5 @@
+<!-- lang: en -->
+
 # CI Verifier
 
 ## Check every PR against your team's rules — automatically.
@@ -8,33 +10,23 @@ The Knowledge Verifier integrates into your CI/CD pipeline and checks pull reque
 
 ## How It Works
 
+![CI Verifier flow](./knowledge-ci-verifier-flow-en.svg)
+
+---
+
+## Scope Mapping
+
+You define which files map to which scopes and namespaces in your configuration. When a PR changes `src/payments/stripe.py`, the Verifier matches it against your patterns and fetches invariants and rules from the corresponding namespace.
+
+```yaml
+scope_mapping:
+  "src/payments/**": "Engineering/payments"
+  "src/auth/**": "Engineering/auth"
+  "infrastructure/**": "Operations"
+  "**": "Engineering"
 ```
-Developer opens PR
-    |
-    v
-CI pipeline triggers Knowledge Verifier
-    |
-    v
-Verifier maps changed files to Knowledge scopes
-    |
-    v
-Fetches applicable invariants and rules
-    |
-    v
-Parses PR description for Implementation Report
-    |
-    v
-Three-axis analysis:
-  - Are invariants respected?
-  - Are mandatory rules followed?
-  - Are citations valid?
-    |
-    v
-Verdict: PASS / WARN / FAIL
-    |
-    v
-Posts report to PR (JSON + Markdown)
-```
+
+Patterns are matched in order — the first match wins. Use `**` as a catch-all to ensure every file is covered. Files that don't match any pattern are checked against the scope level (no namespace filter).
 
 ---
 
@@ -52,25 +44,13 @@ Posts report to PR (JSON + Markdown)
 
 ## Implementation Report
 
-Developers document compliance in their PR description using a structured section:
+The coding agent (e.g. Claude Code) generates an Implementation Report as a `.knowledge/report.md` file committed alongside the code. The Verifier reads this file automatically.
 
-```markdown
-## Implementation Report
-
-### Invariants
-- [FOLLOWED] inv-a1b2c3: All endpoints require authentication
-  Added bearer token middleware to /api/payments route.
-
-### Rules
-- [FOLLOWED] rul-d4e5f6: Use conventional commits
-  All commits follow feat/fix/chore convention.
-
-- [DIVERGED] rul-g7h8i9: Max function length 50 lines
-  Payment validation requires 62 lines due to regulatory checks.
-  Will refactor in follow-up PR #143.
-```
+![Implementation Report example](./knowledge-implementation-report-en.svg)
 
 The Verifier parses these citations, validates entry IDs against the registry, and checks that all applicable constraints are addressed.
+
+If the `.knowledge/report.md` file is missing from the commit, all applicable constraints are treated as "not cited" and evaluated according to the gating mode.
 
 ---
 
@@ -139,11 +119,12 @@ knowledge-verifier \
 ```yaml
 # .knowledge-verifier.yml
 knowledge_api:
-  url: https://knowledge.example.com
+  url: https://api.asplenz.com
   # API key via KNOWLEDGE_API_KEY env var
 
 verification:
   mode: fail-on-blocking
+  report_path: .knowledge/report.md
   scope_mapping:
     "src/payments/**": "Engineering/payments"
     "src/auth/**": "Engineering/auth"
@@ -155,17 +136,15 @@ output:
   markdown: verifier-report.md
 ```
 
-### Scope Mapping
-
-Map file paths to Knowledge scopes. When a PR changes `src/payments/stripe.py`, the Verifier fetches invariants and rules from the `Engineering/payments` namespace.
-
-Patterns are matched in order — the first match wins. Use `**` as a catch-all.
+> For self-hosted deployments, replace the URL with your instance address.
 
 ---
 
 ## Output
 
 ### Machine-readable (JSON)
+
+The JSON output is consumed by the CI pipeline to set the PR status (pass/warn/fail). It also feeds into the Knowledge dashboard for compliance analytics, and can be used by custom integrations: Slack alerts on violations, automatic Jira tickets, aggregated compliance reports, or SIEM exports.
 
 ```json
 {
@@ -192,7 +171,9 @@ Patterns are matched in order — the first match wins. Use `**` as a catch-all.
 
 ### Human-readable (Markdown)
 
-Posted as a PR comment or saved as a file. Shows the full compliance report with pass/fail indicators, citations, and recommendations.
+Posted as a PR comment:
+
+![Verifier report example](./knowledge-verifier-report-github-en.svg)
 
 ---
 
@@ -210,4 +191,202 @@ The Verifier doesn't replace code review — it ensures that organizational cons
 
 ---
 
-[CI/CD Setup Guide](/docs/integrations/ci-verifier) · [Getting Started](/docs/getting-started) · [Pricing](/pricing)
+[CI/CD Setup Guide →](/docs/integrations/ci-verifier) · [Getting Started →](/docs/getting-started) · [Pricing →](/pricing)
+
+---
+---
+
+<!-- lang: fr -->
+
+# Verifier CI
+
+## Vérifiez chaque PR contre les règles de votre équipe — automatiquement.
+
+Le Knowledge Verifier s'intègre dans votre pipeline CI/CD et vérifie les pull requests contre l'état normatif de votre registre. Les violations sont détectées avant le merge, pas après le déploiement.
+
+---
+
+## Comment ça fonctionne
+
+![Flow du Verifier CI](./knowledge-ci-verifier-flow-fr.svg)
+
+---
+
+## Scope Mapping
+
+Vous définissez quels fichiers correspondent à quels scopes et namespaces dans votre configuration. Quand une PR modifie `src/payments/stripe.py`, le Verifier le matche contre vos patterns et récupère les invariants et rules du namespace correspondant.
+
+```yaml
+scope_mapping:
+  "src/payments/**": "Engineering/payments"
+  "src/auth/**": "Engineering/auth"
+  "infrastructure/**": "Operations"
+  "**": "Engineering"
+```
+
+Les patterns sont évalués dans l'ordre — le premier match gagne. Utilisez `**` comme catch-all pour couvrir tous les fichiers. Les fichiers qui ne matchent aucun pattern sont vérifiés au niveau du scope (sans filtre de namespace).
+
+---
+
+## Trois modes de gating
+
+| Mode | Comportement | Quand l'utiliser |
+|------|-------------|-----------------|
+| `report-only` | Poste le rapport de conformité, ne bloque jamais | Déploiement initial, phase d'apprentissage |
+| `fail-on-blocking` | Échoue si des invariants sont violés | Enforcement standard |
+| `strict` | Échoue sur toute violation (invariants + rules mandatory) | Environnements régulés |
+
+**Déploiement recommandé** : commencez en `report-only` pendant deux semaines. Reviewez les rapports. Quand l'équipe est à l'aise, passez en `fail-on-blocking`. Passez en `strict` quand la conformité est critique.
+
+---
+
+## Implementation Report
+
+L'agent de coding (ex. Claude Code) génère un Implementation Report sous forme de fichier `.knowledge/report.md` committé avec le code. Le Verifier lit ce fichier automatiquement.
+
+![Exemple d'Implementation Report](./knowledge-implementation-report-fr.svg)
+
+Le Verifier parse ces citations, valide les IDs d'entrées contre le registre, et vérifie que toutes les contraintes applicables sont adressées.
+
+Si le fichier `.knowledge/report.md` est absent du commit, toutes les contraintes applicables sont traitées comme « non citées » et évaluées selon le mode de gating.
+
+---
+
+## Ce qui est vérifié
+
+### Invariants
+Contraintes bloquantes. Si un invariant s'applique au scope des fichiers modifiés et n'est pas cité comme FOLLOWED (ou n'a pas d'override actif), le Verifier signale un conflit.
+
+### Rules Mandatory
+Directives actives avec sévérité MANDATORY. Les rules mandatory non citées génèrent des warnings en mode `fail-on-blocking` et des échecs en mode `strict`.
+
+### Rules Advisory
+Directives actives avec sévérité ADVISORY. Signalées pour information mais ne bloquent jamais le pipeline.
+
+### Overrides
+Les overrides actifs sont reconnus. Si un développeur a un override valide pour un invariant, le Verifier le marque comme « overridden » plutôt que « violated ».
+
+---
+
+## Intégration CI
+
+### GitHub Actions
+
+```yaml
+- name: Knowledge Compliance Check
+  run: |
+    pip install knowledge-verifier
+    knowledge-verifier \
+      --config .knowledge-verifier.yml \
+      --mode fail-on-blocking
+  env:
+    KNOWLEDGE_API_URL: ${{ secrets.KNOWLEDGE_API_URL }}
+    KNOWLEDGE_API_KEY: ${{ secrets.KNOWLEDGE_API_KEY }}
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+L'environnement GitHub Actions est auto-détecté : numéro de PR, fichiers modifiés et branche de base sont résolus automatiquement.
+
+### GitLab CI
+
+```yaml
+compliance-check:
+  stage: test
+  script:
+    - pip install knowledge-verifier
+    - knowledge-verifier --config .knowledge-verifier.yml --mode fail-on-blocking
+  variables:
+    KNOWLEDGE_API_URL: $KNOWLEDGE_API_URL
+    KNOWLEDGE_API_KEY: $KNOWLEDGE_API_KEY
+```
+
+### Exécution locale
+
+```bash
+knowledge-verifier \
+  --config .knowledge-verifier.yml \
+  --mode report-only \
+  --pr-number 142 \
+  --repo-url https://github.com/org/repo
+```
+
+---
+
+## Configuration
+
+```yaml
+# .knowledge-verifier.yml
+knowledge_api:
+  url: https://api.asplenz.com
+  # Clé API via la variable d'environnement KNOWLEDGE_API_KEY
+
+verification:
+  mode: fail-on-blocking
+  report_path: .knowledge/report.md
+  scope_mapping:
+    "src/payments/**": "Engineering/payments"
+    "src/auth/**": "Engineering/auth"
+    "infrastructure/**": "Operations"
+    "**": "Engineering"
+
+output:
+  json: verifier-result.json
+  markdown: verifier-report.md
+```
+
+> Pour les déploiements self-hosted, remplacez l'URL par l'adresse de votre instance.
+
+---
+
+## Sorties
+
+### Lisible par les machines (JSON)
+
+La sortie JSON est consommée par le pipeline CI pour définir le statut de la PR (pass/warn/fail). Elle alimente aussi le dashboard Knowledge pour les analytics de conformité, et peut être utilisée par des intégrations custom : alertes Slack sur les violations, tickets Jira automatiques, rapports de conformité agrégés, ou exports SIEM.
+
+```json
+{
+  "verdict": "FAIL",
+  "invariants": {
+    "total": 3,
+    "followed": 2,
+    "violated": 1,
+    "overridden": 0
+  },
+  "rules": {
+    "mandatory": {"total": 5, "followed": 4, "diverged": 1},
+    "advisory": {"total": 2, "followed": 1, "not_cited": 1}
+  },
+  "conflicts": [
+    {
+      "entry_id": "inv-a1b2c3",
+      "constraint": "Tous les endpoints API doivent exiger une authentification",
+      "status": "violated"
+    }
+  ]
+}
+```
+
+### Lisible par les humains (Markdown)
+
+Posté en commentaire de PR :
+
+![Exemple de rapport Verifier](./knowledge-verifier-report-github-fr.svg)
+
+---
+
+## Pourquoi pas juste la code review ?
+
+| Code Review | CI Verifier |
+|-------------|-------------|
+| Le reviewer doit se souvenir de toutes les règles | Les règles sont vérifiées automatiquement |
+| Inconsistant entre les reviewers | Mêmes vérifications à chaque fois |
+| Facile de rater une contrainte | Chaque contrainte applicable est évaluée |
+| Pas de trace d'audit | Rapport structuré pour chaque PR |
+| Ne scale pas avec la taille de l'équipe | Scale à n'importe quel nombre de PRs |
+
+Le Verifier ne remplace pas la code review — il garantit que les contraintes organisationnelles sont vérifiées de manière cohérente, pour que les reviewers puissent se concentrer sur la logique, le design et la qualité.
+
+---
+
+[Guide CI/CD →](/docs/integrations/ci-verifier) · [Commencer →](/docs/getting-started) · [Tarifs →](/pricing)

@@ -1,0 +1,64 @@
+<svg viewBox="0 0 780 480" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <marker id="eg-arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#6366f1"/>
+    </marker>
+    <marker id="eg-arrow-amber" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <!-- Decision box -->
+  <rect x="20" y="80" width="260" height="72" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="40" y="102" font-size="10" fill="#6366f1" font-weight="600" letter-spacing="0.05em">DECISION</text>
+  <text x="40" y="122" font-size="12" fill="#1e1b4b">"On a choisi PostgreSQL pour tous</text>
+  <text x="40" y="138" font-size="12" fill="#1e1b4b">les data stores transactionnels"</text>
+
+  <!-- Arrow: Decision → Invariant -->
+  <line x1="280" y1="100" x2="400" y2="100" stroke="#6366f1" stroke-width="1.5" marker-end="url(#eg-arrow)"/>
+  <text x="340" y="92" text-anchor="middle" font-size="10" fill="#6366f1" font-weight="500">creates</text>
+
+  <!-- Arrow: Decision → Rule -->
+  <path d="M280,130 Q340,130 340,280 Q340,330 400,330" stroke="#6366f1" stroke-width="1.5" fill="none" marker-end="url(#eg-arrow)"/>
+  <text x="320" y="240" font-size="10" fill="#6366f1" font-weight="500">creates</text>
+
+  <!-- Invariant box -->
+  <rect x="400" y="68" width="340" height="72" rx="10" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="420" y="90" font-size="10" fill="#ef4444" font-weight="600" letter-spacing="0.05em">INVARIANT</text>
+  <text x="420" y="110" font-size="12" fill="#7f1d1d">"Toutes les donnees transactionnelles</text>
+  <text x="420" y="126" font-size="12" fill="#7f1d1d">doivent utiliser PostgreSQL"</text>
+
+  <!-- Arrow: Invariant → Override on invariant -->
+  <line x1="570" y1="140" x2="570" y2="180" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#eg-arrow-amber)"/>
+  <text x="585" y="165" font-size="10" fill="#f59e0b" font-weight="500">exception</text>
+
+  <!-- Override on invariant -->
+  <rect x="420" y="184" width="320" height="72" rx="10" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="440" y="206" font-size="10" fill="#f59e0b" font-weight="600" letter-spacing="0.05em">OVERRIDE (temporary)</text>
+  <text x="440" y="226" font-size="12" fill="#78350f">"Le systeme de facturation legacy</text>
+  <text x="440" y="242" font-size="12" fill="#78350f">utilise MySQL jusqu'a la migration Q3"</text>
+
+  <!-- Rule box -->
+  <rect x="400" y="300" width="340" height="72" rx="10" fill="#ecfdf5" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="420" y="322" font-size="10" fill="#22c55e" font-weight="600" letter-spacing="0.05em">RULE (MANDATORY)</text>
+  <text x="420" y="342" font-size="12" fill="#14532d">"Tous les nouveaux services doivent</text>
+  <text x="420" y="358" font-size="12" fill="#14532d">inclure un script de migration"</text>
+
+  <!-- Arrow: Rule → Override on rule -->
+  <line x1="570" y1="372" x2="570" y2="408" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#eg-arrow-amber)"/>
+  <text x="585" y="395" font-size="10" fill="#f59e0b" font-weight="500">exception</text>
+
+  <!-- Override on rule -->
+  <rect x="420" y="412" width="320" height="52" rx="10" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="440" y="432" font-size="10" fill="#f59e0b" font-weight="600" letter-spacing="0.05em">OVERRIDE (permanent)</text>
+  <text x="440" y="450" font-size="12" fill="#78350f">"Les libs partagees n'ont pas de DB"</text>
+
+  <!-- Legend -->
+  <text x="20" y="30" font-size="11" fill="#64748b">Les decisions capturent le </text>
+  <text x="170" y="30" font-size="11" fill="#6366f1" font-weight="600" font-style="italic">pourquoi</text>
+  <text x="222" y="30" font-size="11" fill="#64748b">. Invariants et rules capturent </text>
+  <text x="432" y="30" font-size="11" fill="#ef4444" font-weight="600" font-style="italic">quoi</text>
+  <text x="458" y="30" font-size="11" fill="#64748b">. Overrides capturent </text>
+  <text x="586" y="30" font-size="11" fill="#f59e0b" font-weight="600" font-style="italic">les deviations</text>
+  <text x="678" y="30" font-size="11" fill="#64748b">.</text>
+</svg>

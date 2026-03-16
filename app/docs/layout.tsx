@@ -13,27 +13,8 @@ interface NavItem {
 
 const nav: NavItem[] = [
   { title: 'Getting Started', href: '/docs/getting-started' },
-  {
-    title: 'Concepts',
-    href: '/docs/concepts/decisions',
-    children: [
-      { title: 'Decisions', href: '/docs/concepts/decisions' },
-      { title: 'Invariants', href: '/docs/concepts/invariants' },
-      { title: 'Rules', href: '/docs/concepts/rules' },
-      { title: 'Overrides', href: '/docs/concepts/overrides' },
-      { title: 'Scopes & Namespaces', href: '/docs/concepts/scopes' },
-    ],
-  },
+  { title: 'Concepts', href: '/docs/concepts' },
   { title: 'Extraction', href: '/docs/extraction' },
-  {
-    title: 'Integrations',
-    href: '/docs/integrations/claude-mcp',
-    children: [
-      { title: 'Claude MCP', href: '/docs/integrations/claude-mcp' },
-      { title: 'CI Verifier', href: '/docs/integrations/ci-verifier' },
-      { title: 'API Reference', href: '/docs/integrations/api-reference' },
-    ],
-  },
 ]
 
 function SidebarNav() {
