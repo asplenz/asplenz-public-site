@@ -36,6 +36,12 @@ export const content = {
       apiReference: 'API Reference',
       blog: 'Blog',
       signIn: 'Sign in',
+      useCases: 'Use Cases',
+      ucEngineering: 'Engineering',
+      ucLegal: 'Legal & Compliance',
+      ucFinance: 'Financial Services',
+      ucHealthcare: 'Healthcare',
+      ucCybersecurity: 'Cybersecurity',
     },
 
     // Homepage - Landing page
@@ -1715,6 +1721,12 @@ export const content = {
       apiReference: 'Référence API',
       blog: 'Blog',
       signIn: 'Se connecter',
+      useCases: "Cas d'usage",
+      ucEngineering: 'Engineering',
+      ucLegal: 'Juridique & Conformité',
+      ucFinance: 'Services financiers',
+      ucHealthcare: 'Santé',
+      ucCybersecurity: 'Cybersécurité',
     },
 
     // Homepage - Landing page
