@@ -15,6 +15,7 @@ const nav: NavItem[] = [
   { title: 'Getting Started', href: '/docs/getting-started' },
   { title: 'Concepts', href: '/docs/concepts' },
   { title: 'Extraction', href: '/docs/extraction' },
+  { title: 'Integrations', href: '/docs/integrations' },
 ]
 
 function SidebarNav() {

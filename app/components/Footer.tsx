@@ -19,6 +19,7 @@ const columns = [
       { label: 'Getting Started', href: '/docs/getting-started' },
       { label: 'Concepts', href: '/docs/concepts' },
       { label: 'Extraction', href: '/docs/extraction' },
+      { label: 'Integrations', href: '/docs/integrations' },
       { label: 'Changelog', href: '/changelog' },
     ],
   },
