@@ -36,14 +36,14 @@ All API calls require the `Authorization` header with your API key. Copy the sco
 ### List your scopes
 
 ```bash
-curl https://api.asplenz.com/api/v1/scopes \
+curl https://api.asplenz.com/knowledge/v1/scopes \
   -H "Authorization: Bearer kn_xxxxxxxx"
 ```
 
 ### Record a decision
 
 ```bash
-curl -X POST https://api.asplenz.com/api/v1/scopes/scp-XXXX/decisions \
+curl -X POST https://api.asplenz.com/knowledge/v1/scopes/scp-XXXX/decisions \
   -H "Authorization: Bearer kn_xxxxxxxx" \
   -H "Content-Type: application/json" \
   -d '{
@@ -58,7 +58,7 @@ curl -X POST https://api.asplenz.com/api/v1/scopes/scp-XXXX/decisions \
 ### Check compliance
 
 ```bash
-curl -X POST https://api.asplenz.com/api/v1/check \
+curl -X POST https://api.asplenz.com/knowledge/v1/check \
   -H "Authorization: Bearer kn_xxxxxxxx" \
   -H "Content-Type: application/json" \
   -d '{
@@ -73,13 +73,7 @@ The response shows any conflicting invariants or rules — with IDs, severity, a
 
 ## 4. Connect an AI Agent (MCP)
 
-Knowledge includes an MCP server that lets Claude Code, Cursor, and other AI tools query the registry in real time.
-
-### Install the MCP server
-
-```bash
-pip install knowledge-mcp
-```
+Knowledge provides a hosted MCP server that lets Claude Code, Cursor, and other AI tools query the registry in real time. No installation required.
 
 ### Configure Claude Code
 
@@ -89,17 +83,14 @@ Create or update `.mcp.json` in your project root:
 {
   "mcpServers": {
     "knowledge": {
-      "command": "knowledge-mcp",
-      "env": {
-        "KNOWLEDGE_API_KEY": "kn_xxxxxxxx",
-        "KNOWLEDGE_API_URL": "https://api.asplenz.com"
+      "url": "https://mcp.asplenz.com",
+      "headers": {
+        "Authorization": "Bearer kn_xxxxxxxx"
       }
     }
   }
 }
 ```
-
-> Launch your agent from the same Python environment where `knowledge-mcp` is installed.
 
 ### Try it
 
@@ -114,31 +105,23 @@ Claude queries Knowledge in real time, respects constraints, and records decisio
 
 ## 5. Extract Rules from Existing Docs and Code
 
-Knowledge can scan your existing documentation and source code to extract implicit rules, decisions, and constraints automatically.
+Knowledge can scan your existing documentation and source code to extract implicit rules, decisions, and constraints automatically. Since your AI agent already has access to Knowledge via MCP, just ask it:
 
 ### Extract from your docs
 
-```bash
-knowledge extract \
-  --api-url https://api.asplenz.com \
-  --api-key kn_xxxxxxxx \
-  --scope Engineering \
-  --source ./docs --source ./CLAUDE.md
+```
+> "Extract rules from ./docs and ./CLAUDE.md for the Engineering scope"
 ```
 
 ### Extract from your codebase
 
 Knowledge also analyzes source code, configuration files, and infrastructure definitions to surface implicit rules that are not documented anywhere:
 
-```bash
-knowledge extract \
-  --api-url https://api.asplenz.com \
-  --api-key kn_xxxxxxxx \
-  --scope Engineering \
-  --source ./src --pattern "**/*.{ts,py,yaml}"
+```
+> "Extract rules from ./src for the Engineering scope, focus on TypeScript, Python, and YAML files"
 ```
 
-The CLI reads every matching file, analyzes each chunk, and creates typed drafts:
+The agent reads your local files, sends them to Knowledge for analysis, and reports the results:
 
 ```
 Scanning 23 files...
@@ -156,18 +139,6 @@ Open the dashboard and navigate to the extraction page. Each draft shows:
 - **Confidence**: confidence level (0.6 – 1.0)
 
 Approve to publish to the registry. Reject to discard. Edit before approving if needed.
-
-### Configure patterns
-
-You can combine multiple sources and patterns in a single run:
-
-```bash
-knowledge extract \
-  --scope Engineering \
-  --source ./docs --pattern "**/*.md" \
-  --source ./src --pattern "**/*.{ts,py,yaml}" \
-  --source . --pattern "CLAUDE.md"
-```
 
 ---
 
@@ -283,14 +254,14 @@ Tous les appels API nécessitent le header `Authorization` avec votre clé API. 
 ### Lister vos scopes
 
 ```bash
-curl https://api.asplenz.com/api/v1/scopes \
+curl https://api.asplenz.com/knowledge/v1/scopes \
   -H "Authorization: Bearer kn_xxxxxxxx"
 ```
 
 ### Enregistrer une décision
 
 ```bash
-curl -X POST https://api.asplenz.com/api/v1/scopes/scp-XXXX/decisions \
+curl -X POST https://api.asplenz.com/knowledge/v1/scopes/scp-XXXX/decisions \
   -H "Authorization: Bearer kn_xxxxxxxx" \
   -H "Content-Type: application/json" \
   -d '{
@@ -305,7 +276,7 @@ curl -X POST https://api.asplenz.com/api/v1/scopes/scp-XXXX/decisions \
 ### Vérifier la conformité
 
 ```bash
-curl -X POST https://api.asplenz.com/api/v1/check \
+curl -X POST https://api.asplenz.com/knowledge/v1/check \
   -H "Authorization: Bearer kn_xxxxxxxx" \
   -H "Content-Type: application/json" \
   -d '{
@@ -320,13 +291,7 @@ La réponse indique les invariants ou rules en conflit — avec leurs IDs, sév�
 
 ## 4. Connecter un agent IA (MCP)
 
-Knowledge inclut un serveur MCP qui permet à Claude Code, Cursor et d'autres outils IA d'interroger le registre en temps réel.
-
-### Installer le serveur MCP
-
-```bash
-pip install knowledge-mcp
-```
+Knowledge fournit un serveur MCP hébergé qui permet à Claude Code, Cursor et d'autres outils IA d'interroger le registre en temps réel. Aucune installation requise.
 
 ### Configurer Claude Code
 
@@ -336,17 +301,14 @@ Créez ou mettez à jour `.mcp.json` à la racine de votre projet :
 {
   "mcpServers": {
     "knowledge": {
-      "command": "knowledge-mcp",
-      "env": {
-        "KNOWLEDGE_API_KEY": "kn_xxxxxxxx",
-        "KNOWLEDGE_API_URL": "https://api.asplenz.com"
+      "url": "https://mcp.asplenz.com",
+      "headers": {
+        "Authorization": "Bearer kn_xxxxxxxx"
       }
     }
   }
 }
 ```
-
-> Lancez votre agent depuis le même environnement Python où `knowledge-mcp` est installé.
 
 ### Essayez
 
@@ -361,31 +323,23 @@ Claude interroge Knowledge en temps réel, respecte les contraintes et enregistr
 
 ## 5. Extraire les règles de vos docs et de votre code
 
-Knowledge peut scanner votre documentation existante et votre code source pour extraire automatiquement les règles, décisions et contraintes implicites.
+Demandez à votre agent IA (Claude Code, Cursor, etc.) de scanner votre documentation et votre code source. L'agent lit les fichiers localement, les analyse via MCP, et crée des drafts typés dans Knowledge.
 
 ### Extraire depuis vos docs
 
-```bash
-knowledge extract \
-  --api-url https://api.asplenz.com \
-  --api-key kn_xxxxxxxx \
-  --scope Engineering \
-  --source ./docs --source ./CLAUDE.md
+```
+> "Extrais les règles depuis ./docs et ./CLAUDE.md pour le scope Engineering"
 ```
 
 ### Extraire depuis votre codebase
 
-Knowledge analyse aussi les fichiers source, les configurations et les définitions d'infrastructure pour faire émerger les règles implicites qui ne sont documentées nulle part :
+L'agent analyse aussi les fichiers source, les configurations et les définitions d'infrastructure pour faire émerger les règles implicites qui ne sont documentées nulle part :
 
-```bash
-knowledge extract \
-  --api-url https://api.asplenz.com \
-  --api-key kn_xxxxxxxx \
-  --scope Engineering \
-  --source ./src --pattern "**/*.{ts,py,yaml}"
+```
+> "Scanne ./src pour les fichiers .ts, .py et .yaml dans le scope Engineering"
 ```
 
-La CLI lit chaque fichier, analyse chaque chunk, et crée des drafts typés :
+L'agent lit chaque fichier, analyse chaque chunk, et crée des drafts typés :
 
 ```
 Scanning 23 files...
@@ -408,12 +362,8 @@ Approuvez pour publier dans le registre. Rejetez pour supprimer. Éditez avant d
 
 Vous pouvez combiner plusieurs sources et patterns en un seul run :
 
-```bash
-knowledge extract \
-  --scope Engineering \
-  --source ./docs --pattern "**/*.md" \
-  --source ./src --pattern "**/*.{ts,py,yaml}" \
-  --source . --pattern "CLAUDE.md"
+```
+> "Extrais les règles depuis ./docs (*.md), ./src (*.ts, *.py, *.yaml) et ./CLAUDE.md pour Engineering"
 ```
 
 ---

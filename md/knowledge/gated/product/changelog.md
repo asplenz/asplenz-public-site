@@ -8,22 +8,22 @@ All notable changes to Knowledge are documented here.
 
 ### Automatic Extraction
 
-- **CLI extraction**: `knowledge extract --scope <name> --source <path>` scans existing documentation and surfaces implicit rules, decisions, and invariants as typed drafts
-- **LLM-powered analysis**: each source file is chunked and analyzed by an LLM to identify normative content with confidence scoring (0.6 – 1.0 threshold)
+- **MCP extraction**: ask your AI agent (Claude Code, Cursor, etc.) to extract rules from local files — it reads them locally, chunks them, and sends them to the Knowledge Stream API via MCP. No CLI needed.
+- **AI-powered analysis**: each source file is chunked and analyzed to identify normative content with confidence scoring (0.6 – 1.0 threshold)
 - **Draft review workflow**: extracted candidates appear in the dashboard for human review — approve, reject, or edit before publishing
 - **Semantic deduplication**: new extractions are compared against existing entries using embedding similarity to avoid duplicates and detect replacements
 - **Git source connector**: point at a local repository and extract from working copy files by glob pattern
 - **Document source connector**: extract from specific local files (markdown, text)
-- **Stream API**: push documents from any external source for extraction via `POST /distill/stream`
+- **Stream API**: push documents from any external source for extraction via `POST /extract/stream`
 - **Relation detection**: extraction identifies `REPLACES` and `IN_TENSION_WITH` relations between new drafts and existing entries
 - **Publish on approve**: approved drafts are automatically created as real Knowledge entries (decisions, invariants, rules) with `source: auto_extracted` attribution
 
 ### New Permissions
 
-- `distill_run`: launch extraction runs (senior-dev+)
-- `distill_read`: view runs and drafts (developer+)
-- `distill_review`: approve, reject, or edit drafts (tech-lead+)
-- `distill_stream`: push documents via Stream API (admin)
+- `extract_run`: launch extraction runs (senior-dev+)
+- `extract_read`: view runs and drafts (developer+)
+- `extract_review`: approve, reject, or edit drafts (tech-lead+)
+- `extract_stream`: push documents via Stream API (admin)
 
 ---
 

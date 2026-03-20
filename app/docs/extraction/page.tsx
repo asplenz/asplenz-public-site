@@ -105,11 +105,11 @@ const content = {
       },
     },
     llmConfig: {
-      tag: 'Configuration LLM',
-      body: "L'extraction nécessite un accès LLM. Deux options :",
+      tag: 'Configuration IA',
+      body: "L'extraction nécessite un accès IA. Deux options :",
       headers: ['Option', 'Description'],
       rows: [
-        ['Géré par Asplenz', "Aucune configuration nécessaire. L'usage LLM est facturé au coût sur votre facture."],
+        ['Géré par Asplenz', "Aucune configuration nécessaire. L'usage IA est facturé au coût sur votre facture."],
         ['Votre propre clé API', 'Apportez votre propre clé. Vous contrôlez votre contrat fournisseur et la résidence des données.'],
       ],
       note: 'Les organisations avec des exigences strictes de résidence des données ou de Zero Data Retention doivent utiliser leur propre clé API.',
@@ -128,7 +128,7 @@ const content = {
       tag: 'Configuration',
       headers: ['Paramètre', 'Défaut', 'Description'],
       rows: [
-        ['Modèle', 'Configurable', "LLM utilisé pour l'extraction"],
+        ['Modèle', 'Configurable', "Modèle IA utilisé pour l'extraction"],
         ['Température', '0.1', 'Basse pour une extraction factuelle'],
         ['Confiance minimum', '0.6', 'En dessous, les extractions sont supprimées'],
         ['Max extractions par chunk', '5', 'Limite le bruit'],
@@ -258,11 +258,11 @@ const content = {
       },
     },
     llmConfig: {
-      tag: 'LLM Configuration',
-      body: 'Extraction requires LLM access. Two options:',
+      tag: 'AI Configuration',
+      body: 'Extraction requires AI access. Two options:',
       headers: ['Option', 'Description'],
       rows: [
-        ['Asplenz-managed', 'No configuration needed. LLM usage billed at cost on your invoice.'],
+        ['Asplenz-managed', 'No configuration needed. AI usage billed at cost on your invoice.'],
         ['Your own API key', 'Bring your own key. You control your provider contract and data residency.'],
       ],
       note: 'Organizations with strict data residency or Zero Data Retention requirements should use their own API key.',
@@ -281,7 +281,7 @@ const content = {
       tag: 'Configuration',
       headers: ['Parameter', 'Default', 'Description'],
       rows: [
-        ['Model', 'Configurable', 'LLM used for extraction'],
+        ['Model', 'Configurable', 'AI model used for extraction'],
         ['Temperature', '0.1', 'Low for factual extraction'],
         ['Min confidence', '0.6', 'Below this, extractions are discarded'],
         ['Max extractions per chunk', '5', 'Limits noise'],

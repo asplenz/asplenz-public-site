@@ -4,16 +4,16 @@
 
 Every team has implicit rules — buried in READMEs, architecture docs, runbooks, code comments, and Slack threads. Manually entering each one into a registry takes time most teams don't have.
 
-Knowledge solves the cold-start problem: point the CLI at your existing sources and get a populated registry in minutes.
+Knowledge solves the cold-start problem: ask your AI agent to scan your existing sources and get a populated registry in minutes.
 
 ---
 
 ## How It Works
 
-Point the CLI at your existing sources. Knowledge analyzes the content, identifies implicit rules and constraints, and surfaces them as typed drafts in your dashboard. You review each one — approve, edit, or reject. Nothing is published without human validation.
+Ask your AI agent (Claude Code, Cursor, etc.) to extract rules from your existing sources. The agent reads files locally, chunks them, and sends them to Knowledge via MCP for analysis. Implicit rules and constraints are surfaced as typed drafts in your dashboard. You review each one — approve, edit, or reject. Nothing is published without human validation.
 
-```bash
-knowledge extract --scope Engineering --namespace payments --source ./docs --source ./CLAUDE.md
+```
+> "Extract rules from ./docs and ./CLAUDE.md for the Engineering/payments namespace"
 ```
 
 Semantic deduplication ensures you can re-extract regularly without flooding the registry.
@@ -22,7 +22,7 @@ Semantic deduplication ensures you can re-extract regularly without flooding the
 
 ## What Gets Extracted
 
-The LLM identifies three types of normative content:
+The AI identifies three types of normative content:
 
 ### Invariants
 Absolute constraints that must never be violated.
@@ -44,20 +44,17 @@ Historical choices with context and reasoning.
 ## Three Source Types
 
 ### Local files
-Point at directories or specific files. The CLI reads everything matching your patterns.
+Point at directories or specific files. The agent reads everything matching your patterns.
 
-```bash
-knowledge extract --scope Engineering --namespace infra \
-  --source ./docs --pattern "**/*.md" \
-  --source ./src --pattern "**/README.md" \
-  --source . --pattern "CLAUDE.md"
+```
+> "Extract rules from ./docs (*.md), ./src (README.md), and ./CLAUDE.md for Engineering/infra"
 ```
 
 ### Git repositories
-Point the CLI at any repository and filter by glob pattern. Knowledge analyzes source files — code, configuration, infrastructure definitions — and surfaces implicit rules and constraints that are not documented anywhere.
+Ask your AI agent to scan a repository. It reads files locally, chunks them, and sends them to Knowledge for analysis. Implicit rules and constraints surface — even ones not documented anywhere.
 
-```bash
-knowledge extract --scope Engineering --source /path/to/repo --pattern "**/*.{ts,py,yaml,md}"
+```
+> "Scan /path/to/repo for .ts, .py, .yaml, and .md files in the Engineering scope"
 ```
 
 ### Ingestion API
@@ -100,8 +97,8 @@ Three actions: **Approve** (publishes to registry), **Reject** (discards), or **
 
 ## Get Started
 
-```bash
-knowledge extract --scope Engineering --namespace payments --source ./docs --source ./CLAUDE.md
+```
+> "Extract rules from ./docs and ./CLAUDE.md for Engineering/payments"
 ```
 
 Review the drafts in your dashboard. Approve the good ones, reject the noise. Your registry is populated.

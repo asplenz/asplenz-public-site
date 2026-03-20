@@ -1,30 +1,98 @@
-<svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
-  <!-- Scope box -->
-  <rect x="20" y="20" width="440" height="280" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
-  <text x="40" y="50" font-size="10" fill="#64748b" font-weight="600" letter-spacing="0.05em">SCOPE</text>
-  <text x="40" y="70" font-size="16" fill="#1e293b" font-weight="700">Engineering</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="Inter, system-ui, sans-serif">
+  <style>
+    .box { rx: 8; ry: 8; stroke-width: 1.5; }
+    .tenant { fill: #f8fafc; stroke: #94a3b8; }
+    .scope  { fill: #eff6ff; stroke: #3b82f6; }
+    .ns     { fill: #f0fdf4; stroke: #22c55e; }
+    .label  { font-size: 13px; fill: #1e293b; font-weight: 600; }
+    .sublabel { font-size: 11px; fill: #64748b; font-weight: 400; }
+    .line   { stroke: #cbd5e1; stroke-width: 1.5; fill: none; }
+    .tag    { font-size: 10px; fill: #fff; font-weight: 600; }
+    .tag-bg-tenant { fill: #94a3b8; rx: 3; ry: 3; }
+    .tag-bg-scope  { fill: #3b82f6; rx: 3; ry: 3; }
+    .tag-bg-ns     { fill: #22c55e; rx: 3; ry: 3; }
+  </style>
 
-  <!-- global namespace -->
-  <rect x="60" y="100" width="160" height="40" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
-  <text x="140" y="125" text-anchor="middle" font-size="13" fill="#1e1b4b" font-weight="600">global</text>
-  <text x="230" y="125" font-size="11" fill="#64748b" font-style="italic">par défaut</text>
+  <!-- Tenant -->
+  <rect x="240" y="20" width="240" height="52" class="box tenant"/>
+  <rect x="248" y="28" width="50" height="16" class="tag-bg-tenant"/>
+  <text x="273" y="39" class="tag" text-anchor="middle">Tenant</text>
+  <text x="360" y="42" class="label" text-anchor="middle">Corporate</text>
+  <text x="360" y="58" class="sublabel" text-anchor="middle">tenant isolation</text>
 
-  <!-- payments namespace -->
-  <rect x="60" y="160" width="160" height="40" rx="8" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5"/>
-  <text x="140" y="185" text-anchor="middle" font-size="13" fill="#3b0764" font-weight="600">payments</text>
+  <!-- Lines from Tenant to Scopes -->
+  <path d="M 310 72 L 310 100 L 150 100 L 150 120" class="line"/>
+  <path d="M 360 72 L 360 120" class="line"/>
+  <path d="M 410 72 L 410 100 L 570 100 L 570 120" class="line"/>
 
-  <!-- payments/stripe namespace (nested) -->
-  <line x1="140" y1="200" x2="140" y2="220" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4"/>
-  <line x1="140" y1="220" x2="200" y2="220" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4"/>
-  <rect x="200" y="210" width="180" height="36" rx="8" fill="#faf5ff" stroke="#a855f7" stroke-width="1"/>
-  <text x="290" y="233" text-anchor="middle" font-size="12" fill="#3b0764">payments/stripe</text>
+  <!-- Scope: Engineering -->
+  <rect x="60" y="120" width="180" height="48" class="box scope"/>
+  <rect x="68" y="128" width="42" height="16" class="tag-bg-scope"/>
+  <text x="89" y="139" class="tag" text-anchor="middle">Scope</text>
+  <text x="150" y="140" class="label" text-anchor="middle">Engineering</text>
+  <text x="150" y="155" class="sublabel" text-anchor="middle">decisions, invariants, rules</text>
 
-  <!-- infrastructure namespace -->
-  <rect x="60" y="264" width="160" height="40" rx="8" fill="#ecfdf5" stroke="#22c55e" stroke-width="1.5"/>
-  <text x="140" y="289" text-anchor="middle" font-size="13" fill="#14532d" font-weight="600">infrastructure</text>
+  <!-- Scope: Product -->
+  <rect x="270" y="120" width="180" height="48" class="box scope"/>
+  <rect x="278" y="128" width="42" height="16" class="tag-bg-scope"/>
+  <text x="299" y="139" class="tag" text-anchor="middle">Scope</text>
+  <text x="360" y="140" class="label" text-anchor="middle">Product</text>
+  <text x="360" y="155" class="sublabel" text-anchor="middle">decisions, invariants, rules</text>
 
-  <!-- Access level badges -->
-  <rect x="300" y="100" width="140" height="28" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
-  <circle cx="316" cy="114" r="5" fill="#22c55e"/>
-  <text x="326" y="118" font-size="10" fill="#475569">reader / contributor / admin</text>
+  <!-- Scope: Security -->
+  <rect x="480" y="120" width="180" height="48" class="box scope"/>
+  <rect x="488" y="128" width="42" height="16" class="tag-bg-scope"/>
+  <text x="509" y="139" class="tag" text-anchor="middle">Scope</text>
+  <text x="570" y="140" class="label" text-anchor="middle">Security</text>
+  <text x="570" y="155" class="sublabel" text-anchor="middle">decisions, invariants, rules</text>
+
+  <!-- Lines from Engineering to Namespaces -->
+  <path d="M 100 168 L 100 210" class="line"/>
+  <path d="M 150 168 L 150 196 L 250 196 L 250 210" class="line"/>
+  <path d="M 200 168 L 200 196 L 400 196 L 400 210" class="line"/>
+
+  <!-- Namespace: payments -->
+  <rect x="30" y="210" width="140" height="44" class="box ns"/>
+  <rect x="38" y="218" width="70" height="16" class="tag-bg-ns"/>
+  <text x="73" y="229" class="tag" text-anchor="middle">Namespace</text>
+  <text x="100" y="244" class="label" text-anchor="middle">payments</text>
+
+  <!-- Namespace: auth -->
+  <rect x="180" y="210" width="140" height="44" class="box ns"/>
+  <rect x="188" y="218" width="70" height="16" class="tag-bg-ns"/>
+  <text x="223" y="229" class="tag" text-anchor="middle">Namespace</text>
+  <text x="250" y="244" class="label" text-anchor="middle">auth</text>
+
+  <!-- Namespace: infra -->
+  <rect x="330" y="210" width="140" height="44" class="box ns"/>
+  <rect x="338" y="218" width="70" height="16" class="tag-bg-ns"/>
+  <text x="373" y="229" class="tag" text-anchor="middle">Namespace</text>
+  <text x="400" y="244" class="label" text-anchor="middle">infra</text>
+
+  <!-- Lines from payments to sub-namespaces -->
+  <path d="M 70 254 L 70 290" class="line"/>
+  <path d="M 130 254 L 130 290" class="line"/>
+
+  <!-- Sub-namespace: payments/stripe -->
+  <rect x="10" y="290" width="120" height="40" class="box ns"/>
+  <text x="70" y="314" class="label" text-anchor="middle">stripe</text>
+
+  <!-- Sub-namespace: payments/billing -->
+  <rect x="140" y="290" width="120" height="40" class="box ns"/>
+  <text x="200" y="314" class="label" text-anchor="middle">billing</text>
+
+  <!-- Legend -->
+  <rect x="490" y="240" width="200" height="110" rx="6" ry="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="510" y="260" class="label">Legend</text>
+
+  <rect x="510" y="272" width="12" height="12" class="box tenant"/>
+  <text x="530" y="283" class="sublabel">Tenant — org isolation</text>
+
+  <rect x="510" y="292" width="12" height="12" class="box scope"/>
+  <text x="530" y="303" class="sublabel">Scope — domain</text>
+
+  <rect x="510" y="312" width="12" height="12" class="box ns"/>
+  <text x="530" y="323" class="sublabel">Namespace — subdivision</text>
+
+  <text x="510" y="343" class="sublabel">Max depth: 2 levels</text>
 </svg>

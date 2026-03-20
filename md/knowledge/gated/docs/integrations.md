@@ -10,7 +10,7 @@ Knowledge integrates with your AI agents, CI pipelines, and any HTTP client. Thi
 
 The Knowledge API is a REST API for managing decisions, invariants, rules, and the compliance workflow. All endpoints require authentication via Bearer token.
 
-Base URL: `https://api.asplenz.com/api/v1`
+Base URL: `https://api.asplenz.com/knowledge/v1`
 
 ### Authentication
 
@@ -314,11 +314,7 @@ Knowledge ships with an MCP (Model Context Protocol) server that lets AI agents 
 
 ### Setup
 
-Install the MCP server:
-
-```bash
-pip install knowledge-mcp
-```
+Knowledge provides a hosted MCP server. No installation required.
 
 Create `.mcp.json` in your project root:
 
@@ -326,17 +322,16 @@ Create `.mcp.json` in your project root:
 {
   "mcpServers": {
     "knowledge": {
-      "command": "knowledge-mcp",
-      "env": {
-        "KNOWLEDGE_API_KEY": "kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-        "KNOWLEDGE_API_URL": "https://api.asplenz.com"
+      "url": "https://mcp.asplenz.com",
+      "headers": {
+        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
     }
   }
 }
 ```
 
-Launch your agent from the same Python environment where `knowledge-mcp` is installed. Claude detects the MCP config and loads the Knowledge tools automatically.
+Launch your agent from the directory containing `.mcp.json`. Claude detects the MCP config and loads the Knowledge tools automatically.
 
 ### Available Tools
 
@@ -432,10 +427,12 @@ Resolves each scope via Knowledge API
 Parses citations from PR body (Implementation Report)
     │
     ▼
-3-axis analysis:
+5-axis analysis:
   A. Conformity — are applicable entries addressed?
   B. Override validity — are cited overrides active?
   C. Citation coverage — are all mandatory entries cited?
+  D. Semantic analysis — AI evaluates the diff against each constraint
+  E. External checkers — scripts/webhooks collect dynamic data and verify constraints that code alone can't prove
     │
     ▼
 Verdict: PASS / WARN / FAIL
@@ -443,6 +440,8 @@ Verdict: PASS / WARN / FAIL
     ▼
 Outputs: verifier-result.json + verifier-report.md
 ```
+
+Axes A–C run on every check. Axis D (semantic analysis) is optional and requires an AI provider API key. Axis E runs automatically when constraints have attached checkers.
 
 ### Setup
 
@@ -467,6 +466,17 @@ verification:
     "infra/**": "Operations"
     "auth/**": "Security"
     "**": "Engineering"
+
+# Optional: AI-powered semantic analysis of the diff against constraints
+semantic_analysis:
+  enabled: false
+  # See configuration docs for provider setup
+
+# Optional: execute scripts/webhooks attached to constraints
+external_checkers:
+  enabled: true
+  allowed_commands: ["gh", "python", "node", "bash"]
+  max_concurrency: 5
 ```
 
 **3. Add to CI:**
@@ -562,6 +572,22 @@ The Verifier validates that:
       "status": "followed",
       "source": "implementation_report"
     }
+  ],
+  "semantic_findings": [
+    {
+      "entry_id": "inv-8a3f1b2c4d5e",
+      "verdict": "respected",
+      "confidence": 0.95,
+      "explanation": "Auth middleware applied to all new endpoints"
+    }
+  ],
+  "checker_findings": [
+    {
+      "entry_id": "rul-2b7c9e4f1a3d",
+      "verdict": "respected",
+      "source": "script",
+      "explanation": "PR has 2 approved reviews"
+    }
   ]
 }
 ```
@@ -628,7 +654,7 @@ Knowledge s'intègre avec vos agents IA, vos pipelines CI, et tout client HTTP. 
 
 L'API Knowledge est une API REST pour gérer les decisions, invariants, rules et le workflow de conformité. Tous les endpoints nécessitent une authentification via Bearer token.
 
-URL de base : `https://api.asplenz.com/api/v1`
+URL de base : `https://api.asplenz.com/knowledge/v1`
 
 ### Authentification
 
@@ -932,11 +958,7 @@ Knowledge inclut un serveur MCP (Model Context Protocol) qui permet aux agents I
 
 ### Configuration
 
-Installez le serveur MCP :
-
-```bash
-pip install knowledge-mcp
-```
+Knowledge fournit un serveur MCP hébergé. Aucune installation requise.
 
 Créez `.mcp.json` à la racine de votre projet :
 
@@ -944,17 +966,16 @@ Créez `.mcp.json` à la racine de votre projet :
 {
   "mcpServers": {
     "knowledge": {
-      "command": "knowledge-mcp",
-      "env": {
-        "KNOWLEDGE_API_KEY": "kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-        "KNOWLEDGE_API_URL": "https://api.asplenz.com"
+      "url": "https://mcp.asplenz.com",
+      "headers": {
+        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
     }
   }
 }
 ```
 
-Lancez votre agent depuis le même environnement Python où `knowledge-mcp` est installé. Claude détecte la config MCP et charge les outils Knowledge automatiquement.
+Lancez votre agent depuis le répertoire contenant `.mcp.json`. Claude détecte la config MCP et charge les outils Knowledge automatiquement.
 
 ### Outils disponibles
 
@@ -1050,10 +1071,12 @@ Résout chaque scope via l'API Knowledge
 Parse les citations du body PR (Implementation Report)
     │
     ▼
-Analyse 3 axes :
+Analyse 5 axes :
   A. Conformité — les entrées applicables sont-elles adressées ?
   B. Validité des overrides — les overrides cités sont-ils actifs ?
   C. Couverture des citations — toutes les entrées mandatory sont-elles citées ?
+  D. Analyse sémantique — l'IA évalue le diff contre chaque contrainte
+  E. External checkers — scripts/webhooks collectent des données dynamiques et vérifient les contraintes que le code seul ne peut pas prouver
     │
     ▼
 Verdict : PASS / WARN / FAIL
@@ -1061,6 +1084,8 @@ Verdict : PASS / WARN / FAIL
     ▼
 Sorties : verifier-result.json + verifier-report.md
 ```
+
+Les axes A–C s'exécutent à chaque vérification. L'axe D (analyse sémantique) est optionnel et nécessite une clé API de fournisseur IA. L'axe E s'exécute automatiquement quand des contraintes ont des checkers attachés.
 
 ### Configuration
 
@@ -1085,6 +1110,17 @@ verification:
     "infra/**": "Operations"
     "auth/**": "Security"
     "**": "Engineering"
+
+# Optionnel : analyse sémantique du diff par IA contre les contraintes
+semantic_analysis:
+  enabled: false
+  # Voir la documentation de configuration pour le setup du fournisseur
+
+# Optionnel : exécuter des scripts/webhooks attachés aux contraintes
+external_checkers:
+  enabled: true
+  allowed_commands: ["gh", "python", "node", "bash"]
+  max_concurrency: 5
 ```
 
 **3. Ajouter au CI :**
@@ -1179,6 +1215,22 @@ Le Verifier valide que :
       "entry_type": "invariant",
       "status": "followed",
       "source": "implementation_report"
+    }
+  ],
+  "semantic_findings": [
+    {
+      "entry_id": "inv-8a3f1b2c4d5e",
+      "verdict": "respected",
+      "confidence": 0.95,
+      "explanation": "Auth middleware applied to all new endpoints"
+    }
+  ],
+  "checker_findings": [
+    {
+      "entry_id": "rul-2b7c9e4f1a3d",
+      "verdict": "respected",
+      "source": "script",
+      "explanation": "La PR a 2 reviews approuvés"
     }
   ]
 }

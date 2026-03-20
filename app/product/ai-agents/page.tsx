@@ -113,16 +113,14 @@ const content = {
           code: `{
   "mcpServers": {
     "knowledge": {
-      "command": "python",
-      "args": ["-m", "src.knowledge-mcp.server"],
-      "env": {
-        "KNOWLEDGE_API_URL": "http://localhost:8090",
-        "KNOWLEDGE_API_KEY": "kn_..."
+      "url": "https://mcp.asplenz.com",
+      "headers": {
+        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
     }
   }
 }`,
-          note: 'For hosted Asplenz, replace KNOWLEDGE_API_URL with your instance URL (e.g. https://api.asplenz.com).',
+          note: null as string | null,
         },
         {
           n: '2',
@@ -266,16 +264,14 @@ const content = {
           code: `{
   "mcpServers": {
     "knowledge": {
-      "command": "python",
-      "args": ["-m", "src.knowledge-mcp.server"],
-      "env": {
-        "KNOWLEDGE_API_URL": "http://localhost:8090",
-        "KNOWLEDGE_API_KEY": "kn_..."
+      "url": "https://mcp.asplenz.com",
+      "headers": {
+        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
     }
   }
 }`,
-          note: "Pour Asplenz hébergé, remplacez KNOWLEDGE_API_URL par l'URL de votre instance (ex : https://api.asplenz.com).",
+          note: null as string | null,
         },
         {
           n: '2',

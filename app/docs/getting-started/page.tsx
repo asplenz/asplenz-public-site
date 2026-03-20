@@ -35,12 +35,12 @@ const content = {
       body: "All API calls require the Authorization header with your API key. Copy the scope ID from the dashboard — it's shown on each scope page.",
       listScopes: {
         title: 'List your scopes',
-        code: `curl https://api.asplenz.com/api/v1/scopes \\
+        code: `curl https://api.asplenz.com/knowledge/v1/scopes \\
   -H "Authorization: Bearer kn_xxxxxxxx"`,
       },
       recordDecision: {
         title: 'Record a decision',
-        code: `curl -X POST https://api.asplenz.com/api/v1/scopes/scp-XXXX/decisions \\
+        code: `curl -X POST https://api.asplenz.com/knowledge/v1/scopes/scp-XXXX/decisions \\
   -H "Authorization: Bearer kn_xxxxxxxx" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -53,7 +53,7 @@ const content = {
       },
       checkCompliance: {
         title: 'Check compliance',
-        code: `curl -X POST https://api.asplenz.com/api/v1/check \\
+        code: `curl -X POST https://api.asplenz.com/knowledge/v1/check \\
   -H "Authorization: Bearer kn_xxxxxxxx" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -65,26 +65,21 @@ const content = {
     },
     mcp: {
       tag: '4. Connect an AI Agent (MCP)',
-      body: 'Knowledge includes an MCP server that lets Claude Code, Cursor, and other AI tools query the registry in real time.',
-      install: {
-        title: 'Install the MCP server',
-        code: 'pip install knowledge-mcp',
-      },
+      body: 'Knowledge provides a hosted MCP server that lets Claude Code, Cursor, and other AI tools query the registry in real time. No installation required.',
       configure: {
         title: 'Configure Claude Code',
         body: 'Create or update .mcp.json in your project root:',
         code: `{
   "mcpServers": {
     "knowledge": {
-      "command": "knowledge-mcp",
-      "env": {
-        "KNOWLEDGE_API_KEY": "kn_xxxxxxxx",
-        "KNOWLEDGE_API_URL": "https://api.asplenz.com"
+      "url": "https://mcp.asplenz.com",
+      "headers": {
+        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
     }
   }
 }`,
-        note: 'Launch your agent from the same Python environment where knowledge-mcp is installed.',
+        note: 'Launch your agent from the directory containing .mcp.json.',
       },
       tryIt: {
         title: 'Try it',
@@ -99,24 +94,16 @@ const content = {
     },
     extract: {
       tag: '5. Extract Rules from Existing Docs and Code',
-      body: 'Knowledge can scan your existing documentation and source code to extract implicit rules, decisions, and constraints automatically.',
+      body: 'Knowledge can scan your existing documentation and source code to extract implicit rules, decisions, and constraints automatically. Since your AI agent already has access to Knowledge via MCP, just ask it:',
       extractDocs: {
         title: 'Extract from your docs',
-        code: `knowledge extract \\
-  --api-url https://api.asplenz.com \\
-  --api-key kn_xxxxxxxx \\
-  --scope Engineering \\
-  --source ./docs --source ./CLAUDE.md`,
+        code: `> "Extract rules from ./docs and ./CLAUDE.md for the Engineering scope"`,
       },
       extractCode: {
         title: 'Extract from your codebase',
         body: 'Knowledge also analyzes source code, configuration files, and infrastructure definitions to surface implicit rules that are not documented anywhere:',
-        code: `knowledge extract \\
-  --api-url https://api.asplenz.com \\
-  --api-key kn_xxxxxxxx \\
-  --scope Engineering \\
-  --source ./src --pattern "**/*.{ts,py,yaml}"`,
-        note: 'The CLI reads every matching file, analyzes each chunk, and creates typed drafts:',
+        code: `> "Extract rules from ./src for the Engineering scope, focus on TypeScript, Python, and YAML files"`,
+        note: 'The agent reads your local files, sends them to Knowledge for analysis, and reports the results:',
         output: `Scanning 23 files...
   47 chunks analyzed
   12 drafts generated (4 invariants, 5 rules, 3 decisions)
@@ -132,15 +119,6 @@ const content = {
           { label: 'Confidence', desc: 'confidence level (0.6 – 1.0)' },
         ],
         note: 'Approve to publish to the registry. Reject to discard. Edit before approving if needed.',
-      },
-      patterns: {
-        title: 'Configure patterns',
-        body: 'You can combine multiple sources and patterns in a single run:',
-        code: `knowledge extract \\
-  --scope Engineering \\
-  --source ./docs --pattern "**/*.md" \\
-  --source ./src --pattern "**/*.{ts,py,yaml}" \\
-  --source . --pattern "CLAUDE.md"`,
       },
     },
     verifier: {
@@ -233,12 +211,12 @@ verification:
       body: 'Tous les appels API nécessitent le header Authorization avec votre clé API. Copiez le scope ID depuis le dashboard — il est affiché sur chaque page de scope.',
       listScopes: {
         title: 'Lister vos scopes',
-        code: `curl https://api.asplenz.com/api/v1/scopes \\
+        code: `curl https://api.asplenz.com/knowledge/v1/scopes \\
   -H "Authorization: Bearer kn_xxxxxxxx"`,
       },
       recordDecision: {
         title: 'Enregistrer une décision',
-        code: `curl -X POST https://api.asplenz.com/api/v1/scopes/scp-XXXX/decisions \\
+        code: `curl -X POST https://api.asplenz.com/knowledge/v1/scopes/scp-XXXX/decisions \\
   -H "Authorization: Bearer kn_xxxxxxxx" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -251,7 +229,7 @@ verification:
       },
       checkCompliance: {
         title: 'Vérifier la conformité',
-        code: `curl -X POST https://api.asplenz.com/api/v1/check \\
+        code: `curl -X POST https://api.asplenz.com/knowledge/v1/check \\
   -H "Authorization: Bearer kn_xxxxxxxx" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -263,26 +241,21 @@ verification:
     },
     mcp: {
       tag: '4. Connecter un agent IA (MCP)',
-      body: 'Knowledge inclut un serveur MCP qui permet à Claude Code, Cursor et d\'autres outils IA d\'interroger le registre en temps réel.',
-      install: {
-        title: 'Installer le serveur MCP',
-        code: 'pip install knowledge-mcp',
-      },
+      body: 'Knowledge fournit un serveur MCP hébergé qui permet à Claude Code, Cursor et d\'autres outils IA d\'interroger le registre en temps réel. Aucune installation requise.',
       configure: {
         title: 'Configurer Claude Code',
         body: 'Créez ou mettez à jour .mcp.json à la racine de votre projet :',
         code: `{
   "mcpServers": {
     "knowledge": {
-      "command": "knowledge-mcp",
-      "env": {
-        "KNOWLEDGE_API_KEY": "kn_xxxxxxxx",
-        "KNOWLEDGE_API_URL": "https://api.asplenz.com"
+      "url": "https://mcp.asplenz.com",
+      "headers": {
+        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
     }
   }
 }`,
-        note: 'Lancez votre agent depuis le même environnement Python où knowledge-mcp est installé.',
+        note: 'Lancez votre agent depuis le répertoire contenant .mcp.json.',
       },
       tryIt: {
         title: 'Essayez',
@@ -297,24 +270,16 @@ verification:
     },
     extract: {
       tag: '5. Extraire les règles de vos docs et de votre code',
-      body: 'Knowledge peut scanner votre documentation existante et votre code source pour extraire automatiquement les règles, décisions et contraintes implicites.',
+      body: 'Demandez à votre agent IA (Claude Code, Cursor, etc.) de scanner votre documentation et votre code source. L\'agent lit les fichiers localement, les analyse via MCP, et crée des drafts typés dans Knowledge.',
       extractDocs: {
         title: 'Extraire depuis vos docs',
-        code: `knowledge extract \\
-  --api-url https://api.asplenz.com \\
-  --api-key kn_xxxxxxxx \\
-  --scope Engineering \\
-  --source ./docs --source ./CLAUDE.md`,
+        code: `> "Extrais les règles depuis ./docs et ./CLAUDE.md pour le scope Engineering"`,
       },
       extractCode: {
         title: 'Extraire depuis votre codebase',
-        body: "Knowledge analyse aussi les fichiers source, les configurations et les définitions d'infrastructure pour faire émerger les règles implicites qui ne sont documentées nulle part :",
-        code: `knowledge extract \\
-  --api-url https://api.asplenz.com \\
-  --api-key kn_xxxxxxxx \\
-  --scope Engineering \\
-  --source ./src --pattern "**/*.{ts,py,yaml}"`,
-        note: 'La CLI lit chaque fichier, analyse chaque chunk, et crée des drafts typés :',
+        body: 'L\'agent analyse aussi les fichiers source, les configurations et les définitions d\'infrastructure pour faire émerger les règles implicites qui ne sont documentées nulle part :',
+        code: `> "Scanne ./src pour les fichiers .ts, .py et .yaml dans le scope Engineering"`,
+        note: 'L\'agent lit chaque fichier, analyse chaque chunk, et crée des drafts typés :',
         output: `Scanning 23 files...
   47 chunks analyzed
   12 drafts generated (4 invariants, 5 rules, 3 decisions)
@@ -330,15 +295,6 @@ verification:
           { label: 'Confiance', desc: 'niveau de confiance (0.6 – 1.0)' },
         ],
         note: "Approuvez pour publier dans le registre. Rejetez pour supprimer. Éditez avant d'approuver si nécessaire.",
-      },
-      patterns: {
-        title: 'Configurer les patterns',
-        body: 'Vous pouvez combiner plusieurs sources et patterns en un seul run :',
-        code: `knowledge extract \\
-  --scope Engineering \\
-  --source ./docs --pattern "**/*.md" \\
-  --source ./src --pattern "**/*.{ts,py,yaml}" \\
-  --source . --pattern "CLAUDE.md"`,
       },
     },
     verifier: {
@@ -479,9 +435,6 @@ export default function Page() {
       <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 mt-10">{t.mcp.tag}</h2>
       <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">{t.mcp.body}</p>
 
-      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.mcp.install.title}</h3>
-      <CodeBlock code={t.mcp.install.code} />
-
       <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.mcp.configure.title}</h3>
       <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.mcp.configure.body}</p>
       <CodeBlock code={t.mcp.configure.code} />
@@ -508,7 +461,7 @@ export default function Page() {
       <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.extract.extractCode.title}</h3>
       <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.extract.extractCode.body}</p>
       <CodeBlock code={t.extract.extractCode.code} />
-      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed text-sm">{t.extract.extractCode.note}</p>
+      <p className="text-sm text-[var(--text-muted)] mb-3">{t.extract.extractCode.note}</p>
       <CodeBlock code={t.extract.extractCode.output} />
 
       <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.extract.review.title}</h3>
@@ -521,10 +474,6 @@ export default function Page() {
         ))}
       </ul>
       <p className="text-[var(--text-secondary)] mb-6 leading-relaxed text-sm">{t.extract.review.note}</p>
-
-      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.extract.patterns.title}</h3>
-      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.extract.patterns.body}</p>
-      <CodeBlock code={t.extract.patterns.code} />
 
       <hr className="border-[var(--border)] my-8" />
 

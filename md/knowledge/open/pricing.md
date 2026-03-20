@@ -171,7 +171,7 @@ Yes. Upgrade immediately, downgrade at end of billing period. Your data is never
 
 No. Priced per organization, not per seat.
 
-### Can I use Knowledge with any LLM?
+### Can I use Knowledge with any AI agent?
 
 Yes. MCP works with Claude, Copilot, Cursor, and any MCP-compatible agent. The REST API works with any framework.
 

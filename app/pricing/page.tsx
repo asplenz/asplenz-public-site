@@ -146,7 +146,7 @@ const faqs = [
     a: 'No. Priced per organization, not per seat.',
   },
   {
-    q: 'Can I use Knowledge with any LLM?',
+    q: 'Can I use Knowledge with any AI agent?',
     a: 'Yes. MCP works with Claude, Copilot, Cursor, and any MCP-compatible agent. The REST API works with any framework.',
   },
 ]

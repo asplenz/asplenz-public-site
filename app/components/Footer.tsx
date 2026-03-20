@@ -14,6 +14,16 @@ const columns = [
     ],
   },
   {
+    heading: 'Use Cases',
+    links: [
+      { label: 'Engineering', href: '/use-cases/engineering' },
+      { label: 'Legal & Compliance', href: '/use-cases/legal' },
+      { label: 'Financial Services', href: '/use-cases/finance' },
+      { label: 'Healthcare', href: '/use-cases/healthcare' },
+      { label: 'Cybersecurity', href: '/use-cases/cybersecurity' },
+    ],
+  },
+  {
     heading: 'Docs',
     links: [
       { label: 'Getting Started', href: '/docs/getting-started' },

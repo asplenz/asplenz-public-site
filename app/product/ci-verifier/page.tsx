@@ -71,6 +71,14 @@ const content = {
           name: 'Overrides',
           body: 'Active overrides are recognized. If a developer has a valid override for an invariant, the Verifier marks it as "overridden" rather than "violated."',
         },
+        {
+          name: 'Semantic Analysis (optional)',
+          body: 'When enabled, the Verifier goes beyond citation matching. It analyzes the actual code diff against each applicable constraint and evaluates whether the change respects or violates each one — with a confidence score and explanation. This catches violations that citation matching alone would miss.',
+        },
+        {
+          name: 'External Checkers',
+          body: 'Some constraints can\'t be verified from code alone — for example, "PRs must have at least 2 approved reviewers" or "cloud budget must not exceed 10k/month." Constraints can have attached scripts or webhooks that collect dynamic data. The Verifier executes them automatically and evaluates the output against the constraint.',
+        },
       ],
     },
     ci: {
@@ -125,6 +133,16 @@ verification:
     "infrastructure/**": "Operations"
     "**": "Engineering"
 
+# Optional: AI-powered semantic analysis of the diff against constraints
+semantic_analysis:
+  enabled: false
+  # See configuration docs for provider setup
+
+# Optional: execute scripts/webhooks attached to constraints
+external_checkers:
+  enabled: true
+  allowed_commands: ["gh", "python", "node", "bash"]
+
 output:
   json: verifier-result.json
   markdown: verifier-report.md`,
@@ -152,6 +170,22 @@ output:
       "entry_id": "inv-a1b2c3",
       "constraint": "All API endpoints must require authentication",
       "status": "violated"
+    }
+  ],
+  "semantic_findings": [
+    {
+      "entry_id": "inv-a1b2c3",
+      "verdict": "violated",
+      "confidence": 0.92,
+      "explanation": "New endpoint /api/export has no auth middleware"
+    }
+  ],
+  "checker_findings": [
+    {
+      "entry_id": "rul-d4e5f6",
+      "verdict": "respected",
+      "source": "script",
+      "explanation": "PR has 2 approved reviews"
     }
   ]
 }`,
@@ -246,6 +280,14 @@ output:
           name: 'Overrides',
           body: 'Les overrides actifs sont reconnus. Si un développeur a un override valide pour un invariant, le Verifier le marque comme "overridden" plutôt que "violated."',
         },
+        {
+          name: 'Analyse sémantique (optionnelle)',
+          body: "Quand activée, le Verifier va au-delà du matching de citations. Il analyse le diff du code contre chaque contrainte applicable et évalue si le changement respecte ou viole chacune — avec un score de confiance et une explication. Cela détecte des violations que le matching de citations seul ne capturerait pas.",
+        },
+        {
+          name: 'External Checkers',
+          body: "Certaines contraintes ne peuvent pas être vérifiées à partir du code seul — par exemple, « Les PRs doivent avoir au moins 2 reviewers approuvés » ou « Le budget cloud ne doit pas dépasser 10k/mois ». Les contraintes peuvent avoir des scripts ou webhooks attachés qui collectent des données dynamiques. Le Verifier les exécute automatiquement et évalue le résultat contre la contrainte.",
+        },
       ],
     },
     ci: {
@@ -300,6 +342,16 @@ verification:
     "infrastructure/**": "Operations"
     "**": "Engineering"
 
+# Optionnel : analyse sémantique du diff par IA contre les contraintes
+semantic_analysis:
+  enabled: false
+  # Voir la documentation de configuration pour le setup du fournisseur
+
+# Optionnel : exécuter des scripts/webhooks attachés aux contraintes
+external_checkers:
+  enabled: true
+  allowed_commands: ["gh", "python", "node", "bash"]
+
 output:
   json: verifier-result.json
   markdown: verifier-report.md`,
@@ -327,6 +379,22 @@ output:
       "entry_id": "inv-a1b2c3",
       "constraint": "Tous les endpoints API doivent exiger une authentification",
       "status": "violated"
+    }
+  ],
+  "semantic_findings": [
+    {
+      "entry_id": "inv-a1b2c3",
+      "verdict": "violated",
+      "confidence": 0.92,
+      "explanation": "Le nouvel endpoint /api/export n'a pas de middleware d'authentification"
+    }
+  ],
+  "checker_findings": [
+    {
+      "entry_id": "rul-d4e5f6",
+      "verdict": "respected",
+      "source": "script",
+      "explanation": "La PR a 2 reviews approuvés"
     }
   ]
 }`,

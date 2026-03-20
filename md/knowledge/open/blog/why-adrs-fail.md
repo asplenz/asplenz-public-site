@@ -66,8 +66,14 @@ The biggest barrier to adopting a decision registry is the initial effort: who h
 
 A decision registry with automatic extraction scans your existing documentation — READMEs, architecture docs, runbooks, even your ADR files — and surfaces implicit rules, decisions, and constraints as typed candidates. You review and approve. In minutes, you go from scattered markdown to a structured registry without writing a single entry by hand.
 
-```bash
-knowledge extract --scope Engineering --source ./docs/adr --source ./CLAUDE.md
+```
+> "Extract rules from ./docs/adr and ./CLAUDE.md for the Engineering scope"
+
+Scanning 14 files...
+  8 invariant candidates  (e.g., "All endpoints must require authentication")
+  11 rule candidates       (e.g., "Use conventional commits")
+  5 decision candidates   (e.g., "Chose PostgreSQL over DynamoDB")
+  3 duplicates skipped
 ```
 
 Your existing ADRs become the input. The registry becomes the output — searchable, enforceable, and queryable by agents.

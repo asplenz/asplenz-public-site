@@ -22,17 +22,14 @@ Et à mesure que votre documentation évolue, vous pouvez relancer l'extraction 
 
 ### 1. Pointez vers vos sources
 
-```bash
-knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md
+```
+> "Extrais les règles depuis ./docs et ./CLAUDE.md pour le scope Engineering"
 ```
 
 Ciblez des répertoires et types de fichiers spécifiques :
 
-```bash
-knowledge extract --scope Engineering \
-  --source ./docs --pattern "**/*.md" \
-  --source ./src --pattern "**/README.md" \
-  --source . --pattern "CLAUDE.md"
+```
+> "Extrais les règles depuis ./docs (*.md), ./src (README.md) et ./CLAUDE.md pour Engineering"
 ```
 
 ### 2. Chaque chunk est analysé
@@ -79,18 +76,16 @@ Trois actions :
 
 ### Dépôts Git
 
-Pointez la CLI vers n'importe quel dépôt et filtrez par glob pattern. Knowledge analyse les fichiers source — code, configuration, définitions d'infrastructure — et fait émerger les règles et contraintes implicites qui ne sont documentées nulle part.
+Demandez à votre agent IA de scanner un dépôt. Il lit les fichiers locaux, les découpe, et les envoie à Knowledge pour analyse. Les règles et contraintes implicites émergent — même celles qui ne sont documentées nulle part.
 
-```bash
-knowledge extract --scope Engineering --source /path/to/repo --pattern "**/*.{ts,py,yaml,md}"
+```
+> "Scanne /path/to/repo pour les fichiers .ts, .py, .yaml et .md dans le scope Engineering"
 ```
 
 ### Documents spécifiques
 
-```bash
-knowledge extract --scope Engineering \
-  --source /path/to/runbook.md \
-  --source /path/to/architecture.md
+```
+> "Extrais les règles depuis runbook.md et architecture.md pour Engineering"
 ```
 
 ### API d'ingestion
@@ -98,7 +93,7 @@ knowledge extract --scope Engineering \
 Pour les sources qui ne sont pas sur disque, poussez les documents directement via l'API :
 
 ```bash
-curl -X POST http://localhost:8090/api/v1/extract/stream \
+curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \
   -H "Authorization: Bearer kn_..." \
   -H "Content-Type: application/json" \
   -d '{
@@ -121,13 +116,13 @@ Les connecteurs Slack, Teams, Notion, Confluence et Excel sont disponibles sur l
 
 ---
 
-## Configuration LLM
+## Configuration IA
 
-L'extraction nécessite un accès LLM. Deux options :
+L'extraction nécessite un accès IA. Deux options :
 
 | Option | Description |
 |--------|-------------|
-| **Géré par Asplenz** | Aucune configuration nécessaire. L'usage LLM est facturé au coût sur votre facture. |
+| **Géré par Asplenz** | Aucune configuration nécessaire. L'usage IA est facturé au coût sur votre facture. |
 | **Votre propre clé API** | Apportez votre propre clé. Vous contrôlez votre contrat fournisseur et la résidence des données. |
 
 Les organisations avec des exigences strictes de résidence des données ou de Zero Data Retention doivent utiliser leur propre clé API.
@@ -149,7 +144,7 @@ Les organisations avec des exigences strictes de résidence des données ou de Z
 
 | Paramètre | Défaut | Description |
 |-----------|--------|-------------|
-| Modèle | Configurable | LLM utilisé pour l'extraction |
+| Modèle | Configurable | Modèle IA utilisé pour l'extraction |
 | Température | 0.1 | Basse pour une extraction factuelle |
 | Confiance minimum | 0.6 | En dessous, les extractions sont supprimées |
 | Max extractions par chunk | 5 | Limite le bruit |
@@ -205,17 +200,14 @@ And as your documentation evolves, you can re-extract regularly to surface new i
 
 ### 1. Point at your sources
 
-```bash
-knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md
+```
+> "Extract rules from ./docs and ./CLAUDE.md for the Engineering scope"
 ```
 
 Target specific directories and file types:
 
-```bash
-knowledge extract --scope Engineering \
-  --source ./docs --pattern "**/*.md" \
-  --source ./src --pattern "**/README.md" \
-  --source . --pattern "CLAUDE.md"
+```
+> "Extract rules from ./docs (*.md), ./src (README.md), and ./CLAUDE.md for Engineering"
 ```
 
 ### 2. Each chunk is analyzed
@@ -262,18 +254,16 @@ Three actions:
 
 ### Git Repositories
 
-Point the CLI at any repository and filter by glob pattern. Knowledge analyzes source files — code, configuration, infrastructure definitions — and surfaces implicit rules and constraints that are not documented anywhere.
+Ask your AI agent to scan a repository. It reads local files, chunks them, and sends them to Knowledge for analysis. Implicit rules and constraints surface — even ones that are not documented anywhere.
 
-```bash
-knowledge extract --scope Engineering --source /path/to/repo --pattern "**/*.{ts,py,yaml,md}"
+```
+> "Scan /path/to/repo for .ts, .py, .yaml, and .md files in the Engineering scope"
 ```
 
 ### Specific Documents
 
-```bash
-knowledge extract --scope Engineering \
-  --source /path/to/runbook.md \
-  --source /path/to/architecture.md
+```
+> "Extract rules from runbook.md and architecture.md for Engineering"
 ```
 
 ### Ingestion API
@@ -281,7 +271,7 @@ knowledge extract --scope Engineering \
 For sources that don't live on disk, push documents directly via the API:
 
 ```bash
-curl -X POST http://localhost:8090/api/v1/extract/stream \
+curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \
   -H "Authorization: Bearer kn_..." \
   -H "Content-Type: application/json" \
   -d '{
@@ -304,13 +294,13 @@ Slack, Teams, Notion, Confluence, and Excel connectors are available on Team and
 
 ---
 
-## LLM Configuration
+## AI Configuration
 
-Extraction requires LLM access. Two options:
+Extraction requires AI access. Two options:
 
 | Option | Description |
 |--------|-------------|
-| **Asplenz-managed** | No configuration needed. LLM usage billed at cost on your invoice. |
+| **Asplenz-managed** | No configuration needed. AI usage billed at cost on your invoice. |
 | **Your own API key** | Bring your own key. You control your provider contract and data residency. |
 
 Organizations with strict data residency or Zero Data Retention requirements should use their own API key.
@@ -332,7 +322,7 @@ Organizations with strict data residency or Zero Data Retention requirements sho
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| Model | Configurable | LLM used for extraction |
+| Model | Configurable | AI model used for extraction |
 | Temperature | 0.1 | Low for factual extraction |
 | Min confidence | 0.6 | Below this, extractions are discarded |
 | Max extractions per chunk | 5 | Limits noise |

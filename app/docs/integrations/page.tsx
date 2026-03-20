@@ -20,7 +20,7 @@ const content = {
       },
       {
         title: 'CI Verifier',
-        desc: 'Runs in your CI pipeline and checks that PRs comply with applicable invariants and rules. Supports GitHub Actions, GitLab CI, three gating modes, and produces machine-readable compliance reports.',
+        desc: 'Runs in your CI pipeline and checks PRs against applicable invariants and rules using a 5-axis analysis: conformity, override validity, citation coverage, semantic analysis (optional), and external checkers. Supports GitHub Actions, GitLab CI, three gating modes.',
         tags: ['GitHub Actions', 'GitLab CI', 'YAML'],
       },
     ],
@@ -49,7 +49,7 @@ const content = {
       },
       {
         title: 'CI Verifier',
-        desc: "S'exécute dans votre pipeline CI et vérifie que les PRs respectent les invariants et rules applicables. Supporte GitHub Actions, GitLab CI, trois modes de gating et produit des rapports de conformité machine-readable.",
+        desc: "S'exécute dans votre pipeline CI et vérifie les PRs contre les invariants et rules applicables via une analyse à 5 axes : conformité, validité des overrides, couverture des citations, analyse sémantique (optionnelle) et external checkers. Supporte GitHub Actions, GitLab CI, trois modes de gating.",
         tags: ['GitHub Actions', 'GitLab CI', 'YAML'],
       },
     ],

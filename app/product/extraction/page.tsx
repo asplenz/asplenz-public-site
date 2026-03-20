@@ -10,17 +10,17 @@ const content = {
     title: 'Extraction automatique',
     intro: 'Vos règles existent déjà. Elles ne sont simplement pas structurées.',
     coldStart: {
-      body: 'Chaque équipe a des règles implicites - enfouies dans des READMEs, des docs d\'architecture, des runbooks, des commentaires de code et des fils Slack. Les saisir manuellement une par une prend un temps que la plupart des équipes n\'ont pas. Knowledge résout le problème du démarrage à froid : pointez la CLI sur vos sources existantes et obtenez un registre peuplé en quelques minutes.',
+      body: 'Chaque équipe a des règles implicites - enfouies dans des READMEs, des docs d\'architecture, des runbooks, des commentaires de code et des fils Slack. Les saisir manuellement une par une prend un temps que la plupart des équipes n\'ont pas. Knowledge résout le problème du démarrage à froid : demandez à votre agent IA de scanner vos sources existantes et obtenez un registre peuplé en quelques minutes.',
     },
     howItWorks: {
       tag: 'Comment ça fonctionne',
-      body: 'Pointez la CLI sur vos sources existantes. Knowledge analyse le contenu, identifie les règles et contraintes implicites, et les expose comme drafts typés dans votre dashboard. Vous passez chacun en revue - approuver, éditer ou rejeter. Rien n\'est publié sans validation humaine.',
-      code: `knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md`,
+      body: 'Demandez à votre agent IA (Claude Code, Cursor, etc.) d\'extraire les règles de vos sources existantes. L\'agent lit les fichiers localement, les analyse via MCP, et les expose comme drafts typés dans votre dashboard. Vous passez chacun en revue — approuver, éditer ou rejeter. Rien n\'est publié sans validation humaine.',
+      code: `> "Extrais les règles depuis ./docs et ./CLAUDE.md pour le namespace Engineering/payments"`,
       note: 'La déduplication sémantique vous permet de ré-extraire régulièrement sans noyer le registre.',
     },
     extracted: {
       tag: 'Ce qui est extrait',
-      intro: 'Le LLM identifie trois types de contenu normatif :',
+      intro: 'L\'IA identifie trois types de contenu normatif :',
       types: [
         {
           name: 'Invariants',
@@ -40,24 +40,31 @@ const content = {
       ],
     },
     sources: {
-      tag: 'Trois types de sources',
+      tag: 'Types de sources',
       items: [
         {
           name: 'Fichiers locaux',
-          desc: 'Pointez sur des répertoires ou des fichiers spécifiques. La CLI lit tout ce qui correspond à vos patterns.',
-          code: `knowledge extract --scope Engineering \\
-  --source ./docs --pattern "**/*.md" \\
-  --source ./src --pattern "**/README.md" \\
-  --source . --pattern "CLAUDE.md"`,
+          desc: 'Pointez vers des répertoires ou des fichiers spécifiques. L\'agent lit tout ce qui correspond à vos patterns.',
+          code: `> "Extrais les règles depuis ./docs (*.md), ./src (README.md) et ./CLAUDE.md pour Engineering/infra"`,
         },
         {
           name: 'Dépôts Git',
-          desc: 'Pointez la CLI sur n\'importe quel dépôt et filtrez par glob pattern. Knowledge analyse les fichiers sources - code, configuration, définitions d\'infrastructure - et expose les règles et contraintes implicites qui ne sont documentées nulle part.',
-          code: `knowledge extract --scope Engineering --source /path/to/repo --pattern "**/*.{ts,py,yaml,md}"`,
+          desc: 'Demandez à votre agent IA de scanner un dépôt. Il lit les fichiers localement, les analyse, et envoie les résultats à Knowledge via MCP. Les règles implicites remontent — même celles non documentées.',
+          code: `> "Scanne /path/to/repo pour les fichiers .ts, .py, .yaml et .md dans le scope Engineering"`,
         },
         {
           name: 'API d\'ingestion',
-          desc: 'Pour les sources qui ne vivent pas sur disque - exports Confluence, digests Slack, pages wiki, artefacts CI - poussez les documents directement via l\'API REST.',
+          desc: 'Pour les sources qui ne vivent pas sur disque — exports Confluence, digests Slack, pages wiki, artefacts CI — poussez les documents directement via l\'API REST.',
+          code: `$ curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \\
+  -H "Authorization: Bearer kn_..." \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "scope_id": "scp-...",
+    "documents": [
+      {"content": "...", "metadata": {"source": "confluence-export", "author": "ops-team"}}
+    ],
+    "auto_run": true
+  }'`,
         },
       ],
     },
@@ -90,7 +97,7 @@ const content = {
     },
     cta: {
       tag: 'Prêt à commencer ?',
-      code: 'knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md',
+      code: `> "Extrais les règles depuis ./docs et ./CLAUDE.md pour Engineering/payments"`,
       body: 'Passez en revue les drafts dans votre dashboard. Approuvez les bons, rejetez le bruit. Votre registre est peuplé.',
       links: [
         { label: 'Documentation complète →', href: '/docs/extraction' },
@@ -103,17 +110,17 @@ const content = {
     title: 'Automatic Extraction',
     intro: 'Your rules already exist. They\'re just not structured.',
     coldStart: {
-      body: 'Every team has implicit rules - buried in READMEs, architecture docs, runbooks, code comments, and Slack threads. Manually entering each one into a registry takes time most teams don\'t have. Knowledge solves the cold-start problem: point the CLI at your existing sources and get a populated registry in minutes.',
+      body: 'Every team has implicit rules - buried in READMEs, architecture docs, runbooks, code comments, and Slack threads. Manually entering each one into a registry takes time most teams don\'t have. Knowledge solves the cold-start problem: ask your AI agent to scan your existing sources and get a populated registry in minutes.',
     },
     howItWorks: {
       tag: 'How It Works',
-      body: 'Point the CLI at your existing sources. Knowledge analyzes the content, identifies implicit rules and constraints, and surfaces them as typed drafts in your dashboard. You review each one - approve, edit, or reject. Nothing is published without human validation.',
-      code: `knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md`,
+      body: 'Ask your AI agent (Claude Code, Cursor, etc.) to extract rules from your existing sources. The agent reads files locally, chunks them, and sends them to Knowledge via MCP for analysis. Implicit rules and constraints are surfaced as typed drafts in your dashboard. You review each one — approve, edit, or reject. Nothing is published without human validation.',
+      code: `> "Extract rules from ./docs and ./CLAUDE.md for the Engineering/payments namespace"`,
       note: 'Semantic deduplication ensures you can re-extract regularly without flooding the registry.',
     },
     extracted: {
       tag: 'What Gets Extracted',
-      intro: 'The LLM identifies three types of normative content:',
+      intro: 'The AI identifies three types of normative content:',
       types: [
         {
           name: 'Invariants',
@@ -133,24 +140,31 @@ const content = {
       ],
     },
     sources: {
-      tag: 'Three Source Types',
+      tag: 'Source Types',
       items: [
         {
           name: 'Local files',
-          desc: 'Point at directories or specific files. The CLI reads everything matching your patterns.',
-          code: `knowledge extract --scope Engineering \\
-  --source ./docs --pattern "**/*.md" \\
-  --source ./src --pattern "**/README.md" \\
-  --source . --pattern "CLAUDE.md"`,
+          desc: 'Point at directories or specific files. The agent reads everything matching your patterns.',
+          code: `> "Extract rules from ./docs (*.md), ./src (README.md), and ./CLAUDE.md for Engineering/infra"`,
         },
         {
           name: 'Git repositories',
-          desc: 'Point the CLI at any repository and filter by glob pattern. Knowledge analyzes source files - code, configuration, infrastructure definitions - and surfaces implicit rules and constraints that are not documented anywhere.',
-          code: `knowledge extract --scope Engineering --source /path/to/repo --pattern "**/*.{ts,py,yaml,md}"`,
+          desc: 'Ask your AI agent to scan a repository. It reads files locally, chunks them, and sends them to Knowledge for analysis. Implicit rules and constraints surface — even ones not documented anywhere.',
+          code: `> "Scan /path/to/repo for .ts, .py, .yaml, and .md files in the Engineering scope"`,
         },
         {
           name: 'Ingestion API',
-          desc: 'For sources that don\'t live on disk - Confluence exports, Slack digests, wiki pages, CI artifacts - push documents directly via the REST API.',
+          desc: 'For sources that don\'t live on disk — Confluence exports, Slack digests, wiki pages, CI artifacts — push documents directly via the REST API.',
+          code: `$ curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \\
+  -H "Authorization: Bearer kn_..." \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "scope_id": "scp-...",
+    "documents": [
+      {"content": "...", "metadata": {"source": "confluence-export", "author": "ops-team"}}
+    ],
+    "auto_run": true
+  }'`,
         },
       ],
     },
@@ -183,7 +197,7 @@ const content = {
     },
     cta: {
       tag: 'Get Started',
-      code: 'knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md',
+      code: `> "Extract rules from ./docs and ./CLAUDE.md for Engineering/payments"`,
       body: 'Review the drafts in your dashboard. Approve the good ones, reject the noise. Your registry is populated.',
       links: [
         { label: 'Full Extraction Documentation →', href: '/docs/extraction' },

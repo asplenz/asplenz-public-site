@@ -22,10 +22,16 @@ Knowledge is a structured registry where your team's decisions, constraints, and
 
 ### Extract rules from what already exists
 
-Your team already has rules — buried in READMEs, runbooks, architecture docs, and code comments. Knowledge scans your existing sources and surfaces them as typed candidates: invariants, rules, and decisions. You review and approve — nothing is published without human validation.
+Your team already has rules — buried in READMEs, runbooks, architecture docs, and code comments. Ask your AI agent to extract them: it reads your local files, analyzes them via Knowledge, and surfaces typed candidates: invariants, rules, and decisions. You review and approve — nothing is published without human validation.
 
-```bash
-knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md
+```
+> "Extract rules from ./docs and ./CLAUDE.md for the Engineering scope"
+
+Scanning 14 files...
+  8 invariant candidates  (e.g., "All endpoints must require authentication")
+  11 rule candidates       (e.g., "Use conventional commits")
+  5 decision candidates   (e.g., "Chose PostgreSQL over DynamoDB")
+  3 duplicates skipped
 ```
 
 ### Record decisions with context
@@ -46,12 +52,12 @@ Every agent query, every approval, every CI check generates a structured trace. 
 
 | Interface | Who Uses It | What They Do |
 |-----------|------------|--------------|
-| **CLI** | Engineers, DevOps | Extract rules from existing sources, manage the registry |
 | **Web Dashboard** | Engineers, managers, compliance | Browse decisions, review drafts, search, check compliance |
-| **MCP Server** | Claude, Cursor, AI agents | Query constraints, record decisions, request approvals |
+| **MCP Server** | Claude Code, Cursor, AI agents | Extract rules, query constraints, record decisions, request approvals |
+| **REST API** | Scripts, custom integrations | Programmatic access to the full registry |
 | **CI Verifier** | GitHub Actions, GitLab CI | Check PRs against applicable rules, produce compliance reports |
 
-All four interfaces read from and write to the same registry. What the CLI extracts, a human reviews. What an agent respects, a manager can audit.
+All interfaces read from and write to the same registry. What an agent extracts, a human reviews. What an agent respects, a manager can audit.
 
 ---
 
@@ -61,7 +67,7 @@ All four interfaces read from and write to the same registry. What the CLI extra
 Existing docs, repos, runbooks
     │
     ▼
-knowledge extract → LLM analyzes sources
+AI agent reads local files → sends to Knowledge for analysis
     │
     ▼
 Typed drafts (invariants, rules, decisions)
@@ -118,22 +124,13 @@ Clinical protocol governance. AI system constraints. Audit trails for regulatory
 
 ---
 
-## Start in 5 Minutes
+## Get Started
 
-```bash
-git clone https://github.com/asplenz/knowledge.git
-cd knowledge && python -m src.seed
-uvicorn src.main:app --port 8090
-```
-
-Open `http://localhost:3002`, paste your API key, and explore a fully populated demo with decisions, invariants, rules, and approval workflows.
+1. [Create your account](/docs/getting-started)
+2. Create your first scope
+3. Connect your AI agent via MCP
+4. Ask the agent to extract rules from your existing docs
+5. Review and approve the drafts in the dashboard
+6. Add the Verifier to your CI pipeline
 
 [Getting Started Guide →](/docs/getting-started) · [Pricing →](/pricing)
-
----
-
-## Open Source Core
-
-Knowledge's core is open source. The Community tier is free forever. Team and Enterprise add collaboration, CI integration, and compliance features for production use.
-
-[View on GitHub →](https://github.com/asplenz/knowledge) · [Pricing →](/pricing)

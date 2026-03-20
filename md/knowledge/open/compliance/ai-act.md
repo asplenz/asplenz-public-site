@@ -35,12 +35,12 @@ The Act requires a continuous, iterative risk management process throughout the 
 - **Links** trace the chain from risk identification to decision to invariant to rule.
 
 ```
-Risk: LLM may generate incorrect financial figures
+Risk: AI may generate incorrect financial figures
   │
-  ├── Decision: "All LLM financial outputs require source verification"
+  ├── Decision: "All AI-generated financial outputs require source verification"
   │       └── creates → Invariant: "No financial report without source check"
   │
-  └── Rule: "LLM outputs in finance scope require human review"
+  └── Rule: "AI outputs in finance scope require human review"
 ```
 
 ### Article 11 — Technical Documentation

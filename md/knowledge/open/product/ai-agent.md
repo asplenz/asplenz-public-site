@@ -130,18 +130,14 @@ Add to your `.mcp.json`:
 {
   "mcpServers": {
     "knowledge": {
-      "command": "python",
-      "args": ["-m", "src.knowledge-mcp.server"],
-      "env": {
-        "KNOWLEDGE_API_URL": "http://localhost:8090",
-        "KNOWLEDGE_API_KEY": "kn_..."
+      "url": "https://mcp.asplenz.com",
+      "headers": {
+        "Authorization": "Bearer kn_..."
       }
     }
   }
 }
 ```
-
-> For hosted Asplenz, replace `KNOWLEDGE_API_URL` with your instance URL (e.g. `https://api.asplenz.com`).
 
 ### 2. Launch your agent
 
@@ -302,18 +298,14 @@ Ajoutez dans votre `.mcp.json` :
 {
   "mcpServers": {
     "knowledge": {
-      "command": "python",
-      "args": ["-m", "src.knowledge-mcp.server"],
-      "env": {
-        "KNOWLEDGE_API_URL": "http://localhost:8090",
-        "KNOWLEDGE_API_KEY": "kn_..."
+      "url": "https://mcp.asplenz.com",
+      "headers": {
+        "Authorization": "Bearer kn_..."
       }
     }
   }
 }
 ```
-
-> Pour Asplenz hébergé, remplacez `KNOWLEDGE_API_URL` par l'URL de votre instance (ex : `https://api.asplenz.com`).
 
 ### 2. Lancez votre agent
 

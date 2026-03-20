@@ -151,6 +151,16 @@ export default function Header() {
       ],
     },
     {
+      label: t.nav.useCases,
+      children: [
+        { label: t.nav.ucEngineering,   href: '/use-cases/engineering' },
+        { label: t.nav.ucLegal,         href: '/use-cases/legal' },
+        { label: t.nav.ucFinance,       href: '/use-cases/finance' },
+        { label: t.nav.ucHealthcare,    href: '/use-cases/healthcare' },
+        { label: t.nav.ucCybersecurity, href: '/use-cases/cybersecurity' },
+      ],
+    },
+    {
       label: t.nav.docs,
       children: [
         { label: t.nav.gettingStarted, href: '/docs/getting-started' },
