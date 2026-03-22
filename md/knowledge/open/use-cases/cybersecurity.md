@@ -426,7 +426,7 @@ Knowledge se mappe directement aux exigences de tracabilite de NIS2 et ISO 27001
 
 1. [Creer votre compte](/docs/getting-started)
 2. Creer un scope Security
-3. Demander à votre agent IA d'extraire les règles depuis `./policies` et `./runbooks` pour le scope Security
+3. Demander à votre agent IA d\''extraire les règles depuis `./policies` et `./runbooks` pour le scope Security
 4. Reviewer et approuver les regles extraites dans le dashboard
 5. Connecter vos agents IA via MCP
 6. Ajouter le Verifier a votre pipeline CI

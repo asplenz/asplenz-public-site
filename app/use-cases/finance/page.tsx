@@ -418,7 +418,7 @@ Le comité review dans le dashboard > Approuvé
     getStartedSteps: [
       { text: 'Créer votre compte', href: '/docs/getting-started', isLink: true },
       { text: 'Créer des scopes pour vos domaines de risque (Model Governance, Credit Risk, Market Risk, AML)', isLink: false },
-      { text: 'Demander à votre agent IA d'extraire les règles depuis ./risk-policies et ./model-docs pour le scope Model Governance', isLink: false },
+      { text: 'Demander à votre agent IA d\'extraire les règles depuis ./risk-policies et ./model-docs pour le scope Model Governance', isLink: false },
       { text: 'Reviewer les brouillons extraits et approuver ceux qui sont corrects', isLink: false },
       { text: 'Connecter vos agents IA via MCP', isLink: false },
       { text: 'Ajouter le Verifier à votre pipeline CI', isLink: false },

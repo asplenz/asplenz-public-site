@@ -362,7 +362,7 @@ Agent C (remediateur) : "Je veux redemarrer nginx sur prod-web-03"
     getStartedItems: [
       { text: 'Creer votre compte', href: '/docs/getting-started' },
       { text: 'Creer un scope Security', href: null },
-      { text: 'Demander à votre agent IA d'extraire les règles depuis ./policies et ./runbooks pour le scope Security', href: null },
+      { text: 'Demander à votre agent IA d\'extraire les règles depuis ./policies et ./runbooks pour le scope Security', href: null },
       { text: 'Reviewer et approuver les regles extraites dans le dashboard', href: null },
       { text: 'Connecter vos agents IA via MCP', href: null },
       { text: 'Ajouter le Verifier a votre pipeline CI', href: null },

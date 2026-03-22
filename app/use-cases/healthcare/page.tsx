@@ -399,7 +399,7 @@ Le clinicien review et approuve
       steps: [
         { text: 'Creer votre compte', href: '/docs/getting-started' },
         { text: 'Creer des scopes pour vos domaines (Clinical AI, Health IT, Data Governance)' },
-        { text: 'Demander à votre agent IA d'extraire les règles depuis ./protocols et ./sops pour le scope Clinical AI' },
+        { text: 'Demander à votre agent IA d\'extraire les règles depuis ./protocols et ./sops pour le scope Clinical AI' },
         { text: 'Reviewer les brouillons extraits — approuver les contraintes de securite patient comme invariants' },
         { text: 'Connecter les agents IA via MCP pour le controle de contraintes en temps reel' },
         { text: 'Ajouter le Verifier a votre pipeline CI' },
