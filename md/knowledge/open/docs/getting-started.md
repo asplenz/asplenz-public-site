@@ -2,18 +2,19 @@
 
 # Getting Started with Knowledge
 
-Get up and running in under 10 minutes. By the end of this guide, you'll have:
-- Your scopes and first entries created
-- An AI agent connected via MCP
-- Rules extracted from your existing docs and code
+By the end of this guide, you'll be able to:
+- Create scopes and record decisions, invariants, and rules
+- Connect an AI agent to query and enforce them in real time
+- Extract rules from your existing docs and code
+- Check compliance in CI
 
 ---
 
 ## 1. Create Your Account
 
 Sign up at [asplenz.com/signup](/signup). Once your workspace is ready, you'll receive:
-- Your **API base URL**: `https://api.asplenz.com`
-- An **admin API key**: `kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+- Your **API base URL**: `https://api.asplenz.com/knowledge`
+- An **admin API key**: `<api_key>`
 
 **Save the API key** — it is shown only once. You can generate additional keys from the dashboard.
 
@@ -21,7 +22,7 @@ Sign up at [asplenz.com/signup](/signup). Once your workspace is ready, you'll r
 
 ## 2. Explore the Dashboard
 
-Log into the [dashboard](https://app.asplenz.com). From there you can:
+Log into the [dashboard](https://app.asplenz.com/knowledge). From there you can:
 - **Create scopes** to organize your knowledge (e.g. Engineering, Operations, Product)
 - **Add entries** — decisions, invariants, and rules — manually or via extraction
 - **Search** across all entries with full-text filtering
@@ -31,20 +32,20 @@ Log into the [dashboard](https://app.asplenz.com). From there you can:
 
 ## 3. Your First API Calls
 
-All API calls require the `Authorization` header with your API key. Copy the scope ID from the dashboard — it's shown on each scope page.
+All API calls require the `Authorization` header with your API key. Start by listing your scopes to get the scope ID — you'll use it in the next calls.
 
 ### List your scopes
 
 ```bash
 curl https://api.asplenz.com/knowledge/v1/scopes \
-  -H "Authorization: Bearer kn_xxxxxxxx"
+  -H "Authorization: Bearer <api_key>"
 ```
 
 ### Record a decision
 
 ```bash
-curl -X POST https://api.asplenz.com/knowledge/v1/scopes/scp-XXXX/decisions \
-  -H "Authorization: Bearer kn_xxxxxxxx" \
+curl -X POST https://api.asplenz.com/knowledge/v1/scopes/<scope_id>/decisions \
+  -H "Authorization: Bearer <api_key>" \
   -H "Content-Type: application/json" \
   -d '{
     "decision": "Use Docker Compose for local development",
@@ -59,10 +60,10 @@ curl -X POST https://api.asplenz.com/knowledge/v1/scopes/scp-XXXX/decisions \
 
 ```bash
 curl -X POST https://api.asplenz.com/knowledge/v1/check \
-  -H "Authorization: Bearer kn_xxxxxxxx" \
+  -H "Authorization: Bearer <api_key>" \
   -H "Content-Type: application/json" \
   -d '{
-    "scope_id": "scp-XXXX",
+    "scope_id": "<scope_id>",
     "intended_action": "Deploy on Friday evening without review"
   }'
 ```
@@ -73,61 +74,42 @@ The response shows any conflicting invariants or rules — with IDs, severity, a
 
 ## 4. Connect an AI Agent (MCP)
 
-Knowledge provides a hosted MCP server that lets Claude Code, Cursor, and other AI tools query the registry in real time. No installation required.
+Knowledge exposes a hosted MCP server. Any MCP-compatible agent — Claude.ai, Claude Code, or any other client — can connect to it using your API key.
 
-### Configure Claude Code
+- **MCP server URL**: `https://mcp.asplenz.com/knowledge`
 
-Create or update `.mcp.json` in your project root:
-
-```json
-{
-  "mcpServers": {
-    "knowledge": {
-      "url": "https://mcp.asplenz.com",
-      "headers": {
-        "Authorization": "Bearer kn_xxxxxxxx"
-      }
-    }
-  }
-}
-```
+Refer to your agent's documentation to add an MCP server. Use the URL above and set the Authorization header to `Bearer <api_key>`.
 
 ### Try it
 
-Launch Claude Code from your project directory and try:
-- *"What invariants does Engineering have?"*
-- *"Can I push directly to main without a PR review?"*
-- *"Record a decision: we chose Playwright for E2E testing"*
+Once connected, your agent has access to Knowledge tools. Ask it:
 
-Claude queries Knowledge in real time, respects constraints, and records decisions on your behalf.
+```
+> "What invariants does Engineering have?"
+  → The agent calls the knowledge_list_invariants tool to list invariants in the "Engineering" scope
+
+> "Can I push directly to main without a PR review?"
+  → The agent calls the knowledge_check tool to check compliance for the intended action
+
+> "Record a decision: we chose Playwright for E2E testing"
+  → The agent calls the knowledge_record tool to save the decision to the registry
+```
 
 ---
 
-## 5. Extract Rules from Existing Docs and Code
+## 5. Extract Rules from Your Documents
 
-Knowledge can scan your existing documentation and source code to extract implicit rules, decisions, and constraints automatically. Since your AI agent already has access to Knowledge via MCP, just ask it:
+Upload your documents (PDF, Word, Markdown) via the dashboard or the ingestion API. Knowledge analyzes them and generates typed drafts — invariants, rules, and decisions — for your review.
 
-### Extract from your docs
-
-```
-> "Extract rules from ./docs and ./CLAUDE.md for the Engineering scope"
-```
-
-### Extract from your codebase
-
-Knowledge also analyzes source code, configuration files, and infrastructure definitions to surface implicit rules that are not documented anywhere:
-
-```
-> "Extract rules from ./src for the Engineering scope, focus on TypeScript, Python, and YAML files"
-```
-
-The agent reads your local files, sends them to Knowledge for analysis, and reports the results:
-
-```
-Scanning 23 files...
-  47 chunks analyzed
-  12 drafts generated (4 invariants, 5 rules, 3 decisions)
-  2 duplicates skipped
+```bash
+curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \
+  -H "Authorization: Bearer <api_key>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scope_id": "<scope_id>",
+    "documents": [{"content": "..."}],
+    "auto_run": true
+  }'
 ```
 
 ### Review in the dashboard
@@ -142,76 +124,90 @@ Approve to publish to the registry. Reject to discard. Edit before approving if 
 
 ---
 
-## 6. Add the CI Verifier (Optional)
+## For Engineering Teams
 
-The Verifier runs in your CI pipeline and checks that PRs comply with your Knowledge entries.
+The following steps are specific to engineering teams: extracting rules from source code and checking PR compliance in CI.
 
-### Install
+### Example: configuring MCP with Claude Code
 
-```bash
-pip install knowledge-verifier
+If you use Claude Code, create or update `.mcp.json` in your project root and launch Claude from that directory:
+
+```json
+{
+  "mcpServers": {
+    "knowledge": {
+      "url": "https://mcp.asplenz.com/knowledge",
+      "headers": {
+        "Authorization": "Bearer <api_key>"
+      }
+    }
+  }
+}
 ```
 
-### Configure
+---
 
-Create `.knowledge-verifier.yml` in your repository root:
+## 6. Extract Rules from Your Codebase
 
-```yaml
-knowledge_api:
-  url: https://api.asplenz.com
-  # API key via KNOWLEDGE_API_KEY env var
+Your AI agent reads and analyzes your source files locally, then creates typed drafts directly in Knowledge via MCP. Nothing leaves your machine.
 
-verification:
-  mode: report-only
-  report_path: .knowledge/report.md
-  scope_mapping:
-    "src/payments/**": "Engineering/payments"
-    "src/auth/**": "Engineering/auth"
-    "infrastructure/**": "Operations"
-    "**": "Engineering"
+### With your local AI agent
+
+```
+> "Extract rules from ./docs, ./CLAUDE.md and ./src for the Engineering scope"
+  → The agent reads and analyzes the files locally, then creates typed drafts in Knowledge via MCP
 ```
 
-### Add to your CI pipeline
+```
+Scanning 23 files...
+  47 chunks analyzed
+  12 drafts generated (4 invariants, 5 rules, 3 decisions)
+  2 duplicates skipped
+```
+
+### With Asplenz remote agent
+
+You can also send your source files to the ingestion API and let the Asplenz agent analyze them server-side.
+
+---
+
+## 7. Add Compliance Checks to CI (Optional)
+
+Your AI agent reads the PR diff and checks it against the applicable rules and invariants in Knowledge before the PR is merged.
+
+You can use your local AI agent or Asplenz's hosted agent — both connect to the same Knowledge API.
+
+### With your local AI agent
+
+Your agent reads the PR diff locally and checks it against Knowledge:
+
+```
+> "Check the diff of this PR against Knowledge for the Engineering scope"
+  → The agent calls knowledge_check for each change and reports any violations
+```
+
+### With Asplenz remote agent
+
+Send the PR diff to Knowledge via the API:
 
 ```yaml
 # .github/workflows/knowledge.yml
 - name: Knowledge Compliance Check
   run: |
-    pip install knowledge-verifier
-    knowledge-verifier --config .knowledge-verifier.yml
+    curl -X POST https://api.asplenz.com/knowledge/v1/verify/diff \
+      -H "Authorization: Bearer $KNOWLEDGE_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "scope_id": "<scope_id>",
+        "diff": "${{ steps.get_diff.outputs.diff }}"
+      }'
   env:
-    KNOWLEDGE_API_URL: ${{ secrets.KNOWLEDGE_API_URL }}
     KNOWLEDGE_API_KEY: ${{ secrets.KNOWLEDGE_API_KEY }}
 ```
 
-Start in `report-only` mode to see results without blocking PRs, then promote to `fail-on-blocking` when the team is ready.
+The response includes any conflicting invariants or rules, their severity, and whether an approval can unblock the action.
 
-See [CI Verifier →](/product/ci-verifier) for details on gating modes and implementation reports.
-
----
-
-## What's Next
-
-| Goal | Read |
-|------|------|
-| Extract rules from existing docs | [Automatic Extraction](/docs/extraction) |
-| Understand the data model | [Concepts: Decisions](/docs/concepts/decisions) |
-| Define constraints for your team | [Concepts: Invariants](/docs/concepts/invariants) |
-| Set up CI compliance checks | [Integrations: CI/CD](/docs/integrations/ci-cd) |
-| Connect AI agents | [Integrations: Claude MCP](/docs/integrations/claude-mcp) |
-| Explore the full API | [API Reference](/docs/integrations/api-reference) |
-| See pricing and plans | [Pricing](/pricing) |
-
----
-
-## Common Issues
-
-| Problem | Fix |
-|---------|-----|
-| `401 Unauthorized` | Check your API key in the `Authorization` header |
-| `Invalid or expired API key` | Generate a new key from the dashboard |
-| MCP tools not showing in Claude | Launch Claude from the directory containing `.mcp.json` |
-| Verifier reports no constraints | Check your `scope_mapping` patterns in `.knowledge-verifier.yml` |
+See [CI integration →](/product/ci-verifier) for details on gating modes and implementation reports.
 
 ---
 ---
@@ -220,18 +216,19 @@ See [CI Verifier →](/product/ci-verifier) for details on gating modes and impl
 
 # Démarrer avec Knowledge
 
-Soyez opérationnel en moins de 10 minutes. À la fin de ce guide, vous aurez :
-- Vos scopes et premières entrées créés
-- Un agent IA connecté via MCP
-- Des règles extraites de votre documentation et de votre code existants
+À la fin de ce guide, vous serez en mesure de :
+- Créer des scopes et enregistrer des decisions, invariants et rules
+- Connecter un agent IA pour interroger et appliquer les contraintes en temps réel
+- Extraire des règles depuis vos docs et votre code existants
+- Vérifier la conformité en CI
 
 ---
 
 ## 1. Créez votre compte
 
 Inscrivez-vous sur [asplenz.com/signup](/signup). Une fois votre workspace prêt, vous recevrez :
-- Votre **URL de base API** : `https://api.asplenz.com`
-- Une **clé API admin** : `kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+- Votre **URL de base API** : `https://api.asplenz.com/knowledge`
+- Une **clé API admin** : `<api_key>`
 
 **Conservez la clé API** — elle n'est affichée qu'une seule fois. Vous pouvez générer des clés supplémentaires depuis le dashboard.
 
@@ -239,7 +236,7 @@ Inscrivez-vous sur [asplenz.com/signup](/signup). Une fois votre workspace prêt
 
 ## 2. Explorez le dashboard
 
-Connectez-vous au [dashboard](https://app.asplenz.com). Depuis celui-ci vous pouvez :
+Connectez-vous au [dashboard](https://app.asplenz.com/knowledge). Depuis celui-ci vous pouvez :
 - **Créer des scopes** pour organiser vos connaissances (ex. Engineering, Operations, Product)
 - **Ajouter des entrées** — decisions, invariants et rules — manuellement ou via extraction
 - **Rechercher** dans toutes les entrées avec filtrage full-text
@@ -249,20 +246,20 @@ Connectez-vous au [dashboard](https://app.asplenz.com). Depuis celui-ci vous pou
 
 ## 3. Vos premiers appels API
 
-Tous les appels API nécessitent le header `Authorization` avec votre clé API. Copiez le scope ID depuis le dashboard — il est affiché sur chaque page de scope.
+Tous les appels API nécessitent le header `Authorization` avec votre clé API. Commencez par lister vos scopes pour obtenir le scope ID — vous l'utiliserez dans les appels suivants.
 
 ### Lister vos scopes
 
 ```bash
 curl https://api.asplenz.com/knowledge/v1/scopes \
-  -H "Authorization: Bearer kn_xxxxxxxx"
+  -H "Authorization: Bearer <api_key>"
 ```
 
 ### Enregistrer une décision
 
 ```bash
-curl -X POST https://api.asplenz.com/knowledge/v1/scopes/scp-XXXX/decisions \
-  -H "Authorization: Bearer kn_xxxxxxxx" \
+curl -X POST https://api.asplenz.com/knowledge/v1/scopes/<scope_id>/decisions \
+  -H "Authorization: Bearer <api_key>" \
   -H "Content-Type: application/json" \
   -d '{
     "decision": "Use Docker Compose for local development",
@@ -277,10 +274,10 @@ curl -X POST https://api.asplenz.com/knowledge/v1/scopes/scp-XXXX/decisions \
 
 ```bash
 curl -X POST https://api.asplenz.com/knowledge/v1/check \
-  -H "Authorization: Bearer kn_xxxxxxxx" \
+  -H "Authorization: Bearer <api_key>" \
   -H "Content-Type: application/json" \
   -d '{
-    "scope_id": "scp-XXXX",
+    "scope_id": "<scope_id>",
     "intended_action": "Deploy on Friday evening without review"
   }'
 ```
@@ -291,61 +288,42 @@ La réponse indique les invariants ou rules en conflit — avec leurs IDs, sév�
 
 ## 4. Connecter un agent IA (MCP)
 
-Knowledge fournit un serveur MCP hébergé qui permet à Claude Code, Cursor et d'autres outils IA d'interroger le registre en temps réel. Aucune installation requise.
+Knowledge expose un serveur MCP hébergé. Tout agent compatible MCP — Claude.ai, Claude Code ou tout autre client — peut s'y connecter avec votre clé API.
 
-### Configurer Claude Code
+- **URL du serveur MCP** : `https://mcp.asplenz.com/knowledge`
 
-Créez ou mettez à jour `.mcp.json` à la racine de votre projet :
-
-```json
-{
-  "mcpServers": {
-    "knowledge": {
-      "url": "https://mcp.asplenz.com",
-      "headers": {
-        "Authorization": "Bearer kn_xxxxxxxx"
-      }
-    }
-  }
-}
-```
+Référez-vous à la documentation de votre agent pour ajouter un serveur MCP. Utilisez l'URL ci-dessus et définissez le header Authorization à `Bearer <api_key>`.
 
 ### Essayez
 
-Lancez Claude Code depuis votre répertoire de projet et essayez :
-- *"Quels invariants a le scope Engineering ?"*
-- *"Puis-je pusher directement sur main sans code review ?"*
-- *"Enregistre une décision : on a choisi Playwright pour les tests E2E"*
+Une fois connecté, votre agent a accès aux outils Knowledge. Demandez-lui :
 
-Claude interroge Knowledge en temps réel, respecte les contraintes et enregistre les décisions pour vous.
+```
+> "Quels invariants a le scope Engineering ?"
+  → L'agent appelle l'outil knowledge_list_invariants pour lister les invariants du scope "Engineering"
+
+> "Puis-je pusher directement sur main sans code review ?"
+  → L'agent appelle l'outil knowledge_check pour vérifier la conformité de l'action
+
+> "Enregistre une décision : on a choisi Playwright pour les tests E2E"
+  → L'agent appelle l'outil knowledge_record pour sauvegarder la décision dans le registre
+```
 
 ---
 
-## 5. Extraire les règles de vos docs et de votre code
+## 5. Extraire les règles de vos documents
 
-Demandez à votre agent IA (Claude Code, Cursor, etc.) de scanner votre documentation et votre code source. L'agent lit les fichiers localement, les analyse via MCP, et crée des drafts typés dans Knowledge.
+Uploadez vos documents (PDF, Word, Markdown) via le dashboard ou l'API d'ingestion. Knowledge les analyse et génère des drafts typés — invariants, rules et decisions — pour votre revue.
 
-### Extraire depuis vos docs
-
-```
-> "Extrais les règles depuis ./docs et ./CLAUDE.md pour le scope Engineering"
-```
-
-### Extraire depuis votre codebase
-
-L'agent analyse aussi les fichiers source, les configurations et les définitions d'infrastructure pour faire émerger les règles implicites qui ne sont documentées nulle part :
-
-```
-> "Scanne ./src pour les fichiers .ts, .py et .yaml dans le scope Engineering"
-```
-
-L'agent lit chaque fichier, analyse chaque chunk, et crée des drafts typés :
-
-```
-Scanning 23 files...
-  47 chunks analyzed
-  12 drafts generated (4 invariants, 5 rules, 3 decisions)
-  2 duplicates skipped
+```bash
+curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \
+  -H "Authorization: Bearer <api_key>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scope_id": "<scope_id>",
+    "documents": [{"content": "..."}],
+    "auto_run": true
+  }'
 ```
 
 ### Reviewer dans le dashboard
@@ -358,83 +336,89 @@ Ouvrez le dashboard et naviguez vers la page d'extraction. Chaque draft affiche 
 
 Approuvez pour publier dans le registre. Rejetez pour supprimer. Éditez avant d'approuver si nécessaire.
 
-### Configurer les patterns
+---
 
-Vous pouvez combiner plusieurs sources et patterns en un seul run :
+## Pour les équipes engineering
 
-```
-> "Extrais les règles depuis ./docs (*.md), ./src (*.ts, *.py, *.yaml) et ./CLAUDE.md pour Engineering"
+Les étapes suivantes sont spécifiques aux équipes engineering : extraction de règles depuis le code source et vérification de conformité des PRs en CI.
+
+### Exemple : configurer MCP avec Claude Code
+
+Si vous utilisez Claude Code, créez ou mettez à jour `.mcp.json` à la racine de votre projet et lancez Claude depuis ce répertoire :
+
+```json
+{
+  "mcpServers": {
+    "knowledge": {
+      "url": "https://mcp.asplenz.com/knowledge",
+      "headers": {
+        "Authorization": "Bearer <api_key>"
+      }
+    }
+  }
+}
 ```
 
 ---
 
-## 6. Ajouter le CI Verifier (Optionnel)
+## 6. Extraire les règles depuis votre codebase
 
-Le Verifier s'exécute dans votre pipeline CI et vérifie que les PRs respectent vos entrées Knowledge.
+Votre agent IA lit et analyse vos fichiers source localement, puis crée des drafts typés directement dans Knowledge via MCP. Rien ne quitte votre machine.
 
-### Installer
+### Avec votre agent IA local
 
-```bash
-pip install knowledge-verifier
+```
+> "Extrais les règles depuis ./docs, ./CLAUDE.md et ./src pour le scope Engineering"
+  → L'agent lit et analyse les fichiers localement, puis crée des drafts typés dans Knowledge via MCP
 ```
 
-### Configurer
-
-Créez `.knowledge-verifier.yml` à la racine de votre dépôt :
-
-```yaml
-knowledge_api:
-  url: https://api.asplenz.com
-  # Clé API via la variable d'environnement KNOWLEDGE_API_KEY
-
-verification:
-  mode: report-only
-  report_path: .knowledge/report.md
-  scope_mapping:
-    "src/payments/**": "Engineering/payments"
-    "src/auth/**": "Engineering/auth"
-    "infrastructure/**": "Operations"
-    "**": "Engineering"
+```
+Scanning 23 files...
+  47 chunks analyzed
+  12 drafts generated (4 invariants, 5 rules, 3 decisions)
+  2 duplicates skipped
 ```
 
-### Ajouter à votre pipeline CI
+### Avec l'agent Asplenz
+
+Vous pouvez aussi envoyer vos fichiers source à l'API d'ingestion et laisser l'agent Asplenz les analyser côté serveur.
+
+---
+
+## 7. Ajouter des checks de conformité en CI (Optionnel)
+
+Votre agent IA lit le diff de la PR et le vérifie contre les rules et invariants applicables dans Knowledge avant le merge.
+
+Vous pouvez utiliser votre agent IA local ou l'agent hébergé Asplenz — les deux se connectent à la même API Knowledge.
+
+### Avec votre agent IA local
+
+Votre agent lit le diff de la PR localement et le vérifie contre Knowledge :
+
+```
+> "Vérifie le diff de cette PR contre Knowledge pour le scope Engineering"
+  → L'agent appelle knowledge_check pour chaque changement et rapporte les violations
+```
+
+### Avec l'agent Asplenz
+
+Envoyez le diff de la PR à Knowledge via l'API :
 
 ```yaml
 # .github/workflows/knowledge.yml
 - name: Knowledge Compliance Check
   run: |
-    pip install knowledge-verifier
-    knowledge-verifier --config .knowledge-verifier.yml
+    curl -X POST https://api.asplenz.com/knowledge/v1/verify/diff \
+      -H "Authorization: Bearer $KNOWLEDGE_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "scope_id": "<scope_id>",
+        "diff": "${{ steps.get_diff.outputs.diff }}"
+      }'
   env:
-    KNOWLEDGE_API_URL: ${{ secrets.KNOWLEDGE_API_URL }}
     KNOWLEDGE_API_KEY: ${{ secrets.KNOWLEDGE_API_KEY }}
 ```
 
-Commencez en mode `report-only` pour voir les résultats sans bloquer les PRs, puis passez en `fail-on-blocking` quand l'équipe est prête.
+La réponse indique les invariants ou rules en conflit, leur sévérité, et si une approbation peut débloquer l'action.
 
-Voir [CI Verifier →](/product/ci-verifier) pour les détails sur les modes de gating et les implementation reports.
-
----
-
-## Et ensuite
-
-| Objectif | Lire |
-|----------|------|
-| Extraire les règles de vos docs | [Extraction automatique](/docs/extraction) |
-| Comprendre le modèle de données | [Concepts : Decisions](/docs/concepts/decisions) |
-| Définir des contraintes pour votre équipe | [Concepts : Invariants](/docs/concepts/invariants) |
-| Configurer les checks CI | [Intégrations : CI/CD](/docs/integrations/ci-cd) |
-| Connecter des agents IA | [Intégrations : Claude MCP](/docs/integrations/claude-mcp) |
-| Explorer l'API complète | [Référence API](/docs/integrations/api-reference) |
-| Voir les tarifs | [Tarifs](/pricing) |
-
----
-
-## Problèmes courants
-
-| Problème | Solution |
-|----------|----------|
-| `401 Unauthorized` | Vérifiez votre clé API dans le header `Authorization` |
-| `Invalid or expired API key` | Générez une nouvelle clé depuis le dashboard |
-| Les outils MCP n'apparaissent pas dans Claude | Lancez Claude depuis le répertoire contenant `.mcp.json` |
-| Le Verifier ne trouve aucune contrainte | Vérifiez vos patterns `scope_mapping` dans `.knowledge-verifier.yml` |
+Voir [Intégration CI →](/product/ci-verifier) pour les détails sur les modes de gating et les implementation reports.

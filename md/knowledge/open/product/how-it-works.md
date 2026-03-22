@@ -99,7 +99,7 @@ Vos règles existantes peuvent être extraites automatiquement à partir de vos 
 
 ### Extraction depuis le code source
 
-Un prompt Asplenz permet à votre agent IA (Claude Code, Cursor) d'analyser votre codebase localement et d'enregistrer les règles détectées dans Knowledge via MCP. Le code ne quitte jamais votre machine, seules les règles extraites sont envoyées au registre.
+Un prompt Asplenz permet à votre agent IA d'analyser votre codebase localement et d'enregistrer les règles détectées dans Knowledge via MCP. Le code ne quitte jamais votre machine, seules les règles extraites sont envoyées au registre.
 
 ### Extraction depuis les documents
 
@@ -325,7 +325,7 @@ Your existing rules can be extracted automatically from your various documents s
 
 ### Extraction from Source Code
 
-An Asplenz prompt enables your AI agent (Claude Code, Cursor) to analyze your codebase locally and record detected rules into Knowledge via MCP. The code never leaves your machine, only the extracted rules are sent to the registry.
+An Asplenz prompt enables your AI agent to analyze your codebase locally and record detected rules into Knowledge via MCP. The code never leaves your machine, only the extracted rules are sent to the registry.
 
 ### Extraction from Documents
 

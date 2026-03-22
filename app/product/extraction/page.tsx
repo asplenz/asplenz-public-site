@@ -14,7 +14,7 @@ const content = {
     },
     howItWorks: {
       tag: 'Comment ça fonctionne',
-      body: 'Demandez à votre agent IA (Claude Code, Cursor, etc.) d\'extraire les règles de vos sources existantes. L\'agent lit les fichiers localement, les analyse via MCP, et les expose comme drafts typés dans votre dashboard. Vous passez chacun en revue — approuver, éditer ou rejeter. Rien n\'est publié sans validation humaine.',
+      body: 'Demandez à votre agent IA d\'extraire les règles de vos sources existantes. L\'agent lit les fichiers localement, les analyse via MCP, et les expose comme drafts typés dans votre dashboard. Vous passez chacun en revue, approuver, éditer ou rejeter. Rien n\'est publié sans validation humaine.',
       code: `> "Extrais les règles depuis ./docs et ./CLAUDE.md pour le namespace Engineering/payments"`,
       note: 'La déduplication sémantique vous permet de ré-extraire régulièrement sans noyer le registre.',
     },
@@ -49,12 +49,12 @@ const content = {
         },
         {
           name: 'Dépôts Git',
-          desc: 'Demandez à votre agent IA de scanner un dépôt. Il lit les fichiers localement, les analyse, et envoie les résultats à Knowledge via MCP. Les règles implicites remontent — même celles non documentées.',
+          desc: 'Demandez à votre agent IA de scanner un dépôt. Il lit les fichiers localement, les analyse, et envoie les résultats à Knowledge via MCP. Les règles implicites remontent, même celles non documentées.',
           code: `> "Scanne /path/to/repo pour les fichiers .ts, .py, .yaml et .md dans le scope Engineering"`,
         },
         {
           name: 'API d\'ingestion',
-          desc: 'Pour les sources qui ne vivent pas sur disque — exports Confluence, digests Slack, pages wiki, artefacts CI — poussez les documents directement via l\'API REST.',
+          desc: 'Pour les sources qui ne vivent pas sur disque (exports Confluence, digests Slack, pages wiki, artefacts CI), poussez les documents directement via l\'API REST.',
           code: `$ curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \\
   -H "Authorization: Bearer kn_..." \\
   -H "Content-Type: application/json" \\
@@ -114,7 +114,7 @@ const content = {
     },
     howItWorks: {
       tag: 'How It Works',
-      body: 'Ask your AI agent (Claude Code, Cursor, etc.) to extract rules from your existing sources. The agent reads files locally, chunks them, and sends them to Knowledge via MCP for analysis. Implicit rules and constraints are surfaced as typed drafts in your dashboard. You review each one — approve, edit, or reject. Nothing is published without human validation.',
+      body: 'Ask your AI agent to extract rules from your existing sources. The agent reads files locally, chunks them, and sends them to Knowledge via MCP for analysis. Implicit rules and constraints are surfaced as typed drafts in your dashboard. You review each one, approve, edit, or reject. Nothing is published without human validation.',
       code: `> "Extract rules from ./docs and ./CLAUDE.md for the Engineering/payments namespace"`,
       note: 'Semantic deduplication ensures you can re-extract regularly without flooding the registry.',
     },
@@ -149,12 +149,12 @@ const content = {
         },
         {
           name: 'Git repositories',
-          desc: 'Ask your AI agent to scan a repository. It reads files locally, chunks them, and sends them to Knowledge for analysis. Implicit rules and constraints surface — even ones not documented anywhere.',
+          desc: 'Ask your AI agent to scan a repository. It reads files locally, chunks them, and sends them to Knowledge for analysis. Implicit rules and constraints surface, even ones not documented anywhere.',
           code: `> "Scan /path/to/repo for .ts, .py, .yaml, and .md files in the Engineering scope"`,
         },
         {
           name: 'Ingestion API',
-          desc: 'For sources that don\'t live on disk — Confluence exports, Slack digests, wiki pages, CI artifacts — push documents directly via the REST API.',
+          desc: 'For sources that don\'t live on disk (Confluence exports, Slack digests, wiki pages, CI artifacts), push documents directly via the REST API.',
           code: `$ curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \\
   -H "Authorization: Bearer kn_..." \\
   -H "Content-Type: application/json" \\

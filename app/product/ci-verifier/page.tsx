@@ -35,7 +35,7 @@ const content = {
     },
     implReport: {
       tag: 'Implementation Report',
-      body: 'The coding agent (e.g. Claude Code) generates an Implementation Report as a `.knowledge/report.md` file committed alongside the code. The Verifier reads this file automatically.',
+      body: 'The coding agent generates an Implementation Report as a `.knowledge/report.md` file committed alongside the code. The Verifier reads this file automatically.',
       code: `## Implementation Report
 
 ### Invariants
@@ -244,7 +244,7 @@ output:
     },
     implReport: {
       tag: 'Implementation Report',
-      body: "L'agent de coding (ex. Claude Code) génère un Implementation Report sous forme de fichier `.knowledge/report.md` committé avec le code. Le Verifier lit ce fichier automatiquement.",
+      body: "L'agent de coding génère un Implementation Report sous forme de fichier `.knowledge/report.md` committé avec le code. Le Verifier lit ce fichier automatiquement.",
       code: `## Implementation Report
 
 ### Invariants

@@ -210,7 +210,7 @@ Committee reviews in dashboard > Approve
     getStartedSteps: [
       { text: 'Create your account', href: '/docs/getting-started', isLink: true },
       { text: 'Create scopes for your risk domains (Model Governance, Credit Risk, Market Risk, AML)', isLink: false },
-      { text: 'Run knowledge extract --scope "Model Governance" --source ./risk-policies --source ./model-docs to populate from existing docs', isLink: false },
+      { text: 'Ask your AI agent to extract rules from ./risk-policies and ./model-docs for the Model Governance scope', isLink: false },
       { text: 'Review extracted drafts and approve the ones that are correct', isLink: false },
       { text: 'Connect your AI agents via MCP', isLink: false },
       { text: 'Add the Verifier to your CI pipeline', isLink: false },
@@ -418,7 +418,7 @@ Le comité review dans le dashboard > Approuvé
     getStartedSteps: [
       { text: 'Créer votre compte', href: '/docs/getting-started', isLink: true },
       { text: 'Créer des scopes pour vos domaines de risque (Model Governance, Credit Risk, Market Risk, AML)', isLink: false },
-      { text: 'Lancer knowledge extract --scope "Model Governance" --source ./risk-policies --source ./model-docs pour peupler depuis les docs existantes', isLink: false },
+      { text: 'Demander à votre agent IA d'extraire les règles depuis ./risk-policies et ./model-docs pour le scope Model Governance', isLink: false },
       { text: 'Reviewer les brouillons extraits et approuver ceux qui sont corrects', isLink: false },
       { text: 'Connecter vos agents IA via MCP', isLink: false },
       { text: 'Ajouter le Verifier à votre pipeline CI', isLink: false },

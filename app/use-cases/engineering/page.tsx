@@ -58,7 +58,7 @@ export default function EngineeringPage() {
             <div>
               <h3 className="font-semibold text-lg text-[var(--text-primary)] mb-2">Extract What You Already Have</h3>
               <p className="text-[var(--text-secondary)] mb-4 leading-relaxed max-w-2xl">
-                Your team already has rules in your READMEs, CLAUDE.md, runbooks, architecture docs, and source code. Your AI agent (Claude Code, Cursor) connects via MCP, scans all of them, identifies decisions, constraints, and directives — whether explicit or embedded in code — and creates typed drafts for review. You review in the dashboard and approve what's correct. In minutes, scattered documentation becomes a structured registry.
+                Your team already has rules in your READMEs, CLAUDE.md, runbooks, architecture docs, and source code. Your AI agent connects via MCP, scans all of them, identifies decisions, constraints, and directives — whether explicit or embedded in code — and creates typed drafts for review. You review in the dashboard and approve what's correct. In minutes, scattered documentation becomes a structured registry.
               </p>
               <div className="space-y-3 max-w-2xl">
                 <CodeBlock code={`> "Extract rules from ./docs, ./CLAUDE.md, and ./src (README.md files) for the Engineering scope"`} />
@@ -92,18 +92,18 @@ export default function EngineeringPage() {
             <div>
               <h3 className="font-semibold text-lg text-[var(--text-primary)] mb-2">Give AI Agents Your Team's Context</h3>
               <p className="text-[var(--text-secondary)] mb-4 leading-relaxed max-w-2xl">
-                When Claude or Cursor works on your code, it queries Knowledge first. The agent does not guess your standards — it reads them from the same registry your team maintains.
+                When your AI agent works on your code, it queries Knowledge first. The agent does not guess your standards, it reads them from the same registry your team maintains.
               </p>
               <div className="max-w-2xl">
                 <CodeBlock code={`Engineer: "Add a new endpoint for user profiles"
 
-Claude > knowledge_resolve(scope="Engineering", namespace="api")
+Agent > knowledge_resolve(scope="Engineering", namespace="api")
   > Returns 14 applicable entries: 2 invariants, 5 decisions, 6 rules, 1 override
 
-Claude > knowledge_check(scope="Engineering", action="Add REST endpoint for user profiles")
+Agent > knowledge_check(scope="Engineering", action="Add REST endpoint for user profiles")
   > No conflicts. Proceed.
 
-Claude writes the endpoint following all constraints
+Agent writes the endpoint following all constraints
   > Generates .knowledge/report.md citing inv-8a3f and rul-2b7c
   > Records a reference: "Followed inv-8a3f and rul-2b7c in PR #142"`} />
               </div>
@@ -237,7 +237,7 @@ Rule: "Database migrations require tech-lead sign-off" (requires_approval: true)
               'Create an Engineering scope',
               'Ask your AI agent to extract rules from ./docs for the Engineering scope',
               'Review and approve the drafts in the dashboard',
-              'Connect Claude via MCP',
+              'Connect your agent via MCP',
               'Add the Verifier to one repository',
             ].map((step, i) => (
               <li key={i} className="flex items-start gap-3">

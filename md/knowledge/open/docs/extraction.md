@@ -2,95 +2,29 @@
 
 # Extraction Automatique
 
-Knowledge peut scanner vos sources existantes et extraire automatiquement les règles, décisions et contraintes implicites. Rien n'est publié sans validation humaine.
+Knowledge peut extraire automatiquement les règles, décisions et contraintes à partir de vos sources existantes. Rien n'est publié sans validation humaine.
 
 ---
 
 ## Pourquoi l'extraction automatique ?
 
-La plupart des équipes ont déjà des règles — elles ne sont simplement pas structurées. Elles vivent dans des READMEs, des décisions d'architecture, des runbooks, des commentaires de code, des threads Slack et des pages wiki.
+La plupart des équipes ont déjà des règles, elles ne sont simplement pas structurées. Elles vivent dans des READMEs, des docs d'architecture, des runbooks, du code source et des fichiers CLAUDE.md.
 
-Saisir manuellement chaque règle dans un registre prend un temps que la plupart des équipes n'ont pas. L'extraction automatique résout le problème du démarrage à froid : pointez-la vers vos sources et obtenez un registre peuplé en quelques minutes.
+Saisir manuellement chaque règle dans un registre prend un temps que la plupart des équipes n'ont pas. L'extraction automatique résout le problème du démarrage à froid et permet de peupler un registre en quelques minutes.
 
-Et à mesure que votre documentation évolue, vous pouvez relancer l'extraction régulièrement pour faire émerger les nouvelles règles implicites — votre registre reste à jour sans maintenance manuelle.
+À mesure que votre documentation et votre code évoluent, vous pouvez relancer l'extraction régulièrement pour faire émerger les nouvelles règles. Votre registre reste à jour sans maintenance manuelle.
 
 ---
 
 ## Comment ça fonctionne
 
-![Pipeline d'extraction](./knowledge-extraction-pipeline.svg)
+### 1. Extraction depuis le code source
 
-### 1. Pointez vers vos sources
+Un prompt Asplenz permet à votre agent IA d'analyser votre codebase localement et d'enregistrer les règles détectées dans Knowledge via MCP. Le code ne quitte jamais votre machine, seules les règles extraites sont envoyées au registre.
 
-```
-> "Extrais les règles depuis ./docs et ./CLAUDE.md pour le scope Engineering"
-```
+### 2. Extraction depuis les documents
 
-Ciblez des répertoires et types de fichiers spécifiques :
-
-```
-> "Extrais les règles depuis ./docs (*.md), ./src (README.md) et ./CLAUDE.md pour Engineering"
-```
-
-### 2. Chaque chunk est analysé
-
-Les fichiers sont découpés en chunks contextuels (~1500 caractères avec 10% de chevauchement). Chaque chunk est analysé avec un prompt d'extraction structuré qui identifie :
-
-- **Candidats invariant** : contraintes absolues (« Tous les endpoints API doivent exiger une authentification »)
-- **Candidats rule** : directives actives, mandatory ou advisory (« Utiliser les conventional commits »)
-- **Candidats decision** : choix historiques avec contexte (« On a choisi PostgreSQL pour les données transactionnelles »)
-
-Chaque extraction inclut :
-- **Score de confiance** (0.0 – 1.0, minimum 0.6 pour être conservé)
-- **Extrait source** qui a motivé l'extraction
-- **Tags suggérés** et namespace
-- **Une explication** de pourquoi cet élément a été identifié
-
-### 3. La déduplication filtre le bruit
-
-Chaque extraction est comparée aux entrées existantes dans le scope cible par similarité sémantique :
-
-| Similarité | Résultat |
-|-----------|----------|
-| >= 0.92 | Doublon exact — automatiquement filtré et logué dans le rapport d'extraction |
-| >= 0.80 | Similaire — draft créé avec une relation `REPLACES` pointant vers l'entrée existante |
-| < 0.80 | Nouveau — draft créé sans relations |
-
-### 4. Validation humaine
-
-Rien n'est publié sans validation. Chaque extraction devient un **draft** visible dans le dashboard, montrant :
-
-- L'entrée proposée avec son type détecté (Invariant, Rule ou Decision) et son score de confiance
-- L'extrait source qui a motivé l'extraction
-- Les relations détectées avec les entrées existantes — doublons, remplacements, tensions
-- Une explication de pourquoi cet élément a été identifié
-
-Trois actions :
-- **Approuver** : publie le draft comme une entrée Knowledge avec l'attribution `source: auto_extracted`
-- **Rejeter** : supprime le draft
-- **Éditer** : modifier le contenu, les tags ou le namespace avant d'approuver
-
----
-
-## Types de sources
-
-### Dépôts Git
-
-Demandez à votre agent IA de scanner un dépôt. Il lit les fichiers locaux, les découpe, et les envoie à Knowledge pour analyse. Les règles et contraintes implicites émergent — même celles qui ne sont documentées nulle part.
-
-```
-> "Scanne /path/to/repo pour les fichiers .ts, .py, .yaml et .md dans le scope Engineering"
-```
-
-### Documents spécifiques
-
-```
-> "Extrais les règles depuis runbook.md et architecture.md pour Engineering"
-```
-
-### API d'ingestion
-
-Pour les sources qui ne sont pas sur disque, poussez les documents directement via l'API :
+Uploadez vos documents dans Knowledge via l'API d'ingestion. Knowledge les analyse et génère des drafts typés.
 
 ```bash
 curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \
@@ -108,7 +42,47 @@ curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \
   }'
 ```
 
-### Connecteurs additionnels
+### 3. Chaque chunk est analysé
+
+Les fichiers sont découpés en chunks contextuels (~1500 caractères avec 10% de chevauchement). Chaque chunk est analysé par une IA qui identifie :
+
+- **Candidats invariant** : contraintes absolues (« Tous les endpoints API doivent exiger une authentification »)
+- **Candidats rule** : directives actives, mandatory ou advisory (« Utiliser les conventional commits »)
+- **Candidats decision** : choix historiques avec contexte (« On a choisi PostgreSQL pour les données transactionnelles »)
+
+Chaque extraction inclut :
+- **Score de confiance** (0.0 - 1.0, minimum 0.6 pour être conservé)
+- **Extrait source** qui a motivé l'extraction
+- **Tags suggérés** et namespace
+- **Une explication** de pourquoi cet élément a été identifié
+
+### 4. La déduplication filtre le bruit
+
+Chaque extraction est comparée aux entrées existantes dans le scope cible par similarité sémantique :
+
+| Similarité | Résultat |
+|-----------|----------|
+| >= 0.92 | Doublon exact, automatiquement filtré et logué dans le rapport d'extraction |
+| >= 0.80 | Similaire, draft créé avec une relation `REPLACES` pointant vers l'entrée existante |
+| < 0.80 | Nouveau, draft créé sans relations |
+
+### 5. Validation humaine
+
+Rien n'est publié sans validation. Chaque extraction devient un **draft** visible dans le dashboard, montrant :
+
+- L'entrée proposée avec son type détecté (Invariant, Rule ou Decision) et son score de confiance
+- L'extrait source qui a motivé l'extraction
+- Les relations détectées avec les entrées existantes (doublons, remplacements, tensions)
+- Une explication de pourquoi cet élément a été identifié
+
+Trois actions :
+- **Approuver** : publie le draft comme une entrée Knowledge avec l'attribution `source: auto_extracted`
+- **Rejeter** : supprime le draft
+- **Éditer** : modifier le contenu, les tags ou le namespace avant d'approuver
+
+---
+
+## Connecteurs additionnels
 
 Les connecteurs Slack, Teams, Notion, Confluence et Excel sont disponibles sur les plans Team et Scale.
 
@@ -161,7 +135,7 @@ Les organisations avec des exigences strictes de résidence des données ou de Z
 
 **Re-extrayez régulièrement.** Lancez l'extraction trimestriellement, après une réécriture majeure, ou quand de nouveaux docs apparaissent. La déduplication intelligente garantit que votre registre ne sera pas pollué par des doublons.
 
-**Reviewez par lots.** Reviewez tous les drafts en attente d'un run en une seule session — rejetez le bruit, approuvez les bons.
+**Reviewez par lots.** Reviewez tous les drafts en attente d'un run en une seule session : rejetez le bruit, approuvez les bons.
 
 **Utilisez les tags de manière cohérente.** L'extraction suggère des tags, mais vérifiez-les pour la cohérence. Un système de tags propre rend le registre plus facilement cherchable.
 
@@ -180,95 +154,29 @@ Les organisations avec des exigences strictes de résidence des données ou de Z
 
 # Automatic Extraction
 
-Knowledge can scan your existing sources and extract implicit rules, decisions, and constraints automatically. Nothing is published without human review.
+Knowledge can extract rules, decisions, and constraints automatically from your existing sources. Nothing is published without human review.
 
 ---
 
 ## Why Automatic Extraction?
 
-Most teams already have rules — they're just not structured. They live in READMEs, architecture decisions, runbooks, code comments, Slack threads, and wiki pages.
+Most teams already have rules, they're just not structured. They live in READMEs, architecture docs, runbooks, source code, and CLAUDE.md files.
 
-Manually entering each rule into a registry takes time most teams don't have. Automatic extraction solves the cold-start problem: point it at your sources and get a populated registry in minutes.
+Manually entering each rule into a registry takes time most teams don't have. Automatic extraction solves the cold-start problem and lets you populate a registry in minutes.
 
-And as your documentation evolves, you can re-extract regularly to surface new implicit rules — your registry stays current without manual maintenance.
+As your documentation and code evolve, you can re-extract regularly to surface new rules. Your registry stays current without manual maintenance.
 
 ---
 
 ## How It Works
 
-![Extraction pipeline](./knowledge-extraction-pipeline.svg)
+### 1. Extraction from Source Code
 
-### 1. Point at your sources
+An Asplenz prompt enables your AI agent to analyze your codebase locally and record detected rules into Knowledge via MCP. The code never leaves your machine, only the extracted rules are sent to the registry.
 
-```
-> "Extract rules from ./docs and ./CLAUDE.md for the Engineering scope"
-```
+### 2. Extraction from Documents
 
-Target specific directories and file types:
-
-```
-> "Extract rules from ./docs (*.md), ./src (README.md), and ./CLAUDE.md for Engineering"
-```
-
-### 2. Each chunk is analyzed
-
-Files are split into contextual chunks (~1500 characters with 10% overlap). Each chunk is analyzed with a structured extraction prompt that identifies:
-
-- **Invariant candidates**: absolute constraints ("All API endpoints must require authentication")
-- **Rule candidates**: active directives, mandatory or advisory ("Use conventional commits")
-- **Decision candidates**: historical choices with context ("We chose PostgreSQL for transactional data")
-
-Each extraction includes:
-- **Confidence score** (0.0 – 1.0, minimum 0.6 to be kept)
-- **Source excerpt** that motivated the extraction
-- **Suggested tags** and namespace
-- **An explanation** of why this was identified
-
-### 3. Deduplication filters noise
-
-Every extraction is compared against existing entries in the target scope using semantic similarity:
-
-| Similarity | Result |
-|-----------|--------|
-| >= 0.92 | Exact duplicate — automatically filtered out and logged in the extraction report |
-| >= 0.80 | Similar — draft created with `REPLACES` relation pointing to the existing entry |
-| < 0.80 | New — draft created without relations |
-
-### 4. Human review
-
-Nothing is published without validation. Every extraction becomes a **draft** visible in the dashboard, showing:
-
-- The proposed entry with its detected type (Invariant, Rule, or Decision) and confidence score
-- The source excerpt that motivated the extraction
-- Detected relations to existing entries — duplicates, replacements, tensions
-- An explanation of why this was identified
-
-Three actions:
-- **Approve**: publishes the draft as a real Knowledge entry with `source: auto_extracted` attribution
-- **Reject**: discards the draft
-- **Edit**: modify the content, tags, or namespace before approving
-
----
-
-## Source Types
-
-### Git Repositories
-
-Ask your AI agent to scan a repository. It reads local files, chunks them, and sends them to Knowledge for analysis. Implicit rules and constraints surface — even ones that are not documented anywhere.
-
-```
-> "Scan /path/to/repo for .ts, .py, .yaml, and .md files in the Engineering scope"
-```
-
-### Specific Documents
-
-```
-> "Extract rules from runbook.md and architecture.md for Engineering"
-```
-
-### Ingestion API
-
-For sources that don't live on disk, push documents directly via the API:
+Upload your documents into Knowledge via the Ingestion API. Knowledge analyzes them and generates typed drafts.
 
 ```bash
 curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \
@@ -286,7 +194,47 @@ curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \
   }'
 ```
 
-### Additional Connectors
+### 3. Each chunk is analyzed
+
+Files are split into contextual chunks (~1500 characters with 10% overlap). Each chunk is analyzed by an AI that identifies:
+
+- **Invariant candidates**: absolute constraints ("All API endpoints must require authentication")
+- **Rule candidates**: active directives, mandatory or advisory ("Use conventional commits")
+- **Decision candidates**: historical choices with context ("We chose PostgreSQL for transactional data")
+
+Each extraction includes:
+- **Confidence score** (0.0 - 1.0, minimum 0.6 to be kept)
+- **Source excerpt** that motivated the extraction
+- **Suggested tags** and namespace
+- **An explanation** of why this was identified
+
+### 4. Deduplication filters noise
+
+Every extraction is compared against existing entries in the target scope using semantic similarity:
+
+| Similarity | Result |
+|-----------|--------|
+| >= 0.92 | Exact duplicate, automatically filtered out and logged in the extraction report |
+| >= 0.80 | Similar, draft created with `REPLACES` relation pointing to the existing entry |
+| < 0.80 | New, draft created without relations |
+
+### 5. Human review
+
+Nothing is published without validation. Every extraction becomes a **draft** visible in the dashboard, showing:
+
+- The proposed entry with its detected type (Invariant, Rule, or Decision) and confidence score
+- The source excerpt that motivated the extraction
+- Detected relations to existing entries (duplicates, replacements, tensions)
+- An explanation of why this was identified
+
+Three actions:
+- **Approve**: publishes the draft as a real Knowledge entry with `source: auto_extracted` attribution
+- **Reject**: discards the draft
+- **Edit**: modify the content, tags, or namespace before approving
+
+---
+
+## Additional Connectors
 
 Slack, Teams, Notion, Confluence, and Excel connectors are available on Team and Scale plans.
 
@@ -339,7 +287,7 @@ Organizations with strict data residency or Zero Data Retention requirements sho
 
 **Re-extract regularly.** Run extraction quarterly, after a major rewrite, or whenever new docs appear. Smart deduplication ensures your registry won't be polluted with duplicates.
 
-**Review in batches.** Review all pending drafts for a run in a single session — reject the noise, approve the good ones.
+**Review in batches.** Review all pending drafts for a run in a single session: reject the noise, approve the good ones.
 
 **Use tags consistently.** The extraction suggests tags, but review them for consistency. A clean tagging system makes the registry more searchable.
 

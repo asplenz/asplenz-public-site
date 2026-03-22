@@ -8,7 +8,7 @@ All notable changes to Knowledge are documented here.
 
 ### Automatic Extraction
 
-- **MCP extraction**: ask your AI agent (Claude Code, Cursor, etc.) to extract rules from local files — it reads them locally, chunks them, and sends them to the Knowledge Stream API via MCP. No CLI needed.
+- **MCP extraction**: ask your AI agent to extract rules from local files — it reads them locally, chunks them, and sends them to the Knowledge Stream API via MCP. No CLI needed.
 - **AI-powered analysis**: each source file is chunked and analyzed to identify normative content with confidence scoring (0.6 – 1.0 threshold)
 - **Draft review workflow**: extracted candidates appear in the dashboard for human review — approve, reject, or edit before publishing
 - **Semantic deduplication**: new extractions are compared against existing entries using embedding similarity to avoid duplicates and detect replacements
@@ -114,7 +114,7 @@ All notable changes to Knowledge are documented here.
 - **10 MCP tools** for AI agent integration
 - Scope resolution by name (case-insensitive) or ID
 - Full CRUD: query, record, check, override, reference, approval
-- Compatible with Claude Code, Cursor, and any MCP client
+- Compatible with any MCP-compatible AI agent
 
 ### Links and Relations
 

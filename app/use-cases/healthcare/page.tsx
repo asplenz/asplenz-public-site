@@ -201,7 +201,7 @@ Clinician reviews and approves
       steps: [
         { text: 'Create your account', href: '/docs/getting-started' },
         { text: 'Create scopes for your domains (Clinical AI, Health IT, Data Governance)' },
-        { text: 'Run knowledge extract --scope "Clinical AI" --source ./protocols --source ./sops to populate from existing docs' },
+        { text: 'Ask your AI agent to extract rules from ./protocols and ./sops for the Clinical AI scope' },
         { text: 'Review extracted drafts — approve patient safety constraints as invariants' },
         { text: 'Connect AI agents via MCP for real-time constraint checking' },
         { text: 'Add the Verifier to your CI pipeline' },
@@ -399,7 +399,7 @@ Le clinicien review et approuve
       steps: [
         { text: 'Creer votre compte', href: '/docs/getting-started' },
         { text: 'Creer des scopes pour vos domaines (Clinical AI, Health IT, Data Governance)' },
-        { text: 'Lancer knowledge extract --scope "Clinical AI" --source ./protocols --source ./sops pour peupler depuis les docs existantes' },
+        { text: 'Demander à votre agent IA d'extraire les règles depuis ./protocols et ./sops pour le scope Clinical AI' },
         { text: 'Reviewer les brouillons extraits — approuver les contraintes de securite patient comme invariants' },
         { text: 'Connecter les agents IA via MCP pour le controle de contraintes en temps reel' },
         { text: 'Ajouter le Verifier a votre pipeline CI' },

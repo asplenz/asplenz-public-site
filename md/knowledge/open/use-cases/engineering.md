@@ -20,7 +20,7 @@ Engineering teams make hundreds of decisions. Knowledge captures them, enforces 
 
 ### Extract What You Already Have
 
-Your team already has rules in your READMEs, CLAUDE.md, runbooks, architecture docs, and source code. Your AI agent (Claude Code, Cursor) connects via MCP, scans all of them, identifies decisions, constraints, and directives, whether explicit or embedded in code, and creates typed drafts for review
+Your team already has rules in your READMEs, CLAUDE.md, runbooks, architecture docs, and source code. Your AI agent connects via MCP, scans all of them, identifies decisions, constraints, and directives, whether explicit or embedded in code, and creates typed drafts for review
 
 > "Extract rules from ./docs, ./CLAUDE.md, and ./src (README.md files) for the Engineering scope"
 
@@ -57,7 +57,7 @@ Six months later, when someone asks "why FastAPI?", the answer is one search awa
 
 ### Give AI Agents Your Team's Context
 
-When Claude or Cursor works on your code, it queries Knowledge first:
+When your AI agent works on your code, it queries Knowledge first:
 
 ```
 Engineer: "Add a new endpoint for user profiles"
@@ -97,7 +97,7 @@ The Verifier runs in your pipeline and checks that PRs address applicable constr
   run: knowledge-verifier --config .knowledge-verifier.yml
 ```
 
-The coding agent (e.g. Claude Code) generates an Implementation Report as `.knowledge/report.md`, committed alongside the code:
+The coding agent generates an Implementation Report as `.knowledge/report.md`, committed alongside the code:
 
 ```markdown
 ## Implementation Report
@@ -191,7 +191,7 @@ Les equipes engineering prennent des centaines de decisions. Knowledge les captu
 
 ### Extraire ce que vous avez deja
 
-Votre équipe dispose déjà de règles dans ses fichiers README, ses CLAUDE.md, ses manuels opérationnels, ses documents d'architecture et son code source. Votre agent IA (Claude Code, Cursor) se connecte via MCP, les analyse tous afin d'identifier les décisions, les contraintes et les directives, qu'elles soient explicites ou intégrées au code, et génère des ébauches structurées pour revue
+Votre équipe dispose déjà de règles dans ses fichiers README, ses CLAUDE.md, ses manuels opérationnels, ses documents d'architecture et son code source. Votre agent IA se connecte via MCP, les analyse tous afin d'identifier les décisions, les contraintes et les directives, qu'elles soient explicites ou intégrées au code, et génère des ébauches structurées pour revue
 
 > "Extrais les règles depuis ./docs, ./CLAUDE.md et ./src (fichiers README.md) pour le scope Engineering"
 
@@ -228,7 +228,7 @@ Six mois plus tard, quand quelqu'un demande "pourquoi FastAPI ?", la reponse est
 
 ### Donner le contexte de votre equipe aux agents IA
 
-Quand Claude ou Cursor travaille sur votre code, il interroge Knowledge d'abord :
+Quand votre agent IA travaille sur votre code, il interroge Knowledge d'abord :
 
 ```
 Ingenieur : "Ajouter un nouvel endpoint pour les profils utilisateurs"
@@ -268,7 +268,7 @@ Le Verifier s'execute dans votre pipeline et verifie que les PRs adressent les c
   run: knowledge-verifier --config .knowledge-verifier.yml
 ```
 
-L'agent de coding (ex. Claude Code) genere un Implementation Report sous forme de `.knowledge/report.md`, committe avec le code :
+L'agent de coding genere un Implementation Report sous forme de `.knowledge/report.md`, committe avec le code :
 
 ```markdown
 ## Implementation Report

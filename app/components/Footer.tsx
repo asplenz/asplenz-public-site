@@ -7,7 +7,6 @@ const columns = [
     heading: 'Product',
     links: [
       { label: 'How it works', href: '/product/how-it-works' },
-      { label: 'Extraction', href: '/product/extraction' },
       { label: 'AI Agents', href: '/product/ai-agents' },
       { label: 'CI Verifier', href: '/product/ci-verifier' },
       { label: 'Pricing', href: '/pricing' },
@@ -29,6 +28,7 @@ const columns = [
       { label: 'Getting Started', href: '/docs/getting-started' },
       { label: 'Concepts', href: '/docs/concepts' },
       { label: 'Extraction', href: '/docs/extraction' },
+      { label: 'AI Agents & MCP', href: '/docs/ai-agents' },
       { label: 'Integrations', href: '/docs/integrations' },
       { label: 'Changelog', href: '/changelog' },
     ],

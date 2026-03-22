@@ -145,7 +145,6 @@ export default function Header() {
       label: t.nav.product,
       children: [
         { label: t.nav.howItWorks, href: '/product/how-it-works' },
-        { label: t.nav.extraction, href: '/product/extraction' },
         { label: t.nav.aiAgents, href: '/product/ai-agents' },
         { label: t.nav.ciVerifier, href: '/product/ci-verifier' },
       ],
@@ -160,15 +159,7 @@ export default function Header() {
         { label: t.nav.ucCybersecurity, href: '/use-cases/cybersecurity' },
       ],
     },
-    {
-      label: t.nav.docs,
-      children: [
-        { label: t.nav.gettingStarted, href: '/docs/getting-started' },
-        { label: t.nav.concepts, href: '/docs/concepts' },
-        { label: t.nav.extraction, href: '/docs/extraction' },
-        { label: t.nav.integrations, href: '/docs/integrations' },
-      ],
-    },
+    { label: t.nav.docs, href: '/docs/getting-started' },
     { label: t.nav.pricing, href: '/pricing' },
     { label: t.nav.blog, href: '/blog/why-adrs-fail' },
     { label: t.nav.signIn, href: '/signin', cta: true },

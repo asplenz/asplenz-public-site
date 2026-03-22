@@ -182,7 +182,7 @@ Agent C (remediator): "I want to restart nginx on prod-web-03"
     getStartedItems: [
       { text: 'Create your account', href: '/docs/getting-started' },
       { text: 'Create a Security scope', href: null },
-      { text: 'Run knowledge extract --scope Security --source ./policies --source ./runbooks to populate from existing docs', href: null },
+      { text: 'Ask your AI agent to extract rules from ./policies and ./runbooks for the Security scope', href: null },
       { text: 'Review and approve the extracted rules in the dashboard', href: null },
       { text: 'Connect your AI agents via MCP', href: null },
       { text: 'Add the Verifier to your CI pipeline', href: null },
@@ -362,7 +362,7 @@ Agent C (remediateur) : "Je veux redemarrer nginx sur prod-web-03"
     getStartedItems: [
       { text: 'Creer votre compte', href: '/docs/getting-started' },
       { text: 'Creer un scope Security', href: null },
-      { text: 'Lancer knowledge extract --scope Security --source ./policies --source ./runbooks pour peupler depuis les docs existantes', href: null },
+      { text: 'Demander à votre agent IA d'extraire les règles depuis ./policies et ./runbooks pour le scope Security', href: null },
       { text: 'Reviewer et approuver les regles extraites dans le dashboard', href: null },
       { text: 'Connecter vos agents IA via MCP', href: null },
       { text: 'Ajouter le Verifier a votre pipeline CI', href: null },

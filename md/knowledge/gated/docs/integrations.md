@@ -322,7 +322,7 @@ Create `.mcp.json` in your project root:
 {
   "mcpServers": {
     "knowledge": {
-      "url": "https://mcp.asplenz.com",
+      "url": "https://mcp.asplenz.com/knowledge",
       "headers": {
         "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
@@ -966,7 +966,7 @@ Créez `.mcp.json` à la racine de votre projet :
 {
   "mcpServers": {
     "knowledge": {
-      "url": "https://mcp.asplenz.com",
+      "url": "https://mcp.asplenz.com/knowledge",
       "headers": {
         "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }

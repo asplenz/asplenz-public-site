@@ -80,7 +80,7 @@ const content = {
       steps: [
         {
           title: 'Extraction depuis le code source',
-          desc: 'Un prompt Asplenz permet à votre agent IA (Claude Code, Cursor) d\'analyser votre codebase localement et d\'enregistrer les règles détectées dans Knowledge via MCP. Le code ne quitte jamais votre machine, seules les règles extraites sont envoyées au registre.',
+          desc: 'Un prompt Asplenz permet à votre agent IA d\'analyser votre codebase localement et d\'enregistrer les règles détectées dans Knowledge via MCP. Le code ne quitte jamais votre machine, seules les règles extraites sont envoyées au registre.',
         },
         {
           title: 'Extraction depuis les documents',
@@ -275,7 +275,7 @@ Knowledge → Créé dec-4f2a, lié à la rule existante rul-7b1c (stratégie de
       steps: [
         {
           title: 'Extraction from Source Code',
-          desc: 'An Asplenz prompt enables your AI agent (Claude Code, Cursor) to analyze your codebase locally and record detected rules into Knowledge via MCP. The code never leaves your machine, only the extracted rules are sent to the registry.',
+          desc: 'An Asplenz prompt enables your AI agent to analyze your codebase locally and record detected rules into Knowledge via MCP. The code never leaves your machine, only the extracted rules are sent to the registry.',
         },
         {
           title: 'Extraction from Documents',

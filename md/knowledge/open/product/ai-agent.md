@@ -4,15 +4,13 @@
 
 ## Give your agents the context they're missing.
 
-When an AI agent writes code, reviews a PR, or makes a deployment decision, it acts without knowledge of your team's architectural choices, compliance requirements, or operational rules. It does its best — and you review after the fact, hoping to catch violations.
+When an AI agent writes code, reviews a PR, approves an expense, or makes a deployment decision, it acts without knowledge of your organization's constraints. It does its best, and you review after the fact, hoping to catch violations.
 
 Knowledge closes that gap. Agents query your decision registry before acting, not after.
 
 ---
 
 ## The Problem with Post-Hoc Review
-
-![Post-hoc review workflow](./knowledge-posthoc-workflow.svg)
 
 The agent doesn't know that your team decided to use PostgreSQL for transactional data, that all API endpoints must require authentication, or that deployments to production require a staging step. It discovers these constraints when you reject its work.
 
@@ -22,7 +20,10 @@ The agent doesn't know that your team decided to use PostgreSQL for transactiona
 
 With Knowledge, the workflow becomes:
 
-![Pre-flight workflow](./knowledge-preflight-workflow.svg)
+1. Agent receives a task
+2. Agent queries the registry for applicable constraints
+3. Agent acts within those constraints
+4. Agent records what it did and which constraints it followed
 
 Every action is informed. Every constraint check is recorded. Every compliance question has a structured answer.
 
@@ -30,7 +31,7 @@ Every action is informed. Every constraint check is recorded. Every compliance q
 
 ## MCP Integration
 
-Knowledge exposes 9 tools through the Model Context Protocol (MCP), compatible with Claude Code, Cursor, and any MCP client.
+Knowledge exposes tools through the Model Context Protocol (MCP), compatible with any MCP client.
 
 ### Before acting
 
@@ -93,14 +94,14 @@ The agent acted with full context. The compliance trail is automatic.
 
 ## How Constraints Apply
 
-### Invariants — Hard Stops
+### Invariants: Hard Stops
 Absolute constraints that block violating actions. If an agent's intended action conflicts with an invariant, the compliance check returns a conflict and the agent stops.
 
-### Rules — Active Guidance
+### Rules: Active Guidance
 Directives that shape behavior. Mandatory rules must be followed; advisory rules should be considered. Agents receive both and can explain which rules influenced their decisions.
 
 ### Approval Gates
-Some invariants require human approval before proceeding. The agent requests approval, Knowledge notifies the right people via ECDSA-signed webhook (Slack, Teams, or any external system), and the agent is notified automatically when the decision is made. The entire exchange is recorded.
+Some invariants require human approval before proceeding. The agent requests approval, Knowledge notifies the right people via webhook (Slack, Teams, or any external system), and the agent is notified automatically when the decision is made. The entire exchange is recorded.
 
 ---
 
@@ -130,7 +131,7 @@ Add to your `.mcp.json`:
 {
   "mcpServers": {
     "knowledge": {
-      "url": "https://mcp.asplenz.com",
+      "url": "https://mcp.asplenz.com/knowledge",
       "headers": {
         "Authorization": "Bearer kn_..."
       }
@@ -151,13 +152,7 @@ Every query, check, approval, and reference appears in the event timeline. Revie
 
 ## Compatible Agents
 
-Knowledge works with any MCP-compatible client:
-
-- **Claude Code** — full MCP support, recommended workflow
-- **Cursor** — MCP integration for IDE-based agents
-- **Custom agents** — any client implementing the MCP protocol
-
-The same API that agents use is available via REST for custom integrations, CI pipelines, and scripts.
+Knowledge works with any MCP-compatible agent: coding agents, finance agents, compliance agents, operations agents. The same API is available via REST for custom integrations, CI pipelines, and scripts.
 
 ---
 
@@ -172,15 +167,13 @@ The same API that agents use is available via REST for custom integrations, CI p
 
 ## Donnez à vos agents le contexte qui leur manque.
 
-Quand un agent IA écrit du code, review une PR ou prend une décision de déploiement, il agit sans connaître les choix d'architecture de votre équipe, les exigences de conformité ou les règles opérationnelles. Il fait de son mieux — et vous reviewez après coup, en espérant détecter les violations.
+Quand un agent IA écrit du code, review une PR, approuve une dépense ou prend une décision de déploiement, il agit sans connaître les contraintes de votre organisation. Il fait de son mieux, et vous reviewez après coup, en espérant détecter les violations.
 
 Knowledge comble ce gap. Les agents interrogent votre registre de décisions avant d'agir, pas après.
 
 ---
 
 ## Le problème du review a posteriori
-
-![Workflow de review a posteriori](./knowledge-posthoc-workflow.svg)
 
 L'agent ne sait pas que votre équipe a décidé d'utiliser PostgreSQL pour les données transactionnelles, que tous les endpoints API doivent exiger une authentification, ou que les déploiements en production nécessitent un passage par staging. Il découvre ces contraintes quand vous rejetez son travail.
 
@@ -190,7 +183,10 @@ L'agent ne sait pas que votre équipe a décidé d'utiliser PostgreSQL pour les 
 
 Avec Knowledge, le workflow devient :
 
-![Workflow pré-action](./knowledge-preflight-workflow.svg)
+1. L'agent reçoit une tâche
+2. L'agent interroge le registre pour les contraintes applicables
+3. L'agent agit dans le cadre de ces contraintes
+4. L'agent enregistre ce qu'il a fait et quelles contraintes il a suivies
 
 Chaque action est informée. Chaque vérification de contrainte est enregistrée. Chaque question de conformité a une réponse structurée.
 
@@ -198,7 +194,7 @@ Chaque action est informée. Chaque vérification de contrainte est enregistrée
 
 ## Intégration MCP
 
-Knowledge expose 9 outils via le Model Context Protocol (MCP), compatibles avec Claude Code, Cursor, et tout client MCP.
+Knowledge expose des outils via le Model Context Protocol (MCP), compatibles avec tout client MCP.
 
 ### Avant d'agir
 
@@ -261,14 +257,14 @@ L'agent a agi avec le contexte complet. La trace de conformité est automatique.
 
 ## Comment les contraintes s'appliquent
 
-### Invariants — Arrêts stricts
+### Invariants : arrêts stricts
 Contraintes absolues qui bloquent les actions en violation. Si l'action envisagée par un agent entre en conflit avec un invariant, la vérification de conformité retourne un conflit et l'agent s'arrête.
 
-### Rules — Directives actives
+### Rules : directives actives
 Directives qui orientent le comportement. Les rules mandatory doivent être suivies ; les rules advisory doivent être considérées. Les agents reçoivent les deux et peuvent expliquer quelles rules ont influencé leurs décisions.
 
 ### Portes d'approbation
-Certains invariants nécessitent une approbation humaine avant de procéder. L'agent demande l'approbation, Knowledge notifie les personnes concernées via webhook signé ECDSA (Slack, Teams, ou tout système externe), et l'agent est notifié automatiquement quand la décision est prise. L'échange complet est enregistré.
+Certains invariants nécessitent une approbation humaine avant de procéder. L'agent demande l'approbation, Knowledge notifie les personnes concernées via webhook (Slack, Teams, ou tout système externe), et l'agent est notifié automatiquement quand la décision est prise. L'échange complet est enregistré.
 
 ---
 
@@ -298,7 +294,7 @@ Ajoutez dans votre `.mcp.json` :
 {
   "mcpServers": {
     "knowledge": {
-      "url": "https://mcp.asplenz.com",
+      "url": "https://mcp.asplenz.com/knowledge",
       "headers": {
         "Authorization": "Bearer kn_..."
       }
@@ -319,13 +315,7 @@ Chaque requête, vérification, approbation et référence apparaît dans la tim
 
 ## Agents compatibles
 
-Knowledge fonctionne avec tout client compatible MCP :
-
-- **Claude Code** — support MCP complet, workflow recommandé
-- **Cursor** — intégration MCP pour les agents en IDE
-- **Agents custom** — tout client implémentant le protocole MCP
-
-La même API utilisée par les agents est disponible en REST pour les intégrations custom, les pipelines CI et les scripts.
+Knowledge fonctionne avec tout agent compatible MCP : agents de coding, agents finance, agents compliance, agents opérations. La même API est disponible en REST pour les intégrations custom, les pipelines CI et les scripts.
 
 ---
 

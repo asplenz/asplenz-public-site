@@ -35,9 +35,7 @@ Knowledge is a structured registry where your team's decisions, constraints, and
 
 Your team already has rules — buried in READMEs, runbooks, architecture docs, and code comments. Knowledge scans your existing sources and surfaces them as typed candidates: invariants, rules, and decisions. You review and approve — nothing is published without human validation.
 
-\`\`\`bash
-knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md
-\`\`\`
+> "Extract rules from our docs and CLAUDE.md for the Engineering scope"
 
 ### Record decisions with context
 
@@ -72,7 +70,7 @@ All four interfaces read from and write to the same registry. What the CLI extra
 Existing docs, repos, runbooks
     │
     ▼
-knowledge extract → LLM analyzes sources
+AI agent reads files → AI analyzes sources
     │
     ▼
 Typed drafts (invariants, rules, decisions)
@@ -384,13 +382,11 @@ Most teams already have rules — they're just not structured. They live in READ
 
 ### Automatic Extraction
 
-The \`knowledge extract\` CLI scans your sources and uses LLM analysis to surface implicit rules, decisions, and constraints:
+Your AI agent scans your sources and uses AI analysis to surface implicit rules, decisions, and constraints:
 
-\`\`\`bash
-knowledge extract --scope Engineering --source ./docs --source ./README.md
-\`\`\`
+> "Extract rules from our docs and README for the Engineering scope"
 
-The CLI reads every file matching the configured patterns, splits them into chunks, and sends each chunk through an extraction pipeline. The LLM identifies:
+The agent reads every file matching the configured patterns, splits them into chunks, and sends each chunk through an extraction pipeline. The AI identifies:
 
 - **Invariant candidates**: absolute constraints ("All endpoints must require authentication")
 - **Rule candidates**: active directives ("Use conventional commits")
@@ -403,7 +399,7 @@ Each extraction includes a confidence score, the source excerpt that motivated i
 Nothing is published without human validation. Every extraction becomes a **draft** in the review queue:
 
 \`\`\`
-knowledge extract → 47 chunks analyzed → 12 drafts generated
+AI agent reads files → 47 chunks analyzed → 12 drafts generated
 
 Draft dsd-8a3f (invariant, confidence: 0.91)
   Constraint: "All API endpoints must require authentication"
@@ -448,7 +444,7 @@ The Verifier runs in your CI pipeline and checks that every PR cites applicable 
  0. EXTRACT    1. RECORD      2. ENFORCE      3. TRACE
  ─────────    ─────────      ─────────       ─────────
  Scan sources → Decisions  → Invariants   → References
- LLM analysis   Context       block actions   prove compliance
+ AI analysis   Context       block actions   prove compliance
  Human review   Reasoning     Rules           followed/diverged
                               direct actions  Events
                               Approvals       log everything
@@ -614,11 +610,9 @@ curl -X POST http://localhost:8090/api/v1/check \\
 
 ## 6. Extract Rules from Existing Docs
 
-\`\`\`bash
-knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md
-\`\`\`
+> "Extract rules from our docs and CLAUDE.md for the Engineering scope"
 
-The CLI reads every matching file, analyzes each chunk with an LLM, and creates typed drafts. Open the dashboard and navigate to the extraction page to review and approve.
+The agent reads every matching file, analyzes each chunk with AI, and creates typed drafts. Open the dashboard and navigate to the extraction page to review and approve.
 
 ---
 
@@ -712,10 +706,10 @@ Automatic extraction solves the cold-start problem: point the CLI at your source
 Sources (docs, repos, files)
     │
     ▼
-knowledge extract → reads files, splits into chunks
+AI agent reads files → splits into chunks
     │
     ▼
-LLM analysis → identifies typed candidates
+AI analysis → identifies typed candidates
     │
     ▼
 Deduplication → filters exact duplicates, flags similar entries
@@ -730,24 +724,17 @@ Drafts (pending) → human review in dashboard
 
 ### 1. Point at your sources
 
-\`\`\`bash
-knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md
-\`\`\`
+> "Extract rules from our docs and CLAUDE.md for the Engineering scope"
 
-The CLI reads every file matching the configured patterns (default: \`**/*.md\`). You can target specific directories:
+The agent reads every file matching the configured patterns (default: \`**/*.md\`). You can target specific directories:
 
-\`\`\`bash
-knowledge extract --scope Engineering \\
-  --source ./docs --pattern "**/*.md" \\
-  --source ./src --pattern "**/README.md" \\
-  --source . --pattern "CLAUDE.md"
-\`\`\`
+> "Extract rules from docs (all markdown), src (READMEs only), and CLAUDE.md for the Engineering scope"
 
-### 2. LLM analyzes each chunk
+### 2. AI analyzes each chunk
 
-Files are split into contextual chunks (~1500 characters with 10% overlap). Each chunk is sent to an LLM with a structured extraction prompt. The LLM identifies invariant candidates, rule candidates, and decision candidates.
+Files are split into contextual chunks (~1500 characters with 10% overlap). Each chunk is sent to an AI with a structured extraction prompt. The AI identifies invariant candidates, rule candidates, and decision candidates.
 
-Each extraction includes a **confidence score** (0.0–1.0, minimum 0.6), **source excerpt**, **suggested tags**, and **LLM explanation**.
+Each extraction includes a **confidence score** (0.0–1.0, minimum 0.6), **source excerpt**, **suggested tags**, and **AI explanation**.
 
 ### 3. Deduplication filters noise
 
@@ -759,7 +746,7 @@ Each extraction includes a **confidence score** (0.0–1.0, minimum 0.6), **sour
 
 ### 4. Human review
 
-Every extraction becomes a **draft** visible in the web dashboard. Reviewers see the extracted content, source file, detected relations, and LLM explanation. Three actions: **Approve**, **Reject**, or **Edit** before approving.
+Every extraction becomes a **draft** visible in the web dashboard. Reviewers see the extracted content, source file, detected relations, and AI explanation. Three actions: **Approve**, **Reject**, or **Edit** before approving.
 
 ---
 
@@ -767,16 +754,14 @@ Every extraction becomes a **draft** visible in the web dashboard. Reviewers see
 
 ### Git (working copy)
 
-\`\`\`bash
-knowledge extract --scope Engineering --source /path/to/repo --pattern "**/*.md"
-\`\`\`
+> "Extract rules from the repository at /path/to/repo (all markdown files) for the Engineering scope"
 
 ### Stream API (custom sources)
 
 For sources that don't live on disk, push documents directly via the API:
 
 \`\`\`bash
-curl -X POST http://localhost:8090/api/v1/distill/stream \\
+curl -X POST http://localhost:8090/api/v1/extract/stream \\
   -H "Authorization: Bearer kn_..." \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -792,10 +777,10 @@ curl -X POST http://localhost:8090/api/v1/distill/stream \\
 
 | Action | Required permission | Minimum role |
 |--------|-------------------|-------------|
-| Launch extraction | \`distill_run\` | senior-dev |
-| View runs and drafts | \`distill_read\` | developer |
-| Approve / reject / edit drafts | \`distill_review\` | tech-lead |
-| Push via Stream API | \`distill_stream\` | admin |
+| Launch extraction | \`extract_run\` | senior-dev |
+| View runs and drafts | \`extract_read\` | developer |
+| Approve / reject / edit drafts | \`extract_review\` | tech-lead |
+| Push via Stream API | \`extract_stream\` | admin |
 
 ---
 
@@ -803,13 +788,13 @@ curl -X POST http://localhost:8090/api/v1/distill/stream \\
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| Model | claude-sonnet-4-5-20250514 | LLM used for extraction |
+| Model | claude-sonnet-4-5-20250514 | AI used for extraction |
 | Min confidence | 0.6 | Below this, extractions are discarded |
 | Chunk size | ~1500 chars | Paragraph-based with 10% overlap |
 | Dedup exact threshold | 0.92 | Similarity above this = duplicate |
 | Dedup similar threshold | 0.80 | Similarity above this = REPLACES relation |
 
-Set the Anthropic API key to enable LLM extraction:
+Set the Anthropic API key to enable AI extraction:
 
 \`\`\`bash
 export KNOWLEDGE_ANTHROPIC_API_KEY=sk-ant-...
@@ -1365,11 +1350,9 @@ Engineering teams make hundreds of decisions. Knowledge captures them, enforces 
 
 ### Extract What You Already Have
 
-\`\`\`bash
-knowledge extract --scope Engineering --source . --pattern "**/*.md"
-\`\`\`
+> "Extract rules from all markdown files in this repo for the Engineering scope"
 
-The CLI scans your sources, analyzes each chunk with an LLM, and creates typed drafts. You review in the dashboard and approve what's correct. In minutes, you go from scattered markdown to a structured registry.
+The agent scans your sources, analyzes each chunk with AI, and creates typed drafts. You review in the dashboard and approve what's correct. In minutes, you go from scattered markdown to a structured registry.
 
 \`\`\`
 Scanning ./docs, ./CLAUDE.md, ./README.md...
@@ -1439,7 +1422,7 @@ Engineers add an Implementation Report to their PR body. The Verifier validates 
 
 1. [Install Knowledge →](/knowledge/docs/getting-started)
 2. Create an Engineering scope
-3. Run \`knowledge extract --scope Engineering --source ./docs\`
+3. Ask your agent: "Extract rules from docs for the Engineering scope"
 4. Review and approve the drafts in the dashboard
 5. Connect Claude via MCP
 6. Add the Verifier to one repository
@@ -1517,7 +1500,7 @@ For decisions above a risk threshold, Knowledge enforces human approval before a
 
 1. [Start with the Getting Started guide →](/knowledge/docs/getting-started)
 2. Create scopes for your risk domains (Credit, Market, AML, Model Governance)
-3. Run \`knowledge extract\` on your existing risk policy documents
+3. Ask your agent to extract rules from your existing risk policy documents
 4. Review extracted drafts and approve correct entries
 5. Connect your AI agents and pipelines
 
@@ -1587,7 +1570,7 @@ The approval workflow ensures no AI output reaches a clinical decision without h
 
 1. [Install Knowledge →](/knowledge/docs/getting-started)
 2. Create scopes for your domains (Clinical AI, Health IT, Data Governance)
-3. Run \`knowledge extract\` on your clinical protocol documents
+3. Ask your agent to extract rules from your clinical protocol documents
 4. Review extracted drafts — approve patient safety constraints as invariants
 5. Connect AI agents via MCP for real-time constraint checking
 
@@ -1674,7 +1657,7 @@ Engineer: deploys feature with new data collection
 
 1. [Install Knowledge →](/knowledge/docs/getting-started)
 2. Create scopes for your compliance domains
-3. Run \`knowledge extract\` on your existing policy documents
+3. Ask your agent to extract rules from your existing policy documents
 4. Review and approve extracted drafts, then refine with manual entries
 5. Connect to your CI/CD pipeline for automated checks
 
@@ -1718,12 +1701,12 @@ Non-compliance: up to **35 million EUR or 7% of global annual turnover** (Articl
 - **Links** trace the chain from risk identification to decision to invariant to rule
 
 \`\`\`
-Risk: LLM may generate incorrect financial figures
+Risk: AI may generate incorrect financial figures
   │
-  ├── Decision: "All LLM financial outputs require source verification"
+  ├── Decision: "All AI financial outputs require source verification"
   │       └── creates → Invariant: "No financial report without source check"
   │
-  └── Rule: "LLM outputs in finance scope require human review"
+  └── Rule: "AI outputs in finance scope require human review"
 \`\`\`
 
 ### Article 11 — Technical Documentation
@@ -1948,9 +1931,7 @@ AI agents query the registry through MCP tools. Before writing code, Claude call
 
 ## You Don't Have to Start from Scratch
 
-\`\`\`bash
-knowledge extract --scope Engineering --source ./docs/adr --source ./CLAUDE.md
-\`\`\`
+> "Extract rules from our ADRs and CLAUDE.md for the Engineering scope"
 
 Your existing ADRs become the input. The registry becomes the output — searchable, enforceable, and queryable by agents.
 
@@ -2488,20 +2469,20 @@ All notable changes to Knowledge are documented here.
 
 ### Automatic Extraction
 
-- **CLI extraction**: \`knowledge extract --scope <name> --source <path>\` scans existing documentation and surfaces implicit rules, decisions, and invariants as typed drafts
-- **LLM-powered analysis**: each source file is chunked and analyzed by an LLM to identify normative content with confidence scoring (0.6 – 1.0 threshold)
+- **Agent-driven extraction**: ask your AI agent to extract rules from your sources — it scans existing documentation and surfaces implicit rules, decisions, and invariants as typed drafts
+- **AI-powered analysis**: each source file is chunked and analyzed by an AI to identify normative content with confidence scoring (0.6 – 1.0 threshold)
 - **Draft review workflow**: extracted candidates appear in the dashboard for human review — approve, reject, or edit before publishing
 - **Semantic deduplication**: new extractions are compared against existing entries using embedding similarity to avoid duplicates and detect replacements
 - **Git source connector**: point at a local repository and extract from working copy files by glob pattern
-- **Stream API**: push documents from any external source for extraction via \`POST /distill/stream\`
+- **Stream API**: push documents from any external source for extraction via \`POST /extract/stream\`
 - **Relation detection**: extraction identifies \`REPLACES\` and \`IN_TENSION_WITH\` relations between new drafts and existing entries
 
 ### New Permissions
 
-- \`distill_run\`: launch extraction runs (senior-dev+)
-- \`distill_read\`: view runs and drafts (developer+)
-- \`distill_review\`: approve, reject, or edit drafts (tech-lead+)
-- \`distill_stream\`: push documents via Stream API (admin)
+- \`extract_run\`: launch extraction runs (senior-dev+)
+- \`extract_read\`: view runs and drafts (developer+)
+- \`extract_review\`: approve, reject, or edit drafts (tech-lead+)
+- \`extract_stream\`: push documents via Stream API (admin)
 
 ---
 

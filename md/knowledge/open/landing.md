@@ -53,7 +53,7 @@ Every agent query, every approval, every CI check generates a structured trace. 
 | Interface | Who Uses It | What They Do |
 |-----------|------------|--------------|
 | **Web Dashboard** | Engineers, managers, compliance | Browse decisions, review drafts, search, check compliance |
-| **MCP Server** | Claude Code, Cursor, AI agents | Extract rules, query constraints, record decisions, request approvals |
+| **MCP Server** | AI agents (any MCP-compatible) | Extract rules, query constraints, record decisions, request approvals |
 | **REST API** | Scripts, custom integrations | Programmatic access to the full registry |
 | **CI Verifier** | GitHub Actions, GitLab CI | Check PRs against applicable rules, produce compliance reports |
 

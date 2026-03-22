@@ -5,24 +5,25 @@ import { useLang } from '@/lib/LangContext'
 const content = {
   en: {
     title: 'Getting Started with Knowledge',
-    intro: "Get up and running in under 10 minutes. By the end of this guide, you'll have:",
+    intro: "By the end of this guide, you'll be able to:",
     goals: [
-      'Your scopes and first entries created',
-      'An AI agent connected via MCP',
-      'Rules extracted from your existing docs and code',
+      'Create scopes and record decisions, invariants, and rules',
+      'Connect an AI agent to query and enforce them in real time',
+      'Extract rules from your existing docs and code',
+      'Check compliance in CI',
     ],
     account: {
       tag: '1. Create Your Account',
       body: 'Sign up at asplenz.com/signup. Once your workspace is ready, you\'ll receive:',
       items: [
-        { label: 'API base URL', value: 'https://api.asplenz.com' },
-        { label: 'Admin API key', value: 'kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' },
+        { label: 'API base URL', value: 'https://api.asplenz.com/knowledge' },
+        { label: 'Admin API key', value: '<api_key>' },
       ],
       note: 'Save the API key — it is shown only once. You can generate additional keys from the dashboard.',
     },
     dashboard: {
       tag: '2. Explore the Dashboard',
-      body: 'Log into the dashboard at app.asplenz.com. From there you can:',
+      body: 'Log into the dashboard at app.asplenz.com/knowledge. From there you can:',
       items: [
         { label: 'Create scopes', desc: 'to organize your knowledge (e.g. Engineering, Operations, Product)' },
         { label: 'Add entries', desc: '— decisions, invariants, and rules — manually or via extraction' },
@@ -32,16 +33,16 @@ const content = {
     },
     api: {
       tag: '3. Your First API Calls',
-      body: "All API calls require the Authorization header with your API key. Copy the scope ID from the dashboard — it's shown on each scope page.",
+      body: "All API calls require the Authorization header with your API key. Start by listing your scopes to get the scope ID — you'll use it in the next calls.",
       listScopes: {
         title: 'List your scopes',
         code: `curl https://api.asplenz.com/knowledge/v1/scopes \\
-  -H "Authorization: Bearer kn_xxxxxxxx"`,
+  -H "Authorization: Bearer <api_key>"`,
       },
       recordDecision: {
         title: 'Record a decision',
-        code: `curl -X POST https://api.asplenz.com/knowledge/v1/scopes/scp-XXXX/decisions \\
-  -H "Authorization: Bearer kn_xxxxxxxx" \\
+        code: `curl -X POST https://api.asplenz.com/knowledge/v1/scopes/<scope_id>/decisions \\
+  -H "Authorization: Bearer <api_key>" \\
   -H "Content-Type: application/json" \\
   -d '{
     "decision": "Use Docker Compose for local development",
@@ -54,10 +55,10 @@ const content = {
       checkCompliance: {
         title: 'Check compliance',
         code: `curl -X POST https://api.asplenz.com/knowledge/v1/check \\
-  -H "Authorization: Bearer kn_xxxxxxxx" \\
+  -H "Authorization: Bearer <api_key>" \\
   -H "Content-Type: application/json" \\
   -d '{
-    "scope_id": "scp-XXXX",
+    "scope_id": "<scope_id>",
     "intended_action": "Deploy on Friday evening without review"
   }'`,
         note: 'The response shows any conflicting invariants or rules — with IDs, severity, and whether approval can unlock the action.',
@@ -65,50 +66,30 @@ const content = {
     },
     mcp: {
       tag: '4. Connect an AI Agent (MCP)',
-      body: 'Knowledge provides a hosted MCP server that lets Claude Code, Cursor, and other AI tools query the registry in real time. No installation required.',
-      configure: {
-        title: 'Configure Claude Code',
-        body: 'Create or update .mcp.json in your project root:',
-        code: `{
-  "mcpServers": {
-    "knowledge": {
-      "url": "https://mcp.asplenz.com",
-      "headers": {
-        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      }
-    }
-  }
-}`,
-        note: 'Launch your agent from the directory containing .mcp.json.',
-      },
+      body: 'Knowledge exposes a hosted MCP server. Any MCP-compatible agent — Claude.ai, Claude Code, or any other client — can connect to it using your API key.',
+      server: { label: 'MCP server URL', value: 'https://mcp.asplenz.com/knowledge' },
+      note: 'Refer to your agent\'s documentation to add an MCP server. Use the URL above and set the Authorization header to Bearer <api_key>.',
       tryIt: {
         title: 'Try it',
-        body: 'Launch Claude Code from your project directory and try:',
+        body: 'Once connected, your agent has access to Knowledge tools. Ask it:',
         examples: [
-          'What invariants does Engineering have?',
-          'Can I push directly to main without a PR review?',
-          'Record a decision: we chose Playwright for E2E testing',
+          `> "What invariants does Engineering have?"\n  → The agent calls the knowledge_list_invariants tool to list invariants in the "Engineering" scope`,
+          `> "Can I push directly to main without a PR review?"\n  → The agent calls the knowledge_check tool to check compliance for the intended action`,
+          `> "Record a decision: we chose Playwright for E2E testing"\n  → The agent calls the knowledge_record tool to save the decision to the registry`,
         ],
-        note: 'Claude queries Knowledge in real time, respects constraints, and records decisions on your behalf.',
       },
     },
     extract: {
-      tag: '5. Extract Rules from Existing Docs and Code',
-      body: 'Knowledge can scan your existing documentation and source code to extract implicit rules, decisions, and constraints automatically. Since your AI agent already has access to Knowledge via MCP, just ask it:',
-      extractDocs: {
-        title: 'Extract from your docs',
-        code: `> "Extract rules from ./docs and ./CLAUDE.md for the Engineering scope"`,
-      },
-      extractCode: {
-        title: 'Extract from your codebase',
-        body: 'Knowledge also analyzes source code, configuration files, and infrastructure definitions to surface implicit rules that are not documented anywhere:',
-        code: `> "Extract rules from ./src for the Engineering scope, focus on TypeScript, Python, and YAML files"`,
-        note: 'The agent reads your local files, sends them to Knowledge for analysis, and reports the results:',
-        output: `Scanning 23 files...
-  47 chunks analyzed
-  12 drafts generated (4 invariants, 5 rules, 3 decisions)
-  2 duplicates skipped`,
-      },
+      tag: '5. Extract Rules from Your Documents',
+      body: 'Upload your documents (PDF, Word, Markdown) via the dashboard or the ingestion API. Knowledge analyzes them and generates typed drafts — invariants, rules, and decisions — for your review.',
+      code: `curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \\
+  -H "Authorization: Bearer <api_key>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "scope_id": "<scope_id>",
+    "documents": [{"content": "..."}],
+    "auto_run": true
+  }'`,
       review: {
         title: 'Review in the dashboard',
         body: 'Open the dashboard and navigate to the extraction page. Each draft shows:',
@@ -121,84 +102,91 @@ const content = {
         note: 'Approve to publish to the registry. Reject to discard. Edit before approving if needed.',
       },
     },
-    verifier: {
-      tag: '6. Add the CI Verifier (Optional)',
-      body: 'The Verifier runs in your CI pipeline and checks that PRs comply with your Knowledge entries.',
-      install: {
-        title: 'Install',
-        code: 'pip install knowledge-verifier',
+    engineering: {
+      tag: 'For Engineering Teams',
+      body: 'The following steps are specific to engineering teams: extracting rules from source code and checking PR compliance in CI.',
+      mcpExample: {
+        title: 'Example: configuring MCP with Claude Code',
+        body: 'If you use Claude Code, create or update .mcp.json in your project root and launch Claude from that directory:',
+        code: `{
+  "mcpServers": {
+    "knowledge": {
+      "url": "https://mcp.asplenz.com/knowledge",
+      "headers": {
+        "Authorization": "Bearer <api_key>"
+      }
+    }
+  }
+}`,
       },
-      configure: {
-        title: 'Configure',
-        body: 'Create .knowledge-verifier.yml in your repository root:',
-        code: `knowledge_api:
-  url: https://api.asplenz.com
-  # API key via KNOWLEDGE_API_KEY env var
-
-verification:
-  mode: report-only
-  report_path: .knowledge/report.md
-  scope_mapping:
-    "src/payments/**": "Engineering/payments"
-    "src/auth/**": "Engineering/auth"
-    "infrastructure/**": "Operations"
-    "**": "Engineering"`,
+      extractCode: {
+        title: '6. Extract Rules from Your Codebase',
+        body: 'Your AI agent reads and analyzes your source files locally, then creates typed drafts directly in Knowledge via MCP. Nothing leaves your machine.',
+        withLocal: {
+          title: 'With your local AI agent',
+          code: `> "Extract rules from ./docs, ./CLAUDE.md and ./src for the Engineering scope"\n  → The agent reads and analyzes the files locally, then creates typed drafts in Knowledge via MCP`,
+          output: `Scanning 23 files...
+  47 chunks analyzed
+  12 drafts generated (4 invariants, 5 rules, 3 decisions)
+  2 duplicates skipped`,
+        },
+        withAsplenz: {
+          title: 'With Asplenz remote agent',
+          body: 'You can also send your source files to the ingestion API and let the Asplenz agent analyze them server-side.',
+        },
       },
       ci: {
-        title: 'Add to your CI pipeline',
-        code: `# .github/workflows/knowledge.yml
+        title: '7. Add Compliance Checks to CI (Optional)',
+        body: 'Your AI agent reads the PR diff and checks it against the applicable rules and invariants in Knowledge before the PR is merged.',
+        choiceNote: 'You can use your local AI agent or Asplenz\'s hosted agent — both connect to the same Knowledge API.',
+        withAgent: {
+          title: 'With your local AI agent',
+          body: 'Your agent reads the PR diff locally and checks it against Knowledge:',
+          code: `> "Check the diff of this PR against Knowledge for the Engineering scope"\n  → The agent calls knowledge_check for each change and reports any violations`,
+        },
+        withoutAgent: {
+          title: 'With Asplenz remote agent',
+          body: 'Send the PR diff to Knowledge via the API:',
+          code: `# .github/workflows/knowledge.yml
 - name: Knowledge Compliance Check
   run: |
-    pip install knowledge-verifier
-    knowledge-verifier --config .knowledge-verifier.yml
+    curl -X POST https://api.asplenz.com/knowledge/v1/verify/diff \\
+      -H "Authorization: Bearer \$KNOWLEDGE_API_KEY" \\
+      -H "Content-Type: application/json" \\
+      -d '{
+        "scope_id": "<scope_id>",
+        "diff": "\${{ steps.get_diff.outputs.diff }}"
+      }'
   env:
-    KNOWLEDGE_API_URL: \${{ secrets.KNOWLEDGE_API_URL }}
     KNOWLEDGE_API_KEY: \${{ secrets.KNOWLEDGE_API_KEY }}`,
+        },
+        note: "The response includes any conflicting invariants or rules, their severity, and whether an approval can unblock the action.",
+        link: { label: 'CI integration →', href: '/product/ci-verifier' },
+        linkNote: 'for details on gating modes and implementation reports.',
       },
-      note: "Start in report-only mode to see results without blocking PRs, then promote to fail-on-blocking when the team is ready.",
-      link: { label: 'CI Verifier →', href: '/product/ci-verifier' },
-      linkNote: 'for details on gating modes and implementation reports.',
-    },
-    next: {
-      tag: "What's Next",
-      rows: [
-        { goal: 'Extract rules from existing docs', label: 'Automatic Extraction', href: '/docs/extraction' },
-        { goal: 'Set up CI compliance checks', label: 'Integrations: CI/CD', href: '/docs/integrations/ci-cd' },
-        { goal: 'Connect AI agents', label: 'Integrations: Claude MCP', href: '/docs/integrations/claude-mcp' },
-        { goal: 'Explore the full API', label: 'API Reference', href: '/docs/integrations/api-reference' },
-        { goal: 'See pricing and plans', label: 'Pricing', href: '/pricing' },
-      ],
-    },
-    issues: {
-      tag: 'Common Issues',
-      rows: [
-        { problem: '401 Unauthorized', fix: 'Check your API key in the Authorization header' },
-        { problem: 'Invalid or expired API key', fix: 'Generate a new key from the dashboard' },
-        { problem: 'MCP tools not showing in Claude', fix: 'Launch Claude from the directory containing .mcp.json' },
-        { problem: 'Verifier reports no constraints', fix: 'Check your scope_mapping patterns in .knowledge-verifier.yml' },
-      ],
     },
   },
   fr: {
     title: 'Démarrer avec Knowledge',
-    intro: 'Soyez opérationnel en moins de 10 minutes. À la fin de ce guide, vous aurez :',
+    intro: 'À la fin de ce guide, vous serez en mesure de :',
     goals: [
-      'Vos scopes et premières entrées créés',
-      'Un agent IA connecté via MCP',
-      'Des règles extraites de votre documentation et de votre code existants',
+      'Créer des scopes et enregistrer des decisions, invariants et rules',
+      'Connecter un agent IA pour interroger et appliquer les contraintes en temps réel',
+      'Extraire des règles depuis vos docs et votre code existants',
+      'Vérifier la conformité en CI',
     ],
     account: {
       tag: '1. Créez votre compte',
       body: 'Inscrivez-vous sur asplenz.com/signup. Une fois votre workspace prêt, vous recevrez :',
       items: [
-        { label: 'URL de base API', value: 'https://api.asplenz.com' },
-        { label: 'Clé API admin', value: 'kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' },
+        { label: 'URL de base API', value: 'https://api.asplenz.com/knowledge' },
+        { label: 'Clé API admin', value: '<api_key>' },
       ],
       note: 'Conservez la clé API — elle n\'est affichée qu\'une seule fois. Vous pouvez générer des clés supplémentaires depuis le dashboard.',
     },
     dashboard: {
       tag: '2. Explorez le dashboard',
-      body: 'Connectez-vous au dashboard sur app.asplenz.com. Depuis celui-ci vous pouvez :',
+      body: 'Connectez-vous au dashboard sur app.asplenz.com/knowledge. Depuis celui-ci vous pouvez :',
       items: [
         { label: 'Créer des scopes', desc: 'pour organiser vos connaissances (ex. Engineering, Operations, Product)' },
         { label: 'Ajouter des entrées', desc: '— decisions, invariants et rules — manuellement ou via extraction' },
@@ -208,16 +196,16 @@ verification:
     },
     api: {
       tag: '3. Vos premiers appels API',
-      body: 'Tous les appels API nécessitent le header Authorization avec votre clé API. Copiez le scope ID depuis le dashboard — il est affiché sur chaque page de scope.',
+      body: 'Tous les appels API nécessitent le header Authorization avec votre clé API. Commencez par lister vos scopes pour obtenir le scope ID — vous l\'utiliserez dans les appels suivants.',
       listScopes: {
         title: 'Lister vos scopes',
         code: `curl https://api.asplenz.com/knowledge/v1/scopes \\
-  -H "Authorization: Bearer kn_xxxxxxxx"`,
+  -H "Authorization: Bearer <api_key>"`,
       },
       recordDecision: {
         title: 'Enregistrer une décision',
-        code: `curl -X POST https://api.asplenz.com/knowledge/v1/scopes/scp-XXXX/decisions \\
-  -H "Authorization: Bearer kn_xxxxxxxx" \\
+        code: `curl -X POST https://api.asplenz.com/knowledge/v1/scopes/<scope_id>/decisions \\
+  -H "Authorization: Bearer <api_key>" \\
   -H "Content-Type: application/json" \\
   -d '{
     "decision": "Use Docker Compose for local development",
@@ -230,10 +218,10 @@ verification:
       checkCompliance: {
         title: 'Vérifier la conformité',
         code: `curl -X POST https://api.asplenz.com/knowledge/v1/check \\
-  -H "Authorization: Bearer kn_xxxxxxxx" \\
+  -H "Authorization: Bearer <api_key>" \\
   -H "Content-Type: application/json" \\
   -d '{
-    "scope_id": "scp-XXXX",
+    "scope_id": "<scope_id>",
     "intended_action": "Deploy on Friday evening without review"
   }'`,
         note: 'La réponse indique les invariants ou rules en conflit — avec leurs IDs, sévérité, et si une approbation peut débloquer l\'action.',
@@ -241,50 +229,30 @@ verification:
     },
     mcp: {
       tag: '4. Connecter un agent IA (MCP)',
-      body: 'Knowledge fournit un serveur MCP hébergé qui permet à Claude Code, Cursor et d\'autres outils IA d\'interroger le registre en temps réel. Aucune installation requise.',
-      configure: {
-        title: 'Configurer Claude Code',
-        body: 'Créez ou mettez à jour .mcp.json à la racine de votre projet :',
-        code: `{
-  "mcpServers": {
-    "knowledge": {
-      "url": "https://mcp.asplenz.com",
-      "headers": {
-        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      }
-    }
-  }
-}`,
-        note: 'Lancez votre agent depuis le répertoire contenant .mcp.json.',
-      },
+      body: 'Knowledge expose un serveur MCP hébergé. Tout agent compatible MCP — Claude.ai, Claude Code ou tout autre client — peut s\'y connecter avec votre clé API.',
+      server: { label: 'URL du serveur MCP', value: 'https://mcp.asplenz.com/knowledge' },
+      note: 'Référez-vous à la documentation de votre agent pour ajouter un serveur MCP. Utilisez l\'URL ci-dessus et définissez le header Authorization à Bearer <api_key>.',
       tryIt: {
         title: 'Essayez',
-        body: 'Lancez Claude Code depuis votre répertoire de projet et essayez :',
+        body: 'Une fois connecté, votre agent a accès aux outils Knowledge. Demandez-lui :',
         examples: [
-          'Quels invariants a le scope Engineering ?',
-          'Puis-je pusher directement sur main sans code review ?',
-          'Enregistre une décision : on a choisi Playwright pour les tests E2E',
+          `> "Quels invariants a le scope Engineering ?"\n  → L'agent appelle l'outil knowledge_list_invariants pour lister les invariants du scope "Engineering"`,
+          `> "Puis-je pusher directement sur main sans code review ?"\n  → L'agent appelle l'outil knowledge_check pour vérifier la conformité de l'action`,
+          `> "Enregistre une décision : on a choisi Playwright pour les tests E2E"\n  → L'agent appelle l'outil knowledge_record pour sauvegarder la décision dans le registre`,
         ],
-        note: 'Claude interroge Knowledge en temps réel, respecte les contraintes et enregistre les décisions pour vous.',
       },
     },
     extract: {
-      tag: '5. Extraire les règles de vos docs et de votre code',
-      body: 'Demandez à votre agent IA (Claude Code, Cursor, etc.) de scanner votre documentation et votre code source. L\'agent lit les fichiers localement, les analyse via MCP, et crée des drafts typés dans Knowledge.',
-      extractDocs: {
-        title: 'Extraire depuis vos docs',
-        code: `> "Extrais les règles depuis ./docs et ./CLAUDE.md pour le scope Engineering"`,
-      },
-      extractCode: {
-        title: 'Extraire depuis votre codebase',
-        body: 'L\'agent analyse aussi les fichiers source, les configurations et les définitions d\'infrastructure pour faire émerger les règles implicites qui ne sont documentées nulle part :',
-        code: `> "Scanne ./src pour les fichiers .ts, .py et .yaml dans le scope Engineering"`,
-        note: 'L\'agent lit chaque fichier, analyse chaque chunk, et crée des drafts typés :',
-        output: `Scanning 23 files...
-  47 chunks analyzed
-  12 drafts generated (4 invariants, 5 rules, 3 decisions)
-  2 duplicates skipped`,
-      },
+      tag: '5. Extraire les règles de vos documents',
+      body: 'Uploadez vos documents (PDF, Word, Markdown) via le dashboard ou l\'API d\'ingestion. Knowledge les analyse et génère des drafts typés — invariants, rules et decisions — pour votre revue.',
+      code: `curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \\
+  -H "Authorization: Bearer <api_key>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "scope_id": "<scope_id>",
+    "documents": [{"content": "..."}],
+    "auto_run": true
+  }'`,
       review: {
         title: 'Reviewer dans le dashboard',
         body: "Ouvrez le dashboard et naviguez vers la page d'extraction. Chaque draft affiche :",
@@ -297,62 +265,68 @@ verification:
         note: "Approuvez pour publier dans le registre. Rejetez pour supprimer. Éditez avant d'approuver si nécessaire.",
       },
     },
-    verifier: {
-      tag: '6. Ajouter le CI Verifier (Optionnel)',
-      body: 'Le Verifier s\'exécute dans votre pipeline CI et vérifie que les PRs respectent vos entrées Knowledge.',
-      install: {
-        title: 'Installer',
-        code: 'pip install knowledge-verifier',
+    engineering: {
+      tag: 'Pour les équipes engineering',
+      body: 'Les étapes suivantes sont spécifiques aux équipes engineering : extraction de règles depuis le code source et vérification de conformité des PRs en CI.',
+      mcpExample: {
+        title: 'Exemple : configurer MCP avec Claude Code',
+        body: 'Si vous utilisez Claude Code, créez ou mettez à jour .mcp.json à la racine de votre projet et lancez Claude depuis ce répertoire :',
+        code: `{
+  "mcpServers": {
+    "knowledge": {
+      "url": "https://mcp.asplenz.com/knowledge",
+      "headers": {
+        "Authorization": "Bearer <api_key>"
+      }
+    }
+  }
+}`,
       },
-      configure: {
-        title: 'Configurer',
-        body: 'Créez .knowledge-verifier.yml à la racine de votre dépôt :',
-        code: `knowledge_api:
-  url: https://api.asplenz.com
-  # Clé API via la variable d'environnement KNOWLEDGE_API_KEY
-
-verification:
-  mode: report-only
-  report_path: .knowledge/report.md
-  scope_mapping:
-    "src/payments/**": "Engineering/payments"
-    "src/auth/**": "Engineering/auth"
-    "infrastructure/**": "Operations"
-    "**": "Engineering"`,
+      extractCode: {
+        title: '6. Extraire les règles depuis votre codebase',
+        body: 'Votre agent IA lit et analyse vos fichiers source localement, puis crée des drafts typés directement dans Knowledge via MCP. Rien ne quitte votre machine.',
+        withLocal: {
+          title: 'Avec votre agent IA local',
+          code: `> "Extrais les règles depuis ./docs, ./CLAUDE.md et ./src pour le scope Engineering"\n  → L'agent lit et analyse les fichiers localement, puis crée des drafts typés dans Knowledge via MCP`,
+          output: `Scanning 23 files...
+  47 chunks analyzed
+  12 drafts generated (4 invariants, 5 rules, 3 decisions)
+  2 duplicates skipped`,
+        },
+        withAsplenz: {
+          title: 'Avec l\'agent Asplenz',
+          body: 'Vous pouvez aussi envoyer vos fichiers source à l\'API d\'ingestion et laisser l\'agent Asplenz les analyser côté serveur.',
+        },
       },
       ci: {
-        title: 'Ajouter à votre pipeline CI',
-        code: `# .github/workflows/knowledge.yml
+        title: '7. Ajouter des checks de conformité en CI (Optionnel)',
+        body: 'Votre agent IA lit le diff de la PR et le vérifie contre les rules et invariants applicables dans Knowledge avant le merge.',
+        choiceNote: 'Vous pouvez utiliser votre agent IA local ou l\'agent hébergé Asplenz — les deux se connectent à la même API Knowledge.',
+        withAgent: {
+          title: 'Avec votre agent IA local',
+          body: 'Votre agent lit le diff de la PR localement et le vérifie contre Knowledge :',
+          code: `> "Vérifie le diff de cette PR contre Knowledge pour le scope Engineering"\n  → L'agent appelle knowledge_check pour chaque changement et rapporte les violations`,
+        },
+        withoutAgent: {
+          title: 'Avec l\'agent Asplenz',
+          body: 'Envoyez le diff de la PR à Knowledge via l\'API :',
+          code: `# .github/workflows/knowledge.yml
 - name: Knowledge Compliance Check
   run: |
-    pip install knowledge-verifier
-    knowledge-verifier --config .knowledge-verifier.yml
+    curl -X POST https://api.asplenz.com/knowledge/v1/verify/diff \\
+      -H "Authorization: Bearer \$KNOWLEDGE_API_KEY" \\
+      -H "Content-Type: application/json" \\
+      -d '{
+        "scope_id": "<scope_id>",
+        "diff": "\${{ steps.get_diff.outputs.diff }}"
+      }'
   env:
-    KNOWLEDGE_API_URL: \${{ secrets.KNOWLEDGE_API_URL }}
     KNOWLEDGE_API_KEY: \${{ secrets.KNOWLEDGE_API_KEY }}`,
+        },
+        note: 'La réponse indique les invariants ou rules en conflit, leur sévérité, et si une approbation peut débloquer l\'action.',
+        link: { label: 'Intégration CI →', href: '/product/ci-verifier' },
+        linkNote: 'pour les détails sur les modes de gating et les implementation reports.',
       },
-      note: 'Commencez en mode report-only pour voir les résultats sans bloquer les PRs, puis passez en fail-on-blocking quand l\'équipe est prête.',
-      link: { label: 'CI Verifier →', href: '/product/ci-verifier' },
-      linkNote: 'pour les détails sur les modes de gating et les implementation reports.',
-    },
-    next: {
-      tag: 'Et ensuite',
-      rows: [
-        { goal: 'Extraire les règles de vos docs', label: 'Extraction automatique', href: '/docs/extraction' },
-        { goal: 'Configurer les checks CI', label: 'Intégrations : CI/CD', href: '/docs/integrations/ci-cd' },
-        { goal: 'Connecter des agents IA', label: 'Intégrations : Claude MCP', href: '/docs/integrations/claude-mcp' },
-        { goal: "Explorer l'API complète", label: 'Référence API', href: '/docs/integrations/api-reference' },
-        { goal: 'Voir les tarifs', label: 'Tarifs', href: '/pricing' },
-      ],
-    },
-    issues: {
-      tag: 'Problèmes courants',
-      rows: [
-        { problem: '401 Unauthorized', fix: 'Vérifiez votre clé API dans le header Authorization' },
-        { problem: 'Invalid or expired API key', fix: 'Générez une nouvelle clé depuis le dashboard' },
-        { problem: 'Les outils MCP n\'apparaissent pas dans Claude', fix: 'Lancez Claude depuis le répertoire contenant .mcp.json' },
-        { problem: 'Le Verifier ne trouve aucune contrainte', fix: 'Vérifiez vos patterns scope_mapping dans .knowledge-verifier.yml' },
-      ],
     },
   },
 }
@@ -433,36 +407,25 @@ export default function Page() {
 
       {/* 4. MCP */}
       <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 mt-10">{t.mcp.tag}</h2>
-      <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">{t.mcp.body}</p>
-
-      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.mcp.configure.title}</h3>
-      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.mcp.configure.body}</p>
-      <CodeBlock code={t.mcp.configure.code} />
-      <p className="text-sm text-[var(--text-muted)] italic mb-4">{t.mcp.configure.note}</p>
+      <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">{t.mcp.body}</p>
+      <ul className="list-disc list-inside space-y-2 mb-4">
+        <li className="text-[var(--text-secondary)] text-sm">
+          <strong className="font-semibold text-[var(--text-primary)]">{t.mcp.server.label}</strong>{' : '}
+          <InlineCode>{t.mcp.server.value}</InlineCode>
+        </li>
+      </ul>
+      <p className="text-sm text-[var(--text-muted)] italic mb-6">{t.mcp.note}</p>
 
       <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.mcp.tryIt.title}</h3>
       <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.mcp.tryIt.body}</p>
-      <ul className="list-disc list-inside space-y-2 mb-4">
-        {t.mcp.tryIt.examples.map((ex, i) => (
-          <li key={i} className="text-[var(--text-secondary)] text-sm italic">{ex}</li>
-        ))}
-      </ul>
-      <p className="text-[var(--text-secondary)] mb-4 leading-relaxed text-sm">{t.mcp.tryIt.note}</p>
+      <CodeBlock code={t.mcp.tryIt.examples.join('\n\n')} />
 
       <hr className="border-[var(--border)] my-8" />
 
-      {/* 5. Extract */}
+      {/* 5. Extract from documents */}
       <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 mt-10">{t.extract.tag}</h2>
-      <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">{t.extract.body}</p>
-
-      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.extract.extractDocs.title}</h3>
-      <CodeBlock code={t.extract.extractDocs.code} />
-
-      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.extract.extractCode.title}</h3>
-      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.extract.extractCode.body}</p>
-      <CodeBlock code={t.extract.extractCode.code} />
-      <p className="text-sm text-[var(--text-muted)] mb-3">{t.extract.extractCode.note}</p>
-      <CodeBlock code={t.extract.extractCode.output} />
+      <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">{t.extract.body}</p>
+      <CodeBlock code={t.extract.code} />
 
       <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.extract.review.title}</h3>
       <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.extract.review.body}</p>
@@ -477,60 +440,43 @@ export default function Page() {
 
       <hr className="border-[var(--border)] my-8" />
 
-      {/* 6. CI Verifier */}
-      <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 mt-10">{t.verifier.tag}</h2>
-      <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">{t.verifier.body}</p>
+      {/* Engineering section */}
+      <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 mt-10">{t.engineering.tag}</h2>
+      <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">{t.engineering.body}</p>
 
-      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.verifier.install.title}</h3>
-      <CodeBlock code={t.verifier.install.code} />
+      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.engineering.mcpExample.title}</h3>
+      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.engineering.mcpExample.body}</p>
+      <CodeBlock code={t.engineering.mcpExample.code} />
 
-      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.verifier.configure.title}</h3>
-      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.verifier.configure.body}</p>
-      <CodeBlock code={t.verifier.configure.code} />
+      <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 mt-10">{t.engineering.extractCode.title}</h2>
+      <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">{t.engineering.extractCode.body}</p>
 
-      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.verifier.ci.title}</h3>
-      <CodeBlock code={t.verifier.ci.code} />
-      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed text-sm">{t.verifier.note}</p>
+      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.engineering.extractCode.withLocal.title}</h3>
+      <CodeBlock code={t.engineering.extractCode.withLocal.code} />
+      <CodeBlock code={t.engineering.extractCode.withLocal.output} />
+
+      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.engineering.extractCode.withAsplenz.title}</h3>
+      <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">{t.engineering.extractCode.withAsplenz.body}</p>
+
+      <hr className="border-[var(--border)] my-8" />
+
+      {/* CI */}
+      <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 mt-10">{t.engineering.ci.title}</h2>
+      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.engineering.ci.body}</p>
+      <p className="text-sm text-[var(--text-muted)] italic mb-6">{t.engineering.ci.choiceNote}</p>
+
+      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.engineering.ci.withAgent.title}</h3>
+      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.engineering.ci.withAgent.body}</p>
+      <CodeBlock code={t.engineering.ci.withAgent.code} />
+
+      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.engineering.ci.withoutAgent.title}</h3>
+      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.engineering.ci.withoutAgent.body}</p>
+      <CodeBlock code={t.engineering.ci.withoutAgent.code} />
+      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed text-sm">{t.engineering.ci.note}</p>
       <p className="text-[var(--text-secondary)] mb-4 text-sm">
-        <Link href={t.verifier.link.href} className="text-[var(--accent)] hover:underline font-medium">{t.verifier.link.label}</Link>
-        {' '}{t.verifier.linkNote}
+        <Link href={t.engineering.ci.link.href} className="text-[var(--accent)] hover:underline font-medium">{t.engineering.ci.link.label}</Link>
+        {' '}{t.engineering.ci.linkNote}
       </p>
-
-      <hr className="border-[var(--border)] my-8" />
-
-      {/* What's Next */}
-      <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 mt-10">{t.next.tag}</h2>
-      <div className="overflow-x-auto mb-6">
-        <table className="w-full text-sm border-collapse">
-          <tbody>
-            {t.next.rows.map((row, i) => (
-              <tr key={i} className="border-b border-[var(--border-light)]">
-                <td className="py-2.5 pr-6 text-[var(--text-secondary)]">{row.goal}</td>
-                <td className="py-2.5">
-                  <Link href={row.href} className="text-[var(--accent)] hover:underline text-sm">{row.label}</Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <hr className="border-[var(--border)] my-8" />
-
-      {/* Common Issues */}
-      <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 mt-10">{t.issues.tag}</h2>
-      <div className="overflow-x-auto mb-6">
-        <table className="w-full text-sm border-collapse">
-          <tbody>
-            {t.issues.rows.map((row, i) => (
-              <tr key={i} className="border-b border-[var(--border-light)]">
-                <td className="py-2.5 pr-6 font-mono text-[var(--accent)] text-xs">{row.problem}</td>
-                <td className="py-2.5 text-[var(--text-secondary)]">{row.fix}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </article>
   )
 }

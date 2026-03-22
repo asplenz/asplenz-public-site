@@ -9,7 +9,7 @@ const content = {
     tag: 'Product',
     title: 'AI Agent Integration',
     intro: "Give your agents the context they're missing.",
-    subtitle: "When an AI agent writes code, reviews a PR, or makes a deployment decision, it acts without knowledge of your team's architectural choices, compliance requirements, or operational rules. It does its best — and you review after the fact, hoping to catch violations.",
+    subtitle: "When an AI agent writes code, reviews a PR, or makes a deployment decision, it acts without knowledge of your team's architectural choices, compliance requirements, or operational rules. It does its best, and you review after the fact, hoping to catch violations.",
     closing: 'Knowledge closes that gap. Agents query your decision registry before acting, not after.',
     problem: {
       tag: 'The Problem with Post-Hoc Review',
@@ -22,7 +22,7 @@ const content = {
     },
     mcp: {
       tag: 'MCP Integration',
-      intro: 'Knowledge exposes 9 tools through the Model Context Protocol (MCP), compatible with Claude Code, Cursor, and any MCP client.',
+      intro: 'Knowledge exposes tools through the Model Context Protocol (MCP), compatible with any MCP client.',
       beforeTag: 'Before acting',
       beforeHeaders: ['Tool', 'Purpose'],
       beforeRows: [
@@ -77,16 +77,16 @@ const content = {
       tag: 'How Constraints Apply',
       items: [
         {
-          name: 'Invariants — Hard Stops',
+          name: 'Invariants: Hard Stops',
           body: "Absolute constraints that block violating actions. If an agent's intended action conflicts with an invariant, the compliance check returns a conflict and the agent stops.",
         },
         {
-          name: 'Rules — Active Guidance',
+          name: 'Rules: Active Guidance',
           body: 'Directives that shape behavior. Mandatory rules must be followed; advisory rules should be considered. Agents receive both and can explain which rules influenced their decisions.',
         },
         {
           name: 'Approval Gates',
-          body: 'Some invariants require human approval before proceeding. The agent requests approval, Knowledge notifies the right people via ECDSA-signed webhook (Slack, Teams, or any external system), and the agent is notified automatically when the decision is made. The entire exchange is recorded.',
+          body: 'Some invariants require human approval before proceeding. The agent requests approval, Knowledge notifies the right people via webhook (Slack, Teams, or any external system), and the agent is notified automatically when the decision is made. The entire exchange is recorded.',
         },
       ],
     },
@@ -113,7 +113,7 @@ const content = {
           code: `{
   "mcpServers": {
     "knowledge": {
-      "url": "https://mcp.asplenz.com",
+      "url": "https://mcp.asplenz.com/knowledge",
       "headers": {
         "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
@@ -140,12 +140,7 @@ const content = {
     },
     compatible: {
       tag: 'Compatible Agents',
-      intro: 'Knowledge works with any MCP-compatible client:',
-      items: [
-        { name: 'Claude Code', desc: 'full MCP support, recommended workflow' },
-        { name: 'Cursor', desc: 'MCP integration for IDE-based agents' },
-        { name: 'Custom agents', desc: 'any client implementing the MCP protocol' },
-      ],
+      intro: 'Knowledge works with any MCP-compatible agent: coding agents, finance agents, compliance agents, operations agents.',
       closing: 'The same API that agents use is available via REST for custom integrations, CI pipelines, and scripts.',
     },
     cta: {
@@ -160,7 +155,7 @@ const content = {
     tag: 'Produit',
     title: 'Intégration des Agents IA',
     intro: 'Donnez à vos agents le contexte qui leur manque.',
-    subtitle: "Quand un agent IA écrit du code, review une PR ou prend une décision de déploiement, il agit sans connaître les choix d'architecture de votre équipe, les exigences de conformité ou les règles opérationnelles. Il fait de son mieux — et vous reviewez après coup, en espérant détecter les violations.",
+    subtitle: "Quand un agent IA écrit du code, review une PR ou prend une décision de déploiement, il agit sans connaître les choix d'architecture de votre équipe, les exigences de conformité ou les règles opérationnelles. Il fait de son mieux, et vous reviewez après coup, en espérant détecter les violations.",
     closing: "Knowledge comble ce gap. Les agents interrogent votre registre de décisions avant d'agir, pas après.",
     problem: {
       tag: 'Le problème du review a posteriori',
@@ -173,7 +168,7 @@ const content = {
     },
     mcp: {
       tag: 'Intégration MCP',
-      intro: 'Knowledge expose 9 outils via le Model Context Protocol (MCP), compatibles avec Claude Code, Cursor, et tout client MCP.',
+      intro: 'Knowledge expose des outils via le Model Context Protocol (MCP), compatibles avec tout client MCP.',
       beforeTag: "Avant d'agir",
       beforeHeaders: ['Outil', 'Usage'],
       beforeRows: [
@@ -228,16 +223,16 @@ const content = {
       tag: "Comment les contraintes s'appliquent",
       items: [
         {
-          name: 'Invariants — Arrêts stricts',
+          name: 'Invariants : Arrêts stricts',
           body: "Contraintes absolues qui bloquent les actions en violation. Si l'action envisagée par un agent entre en conflit avec un invariant, la vérification de conformité retourne un conflit et l'agent s'arrête.",
         },
         {
-          name: 'Rules — Directives actives',
+          name: 'Rules : Directives actives',
           body: "Directives qui orientent le comportement. Les rules mandatory doivent être suivies ; les rules advisory doivent être considérées. Les agents reçoivent les deux et peuvent expliquer quelles rules ont influencé leurs décisions.",
         },
         {
           name: "Portes d'approbation",
-          body: "Certains invariants nécessitent une approbation humaine avant de procéder. L'agent demande l'approbation, Knowledge notifie les personnes concernées via webhook signé ECDSA (Slack, Teams, ou tout système externe), et l'agent est notifié automatiquement quand la décision est prise. L'échange complet est enregistré.",
+          body: "Certains invariants nécessitent une approbation humaine avant de procéder. L'agent demande l'approbation, Knowledge notifie les personnes concernées via webhook (Slack, Teams, ou tout système externe), et l'agent est notifié automatiquement quand la décision est prise. L'échange complet est enregistré.",
         },
       ],
     },
@@ -264,7 +259,7 @@ const content = {
           code: `{
   "mcpServers": {
     "knowledge": {
-      "url": "https://mcp.asplenz.com",
+      "url": "https://mcp.asplenz.com/knowledge",
       "headers": {
         "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
@@ -291,13 +286,8 @@ const content = {
     },
     compatible: {
       tag: 'Agents compatibles',
-      intro: 'Knowledge fonctionne avec tout client compatible MCP :',
-      items: [
-        { name: 'Claude Code', desc: 'support MCP complet, workflow recommandé' },
-        { name: 'Cursor', desc: 'intégration MCP pour les agents en IDE' },
-        { name: 'Agents custom', desc: 'tout client implémentant le protocole MCP' },
-      ],
-      closing: 'La même API utilisée par les agents est disponible en REST pour les intégrations custom, les pipelines CI et les scripts.',
+      intro: 'Knowledge fonctionne avec tout agent compatible MCP : agents de code, agents finance, agents conformite, agents operations.',
+      closing: 'La meme API utilisee par les agents est disponible en REST pour les integrations custom, les pipelines CI et les scripts.',
     },
     cta: {
       links: [
@@ -478,13 +468,6 @@ export default function Page() {
         <div className="max-w-5xl mx-auto">
           <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4">{t.compatible.tag}</p>
           <p className="text-[var(--text-secondary)] mb-5 leading-relaxed">{t.compatible.intro}</p>
-          <ul className="list-disc list-inside space-y-2 mb-5">
-            {t.compatible.items.map((item, i) => (
-              <li key={i} className="text-[var(--text-secondary)] text-sm">
-                <strong className="font-semibold text-[var(--text-primary)]">{item.name}</strong> — {item.desc}
-              </li>
-            ))}
-          </ul>
           <p className="text-[var(--text-secondary)] leading-relaxed max-w-2xl">{t.compatible.closing}</p>
         </div>
       </section>

@@ -10,7 +10,7 @@ Knowledge solves the cold-start problem: ask your AI agent to scan your existing
 
 ## How It Works
 
-Ask your AI agent (Claude Code, Cursor, etc.) to extract rules from your existing sources. The agent reads files locally, chunks them, and sends them to Knowledge via MCP for analysis. Implicit rules and constraints are surfaced as typed drafts in your dashboard. You review each one — approve, edit, or reject. Nothing is published without human validation.
+Ask your AI agent to extract rules from your existing sources. The agent reads files locally, chunks them, and sends them to Knowledge via MCP for analysis. Implicit rules and constraints are surfaced as typed drafts in your dashboard. You review each one — approve, edit, or reject. Nothing is published without human validation.
 
 ```
 > "Extract rules from ./docs and ./CLAUDE.md for the Engineering/payments namespace"

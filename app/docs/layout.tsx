@@ -14,7 +14,8 @@ interface NavItem {
 const nav: NavItem[] = [
   { title: 'Getting Started', href: '/docs/getting-started' },
   { title: 'Concepts', href: '/docs/concepts' },
-  { title: 'Extraction', href: '/docs/extraction' },
+  { title: 'Automatic Extraction', href: '/docs/extraction' },
+  { title: 'AI Agents & MCP', href: '/docs/ai-agents' },
   { title: 'Integrations', href: '/docs/integrations' },
 ]
 

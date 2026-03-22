@@ -146,7 +146,7 @@ Engineer: creates approval request with justification
       {
         title: 'For Compliance Officers',
         items: [
-          'Extract existing rules: run `knowledge extract` on policy documents to populate the registry',
+          'Extract existing rules: ask your AI agent to extract rules from your policy documents to populate the registry',
           'Review drafts: approve extracted constraints, reject noise, edit as needed',
           'Attach external checkers: add scripts or webhooks for dynamic verification (consent checks, data residency validation)',
           'Browse references: verify that constraints are being followed across the organization',
@@ -241,7 +241,7 @@ Engineer: creates approval request with justification
       { label: 'Create scopes for your compliance domains (Privacy, Contracts, Corporate Governance)' },
       {
         label:
-          'Run `knowledge extract --scope "Privacy" --source ./policies --source ./compliance-docs` to populate from existing docs',
+          'Ask your AI agent to extract rules from ./policies and ./compliance-docs for the Privacy scope',
       },
       { label: 'Review and approve extracted drafts, then refine with manual entries' },
       { label: 'Connect agents via MCP for real-time constraint checking' },
@@ -389,7 +389,7 @@ Ingénieur : crée une demande d'approbation avec justification
       {
         title: 'Pour les responsables conformité',
         items: [
-          'Extraire les règles existantes : lancer `knowledge extract` sur les documents de politique pour peupler le registre',
+          'Extraire les règles existantes : demander à votre agent IA d\'extraire les règles depuis vos documents de politique pour peupler le registre',
           'Reviewer les brouillons : approuver les contraintes extraites, rejeter le bruit, éditer si nécessaire',
           'Attacher des external checkers : scripts ou webhooks pour vérification dynamique (checks de consentement, validation de résidence des données)',
           'Parcourir les références : vérifier que les contraintes sont suivies dans l\'organisation',
@@ -484,7 +484,7 @@ Ingénieur : crée une demande d'approbation avec justification
       { label: 'Créer des scopes pour vos domaines de conformité (Privacy, Contracts, Corporate Governance)' },
       {
         label:
-          'Lancer `knowledge extract --scope "Privacy" --source ./policies --source ./compliance-docs` pour peupler depuis les docs existantes',
+          'Demander à votre agent IA d\'extraire les règles depuis ./policies et ./compliance-docs pour le scope Privacy',
       },
       { label: 'Reviewer et approuver les brouillons extraits, puis affiner avec des entrées manuelles' },
       { label: 'Connecter les agents via MCP pour le contrôle de contraintes en temps réel' },

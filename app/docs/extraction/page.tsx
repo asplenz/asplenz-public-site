@@ -9,50 +9,47 @@ const content = {
     why: {
       tag: "Pourquoi l'extraction automatique ?",
       body: [
-        "La plupart des équipes ont déjà des règles — elles ne sont simplement pas structurées. Elles vivent dans des READMEs, des décisions d'architecture, des runbooks, des commentaires de code, des threads Slack et des pages wiki.",
+        "La plupart des équipes ont déjà des règles - elles ne sont simplement pas structurées. Elles vivent dans des READMEs, des décisions d'architecture, des runbooks, des commentaires de code, des threads Slack et des pages wiki.",
         "Saisir manuellement chaque règle dans un registre prend un temps que la plupart des équipes n'ont pas. L'extraction automatique résout le problème du démarrage à froid : pointez-la vers vos sources et obtenez un registre peuplé en quelques minutes.",
-        "Et à mesure que votre documentation évolue, vous pouvez relancer l'extraction régulièrement pour faire émerger les nouvelles règles implicites — votre registre reste à jour sans maintenance manuelle.",
+        "Et à mesure que votre documentation évolue, vous pouvez relancer l'extraction régulièrement pour faire émerger les nouvelles règles implicites - votre registre reste à jour sans maintenance manuelle.",
       ],
     },
     howItWorks: {
       tag: 'Comment ça fonctionne',
       step1: {
         title: '1. Pointez vers vos sources',
-        code1: 'knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md',
+        code1: `> "Extrais les règles depuis ./docs et ./CLAUDE.md pour le scope Engineering"`,
         code2Label: 'Ciblez des répertoires et types de fichiers spécifiques :',
-        code2: `knowledge extract --scope Engineering \\
-  --source ./docs --pattern "**/*.md" \\
-  --source ./src --pattern "**/README.md" \\
-  --source . --pattern "CLAUDE.md"`,
+        code2: `> "Extrais les règles depuis ./docs (*.md), ./src (README.md) et ./CLAUDE.md pour Engineering"`,
       },
       step2: {
         title: '2. Chaque chunk est analysé',
         body: "Les fichiers sont découpés en chunks contextuels (~1500 caractères avec 10% de chevauchement). Chaque chunk est analysé avec un prompt d'extraction structuré qui identifie :",
         candidates: [
-          { name: 'Candidats invariant', desc: '« Tous les endpoints API doivent exiger une authentification »' },
-          { name: 'Candidats rule', desc: '« Utiliser les conventional commits »' },
-          { name: 'Candidats decision', desc: '« On a choisi PostgreSQL pour les données transactionnelles »' },
+          { name: 'Candidats invariant', desc: 'contraintes absolues (« Tous les endpoints API doivent exiger une authentification »)' },
+          { name: 'Candidats rule', desc: 'directives actives, mandatory ou advisory (« Utiliser les conventional commits »)' },
+          { name: 'Candidats decision', desc: 'choix historiques avec contexte (« On a choisi PostgreSQL pour les données transactionnelles »)' },
         ],
         includesLabel: 'Chaque extraction inclut :',
         includes: [
-          { name: 'Score de confiance', desc: '(0.0 – 1.0, minimum 0.6 pour être conservé)' },
+          { name: 'Score de confiance', desc: '(0.0 - 1.0, minimum 0.6 pour être conservé)' },
           { name: "Extrait source", desc: "qui a motivé l'extraction" },
           { name: 'Tags suggérés', desc: 'et namespace' },
           { name: 'Une explication', desc: 'de pourquoi cet élément a été identifié' },
         ],
       },
       step3: {
-        title: 'La déduplication filtre le bruit',
+        title: '3. La déduplication filtre le bruit',
         body: 'Chaque extraction est comparée aux entrées existantes dans le scope cible par similarité sémantique :',
         headers: ['Similarité', 'Résultat'],
         rows: [
-          ['>= 0.92', "Doublon exact — automatiquement filtré et logué dans le rapport d'extraction"],
-          ['>= 0.80', "Similaire — draft créé avec une relation REPLACES pointant vers l'entrée existante"],
-          ['< 0.80', 'Nouveau — draft créé sans relations'],
+          ['>= 0.92', "Doublon exact - automatiquement filtré et logué dans le rapport d'extraction"],
+          ['>= 0.80', "Similaire - draft créé avec une relation REPLACES pointant vers l'entrée existante"],
+          ['< 0.80', 'Nouveau - draft créé sans relations'],
         ],
       },
       step4: {
-        title: 'Validation humaine',
+        title: '4. Validation humaine',
         body: 'Rien n\'est publié sans validation. Chaque extraction devient un draft visible dans le dashboard, montrant :',
         items: [
           "L'entrée proposée avec son type détecté (Invariant, Rule ou Decision) et son score de confiance",
@@ -72,26 +69,24 @@ const content = {
       tag: 'Types de sources',
       git: {
         name: 'Dépôts Git',
-        desc: "Pointez la CLI vers n'importe quel dépôt et filtrez par glob pattern. Knowledge analyse les fichiers source - code, configuration, définitions d'infrastructure - et fait émerger les règles et contraintes implicites qui ne sont documentées nulle part.",
-        code: `knowledge extract --scope Engineering --source /path/to/repo --pattern "**/*.{ts,py,yaml,md}"`,
+        desc: "Demandez à votre agent IA de scanner un dépôt. Il lit les fichiers locaux, les découpe, et les envoie à Knowledge pour analyse. Les règles et contraintes implicites émergent - même celles qui ne sont documentées nulle part.",
+        code: `> "Scanne /path/to/repo pour les fichiers .ts, .py, .yaml et .md dans le scope Engineering"`,
       },
       docs: {
         name: 'Documents spécifiques',
-        code: `knowledge extract --scope Engineering \\
-  --source /path/to/runbook.md \\
-  --source /path/to/architecture.md`,
+        code: `> "Extrais les règles depuis runbook.md et architecture.md pour Engineering"`,
       },
       api: {
         name: "API d'ingestion",
         desc: "Pour les sources qui ne sont pas sur disque, poussez les documents directement via l'API :",
-        code: `curl -X POST http://localhost:8090/api/v1/extract/stream \\
+        code: `curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \\
   -H "Authorization: Bearer kn_..." \\
   -H "Content-Type: application/json" \\
   -d '{
     "scope_id": "scp-...",
     "documents": [
       {
-        "content": "Tous les deploiements doivent passer par staging d abord.",
+        "content": "Tous les déploiements doivent passer par staging d abord.",
         "metadata": {"author": "ops-team", "source": "runbook-v3"}
       }
     ],
@@ -143,7 +138,7 @@ const content = {
       items: [
         { title: 'Commencez large, puis affinez.', body: "Lancez l'extraction sur tout votre répertoire docs/ d'abord. Reviewez les résultats, puis restreignez vos patterns aux sources les plus productives." },
         { title: 'Re-extrayez régulièrement.', body: "Lancez l'extraction trimestriellement, après une réécriture majeure, ou quand de nouveaux docs apparaissent. La déduplication intelligente garantit que votre registre ne sera pas pollué par des doublons." },
-        { title: 'Reviewez par lots.', body: "Reviewez tous les drafts en attente d'un run en une seule session — rejetez le bruit, approuvez les bons." },
+        { title: 'Reviewez par lots.', body: "Reviewez tous les drafts en attente d'un run en une seule session - rejetez le bruit, approuvez les bons." },
         { title: 'Utilisez les tags de manière cohérente.', body: "L'extraction suggère des tags, mais vérifiez-les pour la cohérence. Un système de tags propre rend le registre plus facilement cherchable." },
       ],
     },
@@ -162,50 +157,47 @@ const content = {
     why: {
       tag: 'Why Automatic Extraction?',
       body: [
-        "Most teams already have rules — they're just not structured. They live in READMEs, architecture decisions, runbooks, code comments, Slack threads, and wiki pages.",
+        "Most teams already have rules - they're just not structured. They live in READMEs, architecture decisions, runbooks, code comments, Slack threads, and wiki pages.",
         "Manually entering each rule into a registry takes time most teams don't have. Automatic extraction solves the cold-start problem: point it at your sources and get a populated registry in minutes.",
-        'And as your documentation evolves, you can re-extract regularly to surface new implicit rules — your registry stays current without manual maintenance.',
+        'And as your documentation evolves, you can re-extract regularly to surface new implicit rules - your registry stays current without manual maintenance.',
       ],
     },
     howItWorks: {
       tag: 'How It Works',
       step1: {
         title: '1. Point at your sources',
-        code1: 'knowledge extract --scope Engineering --source ./docs --source ./CLAUDE.md',
+        code1: `> "Extract rules from ./docs and ./CLAUDE.md for the Engineering scope"`,
         code2Label: 'Target specific directories and file types:',
-        code2: `knowledge extract --scope Engineering \\
-  --source ./docs --pattern "**/*.md" \\
-  --source ./src --pattern "**/README.md" \\
-  --source . --pattern "CLAUDE.md"`,
+        code2: `> "Extract rules from ./docs (*.md), ./src (README.md), and ./CLAUDE.md for Engineering"`,
       },
       step2: {
         title: '2. Each chunk is analyzed',
         body: 'Files are split into contextual chunks (~1500 characters with 10% overlap). Each chunk is analyzed with a structured extraction prompt that identifies:',
         candidates: [
-          { name: 'Invariant candidates', desc: '"All API endpoints must require authentication"' },
-          { name: 'Rule candidates', desc: '"Use conventional commits"' },
-          { name: 'Decision candidates', desc: '"We chose PostgreSQL for transactional data"' },
+          { name: 'Invariant candidates', desc: 'absolute constraints ("All API endpoints must require authentication")' },
+          { name: 'Rule candidates', desc: 'active directives, mandatory or advisory ("Use conventional commits")' },
+          { name: 'Decision candidates', desc: 'historical choices with context ("We chose PostgreSQL for transactional data")' },
         ],
         includesLabel: 'Each extraction includes:',
         includes: [
-          { name: 'Confidence score', desc: '(0.0 – 1.0, minimum 0.6 to be kept)' },
+          { name: 'Confidence score', desc: '(0.0 - 1.0, minimum 0.6 to be kept)' },
           { name: 'Source excerpt', desc: 'that motivated the extraction' },
           { name: 'Suggested tags', desc: 'and namespace' },
           { name: 'An explanation', desc: 'of why this was identified' },
         ],
       },
       step3: {
-        title: 'Deduplication filters noise',
+        title: '3. Deduplication filters noise',
         body: 'Every extraction is compared against existing entries in the target scope using semantic similarity:',
         headers: ['Similarity', 'Result'],
         rows: [
-          ['>= 0.92', 'Exact duplicate — automatically filtered out and logged in the extraction report'],
-          ['>= 0.80', 'Similar — draft created with REPLACES relation pointing to the existing entry'],
-          ['< 0.80', 'New — draft created without relations'],
+          ['>= 0.92', 'Exact duplicate - automatically filtered out and logged in the extraction report'],
+          ['>= 0.80', 'Similar - draft created with REPLACES relation pointing to the existing entry'],
+          ['< 0.80', 'New - draft created without relations'],
         ],
       },
       step4: {
-        title: 'Human review',
+        title: '4. Human review',
         body: 'Nothing is published without validation. Every extraction becomes a draft visible in the dashboard, showing:',
         items: [
           'The proposed entry with its detected type (Invariant, Rule, or Decision) and confidence score',
@@ -225,19 +217,17 @@ const content = {
       tag: 'Source Types',
       git: {
         name: 'Git Repositories',
-        desc: 'Point the CLI at any repository and filter by glob pattern. Knowledge analyzes source files - code, configuration, infrastructure definitions - and surfaces implicit rules and constraints that are not documented anywhere.',
-        code: `knowledge extract --scope Engineering --source /path/to/repo --pattern "**/*.{ts,py,yaml,md}"`,
+        desc: 'Ask your AI agent to scan a repository. It reads local files, chunks them, and sends them to Knowledge for analysis. Implicit rules and constraints surface - even ones that are not documented anywhere.',
+        code: `> "Scan /path/to/repo for .ts, .py, .yaml, and .md files in the Engineering scope"`,
       },
       docs: {
         name: 'Specific Documents',
-        code: `knowledge extract --scope Engineering \\
-  --source /path/to/runbook.md \\
-  --source /path/to/architecture.md`,
+        code: `> "Extract rules from runbook.md and architecture.md for Engineering"`,
       },
       api: {
         name: 'Ingestion API',
         desc: "For sources that don't live on disk, push documents directly via the API:",
-        code: `curl -X POST http://localhost:8090/api/v1/extract/stream \\
+        code: `curl -X POST https://api.asplenz.com/knowledge/v1/extract/stream \\
   -H "Authorization: Bearer kn_..." \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -296,7 +286,7 @@ const content = {
       items: [
         { title: 'Start broad, then refine.', body: "Run extraction on your entire docs/ directory first. Review the results, then narrow your patterns to the most productive sources." },
         { title: 'Re-extract regularly.', body: "Run extraction quarterly, after a major rewrite, or whenever new docs appear. Smart deduplication ensures your registry won't be polluted with duplicates." },
-        { title: 'Review in batches.', body: 'Review all pending drafts for a run in a single session — reject the noise, approve the good ones.' },
+        { title: 'Review in batches.', body: 'Review all pending drafts for a run in a single session - reject the noise, approve the good ones.' },
         { title: 'Use tags consistently.', body: 'The extraction suggests tags, but review them for consistency. A clean tagging system makes the registry more searchable.' },
       ],
     },
@@ -316,12 +306,6 @@ function CodeBlock({ code }: { code: string }) {
     <pre className="rounded-lg bg-[#1A1A2E] text-[#A8C8E8] text-xs p-4 overflow-x-hidden whitespace-pre-wrap break-words leading-relaxed font-mono mb-4">
       {code}
     </pre>
-  )
-}
-
-function InlineCode({ children }: { children: string }) {
-  return (
-    <code className="text-[var(--accent)] bg-[var(--bg-card)] px-1.5 py-0.5 rounded text-sm font-mono">{children}</code>
   )
 }
 

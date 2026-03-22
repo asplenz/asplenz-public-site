@@ -15,8 +15,8 @@ const content = {
       },
       {
         title: 'Claude MCP',
-        desc: 'MCP server that lets AI agents — Claude Code, Cursor, and any MCP-compatible tool — interact with the decision registry using natural language. Includes setup, all 10 tools, and a recommended workflow.',
-        tags: ['Python', 'MCP', 'Claude Code', 'Cursor'],
+        desc: 'MCP server that lets AI agents interact with the decision registry using natural language. Includes setup, all 10 tools, and a recommended workflow.',
+        tags: ['Python', 'MCP'],
       },
       {
         title: 'CI Verifier',
@@ -30,7 +30,7 @@ const content = {
       cta: 'Create free account',
       ctaHref: '/contact',
       login: 'Already have an account? Sign in',
-      loginHref: 'https://app.asplenz.com',
+      loginHref: 'https://app.asplenz.com/knowledge',
     },
   },
   fr: {
@@ -44,8 +44,8 @@ const content = {
       },
       {
         title: 'Claude MCP',
-        desc: "Serveur MCP qui permet aux agents IA — Claude Code, Cursor et tout outil compatible MCP — d'interagir avec le registre de décisions en langage naturel. Inclut la configuration, les 10 outils et un workflow recommandé.",
-        tags: ['Python', 'MCP', 'Claude Code', 'Cursor'],
+        desc: "Serveur MCP qui permet aux agents IA d'interagir avec le registre de décisions en langage naturel. Inclut la configuration, les 10 outils et un workflow recommandé.",
+        tags: ['Python', 'MCP'],
       },
       {
         title: 'CI Verifier',
@@ -59,7 +59,7 @@ const content = {
       cta: 'Créer un compte gratuit',
       ctaHref: '/contact',
       login: 'Déjà un compte ? Se connecter',
-      loginHref: 'https://app.asplenz.com',
+      loginHref: 'https://app.asplenz.com/knowledge',
     },
   },
 }
