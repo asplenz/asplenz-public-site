@@ -12,11 +12,11 @@ const content = {
     subtitle: "When an AI agent writes code, reviews a PR, or makes a deployment decision, it acts without knowledge of your team's architectural choices, compliance requirements, or operational rules. It does its best, and you review after the fact, hoping to catch violations.",
     closing: 'Knowledge closes that gap. Agents query your decision registry before acting, not after.',
     problem: {
-      tag: 'The Problem with Post-Hoc Review',
+      tag: 'The Problem: Reviewing After the Fact',
       body: "The agent doesn't know that your team decided to use PostgreSQL for transactional data, that all API endpoints must require authentication, or that deployments to production require a staging step. It discovers these constraints when you reject its work.",
     },
     preflight: {
-      tag: 'Pre-Flight Constraint Checking',
+      tag: 'Check Constraints Before Acting',
       body: 'With Knowledge, the workflow becomes:',
       closing: 'Every action is informed. Every constraint check is recorded. Every compliance question has a structured answer.',
     },
@@ -140,8 +140,9 @@ const content = {
     },
     compatible: {
       tag: 'Compatible Agents',
-      intro: 'Knowledge works with any MCP-compatible agent: coding agents, finance agents, compliance agents, operations agents.',
-      closing: 'The same API that agents use is available via REST for custom integrations, CI pipelines, and scripts.',
+      intro: 'Knowledge works with any MCP-compatible agent: coding agents, finance agents, compliance agents, operations agents. The same API that agents use is available via REST for custom integrations and scripts.',
+      ciLink: 'You can also run an agent automatically on every pull request to check compliance against your team\'s rules.',
+      ciLinkLabel: 'CI Compliance Check →',
     },
     cta: {
       links: [
@@ -158,11 +159,11 @@ const content = {
     subtitle: "Quand un agent IA écrit du code, review une PR ou prend une décision de déploiement, il agit sans connaître les choix d'architecture de votre équipe, les exigences de conformité ou les règles opérationnelles. Il fait de son mieux, et vous reviewez après coup, en espérant détecter les violations.",
     closing: "Knowledge comble ce gap. Les agents interrogent votre registre de décisions avant d'agir, pas après.",
     problem: {
-      tag: 'Le problème du review a posteriori',
+      tag: 'Le problème : reviewer après coup',
       body: "L'agent ne sait pas que votre équipe a décidé d'utiliser PostgreSQL pour les données transactionnelles, que tous les endpoints API doivent exiger une authentification, ou que les déploiements en production nécessitent un passage par staging. Il découvre ces contraintes quand vous rejetez son travail.",
     },
     preflight: {
-      tag: 'Vérification pré-action',
+      tag: 'Vérifier les contraintes avant d\'agir',
       body: 'Avec Knowledge, le workflow devient :',
       closing: 'Chaque action est informée. Chaque vérification de contrainte est enregistrée. Chaque question de conformité a une réponse structurée.',
     },
@@ -286,8 +287,9 @@ const content = {
     },
     compatible: {
       tag: 'Agents compatibles',
-      intro: 'Knowledge fonctionne avec tout agent compatible MCP : agents de code, agents finance, agents conformite, agents operations.',
-      closing: 'La meme API utilisee par les agents est disponible en REST pour les integrations custom, les pipelines CI et les scripts.',
+      intro: 'Knowledge fonctionne avec tout agent compatible MCP : agents de code, agents finance, agents conformite, agents operations. La meme API utilisee par les agents est disponible en REST pour les integrations custom et les scripts.',
+      ciLink: 'Vous pouvez aussi lancer un agent automatiquement sur chaque pull request pour verifier la conformite avec les regles de votre equipe.',
+      ciLinkLabel: 'CI Compliance Check →',
     },
     cta: {
       links: [
@@ -402,19 +404,8 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Example */}
-      <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
-        <div className="max-w-5xl mx-auto">
-          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-5">{t.example.tag}</p>
-          <div className="max-w-2xl">
-            <CodeBlock code={t.example.code} />
-          </div>
-          <p className="text-[var(--text-secondary)] leading-relaxed mt-2">{t.example.closing}</p>
-        </div>
-      </section>
-
       {/* How constraints apply */}
-      <section className="py-12 px-6 md:px-16 lg:px-24">
+      <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
         <div className="max-w-5xl mx-auto">
           <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-8">{t.constraints.tag}</p>
           <div className="grid md:grid-cols-3 gap-6">
@@ -425,6 +416,17 @@ export default function Page() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Example */}
+      <section className="py-12 px-6 md:px-16 lg:px-24">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-5">{t.example.tag}</p>
+          <div className="max-w-2xl">
+            <CodeBlock code={t.example.code} />
+          </div>
+          <p className="text-[var(--text-secondary)] leading-relaxed mt-2">{t.example.closing}</p>
         </div>
       </section>
 
@@ -468,7 +470,8 @@ export default function Page() {
         <div className="max-w-5xl mx-auto">
           <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4">{t.compatible.tag}</p>
           <p className="text-[var(--text-secondary)] mb-5 leading-relaxed">{t.compatible.intro}</p>
-          <p className="text-[var(--text-secondary)] leading-relaxed max-w-2xl">{t.compatible.closing}</p>
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-2xl mb-4">{t.compatible.ciLink}</p>
+          <Link href="/product/ci-compliance-check" className="text-[var(--accent)] font-medium hover:underline">{t.compatible.ciLinkLabel}</Link>
         </div>
       </section>
 
