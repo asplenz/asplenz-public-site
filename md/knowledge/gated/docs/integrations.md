@@ -2,7 +2,7 @@
 
 # Integrations
 
-Knowledge integrates with your AI agents, CI pipelines, and any HTTP client. This page covers the three main integration points: the REST API, the MCP server for AI agents, and the CI Verifier.
+Knowledge integrates with your AI agents, CI pipelines, and any HTTP client. This page covers the three main integration points: the REST API, the MCP server for AI agents, and the CI compliance check.
 
 ---
 
@@ -314,7 +314,7 @@ Knowledge ships with an MCP (Model Context Protocol) server that lets AI agents 
 
 ### Setup
 
-Knowledge provides a hosted MCP server. No installation required.
+No server setup required — connect directly using your API key.
 
 Create `.mcp.json` in your project root:
 
@@ -338,7 +338,7 @@ Launch your agent from the directory containing `.mcp.json`. Claude detects the 
 | Tool | Description | Key Parameters |
 |------|-------------|----------------|
 | `knowledge_query` | Search across decisions, invariants, rules | `query`, `scope`, `entry_type` |
-| `knowledge_record` | Record a decision | `scope`, `decision`, `author` |
+| `knowledge_create_decision` | Record a decision (active or draft) | `scope`, `decision`, `author`, `status` |
 | `knowledge_list_invariants` | List constraints for a scope | `scope` |
 | `knowledge_list_rules` | List directives for a scope | `scope` |
 | `knowledge_resolve` | Full normative state + hash | `scope` |
@@ -363,7 +363,7 @@ Launch your agent from the directory containing `.mcp.json`. Claude detects the 
 **After acting:**
 
 6. `knowledge_record_reference(entry_id, context, status="followed")`
-7. If a significant decision was made → `knowledge_record()`
+7. If a significant decision was made → `knowledge_create_decision()`
 
 ### Example Session
 
@@ -402,7 +402,7 @@ The MCP server resolves names to IDs automatically.
 
 ---
 
-## CI Verifier
+## CI Compliance Check
 
 The Knowledge Verifier runs in your CI pipeline and checks that PRs comply with applicable invariants and rules. It produces a machine-readable verdict and a human-readable compliance report.
 
@@ -646,7 +646,7 @@ Patterns are matched in order — the first match wins. Use `**` as a catch-all.
 
 # Intégrations
 
-Knowledge s'intègre avec vos agents IA, vos pipelines CI, et tout client HTTP. Cette page couvre les trois points d'intégration principaux : l'API REST, le serveur MCP pour les agents IA, et le CI Verifier.
+Knowledge s'intègre avec vos agents IA, vos pipelines CI, et tout client HTTP. Cette page couvre les trois points d'intégration principaux : l'API REST, le serveur MCP pour les agents IA, et la vérification CI.
 
 ---
 
@@ -958,7 +958,7 @@ Knowledge inclut un serveur MCP (Model Context Protocol) qui permet aux agents I
 
 ### Configuration
 
-Knowledge fournit un serveur MCP hébergé. Aucune installation requise.
+Aucune installation requise — connectez-vous directement avec votre clé API.
 
 Créez `.mcp.json` à la racine de votre projet :
 
@@ -982,7 +982,7 @@ Lancez votre agent depuis le répertoire contenant `.mcp.json`. Claude détecte 
 | Outil | Description | Paramètres clés |
 |-------|-------------|-----------------|
 | `knowledge_query` | Rechercher dans decisions, invariants, rules | `query`, `scope`, `entry_type` |
-| `knowledge_record` | Enregistrer une decision | `scope`, `decision`, `author` |
+| `knowledge_create_decision` | Enregistrer une decision (active ou draft) | `scope`, `decision`, `author`, `status` |
 | `knowledge_list_invariants` | Lister les contraintes d'un scope | `scope` |
 | `knowledge_list_rules` | Lister les directives d'un scope | `scope` |
 | `knowledge_resolve` | État normatif complet + hash | `scope` |
@@ -1007,7 +1007,7 @@ Lancez votre agent depuis le répertoire contenant `.mcp.json`. Claude détecte 
 **Après avoir agi :**
 
 6. `knowledge_record_reference(entry_id, context, status="followed")`
-7. Si une décision significative a été prise → `knowledge_record()`
+7. Si une décision significative a été prise → `knowledge_create_decision()`
 
 ### Exemple de session
 
@@ -1046,7 +1046,7 @@ Le serveur MCP résout les noms en IDs automatiquement.
 
 ---
 
-## CI Verifier
+## CI Compliance Check
 
 Le Knowledge Verifier s'exécute dans votre pipeline CI et vérifie que les PRs respectent les invariants et rules applicables. Il produit un verdict machine-readable et un rapport de conformité human-readable.
 

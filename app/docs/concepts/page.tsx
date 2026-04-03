@@ -41,7 +41,7 @@ const content = {
       enforcementIntro: 'Invariants are checked at three points:',
       enforcement: [
         { label: 'Compliance check', desc: '— an agent or human tests an intended action against the registry. If it conflicts with an invariant, Knowledge returns a blocking result.' },
-        { label: 'CI Verifier', desc: '— checks PRs against active invariants. If an applicable invariant is not addressed in the PR\'s Implementation Report, the pipeline fails. For example, a PR that adds an API endpoint without mentioning the "All endpoints require authentication" invariant would be blocked.' },
+        { label: 'CI Compliance Check', desc: '— the AI agent reads the PR diff and checks it against active invariants. If the diff conflicts with an applicable invariant, the agent reports a violation and the pipeline fails.' },
         { label: 'MCP Agent', desc: '— the agent queries invariants before acting. If a conflict is detected, it stops and reports, or requests approval.' },
       ],
       approvalTitle: 'Approval-gated invariants',
@@ -98,7 +98,7 @@ const content = {
       },
       tempPermNote: 'Prefer temporary overrides. Permanent overrides should be rare and well-justified.',
       complianceTitle: 'How overrides affect compliance',
-      compliance: 'When an override is active, the compliance check moves the target entry from "conflicts" to "overridden." The action is allowed, but the override is visible — it\'s not silent. The CI Verifier also recognizes overrides.',
+      compliance: 'When an override is active, the compliance check moves the target entry from "conflicts" to "overridden." The action is allowed, but the override is visible — it\'s not silent. The CI compliance check also recognizes overrides.',
       approvalNote: 'When an invariant has `requires_approval` enabled, overrides are created automatically after a human approves the exception through the approval workflow.',
       bestPracticesTitle: 'Best practices',
       bestPractices: [
@@ -156,7 +156,7 @@ const content = {
       enforcementIntro: 'Les invariants sont vérifiés à trois niveaux :',
       enforcement: [
         { label: 'Compliance check', desc: "— un agent ou un humain teste une action envisagée contre le registre. Si elle entre en conflit avec un invariant, Knowledge retourne un résultat bloquant." },
-        { label: 'CI Verifier', desc: "— vérifie les PRs contre les invariants actifs. Si un invariant applicable n'est pas adressé dans l'Implementation Report de la PR, le pipeline échoue. Par exemple, une PR qui ajoute un endpoint API sans mentionner l'invariant \"All endpoints require authentication\" serait bloquée." },
+        { label: 'CI Compliance Check', desc: "— l'agent IA lit le diff de la PR et le vérifie contre les invariants actifs. Si le diff entre en conflit avec un invariant applicable, l'agent signale une violation et le pipeline échoue." },
         { label: 'Agent MCP', desc: "— l'agent interroge les invariants avant d'agir. Si un conflit est détecté, il s'arrête et signale, ou demande une approbation." },
       ],
       approvalTitle: 'Invariants à approbation requise',
@@ -213,7 +213,7 @@ const content = {
       },
       tempPermNote: 'Préférez les overrides temporaires. Les permanents doivent être rares et bien justifiés.',
       complianceTitle: 'Comment les overrides affectent la conformité',
-      compliance: 'Quand un override est actif, le compliance check déplace l\'entrée cible de "conflicts" vers "overridden." L\'action est autorisée, mais l\'override est visible — ce n\'est pas silencieux. Le CI Verifier reconnaît aussi les overrides.',
+      compliance: 'Quand un override est actif, le compliance check déplace l\'entrée cible de "conflicts" vers "overridden." L\'action est autorisée, mais l\'override est visible — ce n\'est pas silencieux. La vérification CI reconnaît aussi les overrides.',
       approvalNote: "Quand un invariant a `requires_approval` activé, les overrides sont créés automatiquement après qu'un humain approuve l'exception via le workflow d'approbation.",
       bestPracticesTitle: 'Bonnes pratiques',
       bestPractices: [

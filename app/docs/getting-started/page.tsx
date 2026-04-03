@@ -14,12 +14,12 @@ const content = {
     ],
     account: {
       tag: '1. Create Your Account',
-      body: 'Sign up at asplenz.com/signup. Once your workspace is ready, you\'ll receive:',
+      body: 'Sign up at asplenz.com/signup. Once your workspace is ready, you\'ll receive your admin API key. Save it — it is shown only once.',
       items: [
         { label: 'API base URL', value: 'https://api.asplenz.com/knowledge' },
         { label: 'Admin API key', value: '<api_key>' },
       ],
-      note: 'Save the API key — it is shown only once. You can generate additional keys from the dashboard.',
+      note: 'You can generate additional keys from the dashboard.',
     },
     dashboard: {
       tag: '2. Explore the Dashboard',
@@ -66,7 +66,7 @@ const content = {
     },
     mcp: {
       tag: '4. Connect an AI Agent (MCP)',
-      body: 'Knowledge exposes a hosted MCP server. Any MCP-compatible agent — Claude.ai, Claude Code, or any other client — can connect to it using your API key.',
+      body: 'Knowledge exposes an MCP server. Any MCP-compatible agent — Claude.ai, Claude Code, or any other client — can connect using your API key. No server setup required.',
       server: { label: 'MCP server URL', value: 'https://mcp.asplenz.com/knowledge' },
       note: 'Refer to your agent\'s documentation to add an MCP server. Use the URL above and set the Authorization header to Bearer <api_key>.',
       tryIt: {
@@ -75,7 +75,7 @@ const content = {
         examples: [
           `> "What invariants does Engineering have?"\n  → The agent calls the knowledge_list_invariants tool to list invariants in the "Engineering" scope`,
           `> "Can I push directly to main without a PR review?"\n  → The agent calls the knowledge_check tool to check compliance for the intended action`,
-          `> "Record a decision: we chose Playwright for E2E testing"\n  → The agent calls the knowledge_record tool to save the decision to the registry`,
+          `> "Record a decision: we chose Playwright for E2E testing"\n  → The agent calls the knowledge_create_decision tool to save the decision to the registry`,
         ],
       },
     },
@@ -104,7 +104,9 @@ const content = {
     },
     engineering: {
       tag: 'For Engineering Teams',
-      body: 'The following steps are specific to engineering teams: extracting rules from source code and checking PR compliance in CI.',
+      body: 'Asplenz provides the prompts required to use Knowledge with your AI agent — for extraction, CI checks, and daily development. The following sections assume the Asplenz prompts are in place.',
+      promptsNote: 'Get the Asplenz prompts →',
+      promptsHref: '/docs/prompts',
       mcpExample: {
         title: 'Example: configuring MCP with Claude Code',
         body: 'If you use Claude Code, create or update .mcp.json in your project root and launch Claude from that directory:',
@@ -121,19 +123,12 @@ const content = {
       },
       extractCode: {
         title: '6. Extract Rules from Your Codebase',
-        body: 'Your AI agent reads and analyzes your source files locally, then creates typed drafts directly in Knowledge via MCP. Nothing leaves your machine.',
-        withLocal: {
-          title: 'With your local AI agent',
-          code: `> "Extract rules from ./docs, ./CLAUDE.md and ./src for the Engineering scope"\n  → The agent reads and analyzes the files locally, then creates typed drafts in Knowledge via MCP`,
-          output: `Scanning 23 files...
+        body: 'Your agent reads and analyzes your source files locally and creates typed drafts in Knowledge for your review. Nothing leaves your machine.',
+        code: `> "Extract rules from ./docs, ./CLAUDE.md and ./src for the Engineering scope"\n  → The agent reads and analyzes the files locally, then creates typed drafts in Knowledge via MCP`,
+        output: `Scanning 23 files...
   47 chunks analyzed
   12 drafts generated (4 invariants, 5 rules, 3 decisions)
   2 duplicates skipped`,
-        },
-        withAsplenz: {
-          title: 'With Asplenz remote agent',
-          body: 'You can also send your source files to the ingestion API and let the Asplenz agent analyze them server-side.',
-        },
       },
       ci: {
         title: '7. Add Compliance Checks to CI (Optional)',
@@ -161,7 +156,7 @@ const content = {
     KNOWLEDGE_API_KEY: \${{ secrets.KNOWLEDGE_API_KEY }}`,
         },
         note: "The response includes any conflicting invariants or rules, their severity, and whether an approval can unblock the action.",
-        link: { label: 'CI integration →', href: '/product/ci-verifier' },
+        link: { label: 'CI Compliance Check →', href: '/product/ci-compliance-check' },
         linkNote: 'for details on gating modes and implementation reports.',
       },
     },
@@ -177,12 +172,12 @@ const content = {
     ],
     account: {
       tag: '1. Créez votre compte',
-      body: 'Inscrivez-vous sur asplenz.com/signup. Une fois votre workspace prêt, vous recevrez :',
+      body: 'Inscrivez-vous sur asplenz.com/signup. Une fois votre workspace prêt, vous recevrez votre clé API admin. Conservez-la — elle n\'est affichée qu\'une seule fois.',
       items: [
         { label: 'URL de base API', value: 'https://api.asplenz.com/knowledge' },
         { label: 'Clé API admin', value: '<api_key>' },
       ],
-      note: 'Conservez la clé API — elle n\'est affichée qu\'une seule fois. Vous pouvez générer des clés supplémentaires depuis le dashboard.',
+      note: 'Vous pouvez générer des clés supplémentaires depuis le dashboard.',
     },
     dashboard: {
       tag: '2. Explorez le dashboard',
@@ -229,7 +224,7 @@ const content = {
     },
     mcp: {
       tag: '4. Connecter un agent IA (MCP)',
-      body: 'Knowledge expose un serveur MCP hébergé. Tout agent compatible MCP — Claude.ai, Claude Code ou tout autre client — peut s\'y connecter avec votre clé API.',
+      body: 'Knowledge expose un serveur MCP. Tout agent compatible MCP — Claude.ai, Claude Code ou tout autre client — peut s\'y connecter avec votre clé API. Aucune installation requise.',
       server: { label: 'URL du serveur MCP', value: 'https://mcp.asplenz.com/knowledge' },
       note: 'Référez-vous à la documentation de votre agent pour ajouter un serveur MCP. Utilisez l\'URL ci-dessus et définissez le header Authorization à Bearer <api_key>.',
       tryIt: {
@@ -238,7 +233,7 @@ const content = {
         examples: [
           `> "Quels invariants a le scope Engineering ?"\n  → L'agent appelle l'outil knowledge_list_invariants pour lister les invariants du scope "Engineering"`,
           `> "Puis-je pusher directement sur main sans code review ?"\n  → L'agent appelle l'outil knowledge_check pour vérifier la conformité de l'action`,
-          `> "Enregistre une décision : on a choisi Playwright pour les tests E2E"\n  → L'agent appelle l'outil knowledge_record pour sauvegarder la décision dans le registre`,
+          `> "Enregistre une décision : on a choisi Playwright pour les tests E2E"\n  → L'agent appelle l'outil knowledge_create_decision pour sauvegarder la décision dans le registre`,
         ],
       },
     },
@@ -267,7 +262,9 @@ const content = {
     },
     engineering: {
       tag: 'Pour les équipes engineering',
-      body: 'Les étapes suivantes sont spécifiques aux équipes engineering : extraction de règles depuis le code source et vérification de conformité des PRs en CI.',
+      body: 'Asplenz fournit les prompts nécessaires à l\'utilisation de Knowledge avec votre agent IA — pour l\'extraction, les checks CI, et le développement quotidien. Les sections suivantes supposent que les prompts Asplenz sont en place.',
+      promptsNote: 'Obtenir les prompts Asplenz →',
+      promptsHref: '/docs/prompts',
       mcpExample: {
         title: 'Exemple : configurer MCP avec Claude Code',
         body: 'Si vous utilisez Claude Code, créez ou mettez à jour .mcp.json à la racine de votre projet et lancez Claude depuis ce répertoire :',
@@ -284,19 +281,12 @@ const content = {
       },
       extractCode: {
         title: '6. Extraire les règles depuis votre codebase',
-        body: 'Votre agent IA lit et analyse vos fichiers source localement, puis crée des drafts typés directement dans Knowledge via MCP. Rien ne quitte votre machine.',
-        withLocal: {
-          title: 'Avec votre agent IA local',
-          code: `> "Extrais les règles depuis ./docs, ./CLAUDE.md et ./src pour le scope Engineering"\n  → L'agent lit et analyse les fichiers localement, puis crée des drafts typés dans Knowledge via MCP`,
-          output: `Scanning 23 files...
+        body: 'Votre agent lit et analyse vos fichiers source localement et crée des drafts typés dans Knowledge pour votre revue. Rien ne quitte votre machine.',
+        code: `> "Extrais les règles depuis ./docs, ./CLAUDE.md et ./src pour le scope Engineering"\n  → L'agent lit et analyse les fichiers localement, puis crée des drafts typés dans Knowledge via MCP`,
+        output: `Scanning 23 files...
   47 chunks analyzed
   12 drafts generated (4 invariants, 5 rules, 3 decisions)
   2 duplicates skipped`,
-        },
-        withAsplenz: {
-          title: 'Avec l\'agent Asplenz',
-          body: 'Vous pouvez aussi envoyer vos fichiers source à l\'API d\'ingestion et laisser l\'agent Asplenz les analyser côté serveur.',
-        },
       },
       ci: {
         title: '7. Ajouter des checks de conformité en CI (Optionnel)',
@@ -324,7 +314,7 @@ const content = {
     KNOWLEDGE_API_KEY: \${{ secrets.KNOWLEDGE_API_KEY }}`,
         },
         note: 'La réponse indique les invariants ou rules en conflit, leur sévérité, et si une approbation peut débloquer l\'action.',
-        link: { label: 'Intégration CI →', href: '/product/ci-verifier' },
+        link: { label: 'Vérification CI →', href: '/product/ci-compliance-check' },
         linkNote: 'pour les détails sur les modes de gating et les implementation reports.',
       },
     },
@@ -442,7 +432,10 @@ export default function Page() {
 
       {/* Engineering section */}
       <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 mt-10">{t.engineering.tag}</h2>
-      <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">{t.engineering.body}</p>
+      <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.engineering.body}</p>
+      <p className="mb-6">
+        <Link href={t.engineering.promptsHref} className="text-[var(--accent)] hover:underline font-medium text-sm">{t.engineering.promptsNote}</Link>
+      </p>
 
       <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.engineering.mcpExample.title}</h3>
       <p className="text-[var(--text-secondary)] mb-3 leading-relaxed">{t.engineering.mcpExample.body}</p>
@@ -450,13 +443,8 @@ export default function Page() {
 
       <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-4 mt-10">{t.engineering.extractCode.title}</h2>
       <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">{t.engineering.extractCode.body}</p>
-
-      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.engineering.extractCode.withLocal.title}</h3>
-      <CodeBlock code={t.engineering.extractCode.withLocal.code} />
-      <CodeBlock code={t.engineering.extractCode.withLocal.output} />
-
-      <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3 mt-6">{t.engineering.extractCode.withAsplenz.title}</h3>
-      <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">{t.engineering.extractCode.withAsplenz.body}</p>
+      <CodeBlock code={t.engineering.extractCode.code} />
+      <CodeBlock code={t.engineering.extractCode.output} />
 
       <hr className="border-[var(--border)] my-8" />
 

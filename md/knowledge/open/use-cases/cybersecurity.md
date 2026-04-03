@@ -61,7 +61,7 @@ Rule: "npm dependencies must be audited before merge" (MANDATORY)
 Rule: "SQL queries must use parameterized statements" (MANDATORY)
 ```
 
-Agents query Knowledge before writing code. The CI Verifier flags violations if generated code conflicts with a declared constraint.
+Agents query Knowledge before writing code. The CI Compliance Check flags violations if generated code conflicts with a declared constraint.
 
 ### Give AI Agents Your Security Context
 
@@ -154,7 +154,7 @@ Knowledge maps directly to the traceability requirements of NIS2 and ISO 27001:
 |------------|-------------------|
 | Risk management measures (NIS2 Art. 21) | Invariants codify security controls, rules enforce operational measures |
 | Incident handling (NIS2 Art. 21.2b) | Decisions trace every action during incidents, approval workflows gate critical actions |
-| Supply chain security (NIS2 Art. 21.2d) | Rules enforce dependency auditing, CI Verifier flags non-compliant code |
+| Supply chain security (NIS2 Art. 21.2d) | Rules enforce dependency auditing, CI Compliance Check flags non-compliant code |
 | Policies on cryptography (NIS2 Art. 21.2h) | Invariants enforce encryption standards, overrides trace exceptions |
 | Access control (ISO 27001 A.9) | Role-based access, approval workflows, override governance |
 | Operations security (ISO 27001 A.12) | Rules version operational procedures, event timeline traces changes |
@@ -280,7 +280,7 @@ Rule: "Les dependances npm doivent etre auditees avant merge" (MANDATORY)
 Rule: "Les requetes SQL doivent utiliser des statements parametres" (MANDATORY)
 ```
 
-Les agents interrogent Knowledge avant d'ecrire du code. Le CI Verifier signale les violations si le code genere entre en conflit avec une contrainte declaree.
+Les agents interrogent Knowledge avant d'ecrire du code. Le CI Compliance Check signale les violations si le code genere entre en conflit avec une contrainte declaree.
 
 ### Donner le contexte securite aux agents IA
 
@@ -373,7 +373,7 @@ Knowledge se mappe directement aux exigences de tracabilite de NIS2 et ISO 27001
 |----------|--------------------------|
 | Mesures de gestion des risques (NIS2 Art. 21) | Les invariants codifient les controles de securite, les rules appliquent les mesures operationnelles |
 | Gestion des incidents (NIS2 Art. 21.2b) | Les decisions tracent chaque action pendant les incidents, les workflows d'approbation gatent les actions critiques |
-| Securite de la chaine d'approvisionnement (NIS2 Art. 21.2d) | Les rules imposent l'audit des dependances, le CI Verifier signale le code non conforme |
+| Securite de la chaine d'approvisionnement (NIS2 Art. 21.2d) | Les rules imposent l'audit des dependances, le CI Compliance Check signale le code non conforme |
 | Politiques de cryptographie (NIS2 Art. 21.2h) | Les invariants imposent les standards de chiffrement, les overrides tracent les exceptions |
 | Controle d'acces (ISO 27001 A.9) | Acces base sur les roles, workflows d'approbation, gouvernance des overrides |
 | Securite des operations (ISO 27001 A.12) | Les rules versionnent les procedures operationnelles, la timeline d'evenements trace les changements |

@@ -53,7 +53,7 @@ const content = {
           label: 'Après avoir agi',
           items: [
             ['knowledge_record_reference', 'Enregistrer qu\'une contrainte a été suivie ou divergée'],
-            ['knowledge_record', 'Capturer une nouvelle décision avec contexte et raisonnement'],
+            ['knowledge_create_decision', 'Capturer une nouvelle décision avec contexte et raisonnement'],
           ],
         },
         {
@@ -102,7 +102,7 @@ const content = {
      compliance="followed"
    )
 
-5. knowledge_record(
+5. knowledge_create_decision(
      scope="Engineering",
      decision="Ajout de l'endpoint /api/payments en REST avec bearer auth",
      context="L'équipe paiement a demandé une API d'initiation de paiement",
@@ -190,7 +190,7 @@ const content = {
           label: 'After acting',
           items: [
             ['knowledge_record_reference', 'Record that a constraint was followed or diverged from'],
-            ['knowledge_record', 'Capture a new decision with context and reasoning'],
+            ['knowledge_create_decision', 'Capture a new decision with context and reasoning'],
           ],
         },
         {
@@ -239,7 +239,7 @@ const content = {
      compliance="followed"
    )
 
-5. knowledge_record(
+5. knowledge_create_decision(
      scope="Engineering",
      decision="Added /api/payments endpoint using REST with bearer auth",
      context="Payment team requested payment initiation API",

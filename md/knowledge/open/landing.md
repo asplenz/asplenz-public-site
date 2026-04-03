@@ -55,7 +55,7 @@ Every agent query, every approval, every CI check generates a structured trace. 
 | **Web Dashboard** | Engineers, managers, compliance | Browse decisions, review drafts, search, check compliance |
 | **MCP Server** | AI agents (any MCP-compatible) | Extract rules, query constraints, record decisions, request approvals |
 | **REST API** | Scripts, custom integrations | Programmatic access to the full registry |
-| **CI Verifier** | GitHub Actions, GitLab CI | Check PRs against applicable rules, produce compliance reports |
+| **CI Compliance Check** | GitHub Actions, GitLab CI | Check PRs against applicable rules, produce compliance reports |
 
 All interfaces read from and write to the same registry. What an agent extracts, a human reviews. What an agent respects, a manager can audit.
 

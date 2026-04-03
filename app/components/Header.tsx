@@ -146,7 +146,7 @@ export default function Header() {
       children: [
         { label: t.nav.howItWorks, href: '/product/how-it-works' },
         { label: t.nav.aiAgents, href: '/product/ai-agents' },
-        { label: t.nav.ciVerifier, href: '/product/ci-verifier' },
+        { label: t.nav.ciVerifier, href: '/product/ci-compliance-check' },
       ],
     },
     {

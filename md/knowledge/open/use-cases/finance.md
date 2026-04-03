@@ -180,7 +180,7 @@ The coding agent generates an Implementation Report as `.knowledge/report.md`, c
 - Map AI systems to scopes (one scope per high-risk system)
 - Codify Article 14 human oversight requirements as approval-gated invariants
 - Export event logs and reference traces for Article 12 compliance
-- Generate compliance reports per deployment via the CI Verifier
+- Generate compliance reports per deployment via the CI Compliance Check
 
 ---
 
@@ -393,7 +393,7 @@ L'agent de coding genere un Implementation Report sous forme de `.knowledge/repo
 - Mapper les systemes IA aux scopes (un scope par systeme a haut risque)
 - Codifier les exigences de supervision humaine de l'Article 14 comme invariants avec approbation
 - Exporter les logs d'evenements et traces de references pour la conformite Article 12
-- Generer des rapports de conformite par deploiement via le CI Verifier
+- Generer des rapports de conformite par deploiement via le CI Compliance Check
 
 ---
 

@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="8" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6366f1"/>
+    </marker>
+    <marker id="arr-ret" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="8" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    </marker>
+    <filter id="sh" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.07"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="340" fill="#fafafa"/>
+
+  <!-- ===== ARROWS (drawn first) ===== -->
+
+  <!-- 1. CI → Agent IA -->
+  <line x1="190" y1="95" x2="334" y2="95" stroke="#6366f1" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- 2. Agent IA → Knowledge -->
+  <line x1="494" y1="95" x2="638" y2="95" stroke="#6366f1" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- 3. Agent IA ↓ → Vérification PR -->
+  <line x1="413" y1="130" x2="413" y2="224" stroke="#6366f1" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- 4. Vérification → CI (verdict, dashed) -->
+  <line x1="334" y1="254" x2="190" y2="254" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr-ret)"/>
+
+  <!-- 5. CI ↓ → Merge ou Bloquer -->
+  <line x1="109" y1="130" x2="109" y2="224" stroke="#6366f1" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ===== BOXES ===== -->
+
+  <!-- Pipeline CI -->
+  <rect x="30" y="62" width="160" height="66" rx="10" fill="white" filter="url(#sh)" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="30" y="62" width="5" height="66" rx="2.5" fill="#6366f1"/>
+
+  <!-- Agent IA -->
+  <rect x="334" y="62" width="160" height="66" rx="10" fill="white" filter="url(#sh)" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="334" y="62" width="5" height="66" rx="2.5" fill="#6366f1"/>
+
+  <!-- Knowledge -->
+  <rect x="638" y="52" width="224" height="86" rx="10" fill="white" filter="url(#sh)" stroke="#c7d2fe" stroke-width="1.5"/>
+  <rect x="638" y="52" width="5" height="86" rx="2.5" fill="#6366f1"/>
+
+  <!-- Vérification PR -->
+  <rect x="334" y="224" width="160" height="58" rx="10" fill="white" filter="url(#sh)" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="334" y="224" width="5" height="58" rx="2.5" fill="#6366f1"/>
+
+  <!-- Merge ou Bloquer -->
+  <rect x="30" y="224" width="160" height="58" rx="10" fill="white" filter="url(#sh)" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="30" y="224" width="5" height="58" rx="2.5" fill="#6366f1"/>
+
+  <!-- ===== BOX TEXT ===== -->
+
+  <text x="110" y="91" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Pipeline CI</text>
+  <text x="110" y="109" text-anchor="middle" font-size="11" fill="#6b7280">GitHub Actions / GitLab</text>
+
+  <text x="414" y="91" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Agent IA</text>
+  <text x="414" y="109" text-anchor="middle" font-size="11" fill="#6b7280">ex. Claude Code</text>
+
+  <text x="750" y="78" text-anchor="middle" font-size="14" font-weight="700" fill="#6366f1">Knowledge</text>
+  <rect x="654" y="88" width="72" height="22" rx="11" fill="#fef2f2" stroke="#ef4444" stroke-width="1"/>
+  <text x="690" y="103" text-anchor="middle" font-size="11" font-weight="600" fill="#ef4444">Invariants</text>
+  <rect x="734" y="88" width="50" height="22" rx="11" fill="#f0fdf4" stroke="#22c55e" stroke-width="1"/>
+  <text x="759" y="103" text-anchor="middle" font-size="11" font-weight="600" fill="#22c55e">Rules</text>
+  <rect x="792" y="88" width="62" height="22" rx="11" fill="#fffbeb" stroke="#f59e0b" stroke-width="1"/>
+  <text x="823" y="103" text-anchor="middle" font-size="11" font-weight="600" fill="#f59e0b">Overrides</text>
+  <text x="750" y="130" text-anchor="middle" font-size="10" fill="#9ca3af">registre de décisions de l'équipe</text>
+
+  <text x="414" y="249" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Vérification PR</text>
+  <text x="414" y="267" text-anchor="middle" font-size="11" fill="#6b7280">contre les contraintes</text>
+
+  <text x="110" y="249" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Merge ou Bloquer</text>
+  <text x="110" y="267" text-anchor="middle" font-size="11" fill="#6b7280">selon le verdict</text>
+
+  <!-- ===== STEP LABELS (drawn last) ===== -->
+
+  <!-- Step 1 -->
+  <circle cx="262" cy="95" r="11" fill="#6366f1"/>
+  <text x="262" y="99" text-anchor="middle" font-size="11" font-weight="700" fill="white">1</text>
+  <text x="262" y="82" text-anchor="middle" font-size="11" fill="#374151">Appel agent IA</text>
+
+  <!-- Step 2 -->
+  <circle cx="566" cy="95" r="11" fill="#6366f1"/>
+  <text x="566" y="99" text-anchor="middle" font-size="11" font-weight="700" fill="white">2</text>
+  <text x="566" y="82" text-anchor="middle" font-size="11" fill="#374151">Interroge le registre</text>
+
+  <!-- Step 3 -->
+  <circle cx="429" cy="178" r="11" fill="#6366f1"/>
+  <text x="429" y="182" text-anchor="middle" font-size="11" font-weight="700" fill="white">3</text>
+  <text x="476" y="182" text-anchor="start" font-size="11" fill="#374151">Vérifie la conformité</text>
+
+  <!-- Step 4 -->
+  <circle cx="262" cy="254" r="11" fill="#6b7280"/>
+  <text x="262" y="258" text-anchor="middle" font-size="11" font-weight="700" fill="white">4</text>
+  <text x="262" y="241" text-anchor="middle" font-size="11" fill="#374151">verdict (pass / fail)</text>
+
+  <!-- Step 5 -->
+  <circle cx="93" cy="178" r="11" fill="#6366f1"/>
+  <text x="93" y="182" text-anchor="middle" font-size="11" font-weight="700" fill="white">5</text>
+
+  <!-- ===== LEGEND ===== -->
+  <text x="450" y="308" text-anchor="middle" font-size="12" fill="#111827" font-style="italic">Agent IA : votre agent local (ex. Claude Code) ou l'agent hébergé Asplenz</text>
+  <text x="450" y="326" text-anchor="middle" font-size="12" fill="#111827" font-style="italic">pass / fail est une recommandation. Le mode de gating détermine l'enforcement.</text>
+</svg>

@@ -21,7 +21,7 @@
 2. 📐 `knowledge_list_rules` · scope: "finance" / ns: "pricing" · **Benchmark EUR mid-swap - OBLIGATOIRE**
 3. 🔍 Vérification exposition · Actuelle : 4,2% + demandé +2% | Résultante : 6,2% > limite 5%
 4. ⛔ Décision agent · Achat bloqué · **Invariant finance/risk imposé**
-5. ✓ `knowledge_record` · Choix documenté · **dec-d2c9e8e8fa1b**
+5. ✓ `knowledge_create_decision` · Choix documenté · **dec-d2c9e8e8fa1b**
 
 ---
 
@@ -408,7 +408,7 @@ Tout le plan Knowledge, plus :
 2. 📐 `knowledge_list_rules` · scope: "finance" / ns: "pricing" · **EUR mid-swap benchmark - MANDATORY**
 3. 🔍 Exposure check · Current: 4.2% + requested +2% | Result: 6.2% > limit 5%
 4. ⛔ Agent decision · Purchase blocked · **finance/risk invariant enforced**
-5. ✓ `knowledge_record` · Choice documented · **dec-d2c9e8e8fa1b**
+5. ✓ `knowledge_create_decision` · Choice documented · **dec-d2c9e8e8fa1b**
 
 ---
 

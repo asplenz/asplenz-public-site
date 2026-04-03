@@ -53,7 +53,7 @@ Chaque requête, vérification, approbation et référence apparaît dans la tim
 | Outil | Usage |
 |-------|-------|
 | `knowledge_record_reference` | Enregistrer qu'une contrainte a été suivie ou divergée |
-| `knowledge_record` | Capturer une nouvelle décision avec contexte et raisonnement |
+| `knowledge_create_decision` | Capturer une nouvelle décision avec contexte et raisonnement |
 
 ### À tout moment
 
@@ -99,7 +99,7 @@ Agent : Je dois ajouter un nouvel endpoint API pour le traitement des paiements.
      compliance="followed"
    )
 
-5. knowledge_record(
+5. knowledge_create_decision(
      scope="Engineering",
      decision="Ajout de l'endpoint /api/payments en REST avec bearer auth",
      context="L'équipe paiement a demandé une API d'initiation de paiement",
@@ -196,7 +196,7 @@ Every query, check, approval, and reference appears in the event timeline. Revie
 | Tool | Purpose |
 |------|---------|
 | `knowledge_record_reference` | Record that a constraint was followed or diverged from |
-| `knowledge_record` | Capture a new decision with context and reasoning |
+| `knowledge_create_decision` | Capture a new decision with context and reasoning |
 
 ### Anytime
 
@@ -242,7 +242,7 @@ Agent: I need to add a new API endpoint for payment processing.
      compliance="followed"
    )
 
-5. knowledge_record(
+5. knowledge_create_decision(
      scope="Engineering",
      decision="Added /api/payments endpoint using REST with bearer auth",
      context="Payment team requested payment initiation API",

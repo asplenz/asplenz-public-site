@@ -141,7 +141,7 @@ L'agent sait maintenant : PostgreSQL obligatoire, pas de dépendances AGPL, gRPC
             {
               label: 'Enregistrer une décision après l\'avoir prise',
               code: `Utilisateur : "On prend Redis pour le cache de sessions plutôt que Memcached"
-Agent → knowledge_record(scope="Engineering", type="decision",
+Agent → knowledge_create_decision(scope="Engineering",
         decision="Redis pour le cache de sessions",
         reasoning="Pub/sub natif, meilleures options de persistance")
 Knowledge → Créé dec-4f2a, lié à la rule existante rul-7b1c (stratégie de cache)`,
@@ -336,7 +336,7 @@ Agent now knows: PostgreSQL required, no AGPL deps, gRPC for new services,
             {
               label: 'Record a decision after making one',
               code: `User: "Let's use Redis for session caching instead of Memcached"
-Agent → knowledge_record(scope="Engineering", type="decision",
+Agent → knowledge_create_decision(scope="Engineering",
         decision="Redis for session caching",
         reasoning="Native pub/sub, better persistence options")
 Knowledge → Created dec-4f2a, linked to existing rule rul-7b1c (caching strategy)`,

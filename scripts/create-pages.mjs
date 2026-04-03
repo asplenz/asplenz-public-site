@@ -12,7 +12,7 @@ const pages = [
   ['app/product/how-it-works/page.tsx',               'product/how-it-works',           'page'],
   ['app/product/extraction/page.tsx',                 'product/extraction',             'page'],
   ['app/product/ai-agents/page.tsx',                  'product/ai-agents',              'page'],
-  ['app/product/ci-verifier/page.tsx',                'product/ci-verifier',            'page'],
+  ['app/product/ci-compliance-check/page.tsx',         'product/ci-compliance-check',    'page'],
   // Docs (uses docs layout)
   ['app/docs/getting-started/page.tsx',               'docs/getting-started',           'docs'],
   ['app/docs/extraction/page.tsx',                    'docs/extraction',                'docs'],

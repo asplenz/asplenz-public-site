@@ -58,7 +58,7 @@ Every agent query, every approval, every CI check generates a structured trace. 
 | **CLI** | Engineers, DevOps | Extract rules from existing sources, manage the registry |
 | **Web Dashboard** | Engineers, managers, compliance | Browse decisions, review drafts, search, check compliance |
 | **MCP Server** | Claude, Cursor, AI agents | Query constraints, record decisions, request approvals |
-| **CI Verifier** | GitHub Actions, GitLab CI | Check PRs against applicable rules, produce compliance reports |
+| **CI Compliance Check** | GitHub Actions, GitLab CI | Check PRs against applicable rules, produce compliance reports |
 
 All four interfaces read from and write to the same registry. What the CLI extracts, a human reviews. What an agent respects, a manager can audit.
 
@@ -624,11 +624,9 @@ Create or update \`.mcp.json\` in your project root:
 {
   "mcpServers": {
     "knowledge": {
-      "command": "python",
-      "args": ["src/knowledge-mcp/server.py"],
-      "env": {
-        "KNOWLEDGE_API_KEY": "kn_xxxxxxxx",
-        "KNOWLEDGE_API_URL": "http://localhost:8090"
+      "url": "https://mcp.asplenz.com/knowledge",
+      "headers": {
+        "Authorization": "Bearer kn_xxxxxxxx"
       }
     }
   }
@@ -639,7 +637,7 @@ Then launch Claude Code from the same directory: \`claude\`
 
 ---
 
-## 8. Add the CI Verifier (Optional)
+## 8. Add the CI Compliance Check (Optional)
 
 \`\`\`yaml
 # .github/workflows/knowledge.yml
@@ -977,9 +975,9 @@ Response:
 }
 \`\`\`
 
-### CI Verifier
+### CI Compliance Check
 
-The Verifier checks PRs against active invariants. If a mandatory invariant is applicable and not cited in the PR's Implementation Report, the Verifier fails the check.
+The agent reads the PR diff and checks it against active invariants. If the diff conflicts with an applicable invariant, the agent reports a violation and the pipeline fails.
 
 ### MCP Agent
 
@@ -1108,10 +1106,10 @@ curl -X POST http://localhost:8090/api/v1/check \\
   -d '{"scope_id": "scp-XXXX", "intended_action": "Merge a PR without any review"}'
 \`\`\`
 
-### CI Verifier
+### CI Compliance Check
 
-- **Mandatory rules**: uncited = Verifier fails
-- **Advisory rules**: uncited = Verifier warns
+- **Mandatory rules**: conflict detected = check fails
+- **Advisory rules**: conflict detected = check warns
 
 ---
 
@@ -1561,7 +1559,7 @@ The approval workflow ensures no AI output reaches a clinical decision without h
 
 - **Clinical AI Governance**: invariants for patient safety constraints, approval gates for AI models
 - **Drug Development**: decisions documenting trial protocol choices, safety reporting invariants
-- **Health IT Operations**: deployment rules for clinical systems, CI Verifier for code changes
+- **Health IT Operations**: deployment rules for clinical systems, CI Compliance Check for code changes
 - **Interoperability**: decisions for data standard adoption (HL7 FHIR, DICOM), consent-based access invariants
 
 ---
@@ -2287,44 +2285,28 @@ The Verifier looks for an \`## Implementation Report\` section in the PR body:
     gated: true,
     content: `# Integration: Claude MCP
 
-Knowledge ships with an MCP (Model Context Protocol) server that lets AI agents — Claude, Cursor, and any MCP-compatible tool — interact with the decision registry using natural language.
+Knowledge exposes an MCP (Model Context Protocol) server. Any MCP-compatible agent — Claude.ai, Claude Code, or any other client — can connect using your API key. No server setup required.
 
 ---
 
 ## Setup
 
-### Prerequisites
-
-- Knowledge API running (default: port 8090)
-- Database seeded with data
-- Valid API key
-
-### Install MCP Dependencies
-
-\`\`\`bash
-pip install mcp httpx
-\`\`\`
-
-### Configure Claude Code
-
-Create \`.mcp.json\` in your project root:
+Add Knowledge to your agent's MCP configuration:
 
 \`\`\`json
 {
   "mcpServers": {
     "knowledge": {
-      "command": "python",
-      "args": ["path/to/knowledge/src/knowledge-mcp/server.py"],
-      "env": {
-        "KNOWLEDGE_API_KEY": "kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-        "KNOWLEDGE_API_URL": "http://localhost:8090"
+      "url": "https://mcp.asplenz.com/knowledge",
+      "headers": {
+        "Authorization": "Bearer <api_key>"
       }
     }
   }
 }
 \`\`\`
 
-Then: \`claude\` from the directory containing \`.mcp.json\`.
+Launch your agent from the directory containing \`.mcp.json\`. The Knowledge tools load automatically.
 
 ---
 
@@ -2337,10 +2319,23 @@ Then: \`claude\` from the directory containing \`.mcp.json\`.
 "Find rules related to deployment"
 \`\`\`
 
-### \`knowledge_record\` — Record a Decision
+### \`knowledge_create_decision\` — Create a Decision
 
 \`\`\`
 "Record a decision in Engineering: we chose Playwright for E2E testing"
+"Create a draft decision: we are evaluating moving to a monorepo"
+\`\`\`
+
+### \`knowledge_create_invariant\` — Create an Invariant
+
+\`\`\`
+"Create an invariant draft in Engineering: all endpoints must require authentication"
+\`\`\`
+
+### \`knowledge_create_rule\` — Create a Rule
+
+\`\`\`
+"Create a rule draft in Engineering: use conventional commits"
 \`\`\`
 
 ### \`knowledge_list_invariants\` — List Constraints
@@ -2412,7 +2407,7 @@ Returns all invariants, rules, and overrides, plus a normative hash.
 
 \`\`\`
 6. knowledge_record_reference(entry_id, context, status="followed")
-7. If a significant decision was made → knowledge_record()
+7. If a significant decision was made → knowledge_create_decision()
 \`\`\`
 
 ### Example Session
@@ -2442,9 +2437,8 @@ Claude → [writes code]
 | Issue | Fix |
 |-------|-----|
 | Tools not showing in Claude | Launch Claude from the directory with \`.mcp.json\` |
-| "Scope not found" | Check spelling, or seed the database |
-| "Invalid or expired API key" | Update \`KNOWLEDGE_API_KEY\` in \`.mcp.json\` |
-| Connection refused | Start the API: \`uvicorn src.main:app --port 8090\` |
+| "Scope not found" | Check spelling |
+| "Invalid or expired API key" | Update \`Authorization\` header in \`.mcp.json\` |
 
 ---
 
@@ -2533,7 +2527,7 @@ All notable changes to Knowledge are documented here.
 
 ## v0.6.0 — December 2025
 
-### CI Verifier
+### CI Compliance Check
 
 - Three gating modes: \`report-only\`, \`fail-on-blocking\`, \`strict\`
 - Machine-readable JSON output + human-readable Markdown report

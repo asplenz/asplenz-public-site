@@ -6,7 +6,7 @@ import Link from 'next/link'
 const content = {
   en: {
     title: 'Integrations',
-    intro: 'Knowledge integrates with your AI agents, CI pipelines, and any HTTP client. This page covers the three main integration points: the REST API, the MCP server for AI agents, and the CI Verifier.',
+    intro: 'Knowledge integrates with your AI agents, CI pipelines, and any HTTP client. This page covers the three main integration points: the REST API, the MCP server for AI agents, and the CI compliance check.',
     sections: [
       {
         title: 'API Reference',
@@ -19,14 +19,14 @@ const content = {
         tags: ['Python', 'MCP'],
       },
       {
-        title: 'CI Verifier',
+        title: 'CI Compliance Check',
         desc: 'Runs in your CI pipeline and checks PRs against applicable invariants and rules using a 5-axis analysis: conformity, override validity, citation coverage, semantic analysis (optional), and external checkers. Supports GitHub Actions, GitLab CI, three gating modes.',
         tags: ['GitHub Actions', 'GitLab CI', 'YAML'],
       },
     ],
     gate: {
       label: 'Sign in required',
-      body: 'This page is available to registered users. Create a free account to access the full API reference, MCP setup guide, and CI Verifier documentation.',
+      body: 'This page is available to registered users. Create a free account to access the full API reference, MCP setup guide, and CI compliance check documentation.',
       cta: 'Create free account',
       ctaHref: '/contact',
       login: 'Already have an account? Sign in',
@@ -35,7 +35,7 @@ const content = {
   },
   fr: {
     title: 'Intégrations',
-    intro: "Knowledge s'intègre avec vos agents IA, vos pipelines CI, et tout client HTTP. Cette page couvre les trois points d'intégration principaux : l'API REST, le serveur MCP pour les agents IA, et le CI Verifier.",
+    intro: "Knowledge s'intègre avec vos agents IA, vos pipelines CI, et tout client HTTP. Cette page couvre les trois points d'intégration principaux : l'API REST, le serveur MCP pour les agents IA, et la vérification CI.",
     sections: [
       {
         title: 'Référence API',
@@ -48,14 +48,14 @@ const content = {
         tags: ['Python', 'MCP'],
       },
       {
-        title: 'CI Verifier',
+        title: 'CI Compliance Check',
         desc: "S'exécute dans votre pipeline CI et vérifie les PRs contre les invariants et rules applicables via une analyse à 5 axes : conformité, validité des overrides, couverture des citations, analyse sémantique (optionnelle) et external checkers. Supporte GitHub Actions, GitLab CI, trois modes de gating.",
         tags: ['GitHub Actions', 'GitLab CI', 'YAML'],
       },
     ],
     gate: {
       label: 'Connexion requise',
-      body: "Cette page est disponible pour les utilisateurs enregistrés. Créez un compte gratuit pour accéder à la référence API complète, au guide de configuration MCP, et à la documentation du CI Verifier.",
+      body: "Cette page est disponible pour les utilisateurs enregistrés. Créez un compte gratuit pour accéder à la référence API complète, au guide de configuration MCP, et à la documentation de la vérification CI.",
       cta: 'Créer un compte gratuit',
       ctaHref: '/contact',
       login: 'Déjà un compte ? Se connecter',

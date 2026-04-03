@@ -170,7 +170,7 @@ Clinician reviews and approves
             'Deployment rules for clinical systems (change windows, rollback requirements)',
             'Invariants for data integrity (no modification of clinical records by AI)',
             'Rules for system access and authentication standards',
-            'CI Verifier for health IT code changes',
+            'CI Compliance Check for health IT code changes',
           ],
         },
         {
@@ -368,7 +368,7 @@ Le clinicien review et approuve
             'Regles de deploiement pour les systemes cliniques (fenetres de changement, exigences de rollback)',
             'Invariants pour l\'integrite des donnees (pas de modification des dossiers cliniques par l\'IA)',
             'Rules pour les standards d\'acces et d\'authentification des systemes',
-            'CI Verifier pour les changements de code IT sante',
+            'CI Compliance Check pour les changements de code IT sante',
           ],
         },
         {

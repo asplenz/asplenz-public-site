@@ -59,7 +59,7 @@ Invariants are **blocking**: if an action conflicts with an active invariant, Kn
 Invariants are checked at three points:
 
 - **Compliance check** — an agent or human tests an intended action against the registry. If it conflicts with an invariant, Knowledge returns a blocking result.
-- **CI Verifier** — checks PRs against active invariants. If an applicable invariant is not addressed in the PR's Implementation Report, the pipeline fails. For example, a PR that adds an API endpoint without mentioning the *"All endpoints require authentication"* invariant would be blocked.
+- **CI Compliance Check** — the AI agent reads the PR diff and checks it against active invariants. If the diff conflicts with an applicable invariant, the agent reports a violation and the pipeline fails.
 - **MCP Agent** — the agent queries invariants before acting. If a conflict is detected, it stops and reports, or requests approval.
 
 ### Approval-gated invariants
@@ -128,7 +128,7 @@ Prefer temporary overrides. Permanent overrides should be rare and well-justifie
 
 ### How overrides affect compliance
 
-When an override is active, the compliance check moves the target entry from "conflicts" to "overridden." The action is allowed, but the override is visible — it's not silent. The CI Verifier also recognizes overrides.
+When an override is active, the compliance check moves the target entry from "conflicts" to "overridden." The action is allowed, but the override is visible — it's not silent. The CI compliance check also recognizes overrides.
 
 When an invariant has `requires_approval` enabled, overrides are created automatically after a human approves the exception through the approval workflow.
 
@@ -212,7 +212,7 @@ Les invariants sont **bloquants** : si une action entre en conflit avec un invar
 Les invariants sont vérifiés à trois niveaux :
 
 - **Compliance check** — un agent ou un humain teste une action envisagée contre le registre. Si elle entre en conflit avec un invariant, Knowledge retourne un résultat bloquant.
-- **CI Verifier** — vérifie les PRs contre les invariants actifs. Si un invariant applicable n'est pas adressé dans l'Implementation Report de la PR, le pipeline échoue. Par exemple, une PR qui ajoute un endpoint API sans mentionner l'invariant *"All endpoints require authentication"* serait bloquée.
+- **CI Compliance Check** — l'agent IA lit le diff de la PR et le vérifie contre les invariants actifs. Si le diff entre en conflit avec un invariant applicable, l'agent signale une violation et le pipeline échoue.
 - **Agent MCP** — l'agent interroge les invariants avant d'agir. Si un conflit est détecté, il s'arrête et signale, ou demande une approbation.
 
 ### Invariants à approbation requise
@@ -281,7 +281,7 @@ Préférez les overrides temporaires. Les permanents doivent être rares et bien
 
 ### Comment les overrides affectent la conformité
 
-Quand un override est actif, le compliance check déplace l'entrée cible de "conflicts" vers "overridden." L'action est autorisée, mais l'override est visible — ce n'est pas silencieux. Le CI Verifier reconnaît aussi les overrides.
+Quand un override est actif, le compliance check déplace l'entrée cible de "conflicts" vers "overridden." L'action est autorisée, mais l'override est visible — ce n'est pas silencieux. La vérification CI reconnaît aussi les overrides.
 
 Quand un invariant a `requires_approval` activé, les overrides sont créés automatiquement après qu'un humain approuve l'exception via le workflow d'approbation.
 

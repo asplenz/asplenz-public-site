@@ -74,7 +74,7 @@ The response shows any conflicting invariants or rules — with IDs, severity, a
 
 ## 4. Connect an AI Agent (MCP)
 
-Knowledge exposes a hosted MCP server. Any MCP-compatible agent — Claude.ai, Claude Code, or any other client — can connect to it using your API key.
+Knowledge exposes an MCP server. Any MCP-compatible agent — Claude.ai, Claude Code, or any other client — can connect using your API key. No server setup required.
 
 - **MCP server URL**: `https://mcp.asplenz.com/knowledge`
 
@@ -92,7 +92,7 @@ Once connected, your agent has access to Knowledge tools. Ask it:
   → The agent calls the knowledge_check tool to check compliance for the intended action
 
 > "Record a decision: we chose Playwright for E2E testing"
-  → The agent calls the knowledge_record tool to save the decision to the registry
+  → The agent calls the knowledge_create_decision tool to save the decision to the registry
 ```
 
 ---
@@ -126,7 +126,9 @@ Approve to publish to the registry. Reject to discard. Edit before approving if 
 
 ## For Engineering Teams
 
-The following steps are specific to engineering teams: extracting rules from source code and checking PR compliance in CI.
+Asplenz provides the prompts required to use Knowledge with your AI agent — for extraction, CI checks, and daily development. The following sections assume the Asplenz prompts are in place.
+
+[Get the Asplenz prompts →](/docs/prompts)
 
 ### Example: configuring MCP with Claude Code
 
@@ -149,9 +151,7 @@ If you use Claude Code, create or update `.mcp.json` in your project root and la
 
 ## 6. Extract Rules from Your Codebase
 
-Your AI agent reads and analyzes your source files locally, then creates typed drafts directly in Knowledge via MCP. Nothing leaves your machine.
-
-### With your local AI agent
+Your agent reads and analyzes your source files locally and creates typed drafts in Knowledge for your review. Nothing leaves your machine.
 
 ```
 > "Extract rules from ./docs, ./CLAUDE.md and ./src for the Engineering scope"
@@ -164,10 +164,6 @@ Scanning 23 files...
   12 drafts generated (4 invariants, 5 rules, 3 decisions)
   2 duplicates skipped
 ```
-
-### With Asplenz remote agent
-
-You can also send your source files to the ingestion API and let the Asplenz agent analyze them server-side.
 
 ---
 
@@ -207,7 +203,7 @@ Send the PR diff to Knowledge via the API:
 
 The response includes any conflicting invariants or rules, their severity, and whether an approval can unblock the action.
 
-See [CI integration →](/product/ci-verifier) for details on gating modes and implementation reports.
+See [CI Compliance Check →](/product/ci-compliance-check) for details on gating modes.
 
 ---
 ---
@@ -288,7 +284,7 @@ La réponse indique les invariants ou rules en conflit — avec leurs IDs, sév�
 
 ## 4. Connecter un agent IA (MCP)
 
-Knowledge expose un serveur MCP hébergé. Tout agent compatible MCP — Claude.ai, Claude Code ou tout autre client — peut s'y connecter avec votre clé API.
+Knowledge expose un serveur MCP. Tout agent compatible MCP — Claude.ai, Claude Code ou tout autre client — peut s'y connecter avec votre clé API. Aucune installation requise.
 
 - **URL du serveur MCP** : `https://mcp.asplenz.com/knowledge`
 
@@ -306,7 +302,7 @@ Une fois connecté, votre agent a accès aux outils Knowledge. Demandez-lui :
   → L'agent appelle l'outil knowledge_check pour vérifier la conformité de l'action
 
 > "Enregistre une décision : on a choisi Playwright pour les tests E2E"
-  → L'agent appelle l'outil knowledge_record pour sauvegarder la décision dans le registre
+  → L'agent appelle l'outil knowledge_create_decision pour sauvegarder la décision dans le registre
 ```
 
 ---
@@ -340,7 +336,9 @@ Approuvez pour publier dans le registre. Rejetez pour supprimer. Éditez avant d
 
 ## Pour les équipes engineering
 
-Les étapes suivantes sont spécifiques aux équipes engineering : extraction de règles depuis le code source et vérification de conformité des PRs en CI.
+Asplenz fournit les prompts nécessaires à l'utilisation de Knowledge avec votre agent IA — pour l'extraction, les checks CI, et le développement quotidien. Les sections suivantes supposent que les prompts Asplenz sont en place.
+
+[Obtenir les prompts Asplenz →](/docs/prompts)
 
 ### Exemple : configurer MCP avec Claude Code
 
@@ -363,9 +361,7 @@ Si vous utilisez Claude Code, créez ou mettez à jour `.mcp.json` à la racine 
 
 ## 6. Extraire les règles depuis votre codebase
 
-Votre agent IA lit et analyse vos fichiers source localement, puis crée des drafts typés directement dans Knowledge via MCP. Rien ne quitte votre machine.
-
-### Avec votre agent IA local
+Votre agent lit et analyse vos fichiers source localement et crée des drafts typés dans Knowledge pour votre revue. Rien ne quitte votre machine.
 
 ```
 > "Extrais les règles depuis ./docs, ./CLAUDE.md et ./src pour le scope Engineering"
@@ -378,10 +374,6 @@ Scanning 23 files...
   12 drafts generated (4 invariants, 5 rules, 3 decisions)
   2 duplicates skipped
 ```
-
-### Avec l'agent Asplenz
-
-Vous pouvez aussi envoyer vos fichiers source à l'API d'ingestion et laisser l'agent Asplenz les analyser côté serveur.
 
 ---
 
@@ -421,4 +413,4 @@ Envoyez le diff de la PR à Knowledge via l'API :
 
 La réponse indique les invariants ou rules en conflit, leur sévérité, et si une approbation peut débloquer l'action.
 
-Voir [Intégration CI →](/product/ci-verifier) pour les détails sur les modes de gating et les implementation reports.
+Voir [Vérification CI →](/product/ci-compliance-check) pour les détails sur les modes de gating.

@@ -36,7 +36,7 @@ const content = {
       afterHeaders: ['Tool', 'Purpose'],
       afterRows: [
         ['knowledge_record_reference', 'Record that a constraint was followed or diverged from'],
-        ['knowledge_record', 'Capture a new decision with context and reasoning'],
+        ['knowledge_create_decision', 'Capture a new decision with context and reasoning'],
       ],
       anytimeTag: 'Anytime',
       anytimeHeaders: ['Tool', 'Purpose'],
@@ -65,7 +65,7 @@ const content = {
      compliance="followed"
    )
 
-5. knowledge_record(
+5. knowledge_create_decision(
      scope="Engineering",
      decision="Added /api/payments endpoint using REST with bearer auth",
      context="Payment team requested payment initiation API",
@@ -182,7 +182,7 @@ const content = {
       afterHeaders: ['Outil', 'Usage'],
       afterRows: [
         ['knowledge_record_reference', "Enregistrer qu'une contrainte a été suivie ou divergée"],
-        ['knowledge_record', 'Capturer une nouvelle décision avec contexte et raisonnement'],
+        ['knowledge_create_decision', 'Capturer une nouvelle décision avec contexte et raisonnement'],
       ],
       anytimeTag: 'À tout moment',
       anytimeHeaders: ['Outil', 'Usage'],
@@ -211,7 +211,7 @@ const content = {
      compliance="followed"
    )
 
-5. knowledge_record(
+5. knowledge_create_decision(
      scope="Engineering",
      decision="Ajout de l'endpoint /api/payments en REST avec bearer auth",
      context="L'équipe paiement a demandé une API d'initiation de paiement",

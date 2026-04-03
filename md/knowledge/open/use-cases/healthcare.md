@@ -160,7 +160,7 @@ The coding agent generates an Implementation Report as `.knowledge/report.md`, c
 - Deployment rules for clinical systems (change windows, rollback requirements)
 - Invariants for data integrity (no modification of clinical records by AI)
 - Rules for system access and authentication standards
-- CI Verifier for health IT code changes
+- CI Compliance Check for health IT code changes
 
 ### Interoperability and Data Governance
 
@@ -364,7 +364,7 @@ L'agent de coding genere un Implementation Report sous forme de `.knowledge/repo
 - Regles de deploiement pour les systemes cliniques (fenetres de changement, exigences de rollback)
 - Invariants pour l'integrite des donnees (pas de modification des dossiers cliniques par l'IA)
 - Rules pour les standards d'acces et d'authentification des systemes
-- CI Verifier pour les changements de code IT sante
+- CI Compliance Check pour les changements de code IT sante
 
 ### Interoperabilite et gouvernance des donnees
 
