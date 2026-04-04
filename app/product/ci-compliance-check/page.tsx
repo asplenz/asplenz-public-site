@@ -13,10 +13,13 @@ const content = {
     principle: {
       tag: 'Principle',
       body: 'The PR diff is analyzed by an AI agent that checks whether the changes comply with the decisions, invariants, and rules your organization has defined in Knowledge. You can use your own local AI agent or the agent running on the Asplenz platform. The agent only receives the PR diff, not your full source code. To automate the analysis, add a step to your CI to invoke the AI agent with the PR diff and the Asplenz prompt as inputs.',
+      prereq: 'This page assumes familiarity with Knowledge concepts.',
+      prereqLink: 'See How It Works',
+      prereqHref: '/product/how-it-works',
     },
 
     steps: {
-      tag: 'How It Works',
+      tag: 'Overview',
       body: 'When a PR is opened or updated, your CI pipeline calls an AI agent with the PR diff. The agent queries Knowledge to fetch the rules that apply to the changed files — invariants, mandatory rules, and active overrides. It analyzes the diff against those constraints and returns a verdict to your CI pipeline. The CI then merges or blocks the PR based on the configured gating mode.',
       implTitle: 'To set it up:',
       items: [
@@ -132,6 +135,15 @@ echo "$RESPONSE" | jq -r '.report_markdown' | gh pr comment $PR_NUMBER --body-fi
       ],
     },
 
+    discovery: {
+      tag: 'Rule Discovery',
+      body: 'Beyond compliance, the agent also detects decisions, rules, or invariants that are implicit in the PR but not yet in the registry. These are reported as suggestions in a dedicated section of the report.',
+      example: `Detected entries:
+  - "All payment endpoints must validate currency codes" (invariant candidate)
+  - "Use Redis for session caching instead of Memcached" (decision candidate)`,
+      note: 'Discoveries are informational only and never affect the verdict. If you want to turn them into registry entries, pass the discoveries section of the report to the extraction endpoint to create drafts for review.',
+    },
+
     comparison: {
       tag: 'Why automate compliance checking?',
       headers: ['Checking compliance manually', 'CI Compliance Check'],
@@ -156,10 +168,13 @@ echo "$RESPONSE" | jq -r '.report_markdown' | gh pr comment $PR_NUMBER --body-fi
     principle: {
       tag: 'Principe',
       body: "Le diff de la PR est analysé par un agent IA qui vérifie que les modifications sont conformes aux decisions, invariants et rules que votre organisation a définis dans Knowledge. Vous pouvez utiliser votre propre agent IA en local ou l'agent qui tourne sur la plateforme Asplenz. L'agent ne reçoit que le diff de la PR, pas votre code source complet. Pour automatiser l'analyse, ajoutez simplement une étape à votre CI pour invoquer l'agent IA avec le diff de la PR et le prompt Asplenz en entrée.",
+      prereq: 'Cette page suppose une connaissance des concepts Knowledge.',
+      prereqLink: 'Voir Comment ça fonctionne',
+      prereqHref: '/product/how-it-works',
     },
 
     steps: {
-      tag: 'Comment ça fonctionne',
+      tag: 'Vue d\'ensemble',
       body: "Quand une PR est ouverte ou mise à jour, votre pipeline CI appelle un agent IA avec le diff de la PR. L'agent interroge Knowledge pour récupérer les règles applicables aux fichiers modifiés — invariants, rules mandatory et overrides actifs. Il analyse le diff contre ces contraintes et retourne un verdict au pipeline CI. La CI autorise ou bloque ensuite le merge selon le mode de gating configuré.",
       implTitle: 'Pour le mettre en place :',
       items: [
@@ -275,6 +290,15 @@ echo "$RESPONSE" | jq -r '.report_markdown' | gh pr comment $PR_NUMBER --body-fi
       ],
     },
 
+    discovery: {
+      tag: 'Détection de règles',
+      body: "Au-delà de la conformité, l'agent détecte aussi les decisions, rules ou invariants implicites dans la PR mais absents du registre. Ils sont rapportés comme suggestions dans une section dédiée du rapport.",
+      example: `Entrées détectées :
+  - "Tous les endpoints de paiement doivent valider les codes devise" (candidat invariant)
+  - "Utiliser Redis pour le cache de sessions plutôt que Memcached" (candidat decision)`,
+      note: "Les détections sont purement informatives et n'affectent jamais le verdict. Si vous voulez les transformer en entrées du registre, passez la section discoveries du rapport à l'endpoint d'extraction pour créer des drafts à valider.",
+    },
+
     comparison: {
       tag: 'Pourquoi automatiser le contrôle de conformité ?',
       headers: ['Contrôle manuel de conformité', 'Vérification CI'],
@@ -365,7 +389,11 @@ export default function Page() {
       <section className="py-10 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
         <div className="max-w-5xl mx-auto">
           <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-3">{t.principle.tag}</p>
-          <p className="text-[var(--text-secondary)] leading-relaxed max-w-3xl">{t.principle.body}</p>
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-3xl mb-3">{t.principle.body}</p>
+          <p className="text-sm text-[var(--text-secondary)]">
+            {t.principle.prereq}{' '}
+            <Link href={t.principle.prereqHref} className="text-[var(--accent)] hover:underline">{t.principle.prereqLink}</Link>.
+          </p>
         </div>
       </section>
 
@@ -463,8 +491,18 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Why not code review */}
+      {/* Rule Discovery */}
       <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4">{t.discovery.tag}</p>
+          <p className="text-[var(--text-secondary)] mb-4 leading-relaxed max-w-2xl">{t.discovery.body}</p>
+          <div className="max-w-2xl mb-3"><CodeBlock code={t.discovery.example} /></div>
+          <p className="text-sm text-[var(--text-muted)] italic max-w-2xl">{t.discovery.note}</p>
+        </div>
+      </section>
+
+      {/* Why automate compliance checking */}
+      <section className="py-12 px-6 md:px-16 lg:px-24">
         <div className="max-w-5xl mx-auto">
           <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-5">{t.comparison.tag}</p>
           <Table headers={t.comparison.headers} rows={t.comparison.rows} uniform />

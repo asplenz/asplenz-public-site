@@ -74,6 +74,11 @@ const content = {
       body: 'Knowledge est organisé en scopes - des domaines comme Engineering, Product, Operations ou Security. Chaque scope contient ses propres decisions, invariants et rules. Au sein d\'un scope, les namespaces permettent une subdivision plus fine (ex : payments, auth, infra). Pour les organisations multi-entités, les tenants assurent l\'isolation. Un groupe peut avoir des tenants par filiale, chacun avec ses propres scopes et entrées.',
     },
 
+    prompts: {
+      tag: 'Prompts pour les agents',
+      body: 'Votre agent IA ne sait pas que votre registre existe tant que vous ne le lui dites pas. Asplenz fournit des system prompts prêts à l\'emploi qui instruisent l\'agent sur comment utiliser les outils MCP de Knowledge : vérifier la conformité contre vos contraintes, extraire les decisions et rules depuis vos documents et votre codebase, ou résoudre l\'état normatif complet d\'un scope avant d\'agir. Vous ajoutez le fichier prompt dans votre dépôt et le passez à votre agent. Le prompt est le lien entre votre agent et votre registre.',
+    },
+
     extraction: {
       tag: 'Partez de ce que vous avez déjà',
       intro: 'Vos règles existantes peuvent être extraites automatiquement à partir de vos différents documents tels que les fichiers README, les docs d\'architecture, les runbooks, le code source, les fichiers CLAUDE.md, etc.',
@@ -109,7 +114,7 @@ const content = {
         },
         {
           name: 'API REST',
-          desc: 'L\'interface programmatique directe au registre. Toutes les autres interfaces (MCP, Bot, Verifier) en sont des clients. Authentification par clé API, permissions granulaires.',
+          desc: 'L\'interface programmatique directe au registre. Toutes les autres interfaces (MCP, Bot, CI Compliance Check) en sont des clients. Authentification par clé API, permissions granulaires.',
           examples: [
             {
               label: 'Exemple',
@@ -158,27 +163,27 @@ Knowledge → Créé dec-4f2a, lié à la rule existante rul-7b1c (stratégie de
           ],
         },
         {
-          name: 'Verifier CI/CD',
-          desc: 'Le Verifier s\'exécute dans votre pipeline CI et analyse le diff de chaque PR contre l\'état normatif du registre. Une IA évalue si les changements respectent ou violent chaque contrainte applicable.',
+          name: 'CI Compliance Check',
+          desc: 'Votre pipeline CI peut invoquer un agent IA avec le diff de la PR. L\'agent récupère les invariants et rules applicables depuis Knowledge, analyse le diff contre chaque contrainte, et retourne un verdict. L\'agent détecte aussi les règles implicites dans la PR qui ne sont pas encore dans le registre et les rapporte comme suggestions. Votre CI agit sur le verdict pour autoriser ou bloquer le merge.',
           examples: [
             {
               label: 'Une PR qui passe',
               code: `PR #142 : "Ajouter un endpoint de health avec auth JWT"
-  → Le Verifier résout le scope Engineering (3 invariants, 2 rules mandatory)
-  → L'IA analyse le diff contre chaque contrainte
-  → inv-a1b2 "Tous les endpoints doivent exiger une auth" : RESPECTÉ (confiance : 0.95)
+  → L'agent résout le scope Engineering (3 invariants, 2 rules mandatory)
+  → L'agent analyse le diff contre chaque contrainte
+  → inv-a1b2 "Tous les endpoints doivent exiger une auth" : RESPECTÉ
   → Verdict : PASS ✓`,
             },
             {
               label: 'Une PR qui échoue',
               code: `PR #143 : "Ajouter une librairie PDF sous licence AGPL"
-  → Le Verifier résout le scope Engineering
-  → L'IA détecte une violation : inv-2b1c "Pas de dépendances sous licence AGPL"
+  → L'agent résout le scope Engineering
+  → L'agent détecte une violation : inv-2b1c "Pas de dépendances sous licence AGPL"
   → Aucun override actif pour cet invariant
   → Verdict : FAIL ✗`,
             },
           ],
-          summary: 'Trois modes : report-only, fail-on-blocking, strict.',
+          summary: 'Trois modes de gating : report-only, fail-on-blocking, strict.',
         },
       ],
     },
@@ -269,6 +274,11 @@ Knowledge → Créé dec-4f2a, lié à la rule existante rul-7b1c (stratégie de
       body: 'Knowledge is organized into scopes - domains like Engineering, Product, Operations, or Security. Each scope contains its own decisions, invariants, and rules. Within a scope, namespaces allow further subdivision (e.g., payments, auth, infra). For multi-entity organizations, tenants provide isolation. A holding company can have subsidiary tenants, each with their own scopes and entries.',
     },
 
+    prompts: {
+      tag: 'Agent Prompts',
+      body: 'Your AI agent does not know your registry exists until you tell it. Asplenz provides ready-made system prompts that instruct the agent on how to use the Knowledge MCP tools: check compliance against your constraints, extract decisions and rules from your documents and codebase, or resolve the full normative state of a scope before acting. You add the relevant prompt file to your repository and pass it to your agent. The prompt is the link between your agent and your registry.',
+    },
+
     extraction: {
       tag: 'Start from What You Have',
       intro: 'Your existing rules can be extracted automatically from your various documents such as README files, architecture docs, runbooks, source code, CLAUDE.md files, etc.',
@@ -304,7 +314,7 @@ Knowledge → Créé dec-4f2a, lié à la rule existante rul-7b1c (stratégie de
         },
         {
           name: 'REST API',
-          desc: 'The direct programmatic interface to the registry. All other interfaces (MCP, Bot, Verifier) are clients of this API. Authentication via API key, with granular per-key permissions.',
+          desc: 'The direct programmatic interface to the registry. All other interfaces (MCP, Bot, CI Compliance Check) are clients of this API. Authentication via API key, with granular per-key permissions.',
           examples: [
             {
               label: 'Example',
@@ -353,27 +363,27 @@ Knowledge → Created dec-4f2a, linked to existing rule rul-7b1c (caching strate
           ],
         },
         {
-          name: 'CI/CD Verifier',
-          desc: 'The Verifier runs in your CI pipeline and analyzes the diff of each PR against the normative state of the registry. An AI evaluates whether the changes respect or violate each applicable constraint.',
+          name: 'CI Compliance Check',
+          desc: 'Your CI pipeline can invoke an AI agent with the PR diff. The agent fetches applicable invariants and rules from Knowledge, analyzes the diff against each constraint, and returns a verdict. The agent also detects implicit rules in the PR that are not yet in the registry and reports them as suggestions. Your CI acts on the verdict to allow or block the merge.',
           examples: [
             {
               label: 'A PR that passes',
               code: `PR #142: "Add health endpoint with JWT auth"
-  → Verifier resolves Engineering scope (3 invariants, 2 mandatory rules)
-  → AI analyzes the diff against each constraint
-  → inv-a1b2 "All endpoints must require auth": RESPECTED (confidence: 0.95)
+  → The agent resolves Engineering scope (3 invariants, 2 mandatory rules)
+  → The agent analyzes the diff against each constraint
+  → inv-a1b2 "All endpoints must require auth": RESPECTED
   → Verdict: PASS ✓`,
             },
             {
               label: 'A PR that fails',
               code: `PR #143: "Add AGPL-licensed PDF library"
-  → Verifier resolves Engineering scope
-  → AI detects a violation: inv-2b1c "No AGPL-licensed dependencies"
+  → The agent resolves Engineering scope
+  → The agent detects a violation: inv-2b1c "No AGPL-licensed dependencies"
   → No active override for this invariant
   → Verdict: FAIL ✗`,
             },
           ],
-          summary: 'Three modes: report-only, fail-on-blocking, strict.',
+          summary: 'Three gating modes: report-only, fail-on-blocking, strict.',
         },
       ],
     },
@@ -466,8 +476,16 @@ export default function Page() {
         </div>
       </section>
 
+      {/* Agent Prompts */}
+      <section className="py-12 px-6 md:px-16 lg:px-24">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-5">{t.prompts.tag}</p>
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-3xl">{t.prompts.body}</p>
+        </div>
+      </section>
+
       {/* Extraction */}
-      <section className="py-12 px-6 md:px-16 lg:px-24" id="start-from-what-you-have">
+      <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]" id="start-from-what-you-have">
         <div className="max-w-5xl mx-auto">
           <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-5">{t.extraction.tag}</p>
           <p className="text-[var(--text-secondary)] mb-10 leading-relaxed max-w-2xl">{t.extraction.intro}</p>
