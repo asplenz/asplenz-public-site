@@ -7,7 +7,7 @@ import { useLang } from '@/lib/LangContext'
 const content = {
   en: {
     tag: 'Product',
-    title: 'AI Agent Integration',
+    title: 'Knowledge for AI Agents',
     intro: "Give your agents the context they're missing.",
     subtitle: "When an AI agent writes code, reviews a PR, or makes a deployment decision, it acts without knowledge of your team's architectural choices, compliance requirements, or operational rules. It does its best, and you review after the fact, hoping to catch violations.",
     closing: 'Knowledge closes that gap. Agents query your decision registry before acting, not after.',
@@ -16,37 +16,49 @@ const content = {
       body: "The agent doesn't know that your team decided to use PostgreSQL for transactional data, that all API endpoints must require authentication, or that deployments to production require a staging step. It discovers these constraints when you reject its work.",
     },
     preflight: {
-      tag: 'Check Constraints Before Acting',
+      tag: 'With Knowledge, agents check constraints before acting',
       body: 'With Knowledge, the workflow becomes:',
       closing: 'Every action is informed. Every constraint check is recorded. Every compliance question has a structured answer.',
     },
-    mcp: {
-      tag: 'MCP Integration',
-      intro: 'Knowledge exposes tools through the Model Context Protocol (MCP), compatible with any MCP client.',
+    connect: {
+      tag: 'Connect your agent to Knowledge',
+      intro: 'Knowledge exposes tools through the Model Context Protocol (MCP), compatible with any MCP client. Add the Knowledge MCP server to your agent configuration:',
+      code: `{
+  "mcpServers": {
+    "knowledge": {
+      "url": "https://mcp.asplenz.com/knowledge",
+      "headers": {
+        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+    }
+  }
+}`,
+      toolsIntro: 'The MCP tools are automatically available. Asplenz provides system prompt templates so agents use them correctly out of the box.',
+      featuresTag: 'Available features',
       beforeTag: 'Before acting',
-      beforeHeaders: ['Tool', 'Purpose'],
-      beforeRows: [
-        ['knowledge_list_invariants', 'Get all blocking constraints for a scope'],
-        ['knowledge_list_rules', 'Get all active directives (mandatory + advisory)'],
-        ['knowledge_check', 'Test an intended action against the normative state'],
-        ['knowledge_request_approval', 'Request human approval for gated actions'],
-        ['knowledge_get_approval_status', 'Check if approval was granted'],
+      beforeItems: [
+        'Get all blocking constraints for a scope',
+        'Get all active directives (mandatory + advisory)',
+        'Test an intended action against the normative state',
+        'Request human approval for gated actions',
+        'Check if approval was granted',
       ],
       afterTag: 'After acting',
-      afterHeaders: ['Tool', 'Purpose'],
-      afterRows: [
-        ['knowledge_record_reference', 'Record that a constraint was followed or diverged from'],
-        ['knowledge_create_decision', 'Capture a new decision with context and reasoning'],
+      afterItems: [
+        'Record that a constraint was followed or diverged from',
+        'Capture a new decision with context and reasoning',
       ],
       anytimeTag: 'Anytime',
-      anytimeHeaders: ['Tool', 'Purpose'],
-      anytimeRows: [
-        ['knowledge_query', 'Search the registry by keywords, type, scope'],
-        ['knowledge_resolve', 'Get the full normative state for a scope'],
+      anytimeItems: [
+        'Search the registry by keywords, type, scope',
+        'Get the full normative state for a scope',
       ],
+      closing: 'Works with any MCP-compatible agent: coding agents, finance agents, compliance agents, operations agents. The same API is available via REST for custom integrations and scripts.',
+      ciLink: 'You can also run an agent automatically on every pull request to check compliance against your team\'s rules.',
+      ciLinkLabel: 'CI Compliance Check →',
     },
     example: {
-      tag: 'Example: Agent Workflow',
+      tag: 'Example with a coding agent',
       code: `Agent: I need to add a new API endpoint for payment processing.
 
 1. knowledge_list_invariants(scope="Engineering")
@@ -72,17 +84,20 @@ const content = {
      reasoning="Followed existing REST convention per Engineering rules"
    )`,
       closing: 'The agent acted with full context. The compliance trail is automatic.',
+      seeUseCases: 'This example uses an engineering workflow. See Use Cases for domain-specific examples (finance, healthcare, cybersecurity).',
+      seeUseCasesLink: 'Use Cases',
+      seeUseCasesHref: '/use-cases',
     },
     constraints: {
       tag: 'How Constraints Apply',
       items: [
         {
-          name: 'Invariants: Hard Stops',
-          body: "Absolute constraints that block violating actions. If an agent's intended action conflicts with an invariant, the compliance check returns a conflict and the agent stops.",
+          name: 'Hard Stops',
+          body: "Invariants are absolute constraints that block violating actions. If an agent's intended action conflicts with an invariant, the compliance check returns a conflict and the agent stops.",
         },
         {
-          name: 'Rules: Active Guidance',
-          body: 'Directives that shape behavior. Mandatory rules must be followed; advisory rules should be considered. Agents receive both and can explain which rules influenced their decisions.',
+          name: 'Active Guidance',
+          body: 'Rules are directives that shape behavior. Mandatory rules must be followed; advisory rules should be considered. Agents receive both and can explain which rules influenced their decisions.',
         },
         {
           name: 'Approval Gates',
@@ -92,57 +107,7 @@ const content = {
     },
     audit: {
       tag: 'Audit Trail',
-      intro: 'Every agent interaction with Knowledge generates structured data:',
-      headers: ['Event', "What's Recorded"],
-      rows: [
-        ['Constraint query', 'Scope, timestamp, entries returned'],
-        ['Compliance check', 'Action, conflicts, result'],
-        ['Approval request', 'Entry, justification, status'],
-        ['Reference', 'Entry cited, context (PR, commit, deploy), compliance status'],
-        ['Decision recorded', 'Full decision with context and reasoning'],
-      ],
-      closing: 'When an auditor asks "what constraints governed this AI-generated code?", the answer is a database query.',
-    },
-    setup: {
-      tag: 'Setup',
-      steps: [
-        {
-          n: '1',
-          title: 'Configure MCP',
-          body: 'Add to your .mcp.json:',
-          code: `{
-  "mcpServers": {
-    "knowledge": {
-      "url": "https://mcp.asplenz.com/knowledge",
-      "headers": {
-        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      }
-    }
-  }
-}`,
-          note: null as string | null,
-        },
-        {
-          n: '2',
-          title: 'Launch your agent',
-          body: 'The MCP tools are automatically available. Asplenz provides system prompt templates so agents use them correctly out of the box.',
-          code: null as string | null,
-          note: null as string | null,
-        },
-        {
-          n: '3',
-          title: 'Monitor in the dashboard',
-          body: 'Every query, check, approval, and reference appears in the event timeline. Review agent behavior in real time or audit historically.',
-          code: null as string | null,
-          note: null as string | null,
-        },
-      ],
-    },
-    compatible: {
-      tag: 'Compatible Agents',
-      intro: 'Knowledge works with any MCP-compatible agent: coding agents, finance agents, compliance agents, operations agents. The same API that agents use is available via REST for custom integrations and scripts.',
-      ciLink: 'You can also run an agent automatically on every pull request to check compliance against your team\'s rules.',
-      ciLinkLabel: 'CI Compliance Check →',
+      body: 'You can record every interaction between your agents and Knowledge. Constraint queries, compliance checks, approval requests, and decisions form an audit trail that you can query from the dashboard or API.',
     },
     cta: {
       links: [
@@ -154,7 +119,7 @@ const content = {
   },
   fr: {
     tag: 'Produit',
-    title: 'Intégration des Agents IA',
+    title: 'Knowledge pour les Agents IA',
     intro: 'Donnez à vos agents le contexte qui leur manque.',
     subtitle: "Quand un agent IA écrit du code, review une PR ou prend une décision de déploiement, il agit sans connaître les choix d'architecture de votre équipe, les exigences de conformité ou les règles opérationnelles. Il fait de son mieux, et vous reviewez après coup, en espérant détecter les violations.",
     closing: "Knowledge comble ce gap. Les agents interrogent votre registre de décisions avant d'agir, pas après.",
@@ -163,37 +128,49 @@ const content = {
       body: "L'agent ne sait pas que votre équipe a décidé d'utiliser PostgreSQL pour les données transactionnelles, que tous les endpoints API doivent exiger une authentification, ou que les déploiements en production nécessitent un passage par staging. Il découvre ces contraintes quand vous rejetez son travail.",
     },
     preflight: {
-      tag: 'Vérifier les contraintes avant d\'agir',
+      tag: 'Avec Knowledge, les agents vérifient les contraintes avant d\'agir',
       body: 'Avec Knowledge, le workflow devient :',
       closing: 'Chaque action est informée. Chaque vérification de contrainte est enregistrée. Chaque question de conformité a une réponse structurée.',
     },
-    mcp: {
-      tag: 'Intégration MCP',
-      intro: 'Knowledge expose des outils via le Model Context Protocol (MCP), compatibles avec tout client MCP.',
+    connect: {
+      tag: 'Connecter votre agent à Knowledge',
+      intro: 'Knowledge expose des outils via le Model Context Protocol (MCP), compatibles avec tout client MCP. Ajoutez le serveur MCP Knowledge à la configuration de votre agent :',
+      code: `{
+  "mcpServers": {
+    "knowledge": {
+      "url": "https://mcp.asplenz.com/knowledge",
+      "headers": {
+        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+    }
+  }
+}`,
+      toolsIntro: 'Les outils MCP sont automatiquement disponibles. Asplenz fournit des templates de system prompts pour que les agents les utilisent correctement dès le départ.',
+      featuresTag: 'Fonctionnalités disponibles',
       beforeTag: "Avant d'agir",
-      beforeHeaders: ['Outil', 'Usage'],
-      beforeRows: [
-        ['knowledge_list_invariants', "Obtenir toutes les contraintes bloquantes d'un scope"],
-        ['knowledge_list_rules', 'Obtenir toutes les directives actives (mandatory + advisory)'],
-        ['knowledge_check', "Tester une action envisagée contre l'état normatif"],
-        ['knowledge_request_approval', 'Demander une approbation humaine pour les actions gatées'],
-        ['knowledge_get_approval_status', "Vérifier si l'approbation a été accordée"],
+      beforeItems: [
+        "Obtenir toutes les contraintes bloquantes d'un scope",
+        'Obtenir toutes les directives actives (mandatory + advisory)',
+        "Tester une action envisagée contre l'état normatif",
+        'Demander une approbation humaine pour les actions gatées',
+        "Vérifier si l'approbation a été accordée",
       ],
       afterTag: 'Après avoir agi',
-      afterHeaders: ['Outil', 'Usage'],
-      afterRows: [
-        ['knowledge_record_reference', "Enregistrer qu'une contrainte a été suivie ou divergée"],
-        ['knowledge_create_decision', 'Capturer une nouvelle décision avec contexte et raisonnement'],
+      afterItems: [
+        "Enregistrer qu'une contrainte a été suivie ou divergée",
+        'Capturer une nouvelle décision avec contexte et raisonnement',
       ],
       anytimeTag: 'À tout moment',
-      anytimeHeaders: ['Outil', 'Usage'],
-      anytimeRows: [
-        ['knowledge_query', 'Rechercher dans le registre par mots-clés, type, scope'],
-        ['knowledge_resolve', "Obtenir l'état normatif complet d'un scope"],
+      anytimeItems: [
+        'Rechercher dans le registre par mots-clés, type, scope',
+        "Obtenir l'état normatif complet d'un scope",
       ],
+      closing: 'Fonctionne avec tout agent compatible MCP : agents de code, agents finance, agents conformité, agents opérations. La même API est disponible en REST pour les intégrations custom et les scripts.',
+      ciLink: 'Vous pouvez aussi lancer un agent automatiquement sur chaque pull request pour vérifier la conformité avec les règles de votre équipe.',
+      ciLinkLabel: 'CI Compliance Check →',
     },
     example: {
-      tag: "Exemple : Workflow d'un agent",
+      tag: 'Exemple avec un agent de code',
       code: `Agent : Je dois ajouter un nouvel endpoint API pour le traitement des paiements.
 
 1. knowledge_list_invariants(scope="Engineering")
@@ -219,17 +196,20 @@ const content = {
      reasoning="Convention REST existante suivie selon les rules Engineering"
    )`,
       closing: "L'agent a agi avec le contexte complet. La trace de conformité est automatique.",
+      seeUseCases: 'Cet exemple utilise un workflow engineering. Voir les cas d\'usage pour des exemples par domaine (finance, santé, cybersécurité).',
+      seeUseCasesLink: 'Cas d\'usage',
+      seeUseCasesHref: '/use-cases',
     },
     constraints: {
       tag: "Comment les contraintes s'appliquent",
       items: [
         {
-          name: 'Invariants : Arrêts stricts',
-          body: "Contraintes absolues qui bloquent les actions en violation. Si l'action envisagée par un agent entre en conflit avec un invariant, la vérification de conformité retourne un conflit et l'agent s'arrête.",
+          name: 'Arrêts stricts',
+          body: "Les invariants sont des contraintes absolues qui bloquent les actions en violation. Si l'action envisagée par un agent entre en conflit avec un invariant, la vérification de conformité retourne un conflit et l'agent s'arrête.",
         },
         {
-          name: 'Rules : Directives actives',
-          body: "Directives qui orientent le comportement. Les rules mandatory doivent être suivies ; les rules advisory doivent être considérées. Les agents reçoivent les deux et peuvent expliquer quelles rules ont influencé leurs décisions.",
+          name: 'Directives actives',
+          body: "Les rules sont des directives qui orientent le comportement. Les rules mandatory doivent être suivies ; les rules advisory doivent être considérées. Les agents reçoivent les deux et peuvent expliquer quelles rules ont influencé leurs décisions.",
         },
         {
           name: "Portes d'approbation",
@@ -239,57 +219,7 @@ const content = {
     },
     audit: {
       tag: "Trace d'audit",
-      intro: "Chaque interaction d'un agent avec Knowledge génère des données structurées :",
-      headers: ['Événement', 'Ce qui est enregistré'],
-      rows: [
-        ['Requête de contraintes', 'Scope, horodatage, entrées retournées'],
-        ['Vérification de conformité', 'Action, conflits, résultat'],
-        ["Demande d'approbation", 'Entrée, justification, statut'],
-        ['Référence', 'Entrée citée, contexte (PR, commit, deploy), statut de conformité'],
-        ['Décision enregistrée', 'Décision complète avec contexte et raisonnement'],
-      ],
-      closing: "Quand un auditeur demande « quelles contraintes gouvernaient ce code généré par IA ? », la réponse est une requête en base de données.",
-    },
-    setup: {
-      tag: 'Mise en place',
-      steps: [
-        {
-          n: '1',
-          title: 'Configurer MCP',
-          body: 'Ajoutez dans votre .mcp.json :',
-          code: `{
-  "mcpServers": {
-    "knowledge": {
-      "url": "https://mcp.asplenz.com/knowledge",
-      "headers": {
-        "Authorization": "Bearer kn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      }
-    }
-  }
-}`,
-          note: null as string | null,
-        },
-        {
-          n: '2',
-          title: 'Lancez votre agent',
-          body: 'Les outils MCP sont automatiquement disponibles. Asplenz fournit des templates de system prompts pour que les agents les utilisent correctement dès le départ.',
-          code: null as string | null,
-          note: null as string | null,
-        },
-        {
-          n: '3',
-          title: 'Surveillez dans le dashboard',
-          body: "Chaque requête, vérification, approbation et référence apparaît dans la timeline d'événements. Reviewez le comportement des agents en temps réel ou auditez a posteriori.",
-          code: null as string | null,
-          note: null as string | null,
-        },
-      ],
-    },
-    compatible: {
-      tag: 'Agents compatibles',
-      intro: 'Knowledge fonctionne avec tout agent compatible MCP : agents de code, agents finance, agents conformite, agents operations. La meme API utilisee par les agents est disponible en REST pour les integrations custom et les scripts.',
-      ciLink: 'Vous pouvez aussi lancer un agent automatiquement sur chaque pull request pour verifier la conformite avec les regles de votre equipe.',
-      ciLinkLabel: 'CI Compliance Check →',
+      body: "Vous pouvez enregistrer chaque interaction entre vos agents et Knowledge. Requêtes de contraintes, vérifications de conformité, demandes d'approbation et decisions forment une trace d'audit consultable depuis le dashboard ou l'API.",
     },
     cta: {
       links: [
@@ -393,14 +323,31 @@ export default function Page() {
       {/* MCP Integration */}
       <section className="py-12 px-6 md:px-16 lg:px-24">
         <div className="max-w-5xl mx-auto">
-          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-3">{t.mcp.tag}</p>
-          <p className="text-[var(--text-secondary)] mb-8 leading-relaxed">{t.mcp.intro}</p>
-          <h3 className="font-serif text-xl text-[var(--text-primary)] mb-3">{t.mcp.beforeTag}</h3>
-          <Table headers={t.mcp.beforeHeaders} rows={t.mcp.beforeRows} />
-          <h3 className="font-serif text-xl text-[var(--text-primary)] mb-3 mt-6">{t.mcp.afterTag}</h3>
-          <Table headers={t.mcp.afterHeaders} rows={t.mcp.afterRows} />
-          <h3 className="font-serif text-xl text-[var(--text-primary)] mb-3 mt-6">{t.mcp.anytimeTag}</h3>
-          <Table headers={t.mcp.anytimeHeaders} rows={t.mcp.anytimeRows} />
+          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-3">{t.connect.tag}</p>
+          <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">{t.connect.intro}</p>
+          <div className="max-w-2xl mb-6"><CodeBlock code={t.connect.code} /></div>
+          <p className="text-[var(--text-secondary)] mb-8 leading-relaxed">{t.connect.toolsIntro}</p>
+          <p className="font-serif text-2xl text-[var(--text-primary)] mb-6">{t.connect.featuresTag}</p>
+          {[
+            { tag: t.connect.beforeTag, items: t.connect.beforeItems },
+            { tag: t.connect.afterTag, items: t.connect.afterItems },
+            { tag: t.connect.anytimeTag, items: t.connect.anytimeItems },
+          ].map((group, gi) => (
+            <div key={gi} className={gi > 0 ? 'mt-6' : ''}>
+              <h3 className="font-serif text-xl text-[var(--text-primary)] mb-3">{group.tag}</h3>
+              <ul className="space-y-1 max-w-2xl pl-4">
+                {group.items.map((item, ii) => (
+                  <li key={ii} className="flex items-start gap-2 text-sm text-[var(--text-secondary)]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-1.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-2xl mt-8">{t.connect.closing}</p>
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-2xl mt-4">{t.connect.ciLink}</p>
+          <Link href="/product/ci-compliance-check" className="text-[var(--accent)] font-medium hover:underline mt-1 inline-block">{t.connect.ciLinkLabel}</Link>
         </div>
       </section>
 
@@ -427,6 +374,9 @@ export default function Page() {
             <CodeBlock code={t.example.code} />
           </div>
           <p className="text-[var(--text-secondary)] leading-relaxed mt-2">{t.example.closing}</p>
+          <p className="text-sm text-[var(--text-secondary)] mt-4">
+            {t.example.seeUseCases}
+          </p>
         </div>
       </section>
 
@@ -434,64 +384,10 @@ export default function Page() {
       <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
         <div className="max-w-5xl mx-auto">
           <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-3">{t.audit.tag}</p>
-          <p className="text-[var(--text-secondary)] mb-5 leading-relaxed">{t.audit.intro}</p>
-          <Table headers={t.audit.headers} rows={t.audit.rows} />
-          <p className="text-[var(--text-secondary)] leading-relaxed italic text-sm mt-2">{t.audit.closing}</p>
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-2xl">{t.audit.body}</p>
         </div>
       </section>
 
-      {/* Setup */}
-      <section className="py-12 px-6 md:px-16 lg:px-24">
-        <div className="max-w-5xl mx-auto">
-          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-8">{t.setup.tag}</p>
-          <div className="space-y-8">
-            {t.setup.steps.map((step, i) => (
-              <div key={i}>
-                <h3 className="font-semibold text-lg text-[var(--text-primary)] mb-3">
-                  {step.n}. {step.title}
-                </h3>
-                <p className="text-[var(--text-secondary)] mb-3 leading-relaxed max-w-2xl">{step.body}</p>
-                {step.code && (
-                  <div className="max-w-2xl">
-                    <CodeBlock code={step.code} />
-                  </div>
-                )}
-                {step.note && (
-                  <p className="text-sm text-[var(--text-muted)] italic mt-2">{step.note}</p>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Compatible agents */}
-      <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
-        <div className="max-w-5xl mx-auto">
-          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4">{t.compatible.tag}</p>
-          <p className="text-[var(--text-secondary)] mb-5 leading-relaxed">{t.compatible.intro}</p>
-          <p className="text-[var(--text-secondary)] leading-relaxed max-w-2xl mb-4">{t.compatible.ciLink}</p>
-          <Link href="/product/ci-compliance-check" className="text-[var(--accent)] font-medium hover:underline">{t.compatible.ciLinkLabel}</Link>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-12 px-6 md:px-16 lg:px-24">
-        <div className="max-w-5xl mx-auto flex flex-wrap gap-4">
-          {t.cta.links.map((link, i) => (
-            <Link
-              key={i}
-              href={link.href}
-              className={i === 0
-                ? 'px-7 py-3 bg-[var(--accent)] text-white font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors'
-                : 'px-7 py-3 border border-[var(--border)] text-[var(--text-primary)] font-medium rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors'
-              }
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </section>
 
       <Footer />
     </div>
