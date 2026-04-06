@@ -32,20 +32,7 @@ export default function EngineeringPage() {
       <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
         <div className="max-w-5xl mx-auto">
           <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6">The Challenge</p>
-          <ul className="space-y-3">
-            {[
-              'Architecture Decision Records decay in wikis nobody searches',
-              'AI agents write code without knowing your standards',
-              "Deployment rules exist in Slack messages and people's heads",
-              'When someone asks "why did we choose X?", the answer is lost or reconstructed from memory',
-              'CI pipelines check syntax and tests, but not organizational constraints',
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-[var(--text-secondary)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-3xl">Architecture decisions accumulate in wikis that nobody consults. AI agents write code without knowing your standards. Deployment rules live in Slack messages or in people's heads. When someone asks "why did we choose X?", the answer is lost or reconstructed from memory. And CI pipelines check syntax and tests, but never organizational constraints.</p>
         </div>
       </section>
 
@@ -58,7 +45,7 @@ export default function EngineeringPage() {
             <div>
               <h3 className="font-semibold text-lg text-[var(--text-primary)] mb-2">Extract What You Already Have</h3>
               <p className="text-[var(--text-secondary)] mb-4 leading-relaxed max-w-2xl">
-                Your team already has rules in your READMEs, CLAUDE.md, runbooks, architecture docs, and source code. Your AI agent connects via MCP, scans all of them, identifies decisions, constraints, and directives — whether explicit or embedded in code — and creates typed drafts for review. You review in the dashboard and approve what's correct. In minutes, scattered documentation becomes a structured registry.
+                Thanks to an Asplenz prompt, your AI agent analyzes the rules you already have scattered in READMEs, architecture docs, runbooks, and source code. It identifies decisions, constraints, and directives, then registers them in Knowledge as typed drafts. You review in the dashboard and approve what's correct. In minutes, scattered documentation becomes a structured registry.
               </p>
               <div className="space-y-3 max-w-2xl">
                 <CodeBlock code={`> "Extract rules from ./docs, ./CLAUDE.md, and ./src (README.md files) for the Engineering scope"`} />
@@ -71,9 +58,9 @@ export default function EngineeringPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold text-lg text-[var(--text-primary)] mb-2">Capture Decisions That Stick</h3>
+              <h3 className="font-semibold text-lg text-[var(--text-primary)] mb-2">Record your decisions with their context</h3>
               <p className="text-[var(--text-secondary)] mb-4 leading-relaxed max-w-2xl">
-                Decisions are recorded by whoever makes them: a tech lead in the dashboard, an AI agent via MCP after a discussion, or the extraction pipeline from existing docs. Each decision includes context, reasoning, author, and timestamp — immutable and searchable. Link decisions to the rules and invariants they create.
+                When your team makes a decision, capture it with its reasoning, context, and author. You can record decisions from the web dashboard, via the REST API, through the Slack or Teams bot, or let your AI agent do it via MCP. Every decision is immutable and searchable. If a decision produces a rule or an invariant, link them together so the reasoning stays traceable.
               </p>
               <div className="space-y-3 max-w-2xl">
                 <CodeBlock code={`Decision: "Use FastAPI for all new Python backend services"
@@ -224,6 +211,53 @@ Rule: "Database migrations require tech-lead sign-off" (requires_approval: true)
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      {/* Without Knowledge */}
+      <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6">Without Knowledge</p>
+          <p className="text-[var(--text-secondary)] text-lg leading-relaxed mb-6">Example: Add a REST endpoint for payment processing</p>
+          <ol className="space-y-3">
+            {[
+              'Agent writes the endpoint without authentication',
+              'Agent opens PR',
+              'Reviewer catches missing auth after 2 days',
+              'Agent rewrites with auth middleware',
+              'Second review: reviewer notices the team decided on gRPC for new services',
+              'Nobody remembers the REST override for payment-gateway-v2',
+              'Back and forth in PR comments to clarify',
+              'Agent rewrites again. 3 review cycles, 5 days.',
+            ].map((step, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-red-100 text-red-600 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+                <span className="text-[var(--text-secondary)] leading-relaxed pt-0.5">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* With Knowledge */}
+      <section className="py-12 px-6 md:px-16 lg:px-24">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6">With Knowledge</p>
+          <p className="text-[var(--text-secondary)] text-lg leading-relaxed mb-6">Example: Add a REST endpoint for payment processing</p>
+          <ol className="space-y-3">
+            {[
+              'Agent calls knowledge_resolve for the payments namespace',
+              'Knowledge returns: invariant "All API endpoints must require authentication", rule "New services must use gRPC", override "REST allowed for payment-gateway-v2"',
+              'Agent writes the endpoint with authentication middleware, uses REST (override active)',
+              'Agent records reference: invariant followed',
+              'Agent records decision: "Added /api/payments endpoint using REST with bearer auth"',
+            ].map((step, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-[var(--accent-light)] text-[var(--accent)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+                <span className="text-[var(--text-secondary)] leading-relaxed pt-0.5">{step}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 

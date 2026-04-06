@@ -178,6 +178,31 @@ Agent C (remediator): "I want to restart nginx on prod-web-03"
       ['Agents acting without security context', 'Pre-flight constraint checking on every action'],
     ],
 
+    withoutK: {
+      tag: 'Without Knowledge',
+      subtitle: 'Example: Disable MFA for a service account',
+      steps: [
+        'Engineer disables MFA for the CI pipeline',
+        'Works fine, nobody notices',
+        '4 months later, security audit flags the account',
+        'Incident investigation: who disabled it, why, when?',
+        'No trace. The engineer who did it left the company.',
+        'CISO mandates full access review. 2 weeks of work across all teams.',
+      ],
+    },
+    withK: {
+      tag: 'With Knowledge',
+      subtitle: 'Example: Disable MFA for a service account',
+      steps: [
+        'Agent calls knowledge_resolve for the access-management namespace',
+        'Knowledge returns: invariant "All accounts must have MFA enabled", invariant "Exception requires CISO approval"',
+        'Agent detects conflict: disabling MFA violates invariant',
+        'Agent requests approval: "Disable MFA for CI service account, reason: incompatible with automated pipeline"',
+        'Knowledge notifies CISO via webhook. Approval granted, override created with 90-day expiry.',
+        'Agent disables MFA and records reference: invariant overridden with approval, expires in 90 days',
+      ],
+    },
+
     getStartedTitle: 'Get Started',
     getStartedItems: [
       { text: 'Create your account', href: '/docs/getting-started' },
@@ -357,6 +382,31 @@ Agent C (remediateur) : "Je veux redemarrer nginx sur prod-web-03"
       ['Collecte manuelle de preuves de conformite', 'Registre interrogeable a tout moment'],
       ['Agents agissant sans contexte securite', 'Verification pre-vol des contraintes a chaque action'],
     ],
+
+    withoutK: {
+      tag: 'Sans Knowledge',
+      subtitle: 'Exemple : Desactiver le MFA pour un compte de service',
+      steps: [
+        'Un ingenieur desactive le MFA pour le pipeline CI',
+        'Ca fonctionne, personne ne remarque',
+        '4 mois plus tard, un audit de securite signale le compte',
+        'Investigation d\'incident : qui l\'a desactive, pourquoi, quand ?',
+        'Aucune trace. L\'ingenieur qui l\'a fait a quitte l\'entreprise.',
+        'Le CISO impose une revue complete des acces. 2 semaines de travail pour toutes les equipes.',
+      ],
+    },
+    withK: {
+      tag: 'Avec Knowledge',
+      subtitle: 'Exemple : Desactiver le MFA pour un compte de service',
+      steps: [
+        'L\'agent appelle knowledge_resolve pour le namespace access-management',
+        'Knowledge retourne : invariant "Tous les comptes doivent avoir le MFA active", invariant "Une exception necessite l\'approbation du CISO"',
+        'L\'agent detecte un conflit : desactiver le MFA viole l\'invariant',
+        'L\'agent demande une approbation : "Desactiver le MFA pour le compte de service CI, raison : incompatible avec le pipeline automatise"',
+        'Knowledge notifie le CISO via webhook. Approbation accordee, override cree avec expiration a 90 jours.',
+        'L\'agent desactive le MFA et enregistre la reference : invariant overridde avec approbation, expire dans 90 jours',
+      ],
+    },
 
     getStartedTitle: 'Commencer',
     getStartedItems: [
@@ -573,6 +623,38 @@ export default function CybersecurityPage() {
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      {/* Without Knowledge */}
+      <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-2">{t.withoutK.tag}</p>
+          <p className="font-serif text-xl text-[var(--text-primary)] mb-6 italic">{t.withoutK.subtitle}</p>
+          <ol className="space-y-3">
+            {t.withoutK.steps.map((step, i) => (
+              <li key={i} className="flex items-start gap-3 text-[var(--text-primary)]">
+                <span className="font-mono text-xs text-[var(--accent)] shrink-0 mt-0.5">{i + 1}.</span>
+                {step}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* With Knowledge */}
+      <section className="py-12 px-6 md:px-16 lg:px-24">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-2">{t.withK.tag}</p>
+          <p className="font-serif text-xl text-[var(--text-primary)] mb-6 italic">{t.withK.subtitle}</p>
+          <ol className="space-y-3">
+            {t.withK.steps.map((step, i) => (
+              <li key={i} className="flex items-start gap-3 text-[var(--text-primary)]">
+                <span className="font-mono text-xs text-[var(--accent)] shrink-0 mt-0.5">{i + 1}.</span>
+                {step}
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 

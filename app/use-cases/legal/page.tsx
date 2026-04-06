@@ -235,6 +235,31 @@ Engineer: creates approval request with justification
       ],
     ],
 
+    withoutK: {
+      tag: 'Without Knowledge',
+      subtitle: 'Example: Generate a contract from template without legal review',
+      steps: [
+        'Agent generates the 120k contract from template',
+        'Sales sends it to the client',
+        'Client signs',
+        '6 months later, dispute arises, legal discovers no liability cap',
+        'Legal reviews: "Who approved this without sign-off?"',
+        'Nobody. The threshold rule was in a PDF on SharePoint. Nobody told the agent.',
+      ],
+    },
+    withK: {
+      tag: 'With Knowledge',
+      subtitle: 'Example: Generate a contract from template without legal review',
+      steps: [
+        'Agent calls knowledge_resolve for the contracts namespace',
+        'Knowledge returns: invariant "All contracts above 50k require legal sign-off", rule "Standard templates can be used without review for contracts under 50k"',
+        'Agent checks contract value: 120k exceeds threshold',
+        'Agent requests approval: "Legal review required for 120k contract"',
+        'Knowledge notifies legal team via webhook. Approval granted with conditions.',
+        'Agent generates the contract and records decision: "Contract generated after legal approval. Condition: add liability cap clause."',
+      ],
+    },
+
     getStartedTitle: 'Get Started',
     getStartedSteps: [
       { label: 'Create your account', href: '/docs/getting-started' },
@@ -478,6 +503,31 @@ Ingénieur : crée une demande d'approbation avec justification
       ],
     ],
 
+    withoutK: {
+      tag: 'Sans Knowledge',
+      subtitle: 'Exemple : Générer un contrat depuis un modèle sans revue juridique',
+      steps: [
+        'L\'agent génère le contrat de 120k depuis le modèle',
+        'Le commercial l\'envoie au client',
+        'Le client signe',
+        '6 mois plus tard, un litige survient, le juridique découvre l\'absence de plafond de responsabilité',
+        'Le juridique examine : "Qui a approuvé cela sans validation ?"',
+        'Personne. La règle de seuil était dans un PDF sur SharePoint. Personne n\'a informé l\'agent.',
+      ],
+    },
+    withK: {
+      tag: 'Avec Knowledge',
+      subtitle: 'Exemple : Générer un contrat depuis un modèle sans revue juridique',
+      steps: [
+        'L\'agent appelle knowledge_resolve pour le namespace contrats',
+        'Knowledge retourne : invariant "Tous les contrats au-dessus de 50k nécessitent une validation juridique", rule "Les modèles standards peuvent être utilisés sans revue pour les contrats de moins de 50k"',
+        'L\'agent vérifie la valeur du contrat : 120k dépasse le seuil',
+        'L\'agent demande une approbation : "Revue juridique requise pour un contrat de 120k"',
+        'Knowledge notifie l\'équipe juridique via webhook. Approbation accordée avec conditions.',
+        'L\'agent génère le contrat et enregistre la décision : "Contrat généré après approbation juridique. Condition : ajouter une clause de plafond de responsabilité."',
+      ],
+    },
+
     getStartedTitle: 'Commencer',
     getStartedSteps: [
       { label: 'Créer votre compte', href: '/docs/getting-started' },
@@ -709,6 +759,42 @@ export default function LegalPage() {
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      {/* Without Knowledge */}
+      <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-2">{t.withoutK.tag}</p>
+          <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-3xl mb-6">{t.withoutK.subtitle}</p>
+          <ol className="space-y-3 max-w-3xl">
+            {t.withoutK.steps.map((step, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full border border-[var(--accent)] text-[var(--accent)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  {i + 1}
+                </span>
+                <span className="text-[var(--text-primary)] leading-relaxed pt-0.5">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* With Knowledge */}
+      <section className="py-12 px-6 md:px-16 lg:px-24">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-2">{t.withK.tag}</p>
+          <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-3xl mb-6">{t.withK.subtitle}</p>
+          <ol className="space-y-3 max-w-3xl">
+            {t.withK.steps.map((step, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full border border-[var(--accent)] text-[var(--accent)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  {i + 1}
+                </span>
+                <span className="text-[var(--text-primary)] leading-relaxed pt-0.5">{step}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 

@@ -13,12 +13,20 @@ const content = {
     closing: 'Knowledge closes that gap. Agents query your decision registry before acting, not after.',
     problem: {
       tag: 'The Problem: Reviewing After the Fact',
-      body: "The agent doesn't know that your team decided to use PostgreSQL for transactional data, that all API endpoints must require authentication, or that deployments to production require a staging step. It discovers these constraints when you reject its work.",
+      body: "AI agents act without knowledge of your organization's constraints. When a human reviews each output, this creates a bottleneck that defeats the purpose of automation. When agents operate autonomously, violations go undetected until they cause real damage: a non-compliant deployment, a regulatory breach, a decision that contradicts an existing policy.",
     },
     preflight: {
       tag: 'With Knowledge, agents check constraints before acting',
       body: 'With Knowledge, the workflow becomes:',
       closing: 'Every action is informed. Every constraint check is recorded. Every compliance question has a structured answer.',
+      useCasesIntro: 'See concrete examples for your domain:',
+      useCases: [
+        { label: 'Engineering', href: '/use-cases/engineering' },
+        { label: 'Finance', href: '/use-cases/finance' },
+        { label: 'Healthcare', href: '/use-cases/healthcare' },
+        { label: 'Cybersecurity', href: '/use-cases/cybersecurity' },
+        { label: 'Legal & Compliance', href: '/use-cases/legal' },
+      ],
     },
     connect: {
       tag: 'Connect your agent to Knowledge',
@@ -125,12 +133,20 @@ const content = {
     closing: "Knowledge comble ce gap. Les agents interrogent votre registre de décisions avant d'agir, pas après.",
     problem: {
       tag: 'Le problème : reviewer après coup',
-      body: "L'agent ne sait pas que votre équipe a décidé d'utiliser PostgreSQL pour les données transactionnelles, que tous les endpoints API doivent exiger une authentification, ou que les déploiements en production nécessitent un passage par staging. Il découvre ces contraintes quand vous rejetez son travail.",
+      body: "Les agents IA agissent sans connaître les contraintes de votre organisation. Quand un humain review chaque résultat, c'est un goulot d'étranglement qui annule le bénéfice de l'automatisation. Quand les agents opèrent de façon autonome, les violations passent inaperçues jusqu'à ce qu'elles causent de vrais dégâts : un déploiement non conforme, une violation réglementaire, une décision qui contredit une politique existante.",
     },
     preflight: {
       tag: 'Avec Knowledge, les agents vérifient les contraintes avant d\'agir',
       body: 'Avec Knowledge, le workflow devient :',
       closing: 'Chaque action est informée. Chaque vérification de contrainte est enregistrée. Chaque question de conformité a une réponse structurée.',
+      useCasesIntro: 'Voir des exemples concrets pour votre domaine :',
+      useCases: [
+        { label: 'Engineering', href: '/use-cases/engineering' },
+        { label: 'Finance', href: '/use-cases/finance' },
+        { label: 'Santé', href: '/use-cases/healthcare' },
+        { label: 'Cybersécurité', href: '/use-cases/cybersecurity' },
+        { label: 'Juridique & Conformité', href: '/use-cases/legal' },
+      ],
     },
     connect: {
       tag: 'Connecter votre agent à Knowledge',
@@ -317,6 +333,12 @@ export default function Page() {
             />
           </div>
           <p className="text-[var(--text-secondary)] leading-relaxed max-w-2xl">{t.preflight.closing}</p>
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-2xl mt-4">{t.preflight.useCasesIntro}</p>
+          <div className="flex flex-wrap gap-3 mt-3">
+            {t.preflight.useCases.map((uc, i) => (
+              <Link key={i} href={uc.href} className="text-[var(--accent)] font-medium hover:underline text-sm">{uc.label}</Link>
+            ))}
+          </div>
         </div>
       </section>
 

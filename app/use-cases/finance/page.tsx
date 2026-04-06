@@ -206,6 +206,31 @@ Committee reviews in dashboard > Approve
       ['"Ask the risk team, they\'ll know"', 'Searchable registry with full decision chains'],
     ],
 
+    withoutK: {
+      tag: 'Without Knowledge',
+      subtitle: 'Example: Automate loan approval for amounts under 10k',
+      steps: [
+        'Agent builds the automation with 10k threshold',
+        'QA validates the feature works',
+        'Goes to prod',
+        '3 weeks later, compliance audit finds the 5k cap was in a policy doc nobody linked',
+        'Feature rolled back, incident report filed',
+        'Risk team adds a manual check. The automation is now semi-manual.',
+      ],
+    },
+    withK: {
+      tag: 'With Knowledge',
+      subtitle: 'Example: Automate loan approval for amounts under 10k',
+      steps: [
+        'Agent calls knowledge_resolve for the lending namespace',
+        'Knowledge returns: invariant "Four-eyes principle for all loan approvals", rule "Automated approvals capped at 5k", no override',
+        'Agent detects conflict: 10k exceeds the 5k automated cap',
+        'Agent requests approval: "Raise automated approval threshold to 10k"',
+        'Knowledge notifies risk team via webhook. Approval denied.',
+        'Agent stops and reports: "Blocked by rule. Maximum automated approval is 5k."',
+      ],
+    },
+
     getStartedTitle: 'Get Started',
     getStartedSteps: [
       { text: 'Create your account', href: '/docs/getting-started', isLink: true },
@@ -413,6 +438,31 @@ Le comité review dans le dashboard > Approuvé
       ['Tableurs de suivi de conformité', 'Verifier automatisé en CI avec analyse sémantique'],
       ['"Demande à l\'équipe risque, ils sauront"', 'Registre recherchable avec chaînes de décisions complètes'],
     ],
+
+    withoutK: {
+      tag: 'Sans Knowledge',
+      subtitle: 'Exemple : Automatiser l\'approbation de prêt pour les montants sous 10k',
+      steps: [
+        'L\'agent construit l\'automatisation avec un seuil de 10k',
+        'La QA valide que la fonctionnalité fonctionne',
+        'Mise en production',
+        '3 semaines plus tard, un audit de conformité découvre que le plafond de 5k était dans un document de politique que personne n\'avait lié',
+        'Fonctionnalité annulée, rapport d\'incident déposé',
+        'L\'équipe risque ajoute un contrôle manuel. L\'automatisation est désormais semi-manuelle.',
+      ],
+    },
+    withK: {
+      tag: 'Avec Knowledge',
+      subtitle: 'Exemple : Automatiser l\'approbation de prêt pour les montants sous 10k',
+      steps: [
+        'L\'agent appelle knowledge_resolve pour le namespace lending',
+        'Knowledge retourne : invariant "Principe des quatre yeux pour toutes les approbations de prêt", rule "Approbations automatisées plafonnées à 5k", pas d\'override',
+        'L\'agent détecte un conflit : 10k dépasse le plafond automatisé de 5k',
+        'L\'agent demande une approbation : "Relever le seuil d\'approbation automatique à 10k"',
+        'Knowledge notifie l\'équipe risque via webhook. Approbation refusée.',
+        'L\'agent s\'arrête et rapporte : "Bloqué par une rule. L\'approbation automatique maximale est de 5k."',
+      ],
+    },
 
     getStartedTitle: 'Commencer',
     getStartedSteps: [
@@ -624,6 +674,38 @@ export default function FinancePage() {
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      {/* Without Knowledge */}
+      <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-2">{t.withoutK.tag}</p>
+          <p className="text-[var(--text-primary)] text-lg font-semibold mb-6">{t.withoutK.subtitle}</p>
+          <ol className="space-y-3">
+            {t.withoutK.steps.map((step, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full border border-[var(--accent)] text-[var(--accent)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+                <span className="text-[var(--text-primary)] leading-relaxed pt-0.5">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* With Knowledge */}
+      <section className="py-12 px-6 md:px-16 lg:px-24">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-2">{t.withK.tag}</p>
+          <p className="text-[var(--text-primary)] text-lg font-semibold mb-6">{t.withK.subtitle}</p>
+          <ol className="space-y-3">
+            {t.withK.steps.map((step, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full border border-[var(--accent)] text-[var(--accent)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+                <span className="text-[var(--text-primary)] leading-relaxed pt-0.5">{step}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 

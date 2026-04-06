@@ -196,6 +196,29 @@ Clinician reviews and approves
         ['"Ask Dr. Chen, she led that initiative"', 'Searchable registry with full decision chains'],
       ],
     },
+    withoutK: {
+      tag: 'Without Knowledge',
+      subtitle: 'Example: Expose patient data via API for mobile app',
+      steps: [
+        'Agent builds the API, exposes full patient records',
+        'PR merged after code review focused on performance',
+        'Security scan catches no issues (it checks code, not policy)',
+        '2 months later, audit reveals API returns more fields than necessary',
+        'Minimum necessary violation reported',
+        'API reworked, mobile app updated, two release cycles lost',
+      ],
+    },
+    withK: {
+      tag: 'With Knowledge',
+      subtitle: 'Example: Expose patient data via API for mobile app',
+      steps: [
+        'Agent calls knowledge_resolve for the patient-data namespace',
+        'Knowledge returns: invariant "Patient data requires consent verification", invariant "Audit logging on all patient data access", rule "Minimum necessary principle"',
+        'Agent designs the API with consent check middleware, audit logging, and field-level filtering',
+        'Agent records references: invariant followed (consent), invariant followed (audit logging)',
+        'Agent records decision: "Patient API exposes only name, appointment date, and lab results. Full record excluded per minimum necessary rule."',
+      ],
+    },
     getStarted: {
       heading: 'Get Started',
       steps: [
@@ -394,6 +417,29 @@ Le clinicien review et approuve
         ['"Demandez au Dr. Chen, c\'est elle qui a mene cette initiative"', 'Registre recherchable avec chaines de decisions completes'],
       ],
     },
+    withoutK: {
+      tag: 'Sans Knowledge',
+      subtitle: 'Exemple : Exposer les donnees patient via API pour une application mobile',
+      steps: [
+        'L\'agent construit l\'API, expose les dossiers patient complets',
+        'PR mergee apres une code review axee sur la performance',
+        'Le scan de securite ne detecte aucun probleme (il verifie le code, pas la politique)',
+        '2 mois plus tard, un audit revele que l\'API retourne plus de champs que necessaire',
+        'Violation du principe de minimisation signalee',
+        'API retravaillee, application mobile mise a jour, deux cycles de release perdus',
+      ],
+    },
+    withK: {
+      tag: 'Avec Knowledge',
+      subtitle: 'Exemple : Exposer les donnees patient via API pour une application mobile',
+      steps: [
+        'L\'agent appelle knowledge_resolve pour le namespace patient-data',
+        'Knowledge retourne : invariant "Les donnees patient necessitent une verification de consentement", invariant "Journalisation d\'audit sur tous les acces aux donnees patient", rule "Principe de minimisation des donnees"',
+        'L\'agent concoit l\'API avec un middleware de verification du consentement, la journalisation d\'audit et le filtrage au niveau des champs',
+        'L\'agent enregistre les references : invariant suivi (consentement), invariant suivi (journalisation d\'audit)',
+        'L\'agent enregistre la decision : "L\'API patient expose uniquement le nom, la date de rendez-vous et les resultats de laboratoire. Le dossier complet est exclu selon le principe de minimisation."',
+      ],
+    },
     getStarted: {
       heading: 'Commencer',
       steps: [
@@ -567,6 +613,42 @@ export default function HealthcarePage() {
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      {/* Without Knowledge */}
+      <section className="py-12 px-6 md:px-16 lg:px-24 bg-[var(--bg-secondary)]">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-2">{t.withoutK.tag}</p>
+          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6">{t.withoutK.subtitle}</p>
+          <ol className="space-y-3">
+            {t.withoutK.steps.map((step, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full border border-[var(--accent)] text-[var(--accent)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  {i + 1}
+                </span>
+                <span className="text-[var(--text-primary)] leading-relaxed pt-0.5">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* With Knowledge */}
+      <section className="py-12 px-6 md:px-16 lg:px-24">
+        <div className="max-w-5xl mx-auto">
+          <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-2">{t.withK.tag}</p>
+          <p className="font-serif text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6">{t.withK.subtitle}</p>
+          <ol className="space-y-3">
+            {t.withK.steps.map((step, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full border border-[var(--accent)] text-[var(--accent)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  {i + 1}
+                </span>
+                <span className="text-[var(--text-primary)] leading-relaxed pt-0.5">{step}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
