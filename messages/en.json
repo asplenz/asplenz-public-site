@@ -1,0 +1,22 @@
+{
+  "brand": "Asplenz Knowledge",
+  "nav": {
+    "product": "Product",
+    "use_cases": "Use cases",
+    "compare": "Compare",
+    "pricing": "Pricing",
+    "company": "Company"
+  },
+  "cta": {
+    "book_demo": "Book a demo",
+    "contact": "Contact"
+  },
+  "footer": {
+    "tagline": "Compliance runtime for regulated industries.",
+    "rights": "All rights reserved.",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "lang_switch_label": "Language"
+}
