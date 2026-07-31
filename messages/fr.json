@@ -3,7 +3,8 @@
   "nav": {
     "product": "Produit",
     "use_cases": "Cas d'usage",
-    "compare": "Comparer",
+    "oem": "OEM",
+    "ecosystem": "Écosystème",
     "pricing": "Tarifs",
     "company": "Société"
   },

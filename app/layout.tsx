@@ -7,13 +7,19 @@ export const metadata: Metadata = {
     default: 'Asplenz Knowledge',
     template: '%s | Asplenz Knowledge',
   },
-  description: 'Compliance runtime for regulated industries.',
+  description: 'Compliance Decision Platform for regulated industries.',
+  icons: {
+    icon: '/images/log2_normal.png',
+    apple: '/images/log2_normal.png',
+  },
   openGraph: {
     siteName: 'Asplenz Knowledge',
     type: 'website',
+    images: ['/images/log2_normal.png'],
   },
   twitter: {
     card: 'summary_large_image',
+    images: ['/images/log2_normal.png'],
   },
 }
 

@@ -67,7 +67,7 @@ export default function PricingPage({ params }: { params: { locale: string } }) 
 function Hero({ t, contactHref, productHref }: { t: PricingContent; contactHref: string; productHref: string }) {
   return (
     <section className="border-b border-gray-100 bg-gradient-to-b from-primary-soft/40 to-white">
-      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-4 inline-flex items-center rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-strong">
             {t.hero.eyebrow}
@@ -104,7 +104,7 @@ function Hero({ t, contactHref, productHref }: { t: PricingContent; contactHref:
 function Principles({ t }: { t: PricingContent }) {
   return (
     <section className="border-b border-gray-100 bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             {t.principles.heading}
@@ -136,7 +136,7 @@ function Principles({ t }: { t: PricingContent }) {
 function Plans({ t, contactHref }: { t: PricingContent; contactHref: string }) {
   return (
     <section className="border-b border-gray-100 bg-gray-50">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             {t.plansHeading}
@@ -221,7 +221,7 @@ function DesignPartner({ t, contactHref }: { t: PricingContent; contactHref: str
   const dp = t.designPartner
   return (
     <section className="border-b border-gray-100 bg-primary-soft/50">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             {dp.heading}
@@ -293,7 +293,7 @@ function Comparison({ t }: { t: PricingContent }) {
 
   return (
     <section className="border-b border-gray-100 bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="mx-auto mb-10 max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             {c.heading}
@@ -331,7 +331,7 @@ function Comparison({ t }: { t: PricingContent }) {
 function Drivers({ t }: { t: PricingContent }) {
   return (
     <section className="border-b border-gray-100 bg-gray-50">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             {t.drivers.heading}
@@ -365,7 +365,7 @@ function Drivers({ t }: { t: PricingContent }) {
 function WhyNotPerUser({ t }: { t: PricingContent }) {
   return (
     <section className="border-b border-gray-100 bg-white">
-      <div className="mx-auto max-w-3xl px-6 py-20">
+      <div className="mx-auto max-w-3xl px-6 py-10">
         <div className="border-l-4 border-primary pl-6">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             {t.whyNotPerUser.heading}
@@ -384,7 +384,7 @@ function WhyNotPerUser({ t }: { t: PricingContent }) {
 function Faq({ t }: { t: PricingContent }) {
   return (
     <section className="border-b border-gray-100 bg-gray-50">
-      <div className="mx-auto max-w-3xl px-6 py-20">
+      <div className="mx-auto max-w-3xl px-6 py-10">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             {t.faq.heading}
@@ -407,7 +407,7 @@ function FinalCta({
 }) {
   return (
     <section className="bg-primary-strong text-white">
-      <div className="mx-auto max-w-4xl px-6 py-20 text-center">
+      <div className="mx-auto max-w-4xl px-6 py-10 text-center">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
           {t.finalCta.heading}
         </h2>
