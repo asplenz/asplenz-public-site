@@ -8,17 +8,11 @@ description_fr: "Tarification flexible pour les institutions régulées et les p
 
 <!-- @lang en -->
 
-# Pricing
+# Built for regulated institutions.<br/>Designed to scale with your business.
 
-Reference content for the /pricing page. The page is composed as a custom React layout ; this markdown is the source of the wording.
+Choose Knowledge for your own compliance operations, or embed it into your platform as a white-label compliance decision layer.
 
-## Hero
-
-- Eyebrow : PRICING
-- Heading : Built for regulated institutions. Designed to scale with your business.
-- Sub : Choose Knowledge for your own compliance operations, or embed it into your platform as a white-label compliance decision layer.
-- Primary CTA : Discuss your requirements (contact)
-- Secondary CTA : Explore the platform (/product)
+**Discuss your requirements · Explore the platform**
 
 ## Simple commercial principles
 
@@ -36,14 +30,15 @@ Core platform pricing is agreed annually, with clear limits for institutions, en
 
 LLM usage is monitored separately through the operator dashboard. AI remains outside the deterministic decision path.
 
-## Plan 1 : Knowledge Enterprise
+## Two ways to buy Knowledge
 
-- Label : FOR REGULATED INSTITUTIONS
-- Title : Knowledge Enterprise
-- Price : From €36,000 / year
-- Price note : Final pricing depends on deployment, usage, integrations and support requirements.
-- Description : For banks, wealth managers, insurers and other regulated institutions operating Knowledge under the Knowledge brand.
-- CTA : Request Enterprise pricing
+### Knowledge Enterprise
+
+*For regulated institutions*
+
+**From €36,000** — final pricing depends on deployment, usage, integrations and support requirements.
+
+For banks, wealth managers, insurers and other regulated institutions operating Knowledge under the Knowledge brand.
 
 Included capabilities :
 
@@ -61,14 +56,15 @@ Included capabilities :
 - One production institution
 - Development and testing environments
 
-## Plan 2 : Knowledge OEM
+**→ Request Enterprise pricing**
 
-- Label : FOR INTEGRATORS AND PLATFORM PROVIDERS
-- Title : Knowledge OEM
-- Price : Custom annual licence
-- Description : For technology providers that want to embed, operate and redistribute Knowledge under their own brand.
-- CTA : Discuss an OEM partnership
-- Small note : OEM pricing is based on distribution scope, number of client institutions, operational responsibility, support level and deployment model.
+### Knowledge OEM
+
+*For integrators and platform providers*
+
+**Custom annual licence**
+
+For technology providers that want to embed, operate and redistribute Knowledge under their own brand.
 
 Included capabilities :
 
@@ -85,15 +81,17 @@ Included capabilities :
 - Product updates
 - Commercial usage rights defined by contract
 
+*OEM pricing is based on distribution scope, number of client institutions, operational responsibility, support level and deployment model.*
+
+**→ Discuss an OEM partnership**
+
 ## Founding Design Partner Programme
 
-Presented as a limited partnership programme, not a discounted tier.
+We work with a limited number of strategic partners that want to shape the next generation of compliance infrastructure.
 
-Intro : We work with a limited number of strategic partners that want to shape the next generation of compliance infrastructure.
+Founding Design Partners receive preferential commercial terms, early access to new capabilities and direct product collaboration. In return, partners commit to structured product feedback, recurring design reviews and a meaningful deployment plan.
 
-Body : Founding Design Partners receive preferential commercial terms, early access to new capabilities and direct product collaboration. In return, partners commit to structured product feedback, recurring design reviews and a meaningful deployment plan.
-
-What partners receive :
+### What partners receive
 
 - Preferential launch terms
 - Direct access to the product team
@@ -102,7 +100,7 @@ What partners receive :
 - Joint architecture and deployment reviews
 - Partner enablement
 
-Expected commitments :
+### Expected commitments
 
 - Structured monthly or quarterly feedback
 - Access to anonymised operational feedback
@@ -110,33 +108,30 @@ Expected commitments :
 - A multi-year commercial commitment
 - Reference or case-study participation when permitted
 
-CTA : Apply as a Design Partner
-Note : Participation is selective and subject to mutual fit.
+*Participation is selective and subject to mutual fit.*
+
+**→ Apply as a Design Partner**
 
 ## Feature comparison
 
-Two columns : Knowledge Enterprise, Knowledge OEM.
-
-| Capability | Enterprise | OEM |
+| Capability | Knowledge Enterprise | Knowledge OEM |
 |---|---|---|
-| Deterministic compliance engine | Included | Included |
-| Policy, Rule and Target model | Included | Included |
-| Approvals and Overrides | Included | Included |
-| Replayable audit trail | Included | Included |
-| Natural-language explanations | Included | Included |
-| API access | Included | Included |
-| Knowledge branding | Included | Optional |
-| White label | (not included) | Included |
-| Multi-institution control plane | (not included) | Included |
+| Deterministic compliance engine | ✓ | ✓ |
+| Policy, Rule and Target model | ✓ | ✓ |
+| Approvals and Overrides | ✓ | ✓ |
+| Replayable audit trail | ✓ | ✓ |
+| Natural-language explanations | ✓ | ✓ |
+| API access | ✓ | ✓ |
+| Knowledge branding | ✓ | Optional |
+| White label | ✗ | ✓ |
+| Multi-institution control plane | ✗ | ✓ |
 | Tenant monitoring | Single institution | Multi-institution |
 | LLM cost monitoring | Institution view | Partner-wide view |
-| Redistribution rights | (not included) | Included |
-| Partner enablement | (not included) | Included |
+| Redistribution rights | ✗ | ✓ |
+| Partner enablement | ✗ | ✓ |
 | Commercial model | Annual subscription | OEM licence agreement |
 
-## What determines pricing?
-
-Four cards :
+## What determines pricing ?
 
 ### Deployment model
 
@@ -154,7 +149,7 @@ Production environments, tenants, transaction volume, storage and retention requ
 
 Support hours, response times, security reviews, regulatory requirements and service-level commitments.
 
-Note : An institution may operate several development, testing and production tenants. Raw tenant count is not the only pricing metric.
+*An institution may operate several development, testing and production tenants. Raw tenant count is not the only pricing metric.*
 
 ## Why Knowledge is not priced per user
 
@@ -164,70 +159,63 @@ A decision may be initiated by a compliance officer, an order management system,
 
 Pricing therefore reflects platform scope, institutional deployment and operational responsibility rather than login counts.
 
-## FAQ
+## Frequently asked questions
 
-### Is there a free plan?
+### Is there a free plan ?
 
 No. Knowledge is designed for regulated production environments and requires solution design, onboarding and governance configuration.
 
-### Can we run a pilot?
+### Can we run a pilot ?
 
 Yes. A time-bounded paid pilot can be defined around a specific compliance workflow, integration or institution.
 
-### Do you charge per user?
+### Do you charge per user ?
 
 No. Knowledge is not priced per seat. Commercial terms reflect the deployment and operational scope of the platform.
 
-### Do you charge per API request?
+### Do you charge per API request ?
 
 Normal usage is covered by an agreed platform capacity. Exceptional volumes or infrastructure requirements may be addressed in the commercial agreement.
 
-### How are tenants counted?
+### How are tenants counted ?
 
 Tenants are used for technical and operational isolation. Pricing primarily considers client institutions and overall operating scope, since one institution may require several development, testing and production tenants.
 
-### How are LLM costs handled?
+### How are LLM costs handled ?
 
 Knowledge exposes LLM consumption and cost monitoring through its dashboards. Billing and provider arrangements are agreed according to the deployment model.
 
-### Can Knowledge be fully white-labelled?
+### Can Knowledge be fully white-labelled ?
 
 Yes. The OEM edition supports white-label deployment and contractual redistribution rights.
 
-### Can we host Knowledge ourselves?
+### Can we host Knowledge ourselves ?
 
 Supported deployment models are assessed during solution design. Hosting, security and operational responsibilities are defined in the commercial agreement.
 
-### Is the AI involved in compliance decisions?
+### Is the AI involved in compliance decisions ?
 
 No. The critical decision path is deterministic. AI is used only for grounded natural-language explanations and related assistance outside the verdict-producing runtime.
 
-### Do you offer exclusivity?
+### Do you offer exclusivity ?
 
 Exclusivity is not included by default. Any geographic, sector-specific or commercial exclusivity requires a separate agreement, minimum commitments and defined performance conditions.
 
-## Final CTA
+## Define the right commercial model for your deployment
 
-- Heading : Define the right commercial model for your deployment
-- Copy : Tell us whether you are deploying Knowledge inside your institution or embedding it into a platform for your clients.
-- Primary CTA : Talk to us (contact)
-- Secondary CTA : Explore Knowledge (/product)
+Tell us whether you are deploying Knowledge inside your institution or embedding it into a platform for your clients.
+
+**Talk to us · Explore Knowledge**
 
 <!-- @lang fr -->
 
-# Tarifs
+# Conçu pour les institutions régulées.<br/>Pensé pour grandir avec votre activité.
 
-Contenu de référence pour la page /pricing. La page est composée comme un layout React custom ; ce markdown est la source du wording.
+Choisissez Knowledge pour vos propres opérations compliance, ou embarquez-le dans votre plateforme comme couche de décision compliance en marque blanche.
 
-## Hero
+**Discuter de vos besoins · Explorer la plateforme**
 
-- Eyebrow : TARIFS
-- Titre : Conçu pour les institutions régulées. Pensé pour grandir avec votre activité.
-- Sub : Choisissez Knowledge pour vos propres opérations compliance, ou embarquez-le dans votre plateforme comme couche de décision compliance en marque blanche.
-- CTA principal : Discuter de vos besoins (contact)
-- CTA secondaire : Explorer la plateforme (/product)
-
-## Principes commerciaux simples
+## Des principes commerciaux simples
 
 La tarification Knowledge reflète la valeur et le périmètre opérationnel de la plateforme, pas le nombre d'employés qui se connectent.
 
@@ -243,14 +231,15 @@ La tarification cœur plateforme est convenue annuellement, avec des limites cla
 
 L'usage IA est monitoré séparément dans le dashboard opérateur. L'IA reste hors du chemin de décision déterministe.
 
-## Plan 1 : Knowledge Enterprise
+## Deux façons d'acheter Knowledge
 
-- Label : POUR LES INSTITUTIONS RÉGULÉES
-- Titre : Knowledge Enterprise
-- Prix : À partir de 36 000 € / an
-- Note prix : Le prix final dépend du déploiement, de l'usage, des intégrations et des besoins de support.
-- Description : Pour les banques, gérants de patrimoine, assureurs et autres institutions régulées qui opèrent Knowledge sous la marque Knowledge.
-- CTA : Demander un devis Enterprise
+### Knowledge Enterprise
+
+*Pour les institutions régulées*
+
+**À partir de 36 000 €** — le prix final dépend du déploiement, de l'usage, des intégrations et des besoins de support.
+
+Pour les banques, gérants de patrimoine, assureurs et autres institutions régulées qui opèrent Knowledge sous la marque Knowledge.
 
 Capacités incluses :
 
@@ -268,14 +257,15 @@ Capacités incluses :
 - Une institution en production
 - Environnements de développement et de test
 
-## Plan 2 : Knowledge OEM
+**→ Demander un devis Enterprise**
 
-- Label : POUR LES INTÉGRATEURS ET PLATEFORMES
-- Titre : Knowledge OEM
-- Prix : Licence annuelle sur mesure
-- Description : Pour les fournisseurs technologiques qui veulent embarquer, opérer et redistribuer Knowledge sous leur propre marque.
-- CTA : Discuter d'un partenariat OEM
-- Petite note : La tarification OEM dépend du périmètre de distribution, du nombre d'institutions clientes, de la responsabilité opérationnelle, du niveau de support et du modèle de déploiement.
+### Knowledge OEM
+
+*Pour les intégrateurs et plateformes*
+
+**Licence annuelle sur mesure**
+
+Pour les fournisseurs technologiques qui veulent embarquer, opérer et redistribuer Knowledge sous leur propre marque.
 
 Capacités incluses :
 
@@ -292,15 +282,17 @@ Capacités incluses :
 - Mises à jour produit
 - Droits d'usage commercial définis par contrat
 
+*La tarification OEM dépend du périmètre de distribution, du nombre d'institutions clientes, de la responsabilité opérationnelle, du niveau de support et du modèle de déploiement.*
+
+**→ Discuter d'un partenariat OEM**
+
 ## Programme Founding Design Partner
 
-Présenté comme un programme de partenariat limité, pas comme un tier à prix réduit.
+Nous travaillons avec un nombre limité de partenaires stratégiques qui veulent façonner la prochaine génération d'infrastructure compliance.
 
-Intro : Nous travaillons avec un nombre limité de partenaires stratégiques qui veulent façonner la prochaine génération d'infrastructure compliance.
+Les Founding Design Partners reçoivent des conditions commerciales préférentielles, un accès en avant-première aux nouvelles capacités et une collaboration produit directe. En retour, les partenaires s'engagent sur un feedback produit structuré, des revues de design récurrentes et un plan de déploiement significatif.
 
-Corps : Les Founding Design Partners reçoivent des conditions commerciales préférentielles, un accès en avant-première aux nouvelles capacités et une collaboration produit directe. En retour, les partenaires s'engagent sur un feedback produit structuré, des revues de design récurrentes et un plan de déploiement significatif.
-
-Ce que les partenaires reçoivent :
+### Ce que les partenaires reçoivent
 
 - Conditions de lancement préférentielles
 - Accès direct à l'équipe produit
@@ -309,7 +301,7 @@ Ce que les partenaires reçoivent :
 - Revues d'architecture et de déploiement conjointes
 - Enablement partenaire
 
-Engagements attendus :
+### Engagements attendus
 
 - Feedback structuré mensuel ou trimestriel
 - Accès à du feedback opérationnel anonymisé
@@ -317,33 +309,30 @@ Engagements attendus :
 - Un engagement commercial pluri-annuel
 - Participation en référence ou étude de cas quand autorisé
 
-CTA : Postuler comme Design Partner
-Note : La participation est sélective et soumise à un fit mutuel.
+*La participation est sélective et soumise à un fit mutuel.*
+
+**→ Postuler comme Design Partner**
 
 ## Comparaison des capacités
 
-Deux colonnes : Knowledge Enterprise, Knowledge OEM.
-
-| Capacité | Enterprise | OEM |
+| Capacité | Knowledge Enterprise | Knowledge OEM |
 |---|---|---|
-| Moteur compliance déterministe | Inclus | Inclus |
-| Modèle Policy, Rule et Target | Inclus | Inclus |
-| Approvals et Overrides | Inclus | Inclus |
-| Piste d'audit rejouable | Inclus | Inclus |
-| Explications en langage naturel | Inclus | Inclus |
-| Accès API | Inclus | Inclus |
-| Marque Knowledge | Incluse | Optionnelle |
-| Marque blanche | (non inclus) | Inclus |
-| Control plane multi-institutions | (non inclus) | Inclus |
+| Moteur compliance déterministe | ✓ | ✓ |
+| Modèle Policy, Rule et Target | ✓ | ✓ |
+| Approvals et Overrides | ✓ | ✓ |
+| Piste d'audit rejouable | ✓ | ✓ |
+| Explications en langage naturel | ✓ | ✓ |
+| Accès API | ✓ | ✓ |
+| Marque Knowledge | ✓ | Optionnelle |
+| Marque blanche | ✗ | ✓ |
+| Control plane multi-institutions | ✗ | ✓ |
 | Monitoring tenants | Institution unique | Multi-institutions |
 | Monitoring coût IA | Vue institution | Vue partenaire |
-| Droits de redistribution | (non inclus) | Inclus |
-| Enablement partenaire | (non inclus) | Inclus |
+| Droits de redistribution | ✗ | ✓ |
+| Enablement partenaire | ✗ | ✓ |
 | Modèle commercial | Abonnement annuel | Contrat de licence OEM |
 
 ## Qu'est-ce qui détermine le prix ?
-
-Quatre cartes :
 
 ### Modèle de déploiement
 
@@ -361,7 +350,7 @@ Environnements de production, tenants, volume de transactions, stockage et exige
 
 Heures de support, temps de réponse, revues sécurité, exigences réglementaires et engagements de service.
 
-Note : Une institution peut opérer plusieurs tenants de développement, test et production. Le compte brut de tenants n'est pas la seule métrique de prix.
+*Une institution peut opérer plusieurs tenants de développement, test et production. Le compte brut de tenants n'est pas la seule métrique de prix.*
 
 ## Pourquoi Knowledge n'est pas tarifé au siège
 
@@ -371,7 +360,7 @@ Une décision peut être initiée par un compliance officer, un order management
 
 Le prix reflète donc le périmètre plateforme, le déploiement institutionnel et la responsabilité opérationnelle plutôt que le nombre de logins.
 
-## FAQ
+## Questions fréquentes
 
 ### Existe-t-il une offre gratuite ?
 
@@ -413,9 +402,8 @@ Non. Le chemin de décision critique est déterministe. L'IA est utilisée uniqu
 
 L'exclusivité n'est pas incluse par défaut. Toute exclusivité géographique, sectorielle ou commerciale nécessite un accord séparé, des engagements minimums et des conditions de performance définies.
 
-## CTA final
+## Définissons le bon modèle commercial pour votre déploiement
 
-- Titre : Définissons le bon modèle commercial pour votre déploiement
-- Copy : Dites-nous si vous déployez Knowledge dans votre institution ou l'embarquez dans une plateforme pour vos clients.
-- CTA principal : Nous parler (contact)
-- CTA secondaire : Explorer Knowledge (/product)
+Dites-nous si vous déployez Knowledge dans votre institution ou l'embarquez dans une plateforme pour vos clients.
+
+**Nous parler · Explorer Knowledge**
