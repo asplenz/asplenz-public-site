@@ -2,17 +2,21 @@
 slug: company
 title_en: "Company"
 title_fr: "Société"
-description_en: "Asplenz builds Knowledge, the compliance runtime for regulated industries."
-description_fr: "Asplenz construit Knowledge, le runtime compliance pour les secteurs régulés."
+description_en: "We build Knowledge, the Compliance Decision Platform for regulated industries."
+description_fr: "Nous construisons Knowledge, la Compliance Decision Platform pour les secteurs régulés."
 ---
 
 <!-- @lang en -->
 
 # Asplenz
 
-Asplenz builds Knowledge, the compliance runtime for regulated industries. We started from a simple observation : compliance work is documented in memos, then re-implemented as hard-coded checks inside business software, then re-implemented again as post-trade reviews. Three copies of the same discipline, always out of sync.
+We build Knowledge, the Compliance Decision Platform for regulated industries.
 
-Knowledge collapses the three copies into one runtime that compliance teams control directly, that business systems integrate against, and that produces the audit trail a regulator asks for : without any of the three sides doing translation work.
+## Why we started
+
+Compliance work in regulated industries is typically documented in memos, then re-implemented as hard-coded checks inside business software, then re-implemented again as post-trade reviews. Three copies of the same discipline, always out of sync.
+
+Knowledge collapses the three copies into one runtime that compliance teams control directly, that business systems integrate against, and that produces the audit trail a regulator asks for, without any of the three sides doing translation work.
 
 ## What we care about
 
@@ -30,13 +34,19 @@ The fastest way to see if Knowledge fits your situation is a working demo on a d
 
 We answer within one business day.
 
+**→ Write to us**
+
 <!-- @lang fr -->
 
 # Asplenz
 
-Asplenz construit Knowledge, le runtime compliance pour les secteurs régulés. Nous sommes partis d'un constat simple : le travail compliance est documenté dans des mémos, puis réimplémenté en dur dans les logiciels métier, puis réimplémenté encore en revues post-trade. Trois copies de la même discipline, toujours désynchronisées.
+Nous construisons Knowledge, la Compliance Decision Platform pour les secteurs régulés.
 
-Knowledge collapse les trois copies en un runtime unique que les équipes compliance contrôlent directement, contre lequel les systèmes métier s'intègrent, et qui produit la piste d'audit qu'un régulateur demande : sans qu'aucun des trois côtés fasse un travail de traduction.
+## Pourquoi nous avons commencé
+
+Le travail compliance dans les secteurs régulés est typiquement documenté dans des mémos, puis réimplémenté en dur dans les logiciels métier, puis réimplémenté encore en revues post-trade. Trois copies de la même discipline, toujours désynchronisées.
+
+Knowledge collapse les trois copies en un runtime unique que les équipes compliance contrôlent directement, contre lequel les systèmes métier s'intègrent, et qui produit la piste d'audit qu'un régulateur demande, sans qu'aucun des trois côtés fasse un travail de traduction.
 
 ## Ce qui nous importe
 
@@ -53,3 +63,5 @@ Le plus rapide pour évaluer si Knowledge convient à votre situation est une d�
 **Email** : [contact@asplenz.com](mailto:contact@asplenz.com)
 
 Nous répondons sous un jour ouvré.
+
+**→ Nous écrire**
