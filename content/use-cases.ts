@@ -1,5 +1,16 @@
 import type { Locale } from '@/lib/i18n'
 
+export type UseCaseDecisionTableRow = {
+  cells: string[]
+}
+
+export type UseCaseDecisionTable = {
+  caption: string
+  columns: string[]
+  rows: UseCaseDecisionTableRow[]
+  footer: string
+}
+
 export type UseCasesContent = {
   hero: {
     eyebrow: string
@@ -12,6 +23,7 @@ export type UseCasesContent = {
     tag: string
     title: string
     body: string[]
+    decisionTable?: UseCaseDecisionTable
     fitsLabel: string
     fits: string
   }[]
@@ -49,8 +61,18 @@ const EN: UseCasesContent = {
       title: 'Wealth management and private banking',
       body: [
         'A relationship manager instructs a trade for a client with a conservative mandate. Before it reaches the market, the order management system checks the trade against the desk\'s rules : jurisdiction, client classification, mandate type, asset class, post-trade exposures. The applicable rules evaluate the case (equity cap, single-name cap, suitability sign-off, jurisdiction-specific requirements).',
-        'If the trade is blocked, the relationship manager opens an approval request in one click. The compliance officer decides once. An authorised exception is created, scoped to the case and bounded for the duration the officer chose (a single trade, a business day, a week). The re-check returns allowed. Every step is a record an auditor can reconstruct months later.',
+        'The equity cap is not a single number. It is a decision table : one Rule that carries different thresholds for different client segments, evaluated top-to-bottom until a row matches.',
       ],
+      decisionTable: {
+        caption: 'The equity cap rule, one Rule with three rows.',
+        columns: ['Client segment', 'Equity cap'],
+        rows: [
+          { cells: ['Retail · lower net worth', '40 %'] },
+          { cells: ['Retail · high net worth', '50 %'] },
+          { cells: ['Accredited investor', '70 %'] },
+        ],
+        footer: 'Three thresholds, one governance lifecycle. Compliance approves the table, not three separate rules.',
+      },
       fitsLabel: 'Fits',
       fits: 'Private banking desks, asset managers, family offices, brokerage compliance.',
     },
@@ -128,8 +150,18 @@ const FR: UseCasesContent = {
       title: 'Gestion de patrimoine et banque privée',
       body: [
         'Un chargé de clientèle prépare un trade pour un client au mandat conservateur. Avant que l\'ordre n\'atteigne le marché, l\'order management system confronte le trade aux règles du desk : juridiction, classification client, type de mandat, classe d\'actif, expositions post-trade. Les règles applicables évaluent le cas (plafond equity, plafond single-name, attestation suitability, exigences juridictionnelles).',
-        'Si le trade est bloqué, le chargé de clientèle ouvre une demande d\'approbation en un clic. Le compliance officer décide une fois. Une exception autorisée est créée, scopée au cas et bornée à la durée que le compliance officer a choisie (un seul trade, une journée, une semaine). Le re-check renvoie autorisé. Chaque étape est un enregistrement qu\'un auditeur peut reconstituer des mois plus tard.',
+        'Le plafond equity n\'est pas un nombre unique. C\'est une decision table : une Rule qui porte différents seuils selon le segment client, évaluée de haut en bas jusqu\'à ce qu\'une rangée matche.',
       ],
+      decisionTable: {
+        caption: 'La règle de plafond equity, une Rule à trois rangées.',
+        columns: ['Segment client', 'Plafond equity'],
+        rows: [
+          { cells: ['Retail · lower net worth', '40 %'] },
+          { cells: ['Retail · high net worth', '50 %'] },
+          { cells: ['Accredited investor', '70 %'] },
+        ],
+        footer: 'Trois seuils, un seul cycle de gouvernance. Compliance approuve la table, pas trois règles séparées.',
+      },
       fitsLabel: 'Convient à',
       fits: 'Desks de banque privée, gérants d\'actifs, family offices, compliance de courtage.',
     },

@@ -6,7 +6,7 @@ import {
   ArrowRight, MessageCircle, Cpu,
 } from 'lucide-react'
 import { isLocale, type Locale } from '@/lib/i18n'
-import { getUseCasesContent, type UseCasesContent } from '@/content/use-cases'
+import { getUseCasesContent, type UseCaseDecisionTable, type UseCasesContent } from '@/content/use-cases'
 
 export async function generateMetadata({
   params,
@@ -97,18 +97,20 @@ function Verticals({ t }: { t: UseCasesContent }) {
                   {isAgent ? (
                     <AgentSplit t={t} />
                   ) : (
-                    <div className="mt-4 space-y-4 text-gray-700 leading-relaxed">
+                    <div className="mt-4 space-y-4 text-gray-800 leading-relaxed">
                       {v.body.map((p, i) => (
                         <p key={i}>{p}</p>
                       ))}
                     </div>
                   )}
 
+                  {v.decisionTable && <VerticalDecisionTable table={v.decisionTable} />}
+
                   <div className="mt-6 rounded-lg bg-gray-50 px-4 py-3">
                     <span className="text-sm font-semibold text-gray-900">
                       {v.fitsLabel} :
                     </span>{' '}
-                    <span className="text-sm text-gray-700">{v.fits}</span>
+                    <span className="text-sm text-gray-800">{v.fits}</span>
                   </div>
                 </div>
               </div>
@@ -117,6 +119,51 @@ function Verticals({ t }: { t: UseCasesContent }) {
         })}
       </div>
     </section>
+  )
+}
+
+function VerticalDecisionTable({ table }: { table: UseCaseDecisionTable }) {
+  return (
+    <div className="mt-6 rounded-2xl border border-primary/30 bg-primary-soft/20 p-5 md:p-6">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary-strong">
+        {table.caption}
+      </p>
+      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+        <table className="w-full border-collapse text-left">
+          <thead className="bg-gray-50">
+            <tr>
+              {table.columns.map((col) => (
+                <th
+                  key={col}
+                  className="border-b border-gray-200 px-4 py-2.5 text-[11px] font-semibold uppercase tracking-wider text-gray-700"
+                >
+                  {col}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {table.rows.map((row) => (
+              <tr key={row.cells.join('|')} className="text-sm text-gray-900">
+                {row.cells.map((cell, i) => (
+                  <td
+                    key={i}
+                    className={
+                      i === row.cells.length - 1
+                        ? 'border-b border-gray-100 px-4 py-2.5 font-semibold text-primary-strong'
+                        : 'border-b border-gray-100 px-4 py-2.5'
+                    }
+                  >
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-3 text-sm font-medium text-gray-900">{table.footer}</p>
+    </div>
   )
 }
 
