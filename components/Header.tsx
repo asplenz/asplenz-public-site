@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { t, type Locale } from '@/lib/i18n'
 import { LangSwitcher } from './LangSwitcher'
+import { MobileMenu } from './MobileMenu'
 
 export function Header({ locale }: { locale: Locale }) {
   const messages = t(locale)
@@ -51,6 +52,7 @@ export function Header({ locale }: { locale: Locale }) {
             {messages.cta.book_demo}
           </Link>
           <LangSwitcher current={locale} />
+          <MobileMenu locale={locale} />
         </div>
       </div>
     </header>
