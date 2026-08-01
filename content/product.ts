@@ -49,9 +49,8 @@ export type ProductContent = {
     heading: string
     intro: string
     brmsLabel: string
-    brmsQuestion: string
     knowledgeLabel: string
-    knowledgeQuestions: string[]
+    questions: { text: string; brmsAnswers: boolean }[]
     closing: string
     captureList: { label: string; body: string }[]
   }
@@ -164,18 +163,17 @@ const EN: ProductContent = {
   },
   captures: {
     heading: 'What Knowledge captures beyond rules',
-    intro: 'A traditional decision engine answers one question. Knowledge answers seven.',
-    brmsLabel: 'A traditional decision engine answers',
-    brmsQuestion: 'What rule fired?',
-    knowledgeLabel: 'Knowledge answers',
-    knowledgeQuestions: [
-      'What rule fired?',
-      'Why does this rule exist?',
-      'Who approved it?',
-      'Why was it modified?',
-      'Why was it overridden?',
-      'Why was it paused?',
-      'Why was it attached to this audience?',
+    intro: 'A traditional decision engine answers one question out of seven. Knowledge answers all seven.',
+    brmsLabel: 'A traditional decision engine',
+    knowledgeLabel: 'Knowledge',
+    questions: [
+      { text: 'What rule fired ?', brmsAnswers: true },
+      { text: 'Why does this rule exist ?', brmsAnswers: false },
+      { text: 'Who approved it ?', brmsAnswers: false },
+      { text: 'Why was it modified ?', brmsAnswers: false },
+      { text: 'Why was it overridden ?', brmsAnswers: false },
+      { text: 'Why was it paused ?', brmsAnswers: false },
+      { text: 'Why was it attached to this audience ?', brmsAnswers: false },
     ],
     closing: 'Every governance movement is a first-class object with authorship, timestamp, and full history. There is no ephemeral state in the compliance backbone.',
     captureList: [
@@ -302,18 +300,17 @@ const FR: ProductContent = {
   },
   captures: {
     heading: 'Ce que Knowledge capture au-delà des règles',
-    intro: 'Un moteur de décision classique répond à une question. Knowledge répond à sept.',
-    brmsLabel: 'Un moteur de décision classique répond à',
-    brmsQuestion: 'Quelle règle a fired ?',
-    knowledgeLabel: 'Knowledge répond à',
-    knowledgeQuestions: [
-      'Quelle règle a fired ?',
-      'Pourquoi cette règle existe-t-elle ?',
-      'Qui l\'a approuvée ?',
-      'Pourquoi a-t-elle été modifiée ?',
-      'Pourquoi a-t-elle été overridée ?',
-      'Pourquoi a-t-elle été mise en pause ?',
-      'Pourquoi attachée à cette audience ?',
+    intro: 'Un moteur de décision classique répond à une question sur sept. Knowledge répond aux sept.',
+    brmsLabel: 'Un moteur de décision classique',
+    knowledgeLabel: 'Knowledge',
+    questions: [
+      { text: 'Quelle règle a fired ?', brmsAnswers: true },
+      { text: 'Pourquoi cette règle existe-t-elle ?', brmsAnswers: false },
+      { text: 'Qui l\'a approuvée ?', brmsAnswers: false },
+      { text: 'Pourquoi a-t-elle été modifiée ?', brmsAnswers: false },
+      { text: 'Pourquoi a-t-elle été overridée ?', brmsAnswers: false },
+      { text: 'Pourquoi a-t-elle été mise en pause ?', brmsAnswers: false },
+      { text: 'Pourquoi attachée à cette audience ?', brmsAnswers: false },
     ],
     closing: 'Chaque mouvement de gouvernance est un objet de première classe avec paternité, timestamp et historique complet. Il n\'y a pas d\'état éphémère dans le socle compliance.',
     captureList: [

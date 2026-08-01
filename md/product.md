@@ -92,21 +92,17 @@ Consultations are immutable and cite pinned rule versions, including the row tha
 
 ## What Knowledge captures beyond rules
 
-A traditional decision engine answers one question. Knowledge answers seven.
+A traditional decision engine answers one question out of seven. Knowledge answers all seven.
 
-**A traditional decision engine answers :**
-
-- What rule fired ?
-
-**Knowledge answers :**
-
-- What rule fired ?
-- Why does this rule exist ?
-- Who approved it ?
-- Why was it modified ?
-- Why was it overridden ?
-- Why was it paused ?
-- Why was it attached to this audience ?
+| Question | Traditional decision engine | Knowledge |
+|---|---|---|
+| What rule fired ? | ✓ | ✓ |
+| Why does this rule exist ? | ✗ | ✓ |
+| Who approved it ? | ✗ | ✓ |
+| Why was it modified ? | ✗ | ✓ |
+| Why was it overridden ? | ✗ | ✓ |
+| Why was it paused ? | ✗ | ✓ |
+| Why was it attached to this audience ? | ✗ | ✓ |
 
 Every governance movement is a first-class object with authorship, timestamp, and full history. There is no ephemeral state in the compliance backbone.
 
@@ -221,21 +217,17 @@ Les Consultations sont immuables et citent des versions figées de règles, y co
 
 ## Ce que Knowledge capture au-delà des règles
 
-Un moteur de décision classique répond à une question. Knowledge répond à sept.
+Un moteur de décision classique répond à une question sur sept. Knowledge répond aux sept.
 
-**Un moteur de décision classique répond à :**
-
-- Quelle règle a fired ?
-
-**Knowledge répond à :**
-
-- Quelle règle a fired ?
-- Pourquoi cette règle existe-t-elle ?
-- Qui l'a approuvée ?
-- Pourquoi a-t-elle été modifiée ?
-- Pourquoi a-t-elle été overridée ?
-- Pourquoi a-t-elle été mise en pause ?
-- Pourquoi attachée à cette audience ?
+| Question | Moteur de décision classique | Knowledge |
+|---|---|---|
+| Quelle règle a fired ? | ✓ | ✓ |
+| Pourquoi cette règle existe-t-elle ? | ✗ | ✓ |
+| Qui l'a approuvée ? | ✗ | ✓ |
+| Pourquoi a-t-elle été modifiée ? | ✗ | ✓ |
+| Pourquoi a-t-elle été overridée ? | ✗ | ✓ |
+| Pourquoi a-t-elle été mise en pause ? | ✗ | ✓ |
+| Pourquoi attachée à cette audience ? | ✗ | ✓ |
 
 Chaque mouvement de gouvernance est un objet de première classe avec paternité, timestamp et historique complet. Il n'y a pas d'état éphémère dans le socle compliance.
 

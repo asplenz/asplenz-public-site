@@ -379,23 +379,42 @@ function Captures({ t }: { t: ProductContent }) {
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8">
-            <div className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-gray-500">
+            <div className="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-gray-500">
               <X className="h-4 w-4" aria-hidden />
               {c.brmsLabel}
             </div>
             <ul className="space-y-3">
-              <li className="text-lg font-medium text-gray-800">{c.brmsQuestion}</li>
+              {c.questions.map((q) => (
+                <li
+                  key={q.text}
+                  className={
+                    q.brmsAnswers
+                      ? 'flex items-start gap-3 text-base font-medium text-gray-900'
+                      : 'flex items-start gap-3 text-base text-gray-500 line-through decoration-gray-400 decoration-1'
+                  }
+                >
+                  {q.brmsAnswers ? (
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-success-strong" aria-hidden />
+                  ) : (
+                    <X className="mt-0.5 h-5 w-5 shrink-0 text-gray-400" aria-hidden />
+                  )}
+                  <span>{q.text}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className="rounded-2xl border-2 border-primary bg-white p-8 ring-1 ring-primary/20">
-            <div className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-primary-strong">
+            <div className="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-primary-strong">
               <Check className="h-4 w-4" aria-hidden />
               {c.knowledgeLabel}
             </div>
             <ul className="space-y-3">
-              {c.knowledgeQuestions.map((q) => (
-                <li key={q} className="text-base font-medium text-gray-900">{q}</li>
+              {c.questions.map((q) => (
+                <li key={q.text} className="flex items-start gap-3 text-base font-medium text-gray-900">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+                  <span>{q.text}</span>
+                </li>
               ))}
             </ul>
           </div>
