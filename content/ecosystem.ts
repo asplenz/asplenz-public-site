@@ -31,12 +31,20 @@ export type EcosystemArchitecture = {
   nodes: EcosystemArchitectureNode[]
 }
 
+export type EcosystemHeroCategoryIcon = 'decisions' | 'workflow' | 'governance' | 'lifecycle'
+
+export type EcosystemHeroCategory = {
+  icon: EcosystemHeroCategoryIcon
+  label: string
+}
+
 export type EcosystemContent = {
   hero: {
     eyebrow: string
     heading: string
     lead: string
-    body: string[]
+    categoriesLead: string
+    categories: EcosystemHeroCategory[]
     highlight: string
     outro: string
   }
@@ -74,11 +82,12 @@ const EN: EcosystemContent = {
     eyebrow: 'ECOSYSTEM',
     heading: 'Every platform solves a different problem.',
     lead: 'Enterprise architectures rarely rely on a single platform.',
-    body: [
-      'Some execute business decisions.',
-      'Some orchestrate workflows.',
-      'Some document governance.',
-      'Some manage client lifecycle.',
+    categoriesLead: 'Each platform category solves a different problem.',
+    categories: [
+      { icon: 'decisions', label: 'Execute business decisions' },
+      { icon: 'workflow', label: 'Orchestrate workflows' },
+      { icon: 'governance', label: 'Document governance' },
+      { icon: 'lifecycle', label: 'Manage client lifecycle' },
     ],
     highlight:
       'Knowledge focuses on one problem : executing the compliance operating model.',
@@ -312,11 +321,12 @@ const FR: EcosystemContent = {
     eyebrow: 'ÉCOSYSTÈME',
     heading: 'Chaque plateforme résout un problème différent.',
     lead: 'Les architectures enterprise reposent rarement sur une seule plateforme.',
-    body: [
-      "Certaines exécutent des décisions métier.",
-      "Certaines orchestrent des workflows.",
-      "Certaines documentent la gouvernance.",
-      "Certaines gèrent le cycle de vie client.",
+    categoriesLead: 'Chaque catégorie de plateforme résout un problème différent.',
+    categories: [
+      { icon: 'decisions', label: 'Exécuter des décisions métier' },
+      { icon: 'workflow', label: 'Orchestrer des workflows' },
+      { icon: 'governance', label: 'Documenter la gouvernance' },
+      { icon: 'lifecycle', label: 'Gérer le cycle de vie client' },
     ],
     highlight:
       "Knowledge se concentre sur un seul problème : exécuter le modèle opérationnel compliance.",
