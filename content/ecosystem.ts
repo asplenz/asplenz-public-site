@@ -1,275 +1,552 @@
 import type { Locale } from '@/lib/i18n'
 
-export type EcosystemItem = {
-  id: string
+export type EcosystemPlatformRow = {
   name: string
-  tag: string
-  strengths: string[]
+  isKnowledge?: boolean
+  purpose: string
+  models: string
+  useCases: string
+}
+
+export type EcosystemTogetherBlock = {
+  id: string
+  partner: string
+  partnerRole: string
+  knowledgeRole: string
+  contrast?: {
+    partnerQuestion: string
+    knowledgeQuestion: string
+  }
+  body: string[]
+}
+
+export type EcosystemArchitectureNode = {
+  label: string
+  emphasis?: boolean
+}
+
+export type EcosystemArchitecture = {
+  id: string
+  title: string
+  nodes: EcosystemArchitectureNode[]
 }
 
 export type EcosystemContent = {
   hero: {
     eyebrow: string
     heading: string
-    sub: string
+    lead: string
+    body: string[]
+    highlight: string
+    outro: string
   }
-  strengthsLabel: string
-  items: EcosystemItem[]
-  conclusion: {
+  tableSection: {
     heading: string
-    body: string
+    columns: {
+      product: string
+      purpose: string
+      models: string
+      useCases: string
+    }
+    rows: EcosystemPlatformRow[]
+  }
+  fitSection: {
+    heading: string
+    intro: string[]
+    blocks: EcosystemTogetherBlock[]
+  }
+  architectureSection: {
+    heading: string
+    lead: string
+    items: EcosystemArchitecture[]
+  }
+  philosophy: {
+    eyebrow: string
+    heading: string
+    lines: string[]
+    highlight: string
+    closing: string[]
   }
 }
 
 const EN: EcosystemContent = {
   hero: {
     eyebrow: 'ECOSYSTEM',
-    heading: 'Ecosystem',
-    sub: 'The compliance and decisioning landscape at a glance. Strengths of each platform, side by side.',
+    heading: 'Every platform solves a different problem.',
+    lead: 'Enterprise architectures rarely rely on a single platform.',
+    body: [
+      'Some execute business decisions.',
+      'Some orchestrate workflows.',
+      'Some document governance.',
+      'Some manage client lifecycle.',
+    ],
+    highlight:
+      'Knowledge focuses on one problem : executing the compliance operating model.',
+    outro:
+      'Rather than replacing your existing stack, Knowledge is designed to integrate with it, or replace only the components that make sense.',
   },
-  strengthsLabel: 'Strengths',
-  items: [
-    {
-      id: 'knowledge',
-      name: 'Asplenz Knowledge',
-      tag: 'COMPLIANCE DECISION PLATFORM',
-      strengths: [
-        'Native compliance data model : Policy, Rule, Target, Approval, Override, Pause, Consultation, GovernanceNote, Event',
-        'Deterministic execution ; AI kept strictly out of the decision path',
-        'Replayable audit trail with pinned rule versions, years later',
-        'First-class Approvals, Overrides and Pauses as objects',
-        'Multi-audience attribution without rule duplication',
-        'Multi-channel human loop : REST API, MCP for AI agents, Slack, email',
-        'White-label deployment : Organisation over Tenants with structural confidentiality wall',
-      ],
+  tableSection: {
+    heading: 'Platform comparison',
+    columns: {
+      product: 'Product',
+      purpose: 'Primary purpose',
+      models: 'What the product lets you model',
+      useCases: 'Typical use cases',
     },
-    {
-      id: 'internal-development',
-      name: 'Internal Development',
-      tag: 'BUILD IT YOURSELF',
-      strengths: [
-        'Perfect fit for today\'s requirements',
-        'Full control over implementation',
-        'Existing development standards and CI',
-        'No licensing costs',
-        'Deep knowledge inside the team',
-      ],
-    },
-    {
-      id: 'decisionrules',
-      name: 'decisionrules.io',
-      tag: 'MODERN BRMS',
-      strengths: [
-        'Mature decision table experience',
-        'Fast rule execution',
-        'API-first architecture',
-        'Low-code rule authoring',
-        'Easy adoption for development teams',
-      ],
-    },
-    {
-      id: 'ibm-odm',
-      name: 'IBM Operational Decision Manager',
-      tag: 'ENTERPRISE BRMS',
-      strengths: [
-        'Enterprise maturity (20+ years)',
-        'Large ecosystem and partner network',
-        'DMN standard support',
-        'Enterprise governance and controls',
-        'Proven scalability',
-        'Existing presence in many banks',
-      ],
-    },
-    {
-      id: 'camunda',
-      name: 'Camunda',
-      tag: 'BPM ORCHESTRATION',
-      strengths: [
-        'Workflow orchestration',
-        'BPMN standard',
-        'Human task management',
-        'Process visibility and monitoring',
-        'Enterprise integrations',
-      ],
-    },
-    {
-      id: 'taktile',
-      name: 'Taktile',
-      tag: 'AI DECISIONING',
-      strengths: [
-        'Risk scoring and credit underwriting',
-        'AI-assisted decisioning',
-        'Financial services expertise',
-        'Excellent user experience',
-        'Continuous model iteration',
-      ],
-    },
-    {
-      id: 'grc',
-      name: 'ServiceNow GRC · OneTrust · MetricStream',
-      tag: 'GRC PLATFORMS',
-      strengths: [
-        'Policy documentation and taxonomy',
-        'Risk registers',
-        'Internal controls catalogue',
-        'Governance workflows',
-        'Regulatory mapping and reporting',
-      ],
-    },
-    {
-      id: 'drools',
-      name: 'Drools · Red Hat Decision Manager',
-      tag: 'OPEN-SOURCE RULES',
-      strengths: [
-        'Very flexible inference engine',
-        'Mature and battle-tested',
-        'Open source with commercial support option',
-        'Highly customisable',
-        'Excellent for embedded rule execution',
-      ],
-    },
-    {
-      id: 'fenergo',
-      name: 'Fenergo',
-      tag: 'KYC · ONBOARDING',
-      strengths: [
-        'Deep KYC expertise',
-        'Client onboarding workflows',
-        'AML workflows',
-        'Pre-packaged regulatory content',
-        'Financial institution focus',
-      ],
-    },
-  ],
-  conclusion: {
-    heading: 'One philosophy',
-    body: 'Knowledge is designed to integrate with existing enterprise architecture as often as it replaces it. Whether your organisation already operates BPM, BRMS, GRC or decisioning platforms depends on your context, not on a predetermined architecture. Our goal is to provide deterministic compliance execution, replayable governance and a compliance operating model wherever those capabilities are needed.',
+    rows: [
+      {
+        name: 'Asplenz Knowledge',
+        isKnowledge: true,
+        purpose: 'Compliance decision platform',
+        models:
+          'Policies, Rules, Decision Tables, Targets, Approvals, Overrides, Consultations, Governance',
+        useCases:
+          'Regulatory compliance, internal policies, product eligibility, suitability, compliance operations',
+      },
+      {
+        name: 'IBM ODM',
+        purpose: 'Enterprise decision management',
+        models: 'Business rules, Decision Tables, Decision Services',
+        useCases:
+          'Enterprise decision services, pricing, eligibility, routing',
+      },
+      {
+        name: 'GoRules',
+        purpose: 'Decision execution',
+        models: 'Decision Graphs, Decision Tables, calculations',
+        useCases:
+          'Credit decisions, pricing, fraud, operational automation',
+      },
+      {
+        name: 'DecisionRules',
+        purpose: 'Business decision automation',
+        models:
+          'Decision Tables, Decision Trees, Decision Flows, scripts',
+        useCases:
+          'Pricing, routing, fee calculation, operational rules',
+      },
+      {
+        name: 'Camunda',
+        purpose: 'Process orchestration',
+        models: 'BPMN processes, human tasks, events',
+        useCases:
+          'Workflow automation, case management, long-running processes',
+      },
+      {
+        name: 'Taktile',
+        purpose: 'AI decisioning',
+        models: 'Risk strategies, scoring pipelines, decision flows',
+        useCases: 'Credit underwriting, fraud detection',
+      },
+      {
+        name: 'ServiceNow GRC · OneTrust · MetricStream',
+        purpose: 'Governance',
+        models: 'Policies, risks, controls, evidence',
+        useCases: 'Governance, regulatory documentation',
+      },
+      {
+        name: 'Fenergo',
+        purpose: 'Client lifecycle management',
+        models: 'KYC, AML, onboarding workflows',
+        useCases: 'Client onboarding',
+      },
+      {
+        name: 'Drools · Red Hat DM',
+        purpose: 'Rule engine',
+        models: 'Rules, facts, inference logic',
+        useCases: 'Embedded business rules',
+      },
+      {
+        name: 'Internal development',
+        purpose: 'Custom platform',
+        models: 'Anything',
+        useCases: 'Organisation-specific platforms',
+      },
+    ],
+  },
+  fitSection: {
+    heading: 'How Knowledge fits',
+    intro: [
+      'Knowledge does not compete with every platform.',
+      'It complements many of them.',
+      'Its role depends on the architecture you already have.',
+    ],
+    blocks: [
+      {
+        id: 'ibm-odm',
+        partner: 'IBM ODM',
+        partnerRole: 'IBM ODM executes enterprise decision services.',
+        knowledgeRole:
+          'Knowledge provides the compliance operating model around those decisions : policies, applicability, approvals, overrides and replayable governance.',
+        body: [],
+      },
+      {
+        id: 'camunda',
+        partner: 'Camunda',
+        partnerRole: 'Camunda orchestrates processes.',
+        knowledgeRole: 'Knowledge evaluates compliance.',
+        contrast: {
+          partnerQuestion: 'Camunda decides when something happens.',
+          knowledgeQuestion: 'Knowledge decides whether it complies.',
+        },
+        body: [],
+      },
+      {
+        id: 'gorules',
+        partner: 'GoRules',
+        partnerRole: 'GoRules models decision logic using decision graphs.',
+        knowledgeRole:
+          'Knowledge models compliance policies and their applicability.',
+        body: [
+          'GoRules can calculate a business decision.',
+          'Knowledge determines which compliance rules apply, records the governance around the decision and provides replayable evidence.',
+          'The two products can coexist in the same architecture.',
+        ],
+      },
+      {
+        id: 'decisionrules',
+        partner: 'DecisionRules',
+        partnerRole:
+          'DecisionRules automates operational business decisions.',
+        knowledgeRole: 'Knowledge executes compliance decisions.',
+        contrast: {
+          partnerQuestion:
+            'DecisionRules answers : what decision should be produced ?',
+          knowledgeQuestion:
+            'Knowledge answers : which compliance policies apply and how should this decision be governed ?',
+        },
+        body: [],
+      },
+      {
+        id: 'grc',
+        partner: 'GRC platforms',
+        partnerRole: 'Governance platforms document compliance.',
+        knowledgeRole: 'Knowledge executes compliance.',
+        body: [
+          'Policies documented in a GRC platform can be operationalised by Knowledge.',
+        ],
+      },
+      {
+        id: 'fenergo',
+        partner: 'Fenergo',
+        partnerRole:
+          'Fenergo specialises in KYC and client lifecycle management.',
+        knowledgeRole:
+          'Knowledge provides a generic compliance execution platform that can also support onboarding decisions alongside many other regulated processes.',
+        body: [],
+      },
+      {
+        id: 'internal',
+        partner: 'Internal development',
+        partnerRole:
+          'Many organisations already have internal rule engines or compliance services.',
+        knowledgeRole:
+          'Knowledge can progressively replace those components or integrate alongside them while preserving existing business applications.',
+        body: [],
+      },
+    ],
+  },
+  architectureSection: {
+    heading: 'Typical architectures',
+    lead: 'Four common shapes. Knowledge sits wherever compliance decisions matter.',
+    items: [
+      {
+        id: 'compliance-platform',
+        title: 'Compliance platform',
+        nodes: [
+          { label: 'Business Application' },
+          { label: 'Knowledge', emphasis: true },
+          { label: 'Enterprise Systems' },
+        ],
+      },
+      {
+        id: 'decision-engine-plus-compliance',
+        title: 'Decision engine + compliance',
+        nodes: [
+          { label: 'Business Application' },
+          { label: 'Knowledge', emphasis: true },
+          { label: 'GoRules' },
+          { label: 'Enterprise Systems' },
+        ],
+      },
+      {
+        id: 'workflow-plus-compliance',
+        title: 'Workflow + compliance',
+        nodes: [
+          { label: 'Business Application' },
+          { label: 'Camunda' },
+          { label: 'Knowledge', emphasis: true },
+          { label: 'Enterprise Systems' },
+        ],
+      },
+      {
+        id: 'enterprise-decision-services',
+        title: 'Enterprise decision services',
+        nodes: [
+          { label: 'Business Application' },
+          { label: 'Knowledge', emphasis: true },
+          { label: 'IBM ODM' },
+        ],
+      },
+    ],
+  },
+  philosophy: {
+    eyebrow: 'PHILOSOPHY',
+    heading: 'Every platform has a purpose.',
+    lines: [
+      'Workflow engines orchestrate.',
+      'Decision engines calculate.',
+      'GRC platforms document.',
+      'Client lifecycle platforms manage onboarding.',
+    ],
+    highlight: 'Knowledge operationalises compliance.',
+    closing: [
+      'Its purpose is not to replace every system in your architecture.',
+      'Its purpose is to provide a deterministic, replayable and governed compliance execution layer wherever compliance decisions matter.',
+    ],
   },
 }
 
 const FR: EcosystemContent = {
   hero: {
     eyebrow: 'ÉCOSYSTÈME',
-    heading: 'Écosystème',
-    sub: 'Le paysage compliance et decisioning en un coup d\'œil. Les forces de chaque plateforme, côte à côte.',
+    heading: 'Chaque plateforme résout un problème différent.',
+    lead: 'Les architectures enterprise reposent rarement sur une seule plateforme.',
+    body: [
+      "Certaines exécutent des décisions métier.",
+      "Certaines orchestrent des workflows.",
+      "Certaines documentent la gouvernance.",
+      "Certaines gèrent le cycle de vie client.",
+    ],
+    highlight:
+      "Knowledge se concentre sur un seul problème : exécuter le modèle opérationnel compliance.",
+    outro:
+      "Plutôt que de remplacer votre stack existante, Knowledge est conçu pour s'y intégrer, ou pour ne remplacer que les composants qui font sens.",
   },
-  strengthsLabel: 'Forces',
-  items: [
-    {
-      id: 'knowledge',
-      name: 'Asplenz Knowledge',
-      tag: 'COMPLIANCE DECISION PLATFORM',
-      strengths: [
-        'Modèle de données compliance natif : Policy, Rule, Target, Approval, Override, Pause, Consultation, GovernanceNote, Event',
-        'Exécution déterministe ; l\'IA reste strictement hors du chemin de décision',
-        'Piste d\'audit rejouable avec versions de règles figées, des années plus tard',
-        'Approvals, Overrides et Pauses comme objets de première classe',
-        'Attribution multi-audience sans duplication de règles',
-        'Boucle humaine multi-canal : API REST, MCP pour agents IA, Slack, email',
-        'Déploiement en marque blanche : Organisation au-dessus de Tenants avec mur de confidentialité structurel',
-      ],
+  tableSection: {
+    heading: 'Comparaison des plateformes',
+    columns: {
+      product: 'Produit',
+      purpose: 'Objectif principal',
+      models: 'Ce que le produit permet de modéliser',
+      useCases: "Cas d'usage typiques",
     },
-    {
-      id: 'internal-development',
-      name: 'Développement interne',
-      tag: 'CONSTRUIRE SOI-MÊME',
-      strengths: [
-        'Fit parfait avec les besoins d\'aujourd\'hui',
-        'Contrôle total sur l\'implémentation',
-        'Standards de dev et CI existants',
-        'Aucun coût de licence',
-        'Connaissance profonde dans l\'équipe',
-      ],
-    },
-    {
-      id: 'decisionrules',
-      name: 'decisionrules.io',
-      tag: 'BRMS MODERNE',
-      strengths: [
-        'Expérience decision table mature',
-        'Exécution rapide des règles',
-        'Architecture API-first',
-        'Rédaction de règles low-code',
-        'Adoption facile pour les équipes dev',
-      ],
-    },
-    {
-      id: 'ibm-odm',
-      name: 'IBM Operational Decision Manager',
-      tag: 'BRMS ENTERPRISE',
-      strengths: [
-        'Maturité enterprise (20+ ans)',
-        'Large écosystème et réseau de partenaires',
-        'Support du standard DMN',
-        'Gouvernance et contrôles enterprise',
-        'Scalabilité éprouvée',
-        'Présence existante dans de nombreuses banques',
-      ],
-    },
-    {
-      id: 'camunda',
-      name: 'Camunda',
-      tag: 'ORCHESTRATION BPM',
-      strengths: [
-        'Orchestration de workflow',
-        'Standard BPMN',
-        'Gestion des tâches humaines',
-        'Visibilité et monitoring des processus',
-        'Intégrations enterprise',
-      ],
-    },
-    {
-      id: 'taktile',
-      name: 'Taktile',
-      tag: 'DECISIONING IA',
-      strengths: [
-        'Risk scoring et credit underwriting',
-        'Decisioning assisté par IA',
-        'Expertise financial services',
-        'Excellente expérience utilisateur',
-        'Itération continue des modèles',
-      ],
-    },
-    {
-      id: 'grc',
-      name: 'ServiceNow GRC · OneTrust · MetricStream',
-      tag: 'PLATEFORMES GRC',
-      strengths: [
-        'Documentation et taxonomie des policies',
-        'Registres de risques',
-        'Catalogue de contrôles internes',
-        'Workflows de gouvernance',
-        'Mapping et reporting réglementaire',
-      ],
-    },
-    {
-      id: 'drools',
-      name: 'Drools · Red Hat Decision Manager',
-      tag: 'RÈGLES OPEN SOURCE',
-      strengths: [
-        'Moteur d\'inférence très flexible',
-        'Mature et éprouvé',
-        'Open source avec option de support commercial',
-        'Hautement personnalisable',
-        'Excellent pour l\'exécution de règles embarquées',
-      ],
-    },
-    {
-      id: 'fenergo',
-      name: 'Fenergo',
-      tag: 'KYC · ONBOARDING',
-      strengths: [
-        'Expertise KYC profonde',
-        'Workflows d\'onboarding client',
-        'Workflows AML',
-        'Contenu réglementaire pré-packagé',
-        'Focus institutions financières',
-      ],
-    },
-  ],
-  conclusion: {
-    heading: 'Une philosophie',
-    body: 'Knowledge est conçu pour s\'intégrer à l\'architecture enterprise existante aussi souvent qu\'il la remplace. Que votre organisation opère déjà du BPM, du BRMS, du GRC ou des plateformes de decisioning dépend de votre contexte, pas d\'une architecture prédéterminée. Notre objectif est de fournir l\'exécution compliance déterministe, la gouvernance rejouable et un modèle opérationnel compliance là où ces capacités sont nécessaires.',
+    rows: [
+      {
+        name: 'Asplenz Knowledge',
+        isKnowledge: true,
+        purpose: 'Plateforme de décision compliance',
+        models:
+          'Policies, Rules, Decision Tables, Targets, Approvals, Overrides, Consultations, Gouvernance',
+        useCases:
+          "Compliance réglementaire, politiques internes, éligibilité produit, suitability, opérations compliance",
+      },
+      {
+        name: 'IBM ODM',
+        purpose: 'Gestion de décision enterprise',
+        models: 'Règles métier, Decision Tables, Decision Services',
+        useCases:
+          "Services de décision enterprise, pricing, éligibilité, routage",
+      },
+      {
+        name: 'GoRules',
+        purpose: "Exécution de décision",
+        models: 'Decision Graphs, Decision Tables, calculs',
+        useCases:
+          'Décisions de crédit, pricing, fraude, automatisation opérationnelle',
+      },
+      {
+        name: 'DecisionRules',
+        purpose: 'Automatisation de décisions métier',
+        models:
+          'Decision Tables, Decision Trees, Decision Flows, scripts',
+        useCases:
+          'Pricing, routage, calcul de frais, règles opérationnelles',
+      },
+      {
+        name: 'Camunda',
+        purpose: 'Orchestration de processus',
+        models: 'Processus BPMN, tâches humaines, événements',
+        useCases:
+          "Automatisation de workflow, gestion de cas, processus longs",
+      },
+      {
+        name: 'Taktile',
+        purpose: 'Decisioning IA',
+        models: 'Stratégies de risque, pipelines de scoring, decision flows',
+        useCases: 'Octroi de crédit, détection de fraude',
+      },
+      {
+        name: 'ServiceNow GRC · OneTrust · MetricStream',
+        purpose: 'Gouvernance',
+        models: 'Politiques, risques, contrôles, preuves',
+        useCases: 'Gouvernance, documentation réglementaire',
+      },
+      {
+        name: 'Fenergo',
+        purpose: 'Gestion du cycle de vie client',
+        models: 'KYC, AML, workflows d\'onboarding',
+        useCases: 'Onboarding client',
+      },
+      {
+        name: 'Drools · Red Hat DM',
+        purpose: 'Moteur de règles',
+        models: 'Règles, faits, logique d\'inférence',
+        useCases: 'Règles métier embarquées',
+      },
+      {
+        name: 'Développement interne',
+        purpose: 'Plateforme sur mesure',
+        models: "N'importe quoi",
+        useCases: "Plateformes propres à l'organisation",
+      },
+    ],
+  },
+  fitSection: {
+    heading: "Comment Knowledge s'intègre",
+    intro: [
+      "Knowledge n'entre pas en compétition avec chaque plateforme.",
+      "Il en complète beaucoup.",
+      "Son rôle dépend de l'architecture que vous avez déjà.",
+    ],
+    blocks: [
+      {
+        id: 'ibm-odm',
+        partner: 'IBM ODM',
+        partnerRole:
+          "IBM ODM exécute les services de décision enterprise.",
+        knowledgeRole:
+          "Knowledge fournit le modèle opérationnel compliance autour de ces décisions : politiques, applicabilité, approbations, overrides et gouvernance rejouable.",
+        body: [],
+      },
+      {
+        id: 'camunda',
+        partner: 'Camunda',
+        partnerRole: 'Camunda orchestre les processus.',
+        knowledgeRole: 'Knowledge évalue la compliance.',
+        contrast: {
+          partnerQuestion:
+            "Camunda décide quand quelque chose se produit.",
+          knowledgeQuestion:
+            "Knowledge décide si c'est conforme.",
+        },
+        body: [],
+      },
+      {
+        id: 'gorules',
+        partner: 'GoRules',
+        partnerRole:
+          'GoRules modélise la logique de décision via des decision graphs.',
+        knowledgeRole:
+          "Knowledge modélise les politiques compliance et leur applicabilité.",
+        body: [
+          'GoRules peut calculer une décision métier.',
+          'Knowledge détermine quelles règles compliance s\'appliquent, enregistre la gouvernance autour de la décision et fournit une preuve rejouable.',
+          "Les deux produits peuvent coexister dans la même architecture.",
+        ],
+      },
+      {
+        id: 'decisionrules',
+        partner: 'DecisionRules',
+        partnerRole:
+          'DecisionRules automatise les décisions métier opérationnelles.',
+        knowledgeRole: 'Knowledge exécute les décisions compliance.',
+        contrast: {
+          partnerQuestion:
+            'DecisionRules répond à : quelle décision faut-il produire ?',
+          knowledgeQuestion:
+            'Knowledge répond à : quelles politiques compliance s\'appliquent et comment cette décision doit-elle être gouvernée ?',
+        },
+        body: [],
+      },
+      {
+        id: 'grc',
+        partner: 'Plateformes GRC',
+        partnerRole:
+          'Les plateformes de gouvernance documentent la compliance.',
+        knowledgeRole: 'Knowledge exécute la compliance.',
+        body: [
+          "Les politiques documentées dans une plateforme GRC peuvent être opérationnalisées par Knowledge.",
+        ],
+      },
+      {
+        id: 'fenergo',
+        partner: 'Fenergo',
+        partnerRole:
+          'Fenergo se spécialise dans le KYC et le cycle de vie client.',
+        knowledgeRole:
+          "Knowledge fournit une plateforme d'exécution compliance générique qui peut aussi supporter les décisions d'onboarding aux côtés de nombreux autres processus régulés.",
+        body: [],
+      },
+      {
+        id: 'internal',
+        partner: 'Développement interne',
+        partnerRole:
+          'Beaucoup d\'organisations ont déjà des moteurs de règles ou services compliance internes.',
+        knowledgeRole:
+          "Knowledge peut remplacer progressivement ces composants ou s'intégrer à leurs côtés tout en préservant les applications métier existantes.",
+        body: [],
+      },
+    ],
+  },
+  architectureSection: {
+    heading: 'Architectures typiques',
+    lead: 'Quatre formes courantes. Knowledge se place là où les décisions compliance comptent.',
+    items: [
+      {
+        id: 'compliance-platform',
+        title: 'Plateforme compliance',
+        nodes: [
+          { label: 'Application métier' },
+          { label: 'Knowledge', emphasis: true },
+          { label: "Systèmes enterprise" },
+        ],
+      },
+      {
+        id: 'decision-engine-plus-compliance',
+        title: 'Moteur de décision + compliance',
+        nodes: [
+          { label: 'Application métier' },
+          { label: 'Knowledge', emphasis: true },
+          { label: 'GoRules' },
+          { label: "Systèmes enterprise" },
+        ],
+      },
+      {
+        id: 'workflow-plus-compliance',
+        title: 'Workflow + compliance',
+        nodes: [
+          { label: 'Application métier' },
+          { label: 'Camunda' },
+          { label: 'Knowledge', emphasis: true },
+          { label: "Systèmes enterprise" },
+        ],
+      },
+      {
+        id: 'enterprise-decision-services',
+        title: 'Services de décision enterprise',
+        nodes: [
+          { label: 'Application métier' },
+          { label: 'Knowledge', emphasis: true },
+          { label: 'IBM ODM' },
+        ],
+      },
+    ],
+  },
+  philosophy: {
+    eyebrow: 'PHILOSOPHIE',
+    heading: 'Chaque plateforme a un objectif.',
+    lines: [
+      'Les moteurs de workflow orchestrent.',
+      'Les moteurs de décision calculent.',
+      'Les plateformes GRC documentent.',
+      'Les plateformes de cycle de vie client gèrent l\'onboarding.',
+    ],
+    highlight: 'Knowledge opérationnalise la compliance.',
+    closing: [
+      "Son objectif n'est pas de remplacer chaque système de votre architecture.",
+      "Son objectif est de fournir une couche d'exécution compliance déterministe, rejouable et gouvernée, là où les décisions compliance comptent.",
+    ],
   },
 }
 
