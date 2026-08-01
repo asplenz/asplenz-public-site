@@ -216,8 +216,9 @@ const EN: EcosystemContent = {
         id: 'decisionrules',
         partner: 'DecisionRules',
         partnerRole:
-          'DecisionRules automates operational business decisions.',
-        knowledgeRole: 'Knowledge executes compliance decisions.',
+          'DecisionRules automates operational business decisions with decision tables.',
+        knowledgeRole:
+          'Knowledge executes compliance decisions. Same decision-table capability, plus native governance : one approval, one override, one replayable audit trail per Rule regardless of how many rows it carries.',
         contrast: {
           partnerQuestion:
             'DecisionRules answers : what decision should be produced ?',
@@ -459,8 +460,9 @@ const FR: EcosystemContent = {
         id: 'decisionrules',
         partner: 'DecisionRules',
         partnerRole:
-          'DecisionRules automatise les décisions métier opérationnelles.',
-        knowledgeRole: 'Knowledge exécute les décisions compliance.',
+          'DecisionRules automatise les décisions métier opérationnelles via des decision tables.',
+        knowledgeRole:
+          "Knowledge exécute les décisions compliance. Même capacité decision-table, avec la gouvernance native en plus : une approbation, un override, une piste d'audit rejouable par Rule, quel que soit le nombre de rangées qu'elle porte.",
         contrast: {
           partnerQuestion:
             'DecisionRules répond à : quelle décision faut-il produire ?',
