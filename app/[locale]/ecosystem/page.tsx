@@ -1,10 +1,20 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { ArrowDown, Sparkles } from 'lucide-react'
+import {
+  ArrowDown,
+  BookOpen,
+  Sparkles,
+  Users,
+  Workflow,
+  Zap,
+  type LucideIcon,
+} from 'lucide-react'
 import { isLocale, type Locale } from '@/lib/i18n'
 import {
   getEcosystemContent,
   type EcosystemContent,
+  type EcosystemHeroCategory,
+  type EcosystemHeroCategoryIcon,
   type EcosystemPlatformRow,
   type EcosystemTogetherBlock,
   type EcosystemArchitecture,
@@ -40,10 +50,17 @@ export default function EcosystemPage({ params }: { params: { locale: string } }
   )
 }
 
+const HERO_ICONS: Record<EcosystemHeroCategoryIcon, LucideIcon> = {
+  decisions: Zap,
+  workflow: Workflow,
+  governance: BookOpen,
+  lifecycle: Users,
+}
+
 function Hero({ t }: { t: EcosystemContent }) {
   return (
     <section className="border-b border-gray-100 bg-gradient-to-b from-primary-soft/40 to-white">
-      <div className="mx-auto max-w-4xl px-6 py-16 md:py-20">
+      <div className="mx-auto max-w-5xl px-6 py-16 md:py-20">
         <div className="text-center">
           <div className="mb-4 inline-flex items-center rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-strong">
             {t.hero.eyebrow}
@@ -54,22 +71,41 @@ function Hero({ t }: { t: EcosystemContent }) {
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-800 md:text-xl">
             {t.hero.lead}
           </p>
-          <ul className="mx-auto mt-4 max-w-xl space-y-1 text-base text-gray-700 md:text-lg">
-            {t.hero.body.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-          <div className="mx-auto mt-8 max-w-2xl rounded-2xl border-l-4 border-primary bg-white p-6 text-left shadow-sm">
-            <p className="text-lg font-semibold text-gray-900 md:text-xl">
-              {t.hero.highlight}
-            </p>
-          </div>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-gray-700">
-            {t.hero.outro}
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-gray-600 md:text-base">
+            {t.hero.categoriesLead}
           </p>
         </div>
+
+        <div className="mx-auto mt-8 grid max-w-4xl grid-cols-2 gap-3 md:mt-10 md:grid-cols-4 md:gap-4">
+          {t.hero.categories.map((cat) => (
+            <HeroCategoryChip key={cat.icon} category={cat} />
+          ))}
+        </div>
+
+        <div className="mx-auto mt-10 max-w-3xl rounded-2xl border-l-4 border-primary bg-white p-6 text-left shadow-sm md:p-7">
+          <p className="text-lg font-semibold text-gray-900 md:text-xl">
+            {t.hero.highlight}
+          </p>
+        </div>
+        <p className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-gray-700">
+          {t.hero.outro}
+        </p>
       </div>
     </section>
+  )
+}
+
+function HeroCategoryChip({ category }: { category: EcosystemHeroCategory }) {
+  const Icon = HERO_ICONS[category.icon]
+  return (
+    <div className="flex items-center gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-3 shadow-sm">
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-primary-strong">
+        <Icon className="h-4 w-4" aria-hidden />
+      </div>
+      <span className="text-sm font-semibold leading-snug text-gray-900 md:text-[15px]">
+        {category.label}
+      </span>
+    </div>
   )
 }
 

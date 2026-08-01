@@ -8,62 +8,310 @@ description_fr: "Comment Knowledge s'intègre dans une architecture enterprise e
 
 <!-- @lang en -->
 
-# Ecosystem
+# Every platform solves a different problem.
 
-Reference content for /ecosystem. The page is a custom React layout. Full wording lives in `content/ecosystem.ts` ; this markdown documents the structure and intent.
+Enterprise architectures rarely rely on a single platform.
 
-## Intent
+Each platform category solves a different problem :
 
-Answer the question a CTO or Head of Compliance actually asks : "we already have X. Where does Knowledge fit ?"
+- Execute business decisions
+- Orchestrate workflows
+- Document governance
+- Manage client lifecycle
 
-Not a product-vs-product ranking. Not a feature checklist. An architecture guide, honest and factual, that inspires confidence even in a reader who never buys Knowledge.
+> Knowledge focuses on one problem : executing the compliance operating model.
 
-## Structure
+Rather than replacing your existing stack, Knowledge is designed to integrate with it, or replace only the components that make sense.
 
-1. **Hero** : the framing. Enterprise architectures are multi-platform ; Knowledge focuses on one problem (executing the compliance operating model).
-2. **Platform comparison table** : ten products (Knowledge + nine others) with primary purpose, what the product lets you model, typical use cases. Knowledge is highlighted.
-3. **How Knowledge fits** : seven "Together with X" cards showing coexistence patterns (IBM ODM, Camunda, GoRules, DecisionRules, GRC, Fenergo, Internal development).
-4. **Typical architectures** : four common shapes rendered as node-and-arrow diagrams (Compliance platform · Decision engine + compliance · Workflow + compliance · Enterprise decision services).
-5. **Philosophy** : the closing statement.
+## Platform comparison
 
-## Voice
+| Product | Primary purpose | What the product lets you model | Typical use cases |
+|---|---|---|---|
+| **Asplenz Knowledge** | Compliance decision platform | Policies, Rules, Decision Tables, Targets, Approvals, Overrides, Consultations, Governance | Regulatory compliance, internal policies, product eligibility, suitability, compliance operations |
+| IBM ODM | Enterprise decision management | Business rules, Decision Tables, Decision Services | Enterprise decision services, pricing, eligibility, routing |
+| GoRules | Decision execution | Decision Graphs, Decision Tables, calculations | Credit decisions, pricing, fraud, operational automation |
+| DecisionRules | Business decision automation | Decision Tables, Decision Trees, Decision Flows, scripts | Pricing, routing, fee calculation, operational rules |
+| Camunda | Process orchestration | BPMN processes, human tasks, events | Workflow automation, case management, long-running processes |
+| Taktile | AI decisioning | Risk strategies, scoring pipelines, decision flows | Credit underwriting, fraud detection |
+| ServiceNow GRC · OneTrust · MetricStream | Governance | Policies, risks, controls, evidence | Governance, regulatory documentation |
+| Fenergo | Client lifecycle management | KYC, AML, onboarding workflows | Client onboarding |
+| Drools · Red Hat DM | Rule engine | Rules, facts, inference logic | Embedded business rules |
+| Internal development | Custom platform | Anything | Organisation-specific platforms |
 
-- No "Choose X" / "Choose Knowledge" language.
-- No commercial CTA at the end.
-- Objective descriptions of each platform.
-- The differentiator is expressed structurally (comparison table + coexistence cards) rather than by claim.
+## How Knowledge fits
 
-## Closing line
+Knowledge does not compete with every platform.
 
-> Workflow engines orchestrate. Decision engines calculate. GRC platforms document. Knowledge operationalises compliance.
+It complements many of them.
+
+Its role depends on the architecture you already have.
+
+### + IBM ODM
+
+IBM ODM executes enterprise decision services.
+
+**Knowledge** : provides the compliance operating model around those decisions : policies, applicability, approvals, overrides and replayable governance.
+
+### + Camunda
+
+Camunda orchestrates processes.
+
+**Knowledge** : evaluates compliance.
+
+- Camunda decides *when* something happens.
+- Knowledge decides *whether* it complies.
+
+### + GoRules
+
+GoRules models decision logic using decision graphs.
+
+**Knowledge** : models compliance policies and their applicability.
+
+GoRules can calculate a business decision. Knowledge determines which compliance rules apply, records the governance around the decision and provides replayable evidence. The two products can coexist in the same architecture.
+
+### + DecisionRules
+
+DecisionRules automates operational business decisions.
+
+**Knowledge** : executes compliance decisions.
+
+- DecisionRules answers : what decision should be produced ?
+- Knowledge answers : which compliance policies apply and how should this decision be governed ?
+
+### + GRC platforms
+
+Governance platforms document compliance.
+
+**Knowledge** : executes compliance.
+
+Policies documented in a GRC platform can be operationalised by Knowledge.
+
+### + Fenergo
+
+Fenergo specialises in KYC and client lifecycle management.
+
+**Knowledge** : provides a generic compliance execution platform that can also support onboarding decisions alongside many other regulated processes.
+
+### + Internal development
+
+Many organisations already have internal rule engines or compliance services.
+
+**Knowledge** : can progressively replace those components or integrate alongside them while preserving existing business applications.
+
+## Typical architectures
+
+Four common shapes. Knowledge sits wherever compliance decisions matter.
+
+### Compliance platform
+
+```
+Business Application
+        ↓
+    Knowledge
+        ↓
+ Enterprise Systems
+```
+
+### Decision engine + compliance
+
+```
+Business Application
+        ↓
+    Knowledge
+        ↓
+    GoRules
+        ↓
+ Enterprise Systems
+```
+
+### Workflow + compliance
+
+```
+Business Application
+        ↓
+    Camunda
+        ↓
+    Knowledge
+        ↓
+ Enterprise Systems
+```
+
+### Enterprise decision services
+
+```
+Business Application
+        ↓
+    Knowledge
+        ↓
+    IBM ODM
+```
+
+## Philosophy
+
+Every platform has a purpose.
+
+- Workflow engines orchestrate.
+- Decision engines calculate.
+- GRC platforms document.
+- Client lifecycle platforms manage onboarding.
+
+> Knowledge operationalises compliance.
+
+Its purpose is not to replace every system in your architecture.
+
+Its purpose is to provide a deterministic, replayable and governed compliance execution layer wherever compliance decisions matter.
 
 <!-- @lang fr -->
 
-# Écosystème
+# Chaque plateforme résout un problème différent.
 
-Contenu de référence pour /ecosystem. La page est un layout React custom. Le wording complet vit dans `content/ecosystem.ts` ; ce markdown documente la structure et l'intention.
+Les architectures enterprise reposent rarement sur une seule plateforme.
 
-## Intention
+Chaque catégorie de plateforme résout un problème différent :
 
-Répondre à la question que se pose vraiment un CTO ou un Head of Compliance : "nous avons déjà X. Où Knowledge s'intègre-t-il ?"
+- Exécuter des décisions métier
+- Orchestrer des workflows
+- Documenter la gouvernance
+- Gérer le cycle de vie client
 
-Pas un classement produit-vs-produit. Pas une checklist de fonctionnalités. Un guide d'architecture, honnête et factuel, qui inspire confiance même chez un lecteur qui n'achètera jamais Knowledge.
+> Knowledge se concentre sur un seul problème : exécuter le modèle opérationnel compliance.
 
-## Structure
+Plutôt que de remplacer votre stack existante, Knowledge est conçu pour s'y intégrer, ou pour ne remplacer que les composants qui font sens.
 
-1. **Hero** : le cadrage. Les architectures enterprise sont multi-plateformes ; Knowledge se concentre sur un seul problème (exécuter le modèle opérationnel compliance).
-2. **Tableau de comparaison** : dix produits (Knowledge + neuf autres) avec objectif principal, ce que le produit permet de modéliser, cas d'usage typiques. Knowledge est mis en évidence.
-3. **Comment Knowledge s'intègre** : sept cards "En complément de X" montrant les patterns de coexistence (IBM ODM, Camunda, GoRules, DecisionRules, GRC, Fenergo, Développement interne).
-4. **Architectures typiques** : quatre formes courantes rendues sous forme de diagrammes nœud-et-flèche (Plateforme compliance · Moteur de décision + compliance · Workflow + compliance · Services de décision enterprise).
-5. **Philosophie** : la phrase de clôture.
+## Comparaison des plateformes
 
-## Voix
+| Produit | Objectif principal | Ce que le produit permet de modéliser | Cas d'usage typiques |
+|---|---|---|---|
+| **Asplenz Knowledge** | Plateforme de décision compliance | Policies, Rules, Decision Tables, Targets, Approvals, Overrides, Consultations, Gouvernance | Compliance réglementaire, politiques internes, éligibilité produit, suitability, opérations compliance |
+| IBM ODM | Gestion de décision enterprise | Règles métier, Decision Tables, Decision Services | Services de décision enterprise, pricing, éligibilité, routage |
+| GoRules | Exécution de décision | Decision Graphs, Decision Tables, calculs | Décisions de crédit, pricing, fraude, automatisation opérationnelle |
+| DecisionRules | Automatisation de décisions métier | Decision Tables, Decision Trees, Decision Flows, scripts | Pricing, routage, calcul de frais, règles opérationnelles |
+| Camunda | Orchestration de processus | Processus BPMN, tâches humaines, événements | Automatisation de workflow, gestion de cas, processus longs |
+| Taktile | Decisioning IA | Stratégies de risque, pipelines de scoring, decision flows | Octroi de crédit, détection de fraude |
+| ServiceNow GRC · OneTrust · MetricStream | Gouvernance | Politiques, risques, contrôles, preuves | Gouvernance, documentation réglementaire |
+| Fenergo | Gestion du cycle de vie client | KYC, AML, workflows d'onboarding | Onboarding client |
+| Drools · Red Hat DM | Moteur de règles | Règles, faits, logique d'inférence | Règles métier embarquées |
+| Développement interne | Plateforme sur mesure | N'importe quoi | Plateformes propres à l'organisation |
 
-- Aucun langage "Choisissez X" / "Choisissez Knowledge".
-- Aucun CTA commercial à la fin.
-- Descriptions objectives de chaque plateforme.
-- Le différentiateur s'exprime par la structure (tableau de comparaison + cards de coexistence) plutôt que par affirmation.
+## Comment Knowledge s'intègre
 
-## Phrase de clôture
+Knowledge n'entre pas en compétition avec chaque plateforme.
 
-> Les moteurs de workflow orchestrent. Les moteurs de décision calculent. Les plateformes GRC documentent. Knowledge opérationnalise la compliance.
+Il en complète beaucoup.
+
+Son rôle dépend de l'architecture que vous avez déjà.
+
+### + IBM ODM
+
+IBM ODM exécute les services de décision enterprise.
+
+**Knowledge** : fournit le modèle opérationnel compliance autour de ces décisions : politiques, applicabilité, approbations, overrides et gouvernance rejouable.
+
+### + Camunda
+
+Camunda orchestre les processus.
+
+**Knowledge** : évalue la compliance.
+
+- Camunda décide *quand* quelque chose se produit.
+- Knowledge décide *si c'est conforme*.
+
+### + GoRules
+
+GoRules modélise la logique de décision via des decision graphs.
+
+**Knowledge** : modélise les politiques compliance et leur applicabilité.
+
+GoRules peut calculer une décision métier. Knowledge détermine quelles règles compliance s'appliquent, enregistre la gouvernance autour de la décision et fournit une preuve rejouable. Les deux produits peuvent coexister dans la même architecture.
+
+### + DecisionRules
+
+DecisionRules automatise les décisions métier opérationnelles.
+
+**Knowledge** : exécute les décisions compliance.
+
+- DecisionRules répond à : quelle décision faut-il produire ?
+- Knowledge répond à : quelles politiques compliance s'appliquent et comment cette décision doit-elle être gouvernée ?
+
+### + Plateformes GRC
+
+Les plateformes de gouvernance documentent la compliance.
+
+**Knowledge** : exécute la compliance.
+
+Les politiques documentées dans une plateforme GRC peuvent être opérationnalisées par Knowledge.
+
+### + Fenergo
+
+Fenergo se spécialise dans le KYC et le cycle de vie client.
+
+**Knowledge** : fournit une plateforme d'exécution compliance générique qui peut aussi supporter les décisions d'onboarding aux côtés de nombreux autres processus régulés.
+
+### + Développement interne
+
+Beaucoup d'organisations ont déjà des moteurs de règles ou services compliance internes.
+
+**Knowledge** : peut remplacer progressivement ces composants ou s'intégrer à leurs côtés tout en préservant les applications métier existantes.
+
+## Architectures typiques
+
+Quatre formes courantes. Knowledge se place là où les décisions compliance comptent.
+
+### Plateforme compliance
+
+```
+Application métier
+        ↓
+    Knowledge
+        ↓
+ Systèmes enterprise
+```
+
+### Moteur de décision + compliance
+
+```
+Application métier
+        ↓
+    Knowledge
+        ↓
+    GoRules
+        ↓
+ Systèmes enterprise
+```
+
+### Workflow + compliance
+
+```
+Application métier
+        ↓
+    Camunda
+        ↓
+    Knowledge
+        ↓
+ Systèmes enterprise
+```
+
+### Services de décision enterprise
+
+```
+Application métier
+        ↓
+    Knowledge
+        ↓
+    IBM ODM
+```
+
+## Philosophie
+
+Chaque plateforme a un objectif.
+
+- Les moteurs de workflow orchestrent.
+- Les moteurs de décision calculent.
+- Les plateformes GRC documentent.
+- Les plateformes de cycle de vie client gèrent l'onboarding.
+
+> Knowledge opérationnalise la compliance.
+
+Son objectif n'est pas de remplacer chaque système de votre architecture.
+
+Son objectif est de fournir une couche d'exécution compliance déterministe, rejouable et gouvernée, là où les décisions compliance comptent.
