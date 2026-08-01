@@ -71,7 +71,7 @@ export type EcosystemContent = {
   philosophy: {
     eyebrow: string
     heading: string
-    lines: string[]
+    lines: EcosystemHeroCategory[]
     highlight: string
     closing: string[]
   }
@@ -303,10 +303,10 @@ const EN: EcosystemContent = {
     eyebrow: 'PHILOSOPHY',
     heading: 'Every platform has a purpose.',
     lines: [
-      'Workflow engines orchestrate.',
-      'Decision engines calculate.',
-      'GRC platforms document.',
-      'Client lifecycle platforms manage onboarding.',
+      { icon: 'workflow', label: 'Workflow engines orchestrate.' },
+      { icon: 'decisions', label: 'Decision engines calculate.' },
+      { icon: 'governance', label: 'GRC platforms document.' },
+      { icon: 'lifecycle', label: 'Client lifecycle platforms manage onboarding.' },
     ],
     highlight: 'Knowledge operationalises compliance.',
     closing: [
@@ -547,10 +547,10 @@ const FR: EcosystemContent = {
     eyebrow: 'PHILOSOPHIE',
     heading: 'Chaque plateforme a un objectif.',
     lines: [
-      'Les moteurs de workflow orchestrent.',
-      'Les moteurs de décision calculent.',
-      'Les plateformes GRC documentent.',
-      'Les plateformes de cycle de vie client gèrent l\'onboarding.',
+      { icon: 'workflow', label: 'Les moteurs de workflow orchestrent.' },
+      { icon: 'decisions', label: 'Les moteurs de décision calculent.' },
+      { icon: 'governance', label: 'Les plateformes GRC documentent.' },
+      { icon: 'lifecycle', label: "Les plateformes de cycle de vie client gèrent l'onboarding." },
     ],
     highlight: 'Knowledge opérationnalise la compliance.',
     closing: [

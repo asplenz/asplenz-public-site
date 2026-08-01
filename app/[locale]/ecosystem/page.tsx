@@ -356,7 +356,7 @@ function ArrowConnector({ emphasis }: { emphasis?: boolean }) {
 function PhilosophySection({ t }: { t: EcosystemContent }) {
   return (
     <section className="border-t border-gray-100 bg-gradient-to-b from-white to-primary-soft/30">
-      <div className="mx-auto max-w-4xl px-6 py-16 md:py-20">
+      <div className="mx-auto max-w-5xl px-6 py-16 md:py-20">
         <div className="text-center">
           <div className="mb-4 inline-flex items-center rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-strong">
             {t.philosophy.eyebrow}
@@ -364,21 +364,23 @@ function PhilosophySection({ t }: { t: EcosystemContent }) {
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
             {t.philosophy.heading}
           </h2>
-          <ul className="mx-auto mt-6 max-w-2xl space-y-1 text-lg text-gray-800">
-            {t.philosophy.lines.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-          <div className="mx-auto mt-8 max-w-2xl rounded-2xl border-l-4 border-primary bg-white p-6 text-left shadow-sm md:p-8">
-            <p className="text-xl font-semibold text-gray-900 md:text-2xl">
-              {t.philosophy.highlight}
-            </p>
-          </div>
-          <div className="mx-auto mt-6 max-w-2xl space-y-2 text-base leading-relaxed text-gray-700">
-            {t.philosophy.closing.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
-          </div>
+        </div>
+
+        <div className="mx-auto mt-8 grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-2 md:mt-10 md:grid-cols-4 md:gap-4">
+          {t.philosophy.lines.map((line) => (
+            <HeroCategoryChip key={line.icon} category={line} />
+          ))}
+        </div>
+
+        <div className="mx-auto mt-10 max-w-3xl rounded-2xl border-l-4 border-primary bg-white p-6 text-left shadow-sm md:p-8">
+          <p className="text-xl font-semibold text-gray-900 md:text-2xl">
+            {t.philosophy.highlight}
+          </p>
+        </div>
+        <div className="mx-auto mt-6 max-w-2xl space-y-2 text-center text-base leading-relaxed text-gray-700">
+          {t.philosophy.closing.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
         </div>
       </div>
     </section>
