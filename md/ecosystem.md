@@ -71,9 +71,9 @@ GoRules can calculate a business decision. Knowledge determines which compliance
 
 ### + DecisionRules
 
-DecisionRules automates operational business decisions.
+DecisionRules automates operational business decisions with decision tables.
 
-**Knowledge** : executes compliance decisions.
+**Knowledge** : executes compliance decisions. Same decision-table capability, plus native governance : one approval, one override, one replayable audit trail per Rule regardless of how many rows it carries.
 
 - DecisionRules answers : what decision should be produced ?
 - Knowledge answers : which compliance policies apply and how should this decision be governed ?
@@ -226,9 +226,9 @@ GoRules peut calculer une décision métier. Knowledge détermine quelles règle
 
 ### + DecisionRules
 
-DecisionRules automatise les décisions métier opérationnelles.
+DecisionRules automatise les décisions métier opérationnelles via des decision tables.
 
-**Knowledge** : exécute les décisions compliance.
+**Knowledge** : exécute les décisions compliance. Même capacité decision-table, avec la gouvernance native en plus : une approbation, un override, une piste d'audit rejouable par Rule, quel que soit le nombre de rangées qu'elle porte.
 
 - DecisionRules répond à : quelle décision faut-il produire ?
 - Knowledge répond à : quelles politiques compliance s'appliquent et comment cette décision doit-elle être gouvernée ?
