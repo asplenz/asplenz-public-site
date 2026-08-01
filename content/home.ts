@@ -127,7 +127,7 @@ const EN: HomeContent = {
   features: [
     {
       title: 'Multi-audience applicability',
-      body: 'The same rule applies differently to a Singapore desk, a Hong Kong desk and a regional compliance team. One rule, multiple audiences, no duplication.',
+      body: 'The same rule applies differently across desks, jurisdictions, mandate types and compliance teams. One rule, multiple audiences, no duplication.',
       icon: 'audience',
     },
     {
@@ -256,7 +256,7 @@ const FR: HomeContent = {
   features: [
     {
       title: 'Applicabilité multi-audience',
-      body: "La même règle s'applique différemment à un desk Singapour, un desk Hong Kong et une équipe compliance régionale. Une seule règle, plusieurs audiences, aucune duplication.",
+      body: "La même règle s'applique différemment selon les desks, les juridictions, les types de mandat et les équipes compliance. Une seule règle, plusieurs audiences, aucune duplication.",
       icon: 'audience',
     },
     {

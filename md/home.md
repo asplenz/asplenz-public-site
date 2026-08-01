@@ -79,7 +79,7 @@ Every decision can be reconstructed years later : applicable policies, rules, ru
 
 ### Multi-audience applicability
 
-The same rule applies differently to a Singapore desk, a Hong Kong desk and a regional compliance team. One rule, multiple audiences, no duplication.
+The same rule applies differently across desks, jurisdictions, mandate types and compliance teams. One rule, multiple audiences, no duplication.
 
 ### Human governance
 
@@ -210,7 +210,7 @@ Chaque décision peut être reconstituée des années plus tard : policies appli
 
 ### Applicabilité multi-audience
 
-La même règle s'applique différemment à un desk Singapour, un desk Hong Kong et une équipe compliance régionale. Une seule règle, plusieurs audiences, aucune duplication.
+La même règle s'applique différemment selon les desks, les juridictions, les types de mandat et les équipes compliance. Une seule règle, plusieurs audiences, aucune duplication.
 
 ### Gouvernance humaine
 
