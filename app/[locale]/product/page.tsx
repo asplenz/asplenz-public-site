@@ -2,11 +2,19 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import {
-  Layers, ShieldCheck, RotateCcw,
-  ArrowRight, Check, X, Quote,
+  ArrowDown,
+  ArrowRight,
+  Check,
+  Layers,
+  Quote,
+  RotateCcw,
+  ShieldCheck,
+  Table as TableIcon,
+  X,
 } from 'lucide-react'
 import { isLocale, type Locale } from '@/lib/i18n'
 import { getProductContent, type ProductContent } from '@/content/product'
+import { cn } from '@/lib/cn'
 
 export async function generateMetadata({
   params,
@@ -39,6 +47,7 @@ export default function ProductPage({ params }: { params: { locale: string } }) 
     <>
       <Hero t={t} contactHref={contactHref} compareHref={compareHref} />
       <OperatingModel t={t} />
+      <DecisionTables t={t} />
       <Pillars t={t} />
       <Captures t={t} />
       <Replaces t={t} />
@@ -58,7 +67,7 @@ function Hero({ t, contactHref, compareHref }: { t: ProductContent; contactHref:
           <h1 className="text-4xl font-bold leading-tight tracking-tight text-gray-900 md:text-5xl">
             {t.hero.heading}
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-gray-700 md:text-xl">
+          <p className="mt-6 text-lg leading-relaxed text-gray-800 md:text-xl">
             {t.hero.sub}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -86,12 +95,12 @@ function OperatingModel({ t }: { t: ProductContent }) {
   const om = t.operatingModel
   return (
     <section className="border-b border-gray-100 bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-10">
+      <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
             {om.heading}
           </h2>
-          <p className="mt-4 text-lg text-gray-700 leading-relaxed">{om.intro}</p>
+          <p className="mt-4 text-lg text-gray-800 leading-relaxed">{om.intro}</p>
         </div>
 
         <div className="mt-12">
@@ -107,7 +116,7 @@ function OperatingModel({ t }: { t: ProductContent }) {
                 <div className="mb-2 font-mono text-sm font-semibold text-primary-strong">
                   {e.name}
                 </div>
-                <p className="text-sm text-gray-700 leading-relaxed">{e.body}</p>
+                <p className="text-sm text-gray-800 leading-relaxed">{e.body}</p>
               </div>
             ))}
           </div>
@@ -124,10 +133,202 @@ function OperatingModel({ t }: { t: ProductContent }) {
   )
 }
 
+function DecisionTables({ t }: { t: ProductContent }) {
+  const d = t.decisionTables
+  return (
+    <section className="border-b border-gray-100 bg-gradient-to-b from-primary-soft/30 to-white">
+      <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-strong shadow-sm">
+            <TableIcon className="h-4 w-4" aria-hidden />
+            Decision tables
+          </div>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
+            {d.heading}
+          </h2>
+          <p className="mt-4 text-lg font-semibold text-primary-strong md:text-xl">
+            {d.tagline}
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-gray-800 md:text-lg">
+            {d.intro}
+          </p>
+        </div>
+
+        <DecisionDiagram diagram={d.diagram} />
+
+        <div className="mt-14 grid gap-5 md:grid-cols-2">
+          <ContrastCard
+            title={d.contrast.traditional.title}
+            items={d.contrast.traditional.items}
+            tone="muted"
+          />
+          <ContrastCard
+            title={d.contrast.knowledge.title}
+            items={d.contrast.knowledge.items}
+            tone="knowledge"
+          />
+        </div>
+
+        <ExampleTable example={d.example} />
+      </div>
+    </section>
+  )
+}
+
+function DecisionDiagram({ diagram }: { diagram: ProductContent['decisionTables']['diagram'] }) {
+  return (
+    <div className="mx-auto mt-12 max-w-3xl">
+      <div className="flex flex-col items-center">
+        {diagram.steps.map((step, i) => (
+          <div key={step.label} className="flex w-full flex-col items-center">
+            <div
+              className={cn(
+                'w-full max-w-md rounded-2xl border p-5 text-center shadow-sm',
+                step.emphasis
+                  ? 'border-primary/50 bg-white ring-1 ring-primary/20'
+                  : 'border-gray-200 bg-white',
+              )}
+            >
+              <div
+                className={cn(
+                  'text-base font-bold tracking-tight md:text-lg',
+                  step.emphasis ? 'text-primary-strong' : 'text-gray-900',
+                )}
+              >
+                {step.label}
+              </div>
+              {step.sublabel && (
+                <div className="mt-1 text-xs text-gray-600 md:text-sm">
+                  {step.sublabel}
+                </div>
+              )}
+              {step.emphasis && diagram.rows.length > 0 && (
+                <div className="mt-4 border-t border-gray-100 pt-4">
+                  <div className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-gray-500">
+                    {diagram.rowsLabel}
+                  </div>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {diagram.rows.map((r) => (
+                      <span
+                        key={r}
+                        className="rounded-md bg-primary-soft px-3 py-1 font-mono text-xs text-primary-strong"
+                      >
+                        {r}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            {i < diagram.steps.length - 1 && (
+              <div className="flex flex-col items-center py-2" aria-hidden>
+                <div className="h-4 w-px bg-gray-300" />
+                <ArrowDown className="h-4 w-4 text-gray-400" />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <p className="mt-6 text-center text-sm text-gray-700 md:text-base">
+        {diagram.caption}
+      </p>
+    </div>
+  )
+}
+
+function ContrastCard({
+  title,
+  items,
+  tone,
+}: {
+  title: string
+  items: string[]
+  tone: 'muted' | 'knowledge'
+}) {
+  const isKnowledge = tone === 'knowledge'
+  return (
+    <article
+      className={cn(
+        'rounded-2xl border p-6 shadow-sm md:p-7',
+        isKnowledge
+          ? 'border-primary/40 bg-white ring-1 ring-primary/20'
+          : 'border-gray-200 bg-gray-50',
+      )}
+    >
+      <h3
+        className={cn(
+          'mb-4 text-sm font-semibold uppercase tracking-wider',
+          isKnowledge ? 'text-primary-strong' : 'text-gray-600',
+        )}
+      >
+        {title}
+      </h3>
+      <ul className="space-y-2">
+        {items.map((item) => (
+          <li key={item} className="flex items-start gap-2 text-sm text-gray-900 md:text-base">
+            {isKnowledge ? (
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
+            ) : (
+              <X className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" aria-hidden />
+            )}
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </article>
+  )
+}
+
+function ExampleTable({ example }: { example: ProductContent['decisionTables']['example'] }) {
+  return (
+    <div className="mx-auto mt-14 max-w-3xl">
+      <p className="mb-4 text-center text-sm font-semibold uppercase tracking-wider text-primary-strong">
+        {example.caption}
+      </p>
+      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <table className="w-full border-collapse text-left">
+          <thead className="bg-gray-50">
+            <tr>
+              {example.columns.map((col) => (
+                <th
+                  key={col}
+                  className="border-b border-gray-200 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-700"
+                >
+                  {col}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {example.rows.map((row) => (
+              <tr key={row.cells.join('|')} className="text-sm text-gray-900 md:text-base">
+                {row.cells.map((cell, i) => (
+                  <td
+                    key={i}
+                    className={cn(
+                      'border-b border-gray-100 px-4 py-3',
+                      i === row.cells.length - 1 && 'font-semibold text-primary-strong',
+                    )}
+                  >
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-4 text-center text-sm font-semibold text-gray-900 md:text-base">
+        {example.footer}
+      </p>
+    </div>
+  )
+}
+
 function Pillars({ t }: { t: ProductContent }) {
   return (
     <section className="border-b border-gray-100 bg-gray-50">
-      <div className="mx-auto max-w-6xl px-6 py-10">
+      <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
             {t.pillars.heading}
@@ -153,7 +354,7 @@ function Pillars({ t }: { t: ProductContent }) {
                   <h3 className="text-xl font-semibold text-gray-900 md:text-2xl">
                     {p.title}
                   </h3>
-                  <p className="mt-3 text-gray-700 leading-relaxed">{p.body}</p>
+                  <p className="mt-3 text-gray-800 leading-relaxed">{p.body}</p>
                 </div>
               </div>
             )
@@ -168,12 +369,12 @@ function Captures({ t }: { t: ProductContent }) {
   const c = t.captures
   return (
     <section className="border-b border-gray-100 bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-10">
+      <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
             {c.heading}
           </h2>
-          <p className="mt-4 text-lg text-gray-700">{c.intro}</p>
+          <p className="mt-4 text-lg text-gray-800">{c.intro}</p>
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -183,7 +384,7 @@ function Captures({ t }: { t: ProductContent }) {
               {c.brmsLabel}
             </div>
             <ul className="space-y-3">
-              <li className="text-lg font-medium text-gray-700">{c.brmsQuestion}</li>
+              <li className="text-lg font-medium text-gray-800">{c.brmsQuestion}</li>
             </ul>
           </div>
 
@@ -200,7 +401,7 @@ function Captures({ t }: { t: ProductContent }) {
           </div>
         </div>
 
-        <p className="mx-auto mt-10 max-w-3xl text-center text-gray-700 leading-relaxed">
+        <p className="mx-auto mt-10 max-w-3xl text-center text-gray-800 leading-relaxed">
           {c.closing}
         </p>
 
@@ -213,7 +414,7 @@ function Captures({ t }: { t: ProductContent }) {
               <div className="mb-2 text-sm font-semibold uppercase tracking-wider text-primary-strong">
                 {item.label}
               </div>
-              <p className="text-sm text-gray-700 leading-relaxed">{item.body}</p>
+              <p className="text-sm text-gray-800 leading-relaxed">{item.body}</p>
             </div>
           ))}
         </div>
@@ -226,12 +427,12 @@ function Replaces({ t }: { t: ProductContent }) {
   const r = t.replaces
   return (
     <section className="border-b border-gray-100 bg-gray-50">
-      <div className="mx-auto max-w-4xl px-6 py-10">
+      <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
             {r.heading}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-700">{r.intro}</p>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-800">{r.intro}</p>
         </div>
 
         <div className="mt-10 space-y-3">
@@ -241,12 +442,12 @@ function Replaces({ t }: { t: ProductContent }) {
               className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
             >
               <X className="mt-0.5 h-5 w-5 shrink-0 text-danger" aria-hidden />
-              <span className="text-gray-800">{item}</span>
+              <span className="text-gray-900">{item}</span>
             </div>
           ))}
         </div>
 
-        <p className="mt-10 rounded-2xl border-l-4 border-primary bg-primary-soft/60 p-6 text-gray-800 leading-relaxed">
+        <p className="mt-10 rounded-2xl border-l-4 border-primary bg-primary-soft/60 p-6 text-gray-900 leading-relaxed">
           {r.closing}
         </p>
       </div>
@@ -257,7 +458,7 @@ function Replaces({ t }: { t: ProductContent }) {
 function FinalCta({ t, contactHref, compareHref }: { t: ProductContent; contactHref: string; compareHref: string }) {
   return (
     <section className="bg-primary-strong text-white">
-      <div className="mx-auto max-w-4xl px-6 py-10 text-center">
+      <div className="mx-auto max-w-4xl px-6 py-14 text-center md:py-16">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
           {t.finalCta.heading}
         </h2>

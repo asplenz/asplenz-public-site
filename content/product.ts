@@ -1,5 +1,10 @@
 import type { Locale } from '@/lib/i18n'
 
+export type DecisionTableExampleRow = {
+  cells: string[]
+  highlight?: boolean
+}
+
 export type ProductContent = {
   hero: {
     eyebrow: string
@@ -14,6 +19,27 @@ export type ProductContent = {
     entitiesHeading: string
     entities: { name: string; body: string }[]
     quote: string
+  }
+  decisionTables: {
+    heading: string
+    tagline: string
+    intro: string
+    diagram: {
+      caption: string
+      steps: { label: string; sublabel?: string; emphasis?: boolean }[]
+      rowsLabel: string
+      rows: string[]
+    }
+    contrast: {
+      traditional: { title: string; items: string[] }
+      knowledge: { title: string; items: string[] }
+    }
+    example: {
+      caption: string
+      columns: string[]
+      rows: DecisionTableExampleRow[]
+      footer: string
+    }
   }
   pillars: {
     heading: string
@@ -57,7 +83,7 @@ const EN: ProductContent = {
     entitiesHeading: 'The compliance data model',
     entities: [
       { name: 'Policy', body: 'A named container for related rules. Carries a governance log of adoption, amendment and renewal acts.' },
-      { name: 'Rule', body: 'A directive with a scope, a severity, an optional metric condition, and a rationale that explains why it exists.' },
+      { name: 'Rule', body: 'A directive expressed as one or more rows. Each row carries a scope, an optional metric condition and an optional output. A single row is a simple directive ; multiple rows form a decision table read top-to-bottom.' },
       { name: 'Target', body: 'A named audience of principals. A rule is applied to a target ; a principal is a member of one or more targets.' },
       { name: 'Approval', body: 'A request for exception, filed by a business actor when a check blocks. One per operation, N triggers attached.' },
       { name: 'Override', body: 'An authorised exception, scope-bounded, time-bounded, tied to the rules it neutralises and to the approver who granted it.' },
@@ -68,25 +94,70 @@ const EN: ProductContent = {
     ],
     quote: 'We didn\'t build a better rules engine. We built the compliance operating model.',
   },
+  decisionTables: {
+    heading: 'Decision tables without losing governance',
+    tagline: 'A decision table is a governed Rule, not a separate artefact.',
+    intro: 'Traditional BRMS platforms treat decision tables as a second class of object, with its own storage, its own approval flow and its own audit trail. Knowledge treats a decision table as a Rule with multiple rows. Same governance lifecycle, same approval, same override, same replayable consultation. Multiple operational outcomes.',
+    diagram: {
+      caption: 'One Rule, many rows, one governance lifecycle.',
+      steps: [
+        { label: 'Policy', sublabel: 'Governance log' },
+        { label: 'Rule', sublabel: 'One approval, one override', emphasis: true },
+        { label: 'Consultation', sublabel: 'One replayable audit row' },
+      ],
+      rowsLabel: 'Rows',
+      rows: ['Row 1', 'Row 2', 'Row 3'],
+    },
+    contrast: {
+      traditional: {
+        title: 'Traditional BRMS',
+        items: [
+          'Decision table = separate artefact',
+          'Multiple approvals',
+          'Multiple overrides',
+          'Multiple audit trails',
+        ],
+      },
+      knowledge: {
+        title: 'Knowledge',
+        items: [
+          'Decision table = Rule with multiple rows',
+          'One approval',
+          'One override',
+          'One replayable consultation',
+        ],
+      },
+    },
+    example: {
+      caption: 'MAS equity exposure caps, expressed as one Rule with three rows.',
+      columns: ['Client segment', 'Equity cap'],
+      rows: [
+        { cells: ['Retail · lower net worth', '40 %'] },
+        { cells: ['Retail · high net worth', '50 %'] },
+        { cells: ['Accredited investor', '70 %'] },
+      ],
+      footer: 'One Rule. Three rows. One governance lifecycle. Three operational outcomes.',
+    },
+  },
   pillars: {
     heading: 'The three pillars',
     items: [
       {
         number: '01',
         title: 'Compliance operating model',
-        body: 'Every compliance workflow, from routine trade checks to yearly regulator audits, reduces to reads and writes on the nine entities. The vocabulary matches the discipline. Compliance teams stop translating policy into rules-engine primitives.',
+        body: 'Every compliance workflow, from routine trade checks to yearly regulator audits, reduces to reads and writes on the nine entities — Policies, Rules (single-row directives or decision tables), Targets, Approvals, Overrides, Pauses, Consultations, GovernanceNotes and Events. The vocabulary matches the discipline. Compliance teams stop translating policy into rules-engine primitives.',
         icon: 'model',
       },
       {
         number: '02',
         title: 'Deterministic execution',
-        body: 'The engine matches a business action against candidate rules, applies severity ranking plus scope specificity plus priority, and returns a typed verdict in milliseconds. Same inputs always produce the same decision. AI never sits on this critical path ; it only renders the resulting state into prose when someone asks.',
+        body: 'The engine matches a business action against candidate rules, flattens each rule into its rows, applies severity ranking plus row scope specificity plus priority, and returns a typed verdict in milliseconds. Same inputs always produce the same decision. AI never sits on this critical path ; it only renders the resulting state into prose when someone asks.',
         icon: 'engine',
       },
       {
         number: '03',
         title: 'Replayable governance',
-        body: 'Consultations are immutable and cite pinned rule versions. Six months later, one call reconstructs the exact reasoning : the rule versions as they stood, the scope, the winning rule, the trace, the override in effect if any. The regulator asks « why was this blocked on 15 March ? ». You answer without archaeology.',
+        body: 'Consultations are immutable and cite pinned rule versions, including the row that won. Six months later, one call reconstructs the exact reasoning : the rule versions as they stood, the winning row and its scope, the trace, the override in effect if any. The regulator asks « why was this blocked on 15 March ? ». You answer without archaeology.',
         icon: 'replay',
       },
     ],
@@ -110,7 +181,7 @@ const EN: ProductContent = {
     captureList: [
       { label: 'Rationale', body: 'Every rule carries a rationale field, cited in prose output.' },
       { label: 'Adoption', body: 'The governance log records the adoption act with author and date.' },
-      { label: 'Modification', body: 'Every rule version carries the reason for the change, mandatory in V3.' },
+      { label: 'Modification', body: 'Every rule version carries the mandatory reason for the change.' },
       { label: 'Override', body: 'Every Override has a justification and a decider.' },
       { label: 'Pause', body: 'Pauses carry a note and an initiator.' },
       { label: 'Attachment', body: 'TargetRuleAttachment records the decision, its author, and its rationale.' },
@@ -150,7 +221,7 @@ const FR: ProductContent = {
     entitiesHeading: 'Le modèle de données compliance',
     entities: [
       { name: 'Policy', body: 'Un conteneur nommé de règles liées. Porte un journal de gouvernance : actes d\'adoption, d\'amendement et de renouvellement.' },
-      { name: 'Rule', body: 'Une directive avec un scope, une sévérité, une condition métrique optionnelle, et un rationale qui explique pourquoi elle existe.' },
+      { name: 'Rule', body: 'Une directive exprimée en une ou plusieurs rangées. Chaque rangée porte un scope, une condition métrique optionnelle et une sortie optionnelle. Une seule rangée = directive simple ; plusieurs rangées = decision table lue de haut en bas.' },
       { name: 'Target', body: 'Une audience nommée de principals. Une règle est appliquée à une target ; un principal est membre d\'une ou plusieurs targets.' },
       { name: 'Approval', body: 'Une demande d\'exception, déposée par un acteur métier quand un check bloque. Une par opération, N triggers attachés.' },
       { name: 'Override', body: 'Une exception autorisée, scopée, bornée dans le temps, liée aux règles qu\'elle neutralise et à l\'approbateur qui l\'a accordée.' },
@@ -161,25 +232,70 @@ const FR: ProductContent = {
     ],
     quote: 'Nous n\'avons pas construit un meilleur moteur de règles. Nous avons construit le modèle opérationnel compliance.',
   },
+  decisionTables: {
+    heading: 'Les decision tables sans perdre la gouvernance',
+    tagline: 'Une decision table est une Rule gouvernée, pas un artefact séparé.',
+    intro: "Les BRMS classiques traitent les decision tables comme une seconde classe d'objet : stockage propre, workflow d'approbation propre, piste d'audit propre. Knowledge traite une decision table comme une Rule avec plusieurs rangées. Même cycle de gouvernance, même approbation, même override, même consultation rejouable. Plusieurs sorties opérationnelles.",
+    diagram: {
+      caption: 'Une Rule, plusieurs rangées, un seul cycle de gouvernance.',
+      steps: [
+        { label: 'Policy', sublabel: 'Journal de gouvernance' },
+        { label: 'Rule', sublabel: 'Une approbation, un override', emphasis: true },
+        { label: 'Consultation', sublabel: 'Une ligne d\'audit rejouable' },
+      ],
+      rowsLabel: 'Rangées',
+      rows: ['Row 1', 'Row 2', 'Row 3'],
+    },
+    contrast: {
+      traditional: {
+        title: 'BRMS classique',
+        items: [
+          'Decision table = artefact séparé',
+          'Plusieurs approbations',
+          'Plusieurs overrides',
+          'Plusieurs pistes d\'audit',
+        ],
+      },
+      knowledge: {
+        title: 'Knowledge',
+        items: [
+          'Decision table = Rule avec plusieurs rangées',
+          'Une approbation',
+          'Un override',
+          'Une consultation rejouable',
+        ],
+      },
+    },
+    example: {
+      caption: 'Plafonds MAS d\'exposition equity, exprimés en une Rule à trois rangées.',
+      columns: ['Segment client', 'Plafond equity'],
+      rows: [
+        { cells: ['Retail · lower net worth', '40 %'] },
+        { cells: ['Retail · high net worth', '50 %'] },
+        { cells: ['Accredited investor', '70 %'] },
+      ],
+      footer: 'Une Rule. Trois rangées. Un seul cycle de gouvernance. Trois sorties opérationnelles.',
+    },
+  },
   pillars: {
     heading: 'Les trois piliers',
     items: [
       {
         number: '01',
         title: 'Modèle opérationnel compliance',
-        body: 'Chaque workflow compliance, du check de trade routinier à l\'audit régulateur annuel, se réduit à des lectures et écritures sur les neuf entités. Le vocabulaire épouse la discipline. Les équipes compliance arrêtent de traduire de la policy en primitives de rules-engine.',
+        body: 'Chaque workflow compliance, du check de trade routinier à l\'audit régulateur annuel, se réduit à des lectures et écritures sur les neuf entités — Policies, Rules (directives à une rangée ou decision tables), Targets, Approvals, Overrides, Pauses, Consultations, GovernanceNotes et Events. Le vocabulaire épouse la discipline. Les équipes compliance arrêtent de traduire de la policy en primitives de rules-engine.',
         icon: 'model',
       },
       {
         number: '02',
         title: 'Exécution déterministe',
-        body: 'Le moteur confronte une action métier aux règles candidates, applique classement par sévérité plus spécificité de scope plus priorité, et renvoie un verdict typé en millisecondes. Mêmes entrées produisent toujours la même décision. L\'IA ne siège jamais sur ce chemin critique ; elle rend seulement l\'état résultant en prose quand quelqu\'un le demande.',
+        body: 'Le moteur confronte une action métier aux règles candidates, aplatit chaque règle en ses rangées, applique classement par sévérité plus spécificité du scope de la rangée plus priorité, et renvoie un verdict typé en millisecondes. Mêmes entrées produisent toujours la même décision. L\'IA ne siège jamais sur ce chemin critique ; elle rend seulement l\'état résultant en prose quand quelqu\'un le demande.',
         icon: 'engine',
       },
       {
         number: '03',
         title: 'Gouvernance rejouable',
-        body: 'Les Consultations sont immuables et citent des versions figées de règles. Six mois plus tard, un appel reconstitue le raisonnement exact : les versions de règles telles qu\'elles étaient, le scope, la règle gagnante, la trace, l\'override en vigueur le cas échéant. Le régulateur demande « pourquoi ceci a-t-il été bloqué le 15 mars ? ». Vous répondez sans archéologie.',
+        body: 'Les Consultations sont immuables et citent des versions figées de règles, y compris la rangée qui a gagné. Six mois plus tard, un appel reconstitue le raisonnement exact : les versions de règles telles qu\'elles étaient, la rangée gagnante et son scope, la trace, l\'override en vigueur le cas échéant. Le régulateur demande « pourquoi ceci a-t-il été bloqué le 15 mars ? ». Vous répondez sans archéologie.',
         icon: 'replay',
       },
     ],
@@ -203,7 +319,7 @@ const FR: ProductContent = {
     captureList: [
       { label: 'Rationale', body: 'Chaque règle porte un champ rationale, cité dans la prose de sortie.' },
       { label: 'Adoption', body: 'Le journal de gouvernance enregistre l\'acte d\'adoption avec auteur et date.' },
-      { label: 'Modification', body: 'Chaque version de règle porte le motif du changement, obligatoire en V3.' },
+      { label: 'Modification', body: 'Chaque version de règle porte le motif obligatoire du changement.' },
       { label: 'Override', body: 'Chaque Override a une justification et un décideur.' },
       { label: 'Pause', body: 'Les Pauses portent une note et un initiateur.' },
       { label: 'Attachement', body: 'TargetRuleAttachment enregistre la décision, son auteur, et son rationale.' },
