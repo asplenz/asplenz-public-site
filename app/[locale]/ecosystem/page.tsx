@@ -1,8 +1,14 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Check, ChevronRight, Sparkles } from 'lucide-react'
+import { ArrowDown, Sparkles } from 'lucide-react'
 import { isLocale, type Locale } from '@/lib/i18n'
-import { getEcosystemContent, type EcosystemContent, type EcosystemItem } from '@/content/ecosystem'
+import {
+  getEcosystemContent,
+  type EcosystemContent,
+  type EcosystemPlatformRow,
+  type EcosystemTogetherBlock,
+  type EcosystemArchitecture,
+} from '@/content/ecosystem'
 import { cn } from '@/lib/cn'
 
 export async function generateMetadata({
@@ -14,7 +20,7 @@ export async function generateMetadata({
   const t = getEcosystemContent(params.locale as Locale)
   return {
     title: 'Ecosystem',
-    description: t.hero.sub,
+    description: t.hero.highlight,
   }
 }
 
@@ -26,8 +32,10 @@ export default function EcosystemPage({ params }: { params: { locale: string } }
   return (
     <>
       <Hero t={t} />
-      <Items t={t} />
-      <Conclusion t={t} />
+      <TableSection t={t} />
+      <FitSection t={t} />
+      <ArchitectureSection t={t} />
+      <PhilosophySection t={t} />
     </>
   )
 }
@@ -40,11 +48,24 @@ function Hero({ t }: { t: EcosystemContent }) {
           <div className="mb-4 inline-flex items-center rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-strong">
             {t.hero.eyebrow}
           </div>
-          <h1 className="text-5xl font-bold leading-tight tracking-tight text-gray-900 md:text-6xl">
+          <h1 className="text-4xl font-bold leading-tight tracking-tight text-gray-900 md:text-5xl">
             {t.hero.heading}
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-700 md:text-xl">
-            {t.hero.sub}
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-800 md:text-xl">
+            {t.hero.lead}
+          </p>
+          <ul className="mx-auto mt-4 max-w-xl space-y-1 text-base text-gray-700 md:text-lg">
+            {t.hero.body.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+          <div className="mx-auto mt-8 max-w-2xl rounded-2xl border-l-4 border-primary bg-white p-6 text-left shadow-sm">
+            <p className="text-lg font-semibold text-gray-900 md:text-xl">
+              {t.hero.highlight}
+            </p>
+          </div>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-gray-700">
+            {t.hero.outro}
           </p>
         </div>
       </div>
@@ -52,13 +73,43 @@ function Hero({ t }: { t: EcosystemContent }) {
   )
 }
 
-function Items({ t }: { t: EcosystemContent }) {
+function TableSection({ t }: { t: EcosystemContent }) {
   return (
     <section className="bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-10">
-        <div className="grid gap-5 md:grid-cols-2">
-          {t.items.map((item) => (
-            <ItemCard key={item.id} item={item} label={t.strengthsLabel} />
+      <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+        <h2 className="mb-8 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
+          {t.tableSection.heading}
+        </h2>
+
+        <div className="hidden overflow-hidden rounded-2xl border border-gray-200 md:block">
+          <table className="w-full border-collapse text-left">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="w-1/5 border-b border-gray-200 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-700">
+                  {t.tableSection.columns.product}
+                </th>
+                <th className="w-1/5 border-b border-gray-200 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-700">
+                  {t.tableSection.columns.purpose}
+                </th>
+                <th className="w-2/5 border-b border-gray-200 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-700">
+                  {t.tableSection.columns.models}
+                </th>
+                <th className="w-1/5 border-b border-gray-200 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-700">
+                  {t.tableSection.columns.useCases}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {t.tableSection.rows.map((row) => (
+                <PlatformTableRow key={row.name} row={row} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="grid gap-4 md:hidden">
+          {t.tableSection.rows.map((row) => (
+            <PlatformMobileCard key={row.name} row={row} columns={t.tableSection.columns} />
           ))}
         </div>
       </div>
@@ -66,64 +117,232 @@ function Items({ t }: { t: EcosystemContent }) {
   )
 }
 
-function ItemCard({ item, label }: { item: EcosystemItem; label: string }) {
-  const isKnowledge = item.id === 'knowledge'
+function PlatformTableRow({ row }: { row: EcosystemPlatformRow }) {
+  return (
+    <tr
+      className={cn(
+        'align-top text-sm text-gray-800',
+        row.isKnowledge ? 'bg-primary-soft/40' : 'bg-white',
+      )}
+    >
+      <td className="border-b border-gray-100 px-4 py-4 font-semibold text-gray-900">
+        <div className="flex items-start gap-2">
+          {row.isKnowledge && (
+            <Sparkles
+              className="mt-0.5 h-4 w-4 shrink-0 text-primary-strong"
+              aria-hidden
+            />
+          )}
+          <span>{row.name}</span>
+        </div>
+      </td>
+      <td className="border-b border-gray-100 px-4 py-4">{row.purpose}</td>
+      <td className="border-b border-gray-100 px-4 py-4">{row.models}</td>
+      <td className="border-b border-gray-100 px-4 py-4">{row.useCases}</td>
+    </tr>
+  )
+}
+
+function PlatformMobileCard({
+  row,
+  columns,
+}: {
+  row: EcosystemPlatformRow
+  columns: EcosystemContent['tableSection']['columns']
+}) {
   return (
     <article
       className={cn(
-        'flex flex-col rounded-2xl border bg-white p-6 shadow-sm',
-        isKnowledge
-          ? 'border-primary/40 ring-1 ring-primary/20'
-          : 'border-gray-200',
+        'rounded-2xl border p-5 shadow-sm',
+        row.isKnowledge
+          ? 'border-primary/40 bg-primary-soft/40 ring-1 ring-primary/20'
+          : 'border-gray-200 bg-white',
       )}
     >
-      <header className="mb-4">
-        <div className="mb-2 flex items-center gap-2">
-          {isKnowledge && (
-            <Sparkles className="h-4 w-4 text-primary-strong" aria-hidden />
-          )}
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-primary-strong">
-            {item.tag}
-          </span>
-        </div>
-        <h2 className="text-xl font-bold tracking-tight text-gray-900 md:text-2xl">
-          {item.name}
-        </h2>
+      <header className="mb-3 flex items-start gap-2">
+        {row.isKnowledge && (
+          <Sparkles className="mt-1 h-4 w-4 shrink-0 text-primary-strong" aria-hidden />
+        )}
+        <h3 className="text-base font-bold text-gray-900">{row.name}</h3>
       </header>
-
-      <div className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-gray-500">
-        {label}
-      </div>
-      <ul className="space-y-2">
-        {item.strengths.map((s) => (
-          <li key={s} className="flex items-start gap-2.5 text-sm text-gray-800">
-            <Check
-              className={cn(
-                'mt-0.5 h-4 w-4 shrink-0',
-                isKnowledge ? 'text-primary' : 'text-success-strong',
-              )}
-              aria-hidden
-            />
-            <span>{s}</span>
-          </li>
-        ))}
-      </ul>
+      <dl className="space-y-3 text-sm text-gray-800">
+        <div>
+          <dt className="text-[10px] font-semibold uppercase tracking-wider text-gray-500">
+            {columns.purpose}
+          </dt>
+          <dd className="mt-0.5">{row.purpose}</dd>
+        </div>
+        <div>
+          <dt className="text-[10px] font-semibold uppercase tracking-wider text-gray-500">
+            {columns.models}
+          </dt>
+          <dd className="mt-0.5">{row.models}</dd>
+        </div>
+        <div>
+          <dt className="text-[10px] font-semibold uppercase tracking-wider text-gray-500">
+            {columns.useCases}
+          </dt>
+          <dd className="mt-0.5">{row.useCases}</dd>
+        </div>
+      </dl>
     </article>
   )
 }
 
-function Conclusion({ t }: { t: EcosystemContent }) {
+function FitSection({ t }: { t: EcosystemContent }) {
   return (
     <section className="border-t border-gray-100 bg-gray-50">
-      <div className="mx-auto max-w-3xl px-6 py-14">
-        <div className="rounded-2xl border-l-4 border-primary bg-white p-8 shadow-sm md:p-10">
-          <div className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-primary-strong">
-            <ChevronRight className="h-4 w-4" aria-hidden />
-            {t.conclusion.heading}
-          </div>
-          <p className="text-lg text-gray-800 leading-relaxed">
-            {t.conclusion.body}
+      <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+        <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
+          {t.fitSection.heading}
+        </h2>
+        <div className="mb-10 max-w-2xl space-y-1 text-lg text-gray-800">
+          {t.fitSection.intro.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2">
+          {t.fitSection.blocks.map((block) => (
+            <TogetherCard key={block.id} block={block} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function TogetherCard({ block }: { block: EcosystemTogetherBlock }) {
+  return (
+    <article className="flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <h3 className="mb-3 text-xl font-bold tracking-tight text-gray-900">
+        <span className="text-gray-600">+ </span>
+        {block.partner}
+      </h3>
+      <p className="text-sm leading-relaxed text-gray-800">
+        {block.partnerRole}
+      </p>
+      <p className="mt-2 text-sm leading-relaxed text-gray-800">
+        <span className="font-semibold text-primary-strong">Knowledge : </span>
+        {block.knowledgeRole}
+      </p>
+      {block.contrast && (
+        <div className="mt-4 grid gap-2 rounded-xl bg-gray-50 p-4 sm:grid-cols-2">
+          <p className="text-xs leading-snug text-gray-700">
+            {block.contrast.partnerQuestion}
           </p>
+          <p className="text-xs leading-snug text-gray-900 font-medium">
+            {block.contrast.knowledgeQuestion}
+          </p>
+        </div>
+      )}
+      {block.body.length > 0 && (
+        <div className="mt-4 space-y-2 border-t border-gray-100 pt-4 text-sm leading-relaxed text-gray-800">
+          {block.body.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
+      )}
+    </article>
+  )
+}
+
+function ArchitectureSection({ t }: { t: EcosystemContent }) {
+  return (
+    <section className="bg-white">
+      <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+        <h2 className="mb-3 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
+          {t.architectureSection.heading}
+        </h2>
+        <p className="mb-10 max-w-2xl text-lg text-gray-700">
+          {t.architectureSection.lead}
+        </p>
+        <div className="grid gap-6 md:grid-cols-2">
+          {t.architectureSection.items.map((item) => (
+            <ArchitectureCard key={item.id} item={item} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ArchitectureCard({ item }: { item: EcosystemArchitecture }) {
+  return (
+    <article className="rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm">
+      <header className="mb-5">
+        <h3 className="text-lg font-bold tracking-tight text-gray-900">
+          {item.title}
+        </h3>
+      </header>
+      <div className="flex flex-col items-center">
+        {item.nodes.map((node, i) => (
+          <div key={`${item.id}-${i}`} className="flex flex-col items-center">
+            <div
+              className={cn(
+                'w-full min-w-[220px] max-w-xs rounded-xl border px-5 py-3 text-center text-sm font-semibold shadow-sm',
+                node.emphasis
+                  ? 'border-primary/50 bg-white text-primary-strong ring-1 ring-primary/20'
+                  : 'border-gray-200 bg-white text-gray-900',
+              )}
+            >
+              {node.label}
+            </div>
+            {i < item.nodes.length - 1 && (
+              <ArrowConnector emphasis={node.emphasis || item.nodes[i + 1].emphasis} />
+            )}
+          </div>
+        ))}
+      </div>
+    </article>
+  )
+}
+
+function ArrowConnector({ emphasis }: { emphasis?: boolean }) {
+  return (
+    <div className="flex flex-col items-center py-1" aria-hidden>
+      <div
+        className={cn(
+          'h-4 w-px',
+          emphasis ? 'bg-primary/60' : 'bg-gray-300',
+        )}
+      />
+      <ArrowDown
+        className={cn(
+          'h-4 w-4',
+          emphasis ? 'text-primary' : 'text-gray-400',
+        )}
+      />
+    </div>
+  )
+}
+
+function PhilosophySection({ t }: { t: EcosystemContent }) {
+  return (
+    <section className="border-t border-gray-100 bg-gradient-to-b from-white to-primary-soft/30">
+      <div className="mx-auto max-w-4xl px-6 py-16 md:py-20">
+        <div className="text-center">
+          <div className="mb-4 inline-flex items-center rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-strong">
+            {t.philosophy.eyebrow}
+          </div>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
+            {t.philosophy.heading}
+          </h2>
+          <ul className="mx-auto mt-6 max-w-2xl space-y-1 text-lg text-gray-800">
+            {t.philosophy.lines.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+          <div className="mx-auto mt-8 max-w-2xl rounded-2xl border-l-4 border-primary bg-white p-6 text-left shadow-sm md:p-8">
+            <p className="text-xl font-semibold text-gray-900 md:text-2xl">
+              {t.philosophy.highlight}
+            </p>
+          </div>
+          <div className="mx-auto mt-6 max-w-2xl space-y-2 text-base leading-relaxed text-gray-700">
+            {t.philosophy.closing.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </div>
         </div>
       </div>
     </section>

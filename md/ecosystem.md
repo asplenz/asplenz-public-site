@@ -2,8 +2,8 @@
 slug: ecosystem
 title_en: "Ecosystem"
 title_fr: "Écosystème"
-description_en: "Knowledge in the compliance and decisioning landscape. An architecture guide."
-description_fr: "Knowledge dans le paysage compliance et decisioning. Un guide d'architecture."
+description_en: "How Knowledge fits into an existing enterprise architecture. Comparison with the compliance and decisioning landscape."
+description_fr: "Comment Knowledge s'intègre dans une architecture enterprise existante. Comparaison avec le paysage compliance et decisioning."
 ---
 
 <!-- @lang en -->
@@ -14,37 +14,28 @@ Reference content for /ecosystem. The page is a custom React layout. Full wordin
 
 ## Intent
 
-An architecture guide, not a sales page. Useful even if the reader never buys Knowledge. Inspires confidence in CTOs, Heads of Compliance and integrators.
+Answer the question a CTO or Head of Compliance actually asks : "we already have X. Where does Knowledge fit ?"
 
-## Structure per item
+Not a product-vs-product ranking. Not a feature checklist. An architecture guide, honest and factual, that inspires confidence even in a reader who never buys Knowledge.
 
-- **Overview** : what this product is
-- **Strengths** : what it does well
-- **Where it stops** : limitations, honest and factual
-- **Typical integration patterns** : how Knowledge coexists with, complements or gradually replaces the tool. Optional flow diagram.
+## Structure
 
-No "Choose X" / "Choose Knowledge" language. No commercial CTA at the end.
+1. **Hero** : the framing. Enterprise architectures are multi-platform ; Knowledge focuses on one problem (executing the compliance operating model).
+2. **Platform comparison table** : ten products (Knowledge + nine others) with primary purpose, what the product lets you model, typical use cases. Knowledge is highlighted.
+3. **How Knowledge fits** : seven "Together with X" cards showing coexistence patterns (IBM ODM, Camunda, GoRules, DecisionRules, GRC, Fenergo, Internal development).
+4. **Typical architectures** : four common shapes rendered as node-and-arrow diagrams (Compliance platform · Decision engine + compliance · Workflow + compliance · Enterprise decision services).
+5. **Philosophy** : the closing statement.
 
-## Eight items covered (in order)
+## Voice
 
-1. **Internal Development** (first, because it is the most common alternative)
-2. **decisionrules.io** (modern BRMS)
-3. **IBM Operational Decision Manager** (enterprise BRMS incumbent)
-4. **Camunda** (BPM orchestration ; complementary pattern with flow diagram)
-5. **Taktile** (AI decisioning)
-6. **ServiceNow GRC · OneTrust · MetricStream** (GRC platforms)
-7. **Drools · Red Hat Decision Manager** (open-source rules)
-8. **Fenergo** (KYC · onboarding specialist)
+- No "Choose X" / "Choose Knowledge" language.
+- No commercial CTA at the end.
+- Objective descriptions of each platform.
+- The differentiator is expressed structurally (comparison table + coexistence cards) rather than by claim.
 
-## Anchor navigation
+## Closing line
 
-A sticky sub-nav at top exposes the 8 items as chips linking to page anchors.
-
-## Conclusion
-
-A philosophy statement replaces the commercial CTA :
-
-> Knowledge is designed to integrate with existing enterprise architecture as often as it replaces it. Whether your organisation already operates BPM, BRMS, GRC or decisioning platforms depends on your context, not on a predetermined architecture. Our goal is to provide deterministic compliance execution, replayable governance and a compliance operating model wherever those capabilities are needed.
+> Workflow engines orchestrate. Decision engines calculate. GRC platforms document. Knowledge operationalises compliance.
 
 <!-- @lang fr -->
 
@@ -54,34 +45,25 @@ Contenu de référence pour /ecosystem. La page est un layout React custom. Le w
 
 ## Intention
 
-Un guide d'architecture, pas une page de vente. Utile même si le lecteur n'achète jamais Knowledge. Inspire confiance chez les CTOs, Heads of Compliance et intégrateurs.
+Répondre à la question que se pose vraiment un CTO ou un Head of Compliance : "nous avons déjà X. Où Knowledge s'intègre-t-il ?"
 
-## Structure par item
+Pas un classement produit-vs-produit. Pas une checklist de fonctionnalités. Un guide d'architecture, honnête et factuel, qui inspire confiance même chez un lecteur qui n'achètera jamais Knowledge.
 
-- **Overview** : ce qu'est ce produit
-- **Forces** : ce qu'il fait bien
-- **Où ça s'arrête** : limitations, honnêtes et factuelles
-- **Patterns d'intégration typiques** : comment Knowledge coexiste, complète ou remplace progressivement l'outil. Diagramme de flow optionnel.
+## Structure
 
-Aucun langage "Choisissez X" / "Choisissez Knowledge". Aucun CTA commercial à la fin.
+1. **Hero** : le cadrage. Les architectures enterprise sont multi-plateformes ; Knowledge se concentre sur un seul problème (exécuter le modèle opérationnel compliance).
+2. **Tableau de comparaison** : dix produits (Knowledge + neuf autres) avec objectif principal, ce que le produit permet de modéliser, cas d'usage typiques. Knowledge est mis en évidence.
+3. **Comment Knowledge s'intègre** : sept cards "En complément de X" montrant les patterns de coexistence (IBM ODM, Camunda, GoRules, DecisionRules, GRC, Fenergo, Développement interne).
+4. **Architectures typiques** : quatre formes courantes rendues sous forme de diagrammes nœud-et-flèche (Plateforme compliance · Moteur de décision + compliance · Workflow + compliance · Services de décision enterprise).
+5. **Philosophie** : la phrase de clôture.
 
-## Huit items couverts (dans l'ordre)
+## Voix
 
-1. **Développement interne** (en premier, parce que c'est l'alternative la plus fréquente)
-2. **decisionrules.io** (BRMS moderne)
-3. **IBM Operational Decision Manager** (BRMS enterprise incumbent)
-4. **Camunda** (orchestration BPM ; pattern complémentaire avec diagramme de flow)
-5. **Taktile** (decisioning IA)
-6. **ServiceNow GRC · OneTrust · MetricStream** (plateformes GRC)
-7. **Drools · Red Hat Decision Manager** (règles open source)
-8. **Fenergo** (spécialiste KYC · onboarding)
+- Aucun langage "Choisissez X" / "Choisissez Knowledge".
+- Aucun CTA commercial à la fin.
+- Descriptions objectives de chaque plateforme.
+- Le différentiateur s'exprime par la structure (tableau de comparaison + cards de coexistence) plutôt que par affirmation.
 
-## Navigation par ancres
+## Phrase de clôture
 
-Une sub-nav sticky en haut expose les 8 items sous forme de chips liant aux ancres de page.
-
-## Conclusion
-
-Une déclaration philosophique remplace le CTA commercial :
-
-> Knowledge est conçu pour s'intégrer à l'architecture enterprise existante aussi souvent qu'il la remplace. Que votre organisation opère déjà du BPM, du BRMS, du GRC ou des plateformes de decisioning dépend de votre contexte, pas d'une architecture prédéterminée. Notre objectif est de fournir l'exécution compliance déterministe, la gouvernance rejouable et un modèle opérationnel compliance là où ces capacités sont nécessaires.
+> Les moteurs de workflow orchestrent. Les moteurs de décision calculent. Les plateformes GRC documentent. Knowledge opérationnalise la compliance.
