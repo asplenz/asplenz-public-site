@@ -7,7 +7,7 @@ ctaLabel: Become a design partner
 ctaHref: /pilot
 ---
 
-Knowledge exposes a small REST surface. Most integrations start with a single endpoint : `/v1/resolve`. This page covers what you need to make that first call and read its result.
+Knowledge exposes a small REST surface. Most integrations start with a single endpoint: `/v1/resolve`. This page covers what you need to make that first call and read its result.
 
 ## Base URL and versioning
 
@@ -35,7 +35,7 @@ See [Security](/security) for the full authentication and authorization model.
 
 Send the current context; receive either the verdict or the additional context still required.
 
-**Request body :**
+**Request body:**
 
 ```
 {
@@ -55,7 +55,7 @@ Send the current context; receive either the verdict or the additional context s
 - `context` — a dict of dot-path field names to `Fact` objects. Fields the caller does not yet know are simply omitted.
 - `correlation` — optional. Opaque IDs the caller passes so a Consultation can be traced back to an external interaction; Knowledge stores them but never interprets them.
 
-**Response — INCOMPLETE :**
+**Response — INCOMPLETE:**
 
 ```
 {
@@ -73,7 +73,7 @@ Send the current context; receive either the verdict or the additional context s
 
 The caller obtains each required field (from a system, a vendor, an extraction, or the user) and re-calls `/resolve` with the enriched context. No Consultation is written for INCOMPLETE responses.
 
-**Response — COMPLETE :**
+**Response — COMPLETE:**
 
 ```
 {
@@ -87,7 +87,7 @@ The caller obtains each required field (from a system, a vendor, an extraction, 
 }
 ```
 
-`verdict` is the business outcome. Depending on the applicable rules it may be `allowed`, `blocked`, `approval_required`, `observe`, or any value defined by the policy. `approval_required` is a verdict, not a separate response state.
+`verdict` is the business outcome. Depending on the applicable rules it may be `allowed`, `blocked`, `approval_required`, `observe`, or any value defined by the policy. `approval_required` is a verdict, not a separate response state; when it is returned, an optional `approver` object identifies who can decide.
 
 ## The Fact shape
 
@@ -136,9 +136,8 @@ Standard HTTP status codes:
 | `401` | Missing or invalid API key |
 | `403` | API key does not have the required permission |
 | `404` | Unknown action_type, consultation_id or related resource |
-| `409` | Idempotency or optimistic-concurrency conflict |
+| `409` | Conflict with the current state (e.g. duplicate creation) |
 | `422` | Request accepted, but validation on a nested structure failed |
-| `429` | Rate limit exceeded |
 | `500` | Unhandled error |
 
 Every error response carries a JSON body with `code`, `message` and optionally `details`.

@@ -1,6 +1,6 @@
 ---
 title: Security and enterprise readiness
-description: Standards, controls and deployment shapes. Enough to answer the first questions ; talk to us for the rest.
+description: Standards, controls and deployment shapes. Enough to answer the first questions; talk to us for the rest.
 locale: en
 kicker: Security model
 ctaLabel: Discuss security with us
@@ -22,7 +22,7 @@ Access is role-based and scoped per tenant. Standard roles cover policy authorsh
 
 ## Tenant isolation
 
-Every governed entity is scoped to a tenant. Queries filter on tenant at the service layer ; the engine never sees data from another tenant. Cross-tenant access is not possible via the API.
+Every governed entity is scoped to a tenant. Queries filter on tenant at the service layer; the engine never sees data from another tenant. Cross-tenant access is not possible via the API.
 
 ## Encryption
 
@@ -48,9 +48,9 @@ The engine has no external runtime dependencies beyond a standard relational sto
 
 ## Certifications and deployment scope
 
-- **Formal certifications (SOC 2, ISO 27001)** : programme starts during the design-partner cohort. Today, the controls above define the security posture.
-- **Data residency** : configurable by deployment shape. SaaS runs in a fixed region ; VPC and on-prem give you full control.
-- **Audit retention** : configured per deployment. The platform preserves the audit records ; retention windows are yours to set.
+- **Formal certifications (SOC 2, ISO 27001)**: programme starts during the design-partner cohort. Today, the controls above define the security posture.
+- **Data residency**: configurable by deployment shape. SaaS runs in a fixed region; VPC and on-prem give you full control.
+- **Audit retention**: configured per deployment. The platform preserves the audit records; retention windows are yours to set.
 
 ## Discuss security with us
 

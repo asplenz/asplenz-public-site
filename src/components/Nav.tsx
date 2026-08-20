@@ -12,6 +12,7 @@ const NAV_ITEMS: NavItem[] = [
   { slug: 'wealth', labelEn: 'Wealth', labelFr: 'Wealth' },
   { slug: 'kyc', labelEn: 'KYC / KYB', labelFr: 'KYC / KYB' },
   { slug: 'how-it-works', labelEn: 'How it works', labelFr: 'Comment ça marche' },
+  { slug: 'vs', labelEn: 'Compare', labelFr: 'Comparer' },
   { slug: 'governance', labelEn: 'Governance', labelFr: 'Gouvernance' },
   { slug: 'ai-agents', labelEn: 'AI agents', labelFr: 'Agents IA' },
   { slug: 'stack', labelEn: 'Your stack', labelFr: 'Votre stack' },

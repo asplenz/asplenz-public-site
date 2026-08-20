@@ -1,13 +1,13 @@
 ---
 title: Asplenz Knowledge - la couche de policy gouvernée pour vos applications, workflows et agents IA
-description: Quand la logique de conformité se disperse dans les workflows, applications et fichiers Excel, chaque changement de policy devient plus coûteux à maintenir, tester et auditer. Knowledge centralise cette logique de décision dans une couche gouvernée - sans remplacer votre stack.
+description: Quand la logique de conformité est dispersée dans votre stack, chaque changement devient plus difficile à contrôler. Knowledge apporte la logique de décision dans une couche de policy gouvernée, sans remplacer ce qui tourne déjà.
 locale: fr
 
 hero:
   kicker: Couche de policy pour vos décisions de conformité
-  headline: Quand la logique de conformité se disperse dans les workflows, applications et fichiers Excel,
-  headlineItalic: chaque changement de policy devient plus coûteux à maintenir, tester et auditer.
-  sub: Knowledge apporte la logique de décision dans une couche de policy gouvernée - sans remplacer votre stack existant. Vos applications, workflows et agents IA fournissent leur contexte courant. Knowledge détermine ce que la policy exige, quelle information manque encore, et quelle décision s'applique.
+  headline: Quand la logique de conformité est dispersée dans votre stack,
+  headlineItalic: chaque changement devient plus difficile à contrôler.
+  sub: Knowledge apporte la logique de décision dans une couche de policy gouvernée, sans remplacer votre stack existant. Vos applications, workflows et agents IA fournissent le contexte qu'ils ont. Knowledge détermine ce que la policy exige, ce qui manque encore pour atteindre un verdict, et quelle décision s'applique.
   ctaPrimary: Devenir design partner
   ctaPrimaryHref: /pilot
   ctaSecondary: Voir comment ça marche

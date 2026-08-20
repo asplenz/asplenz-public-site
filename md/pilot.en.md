@@ -39,7 +39,7 @@ Knowledge is already operational. At this stage, the first cohort of design part
 
 **1. Scoping conversation.** Thirty minutes. We understand which decision hurts most, whether it fits Knowledge's shape, and which adoption pattern is safest for the deployment.
 
-**2. Scoped proposal.** Within a week, we send a written scope : the decision, the model, the adoption pattern, the success criteria, the timeline, the pricing. You sign or you decline. No drift.
+**2. Scoped proposal.** Within a week, we send a written scope: the decision, the model, the adoption pattern, the success criteria, the timeline, the pricing. You sign or you decline. No drift.
 
 **3. Kick-off (week 1).** We deploy the agreed Knowledge setup and integrate it with the selected caller, in the adoption mode chosen at scoping.
 
@@ -67,4 +67,4 @@ Fit is determined by the decision and the problem, not the industry label. Our c
 
 [[cta]Discuss a design partnership](mailto:contact@asplenz.com)
 
-email : [contact@asplenz.com](mailto:contact@asplenz.com)
+email: [contact@asplenz.com](mailto:contact@asplenz.com)

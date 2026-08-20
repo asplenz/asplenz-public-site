@@ -38,7 +38,7 @@ POST /knowledge/v1/resolve
 }
 ```
 
-**Knowledge responds in one of two states : complete or incomplete.**
+**Knowledge responds in one of two states: complete or incomplete.**
 
 If the operation is incomplete, the response identifies the context still required for the applicable policies to resolve. Each entry carries the field, the reason it is needed, its schema type, and any constraints the caller can use to build a follow-up query:
 
@@ -196,4 +196,4 @@ end: Consultation preserved for audit and replay
 |---|---|
 | [AI agents](/ai-agents) | How an agent uses `/resolve` as a tool |
 | [Works with your stack](/stack) | The five insertion patterns |
-| [Design partner](/pilot) | The founding-partner engagement : three slots on one production-relevant decision |
+| [Design partner](/pilot) | The founding-partner engagement: three slots on one production-relevant decision |

@@ -1,5 +1,5 @@
 ---
-title: "Your AI agent can retrieve information and call tools. But should it interpret your business policy before taking an action ?"
+title: "Your AI agent can retrieve information and call tools. But should it interpret your business policy before taking an action?"
 description: Knowledge is a governed policy interface an agent calls before acting. It returns either the decision or the context still required to reach one, with the rules that determined the outcome.
 locale: en
 kicker: For AI teams
@@ -7,7 +7,7 @@ ctaLabel: See a working reference integration
 ctaHref: /wealth
 ---
 
-The moment an agent moves from answering questions to taking governed business actions, a new question appears : who determines whether the action is allowed?
+The moment an agent moves from answering questions to taking governed business actions, a new question appears: who determines whether the action is allowed?
 
 Letting the LLM interpret policy from documents or prompts makes that decision difficult to make deterministic, testable and auditable.
 
@@ -36,13 +36,13 @@ tool: Execute / Slack / Email |
 `/resolve` responds in one of two states:
 
 - **Complete** - the agent receives the verdict, the rules that determined it, and a consultation reference for audit.
-- **Incomplete** - the agent receives `required_context` : the fields the applicable policies still need. The agent obtains that context and calls `/resolve` again.
+- **Incomplete** - the agent receives `required_context`: the fields the applicable policies still need. The agent obtains that context and calls `/resolve` again.
 
 **The agent decides how to obtain the context. Knowledge determines what the policy requires.**
 
 The agent may retrieve the missing context from an internal system (CRM, product master, verification vendor), derive it from an existing document or conversation, or ask the user when necessary. Which source it picks is an agent-side choice, not a Knowledge concern.
 
-## A concrete boundary : before executing a refund
+## A concrete boundary: before executing a refund
 
 A customer-service agent is asked to refund a 2,000 EUR transaction. Before executing, it calls `/resolve`.
 
@@ -58,7 +58,7 @@ POST /knowledge/v1/resolve
 }
 ```
 
-**Case A - Knowledge returns `approval_required` :**
+**Case A - Knowledge returns `approval_required`:**
 
 ```
 { operation_status: "complete",
@@ -69,7 +69,7 @@ POST /knowledge/v1/resolve
 
 The agent does **not** execute the refund. It creates an approval request, informs the customer that the case is being reviewed, and hands off to the human decision path.
 
-**Case B - same intent, 40 EUR transaction, Knowledge returns `allowed` :**
+**Case B - same intent, 40 EUR transaction, Knowledge returns `allowed`:**
 
 ```
 { operation_status: "complete",
@@ -84,7 +84,7 @@ The agent chose how to interpret intent, gather context and communicate. Knowled
 
 ## Deterministic where it matters. Probabilistic where it helps.
 
-The LLM can still interpret intent, extract context, choose tools and manage the conversation. Knowledge governs one specific boundary : resolving explicit business policy against explicit context.
+The LLM can still interpret intent, extract context, choose tools and manage the conversation. Knowledge governs one specific boundary: resolving explicit business policy against explicit context.
 
 **Let the agent reason. Don't make it invent the policy.**
 
@@ -101,7 +101,7 @@ RAG and Knowledge answer different questions. The comparison:
 | **Audit focus** | What information was retrieved and generated | Which policy state and rules determined the outcome |
 | **Agent role** | Knowledge / reasoning tool | Governed decision tool |
 
-Both can coexist in an agent : RAG for retrieval and reasoning support, Knowledge for the decision boundary where the outcome needs to be deterministic and auditable.
+Both can coexist in an agent: RAG for retrieval and reasoning support, Knowledge for the decision boundary where the outcome needs to be deterministic and auditable.
 
 ## Three audiences
 
@@ -109,7 +109,7 @@ Both can coexist in an agent : RAG for retrieval and reasoning support, Knowledg
 |---|---|
 | **Head of AI Product** | Move agents beyond read-only assistance while keeping governed business decisions outside probabilistic model interpretation |
 | **VP Engineering / CTO** | Stop relying on prompts and retrieved documents as the executable representation of business policy. Expose governed policy through a versioned decision API instead |
-| **Chief Compliance Officer** | A defined decision boundary : explicit policy rules, deterministic evaluation and a trace of the policy state behind each outcome |
+| **Chief Compliance Officer** | A defined decision boundary: explicit policy rules, deterministic evaluation and a trace of the policy state behind each outcome |
 
 ## One policy layer can serve more than the agent
 

@@ -87,7 +87,7 @@ L'appelant obtient chaque champ requis (depuis un système, un vendor, une extra
 }
 ```
 
-`verdict` est le résultat métier. Selon les règles applicables il peut être `allowed`, `blocked`, `approval_required`, `observe`, ou toute valeur définie par la policy. `approval_required` est un verdict, pas un état de réponse séparé.
+`verdict` est le résultat métier. Selon les règles applicables il peut être `allowed`, `blocked`, `approval_required`, `observe`, ou toute valeur définie par la policy. `approval_required` est un verdict, pas un état de réponse séparé ; quand il est retourné, un objet `approver` optionnel identifie qui peut décider.
 
 ## La forme Fact
 
@@ -136,9 +136,8 @@ Codes HTTP standards :
 | `401` | API key manquante ou invalide |
 | `403` | L'API key n'a pas la permission requise |
 | `404` | action_type, consultation_id ou ressource associée inconnue |
-| `409` | Conflit d'idempotence ou de concurrence optimiste |
+| `409` | Conflit avec l'état courant (ex. création dupliquée) |
 | `422` | Requête acceptée, mais validation d'une structure nested échouée |
-| `429` | Rate limit dépassé |
 | `500` | Erreur non gérée |
 
 Chaque réponse d'erreur porte un body JSON avec `code`, `message` et optionnellement `details`.

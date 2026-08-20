@@ -39,7 +39,7 @@ Your verification or compliance platform may already cover parts of all four lay
 
 ## Knowledge determines what the policy needs. Your existing stack determines how to get it.
 
-Traditional onboarding encodes every possible information requirement upfront, then hides fields with conditional logic. Knowledge inverts that : the caller sends what it has, and Knowledge tells it what is still required for the applicable policies to resolve.
+Traditional onboarding encodes every possible information requirement upfront, then hides fields with conditional logic. Knowledge inverts that: the caller sends what it has, and Knowledge tells it what is still required for the applicable policies to resolve.
 
 A KYB admission for a business customer, unfolded:
 
@@ -160,13 +160,13 @@ Depending on what your existing stack already owns, Knowledge inserts in differe
 | Your current setup | Where Knowledge sits |
 |---|---|
 | **IDV vendor owns verify + workflow, you own admission** | Knowledge exposes the admission decision to the onboarding journey. It can be consulted progressively as context is collected and again when verification results become available |
-| **Compliance platform owns verification + workflow + rules end-to-end** | Knowledge does not fit at the KYC layer. Possible entry above : the composite admission that combines KYC verdict + product eligibility + jurisdictional matrix + commercial exceptions - a decision the compliance platform doesn't own |
+| **Compliance platform owns verification + workflow + rules end-to-end** | Knowledge does not fit at the KYC layer. Possible entry above: the composite admission that combines KYC verdict + product eligibility + jurisdictional matrix + commercial exceptions - a decision the compliance platform doesn't own |
 | **IDV vendor is verification-only, your platform owns collection + orchestration + decision** | Knowledge governs the decision; your platform continues to own the UI and orchestration |
 | **Custom legacy admission logic patched over years** | Knowledge sits as an overlay, adds new rules or governs existing ones without touching the legacy code. Shadow-first is common - validate parity before going primary |
 
 [Read the full stack-fit analysis](/stack)
 
-## Progressive resolution : what to measure
+## Progressive resolution: what to measure
 
 For processes where significant information is currently collected "just in case", the ability to request information only when it becomes relevant creates an opportunity to reduce unnecessary collection and follow-up requests. The impact on completion rate and time-to-onboard is measured during a design-partner engagement, alongside decision agreement and audit reconstruction time.
 

@@ -15,11 +15,11 @@ Knowledge coexists with your workflow engine, verification providers, OMS and ex
 
 **Already have a decision engine? Good. Keep it.** A custom rules engine, decision code embedded in your OMS, a legacy admission system — you can add new rules, govern additional policies, or produce a governed decision trace around it without replacing what already runs.
 
-## Overlay : Add governed policy around the existing decision
+## Overlay: Add governed policy around the existing decision
 
 Keep the existing decision as an input. Knowledge evaluates additional policies, exceptions or controls around it and produces its own governed decision trace. Useful when replacing the legacy logic would carry disproportionate regression, certification or migration risk.
 
-## Gate : Require a Knowledge verdict before selected actions
+## Gate: Require a Knowledge verdict before selected actions
 
 Keep the existing decision path, but require a Knowledge verdict before a selected action can proceed. Knowledge governs a defined set of policies or controls; a blocking verdict prevents execution. The underlying system remains in place.
 
@@ -27,7 +27,7 @@ Both patterns preserve the existing decision implementation. Integration is limi
 
 ---
 
-## Shadow : Validate before granting authority
+## Shadow: Validate before granting authority
 
 You want Knowledge to evaluate production-relevant cases in parallel with your existing decision layer, without controlling the live outcome.
 
@@ -40,7 +40,7 @@ Once the comparison is understood and the confidence is high enough, Knowledge c
 
 ---
 
-## Selective routing : Move some decisions, not the whole estate
+## Selective routing: Move some decisions, not the whole estate
 
 You have an existing system that handles today's flows. Route a clearly bounded scope to Knowledge - a new product, jurisdiction, customer segment, policy domain or channel - while existing decisions remain on the legacy system.
 
@@ -50,7 +50,7 @@ Selective routing is often the most sellable pattern because it turns a potentia
 
 ---
 
-## Primary : Build a new decision layer from scratch
+## Primary: Build a new decision layer from scratch
 
 Greenfield. A new product line, a new business unit, a new customer-facing surface where no decision layer exists yet. Knowledge is the decision layer from day one.
 

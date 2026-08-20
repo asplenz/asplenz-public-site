@@ -32,16 +32,16 @@ An RM copilot or an OMS asks Knowledge one of four questions.
 
 | Question asked | What Knowledge returns |
 |---|---|
-| **Can I offer this product to this client ?** | Blocks retail on highly-complex products; requires approval on large notionals |
-| **Is this trade suitable for this client ?** | Gates complex products against K&E levels; escalates risk-tolerance mismatches |
-| **Cross-border : can I solicit this client from this location ?** | Blocks solicited outreach into restricted jurisdictions; allows documented reverse enquiries |
-| **Portfolio concentration : is this trade within limits ?** | Escalates single-name concentration above the escalation threshold; blocks above the block threshold |
+| **Can I offer this product to this client?** | Blocks retail on highly-complex products; requires approval on large notionals |
+| **Is this trade suitable for this client?** | Gates complex products against K&E levels; escalates risk-tolerance mismatches |
+| **Cross-border: can I solicit this client from this location?** | Blocks solicited outreach into restricted jurisdictions; allows documented reverse enquiries |
+| **Portfolio concentration: is this trade within limits?** | Escalates single-name concentration above the escalation threshold; blocks above the block threshold |
 
 Each verdict identifies the rules that determined the outcome and the normative policy state used for the evaluation.
 
 ## Knowledge doesn't require the caller to know the whole decision tree
 
-Traditional rules engines require every caller to know the exact fields needed for every decision. Knowledge inverts that : the caller sends the context it has, and Knowledge asks for what is still needed to reach a verdict against the applicable policies.
+Traditional rules engines require every caller to know the exact fields needed for every decision. Knowledge inverts that: the caller sends the context it has, and Knowledge asks for what is still needed to reach a verdict against the applicable policies.
 
 An RM copilot asking whether a structured note can be proposed to a client:
 

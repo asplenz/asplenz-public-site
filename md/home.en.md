@@ -1,13 +1,13 @@
 ---
 title: Asplenz Knowledge - the governed policy layer for your applications, workflows and AI agents
-description: When compliance logic spreads across workflows, applications and spreadsheets, every policy change becomes harder to maintain, test and audit. Knowledge centralizes decision logic in one governed layer - without replacing your stack.
+description: When compliance logic is scattered across your stack, every change becomes harder to control. Knowledge brings decision logic into one governed policy layer, without replacing what already runs.
 locale: en
 
 hero:
   kicker: Policy layer for compliance decisions
-  headline: When compliance logic spreads across workflows, applications and spreadsheets,
-  headlineItalic: every policy change becomes harder to maintain, test and audit.
-  sub: Knowledge brings decision logic into one governed policy layer - without replacing your existing stack. Applications, workflows and AI agents provide their current context. Knowledge determines what the policy requires, what information is still needed, and what decision applies.
+  headline: When compliance logic is scattered across your stack,
+  headlineItalic: every change becomes harder to control.
+  sub: Knowledge brings decision logic into one governed policy layer, without replacing your existing stack. Applications, workflows and AI agents provide the context they have. Knowledge determines what the policy requires, what is still needed to reach a verdict, and what decision applies.
   ctaPrimary: Become a design partner
   ctaPrimaryHref: /pilot
   ctaSecondary: See how it works
@@ -15,7 +15,7 @@ hero:
 
 problem:
   kicker: ""
-  title: "Does this sound familiar ?"
+  title: "Does this sound familiar?"
   items:
     - A policy change means finding every workflow, application and spreadsheet where the logic was copied.
     - Your onboarding asks for information "just in case" - even when most of it never affects the decision.
@@ -24,7 +24,7 @@ problem:
     - Your AI agent works - until Legal asks how you guarantee which policy it will apply before taking action.
 
 transition:
-  text: "Different symptoms. Same underlying problem : the policy that determines a decision is coupled to the systems that collect information, orchestrate the process or execute the action."
+  text: "Different symptoms. Same underlying problem: the policy that determines a decision is coupled to the systems that collect information, orchestrate the process or execute the action."
 
 change:
   kicker: What Knowledge changes

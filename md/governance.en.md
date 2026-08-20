@@ -31,7 +31,7 @@ Consultations that cited an earlier version keep pointing to that exact version.
 
 ## Approvals and overrides
 
-When a rule fires with a verdict of `approval_required`, an **ApprovalRequest** is created as a first-class governed object. It carries the triggering rules, the requester, the decider and its status (pending, approved, rejected). Overrides are the reverse : authorisations granted in advance by a decider to bypass a defined set of constraints within a scope, recorded as governed objects with their own versioning.
+When a rule fires with a verdict of `approval_required`, an **ApprovalRequest** is created as a first-class governed object. It carries the triggering rules, the requester, the decider and its status (pending, approved, rejected). Overrides are the reverse: authorisations granted in advance by a decider to bypass a defined set of constraints within a scope, recorded as governed objects with their own versioning.
 
 Approvals and overrides are consultable and auditable objects, not hidden workflow branches.
 
@@ -65,7 +65,7 @@ Anything not in that set (for example a rule that was inapplicable to the case, 
 
 ## The policy governance log
 
-Every Policy aggregate carries a `governance_log` of structured governance acts : adoption, amendment, renewal, retirement. These entries are the record of *why* a rule exists at a firm, distinct from the runtime behaviour of the rule itself.
+Every Policy aggregate carries a `governance_log` of structured governance acts: adoption, amendment, renewal, retirement. These entries are the record of *why* a rule exists at a firm, distinct from the runtime behaviour of the rule itself.
 
 The engine never reads the governance log. The reasoning layer surfaces it as context when a verdict is rendered in prose ("this rule was amended on <date> following <act>"), but it never becomes part of the deterministic verdict.
 
