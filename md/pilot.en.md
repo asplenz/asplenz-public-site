@@ -1,6 +1,6 @@
 ---
 title: Bring us one decision your stack makes hard to change, automate or audit
-description: One production-relevant decision. Knowledge runs alongside your existing system, measured against criteria agreed upfront. Convert to a founding-customer contract if the numbers land ; clean exit if they don't.
+description: One production-relevant decision. Knowledge runs alongside your existing system, measured against criteria agreed upfront. Convert to a founding-customer contract if the numbers land; clean exit if they don't.
 locale: en
 kicker: Three founding design-partner engagements open
 ctaLabel: Discuss a design partnership
@@ -45,16 +45,16 @@ Knowledge is already operational. At this stage, the first cohort of design part
 
 **4. Weekly working session (weeks 2-8).** Walk through discrepancies, adjust rules, ship fixes to Knowledge itself if the engagement reveals gaps.
 
-**5. Decision at week 8.** Did we hit the criteria agreed at scoping ? If yes, you convert to the founding-customer contract and we extend to the next decision. If not, clean exit, no ongoing commitment.
+**5. Decision at week 8.** Did we hit the criteria agreed at scoping? If yes, you convert to the founding-customer contract and we extend to the next decision. If not, clean exit, no ongoing commitment.
 
 ## Success criteria we agree upfront
 
-Before week 1, we agree on the numbers that would justify converting. Typical criteria :
+Before week 1, we agree on the numbers that would justify converting. Typical criteria:
 
 | Criterion | What it measures |
 |---|---|
 | **Decision agreement** | Knowledge and your existing system agree on X% of cases. Discrepancies traced to (a) Knowledge missing a rule, (b) legacy bug, or (c) legitimate ambiguity |
-| **Manual review reduction** | For cases Knowledge marks as complete deterministic verdicts, what % could bypass current manual review ? |
+| **Manual review reduction** | For cases Knowledge marks as complete deterministic verdicts, what % could bypass current manual review? |
 | **Time to ship a rule** | From "compliance asks for a new rule" to "rule live in Knowledge", compared with the same delay in your existing system |
 | **Collection efficiency** | Fields requested, follow-up requests and completion rate on Knowledge's progressive resolution, compared with the current onboarding or intake journey |
 | **Audit reconstruction time** | Time to retrieve the context, applicable rules and policy state behind a historical decision, compared with your current process |

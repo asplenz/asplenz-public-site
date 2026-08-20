@@ -47,19 +47,19 @@ stack:
   title: No rip-and-replace. Five modes to choose from.
   sub: Knowledge does not replace your workflow engine, your KYC vendor, your OMS or your legacy decision code. It inserts alongside them.
   cards:
-    - question: Already have a decision engine ?
+    - question: Already have a decision engine?
       mode: Overlay
       desc: Feed existing decisions and context into Knowledge to apply additional governed policy without replacing the underlying engine.
-    - question: Need to enforce a new control ?
+    - question: Need to enforce a new control?
       mode: Gate
-      desc: Put Knowledge before execution for a selected decision or policy. The existing system remains in place ; Knowledge governs whether the action can proceed.
-    - question: Want to validate first ?
+      desc: Put Knowledge before execution for a selected decision or policy. The existing system remains in place; Knowledge governs whether the action can proceed.
+    - question: Want to validate first?
       mode: Shadow
       desc: Knowledge evaluates the same cases in parallel without controlling the production decision. Compare outcomes before giving it authority.
-    - question: Launching a new domain ?
+    - question: Launching a new domain?
       mode: Selective routing
       desc: Knowledge handles the new flow, the rest stays on the legacy. No impact on today's flows, full control on the new one.
-    - question: Building something new ?
+    - question: Building something new?
       mode: Primary
       desc: Knowledge is the decision layer from day one. Install a vertical pack, calibrate the thresholds, working in weeks.
   ctaLabel: Read how Knowledge fits your stack

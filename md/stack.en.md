@@ -13,7 +13,7 @@ Knowledge coexists with your workflow engine, verification providers, OMS and ex
 
 ---
 
-**Already have a decision engine ? Good. Keep it.** A custom rules engine, decision code embedded in your OMS, a legacy admission system — you can add new rules, govern additional policies, or produce a governed decision trace around it without replacing what already runs.
+**Already have a decision engine? Good. Keep it.** A custom rules engine, decision code embedded in your OMS, a legacy admission system — you can add new rules, govern additional policies, or produce a governed decision trace around it without replacing what already runs.
 
 ## Overlay : Add governed policy around the existing decision
 
@@ -21,7 +21,7 @@ Keep the existing decision as an input. Knowledge evaluates additional policies,
 
 ## Gate : Require a Knowledge verdict before selected actions
 
-Keep the existing decision path, but require a Knowledge verdict before a selected action can proceed. Knowledge governs a defined set of policies or controls ; a blocking verdict prevents execution. The underlying system remains in place.
+Keep the existing decision path, but require a Knowledge verdict before a selected action can proceed. Knowledge governs a defined set of policies or controls; a blocking verdict prevents execution. The underlying system remains in place.
 
 Both patterns preserve the existing decision implementation. Integration is limited to introducing Knowledge at the appropriate decision boundary rather than migrating the legacy policy logic upfront.
 
@@ -31,10 +31,10 @@ Both patterns preserve the existing decision implementation. Integration is limi
 
 You want Knowledge to evaluate production-relevant cases in parallel with your existing decision layer, without controlling the live outcome.
 
-**Knowledge has no authority over the production outcome.** Its verdict is computed but does not control what actually happens. The comparison answers two practical questions :
+**Knowledge has no authority over the production outcome.** Its verdict is computed but does not control what actually happens. The comparison answers two practical questions:
 
-- Where do Knowledge and the existing system agree ?
-- Where they disagree, what explains the difference - missing policy coverage, different interpretation, incomplete context, or an issue in the existing implementation ?
+- Where do Knowledge and the existing system agree?
+- Where they disagree, what explains the difference - missing policy coverage, different interpretation, incomplete context, or an issue in the existing implementation?
 
 Once the comparison is understood and the confidence is high enough, Knowledge can transition to Gate, Overlay, Selective Routing or Primary for the scope in question.
 
@@ -60,7 +60,7 @@ Primary is the cleanest architecture because there is no legacy decision layer t
 
 ## The patterns can evolve
 
-A deployment often moves through more than one pattern over its life :
+A deployment often moves through more than one pattern over its life:
 
 - **Shadow → Selective routing → Primary** for a scope you initially validate in parallel, then take live for a bounded segment, then extend.
 - **Overlay + Gate** side by side, one governing additional policies around the legacy, another controlling execution of specific actions.
@@ -70,7 +70,7 @@ The right pattern for a scope today is not necessarily the right pattern six mon
 
 ## An AI agent in front of the legacy
 
-An AI agent operating in an existing environment often needs Knowledge without touching the legacy at all. It calls the CRM, calls the legacy core for the current state, and calls `/resolve` for the governed policy decision before executing. The legacy remains the system of record ; Knowledge governs the decision boundary in front of it.
+An AI agent operating in an existing environment often needs Knowledge without touching the legacy at all. It calls the CRM, calls the legacy core for the current state, and calls `/resolve` for the governed policy decision before executing. The legacy remains the system of record; Knowledge governs the decision boundary in front of it.
 
 This is a specific case of the patterns above (typically Gate or Selective routing at the agent level), not a sixth mode. See [AI agents](/ai-agents) for the full pattern.
 
@@ -88,7 +88,7 @@ This is a specific case of the patterns above (typically Gate or Selective routi
 
 | What stays in place | How Knowledge coexists |
 |---|---|
-| **Your workflow engine** | Your workflow continues to orchestrate the process ; it calls Knowledge at the decision points you choose |
+| **Your workflow engine** | Your workflow continues to orchestrate the process; it calls Knowledge at the decision points you choose |
 | **Your verification providers** | Verification providers continue to verify identity and screening signals. Knowledge can consume those results as context when the policy requires them |
 | **Your OMS** | Your OMS remains the system responsible for order management and execution. Knowledge can be consulted at selected policy decision boundaries |
 | **Legacy core systems** | Legacy systems remain in place. Knowledge can govern selected policies around them without requiring their decision logic to be migrated upfront |

@@ -32,10 +32,10 @@ An RM copilot or an OMS asks Knowledge one of four questions.
 
 | Question asked | What Knowledge returns |
 |---|---|
-| **Can I offer this product to this client ?** | Blocks retail on highly-complex products ; requires approval on large notionals |
-| **Is this trade suitable for this client ?** | Gates complex products against K&E levels ; escalates risk-tolerance mismatches |
-| **Cross-border : can I solicit this client from this location ?** | Blocks solicited outreach into restricted jurisdictions ; allows documented reverse enquiries |
-| **Portfolio concentration : is this trade within limits ?** | Escalates single-name concentration above the escalation threshold ; blocks above the block threshold |
+| **Can I offer this product to this client ?** | Blocks retail on highly-complex products; requires approval on large notionals |
+| **Is this trade suitable for this client ?** | Gates complex products against K&E levels; escalates risk-tolerance mismatches |
+| **Cross-border : can I solicit this client from this location ?** | Blocks solicited outreach into restricted jurisdictions; allows documented reverse enquiries |
+| **Portfolio concentration : is this trade within limits ?** | Escalates single-name concentration above the escalation threshold; blocks above the block threshold |
 
 Each verdict identifies the rules that determined the outcome and the normative policy state used for the evaluation.
 
@@ -43,7 +43,7 @@ Each verdict identifies the rules that determined the outcome and the normative 
 
 Traditional rules engines require every caller to know the exact fields needed for every decision. Knowledge inverts that : the caller sends the context it has, and Knowledge asks for what is still needed to reach a verdict against the applicable policies.
 
-An RM copilot asking whether a structured note can be proposed to a client :
+An RM copilot asking whether a structured note can be proposed to a client:
 
 **Step 1.** The copilot calls `/resolve` with what it already has (asset class, product type).
 
@@ -98,7 +98,7 @@ The RM copilot does not need to encode which question comes next. Knowledge deri
 
 Asplenz ships the ontology and the rule patterns with illustrative thresholds. The bank's compliance function owns the interpretation of every threshold - what "large notional" means at this firm, which jurisdictions are restricted, which risk-tolerance mismatch triggers escalation.
 
-**Knowledge governs and executes the institution's policy ; it does not replace the institution's regulatory judgement.** The pack does not ship regulatory interpretation ; it gives the bank a working shape to calibrate.
+**Knowledge governs and executes the institution's policy; it does not replace the institution's regulatory judgement.** The pack does not ship regulatory interpretation; it gives the bank a working shape to calibrate.
 
 ## Deployment options
 
@@ -109,7 +109,7 @@ The wealth pack inserts into an existing wealth stack in one of several ways.
 | **Existing eligibility engine** (Overlay) | Existing eligibility results become part of the context evaluated by Knowledge. Add a new policy domain, jurisdiction or control without migrating the underlying engine |
 | **Behind the OMS** (Gate) | The OMS calls Knowledge before routing an order. Blocking verdicts stop bad trades pre-execution |
 | **Alongside a legacy engine** (Shadow) | Knowledge evaluates the same cases in parallel without controlling the production decision. Compare outcomes before giving it authority |
-| **New product line or new market** (Selective routing) | The existing decision layer handles today's flows ; Knowledge handles the new flow, with no impact on today's decisions |
+| **New product line or new market** (Selective routing) | The existing decision layer handles today's flows; Knowledge handles the new flow, with no impact on today's decisions |
 | **Greenfield decision layer** (Primary) | No legacy to work around. Knowledge is the decision layer from day one, typical for a new business unit or a greenfield surface |
 
 [Read how Knowledge fits your stack](/stack)

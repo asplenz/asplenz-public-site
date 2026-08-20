@@ -7,7 +7,7 @@ ctaLabel: See a working reference integration
 ctaHref: /wealth
 ---
 
-The moment an agent moves from answering questions to taking governed business actions, a new question appears : who determines whether the action is allowed ?
+The moment an agent moves from answering questions to taking governed business actions, a new question appears : who determines whether the action is allowed?
 
 Letting the LLM interpret policy from documents or prompts makes that decision difficult to make deterministic, testable and auditable.
 
@@ -17,7 +17,7 @@ Letting the LLM interpret policy from documents or prompts makes that decision d
 
 Knowledge is a **governed policy service** that AI agents - and conventional software - can call. It is not an AI product. It works the same whether the caller is Claude, GPT, a Java service or a workflow task.
 
-**For agents this matters more than for conventional software.** A conventional application's decision path is defined by code that reviewers can read directly ; an agent's decision path is defined by the LLM at runtime, which is precisely where the policy boundary needs to be pinned outside the model. Knowledge externalizes that boundary so the agent can reason freely while the decision stays deterministic, versioned and auditable.
+**For agents this matters more than for conventional software.** A conventional application's decision path is defined by code that reviewers can read directly; an agent's decision path is defined by the LLM at runtime, which is precisely where the policy boundary needs to be pinned outside the model. Knowledge externalizes that boundary so the agent can reason freely while the decision stays deterministic, versioned and auditable.
 
 ## The pattern
 
@@ -33,7 +33,7 @@ tool: Execute / Slack / Email |
 
 ## Knowledge gives the agent either the decision, or tells it what it still needs to know
 
-`/resolve` responds in one of two states :
+`/resolve` responds in one of two states:
 
 - **Complete** - the agent receives the verdict, the rules that determined it, and a consultation reference for audit.
 - **Incomplete** - the agent receives `required_context` : the fields the applicable policies still need. The agent obtains that context and calls `/resolve` again.
@@ -90,7 +90,7 @@ The LLM can still interpret intent, extract context, choose tools and manage the
 
 ## RAG vs Knowledge
 
-RAG and Knowledge answer different questions. The comparison :
+RAG and Knowledge answer different questions. The comparison:
 
 | | RAG | Knowledge |
 |---|---|---|

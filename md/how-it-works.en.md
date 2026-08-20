@@ -5,11 +5,11 @@ locale: en
 kicker: The mental model
 ---
 
-Knowledge is a governed policy layer. Callers send the context they have, and Knowledge answers two questions :
+Knowledge is a governed policy layer. Callers send the context they have, and Knowledge answers two questions:
 
-> Given what I know, can the policy determine the outcome ?
+> Given what I know, can the policy determine the outcome?
 >
-> If not, what does it need to know next ?
+> If not, what does it need to know next?
 
 **The caller doesn't need to know the policy's dependency tree. Knowledge does.**
 
@@ -25,7 +25,7 @@ Knowledge does not own your customer data. It does not orchestrate your workflow
 
 ## The core resolution contract
 
-Most integrations start with `/resolve`. Callers POST an intent and the context they currently have. Each field in `context` is a `Fact` carrying the raw value and its provenance (`source` is required ; `verification_status` and `confidence` are optional).
+Most integrations start with `/resolve`. Callers POST an intent and the context they currently have. Each field in `context` is a `Fact` carrying the raw value and its provenance (`source` is required; `verification_status` and `confidence` are optional).
 
 ```
 POST /knowledge/v1/resolve
@@ -40,7 +40,7 @@ POST /knowledge/v1/resolve
 
 **Knowledge responds in one of two states : complete or incomplete.**
 
-If the operation is incomplete, the response identifies the context still required for the applicable policies to resolve. Each entry carries the field, the reason it is needed, its schema type, and any constraints the caller can use to build a follow-up query :
+If the operation is incomplete, the response identifies the context still required for the applicable policies to resolve. Each entry carries the field, the reason it is needed, its schema type, and any constraints the caller can use to build a follow-up query:
 
 ```
 {
@@ -54,7 +54,7 @@ If the operation is incomplete, the response identifies the context still requir
 }
 ```
 
-If the operation is complete, the response returns the applicable business verdict, the rules that determined it, and the reference to the consultation :
+If the operation is complete, the response returns the applicable business verdict, the rules that determined it, and the reference to the consultation:
 
 ```
 {
@@ -73,7 +73,7 @@ If the operation is complete, the response returns the applicable business verdi
 
 As context becomes more specific, irrelevant policy branches fall away and Knowledge asks only for context still capable of affecting the outcome.
 
-**Call 1.** The caller sends what it has :
+**Call 1.** The caller sends what it has:
 
 ```
 context: {
@@ -81,7 +81,7 @@ context: {
 }
 ```
 
-Knowledge responds :
+Knowledge responds:
 
 ```
 { operation_status: "incomplete",
@@ -102,7 +102,7 @@ context: {
 }
 ```
 
-Knowledge responds :
+Knowledge responds:
 
 ```
 { operation_status: "incomplete",
@@ -123,7 +123,7 @@ context: {
 }
 ```
 
-Knowledge responds :
+Knowledge responds:
 
 ```
 { operation_status: "complete",
@@ -161,7 +161,7 @@ Historical decisions remain tied to the normative policy state that produced the
 
 | Not this | Why |
 |---|---|
-| **Not a workflow engine** | Knowledge determines the policy outcome ; your workflow or agent determines how to carry the process forward. They coexist |
+| **Not a workflow engine** | Knowledge determines the policy outcome; your workflow or agent determines how to carry the process forward. They coexist |
 | **Not a KYC vendor** | Knowledge does not verify identity or run PEP screening. It consumes the vendor's result and applies the composite decision (Verify result + product eligibility + jurisdiction + commercial policy + exceptions) |
 | **Not a RAG on your policy documents** | RAG retrieves relevant text. Knowledge produces a deterministic verdict with cited rules and a reproducible decision trace. See the [AI agents page](/ai-agents) for the full contrast |
 | **Not a rip-and-replace** | Knowledge inserts alongside your existing stack in one of several patterns. See [how it fits your stack](/stack) |
