@@ -1,85 +1,104 @@
 ---
 title: Works with your existing stack
-description: No rip-and-replace. Knowledge inserts alongside what you have - as a gate, an overlay, a shadow validator, a selective router, or the primary decision layer for new domains.
+description: Add governed policy where you need it. Keep the systems that already work.
 locale: en
-kicker: Five adoption modes
-ctaLabel: Discuss which mode fits you
+kicker: Five adoption patterns
+ctaLabel: Become a design partner
 ctaHref: /pilot
 ---
 
-Knowledge does not replace your workflow engine, your KYC vendor, your OMS or your legacy decision code. It inserts alongside them, in one of five patterns. Pick the mode that matches where you are today.
+Knowledge coexists with your workflow engine, verification providers, OMS and existing decision logic. Governed policy can be added around the parts that need it without replacing what already runs.
+
+**These patterns are not mutually exclusive.** A deployment can use Overlay for one policy domain, Gate for a specific action boundary, Shadow for a scope still being validated and Primary for a new business unit, all at the same time. They are building blocks that combine and evolve, not five fixed architectures.
 
 ---
 
-## Already have a decision engine ? - Gate or Overlay
+**Already have a decision engine ? Good. Keep it.** A custom rules engine, decision code embedded in your OMS, a legacy admission system — you can add new rules, govern additional policies, or produce a governed decision trace around it without replacing what already runs.
 
-You have something running today. Alloy, a custom rules engine, decision code embedded in your OMS, a legacy admission system. It works, but you need to add new rules, govern existing ones, or add audit - without displacing what runs.
+## Overlay : Add governed policy around the existing decision
 
-**Gate.** Knowledge sits between the caller and the existing system. Requests hit Knowledge first ; blocking verdicts stop the flow pre-execution. Non-blocking flows pass through to the existing system unchanged. New rules are added in Knowledge without touching the legacy.
+Keep the existing decision as an input. Knowledge evaluates additional policies, exceptions or controls around it and produces its own governed decision trace. Useful when replacing the legacy logic would carry disproportionate regression, certification or migration risk.
 
-**Overlay.** Knowledge sits after the existing decision. The legacy computes its verdict ; Knowledge can add compliance rules, produce audit trails, or govern exceptions on top. Overlay is common when the legacy is untouchable (regression risk, tribal knowledge, re-certification cost).
+## Gate : Require a Knowledge verdict before selected actions
 
-Both patterns are **additive** - no change to the code that runs today.
+Keep the existing decision path, but require a Knowledge verdict before a selected action can proceed. Knowledge governs a defined set of policies or controls ; a blocking verdict prevents execution. The underlying system remains in place.
 
----
-
-## Want to validate first ? - Shadow
-
-You want Knowledge to run alongside your existing decision layer for a period, without affecting live traffic. Every call goes to both systems. Verdicts are compared. Discrepancies surface for review.
-
-This is how risk-averse organisations onboard a new decision layer. After 4-8 weeks of parallel run, the discrepancies analysis tells you two things :
-- Where Knowledge and the existing system agree (typically 80-95% on stable domains)
-- Where they diverge - and which one is right (surprisingly often, the divergences surface pre-existing bugs in the legacy)
-
-Once the discrepancies are understood and the confidence is high enough, Knowledge shifts from shadow to gate or primary.
+Both patterns preserve the existing decision implementation. Integration is limited to introducing Knowledge at the appropriate decision boundary rather than migrating the legacy policy logic upfront.
 
 ---
 
-## Launching a new domain ? - Selective routing
+## Shadow : Validate before granting authority
 
-You have an existing system that handles today's flows. But a new product line, a new market entry, a new customer segment requires decisions the existing system was not designed for.
+You want Knowledge to evaluate production-relevant cases in parallel with your existing decision layer, without controlling the live outcome.
 
-Selective routing directs the new flow to Knowledge while leaving the rest of the system on the legacy. Same tenant, same customers, same OMS - but the new flow's decisions come from Knowledge.
+**Knowledge has no authority over the production outcome.** Its verdict is computed but does not control what actually happens. The comparison answers two practical questions :
 
-This is a low-risk way to introduce Knowledge : no impact on today's flows, full control on the new one, easy rollback if needed.
+- Where do Knowledge and the existing system agree ?
+- Where they disagree, what explains the difference - missing policy coverage, different interpretation, incomplete context, or an issue in the existing implementation ?
 
----
-
-## Building something new ? - Primary
-
-Greenfield. A new product, a new startup, a new business unit, a new customer-facing surface where nothing exists yet. Knowledge is the decision layer from day one.
-
-Primary is the simplest pattern because there's no legacy to work around. It's also where the pack model shines : install a vertical pack (Wealth, KYC, whatever ships next), calibrate the thresholds, and you have a working decision layer in weeks.
+Once the comparison is understood and the confidence is high enough, Knowledge can transition to Gate, Overlay, Selective Routing or Primary for the scope in question.
 
 ---
 
-## The five patterns at a glance
+## Selective routing : Move some decisions, not the whole estate
 
-| Your situation | Pattern | Risk profile | Typical timeline |
+You have an existing system that handles today's flows. Route a clearly bounded scope to Knowledge - a new product, jurisdiction, customer segment, policy domain or channel - while existing decisions remain on the legacy system.
+
+Same tenant, same customers, same downstream systems. Only the decisions in the selected scope come from Knowledge. No impact on today's flows, full control on the scoped one, rollback available if needed.
+
+Selective routing is often the most sellable pattern because it turns a potentially large migration into a bounded, measurable scope.
+
+---
+
+## Primary : Build a new decision layer from scratch
+
+Greenfield. A new product line, a new business unit, a new customer-facing surface where no decision layer exists yet. Knowledge is the decision layer from day one.
+
+Primary is the cleanest architecture because there is no legacy decision layer to migrate. Where a relevant policy pack exists, it provides a starting model that the firm's policy owners can calibrate rather than starting from an empty ruleset.
+
+---
+
+## The patterns can evolve
+
+A deployment often moves through more than one pattern over its life :
+
+- **Shadow → Selective routing → Primary** for a scope you initially validate in parallel, then take live for a bounded segment, then extend.
+- **Overlay + Gate** side by side, one governing additional policies around the legacy, another controlling execution of specific actions.
+- **Legacy + Overlay indefinitely** when the underlying engine is stable and the governed policy layer is what needs to keep evolving.
+
+The right pattern for a scope today is not necessarily the right pattern six months later. Knowledge is designed to be re-scoped without re-engineering.
+
+## An AI agent in front of the legacy
+
+An AI agent operating in an existing environment often needs Knowledge without touching the legacy at all. It calls the CRM, calls the legacy core for the current state, and calls `/resolve` for the governed policy decision before executing. The legacy remains the system of record ; Knowledge governs the decision boundary in front of it.
+
+This is a specific case of the patterns above (typically Gate or Selective routing at the agent level), not a sixth mode. See [AI agents](/ai-agents) for the full pattern.
+
+## Adoption pattern matrix
+
+| Your situation | Pattern | Knowledge authority | Existing decision logic |
 |---|---|---|---|
-| Legacy engine untouchable, need to add rules | Overlay | Low | 4-8 weeks |
-| Legacy engine touchable, want to gate live | Gate | Low-medium | 6-10 weeks |
-| Want zero-risk validation before commit | Shadow | Very low | 4-8 weeks shadow, then transition |
-| New market / new product line | Selective routing | Low | 6-12 weeks |
-| Greenfield build | Primary | N/A (no legacy) | 4-8 weeks |
+| Add governed policy around the legacy | **Overlay** | Additional policy layer | Preserved |
+| Prevent selected actions unless policy allows | **Gate** | Veto at selected boundary | Preserved |
+| Compare before granting authority | **Shadow** | None | Authoritative |
+| Move one bounded scope first | **Selective routing** | Authoritative for selected scope | Authoritative elsewhere |
+| New decision domain | **Primary** | Authoritative | None / not used |
 
-## What Knowledge does NOT require
+## What stays in place
 
 | What stays in place | How Knowledge coexists |
 |---|---|
-| **Your workflow engine** | Knowledge is called from workflow tasks. No replacement of Camunda, Signavio, Appian, Pega |
-| **Your IDV vendor** | Knowledge is called after the verification result. No vendor swap |
-| **Your OMS** | Knowledge is called from the OMS at the decision point. No OMS replacement |
-| **Your legacy core** | Knowledge sits as an overlay or a gate. No mainframe rewrite |
-
-Every deployment pattern is additive. Your existing systems keep running. Knowledge adds a governed layer where you need it.
+| **Your workflow engine** | Your workflow continues to orchestrate the process ; it calls Knowledge at the decision points you choose |
+| **Your verification providers** | Verification providers continue to verify identity and screening signals. Knowledge can consume those results as context when the policy requires them |
+| **Your OMS** | Your OMS remains the system responsible for order management and execution. Knowledge can be consulted at selected policy decision boundaries |
+| **Legacy core systems** | Legacy systems remain in place. Knowledge can govern selected policies around them without requiring their decision logic to be migrated upfront |
 
 ## What comes next
 
 | Read next | Why |
 |---|---|
 | [How Knowledge works](/how-it-works) | The mental model behind these patterns |
-| [Wealth](/wealth) | An example where Knowledge sits as a gate behind an OMS |
-| [KYC / KYB](/kyc) | An example where Knowledge overlays or replaces the admission-decision box in a KYC stack |
-| [AI agents](/ai-agents) | A specific case of primary or gate for agent-driven flows |
-| [Pilot](/pilot) | How a shadow-run pilot is scoped and measured |
+| [Wealth](/wealth) | An example where Knowledge governs structured-product decisions inside an existing wealth stack |
+| [KYC / KYB](/kyc) | An example where Knowledge governs the admission decision around an existing verification stack |
+| [AI agents](/ai-agents) | A specific case where Knowledge sits in front of the legacy for agent-driven flows |
+| [Design partner](/pilot) | Three founding slots, one production-relevant decision, founding-customer pricing |

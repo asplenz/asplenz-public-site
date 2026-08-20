@@ -1,15 +1,23 @@
 ---
 title: "Your AI agent can retrieve information and call tools. But should it interpret your business policy before taking an action ?"
-description: Knowledge exposes /resolve as a tool the agent calls whenever it needs a deterministic verdict - cited rules, replayable audit, no policy hallucination.
+description: Knowledge is a governed policy interface an agent calls before acting. It returns either the decision or the context still required to reach one, with the rules that determined the outcome.
 locale: en
 kicker: For AI teams
 ctaLabel: See a working reference integration
 ctaHref: /wealth
 ---
 
-The moment an agent moves from answering questions to taking actions - approving a refund, admitting a client, binding a policy, executing a trade - Legal and Compliance freeze the production rollout. A probabilistic policy interpreter is not signable. Every action needs a verdict that is deterministic, cited, and replayable years later.
+The moment an agent moves from answering questions to taking governed business actions, a new question appears : who determines whether the action is allowed ?
 
-Knowledge gives your agent that verdict, as a tool it calls.
+Letting the LLM interpret policy from documents or prompts makes that decision difficult to make deterministic, testable and auditable.
+
+**Knowledge gives the agent a governed policy interface it can call before acting.**
+
+## Knowledge isn't an AI decision-maker
+
+Knowledge is a **governed policy service** that AI agents - and conventional software - can call. It is not an AI product. It works the same whether the caller is Claude, GPT, a Java service or a workflow task.
+
+**For agents this matters more than for conventional software.** A conventional application's decision path is defined by code that reviewers can read directly ; an agent's decision path is defined by the LLM at runtime, which is precisely where the policy boundary needs to be pinned outside the model. Knowledge externalizes that boundary so the agent can reason freely while the decision stays deterministic, versioned and auditable.
 
 ## The pattern
 
@@ -19,63 +27,96 @@ agent: Agent framework (Claude, GPT, LangGraph, MCP, custom)
 tool: CRM lookup | Get customer facts
 tool: Order / policy lookup | Get object facts
 tool: KYC vendor result | Get verification state
-tool*: Knowledge /resolve | Policy authority
+tool*: Knowledge /resolve | Governed policy decision
 tool: Execute / Slack / Email |
 ```
 
-The agent stays probabilistic in conversation and context extraction. Knowledge makes the **decision boundary** deterministic - verdict, cited rules, replayable state.
+## Knowledge gives the agent either the decision, or tells it what it still needs to know
 
-## Progressive collection lets the agent stop asking "just in case"
+`/resolve` responds in one of two states :
 
-When the agent doesn't yet have all the context Knowledge needs, `/resolve` returns what's missing.
+- **Complete** - the agent receives the verdict, the rules that determined it, and a consultation reference for audit.
+- **Incomplete** - the agent receives `required_context` : the fields the applicable policies still need. The agent obtains that context and calls `/resolve` again.
+
+**The agent decides how to obtain the context. Knowledge determines what the policy requires.**
+
+The agent may retrieve the missing context from an internal system (CRM, product master, verification vendor), derive it from an existing document or conversation, or ask the user when necessary. Which source it picks is an agent-side choice, not a Knowledge concern.
+
+## A concrete boundary : before executing a refund
+
+A customer-service agent is asked to refund a 2,000 EUR transaction. Before executing, it calls `/resolve`.
 
 ```
-Agent calls /resolve with partial context
-      { action_type: "sp_offer_eligibility",
-        context: { asset_class: "structured_product" } }
-
-Knowledge responds
-      { operation_status: "incomplete",
-        required_context: ["client.classification",
-                           "structured_products.product.complexity"] }
-
-Agent knows exactly what to fetch next
-      via CRM tool, product-master tool, or a follow-up
-      question to the user
-
-Agent re-calls /resolve with the enriched context
-      → verdict + cited_rules
+POST /knowledge/v1/resolve
+{
+  "action_type": "refund_execute",
+  "context": {
+    "customer.tier": { value: "standard", source: "CRM" },
+    "transaction.amount_eur": { value: 2000, source: "core_banking" },
+    "transaction.age_days": { value: 3, source: "core_banking" }
+  }
+}
 ```
 
-The agent asks the user only what THIS decision needs, not everything a prompt template pre-decided.
+**Case A - Knowledge returns `approval_required` :**
+
+```
+{ operation_status: "complete",
+  verdict: "approval_required",
+  cited_rules: ["rul-refund-above-threshold"],
+  consultation_id: "cns-..." }
+```
+
+The agent does **not** execute the refund. It creates an approval request, informs the customer that the case is being reviewed, and hands off to the human decision path.
+
+**Case B - same intent, 40 EUR transaction, Knowledge returns `allowed` :**
+
+```
+{ operation_status: "complete",
+  verdict: "allowed",
+  cited_rules: ["rul-refund-standard"],
+  consultation_id: "cns-..." }
+```
+
+The agent executes the refund API.
+
+The agent chose how to interpret intent, gather context and communicate. Knowledge determined what the policy required for the action.
+
+## Deterministic where it matters. Probabilistic where it helps.
+
+The LLM can still interpret intent, extract context, choose tools and manage the conversation. Knowledge governs one specific boundary : resolving explicit business policy against explicit context.
+
+**Let the agent reason. Don't make it invent the policy.**
 
 ## RAG vs Knowledge
 
+RAG and Knowledge answer different questions. The comparison :
+
 | | RAG | Knowledge |
 |---|---|---|
-| Question | "What does the policy say ?" | "What is the policy decision for this explicit context ?" |
-| Output | Relevant text + LLM interpretation | Deterministic verdict + cited rules |
-| Variance | LLM re-interprets on every call | Same context = same output |
-| Replayable | No - interpretation drifts | Yes - snapshot key reconstructs exact state |
-| Compliance-signable | No | Yes |
-| Fits inside an agent | Yes, as a retrieval tool | Yes, as a decision tool |
+| **Primary purpose** | Retrieve relevant knowledge for model reasoning | Resolve an explicit business policy |
+| **Output** | Retrieved context interpreted by a model | Structured policy outcome |
+| **Decision semantics** | Determined by the model or application using the retrieved content | Explicitly encoded in governed rules |
+| **Determinism** | Model interpretation can vary | Same context + same policy state = same outcome |
+| **Audit focus** | What information was retrieved and generated | Which policy state and rules determined the outcome |
+| **Agent role** | Knowledge / reasoning tool | Governed decision tool |
 
-**We do not claim to make your whole agent chain deterministic.** The LLM still interprets the user, still extracts context, still chooses which tool to call. Knowledge holds one specific frontier : the moment of "does policy allow this action". At that frontier the answer is deterministic, cited, replayable. Everything upstream can stay LLM-driven.
+Both can coexist in an agent : RAG for retrieval and reasoning support, Knowledge for the decision boundary where the outcome needs to be deterministic and auditable.
 
 ## Three audiences
 
-| Who | What Knowledge unblocks |
+| Who | What Knowledge addresses |
 |---|---|
-| **Head of AI Product** | Your agent works in prototype ; Legal blocks the move to production. Adding Knowledge as one tool unlocks the autonomous action rate - the KPI your programme is measured on |
-| **VP Engineering / CTO** | Policy encoded in prompts and RAG corpuses is untestable, un-versionable, silently drifting. Knowledge exposes policy as a proper service with REST API, versioned RuleVersion, replayable Consultations, deterministic evaluation |
-| **Chief Compliance Officer** | Not the buyer, but the stakeholder whose blocker matters. Consultation + normative_hash + RuleVersion pinning gives you the audit reconstruction your regulator requires. The sign-off you've been unable to give becomes possible |
+| **Head of AI Product** | Move agents beyond read-only assistance while keeping governed business decisions outside probabilistic model interpretation |
+| **VP Engineering / CTO** | Stop relying on prompts and retrieved documents as the executable representation of business policy. Expose governed policy through a versioned decision API instead |
+| **Chief Compliance Officer** | A defined decision boundary : explicit policy rules, deterministic evaluation and a trace of the policy state behind each outcome |
 
-## Land and expand - AI is the trigger, Knowledge is not an AI product
+## One policy layer can serve more than the agent
 
-Prospects often enter Knowledge to secure one agent for one decision. Six months in, the same policy layer is called by the web form, the BPM, the mobile app and the back-office - because the policy source is the same.
+You may introduce Knowledge for one agent and one governed decision. The same policy layer can later serve applications, workflows and operational systems that need the same policy capabilities.
 
 ```fanout
-source: Knowledge | one policy
+source: Knowledge | one policy layer
 caller: Agent Support
 caller: Web portal
 caller: Mobile app
@@ -83,12 +124,10 @@ caller: BPM (batch claims)
 caller: Back-office ops queue
 ```
 
-Knowledge stops being "guardrail for the agent" and becomes the tenant's shared policy layer. AI was the buying trigger. Knowledge is not an AI product - it works the same whether the caller is Claude or a Java service.
-
 ## What comes next
 
 | Read next | Why |
 |---|---|
 | [How Knowledge works](/how-it-works) | The API contract, the audit surface, the mental model |
-| [Wealth](/wealth) | Reference integration script showing an RM copilot calling Knowledge for 4 canonical structured-product decisions |
-| [Pilot](/pilot) | Start with one agent, one decision, shadow mode for 4-8 weeks. Measure decision agreement against your current logic |
+| [Wealth](/wealth) | Reference integration script showing an RM copilot calling Knowledge for structured-product decisions |
+| [Design partner](/pilot) | Three founding slots, one production-relevant decision, founding-customer pricing |

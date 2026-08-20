@@ -7,8 +7,8 @@ hero:
   kicker: Policy layer for compliance decisions
   headline: When compliance logic spreads across workflows, applications and spreadsheets,
   headlineItalic: every policy change becomes harder to maintain, test and audit.
-  sub: Knowledge centralizes that decision logic in one governed layer - without replacing your existing stack. Applications, workflows and AI agents can ask Knowledge what information is required and what decision applies.
-  ctaPrimary: Book a 30-min conversation
+  sub: Knowledge brings decision logic into one governed policy layer - without replacing your existing stack. Applications, workflows and AI agents provide their current context. Knowledge determines what the policy requires, what information is still needed, and what decision applies.
+  ctaPrimary: Become a design partner
   ctaPrimaryHref: /pilot
   ctaSecondary: See how it works
   ctaSecondaryHref: /how-it-works
@@ -19,23 +19,26 @@ problem:
   items:
     - A policy change means finding every workflow, application and spreadsheet where the logic was copied.
     - Your onboarding asks for information "just in case" - even when most of it never affects the decision.
-    - Half of your review queue is cases a rule could have decided.
+    - Cases that could be resolved deterministically still end up in manual review.
     - A regulator asks you to reproduce a decision from 18 months ago, and reconstructing the exact policy version takes weeks.
-    - Your AI agent works - until Legal blocks it from taking action, because a probabilistic policy interpreter is not signable.
+    - Your AI agent works - until Legal asks how you guarantee which policy it will apply before taking action.
+
+transition:
+  text: "Different symptoms. Same underlying problem : the policy that determines a decision is coupled to the systems that collect information, orchestrate the process or execute the action."
 
 change:
   kicker: What Knowledge changes
   title: One governed policy layer. Many callers.
-  sub: Your applications, workflows and AI agents send a context. Knowledge returns a deterministic verdict with the exact rule applied and a replayable audit trail.
+  sub: Your applications, workflows and AI agents send a context. Knowledge returns a deterministic verdict with the rules that determined it and a replayable audit trail.
   cards:
-    - title: One policy, many callers
-      desc: Web forms, mobile apps, back-office queues, BPM tools, AI agents - all consult the same source. Change once, propagates.
+    - title: One layer, many callers
+      desc: Web forms, mobile apps, back-office systems, workflows and AI agents can all consult the same governed policy layer. Policy logic no longer has to be reimplemented by every caller.
     - title: Deterministic verdicts
-      desc: Same input, same output. Every decision cites the rule that fired. No LLM variance at the decision boundary.
+      desc: Same context, same policy state, same decision. Each verdict identifies the rules that determined it. No LLM variance at the decision boundary.
     - title: Replayable audit
-      desc: Every consultation is stored with a snapshot key that reconstructs the exact policy state, years later. Answering a regulator takes seconds, not weeks.
+      desc: Each consultation records the normative policy state behind the decision, so historical decisions can be traced back to the rules and policy state that produced them.
     - title: Progressive collection
-      desc: Knowledge tells the caller what information is still needed for the current decision. No more asking "just in case".
+      desc: Knowledge determines what additional context is required to reach the current decision - so callers don't need to collect information merely "just in case".
   ctaLabel: Read how it works
   ctaHref: /how-it-works
 
@@ -45,11 +48,14 @@ stack:
   sub: Knowledge does not replace your workflow engine, your KYC vendor, your OMS or your legacy decision code. It inserts alongside them.
   cards:
     - question: Already have a decision engine ?
-      mode: Gate or Overlay
-      desc: Knowledge adds new rules or governs existing ones without changing what runs today. Blocking verdicts stop bad decisions pre-execution.
+      mode: Overlay
+      desc: Feed existing decisions and context into Knowledge to apply additional governed policy without replacing the underlying engine.
+    - question: Need to enforce a new control ?
+      mode: Gate
+      desc: Put Knowledge before execution for a selected decision or policy. The existing system remains in place ; Knowledge governs whether the action can proceed.
     - question: Want to validate first ?
       mode: Shadow
-      desc: Knowledge computes verdicts in parallel with your existing system, discrepancies surface for review. Zero risk to production.
+      desc: Knowledge evaluates the same cases in parallel without controlling the production decision. Compare outcomes before giving it authority.
     - question: Launching a new domain ?
       mode: Selective routing
       desc: Knowledge handles the new flow, the rest stays on the legacy. No impact on today's flows, full control on the new one.
@@ -60,25 +66,25 @@ stack:
   ctaHref: /stack
 
 proof:
-  kicker: Vertical proof today
-  title: Real decisions modelled and running.
+  kicker: Built for real decision domains
+  title: See Knowledge applied to concrete compliance decisions.
   cards:
     - name: Wealth
       subtitle: Structured Products distribution
-      desc: Product eligibility, client suitability, cross-border rules, portfolio concentration. Four policies, thirteen rules, working reference integration.
+      desc: Product eligibility, client suitability, cross-border rules, portfolio concentration. Four policies, thirteen rules and a working reference integration.
       ctaLabel: See the Wealth walkthrough
       ctaHref: /wealth
     - name: KYC / KYB
       subtitle: Onboarding decisions
-      desc: Progressive collection, jurisdictional rules, PEP and sanctions gating, source-of-wealth documentation. Sits above your IDV vendor.
+      desc: Progressive information requirements, jurisdictional rules, PEP and sanctions outcomes, source-of-wealth requirements and escalation decisions - while keeping existing identity and verification providers in place.
       ctaLabel: See the KYC walkthrough
       ctaHref: /kyc
 
 pilot:
-  kicker: Start small
-  title: Start with one decision, not a transformation programme.
-  desc: Pick one painful decision. Model it in Knowledge. Run it alongside your existing system. Measure the result. Decide whether to expand.
-  ctaLabel: See how a pilot works
+  kicker: The founding cohort
+  title: Bring us one decision to solve. Founding status comes with it.
+  desc: Bring one decision that is difficult to change, automate or audit today. Knowledge runs against success criteria agreed upfront, in an adoption pattern that fits your existing stack. Founding-customer pricing, direct product influence, clean exit if the numbers don't land. Three engagements in the founding cohort.
+  ctaLabel: See the design-partner engagement
   ctaHref: /pilot
 ---
 

@@ -1,45 +1,60 @@
 ---
 title: Comment fonctionne Knowledge
-description: Une couche de policy gouvernée appelable via REST. Vos applications, workflows et agents IA envoient un contexte. Knowledge retourne un verdict déterministe avec règles citées et audit rejouable.
+description: Une couche de policy gouvernée appelable via REST. Les appelants envoient le contexte qu'ils ont. Knowledge détermine si la policy peut résoudre la décision, et sinon, quel contexte est encore requis.
 locale: fr
 kicker: Le modèle mental
 ---
 
-Knowledge est une couche de policy gouvernée. Les appelants envoient un contexte ; Knowledge évalue les règles applicables contre ce contexte et retourne un verdict déterministe.
+Knowledge est une couche de policy gouvernée. Les appelants envoient le contexte qu'ils ont, et Knowledge répond à deux questions :
+
+> Étant donné ce que je sais, la policy peut-elle déterminer le résultat ?
+>
+> Sinon, qu'a-t-elle besoin de savoir ensuite ?
+
+**L'appelant n'a pas besoin de connaître l'arbre de dépendances de la policy. Knowledge, si.**
 
 ## Les trois boîtes
 
 ```pipeline
-Vos appelants | Application | Workflow | BPM | Agent IA
-Knowledge | Policy layer | Règles, versioning | Trace d'audit
-Votre système de record | Exécution | Persistance
+Appelants | Applications, workflows, formulaires, agents IA | Collecter le contexte, orchestrer
+Knowledge | Policies, règles, précédence, overrides | Résoudre, gouverner, expliquer
+Systèmes de record | CRM, OMS, systèmes core, APIs opérationnelles | Stocker, exécuter
 ```
 
-Knowledge ne possède pas de données. Il n'orchestre pas les flux. Il n'exécute pas d'actions. Il répond à une seule question, de manière déterministe :
+Knowledge ne possède pas vos données client. Il n'orchestre pas votre workflow. Il n'exécute pas l'action métier.
 
-> Étant donné ce contexte, que dit la policy ?
+## Le contrat de résolution central
 
-## Le contrat - un endpoint
-
-Les appelants POSTent un contexte à `/resolve` :
+La plupart des intégrations démarrent avec `/resolve`. Les appelants POSTent une intention et le contexte qu'ils ont actuellement. Chaque champ dans `context` est un `Fact` qui porte la valeur brute et sa provenance (`source` est requis ; `verification_status` et `confidence` sont optionnels).
 
 ```
 POST /knowledge/v1/resolve
 {
   "action_type": "sp_offer_eligibility",
   "context": {
-    "asset_class": "structured_product",
-    "client": {"classification": "retail"},
-    "structured_products": {
-      "product": {"complexity": "highly_complex"}
-    }
+    "asset_class": { "value": "structured_product", "source": "caller" },
+    "product.complexity": { "value": "highly_complex", "source": "product_master" }
   }
 }
 ```
 
-Knowledge répond avec l'une de trois formes.
+**Knowledge répond dans l'un de deux états : complete ou incomplete.**
 
-**Décision complète** - chaque feuille dont les règles applicables ont besoin est présente :
+Si l'opération est incomplete, la réponse identifie le contexte encore requis pour que les policies applicables se résolvent. Chaque entrée porte le champ, la raison pour laquelle il est nécessaire, son type schema, et toute contrainte utilisable par l'appelant pour construire une requête de suivi :
+
+```
+{
+  "operation_status": "incomplete",
+  "required_context": [
+    { "field": "client.classification",
+      "reason": "required by rul-sp-elig-highly-complex-retail",
+      "type": "enum",
+      "allowed_values": ["retail", "professional", "accredited"] }
+  ]
+}
+```
+
+Si l'opération est complete, la réponse retourne le verdict métier applicable, les règles qui l'ont déterminé, et la référence à la consultation :
 
 ```
 {
@@ -52,53 +67,128 @@ Knowledge répond avec l'une de trois formes.
 }
 ```
 
-**Incomplet** - une règle a besoin d'une feuille que l'appelant n'a pas encore fournie :
+`verdict` est le résultat métier. Selon les règles applicables il peut être `allowed`, `blocked`, `approval_required`, `observe`, ou d'autres valeurs définies par la policy. Que la décision requière ou non une autorisation humaine est un résultat métier, pas une forme de réponse séparée.
+
+## Résolution progressive en pratique
+
+À mesure que le contexte devient plus spécifique, les branches de policy non pertinentes disparaissent et Knowledge ne demande plus que du contexte encore capable d'affecter le résultat.
+
+**Appel 1.** L'appelant envoie ce qu'il a :
 
 ```
-{
-  "operation_status": "incomplete",
-  "required_context": ["client.classification"]
+context: {
+  "product.complexity": { value: "highly_complex", source: "product_master" }
 }
 ```
 
-L'appelant récupère la feuille manquante (depuis un CRM, un vendor KYC, une extraction LLM, ou une question de suivi à l'utilisateur) et rappelle avec le contexte enrichi.
-
-**Approbation requise** - une règle qui gate sur une autorisation humaine s'est déclenchée :
+Knowledge répond :
 
 ```
-{
-  "verdict": "approval_required",
-  "cited_rules": [...],
-  "consultation_id": "cns-..."
+{ operation_status: "incomplete",
+  required_context: [
+    { field: "client.classification",
+      reason: "required by rul-sp-elig-highly-complex",
+      type: "enum",
+      allowed_values: ["retail", "professional", "accredited"] }
+  ] }
+```
+
+**Appel 2.** L'appelant ajoute la classification.
+
+```
+context: {
+  ...,
+  "client.classification": { value: "professional", source: "CRM" }
 }
 ```
+
+Knowledge répond :
+
+```
+{ operation_status: "incomplete",
+  required_context: [
+    { field: "client.knowledge_experience",
+      reason: "required by rul-sp-elig-complex-professional-ke",
+      type: "enum",
+      allowed_values: ["insufficient", "sufficient"] }
+  ] }
+```
+
+**Appel 3.** L'appelant ajoute le niveau K&E.
+
+```
+context: {
+  ...,
+  "client.knowledge_experience": { value: "insufficient", source: "client_dossier" }
+}
+```
+
+Knowledge répond :
+
+```
+{ operation_status: "complete",
+  verdict: "blocked",
+  cited_rules: ["rul-sp-elig-complex-professional-ke"],
+  consultation_id: "cns-..." }
+```
+
+## « Required » ne veut pas dire « une autre question »
+
+Si Knowledge demande `client.classification`, l'appelant décide où l'obtenir.
+
+| D'où le contexte peut venir |
+|---|
+| Déjà disponible dans le dossier client ou le CRM |
+| Calculé ailleurs dans les propres systèmes de l'appelant |
+| Retourné par un vendor de vérification ou de screening |
+| Extrait par un agent IA depuis un document ou une conversation existants |
+| Réellement inconnu - demander à l'utilisateur |
+
+**Knowledge détermine ce que la policy exige. L'appelant détermine comment l'obtenir.**
 
 ## Ce que « gouverné » veut dire
 
 | Aspect | Ce que ça veut dire |
 |---|---|
-| **Versioning** | Chaque règle possède une `RuleVersion` - un snapshot immuable de ses champs affectant le verdict. Les consultations pinent la version exacte utilisée, le replay des années plus tard est exact. |
-| **Audit** | Chaque appel `/resolve` produit une ligne `Consultation` avec le contexte, les règles citées, et un `normative_hash` qui sert de clé de snapshot. |
-| **Workflow d'override** | Quand une règle nécessite une approbation, l'approbation est une entité de premier ordre avec le décideur, le scope d'application, et l'audit. Le moteur reconsulte après l'approbation, le verdict flippe de manière déterministe. |
-| **Autorship policy dans l'UI** | Les règles vivent dans un registry que les compliance officers peuvent éditer sans engineering - sujet à versioning + governance. |
+| **État de policy versionné** | Les changements affectant le verdict créent un état normatif immuable, pour qu'une décision reste liée à la version de policy utilisée au moment de l'évaluation |
+| **Trace de décision** | Chaque consultation enregistre le contexte, les règles applicables, le résultat et l'état normatif derrière l'évaluation |
+| **Approbations et overrides** | L'autorisation humaine et les exceptions sont des objets gouvernés explicites, pas des branches de workflow cachées |
+| **Autorship gouvernée** | Les propriétaires de policy autorisés peuvent gérer les règles indépendamment des applications consommatrices, avec des changements gouvernés et versionnés |
+
+Les décisions historiques restent liées à l'état normatif de la policy qui les a produites, permettant le replay et l'audit déterministes.
 
 ## Ce que Knowledge n'est pas
 
 | Pas ça | Pourquoi |
 |---|---|
-| **Pas un moteur de workflow** | Knowledge répond « que dit la policy » ; votre BPM ou agent répond « que faire ensuite ». Ils coexistent. |
-| **Pas un vendor KYC** | Knowledge ne vérifie pas l'identité ni ne lance de PEP screening. Il consomme le résultat du vendor et applique la décision composite (résultat Verify + éligibilité produit + juridiction + policy commerciale + exceptions). |
-| **Pas un RAG sur vos docs policy** | RAG retrouve du texte pertinent. Knowledge produit un verdict déterministe avec règles citées et état rejouable. Voir la [page Agents IA](/ai-agents) pour le contraste complet. |
-| **Pas un rip-and-replace** | Knowledge s'insère à côté de votre stack existant selon plusieurs patterns. Voir [comment ça s'insère](/stack). |
+| **Pas un moteur de workflow** | Knowledge détermine le résultat de la policy ; votre workflow ou agent détermine comment porter le processus plus loin. Ils coexistent |
+| **Pas un vendor KYC** | Knowledge ne vérifie pas l'identité ni ne lance de PEP screening. Il consomme le résultat du vendor et applique la décision composite (résultat Verify + éligibilité produit + juridiction + policy commerciale + exceptions) |
+| **Pas un RAG sur vos docs policy** | RAG retrouve du texte pertinent. Knowledge produit un verdict déterministe avec règles citées et une trace de décision reproductible. Voir la [page Agents IA](/ai-agents) pour le contraste complet |
+| **Pas un rip-and-replace** | Knowledge s'insère à côté de votre stack existant selon plusieurs patterns. Voir [comment ça s'insère](/stack) |
 
 ## Le cycle de vie d'une décision
 
-1. L'appelant assemble un contexte (depuis un formulaire, une API, un appel de tool, une extraction LLM).
-2. L'appelant POSTe `/resolve` avec `action_type` + `context`.
-3. Knowledge évalue les règles applicables, retourne un verdict ou `required_context`.
-4. L'appelant agit sur le verdict (exécute, escalade, refuse, redemande à l'utilisateur).
-5. Chaque appel est loggé en `Consultation` avec le snapshot d'état.
-6. Des années plus tard, un régulateur demande sur une décision - une seule requête reconstitue l'état exact des règles et le output cité.
+```lifecycle
+step: L'appelant assemble le contexte actuellement disponible
+step: POST /resolve avec action_type + context
+step: Knowledge classe les règles applicables contre le contexte
+branch-left-label: Incomplete
+branch-left-1: required_context retourné
+branch-left-2: L'appelant récupère, dérive ou demande le contexte manquant
+branch-left-loop: Retour à /resolve
+branch-right-label: Complete
+branch-right-1: verdict + cited_rules + consultation_id
+branch-right-2: L'appelant agit sur le verdict (exécuter · refuser · escalader · demander approbation · continuer)
+end: Consultation préservée pour audit et replay
+```
+
+## Trois idées à retenir
+
+**Knowledge détermine ce que la policy exige. Vos systèmes déterminent comment obtenir le contexte et exécuter le résultat.**
+
+**L'appelant n'a pas besoin de connaître l'arbre de dépendances de la policy. Knowledge, si.**
+
+**La complétude est transversale. Le résultat appartient à l'opération.**
 
 ## Voir aussi
 
@@ -106,4 +196,4 @@ L'appelant récupère la feuille manquante (depuis un CRM, un vendor KYC, une ex
 |---|---|
 | [Agents IA](/ai-agents) | Comment un agent utilise `/resolve` comme tool |
 | [Fonctionne avec votre stack](/stack) | Les cinq patterns d'insertion |
-| [Pilote](/pilot) | Comment démarrer avec une seule décision |
+| [Design partner](/pilot) | L'engagement founding-partner : trois places sur une décision production |

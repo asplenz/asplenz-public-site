@@ -1,45 +1,60 @@
 ---
 title: How Knowledge works
-description: A governed policy layer callable via REST. Your applications, workflows and AI agents send a context. Knowledge returns a deterministic verdict with cited rules and a replayable audit trail.
+description: A governed policy layer callable via REST. Callers send the context they have. Knowledge determines whether the policy can resolve the decision, and if not, what context is still required.
 locale: en
 kicker: The mental model
 ---
 
-Knowledge is a governed policy layer. Callers send a context ; Knowledge evaluates the applicable rules against that context and returns a deterministic verdict.
+Knowledge is a governed policy layer. Callers send the context they have, and Knowledge answers two questions :
+
+> Given what I know, can the policy determine the outcome ?
+>
+> If not, what does it need to know next ?
+
+**The caller doesn't need to know the policy's dependency tree. Knowledge does.**
 
 ## The three boxes
 
 ```pipeline
-Your callers | Application | Workflow | BPM | AI agent
-Knowledge | Policy layer | Rules, versioning | Audit trail
-Your system of record | Execution | Persistence
+Callers | Applications, workflows, forms, AI agents | Collect context, orchestrate
+Knowledge | Policies, rules, precedence, overrides | Resolve, govern, explain
+Systems of record | CRM, OMS, core systems, operational APIs | Store, execute
 ```
 
-Knowledge does not own data. It does not orchestrate flows. It does not execute actions. It answers one question, deterministically :
+Knowledge does not own your customer data. It does not orchestrate your workflow. It does not execute the business action.
 
-> Given this context, what does the policy say ?
+## The core resolution contract
 
-## The contract - one endpoint
-
-Callers POST a context to `/resolve` :
+Most integrations start with `/resolve`. Callers POST an intent and the context they currently have. Each field in `context` is a `Fact` carrying the raw value and its provenance (`source` is required ; `verification_status` and `confidence` are optional).
 
 ```
 POST /knowledge/v1/resolve
 {
   "action_type": "sp_offer_eligibility",
   "context": {
-    "asset_class": "structured_product",
-    "client": {"classification": "retail"},
-    "structured_products": {
-      "product": {"complexity": "highly_complex"}
-    }
+    "asset_class": { "value": "structured_product", "source": "caller" },
+    "product.complexity": { "value": "highly_complex", "source": "product_master" }
   }
 }
 ```
 
-Knowledge responds with one of three shapes.
+**Knowledge responds in one of two states : complete or incomplete.**
 
-**Complete decision** - every leaf the applicable rules need is present :
+If the operation is incomplete, the response identifies the context still required for the applicable policies to resolve. Each entry carries the field, the reason it is needed, its schema type, and any constraints the caller can use to build a follow-up query :
+
+```
+{
+  "operation_status": "incomplete",
+  "required_context": [
+    { "field": "client.classification",
+      "reason": "required by rul-sp-elig-highly-complex-retail",
+      "type": "enum",
+      "allowed_values": ["retail", "professional", "accredited"] }
+  ]
+}
+```
+
+If the operation is complete, the response returns the applicable business verdict, the rules that determined it, and the reference to the consultation :
 
 ```
 {
@@ -52,53 +67,128 @@ Knowledge responds with one of three shapes.
 }
 ```
 
-**Incomplete** - some rule needs a leaf the caller has not yet supplied :
+`verdict` is the business outcome. Depending on the applicable rules it may be `allowed`, `blocked`, `approval_required`, `observe`, or other values defined by the policy. Whether the decision needs human authorization is a business outcome, not a separate response shape.
+
+## Progressive resolution in practice
+
+As context becomes more specific, irrelevant policy branches fall away and Knowledge asks only for context still capable of affecting the outcome.
+
+**Call 1.** The caller sends what it has :
 
 ```
-{
-  "operation_status": "incomplete",
-  "required_context": ["client.classification"]
+context: {
+  "product.complexity": { value: "highly_complex", source: "product_master" }
 }
 ```
 
-The caller fetches the missing leaf (from a CRM, a KYC vendor, an LLM extraction, or a follow-up question to the user) and re-calls with the enriched context.
-
-**Approval required** - a rule fires that gates on human authorisation :
+Knowledge responds :
 
 ```
-{
-  "verdict": "approval_required",
-  "cited_rules": [...],
-  "consultation_id": "cns-..."
+{ operation_status: "incomplete",
+  required_context: [
+    { field: "client.classification",
+      reason: "required by rul-sp-elig-highly-complex",
+      type: "enum",
+      allowed_values: ["retail", "professional", "accredited"] }
+  ] }
+```
+
+**Call 2.** The caller adds classification.
+
+```
+context: {
+  ...,
+  "client.classification": { value: "professional", source: "CRM" }
 }
 ```
+
+Knowledge responds :
+
+```
+{ operation_status: "incomplete",
+  required_context: [
+    { field: "client.knowledge_experience",
+      reason: "required by rul-sp-elig-complex-professional-ke",
+      type: "enum",
+      allowed_values: ["insufficient", "sufficient"] }
+  ] }
+```
+
+**Call 3.** The caller adds K&E level.
+
+```
+context: {
+  ...,
+  "client.knowledge_experience": { value: "insufficient", source: "client_dossier" }
+}
+```
+
+Knowledge responds :
+
+```
+{ operation_status: "complete",
+  verdict: "blocked",
+  cited_rules: ["rul-sp-elig-complex-professional-ke"],
+  consultation_id: "cns-..." }
+```
+
+## Required context is not necessarily another question
+
+If Knowledge asks for `client.classification`, the caller decides how to obtain it.
+
+| Where the context can come from |
+|---|
+| Already available in the customer record or CRM |
+| Computed elsewhere in the caller's own systems |
+| Returned by a verification or screening provider |
+| Extracted by an AI agent from an existing document or conversation |
+| Genuinely unknown - ask the user |
+
+**Knowledge determines what the policy needs. The caller determines how to get it.**
 
 ## What "governed" means
 
-| Aspect | What it means |
+| Aspect | Meaning |
 |---|---|
-| **Versioning** | Every rule has a `RuleVersion` - an immutable snapshot of its verdict-affecting fields. Consultations pin the exact version used, so replay years later is exact. |
-| **Audit** | Every `/resolve` call produces a `Consultation` row with the context, the cited rules, and a `normative_hash` that acts as a snapshot key. |
-| **Override workflow** | When a rule requires approval, the approval is a first-class entity with the granting decider, the applies-to scope, and the audit trail. The engine re-consults after the approval, verdict flips deterministically. |
-| **Policy authorship in the UI** | Rules live in a registry that compliance officers can edit without engineering - subject to versioning + governance. |
+| **Versioned policy state** | Verdict-affecting changes create immutable normative state, so a decision remains tied to the policy version used at evaluation time |
+| **Decision trace** | Each consultation records the context, applicable rules, outcome and normative state behind the evaluation |
+| **Approvals and overrides** | Human authorization and exceptions are explicit governed objects rather than hidden workflow branches |
+| **Governed authorship** | Authorized policy owners can manage rules independently from consuming applications, with changes governed and versioned |
+
+Historical decisions remain tied to the normative policy state that produced them, enabling deterministic replay and audit.
 
 ## What Knowledge is not
 
 | Not this | Why |
 |---|---|
-| **Not a workflow engine** | Knowledge answers "what does the policy say" ; your BPM or agent answers "what should happen next". They coexist. |
-| **Not a KYC vendor** | Knowledge does not verify identity or run PEP screening. It consumes the vendor's result and applies the composite decision (Verify result + product eligibility + jurisdiction + commercial policy + exceptions). |
-| **Not a RAG on your policy documents** | RAG retrieves relevant text. Knowledge produces a deterministic verdict with cited rules and replayable state. See the [AI agents page](/ai-agents) for the full contrast. |
-| **Not a rip-and-replace** | Knowledge inserts alongside your existing stack in one of several patterns. See [how it fits your stack](/stack). |
+| **Not a workflow engine** | Knowledge determines the policy outcome ; your workflow or agent determines how to carry the process forward. They coexist |
+| **Not a KYC vendor** | Knowledge does not verify identity or run PEP screening. It consumes the vendor's result and applies the composite decision (Verify result + product eligibility + jurisdiction + commercial policy + exceptions) |
+| **Not a RAG on your policy documents** | RAG retrieves relevant text. Knowledge produces a deterministic verdict with cited rules and a reproducible decision trace. See the [AI agents page](/ai-agents) for the full contrast |
+| **Not a rip-and-replace** | Knowledge inserts alongside your existing stack in one of several patterns. See [how it fits your stack](/stack) |
 
 ## The lifecycle of a decision
 
-1. Caller assembles context (from a form, an API, a tool call, an LLM extraction).
-2. Caller POSTs `/resolve` with `action_type` + `context`.
-3. Knowledge evaluates the applicable rules, returns verdict or `required_context`.
-4. Caller acts on the verdict (execute, escalate, refuse, ask the user for more).
-5. Every call is logged as a `Consultation` with the state snapshot.
-6. Years later, a regulator asks about a specific decision - one query reconstructs the exact rule state and cited output.
+```lifecycle
+step: Caller assembles the context currently available
+step: POST /resolve with action_type + context
+step: Knowledge classifies applicable rules against the context
+branch-left-label: Incomplete
+branch-left-1: required_context returned
+branch-left-2: Caller retrieves, derives or asks for the missing context
+branch-left-loop: Loop back to /resolve
+branch-right-label: Complete
+branch-right-1: verdict + cited_rules + consultation_id
+branch-right-2: Caller acts on the verdict (execute · refuse · escalate · request approval · continue)
+end: Consultation preserved for audit and replay
+```
+
+## Three ideas to take away
+
+**Knowledge determines what the policy requires. Your systems determine how to obtain the context and execute the outcome.**
+
+**The caller doesn't need to know the policy's dependency tree. Knowledge does.**
+
+**Completeness is cross-cutting. The outcome belongs to the operation.**
 
 ## Related
 
@@ -106,4 +196,4 @@ The caller fetches the missing leaf (from a CRM, a KYC vendor, an LLM extraction
 |---|---|
 | [AI agents](/ai-agents) | How an agent uses `/resolve` as a tool |
 | [Works with your stack](/stack) | The five insertion patterns |
-| [Pilot](/pilot) | How to start with one decision |
+| [Design partner](/pilot) | The founding-partner engagement : three slots on one production-relevant decision |

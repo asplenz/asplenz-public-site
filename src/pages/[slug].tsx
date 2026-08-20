@@ -17,6 +17,7 @@ export default function DynamicPage({ page }: Props) {
         sub={page.description}
         ctaLabel={page.ctaLabel}
         ctaHref={page.ctaHref}
+        contactEmail={page.contactEmail}
       />
       <MarkdownPage body={page.body} />
     </Layout>

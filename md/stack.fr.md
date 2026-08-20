@@ -1,85 +1,104 @@
 ---
 title: Fonctionne avec votre stack existant
-description: Pas de rip-and-replace. Knowledge s'insère à côté de ce que vous avez - comme gate, overlay, shadow validator, selective router, ou couche primary pour les nouveaux domaines.
+description: Ajoutez de la policy gouvernée là où vous en avez besoin. Gardez les systèmes qui marchent déjà.
 locale: fr
-kicker: Cinq modes d'adoption
-ctaLabel: Discuter du mode qui vous convient
+kicker: Cinq patterns d'adoption
+ctaLabel: Devenir design partner
 ctaHref: /pilot
 ---
 
-Knowledge ne remplace pas votre moteur de workflow, votre vendor KYC, votre OMS ou votre code de décision legacy. Il s'insère à côté, selon l'un de cinq patterns. Choisissez le mode qui correspond à où vous en êtes aujourd'hui.
+Knowledge coexiste avec votre moteur de workflow, vos fournisseurs de vérification, votre OMS et votre logique de décision existante. La policy gouvernée peut être ajoutée autour des parties qui en ont besoin sans remplacer ce qui tourne déjà.
+
+**Ces patterns ne sont pas mutuellement exclusifs.** Un déploiement peut utiliser Overlay pour un domaine de policy, Gate pour une frontière d'action spécifique, Shadow pour un scope encore en validation et Primary pour une nouvelle business unit, le tout en même temps. Ce sont des building blocks qui se combinent et évoluent, pas cinq architectures figées.
 
 ---
 
-## Vous avez déjà un moteur de décision ? - Gate ou Overlay
+**Vous avez déjà un moteur de décision ? Bien. Gardez-le.** Un moteur de règles custom, du code de décision embarqué dans votre OMS, un système d'admission legacy — vous pouvez ajouter de nouvelles règles, gouverner des policies additionnelles, ou produire une trace de décision gouvernée autour, sans remplacer ce qui tourne déjà.
 
-Vous avez quelque chose qui tourne aujourd'hui. Alloy, un moteur de règles custom, du code de décision embarqué dans votre OMS, un système d'admission legacy. Ça marche, mais vous devez ajouter de nouvelles règles, gouverner celles existantes, ou ajouter de l'audit - sans déplacer ce qui tourne.
+## Overlay : Ajouter de la policy gouvernée autour de la décision existante
 
-**Gate.** Knowledge se place entre l'appelant et le système existant. Les requêtes arrivent d'abord sur Knowledge ; les verdicts bloquants arrêtent le flux pre-execution. Les flux non-bloquants passent à travers vers le système existant sans changement. Les nouvelles règles sont ajoutées dans Knowledge sans toucher au legacy.
+Gardez la décision existante comme un input. Knowledge évalue des policies, exceptions ou contrôles additionnels autour d'elle et produit sa propre trace de décision gouvernée. Utile quand remplacer la logique legacy porterait un risque disproportionné de régression, de certification ou de migration.
 
-**Overlay.** Knowledge se place après la décision existante. Le legacy calcule son verdict ; Knowledge peut ajouter des règles compliance, produire des traces d'audit, ou gouverner les exceptions par-dessus. Overlay est commun quand le legacy est intouchable (risque de régression, tribal knowledge, coût de re-certification).
+## Gate : Exiger un verdict Knowledge avant certaines actions
 
-Les deux patterns sont **additifs** - aucun changement au code qui tourne aujourd'hui.
+Gardez le chemin de décision existant, mais exigez un verdict Knowledge avant qu'une action sélectionnée puisse se poursuivre. Knowledge gouverne un ensemble défini de policies ou de contrôles ; un verdict bloquant empêche l'exécution. Le système sous-jacent reste en place.
 
----
-
-## Vous voulez valider d'abord ? - Shadow
-
-Vous voulez que Knowledge tourne à côté de votre couche de décision existante pendant une période, sans affecter le trafic live. Chaque appel va vers les deux systèmes. Les verdicts sont comparés. Les divergences remontent pour review.
-
-C'est ainsi que les organisations averses au risque onboardent une nouvelle couche de décision. Après 4-8 semaines de run parallèle, l'analyse des divergences vous dit deux choses :
-- Où Knowledge et le système existant sont d'accord (typiquement 80-95% sur les domaines stables)
-- Où ils divergent - et lequel a raison (souvent, de manière surprenante, les divergences révèlent des bugs pré-existants dans le legacy)
-
-Une fois les divergences comprises et la confiance suffisamment haute, Knowledge passe de shadow à gate ou primary.
+Les deux patterns préservent l'implémentation de décision existante. L'intégration se limite à introduire Knowledge à la frontière de décision appropriée plutôt qu'à migrer la logique policy legacy d'entrée.
 
 ---
 
-## Vous lancez un nouveau domaine ? - Selective routing
+## Shadow : Valider avant de donner l'autorité
 
-Vous avez un système existant qui gère les flux actuels. Mais une nouvelle ligne de produits, une entrée sur un nouveau marché, un nouveau segment client requièrent des décisions pour lesquelles le système existant n'a pas été conçu.
+Vous voulez que Knowledge évalue des cas production-relevants en parallèle de votre couche de décision existante, sans contrôler le résultat live.
 
-Selective routing dirige le nouveau flux vers Knowledge en laissant le reste du système sur le legacy. Même tenant, mêmes clients, même OMS - mais les décisions du nouveau flux viennent de Knowledge.
+**Knowledge n'a aucune autorité sur le résultat production.** Son verdict est calculé mais ne contrôle pas ce qui arrive réellement. La comparaison répond à deux questions pratiques :
 
-C'est une façon peu risquée d'introduire Knowledge : aucun impact sur les flux actuels, contrôle total sur le nouveau, rollback facile si nécessaire.
+- Où Knowledge et le système existant sont-ils d'accord ?
+- Là où ils divergent, qu'est-ce qui explique la différence - couverture policy manquante, interprétation différente, contexte incomplet, ou un problème dans l'implémentation existante ?
 
----
-
-## Vous construisez du nouveau ? - Primary
-
-Greenfield. Un nouveau produit, une nouvelle startup, une nouvelle business unit, une nouvelle surface customer-facing où rien n'existe encore. Knowledge est la couche de décision dès le premier jour.
-
-Primary est le pattern le plus simple parce qu'il n'y a pas de legacy à contourner. C'est aussi là où le modèle pack brille : installez un pack vertical (Wealth, KYC, ou tout ce qui ship ensuite), calibrez les seuils, et vous avez une couche de décision opérationnelle en quelques semaines.
+Une fois la comparaison comprise et la confiance suffisamment haute, Knowledge peut transitionner vers Gate, Overlay, Selective Routing ou Primary pour le scope en question.
 
 ---
 
-## Les cinq patterns en un coup d'œil
+## Selective routing : Bougez quelques décisions, pas tout le patrimoine
 
-| Votre situation | Pattern | Profil de risque | Timeline typique |
+Vous avez un système existant qui gère les flux actuels. Routez un scope clairement borné vers Knowledge - un nouveau produit, une juridiction, un segment client, un domaine de policy ou un canal - pendant que les décisions existantes restent sur le système legacy.
+
+Même tenant, mêmes clients, mêmes systèmes downstream. Seules les décisions dans le scope sélectionné viennent de Knowledge. Aucun impact sur les flux actuels, contrôle total sur le scope routé, rollback disponible si nécessaire.
+
+Selective routing est souvent le pattern le plus vendable parce qu'il transforme une migration potentiellement énorme en un scope borné et mesurable.
+
+---
+
+## Primary : Construire une nouvelle couche de décision de zéro
+
+Greenfield. Une nouvelle ligne de produits, une nouvelle business unit, une nouvelle surface customer-facing où aucune couche de décision n'existe encore. Knowledge est la couche de décision dès le premier jour.
+
+Primary est l'architecture la plus propre parce qu'il n'y a pas de couche de décision legacy à migrer. Là où un pack policy pertinent existe, il fournit un modèle de départ que les policy owners de la firme calibrent, plutôt que de partir d'un ruleset vide.
+
+---
+
+## Les patterns peuvent évoluer
+
+Un déploiement traverse souvent plus d'un pattern au cours de sa vie :
+
+- **Shadow → Selective routing → Primary** pour un scope que vous validez d'abord en parallèle, puis passez live sur un segment borné, puis étendez.
+- **Overlay + Gate** côte à côte, l'un gouvernant des policies additionnelles autour du legacy, l'autre contrôlant l'exécution d'actions spécifiques.
+- **Legacy + Overlay indéfiniment** quand le moteur sous-jacent est stable et que c'est la couche policy gouvernée qui doit continuer d'évoluer.
+
+Le bon pattern pour un scope aujourd'hui n'est pas nécessairement le bon pattern six mois plus tard. Knowledge est conçu pour être re-scopé sans être ré-architecturé.
+
+## Un agent IA devant le legacy
+
+Un agent IA qui opère dans un environnement existant a souvent besoin de Knowledge sans toucher au legacy du tout. Il appelle le CRM, appelle le core legacy pour l'état courant, et appelle `/resolve` pour la décision policy gouvernée avant d'exécuter. Le legacy reste le système de record ; Knowledge gouverne la frontière de décision devant lui.
+
+C'est un cas spécifique des patterns ci-dessus (typiquement Gate ou Selective routing au niveau de l'agent), pas un sixième mode. Voir [Agents IA](/ai-agents) pour le pattern complet.
+
+## Matrice des patterns d'adoption
+
+| Votre situation | Pattern | Autorité de Knowledge | Logique de décision existante |
 |---|---|---|---|
-| Legacy intouchable, besoin d'ajouter des règles | Overlay | Bas | 4-8 semaines |
-| Legacy touchable, envie de gater du live | Gate | Bas-moyen | 6-10 semaines |
-| Envie de validation zéro-risque avant commit | Shadow | Très bas | 4-8 semaines shadow, puis transition |
-| Nouveau marché / nouvelle ligne produits | Selective routing | Bas | 6-12 semaines |
-| Build greenfield | Primary | N/A (pas de legacy) | 4-8 semaines |
+| Ajouter une policy gouvernée autour du legacy | **Overlay** | Couche policy additionnelle | Préservée |
+| Empêcher des actions sélectionnées sauf si la policy autorise | **Gate** | Veto à une frontière sélectionnée | Préservée |
+| Comparer avant de donner l'autorité | **Shadow** | Aucune | Autoritaire |
+| Bouger d'abord un scope borné | **Selective routing** | Autoritaire pour le scope sélectionné | Autoritaire ailleurs |
+| Nouveau domaine de décision | **Primary** | Autoritaire | Aucune / non utilisée |
 
-## Ce que Knowledge N'exige PAS
+## Ce qui reste en place
 
 | Ce qui reste en place | Comment Knowledge coexiste |
 |---|---|
-| **Votre moteur de workflow** | Knowledge est appelé depuis les tasks de workflow. Aucun remplacement de Camunda, Signavio, Appian, Pega |
-| **Votre vendor IDV** | Knowledge est appelé après le résultat de vérification. Aucun swap de vendor |
-| **Votre OMS** | Knowledge est appelé depuis l'OMS au point de décision. Aucun remplacement d'OMS |
-| **Votre core legacy** | Knowledge se place en overlay ou en gate. Aucune réécriture de mainframe |
-
-Chaque pattern de déploiement est additif. Vos systèmes existants continuent de tourner. Knowledge ajoute une couche gouvernée là où vous en avez besoin.
+| **Votre moteur de workflow** | Votre workflow continue d'orchestrer le processus ; il appelle Knowledge aux points de décision que vous choisissez |
+| **Vos fournisseurs de vérification** | Les fournisseurs de vérification continuent de vérifier l'identité et les signaux de screening. Knowledge peut consommer ces résultats comme contexte quand la policy l'exige |
+| **Votre OMS** | Votre OMS reste le système responsable de la gestion et de l'exécution des ordres. Knowledge peut être consulté aux frontières de décision policy sélectionnées |
+| **Vos systèmes core legacy** | Les systèmes legacy restent en place. Knowledge peut gouverner des policies sélectionnées autour d'eux sans exiger que leur logique de décision soit migrée d'entrée |
 
 ## La suite
 
 | À lire ensuite | Pourquoi |
 |---|---|
 | [Comment fonctionne Knowledge](/how-it-works) | Le modèle mental derrière ces patterns |
-| [Wealth](/wealth) | Un exemple où Knowledge se place en gate derrière un OMS |
-| [KYC / KYB](/kyc) | Un exemple où Knowledge overlays ou remplace la boîte décision-d'admission dans un stack KYC |
-| [Agents IA](/ai-agents) | Un cas spécifique de primary ou gate pour des flux agent-driven |
-| [Pilote](/pilot) | Comment un pilote shadow-run est scopé et mesuré |
+| [Wealth](/wealth) | Un exemple où Knowledge gouverne les décisions produits structurés à l'intérieur d'un stack wealth existant |
+| [KYC / KYB](/kyc) | Un exemple où Knowledge gouverne la décision d'admission autour d'un stack de vérification existant |
+| [Agents IA](/ai-agents) | Un cas spécifique où Knowledge se place devant le legacy pour des flux agent-driven |
+| [Design partner](/pilot) | Trois places founding, une décision production, pricing founding-customer |

@@ -14,7 +14,7 @@ const NAV_ITEMS: NavItem[] = [
   { slug: 'how-it-works', labelEn: 'How it works', labelFr: 'Comment ça marche' },
   { slug: 'ai-agents', labelEn: 'AI agents', labelFr: 'Agents IA' },
   { slug: 'stack', labelEn: 'Your stack', labelFr: 'Votre stack' },
-  { slug: 'pilot', labelEn: 'Pilot', labelFr: 'Pilote' },
+  { slug: 'pilot', labelEn: 'Design partner', labelFr: 'Design partner' },
 ];
 
 export default function Nav() {
@@ -81,11 +81,11 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-3">
-          {/* Language toggle */}
+          {/* Language toggle - always visible (desktop and mobile) */}
           <Link
             href={otherLocaleHref}
             locale={otherLocale}
-            className="hidden md:inline-block px-3 py-1.5 text-sm font-medium border rounded transition-all uppercase tracking-wide"
+            className="inline-block px-3 py-1.5 text-sm font-medium border rounded transition-all uppercase tracking-wide"
             style={{
               color: 'var(--text-muted)',
               borderColor: 'var(--border-light)',
@@ -155,15 +155,6 @@ export default function Nav() {
                 {label(item)}
               </Link>
             ))}
-            <Link
-              href={otherLocaleHref}
-              locale={otherLocale}
-              onClick={() => setOpen(false)}
-              className="block py-2 text-sm font-medium mt-3 uppercase tracking-wide"
-              style={{ color: 'var(--text-muted)' }}
-            >
-              {otherLocale === 'fr' ? '→ Français' : '→ English'}
-            </Link>
           </nav>
         </div>
       )}

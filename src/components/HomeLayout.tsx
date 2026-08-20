@@ -17,6 +17,9 @@ export interface HomeSections {
     title: string;
     items: string[];
   };
+  transition?: {
+    text: string;
+  };
   change: {
     kicker: string;
     title: string;
@@ -140,7 +143,7 @@ export default function HomeLayout({ sections }: Props) {
                   />
                   <StepRow
                     label="STEP 4"
-                    text="Every call replayable years later"
+                    text="Every call recorded for audit reconstruction"
                     badge="audit"
                     badgeColor="blue"
                     delay={1.2}
@@ -174,7 +177,21 @@ export default function HomeLayout({ sections }: Props) {
         </div>
       </section>
 
-      {/* ═══ WHAT KNOWLEDGE CHANGES (4 concept cards) ═══ */}
+      {/* ═══ TRANSITION (bridge from pains to solution) ═══ */}
+      {sections.transition && (
+        <section className="py-14 px-6 md:px-12 lg:px-20">
+          <div className="max-w-3xl mx-auto">
+            <p
+              className="font-serif text-xl md:text-2xl leading-snug text-center"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              {sections.transition.text}
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* ═══ WHAT KNOWLEDGE CHANGES (concept cards) ═══ */}
       <section className="py-20 px-6 md:px-12 lg:px-20">
         <div className="max-w-6xl mx-auto">
           <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: 'var(--accent)' }}>
@@ -230,7 +247,7 @@ export default function HomeLayout({ sections }: Props) {
             {sections.stack.sub}
           </p>
 
-          <div className="grid md:grid-cols-2 gap-5 mb-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
             {sections.stack.cards.map((card, i) => (
               <div
                 key={i}

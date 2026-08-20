@@ -20,6 +20,9 @@ export interface PageContent {
   kicker: string | null;
   ctaLabel: string | null;
   ctaHref: string | null;
+  // Optional email displayed under the hero CTA button (used on the pilot
+  // page so a user without a mail client can copy the address).
+  contactEmail: string | null;
   // Home-only : structured sections used by HomeLayout. Null on other pages.
   sections: Record<string, unknown> | null;
 }
@@ -42,7 +45,7 @@ export function loadPage(slug: string, locale: string): PageContent {
   // Extract standard fields ; anything else is treated as structured sections
   // (used by the home page composition). Explicit `?? null` prevents
   // `undefined` from breaking getStaticProps serialisation.
-  const KNOWN = new Set(['title', 'description', 'locale', 'navLabel', 'kicker', 'ctaLabel', 'ctaHref']);
+  const KNOWN = new Set(['title', 'description', 'locale', 'navLabel', 'kicker', 'ctaLabel', 'ctaHref', 'contactEmail']);
   const sections: Record<string, unknown> = {};
   let hasSections = false;
   for (const [k, v] of Object.entries(data)) {
@@ -61,6 +64,7 @@ export function loadPage(slug: string, locale: string): PageContent {
     kicker: (data.kicker as string) ?? null,
     ctaLabel: (data.ctaLabel as string) ?? null,
     ctaHref: (data.ctaHref as string) ?? null,
+    contactEmail: (data.contactEmail as string) ?? null,
     body: parsed.content,
     sections: hasSections ? sections : null,
   };

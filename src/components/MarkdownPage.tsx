@@ -5,8 +5,9 @@ import { isValidElement, type ComponentProps, type ReactNode } from 'react';
 import PipelineDiagram from './diagrams/PipelineDiagram';
 import AgentToolbelt from './diagrams/AgentToolbelt';
 import FanoutDiagram from './diagrams/FanoutDiagram';
+import LifecycleDiagram from './diagrams/LifecycleDiagram';
 
-const DIAGRAM_LANG_RE = /language-(pipeline|agent-toolbelt|fanout)/;
+const DIAGRAM_LANG_RE = /language-(pipeline|agent-toolbelt|fanout|lifecycle)/;
 
 function firstChild(children: ReactNode): ReactNode {
   if (Array.isArray(children)) return children[0];
@@ -73,13 +74,14 @@ export default function MarkdownPage({ body }: MarkdownPageProps) {
             },
             code: (props: ComponentProps<'code'> & { node?: unknown }) => {
               const { className, children } = props;
-              const match = /language-(\w+)/.exec(className || '');
+              const match = /language-([\w-]+)/.exec(className || '');
               const lang = match?.[1];
               const raw = String(children ?? '').replace(/\n$/, '');
 
               if (lang === 'pipeline') return <PipelineDiagram raw={raw} />;
               if (lang === 'agent-toolbelt') return <AgentToolbelt raw={raw} />;
               if (lang === 'fanout') return <FanoutDiagram raw={raw} />;
+              if (lang === 'lifecycle') return <LifecycleDiagram raw={raw} />;
 
               return <code className={className}>{children}</code>;
             },

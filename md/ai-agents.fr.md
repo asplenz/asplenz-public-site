@@ -1,15 +1,23 @@
 ---
 title: "Votre agent IA sait récupérer de l'information et appeler des tools. Mais doit-il interpréter votre business policy avant de prendre une action ?"
-description: Knowledge expose /resolve comme un tool que l'agent appelle chaque fois qu'il a besoin d'un verdict déterministe - règles citées, audit rejouable, pas d'hallucination policy.
+description: Knowledge est une interface policy gouvernée qu'un agent appelle avant d'agir. Il renvoie soit la décision, soit le contexte encore requis pour l'atteindre, avec les règles qui ont déterminé le résultat.
 locale: fr
 kicker: Pour les équipes IA
 ctaLabel: Voir une intégration de référence
 ctaHref: /wealth
 ---
 
-Au moment où un agent passe de répondre à des questions à prendre des actions - approuver un refund, admettre un client, binder une policy, exécuter un trade - Legal et Compliance freezent le passage en production. Un interpréteur de policy probabiliste n'est pas signable. Chaque action a besoin d'un verdict qui est déterministe, cité, et rejouable des années plus tard.
+Au moment où un agent passe de répondre à des questions à prendre des actions métier gouvernées, une nouvelle question apparaît : qui détermine si l'action est autorisée ?
 
-Knowledge donne à votre agent ce verdict, comme un tool qu'il appelle.
+Laisser le LLM interpréter la policy à partir de documents ou de prompts rend cette décision difficile à rendre déterministe, testable et auditable.
+
+**Knowledge donne à l'agent une interface policy gouvernée qu'il peut appeler avant d'agir.**
+
+## Knowledge n'est pas un décideur IA
+
+Knowledge est un **service policy gouverné** que les agents IA - et les logiciels conventionnels - peuvent appeler. Ce n'est pas un produit IA. Il fonctionne à l'identique que l'appelant soit Claude, GPT, un service Java ou une task de workflow.
+
+**Pour les agents, cela compte plus que pour un logiciel conventionnel.** Le chemin de décision d'une application conventionnelle est défini par du code que les reviewers peuvent lire directement ; le chemin de décision d'un agent est défini par le LLM au runtime, précisément là où la frontière policy doit être posée hors du modèle. Knowledge externalise cette frontière pour que l'agent puisse raisonner librement pendant que la décision reste déterministe, versionnée et auditable.
 
 ## Le pattern
 
@@ -19,63 +27,96 @@ agent: Agent framework (Claude, GPT, LangGraph, MCP, custom)
 tool: CRM lookup | Récupérer les faits client
 tool: Order / policy lookup | Récupérer les faits objet
 tool: Résultat vendor KYC | Récupérer l'état de vérification
-tool*: Knowledge /resolve | Autorité policy
+tool*: Knowledge /resolve | Décision policy gouvernée
 tool: Execute / Slack / Email |
 ```
 
-L'agent reste probabiliste dans sa conversation et son extraction de contexte. Knowledge rend la **frontière de décision** déterministe - verdict, règles citées, état rejouable.
+## Knowledge donne à l'agent soit la décision, soit ce qu'il a encore besoin de savoir
 
-## La collecte progressive permet à l'agent d'arrêter de demander « au cas où »
+`/resolve` répond dans l'un de deux états :
 
-Quand l'agent n'a pas encore tout le contexte dont Knowledge a besoin, `/resolve` retourne ce qui manque.
+- **Complete** - l'agent reçoit le verdict, les règles qui l'ont déterminé, et une référence de consultation pour l'audit.
+- **Incomplete** - l'agent reçoit `required_context` : les champs dont les policies applicables ont encore besoin. L'agent obtient ce contexte et rappelle `/resolve`.
+
+**L'agent décide comment obtenir le contexte. Knowledge détermine ce que la policy exige.**
+
+L'agent peut récupérer le contexte manquant depuis un système interne (CRM, product master, vendor de vérification), le dériver d'un document ou d'une conversation existants, ou demander à l'utilisateur si nécessaire. La source qu'il choisit est une décision côté agent, pas une préoccupation de Knowledge.
+
+## Une frontière concrète : avant d'exécuter un remboursement
+
+Un agent de service client se voit demander de rembourser une transaction de 2 000 EUR. Avant d'exécuter, il appelle `/resolve`.
 
 ```
-L'agent appelle /resolve avec un contexte partiel
-      { action_type: "sp_offer_eligibility",
-        context: { asset_class: "structured_product" } }
-
-Knowledge répond
-      { operation_status: "incomplete",
-        required_context: ["client.classification",
-                           "structured_products.product.complexity"] }
-
-L'agent sait exactement quoi récupérer ensuite
-      via le tool CRM, le tool product-master, ou une
-      question de suivi à l'utilisateur
-
-L'agent rappelle /resolve avec le contexte enrichi
-      → verdict + cited_rules
+POST /knowledge/v1/resolve
+{
+  "action_type": "refund_execute",
+  "context": {
+    "customer.tier": { value: "standard", source: "CRM" },
+    "transaction.amount_eur": { value: 2000, source: "core_banking" },
+    "transaction.age_days": { value: 3, source: "core_banking" }
+  }
+}
 ```
 
-L'agent demande à l'utilisateur uniquement ce que CETTE décision requiert, pas tout ce qu'un template de prompt a pré-décidé.
+**Cas A - Knowledge renvoie `approval_required` :**
+
+```
+{ operation_status: "complete",
+  verdict: "approval_required",
+  cited_rules: ["rul-refund-above-threshold"],
+  consultation_id: "cns-..." }
+```
+
+L'agent **n'exécute pas** le remboursement. Il crée une demande d'approbation, informe le client que le cas est en review, et passe le relais au chemin de décision humain.
+
+**Cas B - même intention, transaction de 40 EUR, Knowledge renvoie `allowed` :**
+
+```
+{ operation_status: "complete",
+  verdict: "allowed",
+  cited_rules: ["rul-refund-standard"],
+  consultation_id: "cns-..." }
+```
+
+L'agent exécute l'API de remboursement.
+
+L'agent a choisi comment interpréter l'intention, rassembler le contexte et communiquer. Knowledge a déterminé ce que la policy exigeait pour l'action.
+
+## Déterministe où ça compte. Probabiliste où ça aide.
+
+Le LLM peut continuer à interpréter l'intention, extraire le contexte, choisir des tools et gérer la conversation. Knowledge gouverne une frontière spécifique : résoudre la business policy explicite contre un contexte explicite.
+
+**Laissez l'agent raisonner. Ne lui faites pas inventer la policy.**
 
 ## RAG vs Knowledge
 
+RAG et Knowledge répondent à des questions différentes. La comparaison :
+
 | | RAG | Knowledge |
 |---|---|---|
-| Question | « Que dit la policy ? » | « Quelle est la décision policy pour ce contexte explicite ? » |
-| Sortie | Texte pertinent + interprétation LLM | Verdict déterministe + règles citées |
-| Variance | Le LLM ré-interprète à chaque appel | Même contexte = même sortie |
-| Rejouable | Non - l'interprétation dérive | Oui - la clé snapshot reconstitue l'état exact |
-| Signable par Compliance | Non | Oui |
-| Fit dans un agent | Oui, comme tool de retrieval | Oui, comme tool de décision |
+| **Objectif principal** | Retrouver de la connaissance pertinente pour le raisonnement du modèle | Résoudre une business policy explicite |
+| **Sortie** | Contexte retrouvé interprété par un modèle | Résultat policy structuré |
+| **Sémantique de décision** | Déterminée par le modèle ou l'application qui utilise le contenu retrouvé | Encodée explicitement dans des règles gouvernées |
+| **Déterminisme** | L'interprétation du modèle peut varier | Même contexte + même état de policy = même résultat |
+| **Focus d'audit** | Quelle information a été retrouvée et générée | Quel état de policy et quelles règles ont déterminé le résultat |
+| **Rôle dans l'agent** | Tool de connaissance / raisonnement | Tool de décision gouvernée |
 
-**Nous ne prétendons pas rendre toute votre chaîne agent déterministe.** Le LLM continue à interpréter l'utilisateur, extraire le contexte, choisir quel tool appeler. Knowledge tient une seule frontière spécifique : le moment de « la policy autorise-t-elle cette action ». À cette frontière la réponse est déterministe, citée, rejouable. Tout ce qui est en amont peut rester LLM-driven.
+Les deux peuvent coexister dans un agent : RAG pour le retrieval et le support de raisonnement, Knowledge pour la frontière de décision où le résultat doit être déterministe et auditable.
 
 ## Trois audiences
 
-| Qui | Ce que Knowledge débloque |
+| Qui | Ce que Knowledge adresse |
 |---|---|
-| **Head of AI Product** | Votre agent tourne en prototype ; Legal bloque le passage en production. Ajouter Knowledge comme un tool débloque le taux d'action autonome - le KPI sur lequel votre programme est mesuré |
-| **VP Engineering / CTO** | Une policy encodée dans les prompts et les corpus RAG est intestable, non-versionnable, dérive silencieusement. Knowledge expose la policy comme un vrai service avec API REST, RuleVersion versionnées, Consultations rejouables, évaluation déterministe |
-| **Chief Compliance Officer** | Pas l'acheteur, mais le stakeholder dont le blocker compte. Consultation + normative_hash + pinning RuleVersion vous donnent la reconstruction d'audit que votre régulateur exige. Le sign-off que vous n'arriviez pas à donner devient possible |
+| **Head of AI Product** | Faire passer les agents au-delà de l'assistance en lecture seule tout en gardant les décisions métier gouvernées hors de l'interprétation probabiliste du modèle |
+| **VP Engineering / CTO** | Arrêter de s'appuyer sur les prompts et les documents retrouvés comme représentation exécutable de la business policy. Exposer la policy gouvernée à travers une API de décision versionnée à la place |
+| **Chief Compliance Officer** | Une frontière de décision définie : règles policy explicites, évaluation déterministe et trace de l'état de policy derrière chaque résultat |
 
-## Land and expand - l'IA est le trigger, Knowledge n'est pas un produit IA
+## Une couche policy peut servir plus que l'agent
 
-Les prospects entrent souvent chez Knowledge pour sécuriser un agent sur une décision. Six mois plus tard, la même couche policy est appelée par le formulaire web, le BPM, l'app mobile et le back-office - parce que la source policy est la même.
+Vous pouvez introduire Knowledge pour un agent et une décision gouvernée. La même couche policy peut ensuite servir des applications, workflows et systèmes opérationnels qui ont besoin des mêmes capacités policy.
 
 ```fanout
-source: Knowledge | une policy
+source: Knowledge | une couche policy
 caller: Agent Support
 caller: Portail web
 caller: App mobile
@@ -83,12 +124,10 @@ caller: BPM (batch claims)
 caller: File back-office (opérations)
 ```
 
-Knowledge cesse d'être « guardrail pour l'agent » et devient la couche policy partagée du tenant. L'IA était le buying trigger. Knowledge n'est pas un produit IA - il fonctionne à l'identique que l'appelant soit Claude ou un service Java.
-
 ## La suite
 
 | À lire ensuite | Pourquoi |
 |---|---|
 | [Comment fonctionne Knowledge](/how-it-works) | Le contrat API, la surface d'audit, le modèle mental |
-| [Wealth](/wealth) | Script d'intégration de référence montrant un copilote RM appelant Knowledge pour 4 décisions canoniques de produits structurés |
-| [Pilote](/pilot) | Commencez avec un agent, une décision, mode shadow pendant 4-8 semaines. Mesurez l'accord de décision contre votre logique actuelle |
+| [Wealth](/wealth) | Script d'intégration de référence montrant un copilote RM appelant Knowledge pour des décisions produits structurés |
+| [Design partner](/pilot) | Trois places founding, une décision production, pricing founding-customer |

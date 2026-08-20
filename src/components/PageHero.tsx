@@ -7,13 +7,14 @@ interface PageHeroProps {
   sub?: string;
   ctaLabel?: string | null;
   ctaHref?: string | null;
+  contactEmail?: string | null;
 }
 
 /**
  * Hero used at the top of every non-home page. Single-column, left-aligned,
  * max-w-3xl to align with the prose column that follows below.
  */
-export default function PageHero({ kicker, title, sub, ctaLabel, ctaHref }: PageHeroProps) {
+export default function PageHero({ kicker, title, sub, ctaLabel, ctaHref, contactEmail }: PageHeroProps) {
   const router = useRouter();
   const locale = router.locale === 'fr' ? 'fr' : 'en';
   const localePrefix = locale === 'fr' ? '/fr' : '';
@@ -59,6 +60,21 @@ export default function PageHero({ kicker, title, sub, ctaLabel, ctaHref }: Page
             >
               {ctaLabel}
             </Link>
+            {contactEmail && (
+              <p
+                className="mt-3 text-sm"
+                style={{ color: 'var(--text-muted)' }}
+              >
+                email :{' '}
+                <a
+                  href={`mailto:${contactEmail}`}
+                  className="font-medium"
+                  style={{ color: 'var(--accent)' }}
+                >
+                  {contactEmail}
+                </a>
+              </p>
+            )}
           </div>
         )}
       </div>

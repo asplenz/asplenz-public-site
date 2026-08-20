@@ -1,62 +1,70 @@
 ---
-title: Start with one decision, not a transformation.
-description: A Knowledge pilot models one painful decision, runs it alongside your existing system for 4–8 weeks, and measures the result against agreed criteria. Small ticket, small scope, real evidence before commit.
+title: Bring us one decision your stack makes hard to change, automate or audit
+description: One production-relevant decision. Knowledge runs alongside your existing system, measured against criteria agreed upfront. Convert to a founding-customer contract if the numbers land ; clean exit if they don't.
 locale: en
-kicker: How we start
-ctaLabel: Book a scoping call
+kicker: Three founding design-partner engagements open
+ctaLabel: Discuss a design partnership
 ctaHref: mailto:contact@asplenz.com
+contactEmail: contact@asplenz.com
 ---
 
-Buying Knowledge does not mean committing to a multi-year platform migration. Every early customer starts with a pilot - one decision, one scope, 4-8 weeks, measurable outcome. Expand only if the numbers justify it.
+The engagement is not a demo or a sandbox proof-of-concept. It is a scoped working session where we model one production-relevant decision, run it against real cases using the safest appropriate adoption pattern (typically shadow, gate or selective routing, chosen at scoping), and measure the outcome against criteria we agree together.
 
-## The pilot in five steps
+If the criteria are met, you convert to a founding-customer contract and we extend to the next decision. If not, clean exit, no ongoing commitment.
 
-**1. Pick one painful decision.**
-The one that gets escalated most, or the one that a new rule is about to require, or the one where audit prep is a nightmare. One decision. Not a domain, not a product line - one specific decision the compliance officer would rewrite tomorrow if they could.
+Knowledge is already operational. At this stage, the first cohort of design partners shapes which policy packs, defaults and operator workflows we productize next. Founding-partner status is a consequence of the engagement, not its main reason. The main reason is that one decision costs you something today.
 
-**2. Model it in Knowledge.**
-We work with your team to model the decision : the scope schema (which fields matter), the rules (with your existing thresholds), the audit shape. If a vertical pack already covers it (Wealth structured products, KYC onboarding), we install the pack and calibrate. If not, we author the rules from your current logic.
+## What a design partner receives
 
-**3. Run it alongside your existing system.**
-Shadow mode : every real decision your existing system makes is also computed by Knowledge in parallel. No impact on production. Verdicts are compared, discrepancies logged. Alternatively : gate mode on a subset of traffic, if you're comfortable with a controlled live deployment.
+| What you get | Detail |
+|---|---|
+| **Founding-partner protection** | Founding commercial terms remain exclusive to the initial design-partner cohort and are not offered as standard commercial terms after |
+| **Direct product influence** | Your real-world use case directly informs the packs, defaults and product improvements we prioritize during the engagement |
+| **Founding-customer pricing** | Reduced price for the first twelve months of production, locked at signing |
+| **Named as a founding customer** | Logo on the site (optional, opt-in) and a joint case study once the success criteria are met |
+| **Direct founder access** | Weekly working session with the founding team, plus a direct async channel throughout the engagement |
+| **Pack development** | If your decision is not covered by an existing pack, we model it with your domain team. Your proprietary policies and configurations remain yours. Reusable generic patterns may inform future Knowledge packs |
 
-**4. Define measurable success criteria upfront.**
-Before the pilot starts, we agree on the numbers that would justify expansion. Typical criteria :
+## What we ask in return
+
+| What we need | Detail |
+|---|---|
+| **A real, production-relevant decision** | One decision that is escalated, mis-decided or slow today, evaluated against real cases |
+| **A named business champion and a named tech champion** | Typically the compliance officer or head of AI product on one side, the person who plumbs Knowledge into the caller on the other. One working meeting per week for eight weeks |
+| **Honest feedback** | You tell us what breaks, what is confusing, what is missing. We ship fixes weekly during the engagement |
+| **An eight-week commitment** | Long enough for the metrics to accumulate meaningfully. Clean exit at the end if we have not hit the criteria agreed upfront |
+| **Optional but valued** | Willingness to be quoted or referenced once the success criteria are met |
+
+## How the engagement runs
+
+**1. Scoping conversation.** Thirty minutes. We understand which decision hurts most, whether it fits Knowledge's shape, and which adoption pattern is safest for the deployment.
+
+**2. Scoped proposal.** Within a week, we send a written scope : the decision, the model, the adoption pattern, the success criteria, the timeline, the pricing. You sign or you decline. No drift.
+
+**3. Kick-off (week 1).** We deploy the agreed Knowledge setup and integrate it with the selected caller, in the adoption mode chosen at scoping.
+
+**4. Weekly working session (weeks 2-8).** Walk through discrepancies, adjust rules, ship fixes to Knowledge itself if the engagement reveals gaps.
+
+**5. Decision at week 8.** Did we hit the criteria agreed at scoping ? If yes, you convert to the founding-customer contract and we extend to the next decision. If not, clean exit, no ongoing commitment.
+
+## Success criteria we agree upfront
+
+Before week 1, we agree on the numbers that would justify converting. Typical criteria :
 
 | Criterion | What it measures |
 |---|---|
 | **Decision agreement** | Knowledge and your existing system agree on X% of cases. Discrepancies traced to (a) Knowledge missing a rule, (b) legacy bug, or (c) legitimate ambiguity |
 | **Manual review reduction** | For cases Knowledge marks as complete deterministic verdicts, what % could bypass current manual review ? |
-| **Implementation / change effort** | Time from "compliance asks for a new rule" to "rule live in Knowledge" vs same delay in your existing system |
-| **Required-context accuracy** | For onboarding-style flows, does Knowledge's progressive collection ask fewer questions than your current form ? |
-| **Audit reproducibility** | Can Knowledge reconstruct a specific decision from the pilot period with the exact rule state ? (Yes by design ; measurement is against how long your current system would take) |
+| **Time to ship a rule** | From "compliance asks for a new rule" to "rule live in Knowledge", compared with the same delay in your existing system |
+| **Collection efficiency** | Fields requested, follow-up requests and completion rate on Knowledge's progressive resolution, compared with the current onboarding or intake journey |
+| **Audit reconstruction time** | Time to retrieve the context, applicable rules and policy state behind a historical decision, compared with your current process |
 
-**5. Decide whether to expand.**
-If the numbers hit the criteria, expand : more decisions, more callers, more of your stack routing through Knowledge. If they don't, the pilot ends cleanly - we've cost you a few weeks of scoped work, no ongoing commitment.
+## Why only three
 
-## What we ask from you
+These are hands-on engagements with direct founder and product-team involvement. We limit the first cohort to three firms so each partner can materially influence what gets productized, and so we can ship weekly fixes that respond to what the engagements reveal.
 
-| What | Detail |
-|---|---|
-| **A named business owner** | Who cares about the decision being piloted - typically the compliance officer, the head of a business line, or the head of AI product depending on the pain |
-| **A named technical contact** | Who can plumb Knowledge into the caller (BPM, service, agent, form). We do most of the work but need one internal ally |
-| **Access to a real decision stream** | Either historical (replay against last month's cases) or live (shadow mode on production traffic) |
-| **Success criteria** | The numbers you'd want to measure, agreed before the pilot starts |
+Fit is determined by the decision and the problem, not the industry label. Our current areas of readiness are Wealth (structured-product distribution), KYC / KYB, and agent-driven operations - but a strong fit on any compliance-heavy decision is what we look for.
 
-## What we provide
+[[cta]Discuss a design partnership](mailto:contact@asplenz.com)
 
-| What | Detail |
-|---|---|
-| **Working Knowledge instance** | Deployed in your environment (SaaS, VPC, or on-premise depending on your requirements) |
-| **Pack installation and calibration** | If the pilot decision is covered by an existing vertical pack, we install and calibrate ; otherwise we author the rules with your compliance team |
-| **Integration support** | Plumbing Knowledge into your caller (BPM, service, agent, form) |
-| **Weekly review meetings** | Walk through discrepancies, adjust rules, tune the success criteria if needed |
-| **Final report** | Measured against the agreed criteria, with a recommendation on expansion scope |
-
-## Pricing
-
-Pilot pricing is scoped per engagement. We work with you upfront to define the scope, the success criteria, and the price - no surprises. Ballpark : a pilot on a single decision runs in the low five-figure range, with a clean exit if the criteria are not met.
-
-Book a scoping call to discuss your specific pain and get a scoped proposal.
-
-[[cta]Book a scoping call](mailto:contact@asplenz.com)
+email : [contact@asplenz.com](mailto:contact@asplenz.com)
