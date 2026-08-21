@@ -15,7 +15,12 @@ export interface HomeSections {
   problem: {
     kicker: string;
     title: string;
-    items: string[];
+    items: { kicker: string; body: string }[];
+  };
+  solutions?: {
+    kicker: string;
+    title: string;
+    cards: { title: string; desc: string; ctaLabel: string; ctaHref: string }[];
   };
   transition?: {
     text: string;
@@ -166,16 +171,67 @@ export default function HomeLayout({ sections }: Props) {
           <h2 className="font-serif text-2xl md:text-4xl mb-10 leading-tight" style={{ color: 'var(--text-primary)' }}>
             {sections.problem.title}
           </h2>
-          <ul className="max-w-3xl space-y-4">
+          <div className="max-w-3xl space-y-8">
             {sections.problem.items.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--accent)' }} />
-                {item}
-              </li>
+              <div key={i}>
+                <p
+                  className="font-mono text-xs uppercase tracking-widest mb-2"
+                  style={{ color: 'var(--accent)' }}
+                >
+                  {item.kicker}
+                </p>
+                <p
+                  className="text-base leading-relaxed"
+                  style={{ color: 'var(--text-primary)' }}
+                >
+                  {item.body}
+                </p>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
+
+      {/* ═══ SOLUTIONS (self-qualification by problem) ═══ */}
+      {sections.solutions && (
+        <section className="py-20 px-6 md:px-12 lg:px-20">
+          <div className="max-w-6xl mx-auto">
+            <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: 'var(--accent)' }}>
+              {sections.solutions.kicker}
+            </p>
+            <h2 className="font-serif text-2xl md:text-4xl mb-12 leading-tight" style={{ color: 'var(--text-primary)' }}>
+              {sections.solutions.title}
+            </h2>
+
+            <div className="grid md:grid-cols-3 gap-5">
+              {sections.solutions.cards.map((card, i) => (
+                <div
+                  key={i}
+                  className="p-6 rounded-xl flex flex-col"
+                  style={{
+                    backgroundColor: 'var(--bg-card)',
+                    border: '1px solid var(--border)',
+                  }}
+                >
+                  <h3 className="font-serif text-xl mb-3 leading-tight" style={{ color: 'var(--text-primary)' }}>
+                    {card.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed mb-6 flex-1" style={{ color: 'var(--text-secondary)' }}>
+                    {card.desc}
+                  </p>
+                  <Link
+                    href={link(card.ctaHref)}
+                    className="inline-flex items-center gap-2 text-sm font-medium"
+                    style={{ color: 'var(--accent)' }}
+                  >
+                    {card.ctaLabel} →
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══ TRANSITION (bridge from pains to solution) ═══ */}
       {sections.transition && (

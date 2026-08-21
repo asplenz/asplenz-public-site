@@ -71,7 +71,7 @@ Si l'opération est complete, la réponse retourne le verdict métier applicable
 
 ## Résolution progressive en pratique
 
-À mesure que le contexte devient plus spécifique, les branches de policy non pertinentes disparaissent et Knowledge ne demande plus que du contexte encore capable d'affecter le résultat.
+À mesure que le contexte devient plus spécifique, les branches de policy non pertinentes disparaissent et Knowledge n'identifie plus que le contexte encore capable d'affecter le résultat.
 
 **Appel 1.** L'appelant envoie ce qu'il a :
 
@@ -134,7 +134,7 @@ Knowledge répond :
 
 ## « Required » ne veut pas dire « une autre question »
 
-Si Knowledge demande `client.classification`, l'appelant décide où l'obtenir.
+Si Knowledge identifie `client.classification` comme encore requis, l'appelant décide où l'obtenir.
 
 | D'où le contexte peut venir |
 |---|

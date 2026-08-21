@@ -1,6 +1,6 @@
 ---
 title: Automatisez les décisions routinières. Préparez le reste pour review humaine.
-description: Straight-through approval pour les cas que votre policy sait décider. Escalation review-ready pour les cas qui exigent du jugement humain. Une couche policy décide lequel est lequel.
+description: Décisions straight-through pour les cas que votre policy sait résoudre. Escalation review-ready pour les cas qui exigent du jugement humain. Une couche policy décide lequel est lequel.
 locale: fr
 kicker: Pour les workflows d'approbation
 ctaLabel: Devenir design partner
@@ -27,7 +27,7 @@ La première expose l'opportunité straight-through — les cas que la policy po
 | **Décisions straight-through** | Les cas que la policy peut décider de manière déterministe ne sont plus dans la file de review. Le reviewer les voit uniquement en audit, pas dans son inbox |
 | **Escalation review-ready** | Les cas qui exigent du jugement humain arrivent avec un dossier de décision complet : tout le contexte requis assemblé, toutes les règles applicables citées, la raison de l'escalation explicite. Le reviewer ouvre une seule page, pas un fil de back-and-forth |
 
-Le second résultat compte parce qu'il neutralise l'objection *« nous ne voulons pas automatiser nos approvals »*. Gardez la décision humaine. Arrêtez juste de faire courir l'humain après des cas incomplets.
+La décision humaine reste là où vous la voulez. Ce qui change, c'est que le reviewer n'a plus à courir après des cas incomplets avant de décider.
 
 ## Niveaux d'adoption : combien d'autorité vous donnez au workflow
 
@@ -40,7 +40,7 @@ Knowledge fait la même chose à chaque niveau d'adoption : il retourne `require
 | **3. Route** | Utilise le verdict pour classifier chaque cas — `allowed` saute la file, `approval_required` escalade, `blocked` refuse | Le reviewer ne voit que les cas escaladés |
 | **4. Execute** | Auto-avance pour les cas où Knowledge renvoie `allowed`, enregistre la consultation pour l'audit | Le reviewer gère les exceptions et les audits |
 
-**La plupart des engagements démarrent à Prepare ou Recommend** puis montent au fur et à mesure que le policy owner voit l'accord de décision que Knowledge atteint dans ses propres données. Ce qui distingue Knowledge d'un rules engine classique au niveau 4 n'est pas que le workflow peut auto-exécuter — c'est que chaque décision exécutée reste reproductible contre l'état exact de la policy qui l'a produite (voir [Gouvernance](/governance)).
+**La plupart des engagements démarrent à Prepare ou Recommend** puis montent au fur et à mesure que le policy owner voit l'accord de décision que Knowledge atteint dans ses propres données. Au niveau 4, chaque décision exécutée reste reproductible contre l'état exact de la policy qui l'a produite — voir [Gouvernance](/governance).
 
 ## Un exemple concret : change management
 
@@ -82,7 +82,7 @@ Le workflow ServiceNow est configuré pour laisser les cas `allowed` passer à l
 
 L'agent cherche la réponse dans CI/CD, dans les trailers de commit git, dans le ticket de release. Si aucun ne répond, il demande au requester directement. Puis rappelle `/resolve`.
 
-**C'est ce second mécanisme qui rend possible l'escalation review-ready.** Un moteur de workflow traditionnel peut router une requête vers un approver. Seule une couche policy peut dire *« avant que ceci n'atteigne qui que ce soit, voici ce que les règles applicables exigent encore »* — et laisser l'appelant assembler cette information depuis les systèmes, l'extraction agent ou le requester, sans hard-coder un arbre de questions fixe.
+**C'est ce second mécanisme qui rend possible l'escalation review-ready.** Un moteur de workflow traditionnel peut router une requête vers un approver. Knowledge rend la question « qu'est-ce qu'il faut encore » dynamique plutôt que hard-codée dans le workflow : les règles applicables déterminent quel contexte est encore requis pour ce cas spécifique, et `/resolve` expose ces exigences à l'appelant — qui assemble ensuite l'information depuis les systèmes, l'extraction agent ou le requester.
 
 **Cas C — Knowledge renvoie `approval_required` :** c'est le verdict au niveau API que Knowledge utilise pour signaler *« ce cas doit atteindre votre processus d'approbation »*. La policy n'esquive pas la décision humaine — elle lui passe le cas, avec le dossier de décision complet.
 
@@ -135,8 +135,8 @@ Deux patterns d'adoption fittent naturellement ce use case (voir [Votre stack](/
 
 | Pattern | Où Knowledge se place |
 |---|---|
-| **Gate** | Les requêtes arrivent sur Knowledge avant d'entrer dans la file d'approbation. Les cas straight-through sautent la file, les cas escaladés arrivent déjà qualifiés |
-| **Overlay** | Le workflow existant continue de tourner. Knowledge est appelé depuis la task d'approbation, décide route vs escalate, attache le dossier de décision pour le reviewer |
+| **Gate** | Les requêtes arrivent sur Knowledge avant d'entrer dans la file d'approbation. Le workflow utilise le verdict de Knowledge pour laisser les cas straight-through sauter la file et envoyer les cas escaladés en review déjà qualifiés |
+| **Overlay** | Le workflow existant continue de tourner. Knowledge est appelé depuis la task d'approbation et retourne le verdict applicable avec règles citées. Le workflow utilise cette réponse pour router le cas et attacher le dossier de décision pour le reviewer |
 
 Les deux préservent le moteur de workflow existant et les rôles reviewer existants.
 
@@ -153,7 +153,7 @@ Voir [Design partner](/pilot) pour comment l'engagement est scopé.
 
 ## Deux niveaux du même mot
 
-« Approval » apparaît à deux niveaux dans Knowledge et ça vaut la peine de les nommer :
+« Approval » apparaît à deux niveaux dans Knowledge :
 
 - **Votre processus d'approbation** — le workflow que votre organisation opère (CAB, expense approver, comité procurement). Cette page parle de la forme de ce processus et de où Knowledge s'y insère.
 - **`approval_required` (un verdict)** — la valeur que Knowledge renvoie quand les règles applicables exigent explicitement du jugement humain. C'est la surface API qui route un cas vers votre processus d'approbation. Knowledge peut soit le lever comme une `ApprovalRequest` first-class gérée à l'intérieur de Knowledge (le décideur signe dans l'UI back-office), soit le repasser à l'appelant pour que celui-ci route vers un processus externe existant (CAB, ticketing, workflow).

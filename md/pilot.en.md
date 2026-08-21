@@ -68,7 +68,7 @@ Before week 1, we agree on the numbers that would justify converting. Typical cr
 
 These are hands-on engagements with direct founder and product-team involvement. We limit the first cohort to three firms so each partner can materially influence what gets productized, and so we can ship weekly fixes that respond to what the engagements reveal.
 
-Fit is determined by the decision and the problem, not the industry label. Our current areas of readiness are Wealth (structured-product distribution), KYC / KYB, and agent-driven operations - but a strong fit on any compliance-heavy decision is what we look for.
+Fit is determined by the decision and the problem, not the industry label. Current solution patterns include **Reviews & Approvals**, **Ask Less** and **governed AI decisions**. Current industry packs include **Wealth** (structured-product distribution) and **KYC / KYB**. A strong fit on any compliance-heavy decision is what we look for, whether it maps to an existing pattern or a new one.
 
 [[cta]Discuss a design partnership](mailto:contact@asplenz.com)
 

@@ -71,7 +71,7 @@ If the operation is complete, the response returns the applicable business verdi
 
 ## Progressive resolution in practice
 
-As context becomes more specific, irrelevant policy branches fall away and Knowledge asks only for context still capable of affecting the outcome.
+As context becomes more specific, irrelevant policy branches fall away and Knowledge identifies only the context still capable of affecting the outcome.
 
 **Call 1.** The caller sends what it has:
 
@@ -134,7 +134,7 @@ Knowledge responds:
 
 ## Required context is not necessarily another question
 
-If Knowledge asks for `client.classification`, the caller decides how to obtain it.
+If Knowledge identifies `client.classification` as still required, the caller decides how to obtain it.
 
 | Where the context can come from |
 |---|

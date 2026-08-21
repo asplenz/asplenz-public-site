@@ -31,7 +31,7 @@ Consultations that cited an earlier version keep pointing to that exact version.
 
 ## Approvals and overrides
 
-When a rule fires with a verdict of `approval_required`, an **ApprovalRequest** is created as a first-class governed object. It carries the triggering rules, the requester, the decider and its status (pending, approved, rejected). Overrides are the reverse: authorisations granted in advance by a decider to bypass a defined set of constraints within a scope, recorded as governed objects with their own versioning.
+When Knowledge returns `approval_required`, the caller may create an **ApprovalRequest** as a first-class governed object. It carries the triggering consultation, applicable rules, requester, decider and status (pending, approved, rejected). Overrides are the reverse: authorisations granted in advance by a decider to bypass a defined set of constraints within a scope, recorded as governed objects with their own versioning.
 
 Approvals and overrides are consultable and auditable objects, not hidden workflow branches.
 

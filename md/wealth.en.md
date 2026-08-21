@@ -41,7 +41,7 @@ Each verdict identifies the rules that determined the outcome and the normative 
 
 ## Knowledge doesn't require the caller to know the whole decision tree
 
-Traditional rules engines require every caller to know the exact fields needed for every decision. Knowledge inverts that: the caller sends the context it has, and Knowledge asks for what is still needed to reach a verdict against the applicable policies.
+Traditional rules engines require every caller to know the exact fields needed for every decision. Knowledge inverts that: the caller sends the context it has, and Knowledge identifies what context is still required to reach a verdict against the applicable policies.
 
 An RM copilot asking whether a structured note can be proposed to a client:
 
@@ -98,7 +98,7 @@ The RM copilot does not need to encode which question comes next. Knowledge deri
 
 Asplenz ships the ontology and the rule patterns with illustrative thresholds. The bank's compliance function owns the interpretation of every threshold - what "large notional" means at this firm, which jurisdictions are restricted, which risk-tolerance mismatch triggers escalation.
 
-**Knowledge governs and executes the institution's policy; it does not replace the institution's regulatory judgement.** The pack does not ship regulatory interpretation; it gives the bank a working shape to calibrate.
+**Knowledge evaluates the institution's encoded policy ; it does not replace the institution's regulatory judgement or execute the resulting business action.** The pack does not ship regulatory interpretation ; it gives the bank a working shape to calibrate.
 
 ## Deployment options
 

@@ -31,7 +31,7 @@ Les Consultations qui ont cité une version antérieure continuent de pointer su
 
 ## Approbations et overrides
 
-Quand une règle produit un verdict `approval_required`, une **ApprovalRequest** est créée comme objet gouverné de premier ordre. Elle porte les règles déclenchantes, le demandeur, le décideur et son statut (pending, approved, rejected). Les Overrides sont l'inverse : des autorisations accordées à l'avance par un décideur pour bypasser un ensemble défini de contraintes dans un scope, enregistrées comme objets gouvernés avec leur propre versioning.
+Quand Knowledge retourne `approval_required`, l'appelant peut créer une **ApprovalRequest** comme objet gouverné de premier ordre. Elle porte la consultation déclenchante, les règles applicables, le demandeur, le décideur et le statut (pending, approved, rejected). Les Overrides sont l'inverse : des autorisations accordées à l'avance par un décideur pour bypasser un ensemble défini de contraintes dans un scope, enregistrées comme objets gouvernés avec leur propre versioning.
 
 Approbations et overrides sont des objets consultables et auditables, pas des branches de workflow cachées.
 

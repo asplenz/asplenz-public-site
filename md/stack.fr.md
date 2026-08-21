@@ -21,7 +21,7 @@ Gardez la décision existante comme un input. Knowledge évalue des policies, ex
 
 ## Gate : Exiger un verdict Knowledge avant certaines actions
 
-Gardez le chemin de décision existant, mais exigez un verdict Knowledge avant qu'une action sélectionnée puisse se poursuivre. Knowledge gouverne un ensemble défini de policies ou de contrôles ; un verdict bloquant empêche l'exécution. Le système sous-jacent reste en place.
+Gardez le chemin de décision existant, mais exigez un verdict Knowledge avant qu'une action sélectionnée puisse se poursuivre. Knowledge retourne le verdict gouverné ; votre système existant décide si l'action se poursuit, s'arrête ou requiert une approbation. Le système sous-jacent reste en place.
 
 Les deux patterns préservent l'implémentation de décision existante. L'intégration se limite à introduire Knowledge à la frontière de décision appropriée plutôt qu'à migrer la logique policy legacy d'entrée.
 
@@ -46,7 +46,7 @@ Vous avez un système existant qui gère les flux actuels. Routez un scope clair
 
 Même tenant, mêmes clients, mêmes systèmes downstream. Seules les décisions dans le scope sélectionné viennent de Knowledge. Aucun impact sur les flux actuels, contrôle total sur le scope routé, rollback disponible si nécessaire.
 
-Selective routing est souvent le pattern le plus vendable parce qu'il transforme une migration potentiellement énorme en un scope borné et mesurable.
+Selective routing transforme une migration potentiellement énorme en un scope borné et mesurable — souvent le premier pas d'une équipe qui n'est pas prête à bouger tout son patrimoine d'un coup.
 
 ---
 
@@ -79,7 +79,7 @@ C'est un cas spécifique des patterns ci-dessus (typiquement Gate ou Selective r
 | Votre situation | Pattern | Autorité de Knowledge | Logique de décision existante |
 |---|---|---|---|
 | Ajouter une policy gouvernée autour du legacy | **Overlay** | Couche policy additionnelle | Préservée |
-| Empêcher des actions sélectionnées sauf si la policy autorise | **Gate** | Veto à une frontière sélectionnée | Préservée |
+| Empêcher des actions sélectionnées sauf si la policy autorise | **Gate** | Verdict gouverné à une frontière sélectionnée | Préservée |
 | Comparer avant de donner l'autorité | **Shadow** | Aucune | Autoritaire |
 | Bouger d'abord un scope borné | **Selective routing** | Autoritaire pour le scope sélectionné | Autoritaire ailleurs |
 | Nouveau domaine de décision | **Primary** | Autoritaire | Aucune / non utilisée |

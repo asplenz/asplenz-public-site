@@ -8,7 +8,7 @@ ctaHref: mailto:contact@asplenz.com
 contactEmail: contact@asplenz.com
 ---
 
-Knowledge est conçu pour être déployé dans des environnements régulés. Cette page décrit le modèle de sécurité à un niveau adapté à une première lecture. Pour un questionnaire de sécurité, une revue spécifique à un déploiement, ou une exigence de contrôle particulière, [écrivez-nous](mailto:contact@asplenz.com).
+Knowledge est conçu pour être déployé dans des environnements régulés — les contrôles standards sont résumés ci-dessous. Pour un questionnaire de sécurité, une revue spécifique à un déploiement, ou une exigence de contrôle particulière, [écrivez-nous](mailto:contact@asplenz.com).
 
 ## Authentification
 

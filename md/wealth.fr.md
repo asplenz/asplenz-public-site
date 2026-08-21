@@ -41,7 +41,7 @@ Chaque verdict identifie les règles qui ont déterminé le résultat et l'état
 
 ## Knowledge n'exige pas de l'appelant qu'il connaisse tout l'arbre de décision
 
-Les rules engines traditionnels exigent que chaque appelant connaisse les champs exacts nécessaires pour chaque décision. Knowledge inverse ça : l'appelant envoie le contexte qu'il a, et Knowledge demande ce qui manque encore pour atteindre un verdict contre les policies applicables.
+Les rules engines traditionnels exigent que chaque appelant connaisse les champs exacts nécessaires pour chaque décision. Knowledge inverse ça : l'appelant envoie le contexte qu'il a, et Knowledge identifie quel contexte est encore requis pour atteindre un verdict contre les policies applicables.
 
 Un copilote RM se demandant si une note structurée peut être proposée à un client :
 
@@ -98,7 +98,7 @@ Le copilote RM n'a pas besoin d'encoder quelle question vient ensuite. Knowledge
 
 Asplenz livre l'ontologie et les patterns de règles avec des seuils illustratifs. La fonction compliance de la banque possède l'interprétation de chaque seuil - ce que « large notional » veut dire chez cette firme, quelles juridictions sont restreintes, quel mismatch de tolérance au risque déclenche l'escalation.
 
-**Knowledge gouverne et exécute la policy de l'institution ; il ne remplace pas le jugement réglementaire de l'institution.** Le pack ne livre pas d'interprétation réglementaire ; il donne à la banque une forme opérationnelle à calibrer.
+**Knowledge évalue la policy encodée de l'institution ; il ne remplace pas le jugement réglementaire de l'institution ni n'exécute l'action métier qui en résulte.** Le pack ne livre pas d'interprétation réglementaire ; il donne à la banque une forme opérationnelle à calibrer.
 
 ## Options de déploiement
 

@@ -1,6 +1,6 @@
 ---
 title: Automate routine decisions. Prepare the rest for human review.
-description: Straight-through approval for the cases your policy can decide. Review-ready escalation for the cases that need human judgment. One policy layer decides which is which.
+description: Straight-through decisions for the cases your policy can resolve. Review-ready escalation for the cases that need human judgment. One policy layer decides which is which.
 locale: en
 kicker: For approval-heavy workflows
 ctaLabel: Become a design partner
@@ -27,7 +27,7 @@ The first exposes the straight-through opportunity — the cases the policy coul
 | **Straight-through decisions** | Cases the policy can decide deterministically no longer sit in a review queue. The reviewer sees them only in audit, not in their inbox |
 | **Review-ready escalation** | Cases that need human judgment arrive with a complete decision file : all required context assembled, all applicable rules cited, the reason for escalation explicit. The reviewer opens one page, not a back-and-forth thread |
 
-The second outcome matters because it neutralises the objection *"we do not want to automate our approvals"*. Keep the human decision. Just stop making the human chase incomplete cases.
+The human decision stays where you want it. What changes is that the reviewer no longer has to chase incomplete cases before deciding.
 
 ## Adoption levels : how much authority you give the workflow
 
@@ -40,7 +40,7 @@ Knowledge does the same thing at every adoption level : it returns `required_con
 | **3. Route** | Uses the verdict to classify each case — `allowed` skips the queue, `approval_required` escalates, `blocked` denies | Reviewer only sees escalated cases |
 | **4. Execute** | Auto-proceeds for cases Knowledge returns `allowed`, records the consultation for audit | Reviewer handles exceptions and audits |
 
-**Most engagements begin at Prepare or Recommend** and move up as the policy owner sees the decision agreement Knowledge achieves in their own data. What distinguishes Knowledge from a plain rules engine at level 4 is not that the workflow can auto-execute — it is that every executed decision remains reproducible against the exact policy state that produced it (see [Governance](/governance)).
+**Most engagements begin at Prepare or Recommend** and move up as the policy owner sees the decision agreement Knowledge achieves in their own data. At level 4, every executed decision remains reproducible against the exact policy state that produced it — see [Governance](/governance).
 
 ## A concrete example : change management
 
@@ -82,7 +82,7 @@ The ServiceNow workflow is configured to let `allowed` cases proceed to executio
 
 The agent looks for the answer in CI/CD, in the git commit trailers, in the release ticket. If none of them answer, it asks the requester directly. Then re-calls `/resolve`.
 
-**This second mechanic is what makes review-ready escalation possible.** A traditional workflow engine can route a request to an approver. Only a policy layer can say *"before this reaches anyone, here is what the applicable rules still need"* — and let the caller assemble that information from systems, agent extraction or the requester, without hard-coding a fixed question tree.
+**This second mechanic is what makes review-ready escalation possible.** A traditional workflow engine can route a request to an approver. Knowledge makes the "what is still needed" question dynamic rather than hard-coded into the workflow: the applicable rules determine what context is still required for this specific case, and `/resolve` exposes those requirements to the caller — which then assembles the information from systems, agent extraction or the requester.
 
 **Case C — Knowledge returns `approval_required` :** this is the API-level verdict Knowledge uses to signal *"this case must reach your approval process"*. The policy does not skip the human decision — it hands the case off to it, with the complete decision file.
 
@@ -135,8 +135,8 @@ Two adoption patterns fit this use case naturally (see [Your stack](/stack) for 
 
 | Pattern | Where Knowledge sits |
 |---|---|
-| **Gate** | Requests hit Knowledge before entering the approval queue. Straight-through cases skip the queue, escalated cases arrive already qualified |
-| **Overlay** | The existing workflow keeps running. Knowledge is called from the approval task, decides route vs escalate, attaches the decision file for the reviewer |
+| **Gate** | Requests hit Knowledge before entering the approval queue. The workflow uses Knowledge's verdict to let straight-through cases skip the queue and send escalated cases to review already qualified |
+| **Overlay** | The existing workflow keeps running. Knowledge is called from the approval task and returns the applicable verdict with cited rules. The workflow uses that response to route the case and attach the decision file for the reviewer |
 
 Both preserve the existing workflow engine and the existing reviewer roles.
 
@@ -153,7 +153,7 @@ See [Design partner](/pilot) for how the engagement is scoped.
 
 ## Two levels of the same word
 
-"Approval" appears at two levels in Knowledge and it is worth naming them :
+"Approval" appears at two levels in Knowledge :
 
 - **Your approval process** — the workflow your organisation runs (CAB, expense approver, procurement committee). This page is about the shape of that process and where Knowledge fits.
 - **`approval_required` (a verdict)** — the value Knowledge returns when the applicable rules explicitly require human judgment. It is the API surface that routes a case to your approval process. Knowledge can either raise it as a first-class `ApprovalRequest` handled inside Knowledge (the decider signs in the back-office UI), or hand it back to the caller so the caller routes to an existing external process (CAB, ticketing, workflow).

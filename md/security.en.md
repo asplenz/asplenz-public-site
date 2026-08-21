@@ -8,7 +8,7 @@ ctaHref: mailto:contact@asplenz.com
 contactEmail: contact@asplenz.com
 ---
 
-Knowledge is designed to be deployed inside regulated environments. This page describes the security model at a level suitable for a first pass. For a security questionnaire, a deployment-specific review, or a specific control requirement, [write to us](mailto:contact@asplenz.com).
+Knowledge is designed to be deployed inside regulated environments — the standard controls are summarised below. For a security questionnaire, a deployment-specific review, or a specific control requirement, [write to us](mailto:contact@asplenz.com).
 
 ## Authentication
 

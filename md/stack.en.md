@@ -21,7 +21,7 @@ Keep the existing decision as an input. Knowledge evaluates additional policies,
 
 ## Gate: Require a Knowledge verdict before selected actions
 
-Keep the existing decision path, but require a Knowledge verdict before a selected action can proceed. Knowledge governs a defined set of policies or controls; a blocking verdict prevents execution. The underlying system remains in place.
+Keep the existing decision path, but require a Knowledge verdict before a selected action can proceed. Knowledge returns the governed verdict ; your existing system decides whether the action proceeds, stops or requires approval. The underlying system remains in place.
 
 Both patterns preserve the existing decision implementation. Integration is limited to introducing Knowledge at the appropriate decision boundary rather than migrating the legacy policy logic upfront.
 
@@ -46,7 +46,7 @@ You have an existing system that handles today's flows. Route a clearly bounded 
 
 Same tenant, same customers, same downstream systems. Only the decisions in the selected scope come from Knowledge. No impact on today's flows, full control on the scoped one, rollback available if needed.
 
-Selective routing is often the most sellable pattern because it turns a potentially large migration into a bounded, measurable scope.
+Selective routing turns a potentially large migration into a bounded, measurable scope — often the first step a team takes when it is not ready to move its whole estate at once.
 
 ---
 
@@ -79,7 +79,7 @@ This is a specific case of the patterns above (typically Gate or Selective routi
 | Your situation | Pattern | Knowledge authority | Existing decision logic |
 |---|---|---|---|
 | Add governed policy around the legacy | **Overlay** | Additional policy layer | Preserved |
-| Prevent selected actions unless policy allows | **Gate** | Veto at selected boundary | Preserved |
+| Prevent selected actions unless policy allows | **Gate** | Governed verdict at selected boundary | Preserved |
 | Compare before granting authority | **Shadow** | None | Authoritative |
 | Move one bounded scope first | **Selective routing** | Authoritative for selected scope | Authoritative elsewhere |
 | New decision domain | **Primary** | Authoritative | None / not used |

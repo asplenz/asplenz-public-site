@@ -8,7 +8,7 @@ hero:
   headline: When compliance logic is scattered across your stack,
   headlineItalic: every change becomes harder to control.
   sub: Knowledge brings decision logic into one governed policy layer, without replacing your existing stack. Applications, workflows and AI agents provide the context they have. Knowledge determines what the policy requires, what is still needed to reach a verdict, and what decision applies.
-  ctaPrimary: Become a design partner
+  ctaPrimary: Talk to us
   ctaPrimaryHref: /pilot
   ctaSecondary: See how it works
   ctaSecondaryHref: /how-it-works
@@ -17,11 +17,33 @@ problem:
   kicker: ""
   title: "Does this sound familiar?"
   items:
-    - A policy change means finding every workflow, application and spreadsheet where the logic was copied.
-    - Your onboarding asks for information "just in case" - even when most of it never affects the decision.
-    - Cases that could be resolved deterministically still end up in manual review.
-    - A regulator asks you to reproduce a decision from 18 months ago, and reconstructing the exact policy version takes weeks.
-    - Your AI agent works - until Legal asks how you guarantee which policy it will apply before taking action.
+    - kicker: Policy scattered across your stack
+      body: Every update is slow and risks missing a copy somewhere.
+    - kicker: Onboarding that asks "just in case"
+      body: Customers abandon halfway through fields that never affected their decision.
+    - kicker: Reviewers handling cases the policy could automate
+      body: Real judgment cases pile up behind them.
+    - kicker: Regulator asks about an 18-month-old decision
+      body: Weeks of team time to reconstruct the exact policy version.
+    - kicker: AI agent that works in prototype
+      body: Legal blocks the production rollout because they cannot verify which policy it will actually apply.
+
+solutions:
+  kicker: Solutions
+  title: What do you want to improve?
+  cards:
+    - title: Reviews & Approvals
+      desc: Resolve routine cases before they reach a reviewer, and prepare the cases that genuinely need human judgment.
+      ctaLabel: Reduce review workload
+      ctaHref: /automate-approvals
+    - title: Ask Less
+      desc: Collect only the information each decision actually requires, instead of asking every customer for everything upfront.
+      ctaLabel: Reduce customer friction
+      ctaHref: /ask-less
+    - title: Govern AI Decisions
+      desc: Let AI agents collect context and orchestrate work while governed policy decisions remain deterministic and auditable.
+      ctaLabel: Govern agent decisions
+      ctaHref: /ai-agents
 
 transition:
   text: "Different symptoms. Same underlying problem: the policy that determines a decision is coupled to the systems that collect information, orchestrate the process or execute the action."
@@ -37,8 +59,8 @@ change:
       desc: Same context, same policy state, same decision. Each verdict identifies the rules that determined it. No LLM variance at the decision boundary.
     - title: Replayable audit
       desc: Each consultation records the normative policy state behind the decision, so historical decisions can be traced back to the rules and policy state that produced them.
-    - title: Progressive collection
-      desc: Knowledge asks callers only for what the applicable policies actually need - fewer irrelevant questions in customer-facing journeys, less back-and-forth in internal approval flows.
+    - title: Progressive context
+      desc: Knowledge identifies what information the applicable policies still require. Customer journeys can ask fewer irrelevant questions ; internal flows can reach reviewers with the necessary context already assembled.
   ctaLabel: Read how it works
   ctaHref: /how-it-works
 
@@ -52,7 +74,7 @@ stack:
       desc: Feed existing decisions and context into Knowledge to apply additional governed policy without replacing the underlying engine.
     - question: Need to enforce a new control?
       mode: Gate
-      desc: Put Knowledge before execution for a selected decision or policy. The existing system remains in place; Knowledge governs whether the action can proceed.
+      desc: Put Knowledge before execution for a selected decision or policy. Knowledge returns the governed verdict ; your existing system decides whether the action proceeds, stops or requires approval.
     - question: Want to validate first?
       mode: Shadow
       desc: Knowledge evaluates the same cases in parallel without controlling the production decision. Compare outcomes before giving it authority.
@@ -66,8 +88,8 @@ stack:
   ctaHref: /stack
 
 proof:
-  kicker: Built for real decision domains
-  title: See Knowledge applied to concrete compliance decisions.
+  kicker: Industries
+  title: See Knowledge applied to real decision domains.
   cards:
     - name: Wealth
       subtitle: Structured Products distribution

@@ -68,7 +68,7 @@ Avant la semaine 1, nous convenons des chiffres qui justifieraient la conversion
 
 Ce sont des engagements hands-on avec implication directe des fondateurs et de l'équipe produit. Nous limitons la première cohorte à trois firmes pour que chaque partenaire puisse influencer matériellement ce qui est productisé, et pour que nous puissions shipper des fixes hebdomadaires qui répondent à ce que les engagements révèlent.
 
-Le fit est déterminé par la décision et le problème, pas par le label sectoriel. Nos zones de préparation actuelles sont Wealth (distribution de produits structurés), KYC / KYB, et les opérations agent-driven - mais un fit fort sur n'importe quelle décision compliance-heavy est ce que nous cherchons.
+Le fit est déterminé par la décision et le problème, pas par le label sectoriel. Les patterns de solutions actuels sont **Revues & approbations**, **Demandez moins** et **décisions IA gouvernées**. Les packs industry actuels sont **Wealth** (distribution de produits structurés) et **KYC / KYB**. Un fit fort sur n'importe quelle décision compliance-heavy est ce que nous cherchons, qu'il colle à un pattern existant ou à un nouveau.
 
 [[cta]Discuter d'un partenariat design](mailto:contact@asplenz.com)
 

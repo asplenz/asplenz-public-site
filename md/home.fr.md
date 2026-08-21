@@ -8,7 +8,7 @@ hero:
   headline: Quand la logique de conformité est dispersée dans votre stack,
   headlineItalic: chaque changement devient plus difficile à contrôler.
   sub: Knowledge apporte la logique de décision dans une couche de policy gouvernée, sans remplacer votre stack existant. Vos applications, workflows et agents IA fournissent le contexte qu'ils ont. Knowledge détermine ce que la policy exige, ce qui manque encore pour atteindre un verdict, et quelle décision s'applique.
-  ctaPrimary: Devenir design partner
+  ctaPrimary: Parlons-en
   ctaPrimaryHref: /pilot
   ctaSecondary: Voir comment ça marche
   ctaSecondaryHref: /how-it-works
@@ -17,11 +17,33 @@ problem:
   kicker: ""
   title: "Ça vous parle ?"
   items:
-    - Changer une policy signifie retrouver chaque workflow, application et fichier Excel où la logique a été copiée.
-    - Votre onboarding demande des informations « au cas où » - même quand la plupart n'affectent jamais la décision.
-    - Des cas qui pourraient être tranchés de manière déterministe finissent quand même en review manuelle.
-    - Un régulateur vous demande de reproduire une décision d'il y a 18 mois, et reconstruire la version exacte de la policy prend des semaines.
-    - Votre agent IA fonctionne - jusqu'à ce que Legal demande comment vous garantissez quelle policy il appliquera avant de prendre une action.
+    - kicker: Policy dispersée dans votre stack
+      body: Chaque mise à jour est lente et risque de laisser une copie non mise à jour quelque part.
+    - kicker: Onboarding qui demande « au cas où »
+      body: Les clients abandonnent en cours de route sur des champs qui n'ont jamais affecté leur décision.
+    - kicker: Reviewers sur des cas que la policy pourrait automatiser
+      body: Les vrais cas de jugement s'accumulent derrière.
+    - kicker: Régulateur qui pose une question sur une décision d'il y a 18 mois
+      body: Des semaines de temps équipe pour reconstruire la version exacte de la policy.
+    - kicker: Agent IA qui fonctionne en prototype
+      body: Legal bloque le passage en production parce qu'il ne peut pas vérifier quelle policy sera réellement appliquée.
+
+solutions:
+  kicker: Solutions
+  title: "Qu'est-ce que vous voulez améliorer ?"
+  cards:
+    - title: Revues & approbations
+      desc: Résolvez les cas routiniers avant qu'ils n'atteignent un reviewer, et préparez les cas qui exigent réellement du jugement humain.
+      ctaLabel: Réduire la charge de review
+      ctaHref: /automate-approvals
+    - title: Demandez moins
+      desc: Ne collectez que l'information dont chaque décision a réellement besoin, au lieu de demander tout à chaque client d'entrée.
+      ctaLabel: Réduire la friction client
+      ctaHref: /ask-less
+    - title: Gouvernez les décisions IA
+      desc: Laissez les agents IA collecter le contexte et orchestrer le travail pendant que les décisions policy gouvernées restent déterministes et auditables.
+      ctaLabel: Gouverner les décisions des agents
+      ctaHref: /ai-agents
 
 transition:
   text: "Symptômes différents. Même problème sous-jacent : la policy qui détermine une décision est couplée aux systèmes qui collectent l'information, orchestrent le processus ou exécutent l'action."
@@ -37,8 +59,8 @@ change:
       desc: Même contexte, même état de policy, même décision. Chaque verdict identifie les règles qui l'ont déterminé. Aucune variance LLM à la frontière de décision.
     - title: Audit rejouable
       desc: Chaque consultation enregistre l'état normatif de la policy derrière la décision, pour que les décisions historiques puissent être tracées jusqu'aux règles et à l'état de policy qui les ont produites.
-    - title: Collecte progressive
-      desc: Knowledge demande aux appelants uniquement ce dont les policies applicables ont réellement besoin - moins de questions inutiles dans les parcours customer-facing, moins de back-and-forth dans les flux d'approbation internes.
+    - title: Contexte progressif
+      desc: Knowledge identifie l'information dont les policies applicables ont encore besoin. Les parcours customer peuvent poser moins de questions inutiles ; les flux internes peuvent atteindre les reviewers avec le contexte nécessaire déjà assemblé.
   ctaLabel: Voir comment ça marche
   ctaHref: /how-it-works
 
@@ -52,7 +74,7 @@ stack:
       desc: Alimentez Knowledge avec les décisions et le contexte existants pour appliquer une policy gouvernée additionnelle, sans remplacer le moteur sous-jacent.
     - question: Besoin de mettre en place un nouveau contrôle ?
       mode: Gate
-      desc: Placez Knowledge avant l'exécution pour une décision ou une policy sélectionnée. Le système existant reste en place ; Knowledge gouverne si l'action peut se poursuivre.
+      desc: Placez Knowledge avant l'exécution pour une décision ou une policy sélectionnée. Knowledge retourne le verdict gouverné ; votre système existant décide si l'action se poursuit, s'arrête ou requiert une approbation.
     - question: Vous voulez valider d'abord ?
       mode: Shadow
       desc: Knowledge évalue les mêmes cas en parallèle sans contrôler la décision production. Comparez les résultats avant de lui donner l'autorité.
@@ -66,8 +88,8 @@ stack:
   ctaHref: /stack
 
 proof:
-  kicker: Construit pour de vrais domaines de décision
-  title: Voyez Knowledge appliqué à des décisions de conformité concrètes.
+  kicker: Industries
+  title: Voyez Knowledge appliqué à des domaines de décision réels.
   cards:
     - name: Wealth
       subtitle: Distribution de produits structurés
