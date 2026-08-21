@@ -14,6 +14,8 @@ export default function Footer() {
       copyright: `© ${year} Asplenz. All rights reserved.`,
       resourcesLabel: 'Resources',
       links: [
+        { href: '/vs', label: 'Compare' },
+        { href: '/governance', label: 'Governance' },
         { href: '/security', label: 'Security' },
         { href: '/developers', label: 'Developers' },
       ],
@@ -24,6 +26,8 @@ export default function Footer() {
       copyright: `© ${year} Asplenz. Tous droits réservés.`,
       resourcesLabel: 'Ressources',
       links: [
+        { href: '/vs', label: 'Comparer' },
+        { href: '/governance', label: 'Gouvernance' },
         { href: '/security', label: 'Security' },
         { href: '/developers', label: 'Developers' },
       ],

@@ -38,7 +38,7 @@ change:
     - title: Replayable audit
       desc: Each consultation records the normative policy state behind the decision, so historical decisions can be traced back to the rules and policy state that produced them.
     - title: Progressive collection
-      desc: Knowledge determines what additional context is required to reach the current decision - so callers don't need to collect information merely "just in case".
+      desc: Knowledge asks callers only for what the applicable policies actually need - fewer irrelevant questions in customer-facing journeys, less back-and-forth in internal approval flows.
   ctaLabel: Read how it works
   ctaHref: /how-it-works
 

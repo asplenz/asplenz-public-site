@@ -37,7 +37,12 @@ Knowledge est déjà opérationnel. À ce stade, la première cohorte de design 
 
 ## Comment se déroule l'engagement
 
-**1. Conversation de scoping.** Trente minutes. Nous comprenons quelle décision fait le plus mal, si elle rentre dans la forme de Knowledge, et quel pattern d'adoption est le plus sûr pour le déploiement.
+**1. Conversation de scoping.** Trente minutes. Nous comprenons quelle décision fait le plus mal, si elle rentre dans la forme de Knowledge, et quel pattern d'adoption est le plus sûr pour le déploiement. Deux questions de discovery que nous posons tôt :
+
+- **Pour un parcours customer-facing** — quel est votre taux de complétion actuel, et où se produisent la plupart des abandons ?
+- **Pour un flux d'approbation interne** — combien de requêtes votre équipe review chaque mois, et quel pourcentage est approuvé sans exiger de vrai jugement ?
+
+Les réponses à ces deux questions façonnent les critères de succès qu'on fixe pour l'engagement.
 
 **2. Proposition scopée.** Sous une semaine, nous envoyons un scope écrit : la décision, le modèle, le pattern d'adoption, les critères de succès, la timeline, le pricing. Vous signez ou vous refusez. Pas de drift.
 

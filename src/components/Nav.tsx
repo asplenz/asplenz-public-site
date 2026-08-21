@@ -9,14 +9,17 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
+  // Use cases (verticals + horizontal + agent-audience)
   { slug: 'wealth', labelEn: 'Wealth', labelFr: 'Wealth' },
   { slug: 'kyc', labelEn: 'KYC / KYB', labelFr: 'KYC / KYB' },
-  { slug: 'how-it-works', labelEn: 'How it works', labelFr: 'Comment ça marche' },
-  { slug: 'vs', labelEn: 'Compare', labelFr: 'Comparer' },
-  { slug: 'governance', labelEn: 'Governance', labelFr: 'Gouvernance' },
+  { slug: 'automate-approvals', labelEn: 'Automate approvals', labelFr: 'Automatiser les approbations' },
   { slug: 'ai-agents', labelEn: 'AI agents', labelFr: 'Agents IA' },
+  // Concepts (how it works + how it fits your stack)
+  { slug: 'how-it-works', labelEn: 'How it works', labelFr: 'Comment ça marche' },
   { slug: 'stack', labelEn: 'Your stack', labelFr: 'Votre stack' },
+  // Conversion
   { slug: 'pilot', labelEn: 'Design partner', labelFr: 'Design partner' },
+  // Compare + Governance moved to Footer/Resources.
 ];
 
 export default function Nav() {

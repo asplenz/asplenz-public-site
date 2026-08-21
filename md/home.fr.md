@@ -38,7 +38,7 @@ change:
     - title: Audit rejouable
       desc: Chaque consultation enregistre l'état normatif de la policy derrière la décision, pour que les décisions historiques puissent être tracées jusqu'aux règles et à l'état de policy qui les ont produites.
     - title: Collecte progressive
-      desc: Knowledge détermine quel contexte additionnel est requis pour atteindre la décision en cours - pour que les appelants n'aient pas à collecter de l'information juste « au cas où ».
+      desc: Knowledge demande aux appelants uniquement ce dont les policies applicables ont réellement besoin - moins de questions inutiles dans les parcours customer-facing, moins de back-and-forth dans les flux d'approbation internes.
   ctaLabel: Voir comment ça marche
   ctaHref: /how-it-works
 

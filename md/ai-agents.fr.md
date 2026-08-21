@@ -82,6 +82,8 @@ L'agent exécute l'API de remboursement.
 
 L'agent a choisi comment interpréter l'intention, rassembler le contexte et communiquer. Knowledge a déterminé ce que la policy exigeait pour l'action.
 
+**Ce pattern se généralise.** Partout où un agent doit décider « puis-je exécuter ceci ? » avant d'agir — gestion de refund, change management, approbation de dépense, achats, service request IT, requête RH — le même appel `/resolve` se place à la même frontière. Voir [Approbations](/automate-approvals) pour le use case horizontal.
+
 ## Déterministe où ça compte. Probabiliste où ça aide.
 
 Le LLM peut continuer à interpréter l'intention, extraire le contexte, choisir des tools et gérer la conversation. Knowledge gouverne une frontière spécifique : résoudre la business policy explicite contre un contexte explicite.

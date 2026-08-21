@@ -37,7 +37,12 @@ Knowledge is already operational. At this stage, the first cohort of design part
 
 ## How the engagement runs
 
-**1. Scoping conversation.** Thirty minutes. We understand which decision hurts most, whether it fits Knowledge's shape, and which adoption pattern is safest for the deployment.
+**1. Scoping conversation.** Thirty minutes. We understand which decision hurts most, whether it fits Knowledge's shape, and which adoption pattern is safest for the deployment. Two discovery questions we tend to ask early :
+
+- **For a customer-facing journey** — what's your current completion rate, and where do most abandons happen?
+- **For an internal approval flow** — how many requests does your team review every month, and what percentage are ultimately approved without requiring real judgment?
+
+Answers to those two shape the success criteria we set for the engagement.
 
 **2. Scoped proposal.** Within a week, we send a written scope: the decision, the model, the adoption pattern, the success criteria, the timeline, the pricing. You sign or you decline. No drift.
 

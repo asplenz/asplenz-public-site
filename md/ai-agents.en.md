@@ -82,6 +82,8 @@ The agent executes the refund API.
 
 The agent chose how to interpret intent, gather context and communicate. Knowledge determined what the policy required for the action.
 
+**This pattern generalises.** Anywhere an agent needs to decide "can I execute this?" before acting — refund resolution, change management, expense approval, procurement, IT service request, HR request — the same `/resolve` call sits at the same frontier. See [Automate approvals](/automate-approvals) for the horizontal use case pattern.
+
 ## Deterministic where it matters. Probabilistic where it helps.
 
 The LLM can still interpret intent, extract context, choose tools and manage the conversation. Knowledge governs one specific boundary: resolving explicit business policy against explicit context.
