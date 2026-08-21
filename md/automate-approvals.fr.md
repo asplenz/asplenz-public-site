@@ -9,13 +9,16 @@ ctaHref: /pilot
 
 La plupart des files d'approbation ne sont pas pleines de cas qui exigent du vrai jugement. Elles sont pleines de décisions routinières que la policy applicable sait déjà traiter, et de cas qui arrivent incomplets — où l'approver passe du temps à courir après l'information manquante avant de pouvoir décider.
 
-Knowledge adresse les deux.
+**Knowledge ne remplace pas votre processus d'approbation. Il réduit ce qui doit y arriver — et aide les cas qui exigent encore du jugement à arriver avec le contexte et la justification policy nécessaires pour décider.**
 
-## La question de screening
+## Les questions de screening
 
-> **Combien de requêtes votre équipe review chaque mois, et quel pourcentage est approuvé sans exiger de vrai jugement ?**
+Deux questions que nous posons tôt dans une conversation design-partner :
 
-Si la réponse dépasse 60-70%, les cas routiniers dominent le calendrier du reviewer. Ce sont des cas qu'une couche policy peut résoudre de manière déterministe. Ce qui reste arrive au reviewer avec moins de bruit et plus de contexte.
+- **Combien de requêtes votre équipe review chaque mois, et quel pourcentage est approuvé sans exiger de vrai jugement ?**
+- **Combien de temps reviewer chaque cas consomme-t-il avant que le jugement réel soit fait ?**
+
+La première expose l'opportunité straight-through — les cas que la policy pourrait résoudre sans humain. La seconde expose l'opportunité review-ready — la préparation et la chasse à l'information qui grignotent le temps d'un reviewer avant la décision réelle. Deux surfaces économiques, deux économies.
 
 ## Deux résultats économiques
 
@@ -26,18 +29,18 @@ Si la réponse dépasse 60-70%, les cas routiniers dominent le calendrier du rev
 
 Le second résultat compte parce qu'il neutralise l'objection *« nous ne voulons pas automatiser nos approvals »*. Gardez la décision humaine. Arrêtez juste de faire courir l'humain après des cas incomplets.
 
-## Niveaux de maturité : la courbe d'adoption
+## Niveaux d'adoption : combien d'autorité vous donnez au workflow
 
-Vous n'avez pas à démarrer à l'automation complète. Le même produit supporte un chemin d'adoption gradué :
+Knowledge fait la même chose à chaque niveau d'adoption : il retourne `required_context` ou un `verdict` avec règles citées. Ce qui change à travers les niveaux, c'est **combien d'autorité votre workflow s'accorde en agissant sur la réponse de Knowledge**.
 
-| Niveau | Ce que fait Knowledge | Rôle humain |
+| Niveau | Ce que fait votre workflow avec la réponse de Knowledge | Rôle du reviewer |
 |---|---|---|
-| **1. Assist** | Récupère le contexte manquant (depuis les systèmes ou le requester), assemble un dossier complet | Le reviewer décide sur un dossier complet |
-| **2. Recommend** | Ci-dessus, plus applique les règles et retourne un verdict recommandé avec règles citées | Le reviewer valide ou override |
-| **3. Route** | Ci-dessus, plus classifie chaque cas (auto vs escalate vs block) | Le reviewer ne voit que les cas escaladés |
-| **4. Decide** | Ci-dessus, plus prend la décision déterministe lui-même, enregistrée avec l'état normatif et la trace de consultation | Le reviewer gère les exceptions et les audits |
+| **1. Prepare** | Utilise `required_context` pour construire un dossier complet — assemblé depuis les systèmes, l'extraction agent ou le requester | Le reviewer décide sur un dossier complet |
+| **2. Recommend** | Présente le verdict de Knowledge et les règles citées au reviewer comme recommandation | Le reviewer valide ou override |
+| **3. Route** | Utilise le verdict pour classifier chaque cas — `allowed` saute la file, `approval_required` escalade, `blocked` refuse | Le reviewer ne voit que les cas escaladés |
+| **4. Execute** | Auto-avance pour les cas où Knowledge renvoie `allowed`, enregistre la consultation pour l'audit | Le reviewer gère les exceptions et les audits |
 
-**Vous n'avez pas à démarrer au niveau 4.** La plupart des engagements démarrent à Assist ou Recommend, puis montent au fur et à mesure que le policy owner voit l'accord de décision que Knowledge atteint dans ses propres données. Ce qui distingue Knowledge au niveau 4 d'un rules engine classique n'est pas qu'il décide — c'est que chaque décision automatisée reste reproductible contre l'état exact de la policy qui l'a produite (voir [Gouvernance](/governance)).
+**La plupart des engagements démarrent à Prepare ou Recommend** puis montent au fur et à mesure que le policy owner voit l'accord de décision que Knowledge atteint dans ses propres données. Ce qui distingue Knowledge d'un rules engine classique au niveau 4 n'est pas que le workflow peut auto-exécuter — c'est que chaque décision exécutée reste reproductible contre l'état exact de la policy qui l'a produite (voir [Gouvernance](/governance)).
 
 ## Un exemple concret : change management
 
@@ -64,7 +67,7 @@ POST /knowledge/v1/resolve
   consultation_id: "cns-..." }
 ```
 
-L'agent auto-approuve le change, enregistre la consultation, notifie le requester. Le CAB ne le voit jamais.
+Le workflow ServiceNow est configuré pour laisser les cas `allowed` passer à l'exécution sans review CAB, et pour enregistrer la consultation pour l'audit. Knowledge lui-même n'approuve ni n'exécute — il fournit le verdict gouverné sur lequel le workflow agit. Le CAB ne voit jamais le cas.
 
 **Cas B — Knowledge renvoie `incomplete` :**
 
@@ -78,6 +81,8 @@ L'agent auto-approuve le change, enregistre la consultation, notifie le requeste
 ```
 
 L'agent cherche la réponse dans CI/CD, dans les trailers de commit git, dans le ticket de release. Si aucun ne répond, il demande au requester directement. Puis rappelle `/resolve`.
+
+**C'est ce second mécanisme qui rend possible l'escalation review-ready.** Un moteur de workflow traditionnel peut router une requête vers un approver. Seule une couche policy peut dire *« avant que ceci n'atteigne qui que ce soit, voici ce que les règles applicables exigent encore »* — et laisser l'appelant assembler cette information depuis les systèmes, l'extraction agent ou le requester, sans hard-coder un arbre de questions fixe.
 
 **Cas C — Knowledge renvoie `approval_required` :** c'est le verdict au niveau API que Knowledge utilise pour signaler *« ce cas doit atteindre votre processus d'approbation »*. La policy n'esquive pas la décision humaine — elle lui passe le cas, avec le dossier de décision complet.
 
@@ -102,14 +107,23 @@ Le même pattern s'applique à tout workflow avec un backlog de requêtes routé
 | **Service requests** | Accès à des ressources standards, provisioning role-based |
 | **Refund et gestion de dispute** | Refunds sous seuil, raisons de dispute standards |
 | **Requêtes RH** | Congés standards, notes de frais, changements de rôle dans la bande |
+| **Credit et lending review** | Dossiers standard-tier qui matchent la policy de crédit |
+| **Underwriting** | Profils de risque standards dans le mandat de l'underwriter |
+| **Review d'exception KYC / KYB** | Exceptions sur des chemins que la policy accommode déjà |
+| **Approbation investment ou produit** | Positions standard-mandate dans des limites pre-authorised |
+| **Exceptions compliance** | Catégories d'exception récurrentes avec un rationale établi |
+| **Exceptions sécurité** | Requêtes standards d'accès, firewall ou bypass qui matchent la policy |
+| **Screening recrutement** | Candidats dont le profil match un template de rôle approuvé |
+
+Le meilleur fit n'est pas nécessairement le workflow au plus haut volume — c'est celui où l'équation **volume × coût du reviewer × proportion de cas déterministes × coût du délai** produit le plus grand nombre. Cent CAB reviews qui consomment des senior engineers peuvent dominer dix mille validations de notes de frais.
 
 ## En quoi c'est différent d'un moteur de workflow
 
-Un moteur de workflow (ServiceNow, Jira, Camunda) peut router une requête et la gater sur une étape d'approbation. Il ne peut pas décider si le cas est routinier ou judgment-heavy — cette décision doit être prise explicitement quelque part.
+Un moteur de workflow (ServiceNow, Jira, Camunda) peut encoder des conditions qui déterminent si un cas passe directement ou atteint un approver. La question est où cette logique de décision devrait vivre quand elle devient complexe, fréquemment changée, réutilisée à travers plusieurs workflows, ou a besoin d'une gouvernance et d'un replay indépendants.
 
-Aujourd'hui ce « quelque part » est souvent un mélange de seuils hard-codés, de tribal knowledge et du jugement du reviewer appliqué à échelle. Knowledge le met dans une couche de décision gouvernée :
+**Knowledge sépare la logique de décision du workflow qui agit dessus.** Le workflow continue d'orchestrer le processus. Knowledge tient la policy qui décide quels cas sont routiniers, lesquels exigent du jugement, et quel contexte ils ont besoin — comme règles gouvernées, versionnées, auditables plutôt que comme conditions de config workflow :
 
-- Le seuil pour auto-approval est une règle, pas un commentaire dans la config du workflow.
+- Le seuil qui détermine auto vs escalate est une règle, pas une condition dans la config workflow.
 - L'état de la policy au moment de la décision est capturé, donc une décision de plusieurs mois peut être reproduite.
 - Les raisons pour lesquelles un cas exige du jugement humain sont explicites et citées sur l'escalation.
 

@@ -9,13 +9,16 @@ ctaHref: /pilot
 
 Most approval queues are not full of cases that need real judgment. They are full of routine decisions the applicable policy already knows how to handle, and cases that arrive incomplete — where the approver spends time chasing missing information before they can decide.
 
-Knowledge addresses both.
+**Knowledge doesn't replace your approval process. It reduces what needs to reach it — and helps the cases that still need judgment arrive with the context and policy rationale needed to decide.**
 
-## The screening question
+## The screening questions
 
-> **How many requests does your team review every month, and what percentage are ultimately approved without requiring real judgment ?**
+Two questions we ask early in a design-partner conversation :
 
-If the answer sits above 60-70%, the routine cases dominate the reviewer's calendar. Those are the cases a policy layer can resolve deterministically. What is left arrives at the reviewer with less noise and more context.
+- **How many requests does your team review every month, and what percentage are ultimately approved without requiring real judgment ?**
+- **How much reviewer time does each case consume before the actual judgment is made ?**
+
+The first exposes the straight-through opportunity — the cases the policy could resolve without a human. The second exposes the review-ready opportunity — the preparation and information-chasing that swallows a reviewer's time before the actual decision. Two economic surfaces, two savings.
 
 ## Two economic outcomes
 
@@ -26,18 +29,18 @@ If the answer sits above 60-70%, the routine cases dominate the reviewer's calen
 
 The second outcome matters because it neutralises the objection *"we do not want to automate our approvals"*. Keep the human decision. Just stop making the human chase incomplete cases.
 
-## Maturity levels : the adoption ladder
+## Adoption levels : how much authority you give the workflow
 
-You don't have to start at full automation. The same product supports a graduated adoption path :
+Knowledge does the same thing at every adoption level : it returns `required_context` or a `verdict` with cited rules. What changes across levels is **how much authority your workflow acts with on Knowledge's response**.
 
-| Level | What Knowledge does | Human role |
+| Level | What your workflow does with Knowledge's response | Reviewer role |
 |---|---|---|
-| **1. Assist** | Fetches missing context (from systems or the requester), assembles a complete case file | Reviewer decides on a complete case |
-| **2. Recommend** | Above, plus applies the rules and returns a recommended verdict with cited rules | Reviewer validates or overrides |
-| **3. Route** | Above, plus classifies each case (auto vs escalate vs block) | Reviewer only sees escalated cases |
-| **4. Decide** | Above, plus takes the deterministic decision itself, recorded with normative state and consultation trace | Reviewer handles exceptions and audits |
+| **1. Prepare** | Uses `required_context` to build a complete case file — assembled from systems, agent extraction or the requester | Reviewer decides on a complete case |
+| **2. Recommend** | Presents Knowledge's verdict and cited rules to the reviewer as a recommendation | Reviewer validates or overrides |
+| **3. Route** | Uses the verdict to classify each case — `allowed` skips the queue, `approval_required` escalates, `blocked` denies | Reviewer only sees escalated cases |
+| **4. Execute** | Auto-proceeds for cases Knowledge returns `allowed`, records the consultation for audit | Reviewer handles exceptions and audits |
 
-**You don't have to start at level 4.** Most engagements begin at Assist or Recommend, then move up as the policy owner sees the decision agreement Knowledge achieves in their own data. What distinguishes Knowledge at level 4 from a plain rules engine is not that it decides — it is that every automated decision remains reproducible against the exact policy state that produced it (see [Governance](/governance)).
+**Most engagements begin at Prepare or Recommend** and move up as the policy owner sees the decision agreement Knowledge achieves in their own data. What distinguishes Knowledge from a plain rules engine at level 4 is not that the workflow can auto-execute — it is that every executed decision remains reproducible against the exact policy state that produced it (see [Governance](/governance)).
 
 ## A concrete example : change management
 
@@ -64,7 +67,7 @@ POST /knowledge/v1/resolve
   consultation_id: "cns-..." }
 ```
 
-The agent auto-approves the change, records the consultation, notifies the requester. The CAB never sees it.
+The ServiceNow workflow is configured to let `allowed` cases proceed to execution without CAB review, and to record the consultation for audit. Knowledge itself does not approve or execute — it provides the governed verdict the workflow acts on. The CAB never sees the case.
 
 **Case B — Knowledge returns `incomplete` :**
 
@@ -78,6 +81,8 @@ The agent auto-approves the change, records the consultation, notifies the reque
 ```
 
 The agent looks for the answer in CI/CD, in the git commit trailers, in the release ticket. If none of them answer, it asks the requester directly. Then re-calls `/resolve`.
+
+**This second mechanic is what makes review-ready escalation possible.** A traditional workflow engine can route a request to an approver. Only a policy layer can say *"before this reaches anyone, here is what the applicable rules still need"* — and let the caller assemble that information from systems, agent extraction or the requester, without hard-coding a fixed question tree.
 
 **Case C — Knowledge returns `approval_required` :** this is the API-level verdict Knowledge uses to signal *"this case must reach your approval process"*. The policy does not skip the human decision — it hands the case off to it, with the complete decision file.
 
@@ -102,14 +107,23 @@ The same pattern applies to any workflow with a backlog of requests routed throu
 | **Service requests** | Access to standard resources, role-based provisioning |
 | **Refund and dispute resolution** | Under-threshold refunds, standard dispute reasons |
 | **HR requests** | Standard time off, expense claims, role changes within band |
+| **Credit and lending review** | Standard-tier applications matching the credit policy |
+| **Underwriting** | Standard risk profiles within the underwriter's mandate |
+| **KYC / KYB exception review** | Exceptions on paths the policy already accommodates |
+| **Investment or product approval** | Standard-mandate positions within pre-authorised limits |
+| **Compliance exceptions** | Recurring exception categories with an established rationale |
+| **Security exceptions** | Standard access, firewall or bypass requests matching policy |
+| **Recruitment screening** | Candidates whose profile matches an approved role template |
+
+The strongest fit is not necessarily the workflow with the highest volume — it is the one where the equation **volume × reviewer cost × proportion of deterministic cases × cost of delay** produces the largest number. A hundred CAB reviews consuming senior engineers can dominate ten thousand expense-claim validations.
 
 ## How this differs from a workflow engine
 
-A workflow engine (ServiceNow, Jira, Camunda) can route a request and gate it on an approval step. It cannot decide whether the case is routine or judgment-heavy — that decision has to be made explicitly somewhere.
+A workflow engine (ServiceNow, Jira, Camunda) can encode conditions that determine whether a case proceeds directly or reaches an approver. The question is where that decision logic should live when it becomes complex, frequently changed, reused across multiple workflows, or needs independent governance and replay.
 
-Today that "somewhere" is often a mix of hard-coded thresholds, tribal knowledge and the reviewer's judgment applied at scale. Knowledge puts it in one governed decision layer :
+**Knowledge separates the decision logic from the workflow that acts on it.** The workflow keeps orchestrating the process. Knowledge holds the policy that decides which cases are routine, which require judgment, and what context they need — as governed, versioned, auditable rules rather than as workflow-config conditions :
 
-- The threshold for auto-approval is a rule, not a comment in the workflow config.
+- The threshold that determines auto vs escalate is a rule, not a condition in the workflow config.
 - The policy state at the time of the decision is captured, so a decision months old can be reproduced.
 - The reasons a case requires human judgment are explicit and cited on the escalation.
 
