@@ -114,6 +114,7 @@ Le même pattern s'applique à tout workflow avec un backlog de requêtes routé
 | **Exceptions compliance** | Catégories d'exception récurrentes avec un rationale établi |
 | **Exceptions sécurité** | Requêtes standards d'accès, firewall ou bypass qui matchent la policy |
 | **Screening recrutement** | Candidats dont le profil match un template de rôle approuvé |
+| **Prior authorization** ([Healthcare](/healthcare)) | Demandes PA qui matchent les critères de couverture et d'utilisation encodés vs cas routés vers un nurse ou physician reviewer |
 
 Le meilleur fit n'est pas nécessairement le workflow au plus haut volume — c'est celui où l'équation **volume × coût du reviewer × proportion de cas déterministes × coût du délai** produit le plus grand nombre. Cent CAB reviews qui consomment des senior engineers peuvent dominer dix mille validations de notes de frais.
 

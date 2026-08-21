@@ -115,6 +115,7 @@ The same mechanic applies to any customer-facing journey that collects informati
 | **Account opening** (retail, business, brokerage) | Product-specific disclosures asked before the product mix is even chosen |
 | **Merchant onboarding** (payments, marketplace) | Business documents required regardless of the merchant's category or volume |
 | **Subscription eligibility** (regulated products, professional-only offers) | Suitability questions asked before the offer is even shown to the customer |
+| **Patient enrollment / program eligibility** ([Healthcare](/healthcare)) | Full clinical questionnaires asked upfront when the program or authorization path only requires a subset for this patient |
 
 The strongest fit is a journey where the equation **completion rate × customer value × marginal cost of each additional question × cost of a lost customer** is significant, and where the current form asks the same set of questions to customers whose decisions actually require different subsets.
 

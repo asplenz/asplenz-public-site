@@ -6,8 +6,9 @@ import PipelineDiagram from './diagrams/PipelineDiagram';
 import AgentToolbelt from './diagrams/AgentToolbelt';
 import FanoutDiagram from './diagrams/FanoutDiagram';
 import LifecycleDiagram from './diagrams/LifecycleDiagram';
+import OutcomesDiagram from './diagrams/OutcomesDiagram';
 
-const DIAGRAM_LANG_RE = /language-(pipeline|agent-toolbelt|fanout|lifecycle)/;
+const DIAGRAM_LANG_RE = /language-(pipeline|agent-toolbelt|fanout|lifecycle|outcomes)/;
 
 function firstChild(children: ReactNode): ReactNode {
   if (Array.isArray(children)) return children[0];
@@ -82,6 +83,7 @@ export default function MarkdownPage({ body }: MarkdownPageProps) {
               if (lang === 'agent-toolbelt') return <AgentToolbelt raw={raw} />;
               if (lang === 'fanout') return <FanoutDiagram raw={raw} />;
               if (lang === 'lifecycle') return <LifecycleDiagram raw={raw} />;
+              if (lang === 'outcomes') return <OutcomesDiagram raw={raw} />;
 
               return <code className={className}>{children}</code>;
             },

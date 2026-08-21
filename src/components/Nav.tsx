@@ -85,6 +85,13 @@ const NAV_ITEMS: NavItem[] = [
         descEn: 'Composite onboarding and admission decisions.',
         descFr: "Décisions composites d'onboarding et d'admission.",
       },
+      {
+        slug: 'healthcare',
+        labelEn: 'Healthcare',
+        labelFr: 'Healthcare',
+        descEn: 'Coverage, authorization and administrative decisions in policy-driven healthcare workflows.',
+        descFr: "Décisions de couverture, d'autorisation et administratives dans les workflows healthcare policy-driven.",
+      },
     ],
   },
   { slug: 'how-it-works', labelEn: 'How it works', labelFr: 'Comment ça marche' },

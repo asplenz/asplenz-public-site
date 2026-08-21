@@ -114,6 +114,7 @@ The same pattern applies to any workflow with a backlog of requests routed throu
 | **Compliance exceptions** | Recurring exception categories with an established rationale |
 | **Security exceptions** | Standard access, firewall or bypass requests matching policy |
 | **Recruitment screening** | Candidates whose profile matches an approved role template |
+| **Prior authorization** ([Healthcare](/healthcare)) | PA requests matching encoded coverage and utilization criteria vs cases routed to nurse or physician review |
 
 The strongest fit is not necessarily the workflow with the highest volume — it is the one where the equation **volume × reviewer cost × proportion of deterministic cases × cost of delay** produces the largest number. A hundred CAB reviews consuming senior engineers can dominate ten thousand expense-claim validations.
 

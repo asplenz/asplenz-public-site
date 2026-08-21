@@ -115,6 +115,7 @@ Le même mécanisme s'applique à tout parcours customer-facing qui collecte de 
 | **Ouverture de compte** (retail, business, brokerage) | Disclosures spécifiques produit demandées avant que le mix produit soit même choisi |
 | **Onboarding marchand** (paiements, marketplace) | Documents business requis indépendamment de la catégorie ou du volume du marchand |
 | **Éligibilité subscription** (produits régulés, offres professional-only) | Questions de suitability posées avant que l'offre soit même montrée au client |
+| **Enrollment patient / éligibilité programme** ([Healthcare](/healthcare)) | Questionnaires cliniques complets posés d'entrée alors que le programme ou le parcours d'autorisation n'exige qu'un sous-ensemble pour ce patient |
 
 Le meilleur fit est un parcours où l'équation **taux de complétion × valeur client × coût marginal de chaque question additionnelle × coût d'un client perdu** est significative, et où le formulaire actuel pose le même ensemble de questions à des clients dont les décisions requièrent en fait des sous-ensembles différents.
 
