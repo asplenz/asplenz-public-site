@@ -12,7 +12,7 @@ const NAV_ITEMS: NavItem[] = [
   // Use cases (verticals + horizontal + agent-audience)
   { slug: 'wealth', labelEn: 'Wealth', labelFr: 'Wealth' },
   { slug: 'kyc', labelEn: 'KYC / KYB', labelFr: 'KYC / KYB' },
-  { slug: 'automate-approvals', labelEn: 'Automate approvals', labelFr: 'Automatiser les approbations' },
+  { slug: 'automate-approvals', labelEn: 'Reviews & Approvals', labelFr: 'Revues & approbations' },
   { slug: 'ai-agents', labelEn: 'AI agents', labelFr: 'Agents IA' },
   // Concepts (how it works + how it fits your stack)
   { slug: 'how-it-works', labelEn: 'How it works', labelFr: 'Comment ça marche' },
