@@ -19,9 +19,9 @@ Knowledge coexists with your workflow engine, verification providers, OMS and ex
 
 Keep the existing decision as an input. Knowledge evaluates additional policies, exceptions or controls around it and produces its own governed decision trace. Useful when replacing the legacy logic would carry disproportionate regression, certification or migration risk.
 
-## Gate: Require a Knowledge verdict before selected actions
+## Gate: Require a signed Knowledge verdict before selected actions
 
-Keep the existing decision path, but require a Knowledge verdict before a selected action can proceed. Knowledge returns the governed verdict ; your existing system decides whether the action proceeds, stops or requires approval. The underlying system remains in place.
+Keep the existing decision path, but require a signed Knowledge verdict before a selected action can proceed. Knowledge returns the governed verdict as a cryptographically signed envelope ; a small Policy Enforcement Point (a tool wrapper, an MCP proxy, or a custom verifier) checks the signature and bindings before the action proceeds, stops or requires approval. The underlying system remains in place. See [Enforcement](/enforcement) for the full model.
 
 Both patterns preserve the existing decision implementation. Integration is limited to introducing Knowledge at the appropriate decision boundary rather than migrating the legacy policy logic upfront.
 
@@ -72,6 +72,8 @@ The right pattern for a scope today is not necessarily the right pattern six mon
 
 An AI agent operating in an existing environment often needs Knowledge without touching the legacy at all. It calls the CRM, calls the legacy core for the current state, and calls `/resolve` for the governed policy decision before executing. The legacy remains the system of record; Knowledge governs the decision boundary in front of it.
 
+For agent stacks running MCP (Claude Desktop, Cursor, IDE plugins with an MCP server), the smoothest path is the **MCP proxy**: insert the Asplenz proxy in front of your existing MCP server, declare which tools are governed, and enforcement is added by proxy insertion. Zero code change on your tools, zero change on the host client. See [Enforcement](/enforcement) for the proxy configuration.
+
 This is a specific case of the patterns above (typically Gate or Selective routing at the agent level), not a sixth mode. See [AI agents](/ai-agents) for the full pattern.
 
 ## Adoption pattern matrix
@@ -98,6 +100,7 @@ This is a specific case of the patterns above (typically Gate or Selective routi
 | Read next | Why |
 |---|---|
 | [How Knowledge works](/how-it-works) | The mental model behind these patterns |
+| [Enforcement](/enforcement) | The signed verdict and PEP model, the four-actor trust chain, MCP proxy setup |
 | [Wealth](/wealth) | An example where Knowledge governs structured-product decisions inside an existing wealth stack |
 | [KYC / KYB](/kyc) | An example where Knowledge governs the admission decision around an existing verification stack |
 | [AI agents](/ai-agents) | A specific case where Knowledge sits in front of the legacy for agent-driven flows |

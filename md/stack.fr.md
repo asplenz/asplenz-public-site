@@ -19,9 +19,9 @@ Knowledge coexiste avec votre moteur de workflow, vos fournisseurs de vérificat
 
 Gardez la décision existante comme un input. Knowledge évalue des policies, exceptions ou contrôles additionnels autour d'elle et produit sa propre trace de décision gouvernée. Utile quand remplacer la logique legacy porterait un risque disproportionné de régression, de certification ou de migration.
 
-## Gate : Exiger un verdict Knowledge avant certaines actions
+## Gate : Exiger un verdict Knowledge signé avant certaines actions
 
-Gardez le chemin de décision existant, mais exigez un verdict Knowledge avant qu'une action sélectionnée puisse se poursuivre. Knowledge retourne le verdict gouverné ; votre système existant décide si l'action se poursuit, s'arrête ou requiert une approbation. Le système sous-jacent reste en place.
+Gardez le chemin de décision existant, mais exigez un verdict Knowledge signé avant qu'une action sélectionnée puisse se poursuivre. Knowledge retourne le verdict gouverné sous forme d'enveloppe cryptographiquement signée ; un petit Policy Enforcement Point (wrapper de tool, proxy MCP, ou vérificateur custom) contrôle la signature et les bindings avant que l'action ne se poursuive, s'arrête ou requiert une approbation. Le système sous-jacent reste en place. Voir [Enforcement](/enforcement) pour le modèle complet.
 
 Les deux patterns préservent l'implémentation de décision existante. L'intégration se limite à introduire Knowledge à la frontière de décision appropriée plutôt qu'à migrer la logique policy legacy d'entrée.
 
@@ -72,6 +72,8 @@ Le bon pattern pour un scope aujourd'hui n'est pas nécessairement le bon patter
 
 Un agent IA qui opère dans un environnement existant a souvent besoin de Knowledge sans toucher au legacy du tout. Il appelle le CRM, appelle le core legacy pour l'état courant, et appelle `/resolve` pour la décision policy gouvernée avant d'exécuter. Le legacy reste le système de record ; Knowledge gouverne la frontière de décision devant lui.
 
+Pour les stacks agentiques utilisant MCP (Claude Desktop, Cursor, plugins IDE avec serveur MCP), le chemin le plus fluide est le **proxy MCP** : insérer le proxy Asplenz devant votre serveur MCP existant, déclarer quels tools sont gouvernés, et l'enforcement est ajouté par insertion du proxy. Zéro changement de code sur vos tools, zéro changement sur le client host. Voir [Enforcement](/enforcement) pour la configuration du proxy.
+
 C'est un cas spécifique des patterns ci-dessus (typiquement Gate ou Selective routing au niveau de l'agent), pas un sixième mode. Voir [Agents IA](/ai-agents) pour le pattern complet.
 
 ## Matrice des patterns d'adoption
@@ -98,6 +100,7 @@ C'est un cas spécifique des patterns ci-dessus (typiquement Gate ou Selective r
 | À lire ensuite | Pourquoi |
 |---|---|
 | [Comment fonctionne Knowledge](/how-it-works) | Le modèle mental derrière ces patterns |
+| [Enforcement](/enforcement) | Le verdict signé et le modèle PEP, la chaîne de confiance à quatre acteurs, setup MCP proxy |
 | [Wealth](/wealth) | Un exemple où Knowledge gouverne les décisions produits structurés à l'intérieur d'un stack wealth existant |
 | [KYC / KYB](/kyc) | Un exemple où Knowledge gouverne la décision d'admission autour d'un stack de vérification existant |
 | [Agents IA](/ai-agents) | Un cas spécifique où Knowledge se place devant le legacy pour des flux agent-driven |
