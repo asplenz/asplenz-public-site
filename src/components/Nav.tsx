@@ -95,6 +95,7 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   { slug: 'how-it-works', labelEn: 'How it works', labelFr: 'Comment ça marche' },
+  { slug: 'enforcement', labelEn: 'Enforcement', labelFr: 'Enforcement' },
   { slug: 'stack', labelEn: 'Works with your stack', labelFr: 'Fonctionne avec votre stack' },
   { slug: 'pilot', labelEn: 'Design partner', labelFr: 'Design partner' },
 ];
