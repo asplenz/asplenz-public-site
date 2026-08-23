@@ -73,7 +73,7 @@ Send the current context; receive either the verdict or the additional context s
 
 The caller obtains each required field (from a system, a vendor, an extraction, or the user) and re-calls `/resolve` with the enriched context. No Consultation is written for INCOMPLETE responses.
 
-**Response — COMPLETE:**
+**Response - COMPLETE:**
 
 ```
 {
@@ -83,11 +83,14 @@ The caller obtains each required field (from a system, a vendor, an extraction, 
   "cited_rule_versions": ["rv-..."],
   "dominating_rule_id": "rul-sp-elig-highly-complex-retail-block",
   "consultation_id": "cns-abc123",
-  "normative_hash": "sha256:..."
+  "normative_hash": "sha256:...",
+  "signed_verdict": "eyJhbGciOiJFUzI1NiIsImtpZCI6..."
 }
 ```
 
 `verdict` is the business outcome. Depending on the applicable rules it may be `allowed`, `blocked`, `approval_required`, `observe`, or any value defined by the policy. `approval_required` is a verdict, not a separate response state; when it is returned, an optional `approver` object identifies who can decide.
+
+`signed_verdict` is a JWS (ES256) envelope embedding the operation the verdict permits, the outcome, the normative state, and an expiry. Downstream enforcement boundaries verify it against Knowledge's JWKS before executing the underlying action. See [Enforcement](/enforcement) for the full model.
 
 ## The Fact shape
 
@@ -115,6 +118,98 @@ Each entry in `required_context` carries what the caller needs to build a follow
 | `source_requirement` | `verified` if the fact must carry `verification_status: verified` |
 | `acceptable_sources` | Whitelist of source identifiers narrower than `source_requirement` |
 | `confidence_threshold` | Minimum confidence for probabilistic sources |
+
+## Signed verdict verification
+
+Every COMPLETE response carries a `signed_verdict` (JWS ES256). A downstream Policy Enforcement Point verifies signature, expiry, and bindings before executing the underlying business action.
+
+**JWKS endpoint** (public, no auth) :
+
+```
+GET /knowledge/v1/jwks
+```
+
+Returns the tenant's public verification keys in JWKS format. Cache locally (recommended TTL 5 min) and re-fetch on `kid` miss.
+
+**Decoded payload shape** :
+
+```
+{
+  "consultation_id": "cns-...",
+  "issued_at": 1787500000,
+  "expires_at": 1787500060,
+  "kid": "tenant-acme-verdict-2026-08",
+  "authorization": {
+    "action": "refund_execute",
+    "actor": "principal:agent:support-agent-17",
+    "on_behalf_of": "principal:human:marie@acme.com",
+    "on_behalf_of_authenticated": true,
+    "resource": "TX-456",
+    "parameters": { "amount_eur": 40 }
+  },
+  "decision": {
+    "outcome": "allowed",
+    "dominating_rule_id": "rul-refund-under-100",
+    "cited_rule_version_ids": ["rv-r1", "rv-r2"],
+    "normative_hash": "sha256:9f2a..."
+  },
+  "context_hash": "sha256:f4c1..."
+}
+```
+
+**Minimal verification** (Python, using `asplenz-knowledge-runtime-python`) :
+
+```python
+from asplenz_knowledge import verify_verdict, VerdictVerificationError
+
+try:
+    claims = verify_verdict(
+        token=request.headers["X-Knowledge-Verdict"],
+        jwks_url="https://<your-deployment>/knowledge/v1/jwks",
+        expected_bindings={
+            "action": "refund_execute",
+            "resource": request.body["transaction_id"],
+            "parameters.amount_eur": request.body["amount"],
+            "actor": current_principal_id,
+        },
+    )
+    # Signature, expiry, outcome, and bindings all verified
+except VerdictVerificationError as e:
+    return {"error": e.code}, 401
+
+# Proceed to call the underlying business API
+refund_api(request.body["transaction_id"], request.body["amount"])
+```
+
+## Adoption paths
+
+Three patterns for wiring a Policy Enforcement Point into your stack. Pick the one that fits your existing infrastructure.
+
+**SDK decorator (Python or TypeScript backends)** :
+
+```python
+from asplenz_knowledge import governed_tool
+
+@governed_tool(
+    action="refund.execute",
+    resource="tx",
+    bind=["tx", "amount"],
+)
+def refund_customer(tx, amount):
+    # Runtime consults Knowledge, verifies signature, checks bindings,
+    # then invokes this body only on success.
+    ...
+```
+
+Registered once at import time. The runtime performs the full PEP flow (resolve, verify, check bindings, execute). No hand-written wrappers.
+
+**MCP proxy (agent stacks running MCP)** :
+
+Insert the Asplenz MCP proxy between your MCP host (Claude Desktop, Cursor, IDE plugins) and your existing MCP server. The proxy reads a config declaring which tools are governed and their bindings. Your MCP server, your tool implementations, and your host client are unchanged. Enforcement is added by proxy insertion.
+
+**Custom PEP** :
+
+Any language, any framework. Verify the JWS envelope against `/v1/jwks` and compare bindings before executing. The minimal Python example above generalises to Go, Java, Node.js, Rust with the equivalent JWS library.
 
 ## Consultation retrieval
 
@@ -165,6 +260,7 @@ The Wealth pack ships a working script that calls `/resolve` for the four modell
 | Read next | Why |
 |---|---|
 | [How Knowledge works](/how-it-works) | The mental model behind `/resolve`, complete/incomplete and normative state |
+| [Enforcement](/enforcement) | Signed verdicts, the four-actor trust model, adoption paths in depth |
 | [Governance](/governance) | What the consultation captures and how replay reconstructs a historical decision |
-| [Security](/security) | The authentication, authorization and tenant-isolation model the API enforces |
+| [Security](/security) | The authentication, authorization, signing keys and tenant-isolation model the API enforces |
 | [Design partner](/pilot) | Three founding slots, one production-relevant decision, founding-customer pricing |

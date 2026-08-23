@@ -73,7 +73,7 @@ Envoyez le contexte courant ; recevez soit le verdict, soit le contexte addition
 
 L'appelant obtient chaque champ requis (depuis un système, un vendor, une extraction, ou l'utilisateur) et rappelle `/resolve` avec le contexte enrichi. Aucune Consultation n'est écrite pour les réponses INCOMPLETE.
 
-**Réponse — COMPLETE :**
+**Réponse - COMPLETE :**
 
 ```
 {
@@ -83,11 +83,14 @@ L'appelant obtient chaque champ requis (depuis un système, un vendor, une extra
   "cited_rule_versions": ["rv-..."],
   "dominating_rule_id": "rul-sp-elig-highly-complex-retail-block",
   "consultation_id": "cns-abc123",
-  "normative_hash": "sha256:..."
+  "normative_hash": "sha256:...",
+  "signed_verdict": "eyJhbGciOiJFUzI1NiIsImtpZCI6..."
 }
 ```
 
 `verdict` est le résultat métier. Selon les règles applicables il peut être `allowed`, `blocked`, `approval_required`, `observe`, ou toute valeur définie par la policy. `approval_required` est un verdict, pas un état de réponse séparé ; quand il est retourné, un objet `approver` optionnel identifie qui peut décider.
+
+`signed_verdict` est une enveloppe JWS (ES256) embarquant l'opération que le verdict permet, le résultat, l'état normatif, et une expiry. Les frontières d'enforcement en aval la vérifient contre le JWKS de Knowledge avant d'exécuter l'action sous-jacente. Voir [Enforcement](/enforcement) pour le modèle complet.
 
 ## La forme Fact
 
@@ -115,6 +118,98 @@ Chaque entrée de `required_context` porte ce dont l'appelant a besoin pour cons
 | `source_requirement` | `verified` si le fact doit porter `verification_status: verified` |
 | `acceptable_sources` | Whitelist d'identifiants de source plus étroite que `source_requirement` |
 | `confidence_threshold` | Confiance minimale pour les sources probabilistes |
+
+## Vérification du verdict signé
+
+Chaque réponse COMPLETE porte un `signed_verdict` (JWS ES256). Un Policy Enforcement Point en aval vérifie signature, expiry et bindings avant d'exécuter l'action métier sous-jacente.
+
+**Endpoint JWKS** (public, sans auth) :
+
+```
+GET /knowledge/v1/jwks
+```
+
+Retourne les clés publiques de vérification du tenant en format JWKS. Cache local (TTL recommandé 5 min) et re-fetch sur miss de `kid`.
+
+**Shape du payload décodé** :
+
+```
+{
+  "consultation_id": "cns-...",
+  "issued_at": 1787500000,
+  "expires_at": 1787500060,
+  "kid": "tenant-acme-verdict-2026-08",
+  "authorization": {
+    "action": "refund_execute",
+    "actor": "principal:agent:support-agent-17",
+    "on_behalf_of": "principal:human:marie@acme.com",
+    "on_behalf_of_authenticated": true,
+    "resource": "TX-456",
+    "parameters": { "amount_eur": 40 }
+  },
+  "decision": {
+    "outcome": "allowed",
+    "dominating_rule_id": "rul-refund-under-100",
+    "cited_rule_version_ids": ["rv-r1", "rv-r2"],
+    "normative_hash": "sha256:9f2a..."
+  },
+  "context_hash": "sha256:f4c1..."
+}
+```
+
+**Vérification minimale** (Python, avec `asplenz-knowledge-runtime-python`) :
+
+```python
+from asplenz_knowledge import verify_verdict, VerdictVerificationError
+
+try:
+    claims = verify_verdict(
+        token=request.headers["X-Knowledge-Verdict"],
+        jwks_url="https://<your-deployment>/knowledge/v1/jwks",
+        expected_bindings={
+            "action": "refund_execute",
+            "resource": request.body["transaction_id"],
+            "parameters.amount_eur": request.body["amount"],
+            "actor": current_principal_id,
+        },
+    )
+    # Signature, expiry, outcome et bindings tous vérifiés
+except VerdictVerificationError as e:
+    return {"error": e.code}, 401
+
+# Appel de l'API métier sous-jacente
+refund_api(request.body["transaction_id"], request.body["amount"])
+```
+
+## Chemins d'adoption
+
+Trois patterns pour câbler un Policy Enforcement Point dans votre stack. Choisissez celui qui rentre dans votre infrastructure existante.
+
+**Décorateur SDK (backends Python ou TypeScript)** :
+
+```python
+from asplenz_knowledge import governed_tool
+
+@governed_tool(
+    action="refund.execute",
+    resource="tx",
+    bind=["tx", "amount"],
+)
+def refund_customer(tx, amount):
+    # Le runtime consulte Knowledge, vérifie la signature, contrôle
+    # les bindings, puis invoque ce corps seulement en cas de succès.
+    ...
+```
+
+Enregistré une fois à l'import. Le runtime effectue le flow PEP complet (resolve, verify, check bindings, execute). Pas de wrappers écrits à la main.
+
+**MCP proxy (stacks agentiques utilisant MCP)** :
+
+Insérer le proxy MCP Asplenz entre votre host MCP (Claude Desktop, Cursor, plugins IDE) et votre serveur MCP existant. Le proxy lit une config déclarant quels tools sont gouvernés et leurs bindings. Votre serveur MCP, vos implémentations de tools, et votre client host restent inchangés. L'enforcement est ajouté par insertion du proxy.
+
+**PEP custom** :
+
+N'importe quel langage, n'importe quel framework. Vérifier l'enveloppe JWS contre `/v1/jwks` et comparer les bindings avant d'exécuter. L'exemple Python minimal ci-dessus se généralise à Go, Java, Node.js, Rust avec la librairie JWS équivalente.
 
 ## Récupération de Consultation
 
@@ -165,6 +260,7 @@ Le pack Wealth livre un script opérationnel qui appelle `/resolve` pour les qua
 | À lire ensuite | Pourquoi |
 |---|---|
 | [Comment fonctionne Knowledge](/how-it-works) | Le modèle mental derrière `/resolve`, complete/incomplete et normative state |
+| [Enforcement](/enforcement) | Verdicts signés, modèle de confiance à quatre acteurs, chemins d'adoption en profondeur |
 | [Gouvernance](/governance) | Ce que la consultation capture et comment le replay reconstruit une décision historique |
-| [Security](/security) | Le modèle d'authentification, d'autorisation et d'isolation de tenant que l'API applique |
+| [Security](/security) | Le modèle d'authentification, d'autorisation, de clés de signature et d'isolation de tenant que l'API applique |
 | [Design partner](/pilot) | Trois places founding, une décision production, pricing founding-customer |
