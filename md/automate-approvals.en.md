@@ -31,16 +31,16 @@ The human decision stays where you want it. What changes is that the reviewer no
 
 ## Adoption levels : how much authority you give the workflow
 
-Knowledge does the same thing at every adoption level : it returns `required_context` or a `verdict` with cited rules. What changes across levels is **how much authority your workflow acts with on Knowledge's response**.
+Knowledge does the same thing at every adoption level : it returns `required_context` or a `verdict` with cited rules and a signed envelope. What changes across levels is **how much authority your workflow acts with on Knowledge's response**.
 
 | Level | What your workflow does with Knowledge's response | Reviewer role |
 |---|---|---|
-| **1. Prepare** | Uses `required_context` to build a complete case file — assembled from systems, agent extraction or the requester | Reviewer decides on a complete case |
+| **1. Prepare** | Uses `required_context` to build a complete case file, assembled from systems, agent extraction or the requester | Reviewer decides on a complete case |
 | **2. Recommend** | Presents Knowledge's verdict and cited rules to the reviewer as a recommendation | Reviewer validates or overrides |
-| **3. Route** | Uses the verdict to classify each case — `allowed` skips the queue, `approval_required` escalates, `blocked` denies | Reviewer only sees escalated cases |
+| **3. Route** | Uses the verdict to classify each case : `allowed` skips the queue, `approval_required` escalates, `blocked` denies | Reviewer only sees escalated cases |
 | **4. Execute** | Auto-proceeds for cases Knowledge returns `allowed`, records the consultation for audit | Reviewer handles exceptions and audits |
 
-**Most engagements begin at Prepare or Recommend** and move up as the policy owner sees the decision agreement Knowledge achieves in their own data. At level 4, every executed decision remains reproducible against the exact policy state that produced it — see [Governance](/governance).
+**Most engagements begin at Prepare or Recommend** and move up as the policy owner sees the decision agreement Knowledge achieves in their own data. At level 4, every executed decision remains reproducible against the exact policy state that produced it (see [Governance](/governance)). Route and Execute levels become materially stronger when the workflow's execution step is wrapped by a Policy Enforcement Point that verifies the signed verdict before firing the action, so that a workflow bug or an injected step cannot execute without a matching authorization (see [Enforcement](/enforcement)).
 
 ## A concrete example : change management
 
@@ -166,6 +166,7 @@ The two are not competing concepts. The verdict is the mechanism, the process is
 | Read next | Why |
 |---|---|
 | [How Knowledge works](/how-it-works) | The `/resolve` contract behind the auto vs escalate decision |
+| [Enforcement](/enforcement) | How Route and Execute levels become unbypassable via signed verdicts and a Policy Enforcement Point |
 | [AI agents](/ai-agents) | How an agent calls Knowledge before routing to a reviewer |
 | [Your stack](/stack) | The Gate and Overlay patterns in detail |
 | [Design partner](/pilot) | Three founding slots, one production-relevant approval flow, founding-customer pricing |

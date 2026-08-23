@@ -31,16 +31,16 @@ La décision humaine reste là où vous la voulez. Ce qui change, c'est que le r
 
 ## Niveaux d'adoption : combien d'autorité vous donnez au workflow
 
-Knowledge fait la même chose à chaque niveau d'adoption : il retourne `required_context` ou un `verdict` avec règles citées. Ce qui change à travers les niveaux, c'est **combien d'autorité votre workflow s'accorde en agissant sur la réponse de Knowledge**.
+Knowledge fait la même chose à chaque niveau d'adoption : il retourne `required_context` ou un `verdict` avec règles citées et une enveloppe signée. Ce qui change à travers les niveaux, c'est **combien d'autorité votre workflow s'accorde en agissant sur la réponse de Knowledge**.
 
 | Niveau | Ce que fait votre workflow avec la réponse de Knowledge | Rôle du reviewer |
 |---|---|---|
-| **1. Prepare** | Utilise `required_context` pour construire un dossier complet — assemblé depuis les systèmes, l'extraction agent ou le requester | Le reviewer décide sur un dossier complet |
+| **1. Prepare** | Utilise `required_context` pour construire un dossier complet, assemblé depuis les systèmes, l'extraction agent ou le requester | Le reviewer décide sur un dossier complet |
 | **2. Recommend** | Présente le verdict de Knowledge et les règles citées au reviewer comme recommandation | Le reviewer valide ou override |
-| **3. Route** | Utilise le verdict pour classifier chaque cas — `allowed` saute la file, `approval_required` escalade, `blocked` refuse | Le reviewer ne voit que les cas escaladés |
+| **3. Route** | Utilise le verdict pour classifier chaque cas : `allowed` saute la file, `approval_required` escalade, `blocked` refuse | Le reviewer ne voit que les cas escaladés |
 | **4. Execute** | Auto-avance pour les cas où Knowledge renvoie `allowed`, enregistre la consultation pour l'audit | Le reviewer gère les exceptions et les audits |
 
-**La plupart des engagements démarrent à Prepare ou Recommend** puis montent au fur et à mesure que le policy owner voit l'accord de décision que Knowledge atteint dans ses propres données. Au niveau 4, chaque décision exécutée reste reproductible contre l'état exact de la policy qui l'a produite — voir [Gouvernance](/governance).
+**La plupart des engagements démarrent à Prepare ou Recommend** puis montent au fur et à mesure que le policy owner voit l'accord de décision que Knowledge atteint dans ses propres données. Au niveau 4, chaque décision exécutée reste reproductible contre l'état exact de la policy qui l'a produite (voir [Gouvernance](/governance)). Les niveaux Route et Execute deviennent matériellement plus forts quand le pas d'exécution du workflow est wrappé par un Policy Enforcement Point qui vérifie le verdict signé avant de déclencher l'action, pour qu'un bug de workflow ou une étape injectée ne puisse pas s'exécuter sans autorisation correspondante (voir [Enforcement](/enforcement)).
 
 ## Un exemple concret : change management
 
@@ -166,6 +166,7 @@ Les deux ne sont pas des concepts en concurrence. Le verdict est le mécanisme, 
 | À lire ensuite | Pourquoi |
 |---|---|
 | [Comment fonctionne Knowledge](/how-it-works) | Le contrat `/resolve` derrière la décision auto vs escalate |
+| [Enforcement](/enforcement) | Comment les niveaux Route et Execute deviennent non-contournables via verdicts signés et Policy Enforcement Point |
 | [Agents IA](/ai-agents) | Comment un agent appelle Knowledge avant de router vers un reviewer |
 | [Votre stack](/stack) | Les patterns Gate et Overlay en détail |
 | [Design partner](/pilot) | Trois places founding, un flux d'approval production, pricing founding-customer |
