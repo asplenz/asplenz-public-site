@@ -13,15 +13,16 @@ Knowledge est une couche de policy gouvernée. Les appelants envoient le context
 
 **L'appelant n'a pas besoin de connaître l'arbre de dépendances de la policy. Knowledge, si.**
 
-## Les trois boîtes
+## Les quatre boîtes
 
 ```pipeline
 Appelants | Applications, workflows, formulaires, agents IA | Collecter le contexte, orchestrer
-Knowledge | Policies, règles, précédence, overrides | Résoudre, gouverner, expliquer
+Knowledge | Policies, règles, précédence, overrides | Résoudre, gouverner, signer
+Frontière d'enforcement | Wrapper de tool, MCP proxy, PEP custom | Vérifier le verdict signé à la frontière d'exécution
 Systèmes de record | CRM, OMS, systèmes core, APIs opérationnelles | Stocker, exécuter
 ```
 
-Knowledge ne possède pas vos données client. Il n'orchestre pas votre workflow. Il n'exécute pas l'action métier.
+Knowledge ne possède pas vos données client. Il n'orchestre pas votre workflow. Il n'exécute pas l'action métier. Il rend la décision et signe l'enveloppe ; la frontière d'enforcement est ce qui empêche un caller d'ignorer la réponse.
 
 ## Le contrat de résolution central
 
@@ -54,7 +55,7 @@ Si l'opération est incomplete, la réponse identifie le contexte encore requis 
 }
 ```
 
-Si l'opération est complete, la réponse retourne le verdict métier applicable, les règles qui l'ont déterminé, et la référence à la consultation :
+Si l'opération est complete, la réponse retourne le verdict métier applicable, les règles qui l'ont déterminé, la référence à la consultation, et une enveloppe signée qu'une frontière d'enforcement en aval peut vérifier :
 
 ```
 {
@@ -63,11 +64,14 @@ Si l'opération est complete, la réponse retourne le verdict métier applicable
   "cited_rules": ["rul-sp-elig-highly-complex-retail-block"],
   "dominating_rule_id": "rul-sp-elig-highly-complex-retail-block",
   "consultation_id": "cns-abc123",
-  "normative_hash": "sha256:..."
+  "normative_hash": "sha256:...",
+  "signed_verdict": "eyJhbGciOiJFUzI1NiIsImtpZCI6..."
 }
 ```
 
 `verdict` est le résultat métier. Selon les règles applicables il peut être `allowed`, `blocked`, `approval_required`, `observe`, ou d'autres valeurs définies par la policy. Que la décision requière ou non une autorisation humaine est un résultat métier, pas une forme de réponse séparée.
+
+`signed_verdict` est une enveloppe JWS contenant l'opération exacte permise (action, actor, resource, parameters), le résultat, et l'état normatif au moment de la décision. Une frontière d'enforcement en aval la vérifie contre le JWKS de Knowledge avant que l'action sous-jacente ne s'exécute. Voir [Enforcement](/enforcement) pour le modèle complet.
 
 ## Résolution progressive en pratique
 
@@ -177,8 +181,9 @@ branch-left-1: required_context retourné
 branch-left-2: L'appelant récupère, dérive ou demande le contexte manquant
 branch-left-loop: Retour à /resolve
 branch-right-label: Complete
-branch-right-1: verdict + cited_rules + consultation_id
-branch-right-2: L'appelant agit sur le verdict (exécuter · refuser · escalader · demander approbation · continuer)
+branch-right-1: verdict + cited_rules + consultation_id + signed_verdict
+branch-right-2: Frontière d'enforcement vérifie signature + bindings contre l'appel entrant
+branch-right-3: L'appelant agit sur le verdict vérifié (exécuter · refuser · escalader · demander approbation · continuer)
 end: Consultation préservée pour audit et replay
 ```
 
@@ -195,5 +200,6 @@ end: Consultation préservée pour audit et replay
 | À lire ensuite | Pourquoi |
 |---|---|
 | [Agents IA](/ai-agents) | Comment un agent utilise `/resolve` comme tool |
+| [Enforcement](/enforcement) | Le verdict signé, le modèle de confiance à quatre acteurs, chemins d'adoption |
 | [Fonctionne avec votre stack](/stack) | Les cinq patterns d'insertion |
 | [Design partner](/pilot) | L'engagement founding-partner : trois places sur une décision production |

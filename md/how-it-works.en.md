@@ -13,15 +13,16 @@ Knowledge is a governed policy layer. Callers send the context they have, and Kn
 
 **The caller doesn't need to know the policy's dependency tree. Knowledge does.**
 
-## The three boxes
+## The four boxes
 
 ```pipeline
 Callers | Applications, workflows, forms, AI agents | Collect context, orchestrate
-Knowledge | Policies, rules, precedence, overrides | Resolve, govern, explain
+Knowledge | Policies, rules, precedence, overrides | Resolve, govern, sign
+Enforcement boundary | Tool wrapper, MCP proxy, custom PEP | Verify the signed verdict at the execution boundary
 Systems of record | CRM, OMS, core systems, operational APIs | Store, execute
 ```
 
-Knowledge does not own your customer data. It does not orchestrate your workflow. It does not execute the business action.
+Knowledge does not own your customer data. It does not orchestrate your workflow. It does not execute the business action. It renders the decision and signs the envelope ; the enforcement boundary is what keeps a caller from ignoring the answer.
 
 ## The core resolution contract
 
@@ -54,7 +55,7 @@ If the operation is incomplete, the response identifies the context still requir
 }
 ```
 
-If the operation is complete, the response returns the applicable business verdict, the rules that determined it, and the reference to the consultation:
+If the operation is complete, the response returns the applicable business verdict, the rules that determined it, the reference to the consultation, and a signed envelope that a downstream enforcement boundary can verify:
 
 ```
 {
@@ -63,11 +64,14 @@ If the operation is complete, the response returns the applicable business verdi
   "cited_rules": ["rul-sp-elig-highly-complex-retail-block"],
   "dominating_rule_id": "rul-sp-elig-highly-complex-retail-block",
   "consultation_id": "cns-abc123",
-  "normative_hash": "sha256:..."
+  "normative_hash": "sha256:...",
+  "signed_verdict": "eyJhbGciOiJFUzI1NiIsImtpZCI6..."
 }
 ```
 
 `verdict` is the business outcome. Depending on the applicable rules it may be `allowed`, `blocked`, `approval_required`, `observe`, or other values defined by the policy. Whether the decision needs human authorization is a business outcome, not a separate response shape.
+
+`signed_verdict` is a JWS envelope containing the exact operation permitted (action, actor, resource, parameters), the outcome, and the normative state at decision time. A downstream enforcement boundary verifies it against Knowledge's JWKS before the underlying action runs. See [Enforcement](/enforcement) for the full model.
 
 ## Progressive resolution in practice
 
@@ -177,8 +181,9 @@ branch-left-1: required_context returned
 branch-left-2: Caller retrieves, derives or asks for the missing context
 branch-left-loop: Loop back to /resolve
 branch-right-label: Complete
-branch-right-1: verdict + cited_rules + consultation_id
-branch-right-2: Caller acts on the verdict (execute · refuse · escalate · request approval · continue)
+branch-right-1: verdict + cited_rules + consultation_id + signed_verdict
+branch-right-2: Enforcement boundary verifies signature + bindings against the incoming call
+branch-right-3: Caller acts on the verified verdict (execute · refuse · escalate · request approval · continue)
 end: Consultation preserved for audit and replay
 ```
 
@@ -195,5 +200,6 @@ end: Consultation preserved for audit and replay
 | Read next | Why |
 |---|---|
 | [AI agents](/ai-agents) | How an agent uses `/resolve` as a tool |
+| [Enforcement](/enforcement) | The signed verdict, the four-actor trust model, adoption paths |
 | [Works with your stack](/stack) | The five insertion patterns |
 | [Design partner](/pilot) | The founding-partner engagement: three slots on one production-relevant decision |
