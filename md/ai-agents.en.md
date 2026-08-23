@@ -58,16 +58,17 @@ POST /knowledge/v1/resolve
 }
 ```
 
-**Case A - Knowledge returns `approval_required`:**
+**Case A - Knowledge returns `approval_required` with a signed verdict:**
 
 ```
 { operation_status: "complete",
   verdict: "approval_required",
   cited_rules: ["rul-refund-above-threshold"],
-  consultation_id: "cns-..." }
+  consultation_id: "cns-...",
+  signed_verdict: "eyJhbGc..." }
 ```
 
-The agent does **not** execute the refund. It creates an approval request, informs the customer that the case is being reviewed, and hands off to the human decision path.
+The refund tool wrapper (Policy Enforcement Point) sees a verdict that is not `allowed` and refuses to execute. The agent does not need to be trusted to obey. The agent proceeds to create an approval request, informs the customer that the case is being reviewed, and hands off to the human decision path. Post-approval, the agent re-consults, receives a new signed verdict with `allowed`, and the tool accepts the call.
 
 **Case B - same intent, 40 EUR transaction, Knowledge returns `allowed`:**
 
@@ -75,12 +76,15 @@ The agent does **not** execute the refund. It creates an approval request, infor
 { operation_status: "complete",
   verdict: "allowed",
   cited_rules: ["rul-refund-standard"],
-  consultation_id: "cns-..." }
+  consultation_id: "cns-...",
+  signed_verdict: "eyJhbGc..." }
 ```
 
-The agent executes the refund API.
+The refund tool wrapper verifies the signed verdict (signature, expiry, bindings match the incoming call), then invokes the underlying refund API.
 
-The agent chose how to interpret intent, gather context and communicate. Knowledge determined what the policy required for the action.
+The agent chose how to interpret intent, gather context and communicate. Knowledge determined what the policy required. The tool wrapper is what makes the outcome unbypassable.
+
+**Governance is a property of the tool, not an instruction to the agent.** See [Enforcement](/enforcement) for the full model: signed envelope shape, four-actor trust chain, and adoption paths (SDK decorator, MCP proxy, custom PEP).
 
 **This pattern generalises.** Anywhere an agent needs to decide "can I execute this?" before acting — refund resolution, change management, expense approval, procurement, IT service request, HR request — the same `/resolve` call sits at the same frontier. See [Automate approvals](/automate-approvals) for the horizontal use case pattern.
 
@@ -112,6 +116,7 @@ Both can coexist in an agent: RAG for retrieval and reasoning support, Knowledge
 | **Head of AI Product** | Move agents beyond read-only assistance while keeping governed business decisions outside probabilistic model interpretation |
 | **VP Engineering / CTO** | Stop relying on prompts and retrieved documents as the executable representation of business policy. Expose governed policy through a versioned decision API instead |
 | **Chief Compliance Officer** | A defined decision boundary: explicit policy rules, deterministic evaluation and a trace of the policy state behind each outcome |
+| **CISO / Head of AI Safety** | Enforcement lives at the tool boundary, not in the agent's discretion. Every wrapped execution carries a cryptographically verifiable authorization artifact citing the exact rules that permitted it |
 
 ## One policy layer can serve more than the agent
 
@@ -131,5 +136,6 @@ caller: Back-office ops queue
 | Read next | Why |
 |---|---|
 | [How Knowledge works](/how-it-works) | The API contract, the audit surface, the mental model |
+| [Enforcement](/enforcement) | Signed verdicts, the four-actor trust model, MCP proxy adoption |
 | [Wealth](/wealth) | Reference integration script showing an RM copilot calling Knowledge for structured-product decisions |
 | [Design partner](/pilot) | Three founding slots, one production-relevant decision, founding-customer pricing |
