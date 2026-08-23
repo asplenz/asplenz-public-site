@@ -24,7 +24,7 @@ For a wide range of automation problems this is enough. If your callers already 
 
 ## Where Knowledge adds properties on top
 
-Knowledge is built for the class of decisions where the four points above are necessary but not sufficient. Four properties Knowledge provides that a plain rules engine does not:
+Knowledge is built for the class of decisions where the four points above are necessary but not sufficient. Five properties Knowledge provides that a plain rules engine does not:
 
 ### 1. The caller does not encode the dependency tree
 
@@ -61,6 +61,12 @@ A rules engine typically lives inside one system (a workflow, an application, an
 
 This matters when a firm has more than one channel executing the same decision. It removes the drift that appears when the same rule has to be re-implemented per caller.
 
+### 5. The decision is cryptographically enforceable at a boundary distinct from the caller
+
+Rules engines return advisory verdicts. The caller can ignore them. Knowledge returns each decision as a **signed authorization artifact** (JWS ES256) that a downstream Policy Enforcement Point verifies before the underlying action runs. The signature binds to the exact operation (action, actor, resource, parameters), so a verdict authorizing `refund_execute(TX-456, 40 EUR)` cannot be reused for a different transaction, a larger amount, or a different action.
+
+The consequence : enforcement lives at the tool boundary, not in the caller's discretion. An agent that hallucinates, a workflow that has a bug, or a script that skips the check cannot execute a governed action, because the enforcement boundary refuses without a matching signed verdict. See [Enforcement](/enforcement) for the full model, the four-actor trust chain, and the adoption paths (SDK decorator, MCP proxy, custom PEP).
+
 ## When a rules engine is the right choice
 
 Use a rules engine (Camunda DMN, Drools, a home-grown one) when:
@@ -81,8 +87,9 @@ Reach for Knowledge when at least one of these applies:
 - **Governed audit** — decisions must be reproducible in full state (rules, overrides, precedence, scope) years after they were made.
 - **AI agents** — a probabilistic agent needs a deterministic policy boundary to call before executing.
 - **Provenance-sensitive rules** — the rule outcome depends on how a fact was obtained (verified vs asserted, vendor vs LLM extraction).
+- **Enforcement at the boundary** — automated actions must be provably authorized by policy before they run, not authorized by the caller's promise to have checked. This is where a signed verdict plus a Policy Enforcement Point becomes a security control, not a convention.
 
-Any one of the five is enough to move the decision to Knowledge. The other four come along at no extra cost.
+Any one of these is enough to move the decision to Knowledge. The others come along at no extra cost.
 
 ## Can they coexist?
 
@@ -92,7 +99,8 @@ Yes, and this is often the pragmatic path. An existing rules engine keeps handli
 
 | Read next | Why |
 |---|---|
-| [How Knowledge works](/how-it-works) | The `/resolve` contract behind the four properties above |
+| [How Knowledge works](/how-it-works) | The `/resolve` contract behind the properties above |
+| [Enforcement](/enforcement) | The signed verdict, the four-actor trust model, adoption paths |
 | [Governance](/governance) | What "normative state" contains and how replay reconstructs a historical decision |
 | [Your stack](/stack) | The five patterns for adopting Knowledge alongside an existing rules engine |
 | [Design partner](/pilot) | Three founding slots, one production-relevant decision, founding-customer pricing |

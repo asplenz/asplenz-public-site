@@ -24,7 +24,7 @@ Pour un large éventail de problèmes d'automation, ça suffit. Si vos appelants
 
 ## Ce que Knowledge ajoute par-dessus
 
-Knowledge est construit pour la classe de décisions où les quatre points ci-dessus sont nécessaires mais pas suffisants. Quatre propriétés que Knowledge fournit qu'un rules engine seul ne fournit pas :
+Knowledge est construit pour la classe de décisions où les quatre points ci-dessus sont nécessaires mais pas suffisants. Cinq propriétés que Knowledge fournit qu'un rules engine seul ne fournit pas :
 
 ### 1. L'appelant n'encode pas l'arbre de dépendances
 
@@ -61,6 +61,12 @@ Un rules engine vit typiquement à l'intérieur d'un système (un workflow, une 
 
 Ça compte quand une firme a plus d'un canal qui exécute la même décision. Ça retire la dérive qui apparaît quand la même règle doit être ré-implémentée par appelant.
 
+### 5. La décision est cryptographiquement enforcée à une frontière distincte de l'appelant
+
+Les rules engines retournent des verdicts consultatifs. L'appelant peut les ignorer. Knowledge retourne chaque décision comme **artefact d'autorisation signé** (JWS ES256) qu'un Policy Enforcement Point en aval vérifie avant que l'action sous-jacente ne s'exécute. La signature est bindée à l'opération exacte (action, actor, resource, parameters), pour qu'un verdict autorisant `refund_execute(TX-456, 40 EUR)` ne puisse pas être réutilisé pour une autre transaction, un montant plus élevé, ou une action différente.
+
+La conséquence : l'enforcement vit à la frontière du tool, pas dans la discrétion de l'appelant. Un agent qui hallucine, un workflow qui a un bug, ou un script qui saute le check ne peut pas exécuter une action gouvernée, parce que la frontière d'enforcement refuse sans verdict signé correspondant. Voir [Enforcement](/enforcement) pour le modèle complet, la chaîne de confiance à quatre acteurs, et les chemins d'adoption (décorateur SDK, proxy MCP, PEP custom).
+
 ## Quand un rules engine est le bon choix
 
 Utilisez un rules engine (Camunda DMN, Drools, un moteur maison) quand :
@@ -81,8 +87,9 @@ Choisissez Knowledge quand au moins un des points suivants s'applique :
 - **Audit gouverné** — les décisions doivent être reproductibles dans leur état complet (règles, overrides, précédence, scope) des années après avoir été prises.
 - **Agents IA** — un agent probabiliste a besoin d'une frontière policy déterministe à appeler avant d'exécuter.
 - **Règles provenance-sensibles** — le résultat de la règle dépend de comment un fait a été obtenu (vérifié vs asserted, vendor vs extraction LLM).
+- **Enforcement à la frontière** — les actions automatisées doivent être authorized de façon prouvée par la policy avant de s'exécuter, pas authorized par la promesse de l'appelant d'avoir checké. C'est là qu'un verdict signé plus un Policy Enforcement Point devient un contrôle de sécurité, pas une convention.
 
-Un seul des cinq suffit à déplacer la décision vers Knowledge. Les quatre autres viennent en bonus.
+Un seul des cas ci-dessus suffit à déplacer la décision vers Knowledge. Les autres viennent en bonus.
 
 ## Peuvent-ils coexister ?
 
@@ -92,7 +99,8 @@ Oui, et c'est souvent le chemin pragmatique. Un rules engine existant continue d
 
 | À lire ensuite | Pourquoi |
 |---|---|
-| [Comment fonctionne Knowledge](/how-it-works) | Le contrat `/resolve` derrière les quatre propriétés ci-dessus |
+| [Comment fonctionne Knowledge](/how-it-works) | Le contrat `/resolve` derrière les propriétés ci-dessus |
+| [Enforcement](/enforcement) | Le verdict signé, le modèle de confiance à quatre acteurs, chemins d'adoption |
 | [Gouvernance](/governance) | Ce que « l'état normatif » contient et comment le replay reconstruit une décision historique |
 | [Votre stack](/stack) | Les cinq patterns pour adopter Knowledge à côté d'un rules engine existant |
 | [Design partner](/pilot) | Trois places founding, une décision production, pricing founding-customer |

@@ -63,6 +63,8 @@ The `normative_hash` recorded on a consultation is a snapshot of the elements th
 
 Anything not in that set (for example a rule that was inapplicable to the case, or a change to a rule that came after the consultation) does not affect the recorded verdict.
 
+The `normative_hash` is also embedded inside the signed envelope returned on every `/resolve` and `/check` decision. A downstream Policy Enforcement Point can compare it against the tenant's current normative state to detect when the policy has drifted since the verdict was minted (per-operation opt-in, useful for high-stakes actions). See [Enforcement](/enforcement) for the full model.
+
 ## The policy governance log
 
 Every Policy aggregate carries a `governance_log` of structured governance acts: adoption, amendment, renewal, retirement. These entries are the record of *why* a rule exists at a firm, distinct from the runtime behaviour of the rule itself.
@@ -96,5 +98,6 @@ As long as the consultation is retained by the deployment, the reconstruction re
 | Read next | Why |
 |---|---|
 | [How Knowledge works](/how-it-works) | The runtime contract behind these governance mechanics |
+| [Enforcement](/enforcement) | How the governed state is carried into signed authorizations enforceable at the tool boundary |
 | [Security](/security) | How authorship roles, tenant isolation and audit are enforced at the deployment layer |
 | [Design partner](/pilot) | Three founding slots, one production-relevant decision, founding-customer pricing |

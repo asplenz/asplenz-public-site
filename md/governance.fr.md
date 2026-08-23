@@ -63,6 +63,8 @@ Le `normative_hash` enregistré sur une consultation est un snapshot des éléme
 
 Tout ce qui n'est pas dans cet ensemble (par exemple une règle qui n'était pas applicable au cas, ou un changement de règle postérieur à la consultation) n'affecte pas le verdict enregistré.
 
+Le `normative_hash` est également embarqué à l'intérieur de l'enveloppe signée retournée sur chaque décision `/resolve` et `/check`. Un Policy Enforcement Point en aval peut le comparer à l'état normatif courant du tenant pour détecter quand la policy a dérivé depuis que le verdict a été émis (opt-in par opération, utile pour les actions high-stakes). Voir [Enforcement](/enforcement) pour le modèle complet.
+
 ## Le governance log de la policy
 
 Chaque agrégat Policy porte un `governance_log` d'actes de gouvernance structurés : adoption, amendement, renouvellement, retrait. Ces entrées sont le record de *pourquoi* une règle existe dans une firme, distinct du comportement runtime de la règle elle-même.
@@ -96,5 +98,6 @@ Tant que la consultation est retenue par le déploiement, la reconstruction lit 
 | À lire ensuite | Pourquoi |
 |---|---|
 | [Comment fonctionne Knowledge](/how-it-works) | Le contrat runtime derrière ces mécaniques de gouvernance |
+| [Enforcement](/enforcement) | Comment l'état gouverné est porté dans des autorisations signées enforceables à la frontière du tool |
 | [Security](/security) | Comment les rôles d'autorship, l'isolation de tenant et l'audit sont appliqués à la couche déploiement |
 | [Design partner](/pilot) | Trois places founding, une décision production, pricing founding-customer |
