@@ -30,7 +30,7 @@ Knowledge is already operational. At this stage, the first cohort of design part
 | What we need | Detail |
 |---|---|
 | **A real, production-relevant decision** | One decision that is escalated, mis-decided or slow today, evaluated against real cases |
-| **A named business champion and a named tech champion** | Typically the compliance officer or head of AI product on one side, the person who plumbs Knowledge into the caller on the other. One working meeting per week for eight weeks |
+| **A named business champion and a named tech champion** | Typically the compliance officer, CISO, head of AI product or head of platform on one side, the person who plumbs Knowledge into the caller on the other. One working meeting per week for eight weeks |
 | **Honest feedback** | You tell us what breaks, what is confusing, what is missing. We ship fixes weekly during the engagement |
 | **An eight-week commitment** | Long enough for the metrics to accumulate meaningfully. Clean exit at the end if we have not hit the criteria agreed upfront |
 | **Optional but valued** | Willingness to be quoted or referenced once the success criteria are met |
@@ -63,12 +63,13 @@ Before week 1, we agree on the numbers that would justify converting. Typical cr
 | **Time to ship a rule** | From "compliance asks for a new rule" to "rule live in Knowledge", compared with the same delay in your existing system |
 | **Collection efficiency** | Fields requested, follow-up requests and completion rate on Knowledge's progressive resolution, compared with the current onboarding or intake journey |
 | **Audit reconstruction time** | Time to retrieve the context, applicable rules and policy state behind a historical decision, compared with your current process |
+| **Enforcement coverage** | For engagements where a Policy Enforcement Point is deployed (SDK decorator, MCP proxy, custom wrapper) : share of automated actions that require a valid signed verdict before executing |
 
 ## Why only three
 
 These are hands-on engagements with direct founder and product-team involvement. We limit the first cohort to three firms so each partner can materially influence what gets productized, and so we can ship weekly fixes that respond to what the engagements reveal.
 
-Fit is determined by the decision and the problem, not the industry label. Current solution patterns include **Reviews & Approvals**, **Ask Less** and **governed AI decisions**. Current industry packs include **Wealth** (structured-product distribution) and **KYC / KYB**. A strong fit on any compliance-heavy decision is what we look for, whether it maps to an existing pattern or a new one.
+Fit is determined by the decision and the problem, not the industry label. Current solution patterns include **Reviews & Approvals**, **Ask Less**, **governed AI decisions**, and **cryptographic enforcement at the tool boundary**. Current industry packs include **Wealth** (structured-product distribution) and **KYC / KYB**. A strong fit is any decision where compliance rigor, agent enforcement or auditable authorization matters, whether it maps to an existing pattern or a new one.
 
 [[cta]Discuss a design partnership](mailto:contact@asplenz.com)
 

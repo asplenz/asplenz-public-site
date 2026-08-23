@@ -30,7 +30,7 @@ Knowledge est déjà opérationnel. À ce stade, la première cohorte de design 
 | Ce dont nous avons besoin | Détail |
 |---|---|
 | **Une vraie décision production** | Une décision escaladée, mal-décidée ou lente aujourd'hui, évaluée contre de vrais cas |
-| **Un champion business nommé et un champion tech nommé** | Typiquement le compliance officer ou le head of AI product d'un côté, la personne qui plombe Knowledge dans l'appelant de l'autre. Une réunion de travail par semaine pendant huit semaines |
+| **Un champion business nommé et un champion tech nommé** | Typiquement le compliance officer, le CISO, le head of AI product ou le head of platform d'un côté, la personne qui plombe Knowledge dans l'appelant de l'autre. Une réunion de travail par semaine pendant huit semaines |
 | **Feedback honnête** | Vous nous dites ce qui casse, ce qui est confus, ce qui manque. Nous shippons des fixes chaque semaine pendant l'engagement |
 | **Un engagement de huit semaines** | Assez long pour que les métriques s'accumulent de manière significative. Sortie propre à la fin si nous n'avons pas atteint les critères convenus d'entrée |
 | **Optionnel mais apprécié** | Volonté d'être cité ou référencé une fois les critères de succès atteints |
@@ -63,12 +63,13 @@ Avant la semaine 1, nous convenons des chiffres qui justifieraient la conversion
 | **Délai pour livrer une règle** | Entre « compliance demande une nouvelle règle » et « règle live dans Knowledge », comparé au même délai dans votre système existant |
 | **Efficacité de collecte** | Champs demandés, requêtes de suivi et taux de complétion sur la résolution progressive de Knowledge, comparés au parcours d'onboarding ou d'intake actuel |
 | **Temps de reconstruction d'audit** | Temps pour retrouver le contexte, les règles applicables et l'état de la policy derrière une décision historique, comparé à votre processus actuel |
+| **Coverage d'enforcement** | Pour les engagements où un Policy Enforcement Point est déployé (décorateur SDK, proxy MCP, wrapper custom) : part des actions automatisées qui exigent un verdict signé valide avant de s'exécuter |
 
 ## Pourquoi trois seulement
 
 Ce sont des engagements hands-on avec implication directe des fondateurs et de l'équipe produit. Nous limitons la première cohorte à trois firmes pour que chaque partenaire puisse influencer matériellement ce qui est productisé, et pour que nous puissions shipper des fixes hebdomadaires qui répondent à ce que les engagements révèlent.
 
-Le fit est déterminé par la décision et le problème, pas par le label sectoriel. Les patterns de solutions actuels sont **Revues & approbations**, **Demandez moins** et **décisions IA gouvernées**. Les packs industry actuels sont **Wealth** (distribution de produits structurés) et **KYC / KYB**. Un fit fort sur n'importe quelle décision compliance-heavy est ce que nous cherchons, qu'il colle à un pattern existant ou à un nouveau.
+Le fit est déterminé par la décision et le problème, pas par le label sectoriel. Les patterns de solutions actuels sont **Revues & approbations**, **Demandez moins**, **décisions IA gouvernées**, et **enforcement cryptographique à la frontière du tool**. Les packs industry actuels sont **Wealth** (distribution de produits structurés) et **KYC / KYB**. Un fit fort est n'importe quelle décision où la rigueur compliance, l'enforcement d'agent ou l'autorisation auditable comptent, qu'elle colle à un pattern existant ou à un nouveau.
 
 [[cta]Discuter d'un partenariat design](mailto:contact@asplenz.com)
 
