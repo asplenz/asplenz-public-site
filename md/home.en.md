@@ -51,12 +51,14 @@ transition:
 change:
   kicker: What Knowledge changes
   title: One governed policy layer. Many callers.
-  sub: Your applications, workflows and AI agents send a context. Knowledge returns a deterministic verdict with the rules that determined it and a replayable audit trail.
+  sub: Your applications, workflows and AI agents send a context. Knowledge returns a deterministic verdict, cryptographically signed, with the rules that determined it and a replayable audit trail.
   cards:
     - title: One layer, many callers
       desc: Web forms, mobile apps, back-office systems, workflows and AI agents can all consult the same governed policy layer. Policy logic no longer has to be reimplemented by every caller.
     - title: Deterministic verdicts
       desc: Same context, same policy state, same decision. Each verdict identifies the rules that determined it. No LLM variance at the decision boundary.
+    - title: Cryptographic enforcement
+      desc: Every verdict is a signed authorization artifact a downstream enforcement boundary can verify before the underlying action runs. Governance becomes a property of the tool, not an instruction to the agent.
     - title: Replayable audit
       desc: Each consultation records the normative policy state behind the decision, so historical decisions can be traced back to the rules and policy state that produced them.
     - title: Progressive context
@@ -74,7 +76,7 @@ stack:
       desc: Feed existing decisions and context into Knowledge to apply additional governed policy without replacing the underlying engine.
     - question: Need to enforce a new control?
       mode: Gate
-      desc: Put Knowledge before execution for a selected decision or policy. Knowledge returns the governed verdict ; your existing system decides whether the action proceeds, stops or requires approval.
+      desc: Put Knowledge before execution for a selected decision or policy. Knowledge returns a signed verdict ; a small Policy Enforcement Point verifies the signature and bindings before the action proceeds, stops or requires approval.
     - question: Want to validate first?
       mode: Shadow
       desc: Knowledge evaluates the same cases in parallel without controlling the production decision. Compare outcomes before giving it authority.

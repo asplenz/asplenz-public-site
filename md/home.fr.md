@@ -51,12 +51,14 @@ transition:
 change:
   kicker: Ce que Knowledge change
   title: Une couche de policy gouvernée. Plusieurs appelants.
-  sub: Vos applications, workflows et agents IA envoient un contexte. Knowledge retourne un verdict déterministe avec les règles qui l'ont déterminé et une trace d'audit rejouable.
+  sub: Vos applications, workflows et agents IA envoient un contexte. Knowledge retourne un verdict déterministe, cryptographiquement signé, avec les règles qui l'ont déterminé et une trace d'audit rejouable.
   cards:
     - title: Une couche, plusieurs appelants
       desc: Formulaires web, apps mobiles, systèmes back-office, workflows et agents IA peuvent tous consulter la même couche de policy gouvernée. La logique de policy n'a plus à être réimplémentée par chaque appelant.
     - title: Verdicts déterministes
       desc: Même contexte, même état de policy, même décision. Chaque verdict identifie les règles qui l'ont déterminé. Aucune variance LLM à la frontière de décision.
+    - title: Enforcement cryptographique
+      desc: Chaque verdict est un artefact d'autorisation signé qu'une frontière d'enforcement en aval peut vérifier avant que l'action sous-jacente ne s'exécute. La gouvernance devient une propriété du tool, pas une instruction à l'agent.
     - title: Audit rejouable
       desc: Chaque consultation enregistre l'état normatif de la policy derrière la décision, pour que les décisions historiques puissent être tracées jusqu'aux règles et à l'état de policy qui les ont produites.
     - title: Contexte progressif
@@ -74,7 +76,7 @@ stack:
       desc: Alimentez Knowledge avec les décisions et le contexte existants pour appliquer une policy gouvernée additionnelle, sans remplacer le moteur sous-jacent.
     - question: Besoin de mettre en place un nouveau contrôle ?
       mode: Gate
-      desc: Placez Knowledge avant l'exécution pour une décision ou une policy sélectionnée. Knowledge retourne le verdict gouverné ; votre système existant décide si l'action se poursuit, s'arrête ou requiert une approbation.
+      desc: Placez Knowledge avant l'exécution pour une décision ou une policy sélectionnée. Knowledge retourne un verdict signé ; un petit Policy Enforcement Point vérifie la signature et les bindings avant que l'action ne se poursuive, s'arrête ou requiert une approbation.
     - question: Vous voulez valider d'abord ?
       mode: Shadow
       desc: Knowledge évalue les mêmes cas en parallèle sans contrôler la décision production. Comparez les résultats avant de lui donner l'autorité.
