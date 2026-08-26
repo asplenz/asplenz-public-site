@@ -59,7 +59,11 @@ export function loadPage(slug: string, locale: string): PageContent {
     ctaLabel: (data.ctaLabel as string) ?? null,
     ctaHref: (data.ctaHref as string) ?? null,
     contactEmail: (data.contactEmail as string) ?? null,
-    theme: (data.theme as string) ?? null,
+    // Default theme is "clean" site-wide (white bg + slate text + dark
+    // code blocks + syntax highlighting). A page opts out by setting an
+    // explicit theme value in its frontmatter (e.g. theme: warm falls
+    // through to the :root palette).
+    theme: (data.theme as string) ?? 'clean',
     body: parsed.content,
   };
 }

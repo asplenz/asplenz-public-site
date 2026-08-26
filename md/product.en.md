@@ -44,17 +44,21 @@ Four capabilities materialize the loop. Each one has its own page ; this section
 
 ## What Knowledge is not
 
-- **Not an agent framework.** Bring your own : LangGraph, MCP client, custom Python orchestrator. Knowledge is the policy authority those agents consult.
-- **Not a policy digitization tool.** Your SMEs and implementation team formalize the rules. Knowledge accepts them as CSV, Excel, DMN, or API input.
-- **Not a replacement for industrialized rules engines.** If FICO or an existing platform already runs your credit decisions or fraud scoring, Knowledge does not touch that. It targets the long tail of regulated decisions still made by humans with procedures + spreadsheets.
+| Not this | What that means concretely |
+|---|---|
+| **Not an agent framework** | Bring your own : LangGraph, MCP client, custom Python orchestrator. Knowledge is the policy authority those agents consult. |
+| **Not a policy digitization tool** | Your SMEs and implementation team formalize the rules. Knowledge accepts them as CSV, Excel, DMN, or API input. |
+| **Not a replacement for industrialized rules engines** | If FICO or an existing platform already runs your credit decisions or fraud scoring, Knowledge does not touch that. It targets the long tail of regulated decisions still made by humans with procedures + spreadsheets. |
 
 ## Bringing Knowledge into your stack
 
-Three natural entry points depending on who is doing the work :
+Three natural entry points depending on who is doing the work.
 
-- **You build agents for enterprise clients** - see [Build rule-governed agents](/solutions/build-rule-governed-agents) for the integrator angle : what you stop reinventing per engagement, the argument you add to your own pitch, the platform effect across your book of business.
-- **You are the enterprise team deploying an agent** - see [Design partner](/pilot) for the co-delivery engagement : one production-relevant decision, run in shadow mode against your existing process, converted to a founding-customer contract if the numbers land.
-- **You want the technical surface** - see [Docs](/docs) : quickstarts, API reference, MCP proxy setup, security and compliance deep dives.
+| If you are | Start here |
+|---|---|
+| **Building agents for enterprise clients** | [Build rule-governed agents](/solutions/build-rule-governed-agents) - the integrator angle : what you stop reinventing per engagement, the argument you add to your own pitch, the platform effect across your book of business. |
+| **The enterprise team deploying an agent** | [Design partner](/pilot) - co-delivery engagement : one production-relevant decision, run in shadow mode against your existing process, converted to a founding-customer contract if the numbers land. |
+| **Looking for the technical surface** | [Docs](/docs) - quickstarts, API reference, MCP proxy setup, security and compliance deep dives. |
 
 ## Related
 

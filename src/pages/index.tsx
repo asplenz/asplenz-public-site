@@ -12,8 +12,13 @@ interface Props {
 // the composition stays entirely authored in md.
 export default function Home({ page }: Props) {
   return (
-    <Layout title={page.title} description={page.description} fullBleedMain>
-      <MarkdownPage body={page.body} />
+    <Layout
+      title={page.title}
+      description={page.description}
+      fullBleedMain
+      theme={page.theme}
+    >
+      <MarkdownPage body={page.body} theme={page.theme} />
     </Layout>
   );
 }

@@ -44,17 +44,21 @@ Quatre capabilities matérialisent la boucle. Chacune a sa propre page ; cette s
 
 ## Ce que Knowledge n'est pas
 
-- **Pas un framework d'agent.** Amenez le vôtre : LangGraph, client MCP, orchestrator Python custom. Knowledge est la policy authority que ces agents consultent.
-- **Pas un outil de policy digitization.** Vos SMEs et équipe d'implémentation formalisent les règles. Knowledge les accepte en CSV, Excel, DMN, ou input API.
-- **Pas un remplaçant pour les rules engines industrialisés.** Si FICO ou une plateforme existante fait déjà tourner vos décisions credit ou fraud scoring, Knowledge n'y touche pas. Il cible la long tail de décisions régulées encore prises par des humains avec procédures + spreadsheets.
+| Pas ça | Ce que ça veut dire concrètement |
+|---|---|
+| **Pas un framework d'agent** | Amenez le vôtre : LangGraph, client MCP, orchestrator Python custom. Knowledge est la policy authority que ces agents consultent. |
+| **Pas un outil de policy digitization** | Vos SMEs et équipe d'implémentation formalisent les règles. Knowledge les accepte en CSV, Excel, DMN, ou input API. |
+| **Pas un remplaçant pour les rules engines industrialisés** | Si FICO ou une plateforme existante fait déjà tourner vos décisions credit ou fraud scoring, Knowledge n'y touche pas. Il cible la long tail de décisions régulées encore prises par des humains avec procédures + spreadsheets. |
 
 ## Amener Knowledge dans votre stack
 
-Trois points d'entrée naturels selon qui fait le travail :
+Trois points d'entrée naturels selon qui fait le travail.
 
-- **Vous construisez des agents pour des clients enterprise** - voir [Construire des agents rule-governed](/solutions/build-rule-governed-agents) pour l'angle intégrateur : ce que vous arrêtez de réinventer à chaque engagement, l'argument que vous ajoutez à votre propre pitch, l'effet plateforme à travers votre book of business.
-- **Vous êtes l'équipe enterprise déployant un agent** - voir [Design partner](/pilot) pour l'engagement co-delivery : une décision production, faite tourner en shadow mode contre votre process existant, convertie en contrat founding-customer si les chiffres tombent.
-- **Vous voulez la surface technique** - voir [Docs](/docs) : quickstarts, référence API, setup proxy MCP, deep dives security et compliance.
+| Si vous êtes | Commencer ici |
+|---|---|
+| **En train de construire des agents pour des clients enterprise** | [Construire des agents rule-governed](/solutions/build-rule-governed-agents) - l'angle intégrateur : ce que vous arrêtez de réinventer à chaque engagement, l'argument que vous ajoutez à votre propre pitch, l'effet plateforme à travers votre book of business. |
+| **L'équipe enterprise déployant un agent** | [Design partner](/pilot) - engagement co-delivery : une décision production, faite tourner en shadow mode contre votre process existant, convertie en contrat founding-customer si les chiffres tombent. |
+| **À la recherche de la surface technique** | [Docs](/docs) - quickstarts, référence API, setup proxy MCP, deep dives security et compliance. |
 
 ## Related
 
