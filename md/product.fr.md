@@ -52,7 +52,7 @@ Quatre capabilities matérialisent la boucle. Chacune a sa propre page ; cette s
 | **Votre processus de formalisation de policy** | Les experts métier et équipes d'implémentation peuvent amener les règles formalisées dans Knowledge via CSV, Excel, DMN ou API, puis les gouverner, tester et faire évoluer indépendamment de l'agent. |
 | **Vos systèmes de décision existants** | Gardez FICO, les rules engines existants et les plateformes spécialisées là où ils marchent déjà. Knowledge vous donne un chemin pour les décisions rule-governed encore gérées à travers procédures, spreadsheets et expertise humaine. |
 
-## Amener Knowledge dans votre stack
+## Choisissez votre point d'entrée
 
 Trois points d'entrée naturels selon qui fait le travail.
 

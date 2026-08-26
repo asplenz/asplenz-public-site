@@ -52,7 +52,7 @@ Four capabilities materialize the loop. Each one has its own page ; this section
 | **Your policy formalization process** | Domain experts and implementation teams can bring formalized rules into Knowledge through CSV, Excel, DMN or API, then govern, test and evolve them independently of the agent. |
 | **Your existing decision systems** | Keep FICO, existing rules engines and specialized platforms where they already work. Knowledge gives you a path for rule-governed decisions that are still handled through procedures, spreadsheets and human expertise. |
 
-## Bringing Knowledge into your stack
+## Choose your entry point
 
 Three natural entry points depending on who is doing the work.
 
