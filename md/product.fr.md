@@ -52,16 +52,14 @@ Quatre capabilities matérialisent la boucle. Chacune a sa propre page ; cette s
 | **Votre processus de formalisation de policy** | Les experts métier et équipes d'implémentation peuvent amener les règles formalisées dans Knowledge via CSV, Excel, DMN ou API, puis les gouverner, tester et faire évoluer indépendamment de l'agent. |
 | **Vos systèmes de décision existants** | Gardez FICO, les rules engines existants et les plateformes spécialisées là où ils marchent déjà. Knowledge vous donne un chemin pour les décisions rule-governed encore gérées à travers procédures, spreadsheets et expertise humaine. |
 
-## Choisissez votre point d'entrée
+## Explorer Knowledge
 
-Quatre points d'entrée naturels selon qui fait le travail.
-
-| Si vous êtes | Commencer ici |
+| | |
 |---|---|
-| **En train de construire des agents pour des clients enterprise** | [Construire des agents rule-governed](/solutions/build-rule-governed-agents) - l'angle intégrateur : ce que vous arrêtez de réinventer à chaque engagement, l'argument que vous ajoutez à votre propre pitch, l'effet plateforme à travers votre book of business. |
-| **En train de construire votre propre produit IA avec décisions gouvernées** | [Pour équipes produit IA](/solutions/by-role/ai-product-teams) - comment Knowledge s'insère dans votre architecture, que vous soyez une équipe de deux qui ship son premier agent ou une AI factory interne qui scale à travers plusieurs produits. |
-| **L'équipe enterprise prête pour un engagement design-partner** | [Design partner](/pilot) - engagement co-delivery : une décision production, faite tourner en shadow mode contre votre process existant, convertie en contrat founding-customer si les chiffres tombent. |
-| **À la recherche de la surface technique** | [Docs](/docs) - quickstarts, référence API, setup proxy MCP, deep dives security et compliance. |
+| **[Construire des agents rule-governed](/solutions/build-rule-governed-agents)** | Voyez comment Knowledge s'insère dans une architecture d'agent et donne aux équipes d'implémentation un endroit gouverné pour les règles métier dont leurs agents dépendent. |
+| **[Appliquer Knowledge à votre organisation](/solutions)** | Explorez comment Knowledge peut supporter les décisions policy-driven à travers différents rôles, processes et industries régulées. |
+| **[Rejoindre notre Founding Design Partner Program](/pilot)** | Travaillez avec nous sur une décision production, en démarrant en shadow mode avec des critères de succès mesurables et un accès direct à l'équipe produit. |
+| **[Documentation développeur](/docs)** | Explorez quickstarts, APIs, SDKs, intégration MCP, security, deployment et référence technique. |
 
 ## Related
 

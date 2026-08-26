@@ -52,16 +52,14 @@ Four capabilities materialize the loop. Each one has its own page ; this section
 | **Your policy formalization process** | Domain experts and implementation teams can bring formalized rules into Knowledge through CSV, Excel, DMN or API, then govern, test and evolve them independently of the agent. |
 | **Your existing decision systems** | Keep FICO, existing rules engines and specialized platforms where they already work. Knowledge gives you a path for rule-governed decisions that are still handled through procedures, spreadsheets and human expertise. |
 
-## Choose your entry point
+## Explore Knowledge
 
-Four natural entry points depending on who is doing the work.
-
-| If you are | Start here |
+| | |
 |---|---|
-| **Building agents for enterprise clients** | [Build rule-governed agents](/solutions/build-rule-governed-agents) - the integrator angle : what you stop reinventing per engagement, the argument you add to your own pitch, the platform effect across your book of business. |
-| **Building your own AI product with governed decisions** | [For AI product teams](/solutions/by-role/ai-product-teams) - how Knowledge fits your architecture, whether you are a two-person team shipping your first agent or an internal AI factory scaling across products. |
-| **The enterprise team ready for a design-partner engagement** | [Design partner](/pilot) - co-delivery engagement : one production-relevant decision, run in shadow mode against your existing process, converted to a founding-customer contract if the numbers land. |
-| **Looking for the technical surface** | [Docs](/docs) - quickstarts, API reference, MCP proxy setup, security and compliance deep dives. |
+| **[Build rule-governed agents](/solutions/build-rule-governed-agents)** | See how Knowledge fits into an agent architecture and gives implementation teams a governed place for the business rules their agents rely on. |
+| **[Apply Knowledge to your organization](/solutions)** | Explore how Knowledge can support policy-driven decisions across different roles, processes and regulated industries. |
+| **[Join our Founding Design Partner Program](/pilot)** | Work with us on one production-relevant decision, starting in shadow mode with measurable success criteria and direct access to the product team. |
+| **[Developer documentation](/docs)** | Explore quickstarts, APIs, SDKs, MCP integration, security, deployment and technical reference. |
 
 ## Related
 
