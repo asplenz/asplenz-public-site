@@ -15,53 +15,52 @@ Everything you need to consult Knowledge from your stack, wrap a business tool w
 
 ## Concepts
 
-Deeper explanations of the core abstractions. **Coming soon** - for now, see the specs in the monorepo at `docs/specs/` :
+Deeper explanations of the core abstractions.
 
-- Policies, rules and targets - `docs/specs/knowledge-impl-spec-v5.md`
-- Verdicts and decisions - `docs/specs/knowledge-impl-spec-v5.md` §7
-- Progressive context resolution - `docs/specs/knowledge-resolve-spec-v1.md`
-- Signed verdicts and PEP - `docs/specs/signed-verdict-v1.md`
-- Overrides, approvals, pauses - `docs/specs/action-override-feature.md`
-- Four-actor trust model - `docs/specs/signed-verdict-v1.md` §17
+- **[Policies, rules and targets](/docs/concepts/policies-rules-targets)** [Stable] - the three core aggregates.
+- **[Verdicts and decisions](/docs/concepts/verdicts-and-decisions)** [Stable] - severity ladder, precedence, Consultation record.
+- **[Signed verdicts and PEP](/docs/concepts/signed-verdicts-and-pep)** [Stable] - the JWS envelope, binding checks, spent-verdicts.
+- **[Progressive context resolution](/docs/concepts/progressive-context-resolution)** [Stable] - the `/resolve` loop and dependency inversion.
+- **[Overrides, approvals, pauses](/docs/concepts/overrides-approvals-pauses)** [Stable] - the three governed exception mechanisms.
+- **[Four-actor trust model](/docs/concepts/four-actor-trust-model)** [Stable] - who signs, who verifies, what each edge guarantees.
 
 ## API reference
 
-**Coming soon** - see the OpenAPI spec at `docs/api/openapi-v3.json` for the full endpoint list. Postman collection : `docs/api/postman/knowledge-v3.postman_collection.json`.
+- **[Authentication](/docs/api-reference/authentication)** [Stable] - API keys, session cookies, principal binding.
+- **[POST /v1/check](/docs/api-reference/check)** [Stable] - deterministic verdict, strict context.
+- **[POST /v1/resolve](/docs/api-reference/resolve)** [Stable] - progressive verdict, tolerant context.
+- **[GET /v1/tenants/{slug}/jwks](/docs/api-reference/jwks)** [Stable] - JWKS for signature verification.
+- **[GET /v1/consultations/{id}](/docs/api-reference/consultations)** [Stable] - retrieve a Consultation record.
+- **[/v1/approvals](/docs/api-reference/approvals)** [Stable] - create, poll, decide.
 
-Key endpoints :
-- `POST /knowledge/v1/check` - deterministic verdict, strict context
-- `POST /knowledge/v1/resolve` - progressive verdict, tolerant context
-- `GET /knowledge/v1/tenants/{slug}/jwks` - JWKS for signature verification
-- `GET /knowledge/v1/consultations/{id}` - retrieve a Consultation record
-- `POST /knowledge/v1/namespaces/{ns}/approvals` - create an approval request
+Full OpenAPI spec at `docs/api/openapi-v3.json` in the monorepo. Postman collection : `docs/api/postman/knowledge-v3.postman_collection.json`.
 
 ## SDK reference
 
-- `knowledge-runtime` (Python) [Stable] - `@governed_tool` decorator, `verify_verdict` primitive, JWKS cache, guard-rails. Detailed reference in `src/knowledge-runtime/README.md`.
-- TypeScript SDK [Roadmap Q4-2026] - feature parity with Python.
+- **[knowledge-runtime (Python)](/docs/sdk-reference/knowledge-runtime-python)** [Stable] - `@governed_tool`, `verify_verdict`, JWKS cache, guard-rails.
+- **[TypeScript SDK](/docs/sdk-reference/typescript-roadmap)** [Roadmap] - feature parity with Python planned for Q4-2026.
 
 ## MCP proxy
 
-- Setup + config - see `docs/engineering/mcp-proxy-guide.html`
-- Deployment modes (direct, upstream proxy)
-- Wiring with Claude Desktop / Cursor
+- **[Setup](/docs/mcp-proxy/setup)** [Stable] - insert the proxy in front of any MCP server.
+- **[Config reference](/docs/mcp-proxy/config-reference)** [Stable] - every knob in proxy.yaml.
+- **[Deployment modes](/docs/mcp-proxy/deployment-modes)** [Stable] - stdio, sidecar, shared.
 
 ## Guides
 
-**Coming soon** :
-- Rotate signing keys
-- Multi-tenant setup
-- Bring your own tools to MCP proxy
-- Migrate from advisory mode to enforcement
-- Emergency response (rule kill switch)
+- **[Rotate signing keys](/docs/guides/rotate-signing-keys)** [Stable] - scheduled + emergency rotation.
+- **[Multi-tenant setup](/docs/guides/multi-tenant-setup)** [Stable] - run multiple tenants on one deployment.
+- **[Bring your own tools to MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy)** [Stable] - fetcher registry + policy mapping.
+- **[Migrate from advisory to enforcement](/docs/guides/migrate-from-advisory-to-enforcement)** [Stable] - the three-stage playbook.
+- **[Emergency response](/docs/guides/emergency-response)** [Stable] - kill switch, key rotation, downgrade.
 
 ## Security + compliance
 
-- Trust model deep dive - `docs/specs/signed-verdict-v1.md` §17
-- Keys inventory - `docs/engineering/keys-guide.md`
-- Deployment shapes (SaaS, VPC, on-prem)
-- Compliance posture - honest current state at [/security](/security)
+- **[Trust model deep dive](/docs/security-compliance/trust-model)** [Stable] - four-actor chain, edge-by-edge threats.
+- **[Keys inventory](/docs/security-compliance/keys-inventory)** [Stable] - all four cryptographic keys, storage, rotation.
+- **[Deployment shapes](/docs/security-compliance/deployment-shapes)** [Stable] - SaaS, VPC, on-prem trade-offs.
+- **[Compliance posture](/docs/security-compliance/compliance-posture)** [Stable] - certifications, residency, retention, threat model.
 
 ---
 
-*The full docs surface is coming online through Q4-2026. Everything referenced above ships today either as a running artefact or as a spec in the repo. Send feedback to [contact@asplenz.com](mailto:contact@asplenz.com).*
+*Send feedback to [contact@asplenz.com](mailto:contact@asplenz.com).*

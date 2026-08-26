@@ -15,53 +15,52 @@ Tout ce dont vous avez besoin pour consulter Knowledge depuis votre stack, wrapp
 
 ## Concepts
 
-Explications approfondies des abstractions core. **Bientôt** - pour l'instant, voir les specs dans le monorepo à `docs/specs/` :
+Explications approfondies des abstractions core.
 
-- Policies, rules et targets - `docs/specs/knowledge-impl-spec-v5.md`
-- Verdicts et décisions - `docs/specs/knowledge-impl-spec-v5.md` §7
-- Résolution progressive de contexte - `docs/specs/knowledge-resolve-spec-v1.md`
-- Verdicts signés et PEP - `docs/specs/signed-verdict-v1.md`
-- Overrides, approbations, pauses - `docs/specs/action-override-feature.md`
-- Modèle de confiance à quatre acteurs - `docs/specs/signed-verdict-v1.md` §17
+- **[Policies, rules et targets](/docs/concepts/policies-rules-targets)** [Stable] - les trois aggregates core.
+- **[Verdicts et decisions](/docs/concepts/verdicts-and-decisions)** [Stable] - échelle de severity, précédence, record Consultation.
+- **[Signed verdicts et PEP](/docs/concepts/signed-verdicts-and-pep)** [Stable] - l'enveloppe JWS, checks de binding, spent-verdicts.
+- **[Résolution progressive de contexte](/docs/concepts/progressive-context-resolution)** [Stable] - la boucle `/resolve` et l'inversion de dépendance.
+- **[Overrides, approbations, pauses](/docs/concepts/overrides-approvals-pauses)** [Stable] - les trois mécanismes d'exception gouvernés.
+- **[Modèle de confiance à quatre acteurs](/docs/concepts/four-actor-trust-model)** [Stable] - qui signe, qui vérifie, ce que chaque arête garantit.
 
 ## Référence API
 
-**Bientôt** - voir la spec OpenAPI à `docs/api/openapi-v3.json` pour la liste complète d'endpoints. Collection Postman : `docs/api/postman/knowledge-v3.postman_collection.json`.
+- **[Authentication](/docs/api-reference/authentication)** [Stable] - clés API, cookies de session, binding de principal.
+- **[POST /v1/check](/docs/api-reference/check)** [Stable] - verdict déterministe, contexte strict.
+- **[POST /v1/resolve](/docs/api-reference/resolve)** [Stable] - verdict progressif, contexte tolérant.
+- **[GET /v1/tenants/{slug}/jwks](/docs/api-reference/jwks)** [Stable] - JWKS pour vérification de signature.
+- **[GET /v1/consultations/{id}](/docs/api-reference/consultations)** [Stable] - récupérer un record de Consultation.
+- **[/v1/approvals](/docs/api-reference/approvals)** [Stable] - créer, poll, décider.
 
-Endpoints clés :
-- `POST /knowledge/v1/check` - verdict déterministe, contexte strict
-- `POST /knowledge/v1/resolve` - verdict progressif, contexte tolérant
-- `GET /knowledge/v1/tenants/{slug}/jwks` - JWKS pour vérification de signature
-- `GET /knowledge/v1/consultations/{id}` - récupérer un record de Consultation
-- `POST /knowledge/v1/namespaces/{ns}/approvals` - créer une demande d'approbation
+Spec OpenAPI complète à `docs/api/openapi-v3.json` dans le monorepo. Collection Postman : `docs/api/postman/knowledge-v3.postman_collection.json`.
 
 ## Référence SDK
 
-- `knowledge-runtime` (Python) [Stable] - décorateur `@governed_tool`, primitive `verify_verdict`, cache JWKS, guard-rails. Référence détaillée dans `src/knowledge-runtime/README.md`.
-- SDK TypeScript [Roadmap Q4-2026] - parité feature avec Python.
+- **[knowledge-runtime (Python)](/docs/sdk-reference/knowledge-runtime-python)** [Stable] - `@governed_tool`, `verify_verdict`, cache JWKS, guard-rails.
+- **[SDK TypeScript](/docs/sdk-reference/typescript-roadmap)** [Roadmap] - parité feature avec Python planifiée pour Q4-2026.
 
 ## MCP proxy
 
-- Setup + config - voir `docs/engineering/mcp-proxy-guide.html`
-- Modes de déploiement (direct, proxy upstream)
-- Câblage avec Claude Desktop / Cursor
+- **[Setup](/docs/mcp-proxy/setup)** [Stable] - insérer le proxy devant n'importe quel serveur MCP.
+- **[Config reference](/docs/mcp-proxy/config-reference)** [Stable] - chaque knob dans proxy.yaml.
+- **[Deployment modes](/docs/mcp-proxy/deployment-modes)** [Stable] - stdio, sidecar, shared.
 
 ## Guides
 
-**Bientôt** :
-- Rotation des clés de signature
-- Setup multi-tenant
-- Bring your own tools au MCP proxy
-- Migrer du mode advisory à enforcement
-- Réponse d'urgence (kill switch de rule)
+- **[Rotate signing keys](/docs/guides/rotate-signing-keys)** [Stable] - rotation planifiée + urgence.
+- **[Multi-tenant setup](/docs/guides/multi-tenant-setup)** [Stable] - faire tourner plusieurs tenants sur un déploiement.
+- **[Bring your own tools au MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy)** [Stable] - fetcher registry + policy mapping.
+- **[Migrer d'advisory à enforcement](/docs/guides/migrate-from-advisory-to-enforcement)** [Stable] - le playbook en trois étapes.
+- **[Emergency response](/docs/guides/emergency-response)** [Stable] - kill switch, rotation de clé, downgrade.
 
-## Sécurité + compliance
+## Security + compliance
 
-- Modèle de confiance en profondeur - `docs/specs/signed-verdict-v1.md` §17
-- Inventaire des clés - `docs/engineering/keys-guide.md`
-- Formes de déploiement (SaaS, VPC, on-prem)
-- Posture compliance - état honnête courant à [/security](/security)
+- **[Trust model deep dive](/docs/security-compliance/trust-model)** [Stable] - chaîne à quatre acteurs, menaces edge-by-edge.
+- **[Keys inventory](/docs/security-compliance/keys-inventory)** [Stable] - les quatre clés cryptographiques, storage, rotation.
+- **[Deployment shapes](/docs/security-compliance/deployment-shapes)** [Stable] - trade-offs SaaS, VPC, on-prem.
+- **[Compliance posture](/docs/security-compliance/compliance-posture)** [Stable] - certifications, résidence, rétention, modèle de menace.
 
 ---
 
-*La surface docs complète arrive en ligne courant Q4-2026. Tout ce qui est référencé ci-dessus ship aujourd'hui soit comme un artefact qui tourne, soit comme une spec dans le repo. Feedback à [contact@asplenz.com](mailto:contact@asplenz.com).*
+*Feedback à [contact@asplenz.com](mailto:contact@asplenz.com).*
