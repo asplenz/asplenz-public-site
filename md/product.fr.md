@@ -42,13 +42,15 @@ Quatre capabilities matérialisent la boucle. Chacune a sa propre page ; cette s
 
 **Integrations** - les surfaces à travers lesquelles agents, tools et systèmes existants se connectent à Knowledge : proxy MCP, SDK Python (`knowledge-runtime`), API REST, endpoint JWKS par tenant, webhooks, SSO / SCIM. Voir [Integrations](/product/integrations).
 
-## Ce que Knowledge n'est pas
+## Où Knowledge s'insère
 
-| Pas ça | Ce que ça veut dire concrètement |
+**Knowledge ajoute une couche de policy gouvernée pour les décisions rule-driven que les agents IA doivent prendre.** Il fonctionne avec les frameworks d'agents, systèmes enterprise et infrastructure de décision que vous utilisez déjà.
+
+| Fonctionne avec | Comment Knowledge s'insère |
 |---|---|
-| **Pas un framework d'agent** | Amenez le vôtre : LangGraph, client MCP, orchestrator Python custom. Knowledge est la policy authority que ces agents consultent. |
-| **Pas un outil de policy digitization** | Vos SMEs et équipe d'implémentation formalisent les règles. Knowledge les accepte en CSV, Excel, DMN, ou input API. |
-| **Pas un remplaçant pour les rules engines industrialisés** | Si FICO ou une plateforme existante fait déjà tourner vos décisions credit ou fraud scoring, Knowledge n'y touche pas. Il cible la long tail de décisions régulées encore prises par des humains avec procédures + spreadsheets. |
+| **Votre agent stack** | Utilisez LangGraph, MCP, un orchestrator custom ou votre plateforme d'agent existante. Knowledge fournit la policy authority indépendante pour les décisions gouvernées par des règles métier. |
+| **Votre processus de formalisation de policy** | Les experts métier et équipes d'implémentation peuvent amener les règles formalisées dans Knowledge via CSV, Excel, DMN ou API, puis les gouverner, tester et faire évoluer indépendamment de l'agent. |
+| **Vos systèmes de décision existants** | Gardez FICO, les rules engines existants et les plateformes spécialisées là où ils marchent déjà. Knowledge vous donne un chemin pour les décisions rule-governed encore gérées à travers procédures, spreadsheets et expertise humaine. |
 
 ## Amener Knowledge dans votre stack
 

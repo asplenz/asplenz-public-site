@@ -42,13 +42,15 @@ Four capabilities materialize the loop. Each one has its own page ; this section
 
 **Integrations** - the surfaces through which agents, tools and existing systems connect to Knowledge : MCP proxy, Python SDK (`knowledge-runtime`), REST API, JWKS endpoint per tenant, webhooks, SSO / SCIM. See [Integrations](/product/integrations).
 
-## What Knowledge is not
+## Where Knowledge fits
 
-| Not this | What that means concretely |
+**Knowledge adds a governed policy layer for rule-driven decisions that AI agents need to make.** It works with the agent frameworks, enterprise systems and decision infrastructure you already use.
+
+| Works with | How Knowledge fits |
 |---|---|
-| **Not an agent framework** | Bring your own : LangGraph, MCP client, custom Python orchestrator. Knowledge is the policy authority those agents consult. |
-| **Not a policy digitization tool** | Your SMEs and implementation team formalize the rules. Knowledge accepts them as CSV, Excel, DMN, or API input. |
-| **Not a replacement for industrialized rules engines** | If FICO or an existing platform already runs your credit decisions or fraud scoring, Knowledge does not touch that. It targets the long tail of regulated decisions still made by humans with procedures + spreadsheets. |
+| **Your agent stack** | Use LangGraph, MCP, a custom orchestrator or your existing agent platform. Knowledge provides the independent policy authority for decisions governed by business rules. |
+| **Your policy formalization process** | Domain experts and implementation teams can bring formalized rules into Knowledge through CSV, Excel, DMN or API, then govern, test and evolve them independently of the agent. |
+| **Your existing decision systems** | Keep FICO, existing rules engines and specialized platforms where they already work. Knowledge gives you a path for rule-governed decisions that are still handled through procedures, spreadsheets and human expertise. |
 
 ## Bringing Knowledge into your stack
 
