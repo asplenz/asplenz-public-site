@@ -5,7 +5,11 @@ locale: en
 kicker: Product - Progressive context
 ---
 
-Two dependency-direction properties that shape how an agent works with Knowledge :
+Traditional decision systems require the calling application to know upfront what information a decision may require. Applications therefore tend to collect a predefined set of fields before submitting a case, even when only a subset is relevant to the decision at hand. As rules evolve, these data requirements can also change, creating dependencies between policy logic and the applications that consume it.
+
+Progressive Context removes that upfront requirement. A decision can start with the information already available and progressively request only the additional context needed for the specific case, until a decision can be reached.
+
+Two dependency-direction properties follow from this :
 
 **Direction 1 - the caller sends what it has, Knowledge tells it what is still needed.** Instead of the agent shipping the full context up-front (and failing when a field is missing or wrong), the agent iterates : `/resolve` returns `required_context` with schema + allowed_values + format for each missing field, the agent acquires it, re-consults, until the verdict is reached.
 
