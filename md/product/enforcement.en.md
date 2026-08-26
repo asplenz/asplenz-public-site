@@ -1,17 +1,54 @@
 ---
-title: Enforcement
-description: Turn each policy decision into a signed authorization the tool boundary can enforce. Governance becomes a property of the tool, not an instruction to the agent.
+title: When agents make business decisions, policy should remain the authority
+description: Knowledge lets AI agents investigate and gather context while deterministic rules make the policy determination. Signed authorization lets the tool boundary enforce exactly what that decision permits.
 locale: en
 kicker: Product - Enforcement
 ---
 
-An advisory verdict is documentation. An agent that consults Knowledge and receives `blocked` can still call the underlying API. This is the gap Knowledge closes.
+## When an AI agent makes the business decision
 
-Every response from `/check` and `/resolve` carries a **signed authorization envelope** (JWS ES256) that a downstream Policy Enforcement Point verifies before the underlying business action runs. The signature binds to the exact operation - action, actor, resource, parameters - so a verdict authorizing `refund_execute(TX-456, 40 EUR)` cannot be reused for a larger amount or a different transaction.
+Some agents do more than orchestrate workflows or call predefined business functions. They investigate a case, gather evidence, consult business rules, and decide what the organization should do.
+
+A claims agent may decide whether to approve a claim. A support agent may determine what compensation a customer is entitled to. A financial-services agent may decide whether a request can proceed autonomously or requires human approval.
+
+In these systems, the LLM can investigate and gather context. The organization may not want the model itself to be the final authority on policy.
+
+Knowledge separates the two.
+
+> **AI investigates. Knowledge makes the policy determination.**
+
+## Why a policy decision is not the same as enforcement
+
+Knowledge tells the agent what the policy says. But if the agent is responsible for respecting that decision, the control remains advisory.
+
+Consider a governed refund flow. Knowledge evaluates the case and returns ALLOWED for a small refund on TX-456, or BLOCKED for a larger one on TX-999. The agent, holding the decision, could still ignore or diverge from it :
+
+```
+Knowledge  :  refund TX-456 €40      ->   ALLOWED
+Agent      :  refund TX-456 €4,000
+
+Knowledge  :  refund TX-999          ->   BLOCKED
+Agent      :  calls refund API anyway
+```
+
+An advisory verdict is documentation. Enforcement makes the tool boundary itself refuse actions that were not authorized by the exact operation Knowledge saw.
+
+## What Enforcement changes
+
+Turn the policy determination into authorization the execution boundary can verify.
+
+```pipeline
+AI investigates | Gather facts, evidence, context
+Knowledge decides | Deterministic verdict with cited rules
+Signed authorization | Envelope binding the exact operation
+Tool boundary enforces | PEP verifies before execution
+```
+
+Every response from `/check` and `/resolve` carries a signed authorization envelope (JWS ES256). A downstream Policy Enforcement Point verifies the signature and the exact operation bindings (action, actor, resource, parameters) before running the underlying business API.
 
 > **An agent's intent is not authority. Governed actions require proof of policy authorization.**
 
-## The signed envelope
+## How signed authorization works
 
 Every decision carries three sections plus timing metadata :
 
@@ -89,6 +126,7 @@ M1 through M4bis complete. 121 tests. CI green. Available today in design-partne
 
 | Read next | Why |
 |---|---|
+| [Product](/product) | The decision loop for rule-governed AI agents |
 | [Auditability](/product/auditability) | The audit surface the signed envelope powers |
 | [Integrations](/product/integrations) | MCP + Python SDK + JWKS spec |
 | [Security](/security) | Trust model, keys inventory, rotation policy |
