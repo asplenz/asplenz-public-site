@@ -54,12 +54,13 @@ Four capabilities materialize the loop. Each one has its own page ; this section
 
 ## Choose your entry point
 
-Three natural entry points depending on who is doing the work.
+Four natural entry points depending on who is doing the work.
 
 | If you are | Start here |
 |---|---|
 | **Building agents for enterprise clients** | [Build rule-governed agents](/solutions/build-rule-governed-agents) - the integrator angle : what you stop reinventing per engagement, the argument you add to your own pitch, the platform effect across your book of business. |
-| **The enterprise team deploying an agent** | [Design partner](/pilot) - co-delivery engagement : one production-relevant decision, run in shadow mode against your existing process, converted to a founding-customer contract if the numbers land. |
+| **Building your own AI product with governed decisions** | [For AI product teams](/solutions/by-role/ai-product-teams) - how Knowledge fits your architecture, whether you are a two-person team shipping your first agent or an internal AI factory scaling across products. |
+| **The enterprise team ready for a design-partner engagement** | [Design partner](/pilot) - co-delivery engagement : one production-relevant decision, run in shadow mode against your existing process, converted to a founding-customer contract if the numbers land. |
 | **Looking for the technical surface** | [Docs](/docs) - quickstarts, API reference, MCP proxy setup, security and compliance deep dives. |
 
 ## Related

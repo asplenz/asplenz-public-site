@@ -54,12 +54,13 @@ Quatre capabilities matérialisent la boucle. Chacune a sa propre page ; cette s
 
 ## Choisissez votre point d'entrée
 
-Trois points d'entrée naturels selon qui fait le travail.
+Quatre points d'entrée naturels selon qui fait le travail.
 
 | Si vous êtes | Commencer ici |
 |---|---|
 | **En train de construire des agents pour des clients enterprise** | [Construire des agents rule-governed](/solutions/build-rule-governed-agents) - l'angle intégrateur : ce que vous arrêtez de réinventer à chaque engagement, l'argument que vous ajoutez à votre propre pitch, l'effet plateforme à travers votre book of business. |
-| **L'équipe enterprise déployant un agent** | [Design partner](/pilot) - engagement co-delivery : une décision production, faite tourner en shadow mode contre votre process existant, convertie en contrat founding-customer si les chiffres tombent. |
+| **En train de construire votre propre produit IA avec décisions gouvernées** | [Pour équipes produit IA](/solutions/by-role/ai-product-teams) - comment Knowledge s'insère dans votre architecture, que vous soyez une équipe de deux qui ship son premier agent ou une AI factory interne qui scale à travers plusieurs produits. |
+| **L'équipe enterprise prête pour un engagement design-partner** | [Design partner](/pilot) - engagement co-delivery : une décision production, faite tourner en shadow mode contre votre process existant, convertie en contrat founding-customer si les chiffres tombent. |
 | **À la recherche de la surface technique** | [Docs](/docs) - quickstarts, référence API, setup proxy MCP, deep dives security et compliance. |
 
 ## Related
