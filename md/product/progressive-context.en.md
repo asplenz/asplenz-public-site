@@ -28,7 +28,7 @@ POST /knowledge/v1/resolve
 }
 ```
 
-Response - INCOMPLETE :
+Response when more context is needed :
 
 ```
 {
@@ -44,7 +44,7 @@ Response - INCOMPLETE :
 }
 ```
 
-Response - COMPLETE (context sufficient) :
+Response when a verdict is reached :
 
 ```
 {
