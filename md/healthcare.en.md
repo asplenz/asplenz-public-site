@@ -1,6 +1,6 @@
 ---
-title: One governed policy layer for healthcare coverage, claims and approval decisions.
-description: Knowledge evaluates your organization's encoded healthcare policies, identifies the context still required to reach a decision, and returns a governed verdict — without replacing your claims platform, clinical systems or workflows.
+title: Healthcare - one governed policy layer for coverage, claims and approval decisions
+description: Knowledge evaluates your organization's encoded healthcare policies, identifies the context still required to reach a decision, and returns a signed governed verdict without replacing your claims platform, clinical systems or workflows.
 locale: en
 kicker: Knowledge for Healthcare
 ctaLabel: Become a design partner
@@ -13,7 +13,7 @@ Whether a payer or TPA is assessing coverage, processing a claim, handling an ap
 
 Those policies often need to be applied across multiple systems and decision points.
 
-Knowledge gives payers and TPAs a governed policy layer that their claims platforms, workflows, operational teams and AI systems can consult — without replacing the systems already handling the process.
+Knowledge gives payers and TPAs a governed policy layer that their claims platforms, workflows, operational teams and AI systems consult - without replacing the systems already handling the process - and returns a signed verdict the enforcement point can act on.
 
 ## What Knowledge does for healthcare
 
@@ -21,11 +21,13 @@ Knowledge gives payers and TPAs a governed policy layer that their claims platfo
 
 **Resolves policy-driven cases deterministically.** Knowledge evaluates the context against the policies your organization has encoded and returns a governed verdict with the rules that determined it.
 
-**Identifies what is still needed to decide.** When the available context is not sufficient, Knowledge returns `required_context` identifying the specific information the applicable policies still require.
+**Signs every verdict.** Every `/check` or `/resolve` returns a JWS ES256 envelope binding the exact `{actor, action, resource, parameters}` that were authorized. A downstream Policy Enforcement Point (a claims-processing gate, a preauthorization API wrapper, an MCP proxy in front of an ops copilot) verifies the signature and refuses on binding mismatch. See [Enforcement](/product/enforcement).
+
+**Identifies what is still needed to decide.** When the available context is not sufficient, Knowledge returns `required_context` identifying the specific information the applicable policies still require. See [Progressive context](/product/progressive-context).
 
 **Separates deterministic cases from cases requiring judgment.** Encoded policies can determine when a case can be resolved from the available facts and when it must be escalated for human review.
 
-**Makes decisions traceable.** Each consultation records the policy state and rules behind the verdict, allowing historical decisions to be reconstructed later.
+**Makes decisions traceable.** Each consultation records the policy state and rules behind the verdict, allowing historical decisions to be reconstructed later. See [Auditability](/product/auditability).
 
 ## The policy patterns Knowledge can represent
 
@@ -57,17 +59,13 @@ A claims platform, approval workflow, operational application or AI agent can as
 
 Knowledge determines what the encoded policy says.
 
-Your claims platform, workflow, agent or reviewer determines what happens next.
+Your claims platform, workflow, agent or reviewer determines what happens next - and the signed envelope authorizes the resulting operational call at the tool boundary.
 
 ## The caller doesn't need to know the whole decision tree
 
-In many decision systems, the caller needs to know upfront which information a particular decision path requires.
+In many decision systems, the caller needs to know upfront which information a particular decision path requires. That creates coupling between the policy and the systems collecting the information.
 
-That creates coupling between the policy and the systems collecting the information.
-
-Knowledge removes that dependency.
-
-The caller provides the context it already has. Knowledge determines whether the applicable policies can resolve the decision and, if not, which additional context is required.
+Knowledge removes that dependency. The caller provides the context it already has ; Knowledge determines whether the applicable policies can resolve the decision and, if not, which additional context is required.
 
 For example, a healthcare claim or approval request might initially contain :
 
@@ -95,9 +93,7 @@ Knowledge responds :
 }
 ```
 
-The existing system decides how to obtain that information — from another system, from the provider, from the member, or through an AI agent.
-
-It then calls Knowledge again with the enriched context.
+The existing system decides how to obtain that information - from another system, from the provider, from the member, or through an AI agent. It then calls Knowledge again with the enriched context.
 
 ```
 {
@@ -107,15 +103,14 @@ It then calls Knowledge again with the enriched context.
     "applicable-benefit-rule",
     "human-review-rule"
   ],
+  "signed_verdict": "eyJhbGciOiJFUzI1NiIsInR5cCI6ImdvdmVybmVkK2p3cyIsImtpZCI6...",
   "consultation_id": "cns-..."
 }
 ```
 
-The existing workflow can now route the case to the appropriate reviewer with the policy-relevant context already assembled.
+The existing workflow can now route the case to the appropriate reviewer with the policy-relevant context already assembled, and the signed envelope proves later that the routing was authorized by the exact rules in force at that moment.
 
-Knowledge did not collect the information, orchestrate the workflow or make the operational action.
-
-It determined what the encoded policy required and returned the corresponding verdict.
+Knowledge did not collect the information, orchestrate the workflow or make the operational action. It determined what the encoded policy required and returned the corresponding verdict.
 
 ## Reduce unnecessary review without removing human judgment
 
@@ -123,12 +118,9 @@ Not every healthcare decision should be automated.
 
 The objective is to distinguish cases that can be resolved from explicit policy from those that genuinely require human judgment. For each incoming case, Knowledge produces one of three outcomes :
 
-```outcomes
-source: Knowledge evaluates the case
-outcome: incomplete + required_context | The applicable policies still need specific information. The existing system obtains it (from a source system, a provider, an AI agent or the member) and re-calls Knowledge
-outcome: complete + deterministic verdict | The encoded policies resolve the case without human review. The existing workflow acts on the verdict
-outcome: complete + approval_required | The encoded policies explicitly route the case to human review. The workflow escalates with the policy-relevant context already assembled
-```
+- **incomplete + required_context.** The applicable policies still need specific information. The existing system obtains it (from a source system, a provider, an AI agent or the member) and re-calls Knowledge.
+- **complete + deterministic verdict.** The encoded policies resolve the case without human review. The existing workflow acts on the verdict ; the signed envelope authorizes the downstream call.
+- **complete + approval_required.** The encoded policies explicitly route the case to human review. The workflow escalates with the policy-relevant context already assembled.
 
 This can reduce unnecessary review workload while allowing the organization to explicitly govern which cases must remain with human reviewers.
 
@@ -136,9 +128,7 @@ For TPAs operating across multiple payers and plans, the same model can also kee
 
 ## Designed for existing healthcare stacks
 
-Knowledge is not a claims platform, clinical system or workflow engine.
-
-It sits alongside them.
+Knowledge is not a claims platform, clinical system or workflow engine. It sits alongside them.
 
 | Existing component | How Knowledge fits |
 |---|---|
@@ -148,8 +138,6 @@ It sits alongside them.
 | **Clinical systems** | Remain the source of clinical information ; Knowledge can consume relevant structured context when an encoded policy requires it |
 | **AI agents** | Can gather context and orchestrate work while consulting Knowledge for deterministic policy verdicts |
 | **Legacy decision logic** | Can coexist with Knowledge through overlay, gate, shadow or selective-routing adoption patterns |
-
-[Read how Knowledge fits your stack](/stack)
 
 ## Five ways to introduce Knowledge
 
@@ -165,7 +153,7 @@ This allows an organization to start with one decision rather than replacing its
 
 ## What Asplenz provides, what your organization owns
 
-Asplenz provides the policy infrastructure : the decision model, versioning, deterministic evaluation, progressive context resolution and audit surface.
+Asplenz provides the policy infrastructure : the decision model, versioning, deterministic evaluation, progressive context resolution, signed verdicts and audit surface.
 
 Your organization owns the policies encoded in it and determines how Knowledge's verdicts are used.
 
@@ -175,9 +163,9 @@ It also does not execute operational actions. Your organization remains responsi
 
 ## Where we are starting
 
-We are exploring Healthcare with payers and TPAs that operate policy-heavy coverage, claims and approval processes — particularly where existing platforms already work but decision logic is difficult to govern, requires unnecessary review, depends on incomplete information, or needs to become safely accessible to AI-driven workflows.
+We are exploring Healthcare with payers and TPAs that operate policy-heavy coverage, claims and approval processes - particularly where existing platforms already work but decision logic is difficult to govern, requires unnecessary review, depends on incomplete information, or needs to become safely accessible to AI-driven workflows.
 
-The initial focus is on organizations in the GCC and Asian insurance markets operating complex multi-plan or multi-payer environments.
+The initial focus is on organizations operating complex multi-plan or multi-payer environments in policy-heavy insurance markets.
 
 Rather than replacing the claims stack, the goal is simple :
 
@@ -187,9 +175,9 @@ Rather than replacing the claims stack, the goal is simple :
 
 | Read next | Why |
 |---|---|
-| [Reviews & Approvals](/automate-approvals) | Separate cases that policy can resolve from cases that genuinely require human judgment |
-| [Ask Less](/ask-less) | Use `required_context` to obtain only the information a particular decision path actually needs |
-| [AI agents](/ai-agents) | Let AI-driven workflows consult deterministic policy without putting policy interpretation in the LLM |
-| [How Knowledge works](/how-it-works) | The `/resolve` contract, policy governance and audit model |
-| [Works with your stack](/stack) | Overlay, Gate, Shadow, Selective Routing and Primary adoption patterns |
+| [Enforcement](/product/enforcement) | Signed verdicts, PEP, adoption paths |
+| [Auditability](/product/auditability) | The full audit story : Consultation, RuleVersion, precedence trace |
+| [Progressive context](/product/progressive-context) | The required_context loop in depth |
+| [For compliance officers](/solutions/by-role/compliance-officers) | The medical-affairs / compliance angle : rule ownership, coverage, approvals |
+| [For AI product teams](/solutions/by-role/ai-product-teams) | For AI-driven operational workflows |
 | [Design partner](/pilot) | Start with one production-relevant decision and measurable success criteria |

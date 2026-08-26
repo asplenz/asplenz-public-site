@@ -20,9 +20,12 @@ const nextConfig = {
       { source: '/developers',         destination: '/product/integrations',       permanent: true },
       { source: '/how-it-works',       destination: '/docs/what-is-knowledge',     permanent: true },
       { source: '/vs',                 destination: '/product/enforcement',        permanent: true },
-      // Solutions by role : ai-agents and automate-approvals keep
-      // their slugs since they are addressed as by-role entries in
-      // the new nav.
+      // Solutions by role : legacy ai-agents and automate-approvals
+      // slugs now redirect to the canonical solutions/by-role/*
+      // pages. Old md files are retired ; new md files live under
+      // md/solutions/by-role/.
+      { source: '/ai-agents',          destination: '/solutions/by-role/ai-product-teams',    permanent: true },
+      { source: '/automate-approvals', destination: '/solutions/by-role/compliance-officers', permanent: true },
     ];
   },
 };

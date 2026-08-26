@@ -7,13 +7,9 @@ interface Props {
   page: PageContent;
 }
 
-// 2026-08-26 : home page reshipped as markdown body content (7 sections
-// per the from-scratch site strategy). No PageHero prefix - the body
-// carries its own H1 + hero paragraph so the composition stays entirely
-// authored in md. The legacy HomeLayout (data-driven, 7 typed YAML
-// sections) is preserved in the component tree but no longer consumed
-// from the home route ; delete on next sweep if no other page needs
-// its shape.
+// Home page is markdown-body content (7 sections per the site strategy).
+// No PageHero prefix - the body carries its own H1 + hero paragraph so
+// the composition stays entirely authored in md.
 export default function Home({ page }: Props) {
   return (
     <Layout title={page.title} description={page.description} fullBleedMain>

@@ -1,6 +1,6 @@
 ---
-title: Une couche de policy gouvernée pour la distribution de produits structurés
-description: Éligibilité produit. Suitability client. Distribution cross-border. Limites de concentration. Une couche gouvernée que votre OMS, vos applications RM, vos systèmes compliance et vos copilotes IA peuvent consulter.
+title: Wealth - une couche de policy gouvernée pour la distribution de produits structurés
+description: Éligibilité produit. Suitability client. Distribution cross-border. Limites de concentration. Une couche gouvernée que votre OMS, vos applications RM, vos systèmes compliance et vos copilotes IA consultent, avec preuve cryptographique à la frontière du tool.
 locale: fr
 kicker: Knowledge pour le Wealth
 ctaLabel: Devenir design partner
@@ -9,11 +9,13 @@ ctaHref: /pilot
 
 La distribution de produits structurés est une décision composite. Éligibilité produit (retail vs accredited, bande de complexité, niveau K&E), suitability (tolérance au risque, capacité de perte, objectifs d'investissement), règles cross-border (localisation RM vs résidence client, solicited vs reverse enquiry), et concentration (single name, sous-jacent, allocation SP agrégée) se mélangent toutes dans chaque offre.
 
-Quand ces décisions sont implémentées à travers la logique OMS, les workflows, les outils compliance et les fichiers Excel, chaque lancement produit, nouvelle juridiction ou changement de policy peut exiger de coordonner des changements à travers plusieurs systèmes. Knowledge tient la décision composite dans une couche de policy gouvernée, pour que chaque appelant consulte la même source.
+Quand ces décisions sont implémentées à travers la logique OMS, les workflows, les outils compliance et les fichiers Excel, chaque lancement produit, nouvelle juridiction ou changement de policy exige de coordonner des changements à travers plusieurs systèmes. Knowledge tient la décision composite dans une couche de policy gouvernée que chaque appelant consulte, et retourne un verdict signé que la frontière du tool peut faire respecter.
 
 ## Ce que Knowledge apporte à un wealth manager
 
 **Une couche de policy, plusieurs points de décision.** Que l'éligibilité soit vérifiée par l'OMS au moment du trade, par une application mobile RM avant une offre, par un copilote IA en pleine conversation client, ou par Compliance pendant une review, chaque appelant consulte la même couche de policy gouvernée.
+
+**Preuve cryptographique à chaque consultation.** Chaque `/check` et `/resolve` retourne une enveloppe JWS ES256 liant les `{actor, action, resource, parameters}` exacts qui ont été autorisés. Un Policy Enforcement Point en aval (un gate OMS pre-trade, un tool refund gouverné, un proxy MCP devant un copilote RM) vérifie la signature et refuse sur binding mismatch. Voir [Enforcement](/product/enforcement).
 
 **Quatre templates de policy, treize règles d'exemple.**
 
@@ -37,11 +39,11 @@ Un copilote RM ou un OMS pose à Knowledge l'une de quatre questions.
 | **Cross-border : puis-je soliciter ce client depuis cette localisation ?** | Bloque l'outreach solicité vers les juridictions restreintes ; autorise les reverse enquiries documentées |
 | **Concentration portefeuille : ce trade est-il dans les limites ?** | Escalade la concentration single-name au-dessus du seuil d'escalation ; bloque au-dessus du seuil de blocage |
 
-Chaque verdict identifie les règles qui ont déterminé le résultat et l'état normatif de la policy utilisé pour l'évaluation.
+Chaque verdict identifie les règles qui ont déterminé le résultat, fige les versions de rules exactes utilisées, et retourne une enveloppe signée qui les cite.
 
-## Knowledge n'exige pas de l'appelant qu'il connaisse tout l'arbre de décision
+## Progressive context : le copilote n'a pas besoin de tout l'arbre de décision
 
-Les rules engines traditionnels exigent que chaque appelant connaisse les champs exacts nécessaires pour chaque décision. Knowledge inverse ça : l'appelant envoie le contexte qu'il a, et Knowledge identifie quel contexte est encore requis pour atteindre un verdict contre les policies applicables.
+Les rules engines traditionnels exigent que chaque appelant connaisse les champs exacts nécessaires pour chaque décision. Knowledge inverse ça : l'appelant envoie le contexte qu'il a, et Knowledge identifie quel contexte est encore requis pour atteindre un verdict.
 
 Un copilote RM se demandant si une note structurée peut être proposée à un client :
 
@@ -80,10 +82,15 @@ Un copilote RM se demandant si une note structurée peut être proposée à un c
   verdict: "approval_required",
   cited_rules: ["rul-sp-elig-highly-complex-retail-notional",
                 "rul-sp-crossborder-solicited-restricted"],
+  signed_verdict: "eyJhbGciOiJFUzI1NiIsInR5cCI6ImdvdmVybmVkK2p3cyIsImtpZCI6...",
   consultation_id: "cns-..." }
 ```
 
-Le copilote RM n'a pas besoin d'encoder quelle question vient ensuite. Knowledge dérive le contexte requis à partir des policies qui deviennent applicables à mesure que le cas est résolu.
+Le copilote n'a pas besoin d'encoder quelle question vient ensuite. Knowledge dérive le contexte requis à partir des policies qui deviennent applicables à mesure que le cas est résolu. Voir [Progressive context](/product/progressive-context).
+
+## Compliance possède les rules. Engineering ne les gate pas.
+
+Chaque threshold, chaque liste de juridictions, chaque gate K&E vit dans l'UI back-office Knowledge comme un objet structuré `{scope, condition, severity}`. Compliance l'édite directement. La prochaine consultation utilise la nouvelle valeur. Les consultations antérieures pointent toujours sur le texte de règle exact de leur jour, via les records immuables `RuleVersion`. Voir [Auditability](/product/auditability).
 
 ## Ce que le pack livre
 
@@ -112,12 +119,12 @@ Le pack wealth s'insère dans un stack wealth existant de plusieurs façons.
 | **Nouvelle ligne produits ou nouveau marché** (Selective routing) | La couche de décision existante gère les flux actuels ; Knowledge gère le nouveau flux, sans impact sur les décisions actuelles |
 | **Couche de décision greenfield** (Primary) | Pas de legacy à contourner. Knowledge est la couche de décision dès le premier jour, typique pour une nouvelle business unit ou une surface greenfield |
 
-[Voir comment Knowledge s'insère dans votre stack](/stack)
-
 ## La suite
 
 | À lire ensuite | Pourquoi |
 |---|---|
-| [Comment fonctionne Knowledge](/how-it-works) | Le modèle mental, le contrat API, la surface d'audit |
-| [Agents IA](/ai-agents) | Comment un copilote RM ou un agent de trading appelle Knowledge comme tool |
+| [Enforcement](/product/enforcement) | Verdicts signés, PEP, chaîne de confiance à quatre acteurs |
+| [Auditability](/product/auditability) | Questions régulateur en une requête : Consultation, RuleVersion, precedence trace |
+| [Pour équipes produit IA](/solutions/by-role/ai-product-teams) | L'angle copilote RM : intégration côté agent |
+| [Pour compliance officers](/solutions/by-role/compliance-officers) | L'angle compliance : ownership des règles, coverage, approbations |
 | [Design partner](/pilot) | Trois places founding, une décision production, pricing founding-customer |
