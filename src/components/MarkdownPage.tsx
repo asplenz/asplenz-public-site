@@ -1,5 +1,7 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+import type { Pluggable } from 'unified';
 import Link from 'next/link';
 import { isValidElement, type ComponentProps, type ReactNode } from 'react';
 import PipelineDiagram from './diagrams/PipelineDiagram';
@@ -17,6 +19,7 @@ function firstChild(children: ReactNode): ReactNode {
 
 interface MarkdownPageProps {
   body: string;
+  theme?: string | null;
 }
 
 /**
@@ -28,12 +31,19 @@ interface MarkdownPageProps {
  *   - regular [text](url)               -> inline link, opens external in new tab
  *   - ```pipeline / agent-toolbelt / fanout ``` fences render dedicated diagrams
  */
-export default function MarkdownPage({ body }: MarkdownPageProps) {
+export default function MarkdownPage({ body, theme }: MarkdownPageProps) {
+  // Syntax highlighting is only wired on the clean theme (dark code
+  // blocks). On the default warm theme the code blocks are taupe-on-
+  // taupe and highlighting would fight the palette ; we skip the
+  // plugin cost entirely there.
+  const rehypePlugins: Pluggable[] = theme === 'clean' ? [[rehypeHighlight, { detect: true, ignoreMissing: true }]] : [];
+
   return (
     <article className="max-w-3xl mx-auto px-6 md:px-8 pt-2 pb-14 md:pb-20">
       <div className="prose">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
+          rehypePlugins={rehypePlugins}
           components={{
             a: (props: ComponentProps<'a'>) => {
               const href = props.href || '';

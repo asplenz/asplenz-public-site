@@ -7,9 +7,10 @@ interface LayoutProps {
   description: string;
   children: React.ReactNode;
   fullBleedMain?: boolean;
+  theme?: string | null;
 }
 
-export default function Layout({ title, description, children, fullBleedMain = false }: LayoutProps) {
+export default function Layout({ title, description, children, fullBleedMain = false, theme }: LayoutProps) {
   return (
     <>
       <Head>
@@ -18,7 +19,11 @@ export default function Layout({ title, description, children, fullBleedMain = f
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/log2_normal.png" />
       </Head>
-      <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <div
+        className="min-h-screen"
+        data-theme={theme || undefined}
+        style={{ backgroundColor: 'var(--bg-primary)' }}
+      >
         <Nav />
         <main className={fullBleedMain ? 'pt-14' : 'pt-24 pb-20'}>
           {children}

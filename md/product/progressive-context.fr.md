@@ -3,6 +3,7 @@ title: Progressive context
 description: Un composant de la boucle agentique. Le caller envoie ce qu'il a, Knowledge lui dit ce qu'il manque pour atteindre un verdict. Les policies changent sans redéployer les consumers.
 locale: fr
 kicker: Produit - Progressive context
+theme: clean
 ---
 
 Les systèmes de décision traditionnels exigent que l'application appelante sache d'entrée quelles informations une décision peut requérir. Les applications tendent donc à collecter un set prédéfini de champs avant de soumettre un cas, même quand seul un sous-ensemble est pertinent pour la décision en cours. À mesure que les rules évoluent, ces exigences de data peuvent aussi changer, créant des dépendances entre la logique policy et les applications qui la consomment.

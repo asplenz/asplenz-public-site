@@ -26,6 +26,9 @@ export interface PageContent {
   // Optional email displayed under the hero CTA button (used on the pilot
   // page so a user without a mail client can copy the address).
   contactEmail: string | null;
+  // Optional theme opt-in : "clean" flips the page to the white/slate/dark-
+  // code-blocks variant. Omit for the default warm-taupe theme.
+  theme: string | null;
 }
 
 const MD_DIR = path.join(process.cwd(), 'md');
@@ -56,6 +59,7 @@ export function loadPage(slug: string, locale: string): PageContent {
     ctaLabel: (data.ctaLabel as string) ?? null,
     ctaHref: (data.ctaHref as string) ?? null,
     contactEmail: (data.contactEmail as string) ?? null,
+    theme: (data.theme as string) ?? null,
     body: parsed.content,
   };
 }

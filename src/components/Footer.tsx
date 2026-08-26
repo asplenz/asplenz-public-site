@@ -14,10 +14,10 @@ export default function Footer() {
       copyright: `© ${year} Asplenz. All rights reserved.`,
       resourcesLabel: 'Resources',
       links: [
-        { href: '/vs', label: 'Compare' },
-        { href: '/governance', label: 'Governance' },
+        { href: '/product/enforcement', label: 'Enforcement' },
+        { href: '/product/auditability', label: 'Auditability' },
         { href: '/security', label: 'Security' },
-        { href: '/developers', label: 'Developers' },
+        { href: '/docs', label: 'Docs' },
       ],
     },
     fr: {
@@ -26,10 +26,10 @@ export default function Footer() {
       copyright: `© ${year} Asplenz. Tous droits réservés.`,
       resourcesLabel: 'Ressources',
       links: [
-        { href: '/vs', label: 'Comparer' },
-        { href: '/governance', label: 'Gouvernance' },
+        { href: '/product/enforcement', label: 'Enforcement' },
+        { href: '/product/auditability', label: 'Auditability' },
         { href: '/security', label: 'Security' },
-        { href: '/developers', label: 'Developers' },
+        { href: '/docs', label: 'Docs' },
       ],
     },
   }[locale];
@@ -38,7 +38,7 @@ export default function Footer() {
     <footer
       className="border-t"
       style={{
-        backgroundColor: 'var(--bg-secondary)',
+        backgroundColor: 'var(--footer-bg)',
         borderColor: 'var(--border)',
       }}
     >

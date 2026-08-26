@@ -28,6 +28,37 @@
   --red-light: #F0D6D6;
   --orange: #7A4F00;
   --orange-light: #FEF3D6;
+
+  /* Nav + footer bg (extracted so themes can swap them) */
+  --nav-bg: rgba(245, 242, 236, 0.95);
+  --footer-bg: var(--bg-secondary);
+}
+
+/* Clean theme : white page, slate text, dark code blocks.
+ * Opt in per page via frontmatter `theme: clean`. Applied by
+ * Layout as data-theme="clean" on the outer wrapper ; all
+ * descendants inherit the swapped vars. */
+[data-theme="clean"] {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F1F5F9;
+
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+
+  --accent: #1A3A5C;
+  --accent-mid: #2E6BA8;
+  --accent-hover: #2E6BA8;
+  --accent-light: #E0EAF3;
+  --accent-glow: rgba(26, 58, 92, 0.06);
+
+  --border: #CBD5E1;
+  --border-light: #E2E8F0;
+
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --footer-bg: #F8FAFC;
 }
 
 html {
@@ -168,6 +199,75 @@ body {
   padding: 0;
   color: var(--text-secondary);
   font-family: var(--font-mono), 'DM Mono', 'Courier New', monospace;
+}
+
+/* Clean-theme prose overrides : inline code stays light-on-slate,
+ * code blocks flip to near-black with syntax highlighting via
+ * rehype-highlight (produces .hljs-* class names). */
+
+[data-theme="clean"] .prose code {
+  background-color: #F1F5F9;
+  color: #0F172A;
+}
+
+[data-theme="clean"] .prose pre {
+  background-color: #0B1220;
+  color: #E2E8F0;
+  border: 1px solid #1E293B;
+}
+
+[data-theme="clean"] .prose pre code {
+  color: #E2E8F0;
+  background: transparent;
+}
+
+/* Syntax highlighting palette for .hljs classes emitted by
+ * rehype-highlight. Custom tokens so we do not import a full
+ * highlight.js theme. Order roughly by frequency in JSON/HTTP
+ * examples, which is what we ship most. */
+
+[data-theme="clean"] .prose pre code .hljs-attr,
+[data-theme="clean"] .prose pre code .hljs-attribute,
+[data-theme="clean"] .prose pre code .hljs-property {
+  color: #93C5FD;
+}
+
+[data-theme="clean"] .prose pre code .hljs-string,
+[data-theme="clean"] .prose pre code .hljs-doctag,
+[data-theme="clean"] .prose pre code .hljs-regexp {
+  color: #86EFAC;
+}
+
+[data-theme="clean"] .prose pre code .hljs-number,
+[data-theme="clean"] .prose pre code .hljs-literal {
+  color: #FCA5A5;
+}
+
+[data-theme="clean"] .prose pre code .hljs-keyword,
+[data-theme="clean"] .prose pre code .hljs-selector-tag,
+[data-theme="clean"] .prose pre code .hljs-built_in,
+[data-theme="clean"] .prose pre code .hljs-type,
+[data-theme="clean"] .prose pre code .hljs-title.function_ {
+  color: #F59E0B;
+}
+
+[data-theme="clean"] .prose pre code .hljs-comment,
+[data-theme="clean"] .prose pre code .hljs-quote {
+  color: #64748B;
+  font-style: italic;
+}
+
+[data-theme="clean"] .prose pre code .hljs-punctuation {
+  color: #94A3B8;
+}
+
+[data-theme="clean"] .prose pre code .hljs-title,
+[data-theme="clean"] .prose pre code .hljs-section {
+  color: #E2E8F0;
+}
+
+[data-theme="clean"] .prose pre code .hljs-meta {
+  color: #64748B;
 }
 
 .prose blockquote {

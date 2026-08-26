@@ -15,7 +15,12 @@ interface Props {
 // .en.md file yields its own URL.
 export default function DynamicPage({ page }: Props) {
   return (
-    <Layout title={page.title} description={page.description} fullBleedMain>
+    <Layout
+      title={page.title}
+      description={page.description}
+      fullBleedMain
+      theme={page.theme}
+    >
       <PageHero
         kicker={page.kicker || undefined}
         title={page.title}
@@ -24,7 +29,7 @@ export default function DynamicPage({ page }: Props) {
         ctaHref={page.ctaHref}
         contactEmail={page.contactEmail}
       />
-      <MarkdownPage body={page.body} />
+      <MarkdownPage body={page.body} theme={page.theme} />
     </Layout>
   );
 }

@@ -3,6 +3,7 @@ title: Progressive context
 description: A component of the agentic loop. The caller sends what it has, Knowledge tells it what is still needed to reach a verdict. Policy changes ship without redeploying consumers.
 locale: en
 kicker: Product - Progressive context
+theme: clean
 ---
 
 Traditional decision systems require the calling application to know upfront what information a decision may require. Applications therefore tend to collect a predefined set of fields before submitting a case, even when only a subset is relevant to the decision at hand. As rules evolve, these data requirements can also change, creating dependencies between policy logic and the applications that consume it.

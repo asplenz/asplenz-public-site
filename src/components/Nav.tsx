@@ -216,7 +216,7 @@ export default function Nav() {
     <header
       className="fixed top-0 left-0 right-0 border-b z-50"
       style={{
-        backgroundColor: 'rgba(245, 242, 236, 0.95)',
+        backgroundColor: 'var(--nav-bg)',
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
         borderColor: 'var(--border)',
