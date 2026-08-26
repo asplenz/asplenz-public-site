@@ -58,15 +58,7 @@ Response - COMPLETE (context sufficient) :
 
 ## Where the fields come from
 
-Knowledge tells you *what* is needed. Your caller decides *how* to obtain it :
-
-| Where the field can come from |
-|---|
-| Already available in the customer record or CRM |
-| Computed elsewhere in the caller's own systems |
-| Returned by a verification or screening provider |
-| Extracted by an AI agent from an existing document or conversation |
-| Genuinely unknown - ask the user |
+Knowledge tells you *what* is needed. Your caller decides *how* to obtain it : already available in the customer record or CRM, computed elsewhere in the caller's own systems, returned by a verification or screening provider, extracted by an AI agent from an existing document or conversation, or genuinely unknown, in which case ask the user.
 
 **Knowledge determines what the policy needs. The caller determines how to get it.**
 

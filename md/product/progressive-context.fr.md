@@ -58,15 +58,7 @@ Réponse - COMPLETE (contexte suffisant) :
 
 ## D'où viennent les champs
 
-Knowledge vous dit *ce qui* est nécessaire. Votre caller décide *comment* l'obtenir :
-
-| D'où le champ peut venir |
-|---|
-| Déjà disponible dans le customer record ou le CRM |
-| Calculé ailleurs dans les propres systèmes du caller |
-| Retourné par un provider de vérification ou de screening |
-| Extrait par un agent IA d'un document ou d'une conversation existante |
-| Réellement inconnu - demander à l'utilisateur |
+Knowledge vous dit *ce qui* est nécessaire. Votre caller décide *comment* l'obtenir : déjà disponible dans le customer record ou le CRM, calculé ailleurs dans les propres systèmes du caller, retourné par un provider de vérification ou de screening, extrait par un agent IA d'un document ou d'une conversation existante, ou réellement inconnu, auquel cas demander à l'utilisateur.
 
 **Knowledge détermine ce dont la policy a besoin. Le caller détermine comment l'obtenir.**
 
