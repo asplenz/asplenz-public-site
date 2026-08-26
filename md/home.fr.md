@@ -1,116 +1,113 @@
 ---
-title: Asplenz Knowledge - la couche de policy gouvernée pour vos applications, workflows et agents IA
-description: Quand la logique de conformité est dispersée dans votre stack, chaque changement devient plus difficile à contrôler. Knowledge apporte la logique de décision dans une couche de policy gouvernée, sans remplacer ce qui tourne déjà.
+title: Asplenz Knowledge - infrastructure policy gouvernée pour agents IA de décision
+description: Laissez les agents décider. Gardez l'autorité policy hors du modèle. Knowledge permet aux agents IA de collecter le contexte et d'agir sur des décisions métier gouvernées par des règles sans faire eux-mêmes la détermination policy finale.
 locale: fr
-
-hero:
-  kicker: Couche de policy pour vos décisions de conformité
-  headline: Quand la logique de conformité est dispersée dans votre stack,
-  headlineItalic: chaque changement devient plus difficile à contrôler.
-  sub: Knowledge apporte la logique de décision dans une couche de policy gouvernée, sans remplacer votre stack existant. Vos applications, workflows et agents IA fournissent le contexte qu'ils ont. Knowledge détermine ce que la policy exige, ce qui manque encore pour atteindre un verdict, et quelle décision s'applique.
-  ctaPrimary: Parlons-en
-  ctaPrimaryHref: /pilot
-  ctaSecondary: Voir comment ça marche
-  ctaSecondaryHref: /how-it-works
-
-problem:
-  kicker: ""
-  title: "Ça vous parle ?"
-  items:
-    - kicker: Policy dispersée dans votre stack
-      body: Chaque mise à jour est lente et risque de laisser une copie non mise à jour quelque part.
-    - kicker: Onboarding qui demande « au cas où »
-      body: Les clients abandonnent en cours de route sur des champs qui n'ont jamais affecté leur décision.
-    - kicker: Reviewers sur des cas que la policy pourrait automatiser
-      body: Les vrais cas de jugement s'accumulent derrière.
-    - kicker: Régulateur qui pose une question sur une décision d'il y a 18 mois
-      body: Des semaines de temps équipe pour reconstruire la version exacte de la policy.
-    - kicker: Agent IA qui fonctionne en prototype
-      body: Legal bloque le passage en production parce qu'il ne peut pas vérifier quelle policy sera réellement appliquée.
-
-solutions:
-  kicker: Solutions
-  title: "Qu'est-ce que vous voulez améliorer ?"
-  cards:
-    - title: Revues & approbations
-      desc: Résolvez les cas routiniers avant qu'ils n'atteignent un reviewer, et préparez les cas qui exigent réellement du jugement humain.
-      ctaLabel: Réduire la charge de review
-      ctaHref: /automate-approvals
-    - title: Demandez moins
-      desc: Ne collectez que l'information dont chaque décision a réellement besoin, au lieu de demander tout à chaque client d'entrée.
-      ctaLabel: Réduire la friction client
-      ctaHref: /ask-less
-    - title: Gouvernez les décisions IA
-      desc: Laissez les agents IA collecter le contexte et orchestrer le travail pendant que les décisions policy gouvernées restent déterministes et auditables.
-      ctaLabel: Gouverner les décisions des agents
-      ctaHref: /ai-agents
-
-transition:
-  text: "Symptômes différents. Même problème sous-jacent : la policy qui détermine une décision est couplée aux systèmes qui collectent l'information, orchestrent le processus ou exécutent l'action."
-
-change:
-  kicker: Ce que Knowledge change
-  title: Une couche de policy gouvernée. Plusieurs appelants.
-  sub: Vos applications, workflows et agents IA envoient un contexte. Knowledge retourne un verdict déterministe, cryptographiquement signé, avec les règles qui l'ont déterminé et une trace d'audit rejouable.
-  cards:
-    - title: Une couche, plusieurs appelants
-      desc: Formulaires web, apps mobiles, systèmes back-office, workflows et agents IA peuvent tous consulter la même couche de policy gouvernée. La logique de policy n'a plus à être réimplémentée par chaque appelant.
-    - title: Verdicts déterministes
-      desc: Même contexte, même état de policy, même décision. Chaque verdict identifie les règles qui l'ont déterminé. Aucune variance LLM à la frontière de décision.
-    - title: Enforcement cryptographique
-      desc: Chaque verdict est un artefact d'autorisation signé qu'une frontière d'enforcement en aval peut vérifier avant que l'action sous-jacente ne s'exécute. La gouvernance devient une propriété du tool, pas une instruction à l'agent.
-    - title: Audit rejouable
-      desc: Chaque consultation enregistre l'état normatif de la policy derrière la décision, pour que les décisions historiques puissent être tracées jusqu'aux règles et à l'état de policy qui les ont produites.
-    - title: Contexte progressif
-      desc: Knowledge identifie l'information dont les policies applicables ont encore besoin. Les parcours customer peuvent poser moins de questions inutiles ; les flux internes peuvent atteindre les reviewers avec le contexte nécessaire déjà assemblé.
-  ctaLabel: Voir comment ça marche
-  ctaHref: /how-it-works
-
-stack:
-  kicker: Fonctionne avec votre stack existant
-  title: Pas de rip-and-replace. Cinq modes au choix.
-  sub: Knowledge ne remplace pas votre moteur de workflow, votre vendor KYC, votre OMS ou votre code de décision legacy. Il s'insère à côté.
-  cards:
-    - question: Vous avez déjà un moteur de décision ?
-      mode: Overlay
-      desc: Alimentez Knowledge avec les décisions et le contexte existants pour appliquer une policy gouvernée additionnelle, sans remplacer le moteur sous-jacent.
-    - question: Besoin de mettre en place un nouveau contrôle ?
-      mode: Gate
-      desc: Placez Knowledge avant l'exécution pour une décision ou une policy sélectionnée. Knowledge retourne un verdict signé ; un petit Policy Enforcement Point vérifie la signature et les bindings avant que l'action ne se poursuive, s'arrête ou requiert une approbation.
-    - question: Vous voulez valider d'abord ?
-      mode: Shadow
-      desc: Knowledge évalue les mêmes cas en parallèle sans contrôler la décision production. Comparez les résultats avant de lui donner l'autorité.
-    - question: Vous lancez un nouveau domaine ?
-      mode: Selective routing
-      desc: Knowledge gère le nouveau flux, le reste reste sur le legacy. Aucun impact sur les flux actuels, contrôle total sur le nouveau.
-    - question: Vous construisez du nouveau ?
-      mode: Primary
-      desc: Knowledge est la couche de décision dès le premier jour. Installez un pack vertical, calibrez les seuils, opérationnel en quelques semaines.
-  ctaLabel: Voir comment Knowledge s'insère dans votre stack
-  ctaHref: /stack
-
-proof:
-  kicker: Industries
-  title: Voyez Knowledge appliqué à des domaines de décision réels.
-  cards:
-    - name: Wealth
-      subtitle: Distribution de produits structurés
-      desc: Éligibilité produit, suitability client, règles cross-border, concentration portefeuille. Quatre policies, treize règles et une intégration de référence opérationnelle.
-      ctaLabel: Voir le walkthrough Wealth
-      ctaHref: /wealth
-    - name: KYC / KYB
-      subtitle: Décisions d'onboarding
-      desc: Exigences d'information progressives, règles juridictionnelles, résultats PEP et sanctions, exigences source-of-wealth et décisions d'escalation - tout en gardant en place vos fournisseurs d'identité et de vérification existants.
-      ctaLabel: Voir le walkthrough KYC
-      ctaHref: /kyc
-
-pilot:
-  kicker: La cohorte founding
-  title: Apportez-nous une décision à résoudre. Le statut founding vient avec.
-  desc: Apportez une décision difficile à changer, automatiser ou auditer aujourd'hui. Knowledge tourne contre des critères de succès convenus d'entrée, dans un pattern d'adoption qui rentre dans votre stack existant. Pricing founding-customer, influence produit directe, sortie propre si les chiffres ne tombent pas. Trois engagements dans la cohorte founding.
-  ctaLabel: Voir l'engagement design partner
-  ctaHref: /pilot
+kicker: Infrastructure policy gouvernée pour agents IA de décision
 ---
 
-Le contenu structuré ci-dessus alimente la composition de la home.
-Ce body est volontairement minimal - chaque section home est data-driven.
+# Laissez les agents décider. Gardez l'autorité policy hors du modèle.
+
+Knowledge permet aux agents IA de collecter le contexte et d'agir sur des décisions métier gouvernées par des règles sans faire eux-mêmes la détermination policy finale. Les décisions sont déterministes, auditables, et peuvent être enforcées à la frontière du tool avec autorisation signée.
+
+**[Voir comment l'enforcement fonctionne](/enforcement)** &nbsp; · &nbsp; **[Parlons-en](/pilot)**
+
+---
+
+## Comment ça marche
+
+```
+Agent
+   |  comprend le cas, extrait l'information,
+   |  investigue, rassemble les preuves
+   v
+Knowledge
+   |  détermine les règles applicables, identifie le contexte manquant,
+   |  résout la précédence, retourne la décision policy
+   |  ->  allowed  /  approval_required  /  blocked
+   v
+Décision humaine  (quand requise)
+   |  exerce le jugement sur approval_required
+   v
+Point d'enforcement  (wrapper de tool, MCP proxy, PEP custom)
+   |  vérifie que l'autorisation signée correspond à l'opération
+   v
+Business tool  (Stripe, core banking, EMR, ...)
+```
+
+**AI investigates. Knowledge decides. The tool boundary enforces.**
+
+*"Knowledge décide"* veut dire que Knowledge fait la **détermination policy** - quelles règles s'appliquent, quel est le verdict déterministe, si une autorisation humaine est requise. L'agent décide de tout le reste : ce qu'il investigue, quelles preuves il rassemble, comment il communique avec l'utilisateur. La frontière du tool est où la décision policy devient un résultat exécutable.
+
+---
+
+## Où les décisions gouvernées comptent
+
+Quatre situations où une décision mérite son propre cycle de vie gouverné, distinct du système qui la consomme.
+
+**Agent Decisioning**
+Agents IA qui investiguent un cas (remboursement client, dossier KYC, réclamation assurance, demande d'admission) et prennent une décision métier gouvernée par règles à partir d'un contexte partiel. L'agent orchestre l'investigation ; Knowledge détermine le résultat de façon déterministe. Voir [/ai-agents](/ai-agents).
+
+**Review-Ready Gate**
+Attrapez les défauts déterministes avant qu'ils atteignent les reviewers humains rares. Quand un cas arrive à un compliance officer, tout ce qui pouvait être décidé par règles l'a déjà été ; seuls les cas de jugement arrivent. Voir [/automate-approvals](/automate-approvals).
+
+**Progressive Journeys**
+Un composant de la boucle agentique, pas une optimisation de formulaire. Le caller envoie ce qu'il a, Knowledge retourne les champs dont les policies applicables ont encore besoin, le caller les acquiert (depuis un système, un vendor, une extraction, ou l'utilisateur) et re-consulte. Les changements de policy shippent sans redéploiement des consumers - le caller auto-découvre les nouveaux champs requis.
+
+**Decision Replay**
+Reconstruisez l'état policy exact derrière une décision historique, des années plus tard. Chaque Consultation fige les règles applicables, les overrides, la précédence et le normative hash au moment de décision. La surface d'audit est déterministe, pas une approximation.
+
+---
+
+## Réel, pas vaporware
+
+```python
+from knowledge_runtime import governed_tool
+
+@governed_tool(action="refund.execute", resource="tx", bind=["amount"])
+def refund_customer(tx, amount):
+    return refund_api_legacy(tx, amount)
+```
+
+L'agent propose l'action. Knowledge décide. Le tool s'exécute uniquement avec une autorisation signée valide qui bind à cette opération exacte. Shipped 2026-08. SDK Python + MCP proxy + JWS ES256.
+
+**[Quickstart 5 min](/developers)** &nbsp; · &nbsp; **[Setup MCP proxy](/enforcement)** &nbsp; · &nbsp; **[Spec du verdict signé](/enforcement)**
+
+---
+
+## Comment ça s'insère dans votre stack existant
+
+Vous avez déjà Drools, IBM ODM, DMN, ServiceNow, ou un moteur de règles custom ? **Gardez-les où ils font sens.**
+
+Knowledge n'est pas un remplacement du paysage rules engines de l'entreprise. C'est pour une classe spécifique de décisions - celles qui méritent leur propre autorité policy gouvernée, indépendante des systèmes qui les consomment : agents qui ont besoin de résolution progressive de contexte, approbations avec frontières humain/machine explicites, état policy reproductible pour audit de niveau régulateur, ou actions qui nécessitent une autorisation cryptographiquement vérifiable à la frontière du tool.
+
+**Knowledge s'insère à côté, pas au-dessus.** Voir les [patterns d'insertion](/stack) : Overlay (ajouter une policy gouvernée autour d'un moteur legacy), Gate (exiger un verdict signé avant certaines actions), Shadow (évaluation parallèle sans autorité en production), Selective routing (nouveau scope sur Knowledge, reste sur legacy), Primary (greenfield).
+
+---
+
+## Donnez aux policies gouvernées un cycle de vie indépendant
+
+Certaines décisions métier ne devraient pas appartenir à l'application, au workflow, ou à l'agent qui les exécute. Knowledge donne à ces décisions un cycle de vie gouverné indépendant : rédiger, approuver, versionner et rejouer les policies indépendamment des systèmes qui les consomment - qu'il y ait un seul caller ou plusieurs.
+
+Le cycle de vie reste opérationnel via :
+
+- **Authorship explicite** avec owner, chaîne d'approbateurs et governance log par Policy
+- **Versioning immuable** à chaque changement de règle affectant le verdict (snapshots RuleVersion)
+- **Approbations gouvernées** pour les verdicts qui exigent le jugement humain - `approval_required` est un verdict first-class, pas une annotation de workflow
+- **Overrides et pauses** comme objets gouvernés, pas des branches cachées
+- **Autorisation signée** pour qu'une frontière d'enforcement en aval puisse prouver la décision policy qui a autorisé une action (avec le caveat honnête que le placement architectural du PEP est la responsabilité du client)
+
+**[Comment Knowledge s'insère chez vous](/pilot)** &nbsp; · &nbsp; **[Le modèle de gouvernance](/governance)**
+
+---
+
+## Design partner - cohorte founding Q4 2026
+
+Nous travaillons avec trois partenaires founding sur des décisions production-relevantes. Une décision production-relevante, mode Shadow d'abord, critères de succès mesurables convenus d'entrée. Pricing founding-customer. Influence produit directe. Sortie propre si les chiffres ne tombent pas.
+
+**Une place remplie** (vertical wealth, distribution produits structurés). **Deux places ouvertes** - une priorisée pour équipes qui construisent des agents IA de décision gouvernée, une flexible.
+
+**[Postuler comme design partner](/pilot)** &nbsp; · &nbsp; **[contact@asplenz.com](mailto:contact@asplenz.com)**
+
+---
+
+**Asplenz Knowledge.** Infrastructure policy gouvernée pour agents IA de décision. Pour les décisions gouvernées par des règles qui doivent rester déterministes, auditables, et hors du modèle.
