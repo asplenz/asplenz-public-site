@@ -126,6 +126,13 @@ const NAV_ITEMS: NavItem[] = [
         descEn: 'Cryptographic proof, four-actor trust chain, audit that survives.',
         descFr: 'Preuve cryptographique, chaîne de confiance à 4 acteurs, audit qui survit.',
       },
+      {
+        slug: 'solutions/build-rule-governed-agents',
+        labelEn: 'Build rule-governed agents',
+        labelFr: 'Construire des agents rule-governed',
+        descEn: 'For integrators + agent builders : stop reinventing rule storage, versioning, approvals, audit and enforcement on every engagement.',
+        descFr: 'Pour intégrateurs + agent builders : arrêtez de réinventer storage de rules, versioning, approbations, audit et enforcement à chaque engagement.',
+      },
     ],
   },
   { slug: 'docs', labelEn: 'Docs', labelFr: 'Docs' },

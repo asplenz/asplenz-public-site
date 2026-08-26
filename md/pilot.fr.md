@@ -65,6 +65,14 @@ Avant la semaine 1, nous convenons des chiffres qui justifieraient la conversion
 | **Temps de reconstruction d'audit** | Temps pour retrouver le contexte, les règles applicables et l'état de la policy derrière une décision historique, comparé à votre processus actuel |
 | **Coverage d'enforcement** | Pour les engagements où un Policy Enforcement Point est déployé (décorateur SDK, proxy MCP, wrapper custom) : part des actions automatisées qui exigent un verdict signé valide avant de s'exécuter |
 
+## Amenez votre équipe AI interne ou votre partenaire d'implémentation
+
+Knowledge ne construit pas l'agent pour vous. L'engagement présuppose une équipe d'implémentation - soit votre équipe AI / automation interne, soit un partenaire d'implémentation (SI, agent vendor, cabinet boutique) déjà engagé sur le projet. Nous travaillons à leurs côtés pour transformer une décision humaine policy-driven en workflow agent gouverné.
+
+Si vous n'avez pas encore d'équipe d'implémentation en place, nous pouvons vous introduire à des partenaires avec lesquels nous avons déjà livré. C'est une discussion, pas un marketplace ; l'intention est de s'assurer que le premier engagement a les bonnes mains, pas de vous router à travers un canal.
+
+Voir [Construire des agents rule-governed](/solutions/build-rule-governed-agents) si vous êtes le partenaire d'implémentation.
+
 ## Pourquoi trois seulement
 
 Ce sont des engagements hands-on avec implication directe des fondateurs et de l'équipe produit. Nous limitons la première cohorte à trois firmes pour que chaque partenaire puisse influencer matériellement ce qui est productisé, et pour que nous puissions shipper des fixes hebdomadaires qui répondent à ce que les engagements révèlent.

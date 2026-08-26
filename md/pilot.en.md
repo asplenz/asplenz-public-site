@@ -65,6 +65,14 @@ Before week 1, we agree on the numbers that would justify converting. Typical cr
 | **Audit reconstruction time** | Time to retrieve the context, applicable rules and policy state behind a historical decision, compared with your current process |
 | **Enforcement coverage** | For engagements where a Policy Enforcement Point is deployed (SDK decorator, MCP proxy, custom wrapper) : share of automated actions that require a valid signed verdict before executing |
 
+## Bring your internal AI team or implementation partner
+
+Knowledge does not build the agent for you. The engagement assumes an implementation team - either your internal AI / automation team, or an implementation partner (SI, agent vendor, boutique consultancy) already engaged on the project. We work alongside them to turn one policy-driven human decision into a governed agent workflow.
+
+If you don't yet have an implementation team lined up, we can introduce partners we have already delivered alongside. That is a discussion, not a marketplace ; the intent is to make sure the first engagement has the right hands, not to route you through a channel.
+
+See [Build rule-governed agents](/solutions/build-rule-governed-agents) if you are the implementation partner.
+
 ## Why only three
 
 These are hands-on engagements with direct founder and product-team involvement. We limit the first cohort to three firms so each partner can materially influence what gets productized, and so we can ship weekly fixes that respond to what the engagements reveal.
