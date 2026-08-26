@@ -80,7 +80,7 @@ Already have Drools, IBM ODM, DMN, ServiceNow, or a custom rules engine ? **Keep
 
 Knowledge is not a replacement for the enterprise-wide rules landscape. It is for a specific class of decisions - those that deserve their own governed policy authority, independent of the systems that consume them : agents that need progressive context resolution, approvals with explicit human/machine boundaries, reproducible policy state for regulator-grade audit, or actions that require cryptographically verifiable authorization at the tool boundary.
 
-**Knowledge sits alongside, not on top.** See the [insertion patterns](/stack) : Overlay (add governed policy around a legacy engine), Gate (require a signed verdict before selected actions), Shadow (parallel evaluation without production authority), Selective routing (new scope on Knowledge, rest on legacy), Primary (greenfield). See [Integrations](/product/integrations) for the MCP, Python SDK and REST surfaces.
+**Knowledge sits alongside, not on top.** See the [insertion patterns](/product/integrations) : Overlay (add governed policy around a legacy engine), Gate (require a signed verdict before selected actions), Shadow (parallel evaluation without production authority), Selective routing (new scope on Knowledge, rest on legacy), Primary (greenfield). See [Integrations](/product/integrations) for the MCP, Python SDK and REST surfaces.
 
 ---
 

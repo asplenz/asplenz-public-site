@@ -80,7 +80,7 @@ Vous avez déjà Drools, IBM ODM, DMN, ServiceNow, ou un moteur de règles custo
 
 Knowledge n'est pas un remplacement du paysage rules engines de l'entreprise. C'est pour une classe spécifique de décisions - celles qui méritent leur propre autorité policy gouvernée, indépendante des systèmes qui les consomment : agents qui ont besoin de résolution progressive de contexte, approbations avec frontières humain/machine explicites, état policy reproductible pour audit de niveau régulateur, ou actions qui nécessitent une autorisation cryptographiquement vérifiable à la frontière du tool.
 
-**Knowledge s'insère à côté, pas au-dessus.** Voir les [patterns d'insertion](/stack) : Overlay (ajouter une policy gouvernée autour d'un moteur legacy), Gate (exiger un verdict signé avant certaines actions), Shadow (évaluation parallèle sans autorité en production), Selective routing (nouveau scope sur Knowledge, reste sur legacy), Primary (greenfield). Voir [Integrations](/product/integrations) pour les surfaces MCP, SDK Python et REST.
+**Knowledge s'insère à côté, pas au-dessus.** Voir les [patterns d'insertion](/product/integrations) : Overlay (ajouter une policy gouvernée autour d'un moteur legacy), Gate (exiger un verdict signé avant certaines actions), Shadow (évaluation parallèle sans autorité en production), Selective routing (nouveau scope sur Knowledge, reste sur legacy), Primary (greenfield). Voir [Integrations](/product/integrations) pour les surfaces MCP, SDK Python et REST.
 
 ---
 

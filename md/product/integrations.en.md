@@ -13,7 +13,7 @@ Knowledge integrates through three surfaces : a **REST API** (the source of trut
 
 **MCP proxy** [Stable] : `asplenz-mcp-proxy` sits between an MCP host and an existing customer MCP server. Reads a config declaring which tools are governed. On each `tools/call`, the proxy runs the PEP flow (resolve → verify signed_verdict → forward) transparently. The customer's MCP server, the tool implementations and the host client all stay unchanged.
 
-**Adoption story** : the MCP proxy is the smoothest onboarding path for teams already running MCP - drop-in insertion, no code change on tools, enforcement added by proxy insertion. See [Enforcement](/product/enforcement) §Three adoption paths and [`docs/engineering/mcp-proxy-guide.html`](/enforcement).
+**Adoption story** : the MCP proxy is the smoothest onboarding path for teams already running MCP - drop-in insertion, no code change on tools, enforcement added by proxy insertion. See [Enforcement](/product/enforcement) §Three adoption paths and [MCP proxy setup](/docs/mcp-proxy/setup).
 
 ## Python SDK - knowledge-runtime
 
@@ -53,7 +53,7 @@ Every integration path ultimately calls this. Endpoints :
 | `POST /knowledge/v1/approvals/{id}/decide` | Human decides an approval request |
 | `GET /knowledge/v1/consultations/{id}` | Retrieve a Consultation record for audit |
 
-Authenticated with an API key (`X-API-Key` header). Full reference at [/developers](/developers). OpenAPI spec at `/api/openapi-v3.json`.
+Authenticated with an API key (`X-API-Key` header). Full reference at [API reference](/docs/api-reference/authentication). OpenAPI spec at `/api/openapi-v3.json`.
 
 ## Identity, SSO, SCIM
 

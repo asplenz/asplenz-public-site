@@ -87,4 +87,4 @@ La politique de rétention est un souci de déploiement, pas une limitation du m
 |---|---|
 | [Enforcement](/product/enforcement) | Verdicts signés + la chaîne de confiance à quatre acteurs |
 | [Progressive context](/product/progressive-context) | Comment le côté input du trace d'audit est peuplé |
-| [Governance](/governance) | La surface d'authorship + versioning + approbation en profondeur |
+| [Overrides, approbations, pauses](/docs/concepts/overrides-approvals-pauses) | La surface d'authorship + versioning + approbation en profondeur |

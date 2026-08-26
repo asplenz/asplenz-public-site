@@ -19,7 +19,7 @@ An advisory rules engine returns a verdict your systems can ignore. Knowledge ad
 - The signature binds to the exact operation. A verdict authorizing `refund_execute(TX-456, 40 EUR)` cannot be reused for a different transaction, a larger amount, or a different action.
 - The `actor` claim is derived from Knowledge's authentication of the caller (API key to principal binding), not from the request body. A caller cannot forge its own subject.
 
-See [Enforcement](/enforcement) for the full trust model and adoption paths.
+See [Enforcement](/product/enforcement) for the full trust model and adoption paths.
 
 ## Authentication
 
@@ -52,7 +52,7 @@ Sensitive stored data (external service credentials, signing keys, secrets) is e
 
 ## Audit
 
-Every mutation of a governed entity and every decision the engine produces is recorded with the principal and the state at the time. Signed verdicts extend audit reconstruction: every wrapped execution carries a cryptographic artifact citing the exact rules that authorized it, at a specific policy state, for a specific agent principal, on a specific resource with specific parameters. See [Governance](/governance) for what a decision record contains and how it can be replayed.
+Every mutation of a governed entity and every decision the engine produces is recorded with the principal and the state at the time. Signed verdicts extend audit reconstruction: every wrapped execution carries a cryptographic artifact citing the exact rules that authorized it, at a specific policy state, for a specific agent principal, on a specific resource with specific parameters. See [Auditability](/product/auditability) for what a decision record contains and how it can be replayed.
 
 ## Trust boundaries (what Knowledge does not do)
 
@@ -66,7 +66,7 @@ Being explicit about limits is a control in itself.
 | **A signed verdict cannot be replayed** | Replay protection is a PEP-side spent-verdicts store. Enable for operations that must execute exactly once. |
 | **A signed verdict survives arbitrary delays** | Verdicts carry an expiry (60 seconds by default, configurable). Long-running flows re-consult after human approval. |
 
-See [Enforcement](/enforcement) for the four-actor trust model in full.
+See [Enforcement](/product/enforcement) §Trust boundaries and [Trust model deep dive](/docs/security-compliance/trust-model) for the four-actor trust model in full.
 
 ## Deployment options
 
@@ -92,7 +92,7 @@ For detailed security questionnaires, deployment-specific reviews or custom cont
 
 | Read next | Why |
 |---|---|
-| [Enforcement](/enforcement) | The signed verdict and PEP model, the four-actor trust chain, adoption paths |
-| [Governance](/governance) | The authorship, versioning and approval surface protected by the controls on this page |
-| [Developers](/developers) | The API surface the authentication and authorization controls apply to |
+| [Enforcement](/product/enforcement) | The signed verdict and PEP model, the four-actor trust chain, adoption paths |
+| [Auditability](/product/auditability) | The authorship, versioning and approval surface protected by the controls on this page |
+| [Integrations](/product/integrations) | The API surface the authentication and authorization controls apply to |
 | [Design partner](/pilot) | Three founding slots, one production-relevant decision, founding-customer pricing |

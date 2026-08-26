@@ -26,6 +26,7 @@ const nextConfig = {
       // md/solutions/by-role/.
       { source: '/ai-agents',          destination: '/solutions/by-role/ai-product-teams',    permanent: true },
       { source: '/automate-approvals', destination: '/solutions/by-role/compliance-officers', permanent: true },
+      { source: '/stack',              destination: '/product/integrations',                  permanent: true },
     ];
   },
 };

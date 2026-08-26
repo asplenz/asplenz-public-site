@@ -35,7 +35,7 @@ signed_verdict:
   expires_at: 1787500060
 ```
 
-Signature : ECDSA P-256. Verifiable offline against a per-tenant JWKS document. Full spec at [`docs/specs/signed-verdict-v1.md`](/enforcement).
+Signature : ECDSA P-256. Verifiable offline against a per-tenant JWKS document. Full concept walkthrough at [Signed verdicts and PEP](/docs/concepts/signed-verdicts-and-pep) ; source spec at `docs/specs/signed-verdict-v1.md` in the monorepo.
 
 ## The four-actor trust chain
 

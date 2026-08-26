@@ -19,7 +19,7 @@ Un moteur de règles consultatif retourne un verdict que vos systèmes peuvent i
 - La signature est bindée à l'opération exacte. Un verdict autorisant `refund_execute(TX-456, 40 EUR)` ne peut pas être réutilisé pour une autre transaction, un montant plus élevé, ou une action différente.
 - Le claim `actor` est dérivé de l'authentification Knowledge du caller (binding API key vers principal), pas du body de requête. Un caller ne peut pas forger son propre subject.
 
-Voir [Enforcement](/enforcement) pour le modèle de confiance complet et les chemins d'adoption.
+Voir [Enforcement](/product/enforcement) pour le modèle de confiance complet et les chemins d'adoption.
 
 ## Authentification
 
@@ -52,7 +52,7 @@ Les données sensibles stockées (credentials de services externes, clés de sig
 
 ## Audit
 
-Chaque mutation d'une entité gouvernée et chaque décision que le moteur produit est enregistrée avec le principal et l'état au moment. Les verdicts signés étendent la reconstruction d'audit : chaque exécution wrappée porte un artefact cryptographique citant les règles exactes qui l'ont autorisée, à un état policy précis, pour un principal agent précis, sur une ressource précise avec des paramètres précis. Voir [Gouvernance](/governance) pour ce qu'une record de décision contient et comment elle peut être rejouée.
+Chaque mutation d'une entité gouvernée et chaque décision que le moteur produit est enregistrée avec le principal et l'état au moment. Les verdicts signés étendent la reconstruction d'audit : chaque exécution wrappée porte un artefact cryptographique citant les règles exactes qui l'ont autorisée, à un état policy précis, pour un principal agent précis, sur une ressource précise avec des paramètres précis. Voir [Auditability](/product/auditability) pour ce qu'une record de décision contient et comment elle peut être rejouée.
 
 ## Limites de confiance (ce que Knowledge ne fait pas)
 
@@ -66,7 +66,7 @@ Chaque mutation d'une entité gouvernée et chaque décision que le moteur produ
 | **Un verdict signé ne peut pas être rejoué** | La protection contre le replay est un store spent-verdicts côté PEP. À activer pour les opérations qui doivent s'exécuter exactement une fois. |
 | **Un verdict signé survit à des délais arbitraires** | Les verdicts portent une expiry (60 secondes par défaut, configurable). Les flows longs re-consultent après approbation humaine. |
 
-Voir [Enforcement](/enforcement) pour le modèle de confiance à quatre acteurs en entier.
+Voir [Enforcement](/product/enforcement) §Trust boundaries et [Trust model deep dive](/docs/security-compliance/trust-model) pour le modèle de confiance à quatre acteurs en entier.
 
 ## Options de déploiement
 
@@ -92,7 +92,7 @@ Pour des questionnaires de sécurité détaillés, des revues spécifiques à un
 
 | À lire ensuite | Pourquoi |
 |---|---|
-| [Enforcement](/enforcement) | Le verdict signé et le modèle PEP, la chaîne de confiance à quatre acteurs, chemins d'adoption |
-| [Gouvernance](/governance) | La surface d'autorship, versioning et approbation protégée par les contrôles de cette page |
-| [Developers](/developers) | La surface API à laquelle les contrôles d'authentification et d'autorisation s'appliquent |
+| [Enforcement](/product/enforcement) | Le verdict signé et le modèle PEP, la chaîne de confiance à quatre acteurs, chemins d'adoption |
+| [Auditability](/product/auditability) | La surface d'autorship, versioning et approbation protégée par les contrôles de cette page |
+| [Integrations](/product/integrations) | La surface API à laquelle les contrôles d'authentification et d'autorisation s'appliquent |
 | [Design partner](/pilot) | Trois places founding, une décision production, pricing founding-customer |

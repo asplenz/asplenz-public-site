@@ -87,4 +87,4 @@ Retention policy is a deployment concern, not a limitation of the model. As long
 |---|---|
 | [Enforcement](/product/enforcement) | Signed verdicts + the four-actor trust chain |
 | [Progressive context](/product/progressive-context) | How the input side of the audit trail is populated |
-| [Governance](/governance) | The authorship + versioning + approval surface in depth |
+| [Overrides, approvals, pauses](/docs/concepts/overrides-approvals-pauses) | The authorship + versioning + approval surface in depth |

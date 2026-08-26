@@ -132,7 +132,7 @@ Le tool `search_customer` dans la config n'a pas de bloc `governed`. Les appels 
 - **Multi-tenant par process proxy** : un proxy = un tenant aujourd'hui.
 - **Vraie protection replay** : le proxy ne maintient pas de store spent-verdicts ; le TTL court (défaut 60s) est la protection actuelle.
 
-Référence complète : [`docs/engineering/mcp-proxy-guide.html`](/enforcement).
+Référence complète : [MCP proxy setup](/docs/mcp-proxy/setup) + [config reference](/docs/mcp-proxy/config-reference) + [deployment modes](/docs/mcp-proxy/deployment-modes).
 
 ## Suite
 

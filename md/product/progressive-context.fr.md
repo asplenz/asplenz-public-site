@@ -134,6 +134,6 @@ Pour les flows AI-driven où le même fact peut venir d'une extraction LLM, d'un
 
 | À lire ensuite | Pourquoi |
 |---|---|
-| [Comment ça marche](/how-it-works) | Le modèle mental complet de `/resolve` avec un exemple travaillé |
+| [Qu'est-ce que Knowledge ?](/docs/what-is-knowledge) | Le modèle mental complet de `/resolve` avec un exemple travaillé |
 | [Enforcement](/product/enforcement) | Chaque verdict, complet ou via progressive resolution, peut être signé |
 | [Auditability](/product/auditability) | La Consultation enregistre le chemin de progressive-resolution |

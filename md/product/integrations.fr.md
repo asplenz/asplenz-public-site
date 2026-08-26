@@ -13,7 +13,7 @@ Knowledge s'intègre par trois surfaces : une **API REST** (la source of truth),
 
 **MCP proxy** [Stable] : `asplenz-mcp-proxy` s'insère entre un MCP host et un serveur MCP customer existant. Lit une config déclarant quels tools sont gouvernés. À chaque `tools/call`, le proxy exécute le flow PEP (resolve → verify signed_verdict → forward) de façon transparente. Le serveur MCP du customer, les implémentations de tools et le client host restent inchangés.
 
-**Histoire d'adoption** : le MCP proxy est le chemin d'onboarding le plus fluide pour les équipes déjà en MCP - insertion drop-in, zéro changement de code sur les tools, enforcement ajouté par insertion du proxy. Voir [Enforcement](/product/enforcement) §Trois chemins d'adoption et [`docs/engineering/mcp-proxy-guide.html`](/enforcement).
+**Histoire d'adoption** : le MCP proxy est le chemin d'onboarding le plus fluide pour les équipes déjà en MCP - insertion drop-in, zéro changement de code sur les tools, enforcement ajouté par insertion du proxy. Voir [Enforcement](/product/enforcement) §Trois chemins d'adoption et [MCP proxy setup](/docs/mcp-proxy/setup).
 
 ## SDK Python - knowledge-runtime
 
@@ -53,7 +53,7 @@ Chaque chemin d'intégration appelle ultimement ceci. Endpoints :
 | `POST /knowledge/v1/approvals/{id}/decide` | Un humain décide une demande d'approbation |
 | `GET /knowledge/v1/consultations/{id}` | Récupérer un record de Consultation pour audit |
 
-Authentifié avec une clé API (header `X-API-Key`). Référence complète à [/developers](/developers). Spec OpenAPI à `/api/openapi-v3.json`.
+Authentifié avec une clé API (header `X-API-Key`). Référence complète à [API reference](/docs/api-reference/authentication). Spec OpenAPI à `/api/openapi-v3.json`.
 
 ## Identity, SSO, SCIM
 
