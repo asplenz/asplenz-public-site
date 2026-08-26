@@ -9,7 +9,7 @@ kicker: Governed policy infrastructure for AI decision-making agents
 
 Knowledge lets AI agents gather context and act on rule-governed business decisions without making the final policy determination themselves. Decisions are deterministic, auditable, and can be enforced at the tool boundary with signed authorization.
 
-**[See how enforcement works](/enforcement)** &nbsp; · &nbsp; **[Talk to us](/pilot)**
+**[See how enforcement works](/product/enforcement)** &nbsp; · &nbsp; **[Talk to us](/contact)**
 
 ---
 
@@ -45,10 +45,10 @@ Business tool  (Stripe, core banking, EMR, ...)
 Four situations where a decision deserves its own governed lifecycle, distinct from the system that consumes it.
 
 **Agent Decisioning**
-AI agents that investigate a case (customer refund, KYC file, insurance claim, admission request) and make a rule-governed business decision from partial context. The agent orchestrates the investigation ; Knowledge determines the outcome deterministically. See [/ai-agents](/ai-agents).
+AI agents that investigate a case (customer refund, KYC file, insurance claim, admission request) and make a rule-governed business decision from partial context. The agent orchestrates the investigation ; Knowledge determines the outcome deterministically. See [For AI product teams](/ai-agents).
 
 **Review-Ready Gate**
-Catch deterministic defects before scarce human reviewers see them. When a case reaches a compliance officer, everything that could be decided by rules already was ; only judgment cases arrive. See [/automate-approvals](/automate-approvals).
+Catch deterministic defects before scarce human reviewers see them. When a case reaches a compliance officer, everything that could be decided by rules already was ; only judgment cases arrive. See [For compliance officers](/automate-approvals).
 
 **Progressive Journeys**
 A component of the agentic loop, not a form optimization. The caller sends what it has, Knowledge returns the fields the applicable policies still need, the caller acquires them (from a system, a vendor, an extraction, or the user) and re-consults. Policy changes ship without redeploying consumers - the caller auto-discovers the new required fields.
@@ -70,7 +70,7 @@ def refund_customer(tx, amount):
 
 The agent proposes the action. Knowledge decides. The tool executes only with a valid signed authorization that binds to this exact operation. Shipped 2026-08. Python SDK + MCP proxy + JWS ES256.
 
-**[Quickstart 5 min](/developers)** &nbsp; · &nbsp; **[MCP proxy setup](/enforcement)** &nbsp; · &nbsp; **[Signed verdict spec](/enforcement)**
+**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[MCP proxy setup](/docs/quickstart-mcp-proxy)** &nbsp; · &nbsp; **[Enforcement spec](/product/enforcement)**
 
 ---
 
@@ -80,7 +80,7 @@ Already have Drools, IBM ODM, DMN, ServiceNow, or a custom rules engine ? **Keep
 
 Knowledge is not a replacement for the enterprise-wide rules landscape. It is for a specific class of decisions - those that deserve their own governed policy authority, independent of the systems that consume them : agents that need progressive context resolution, approvals with explicit human/machine boundaries, reproducible policy state for regulator-grade audit, or actions that require cryptographically verifiable authorization at the tool boundary.
 
-**Knowledge sits alongside, not on top.** See the [insertion patterns](/stack) : Overlay (add governed policy around a legacy engine), Gate (require a signed verdict before selected actions), Shadow (parallel evaluation without production authority), Selective routing (new scope on Knowledge, rest on legacy), Primary (greenfield).
+**Knowledge sits alongside, not on top.** See the [insertion patterns](/stack) : Overlay (add governed policy around a legacy engine), Gate (require a signed verdict before selected actions), Shadow (parallel evaluation without production authority), Selective routing (new scope on Knowledge, rest on legacy), Primary (greenfield). See [Integrations](/product/integrations) for the MCP, Python SDK and REST surfaces.
 
 ---
 
@@ -96,7 +96,7 @@ The lifecycle stays operational through :
 - **Overrides and pauses** as governed objects, not hidden branches
 - **Signed authorization** so a downstream enforcement boundary can prove the policy decision that authorized an action (with the honest caveat that architectural placement of the PEP is the client's responsibility)
 
-**[How Knowledge fits your firm](/pilot)** &nbsp; · &nbsp; **[The governance model](/governance)**
+**[How Knowledge fits your firm](/pilot)** &nbsp; · &nbsp; **[The auditability model](/product/auditability)**
 
 ---
 

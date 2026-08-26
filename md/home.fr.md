@@ -9,7 +9,7 @@ kicker: Infrastructure policy gouvernée pour agents IA de décision
 
 Knowledge permet aux agents IA de collecter le contexte et d'agir sur des décisions métier gouvernées par des règles sans faire eux-mêmes la détermination policy finale. Les décisions sont déterministes, auditables, et peuvent être enforcées à la frontière du tool avec autorisation signée.
 
-**[Voir comment l'enforcement fonctionne](/enforcement)** &nbsp; · &nbsp; **[Parlons-en](/pilot)**
+**[Voir comment l'enforcement fonctionne](/product/enforcement)** &nbsp; · &nbsp; **[Parlons-en](/contact)**
 
 ---
 
@@ -45,10 +45,10 @@ Business tool  (Stripe, core banking, EMR, ...)
 Quatre situations où une décision mérite son propre cycle de vie gouverné, distinct du système qui la consomme.
 
 **Agent Decisioning**
-Agents IA qui investiguent un cas (remboursement client, dossier KYC, réclamation assurance, demande d'admission) et prennent une décision métier gouvernée par règles à partir d'un contexte partiel. L'agent orchestre l'investigation ; Knowledge détermine le résultat de façon déterministe. Voir [/ai-agents](/ai-agents).
+Agents IA qui investiguent un cas (remboursement client, dossier KYC, réclamation assurance, demande d'admission) et prennent une décision métier gouvernée par règles à partir d'un contexte partiel. L'agent orchestre l'investigation ; Knowledge détermine le résultat de façon déterministe. Voir [Pour équipes produit IA](/ai-agents).
 
 **Review-Ready Gate**
-Attrapez les défauts déterministes avant qu'ils atteignent les reviewers humains rares. Quand un cas arrive à un compliance officer, tout ce qui pouvait être décidé par règles l'a déjà été ; seuls les cas de jugement arrivent. Voir [/automate-approvals](/automate-approvals).
+Attrapez les défauts déterministes avant qu'ils atteignent les reviewers humains rares. Quand un cas arrive à un compliance officer, tout ce qui pouvait être décidé par règles l'a déjà été ; seuls les cas de jugement arrivent. Voir [Pour compliance officers](/automate-approvals).
 
 **Progressive Journeys**
 Un composant de la boucle agentique, pas une optimisation de formulaire. Le caller envoie ce qu'il a, Knowledge retourne les champs dont les policies applicables ont encore besoin, le caller les acquiert (depuis un système, un vendor, une extraction, ou l'utilisateur) et re-consulte. Les changements de policy shippent sans redéploiement des consumers - le caller auto-découvre les nouveaux champs requis.
@@ -70,7 +70,7 @@ def refund_customer(tx, amount):
 
 L'agent propose l'action. Knowledge décide. Le tool s'exécute uniquement avec une autorisation signée valide qui bind à cette opération exacte. Shipped 2026-08. SDK Python + MCP proxy + JWS ES256.
 
-**[Quickstart 5 min](/developers)** &nbsp; · &nbsp; **[Setup MCP proxy](/enforcement)** &nbsp; · &nbsp; **[Spec du verdict signé](/enforcement)**
+**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Setup MCP proxy](/docs/quickstart-mcp-proxy)** &nbsp; · &nbsp; **[Spec Enforcement](/product/enforcement)**
 
 ---
 
@@ -80,7 +80,7 @@ Vous avez déjà Drools, IBM ODM, DMN, ServiceNow, ou un moteur de règles custo
 
 Knowledge n'est pas un remplacement du paysage rules engines de l'entreprise. C'est pour une classe spécifique de décisions - celles qui méritent leur propre autorité policy gouvernée, indépendante des systèmes qui les consomment : agents qui ont besoin de résolution progressive de contexte, approbations avec frontières humain/machine explicites, état policy reproductible pour audit de niveau régulateur, ou actions qui nécessitent une autorisation cryptographiquement vérifiable à la frontière du tool.
 
-**Knowledge s'insère à côté, pas au-dessus.** Voir les [patterns d'insertion](/stack) : Overlay (ajouter une policy gouvernée autour d'un moteur legacy), Gate (exiger un verdict signé avant certaines actions), Shadow (évaluation parallèle sans autorité en production), Selective routing (nouveau scope sur Knowledge, reste sur legacy), Primary (greenfield).
+**Knowledge s'insère à côté, pas au-dessus.** Voir les [patterns d'insertion](/stack) : Overlay (ajouter une policy gouvernée autour d'un moteur legacy), Gate (exiger un verdict signé avant certaines actions), Shadow (évaluation parallèle sans autorité en production), Selective routing (nouveau scope sur Knowledge, reste sur legacy), Primary (greenfield). Voir [Integrations](/product/integrations) pour les surfaces MCP, SDK Python et REST.
 
 ---
 
@@ -96,7 +96,7 @@ Le cycle de vie reste opérationnel via :
 - **Overrides et pauses** comme objets gouvernés, pas des branches cachées
 - **Autorisation signée** pour qu'une frontière d'enforcement en aval puisse prouver la décision policy qui a autorisé une action (avec le caveat honnête que le placement architectural du PEP est la responsabilité du client)
 
-**[Comment Knowledge s'insère chez vous](/pilot)** &nbsp; · &nbsp; **[Le modèle de gouvernance](/governance)**
+**[Comment Knowledge s'insère chez vous](/pilot)** &nbsp; · &nbsp; **[Le modèle d'auditability](/product/auditability)**
 
 ---
 

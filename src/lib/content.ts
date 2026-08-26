@@ -4,9 +4,12 @@ import matter from 'gray-matter';
 
 /**
  * Loads a page's markdown content by slug + locale. Convention :
- *   md/<slug>.<locale>.md
- * where locale is 'en' or 'fr' and slug is the page identifier
- * ('home', 'wealth', 'kyc', 'how-it-works', 'ai-agents', 'stack', 'pilot').
+ *   md/<slug>.<locale>.md            for top-level pages
+ *   md/<segment>/<slug>.<locale>.md  for nested URLs (2026-08-26)
+ *
+ * A slug like "product/enforcement" maps to
+ * md/product/enforcement.<locale>.md ; the URL /product/enforcement
+ * renders the same file via the catch-all route.
  */
 
 export interface PageContent {
@@ -31,8 +34,11 @@ const MD_DIR = path.join(process.cwd(), 'md');
 
 export function loadPage(slug: string, locale: string): PageContent {
   const safeLocale = locale === 'fr' ? 'fr' : 'en';
+  // Nested slugs like "product/enforcement" translate directly to the
+  // filesystem path ; forward slashes are preserved so the OS handles
+  // the traversal.
   const filename = `${slug}.${safeLocale}.md`;
-  const filepath = path.join(MD_DIR, filename);
+  const filepath = path.join(MD_DIR, ...filename.split('/'));
 
   if (!fs.existsSync(filepath)) {
     throw new Error(`Missing markdown page: ${filepath}`);
@@ -71,15 +77,33 @@ export function loadPage(slug: string, locale: string): PageContent {
 }
 
 /**
- * Enumerate every page slug available on disk (both locales must exist).
+ * Enumerate every page slug available on disk (both locales assumed
+ * present, we only check .en.md then trust the .fr.md sibling).
+ *
+ * Recurses into subdirectories so a file at md/product/enforcement.en.md
+ * yields the slug "product/enforcement", suitable for a catch-all
+ * Next.js route.
+ *
  * Used by getStaticPaths.
  */
 export function listPageSlugs(): string[] {
-  const files = fs.readdirSync(MD_DIR);
   const slugs = new Set<string>();
-  for (const f of files) {
-    const match = f.match(/^(.+)\.(en|fr)\.md$/);
-    if (match) slugs.add(match[1]);
+
+  function walk(dir: string, prefix: string) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(full, prefix ? `${prefix}/${entry.name}` : entry.name);
+        continue;
+      }
+      const match = entry.name.match(/^(.+)\.(en|fr)\.md$/);
+      if (!match) continue;
+      const base = match[1];
+      const slug = prefix ? `${prefix}/${base}` : base;
+      slugs.add(slug);
+    }
   }
+
+  walk(MD_DIR, '');
   return Array.from(slugs);
 }

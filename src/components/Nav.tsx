@@ -37,39 +37,52 @@ function isGroup(item: NavItem): item is NavGroup {
   return 'children' in item;
 }
 
+// 2026-08-26 : nav restructured for the from-scratch site strategy.
+// Five top-level items (Product / Solutions / Docs / Pricing / Contact).
+// Product exposes the 4 features ; Solutions groups by industry
+// (existing) - the "by role" split is a follow-up. Legacy leaf slugs
+// (how-it-works, ai-agents, ...) still resolve at their old URLs but
+// are no longer in the nav ; redirects handled at next.config.js.
 const NAV_ITEMS: NavItem[] = [
   {
-    groupKey: 'solutions',
-    groupLabelEn: 'Solutions',
-    groupLabelFr: 'Solutions',
+    groupKey: 'product',
+    groupLabelEn: 'Product',
+    groupLabelFr: 'Produit',
     children: [
       {
-        slug: 'automate-approvals',
-        labelEn: 'Reviews & Approvals',
-        labelFr: 'Revues & approbations',
-        descEn: 'Reduce routine reviews and prepare cases that need judgment.',
-        descFr: 'Réduisez les reviews routinières et préparez les cas qui exigent du jugement.',
+        slug: 'product/enforcement',
+        labelEn: 'Enforcement',
+        labelFr: 'Enforcement',
+        descEn: 'Signed authorization the tool boundary can enforce.',
+        descFr: 'Autorisation signée que la frontière du tool peut faire respecter.',
       },
       {
-        slug: 'ask-less',
-        labelEn: 'Ask Less',
-        labelFr: 'Demandez moins',
-        descEn: 'Collect only the information each decision actually requires.',
-        descFr: "Ne collectez que l'information dont chaque décision a réellement besoin.",
+        slug: 'product/auditability',
+        labelEn: 'Auditability',
+        labelFr: 'Auditability',
+        descEn: 'Reconstruct the exact policy state behind a historical decision.',
+        descFr: "Reconstruisez l'état policy exact derrière une décision historique.",
       },
       {
-        slug: 'ai-agents',
-        labelEn: 'Govern AI Decisions',
-        labelFr: 'Gouvernez les décisions IA',
-        descEn: 'Give AI agents a governed, deterministic policy decision before they act.',
-        descFr: "Donnez aux agents IA une décision policy gouvernée et déterministe avant d'agir.",
+        slug: 'product/progressive-context',
+        labelEn: 'Progressive context',
+        labelFr: 'Progressive context',
+        descEn: 'Knowledge tells the caller what fields are still needed.',
+        descFr: 'Knowledge dit au caller quels champs sont encore nécessaires.',
+      },
+      {
+        slug: 'product/integrations',
+        labelEn: 'Integrations',
+        labelFr: 'Integrations',
+        descEn: 'MCP, Python SDK, JWKS, and how Knowledge plugs into your stack.',
+        descFr: "MCP, SDK Python, JWKS, et comment Knowledge s'insère dans votre stack.",
       },
     ],
   },
   {
-    groupKey: 'industries',
-    groupLabelEn: 'Industries',
-    groupLabelFr: 'Industries',
+    groupKey: 'solutions',
+    groupLabelEn: 'Solutions',
+    groupLabelFr: 'Solutions',
     children: [
       {
         slug: 'wealth',
@@ -92,12 +105,25 @@ const NAV_ITEMS: NavItem[] = [
         descEn: 'Coverage, authorization and administrative decisions in policy-driven healthcare workflows.',
         descFr: "Décisions de couverture, d'autorisation et administratives dans les workflows healthcare policy-driven.",
       },
+      {
+        slug: 'ai-agents',
+        labelEn: 'For AI product teams',
+        labelFr: 'Pour équipes produit IA',
+        descEn: 'Give AI agents a governed, deterministic policy decision before they act.',
+        descFr: "Donnez aux agents IA une décision policy gouvernée et déterministe avant d'agir.",
+      },
+      {
+        slug: 'automate-approvals',
+        labelEn: 'For compliance officers',
+        labelFr: 'Pour compliance officers',
+        descEn: 'Reduce routine reviews and prepare cases that need judgment.',
+        descFr: 'Réduisez les reviews routinières et préparez les cas qui exigent du jugement.',
+      },
     ],
   },
-  { slug: 'how-it-works', labelEn: 'How it works', labelFr: 'Comment ça marche' },
-  { slug: 'enforcement', labelEn: 'Enforcement', labelFr: 'Enforcement' },
-  { slug: 'stack', labelEn: 'Works with your stack', labelFr: 'Fonctionne avec votre stack' },
-  { slug: 'pilot', labelEn: 'Design partner', labelFr: 'Design partner' },
+  { slug: 'docs', labelEn: 'Docs', labelFr: 'Docs' },
+  { slug: 'pilot', labelEn: 'Pricing', labelFr: 'Pricing' },
+  { slug: 'contact', labelEn: 'Contact', labelFr: 'Contact' },
 ];
 
 export default function Nav() {
@@ -137,8 +163,14 @@ export default function Nav() {
   const childDesc = (c: NavGroupChild) => (locale === 'fr' ? c.descFr : c.descEn);
 
   const isActive = (slug: string) => {
+    // 2026-08-26 : catch-all route `/[...slug]` uses router.query.slug
+    // as an array of segments. Compare joined value.
     if (router.pathname === `/${slug}`) return true;
-    if (router.pathname === '/[slug]' && router.query.slug === slug) return true;
+    if (router.pathname === '/[...slug]') {
+      const segments = router.query.slug;
+      const joined = Array.isArray(segments) ? segments.join('/') : segments;
+      if (joined === slug) return true;
+    }
     return false;
   };
   const isGroupActive = (group: NavGroup) => group.children.some((c) => isActive(c.slug));
