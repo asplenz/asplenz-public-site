@@ -22,6 +22,10 @@ interface NavGroupChild {
   labelFr: string;
   descEn: string;
   descFr: string;
+  // Rendered as a highlighted card at the top of the dropdown when true.
+  // Use for the "hub" entry a group hangs off (e.g. /product for the
+  // whole decision-loop overview above the individual capabilities).
+  featured?: boolean;
 }
 
 interface NavGroup {
@@ -49,6 +53,14 @@ const NAV_ITEMS: NavItem[] = [
     groupLabelEn: 'Product',
     groupLabelFr: 'Produit',
     children: [
+      {
+        slug: 'product',
+        labelEn: 'How Knowledge works',
+        labelFr: 'Comment fonctionne Knowledge',
+        descEn: 'The decision loop for rule-governed AI agents. Start here.',
+        descFr: "La boucle de décision pour agents IA rule-governed. Démarrez ici.",
+        featured: true,
+      },
       {
         slug: 'product/enforcement',
         labelEn: 'Enforcement',
@@ -84,27 +96,16 @@ const NAV_ITEMS: NavItem[] = [
     groupLabelEn: 'Solutions',
     groupLabelFr: 'Solutions',
     children: [
+      // Use-case wedge first (integrator + agent builder audience).
       {
-        slug: 'wealth',
-        labelEn: 'Wealth',
-        labelFr: 'Wealth',
-        descEn: 'Structured-product distribution decisions.',
-        descFr: 'Décisions de distribution de produits structurés.',
+        slug: 'solutions/build-rule-governed-agents',
+        labelEn: 'Build rule-governed agents',
+        labelFr: 'Construire des agents rule-governed',
+        descEn: 'For integrators + agent builders : stop reinventing rule storage, versioning, approvals, audit and enforcement on every engagement.',
+        descFr: 'Pour intégrateurs + agent builders : arrêtez de réinventer storage de rules, versioning, approbations, audit et enforcement à chaque engagement.',
+        featured: true,
       },
-      {
-        slug: 'kyc',
-        labelEn: 'KYC / KYB',
-        labelFr: 'KYC / KYB',
-        descEn: 'Composite onboarding and admission decisions.',
-        descFr: "Décisions composites d'onboarding et d'admission.",
-      },
-      {
-        slug: 'healthcare',
-        labelEn: 'Healthcare',
-        labelFr: 'Healthcare',
-        descEn: 'Coverage, authorization and administrative decisions in policy-driven healthcare workflows.',
-        descFr: "Décisions de couverture, d'autorisation et administratives dans les workflows healthcare policy-driven.",
-      },
+      // By role.
       {
         slug: 'solutions/by-role/ai-product-teams',
         labelEn: 'For AI product teams',
@@ -126,12 +127,27 @@ const NAV_ITEMS: NavItem[] = [
         descEn: 'Cryptographic proof, four-actor trust chain, audit that survives.',
         descFr: 'Preuve cryptographique, chaîne de confiance à 4 acteurs, audit qui survit.',
       },
+      // By industry.
       {
-        slug: 'solutions/build-rule-governed-agents',
-        labelEn: 'Build rule-governed agents',
-        labelFr: 'Construire des agents rule-governed',
-        descEn: 'For integrators + agent builders : stop reinventing rule storage, versioning, approvals, audit and enforcement on every engagement.',
-        descFr: 'Pour intégrateurs + agent builders : arrêtez de réinventer storage de rules, versioning, approbations, audit et enforcement à chaque engagement.',
+        slug: 'wealth',
+        labelEn: 'Wealth',
+        labelFr: 'Wealth',
+        descEn: 'Structured-product distribution decisions.',
+        descFr: 'Décisions de distribution de produits structurés.',
+      },
+      {
+        slug: 'kyc',
+        labelEn: 'KYC / KYB',
+        labelFr: 'KYC / KYB',
+        descEn: 'Composite onboarding and admission decisions.',
+        descFr: "Décisions composites d'onboarding et d'admission.",
+      },
+      {
+        slug: 'healthcare',
+        labelEn: 'Healthcare',
+        labelFr: 'Healthcare',
+        descEn: 'Coverage, authorization and administrative decisions in policy-driven healthcare workflows.',
+        descFr: "Décisions de couverture, d'autorisation et administratives dans les workflows healthcare policy-driven.",
       },
     ],
   },
@@ -291,7 +307,17 @@ export default function Nav() {
                       >
                         <ul className="py-2">
                           {item.children.map((c) => (
-                            <li key={c.slug}>
+                            <li
+                              key={c.slug}
+                              style={
+                                c.featured
+                                  ? {
+                                      backgroundColor: 'var(--accent-light)',
+                                      borderBottom: '1px solid var(--border-light)',
+                                    }
+                                  : undefined
+                              }
+                            >
                               <Link
                                 href={`/${c.slug}`}
                                 locale={locale}
@@ -299,9 +325,11 @@ export default function Nav() {
                                 onClick={() => setOpenGroup(null)}
                               >
                                 <div
-                                  className="text-sm font-semibold"
+                                  className={c.featured ? 'text-sm font-bold' : 'text-sm font-semibold'}
                                   style={{
                                     color: isActive(c.slug)
+                                      ? 'var(--accent)'
+                                      : c.featured
                                       ? 'var(--accent)'
                                       : 'var(--text-primary)',
                                   }}
@@ -310,7 +338,11 @@ export default function Nav() {
                                 </div>
                                 <div
                                   className="text-xs mt-0.5 leading-snug"
-                                  style={{ color: 'var(--text-muted)' }}
+                                  style={{
+                                    color: c.featured
+                                      ? 'var(--text-secondary)'
+                                      : 'var(--text-muted)',
+                                  }}
                                 >
                                   {childDesc(c)}
                                 </div>
@@ -435,7 +467,15 @@ export default function Nav() {
                     {isOpen && (
                       <ul className="pl-3 pb-2 space-y-1">
                         {item.children.map((c) => (
-                          <li key={c.slug}>
+                          <li
+                            key={c.slug}
+                            className={c.featured ? 'rounded-md px-2 -mx-2 mb-1' : ''}
+                            style={
+                              c.featured
+                                ? { backgroundColor: 'var(--accent-light)' }
+                                : undefined
+                            }
+                          >
                             <Link
                               href={`/${c.slug}`}
                               locale={locale}
@@ -443,9 +483,11 @@ export default function Nav() {
                               className="block py-2"
                             >
                               <div
-                                className="text-sm font-semibold"
+                                className={c.featured ? 'text-sm font-bold' : 'text-sm font-semibold'}
                                 style={{
                                   color: isActive(c.slug)
+                                    ? 'var(--accent)'
+                                    : c.featured
                                     ? 'var(--accent)'
                                     : 'var(--text-primary)',
                                 }}
@@ -454,7 +496,11 @@ export default function Nav() {
                               </div>
                               <div
                                 className="text-xs mt-0.5 leading-snug"
-                                style={{ color: 'var(--text-muted)' }}
+                                style={{
+                                  color: c.featured
+                                    ? 'var(--text-secondary)'
+                                    : 'var(--text-muted)',
+                                }}
                               >
                                 {childDesc(c)}
                               </div>
