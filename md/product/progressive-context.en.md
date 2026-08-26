@@ -13,7 +13,7 @@ Two dependency-direction properties follow from this :
 
 **Direction 1 - the caller sends what it has, Knowledge tells it what is still needed.** Instead of the agent shipping the full context up-front (and failing when a field is missing or wrong), the agent iterates : `/resolve` returns `required_context` with schema + allowed_values + format for each missing field, the agent acquires it, re-consults, until the verdict is reached.
 
-**Direction 2 - dependency inversion.** The agent does not need to know the policy schema in advance. It sends what it has (potentially nothing), Knowledge dictates the next required fields. **When policies change - new field, renamed field, new required condition - the agent auto-adapts.** No consumer redeployment.
+**Direction 2 - policies can change without changing every caller.** The agent does not need to know the policy schema in advance. It sends what it has (potentially nothing), Knowledge dictates the next required fields. **When policies change - new field, renamed field, new required condition - the agent auto-adapts.** No consumer redeployment.
 
 ## The API contract
 
@@ -72,7 +72,9 @@ Under the hood, `/resolve` runs the two-stage algorithm from `docs/specs/knowled
 
 The caller sees a flat list of `required_context` items ; the two stages are transparent. Each item carries schema metadata (`type`, `allowed_values`, `min`, `max`, `format`, `description`) sourced from the tenant's `scope_schema`, so the caller can construct valid queries without a separate lookup.
 
-## Why dependency inversion changes deployment
+## Change rules without rewriting your applications
+
+Traditionally, applications are built around the information a decision engine expects. When those requirements change, the applications consuming the decision may need to change too. With Progressive Context, callers can start with what they have and retrieve additional information only when it is required.
 
 Concrete example. Today the caller sends `[jurisdiction, client_class, asset_class, ticker, amount]`. Compliance adds a new rule that needs `beneficial_owner_verified`. With a hardcoded caller, the new field is not sent, the rule cannot evaluate, verdict is wrong or partial.
 
@@ -86,6 +88,8 @@ With `required_context`, the flow becomes :
 6. Verdict is reached.
 
 **No caller redeployment.** The only change is a one-line addition to the fetcher registry the day the compliance team decides to require the new field.
+
+In architectural terms, the dependency between the caller and the policy's context requirements is inverted : the policy declares what it needs, the caller no longer declares what it can send.
 
 The registry can be as simple as a Python dict :
 

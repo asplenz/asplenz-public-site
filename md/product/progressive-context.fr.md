@@ -13,7 +13,7 @@ Deux propriétés de direction-de-dépendance en découlent :
 
 **Direction 1 - le caller envoie ce qu'il a, Knowledge lui dit ce qu'il manque.** Au lieu que l'agent envoie le contexte complet d'entrée (et échoue quand un champ manque ou est faux), l'agent itère : `/resolve` retourne `required_context` avec schema + allowed_values + format pour chaque champ manquant, l'agent l'acquiert, re-consulte, jusqu'au verdict.
 
-**Direction 2 - inversion de dépendance.** L'agent n'a pas besoin de connaître le schema policy d'avance. Il envoie ce qu'il a (potentiellement rien), Knowledge dicte les champs requis suivants. **Quand les policies changent - nouveau champ, champ renommé, nouvelle condition requise - l'agent s'auto-adapte.** Zéro redéploiement consumer.
+**Direction 2 - les policies peuvent changer sans changer chaque caller.** L'agent n'a pas besoin de connaître le schema policy d'avance. Il envoie ce qu'il a (potentiellement rien), Knowledge dicte les champs requis suivants. **Quand les policies changent - nouveau champ, champ renommé, nouvelle condition requise - l'agent s'auto-adapte.** Zéro redéploiement consumer.
 
 ## Le contrat API
 
@@ -72,7 +72,9 @@ Sous le capot, `/resolve` exécute l'algorithme à deux étapes de `docs/specs/k
 
 Le caller voit une liste plate d'items `required_context` ; les deux étapes sont transparentes. Chaque item porte des metadata schema (`type`, `allowed_values`, `min`, `max`, `format`, `description`) sourcées du `scope_schema` du tenant, pour que le caller construise des queries valides sans lookup séparé.
 
-## Pourquoi l'inversion de dépendance change le déploiement
+## Changer les rules sans réécrire vos applications
+
+Traditionnellement, les applications sont construites autour de l'information qu'un moteur de décision attend. Quand ces exigences changent, les applications qui consomment la décision peuvent avoir à changer aussi. Avec Progressive Context, les callers peuvent démarrer avec ce qu'ils ont et récupérer l'information additionnelle seulement quand elle est requise.
 
 Exemple concret. Aujourd'hui le caller envoie `[jurisdiction, client_class, asset_class, ticker, amount]`. Compliance ajoute une nouvelle règle qui a besoin de `beneficial_owner_verified`. Avec un caller hardcodé, le nouveau champ n'est pas envoyé, la règle ne peut pas évaluer, le verdict est faux ou partiel.
 
@@ -86,6 +88,8 @@ Avec `required_context`, le flow devient :
 6. Le verdict est atteint.
 
 **Zéro redéploiement caller.** Le seul changement est un ajout d'une ligne au registry de fetchers le jour où l'équipe compliance décide de requérir le nouveau champ.
+
+En termes architecturaux, la dépendance entre le caller et les exigences de contexte de la policy est inversée : la policy déclare ce dont elle a besoin, le caller ne déclare plus ce qu'il peut envoyer.
 
 Le registry peut être aussi simple qu'un dict Python :
 
