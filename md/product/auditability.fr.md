@@ -119,12 +119,12 @@ Le governance log répond à *« pourquoi cette règle existe ? »* La Consultat
 
 ## Comment le replay reste déterministe à travers les années
 
-Les propriétés qui rendent le replay déterministe :
-
-- **Versioning immuable par design.** Chaque changement à un champ affectant le verdict d'une Rule crée une nouvelle `RuleVersion`. Les versions précédentes ne sont jamais réécrites. Une Consultation qui a cité une version antérieure continue de pointer sur cette version exacte, pour toujours. Même forme pour `OverrideVersion`.
-- **Trace de précédence comme data, pas comme dérivation.** Le trace enregistre la liste candidate complète, quelles règles ont été neutralisées, quel override a neutralisé chacune, le set effectif qui reste, la règle gagnante, et le champ de précédence qui a cassé le tie. Rendu comme JSON structuré à côté du verdict, ou comme prose via `/reason` pour une narration humaine.
-- **Approbations et overrides comme objets gouvernés first-class.** Pas des annotations de workflow, pas des branches cachées. Les deux sont queryables, versionnées, et liées à la Consultation qu'elles ont résolue. Une ligne `Approval` enregistre les règles déclenchantes, le requester, le decider, le résultat, le commentaire de décision, et l'`override_id` optionnel si l'approbation a accordé une exception scope-bounded. Un `Override` est une entité first-class avec sa propre chaîne de versions, s'applique dans un scope déclaré pour une fenêtre de temps déclarée.
-- **La rétention est un choix de déploiement.** Consultations, versions de règles et events sont retenus selon la policy configurée du tenant. Tant que la Consultation est retenue, la reconstruction lit l'état gelé.
+| Propriété | Ce que ça veut dire pour le replay |
+|---|---|
+| **Versioning immuable par design** | Chaque changement à une `Rule` crée une nouvelle `RuleVersion`. Les versions précédentes ne sont jamais réécrites. Une Consultation qui a cité une version antérieure continue de pointer sur cette version exacte, pour toujours. Même forme pour `OverrideVersion`. |
+| **Trace de précédence stockée, pas dérivée** | La liste candidate complète, les règles neutralisées, le set effectif, la règle gagnante et le champ de tie-break sont stockés sur la Consultation elle-même. Rendus comme JSON structuré à côté du verdict, ou comme prose via `/reason` pour une narration humaine. Pas recalculée au moment de replay. |
+| **Approbations et overrides comme objets first-class** | Les deux sont queryables, versionnés, et liés à la Consultation qu'ils ont résolue. Une `Approval` enregistre les règles déclenchantes, le requester, le decider, le résultat, le commentaire de décision. Un `Override` a sa propre chaîne de versions et s'applique dans un scope déclaré pour une fenêtre de temps déclarée. |
+| **Rétention comme choix de déploiement** | Consultations, versions de règles et events sont retenus selon la policy configurée du tenant. Tant que la Consultation est retenue, la reconstruction lit l'état gelé. |
 
 ## Vérification cryptographique (quand signed-verdict est activé)
 

@@ -119,12 +119,12 @@ The governance log answers *"why does this rule exist ?"* The Consultation answe
 
 ## How replay stays deterministic across years
 
-The properties that make replay deterministic :
-
-- **Immutable versioning by design.** Every change to a verdict-affecting field on a Rule creates a new `RuleVersion`. Prior versions are never rewritten. A Consultation that cited an earlier version keeps pointing to that exact version, forever. Same shape for `OverrideVersion`.
-- **Precedence trace as data, not derivation.** The trace records the full candidate list, which rules were neutralised, which override neutralised each, the effective set that remained, the winning rule, and the precedence field that broke the tie. Rendered as structured JSON alongside the verdict, or as prose via `/reason` for human narration.
-- **Approvals and overrides as first-class governed objects.** Not workflow annotations, not hidden branches. Both are queryable, versioned, and tied to the Consultation they resolved. An `Approval` row records the triggering rules, the requester, the decider, the outcome, the decision comment, and the optional `override_id` if the approval granted a scope-bounded exception. An `Override` is a first-class entity with its own version chain, applies within a declared scope for a declared time window.
-- **Retention is a deployment choice.** Consultations, rule versions and events retain by the tenant's configured policy. As long as the Consultation is retained, the reconstruction reads the frozen state.
+| Property | What it means for replay |
+|---|---|
+| **Immutable versioning by design** | Every change to a `Rule` creates a new `RuleVersion`. Prior versions are never rewritten. A Consultation that cited an earlier version keeps pointing to that exact version, forever. Same shape for `OverrideVersion`. |
+| **Precedence trace stored, not derived** | The full candidate list, neutralised rules, effective set, winning rule and tie-breaking field are stored on the Consultation itself. Rendered as structured JSON alongside the verdict, or as prose via `/reason` for human narration. Not recomputed at replay time. |
+| **Approvals and overrides as first-class objects** | Both are queryable, versioned, and tied to the Consultation they resolved. An `Approval` records the triggering rules, requester, decider, outcome, decision comment. An `Override` has its own version chain and applies within a declared scope for a declared time window. |
+| **Retention as a deployment choice** | Consultations, rule versions and events are retained per the tenant's configured policy. As long as the Consultation is retained, the reconstruction reads the frozen state. |
 
 ## Cryptographic verification (when signed-verdict is enabled)
 
