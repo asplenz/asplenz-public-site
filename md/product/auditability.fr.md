@@ -19,19 +19,9 @@ rule       = R-182
 timestamp  = 2025-02-14T09:12:00Z
 ```
 
-L'étape naturelle suivante est de regarder la règle R-182. Mais la R-182 actuelle n'est pas celle qui a fired ce jour-là. Depuis :
+L'étape naturelle suivante est de regarder la règle R-182. Mais R-182 a pu être modifiée plusieurs fois depuis 2025-02-14. Et des overrides peuvent avoir été en vigueur à ce moment qui ne sont plus visibles aujourd'hui, ou des overrides peuvent être actifs maintenant qui n'étaient pas en vigueur à ce moment.
 
-```
-R-182 v1
-    ↓
-amendée  (seuil relevé)
-    ↓
-R-182 v2
-    ↓
-exception ajoutée  (clients institutionnels exemptés)
-    ↓
-R-182 v3
-```
+Ce que la vue actuelle de R-182 montre n'est pas nécessairement ce sur quoi la décision a été basée.
 
 Et R-182 n'était peut-être même pas la règle gagnante. Plusieurs règles s'appliquaient probablement simultanément :
 

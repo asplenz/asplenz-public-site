@@ -19,19 +19,9 @@ rule       = R-182
 timestamp  = 2025-02-14T09:12:00Z
 ```
 
-The natural next step is to look up rule R-182. But the current R-182 is not the R-182 that fired that day. Since then :
+The natural next step is to look up rule R-182. But R-182 may have been modified several times since 2025-02-14. And overrides may have been in force at that moment that are no longer visible today, or overrides may be active now that were not in force at the time.
 
-```
-R-182 v1
-    ↓
-amended  (threshold raised)
-    ↓
-R-182 v2
-    ↓
-exception added  (institutional clients exempt)
-    ↓
-R-182 v3
-```
+What the current view of R-182 shows is not necessarily what the decision was actually based on.
 
 And R-182 may not even have been the winning rule. Several rules likely applied simultaneously :
 
