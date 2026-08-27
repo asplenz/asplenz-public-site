@@ -29,11 +29,11 @@ Claude Desktop  ---stdio--->  knowledge-mcp-proxy  ---stdio--->  vendor MCP serv
 
 ## Mode 2 : sidecar (per-user, long-running)
 
-Le proxy tourne comme unité systemd ou container à côté de la workstation d'un user, exposant HTTP ou SSE. Le client MCP se connecte via socket / port local.
+Le proxy tourne comme un long-running process sur la workstation (sous le superviseur que la workstation utilise), exposant HTTP ou SSE. Le client MCP se connecte via un socket ou port local.
 
 ```
-Claude Desktop  ---HTTP--->  knowledge-mcp-proxy (localhost:9090)  ---HTTP--->  vendor MCP server
-                             (systemd, always on)
+Claude Desktop  ---HTTP--->  knowledge-mcp-proxy (port local)  ---HTTP--->  vendor MCP server
+                             (always on)
 ```
 
 **Pros** :

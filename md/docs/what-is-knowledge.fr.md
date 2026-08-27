@@ -55,21 +55,19 @@ Knowledge est **pour une classe spécifique de décisions** :
 - Décisions qui ont besoin de sémantique d'approbation explicite (`approval_required` comme verdict first-class).
 - Décisions dont l'exécution requiert une autorisation cryptographiquement vérifiable à la frontière du tool.
 
-## Services + ports
+## Les surfaces avec lesquelles vous interagissez
 
-| Service | Port | Objectif |
+Knowledge expose un petit set de surfaces. Laquelle compte dépend de votre rôle.
+
+| Surface | Qui l'utilise | Pour quoi |
 |---|---|---|
-| `knowledge-api` | 8090 | Registry, engine, /check, /reason writer |
-| `knowledge-ai` | 8091 | Reasoning + rendering prose (utilise un LLM que vous configurez) |
-| `asplenz-finops` | 8092 | Breakdown des coûts LLM par tenant |
-| `knowledge-ui` | 3002 | Back-office registry |
-| `mock-ui` | 3004 | Workstation démo (par tenant) |
-| `knowledge-email` | 8093 | Handler inbound Postmark |
-| `knowledge-slack` | 8094 | Intégration Slack |
-| `knowledge-mcp` | n/a | Serveur MCP Python (stdio) |
-| `knowledge-mcp-proxy` | 8006 | Proxy de gouvernance devant un serveur MCP customer |
+| **API Knowledge** | Agents, applications, workflows | Consulter une décision (`/check`, `/resolve`), fetch des consultations, créer des approbations |
+| **UI back-office** | Compliance officers, product owners | Authorer policies et règles, review coverage, résoudre des approbations |
+| **SDK Python** | Équipes backend | Wrapper des tools avec `@governed_tool` pour que les verdicts signés soient enforced avant exécution |
+| **Proxy MCP** | Stacks d'agent tournant MCP | Couche de gouvernance devant un serveur MCP existant, zéro changement de code sur les tools |
+| **Endpoint JWKS** | Points d'enforcement | Clés publiques pour vérifier les verdicts signés offline |
 
-Endpoint health sur chaque service HTTP : `/health`.
+Le déploiement sous-jacent (SaaS, cloud privé, on-premise) est opaque aux callers. Les endpoints sont des paths versionnés ; substituez l'URL de base de votre tenant.
 
 ## Suite
 

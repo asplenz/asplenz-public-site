@@ -55,21 +55,19 @@ Knowledge is **for a specific class of decisions** :
 - Decisions that need explicit approval semantics (`approval_required` as a first-class verdict).
 - Decisions whose execution requires cryptographically verifiable authorization at the tool boundary.
 
-## Services + ports
+## The surfaces you interact with
 
-| Service | Port | Purpose |
+Knowledge exposes a small set of surfaces. Which one matters depends on your role.
+
+| Surface | Who uses it | For what |
 |---|---|---|
-| `knowledge-api` | 8090 | Registry, engine, /check, /reason writer |
-| `knowledge-ai` | 8091 | Reasoning + prose rendering (uses an LLM you configure) |
-| `asplenz-finops` | 8092 | LLM cost breakdown per tenant |
-| `knowledge-ui` | 3002 | Registry back-office |
-| `mock-ui` | 3004 | Demo workstation (per tenant) |
-| `knowledge-email` | 8093 | Postmark inbound handler |
-| `knowledge-slack` | 8094 | Slack integration |
-| `knowledge-mcp` | n/a | Python MCP server (stdio) |
-| `knowledge-mcp-proxy` | 8006 | Governance proxy in front of a customer MCP server |
+| **Knowledge API** | Agents, applications, workflows | Consult a decision (`/check`, `/resolve`), fetch consultations, create approvals |
+| **Back-office UI** | Compliance officers, product owners | Author policies and rules, review coverage, resolve approvals |
+| **Python SDK** | Backend teams | Wrap tools with `@governed_tool` so signed verdicts are enforced before execution |
+| **MCP proxy** | Agent stacks running MCP | Governance layer in front of an existing MCP server, no code change on tools |
+| **JWKS endpoint** | Enforcement points | Public keys for verifying signed verdicts offline |
 
-Health endpoint on every HTTP service : `/health`.
+The underlying deployment (SaaS, private cloud, on-premise) is opaque to callers. Endpoints are versioned paths ; substitute your tenant's base URL.
 
 ## Next
 

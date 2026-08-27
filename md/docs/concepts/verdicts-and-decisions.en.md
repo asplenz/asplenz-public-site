@@ -78,7 +78,7 @@ Every verdict is signed. The tool boundary verifies the signature and refuses on
 
 ## Verdict prose (LLM-rendered)
 
-If the tenant has `knowledge-ai` enabled, the verdict can be rendered as human-readable prose citing the governance log entries and rationale. **The prose is not authoritative** ; the deterministic verdict from the engine is. The LLM is a renderer, not a judge.
+If the tenant has the verdict-prose capability enabled, the verdict can be rendered as human-readable prose citing the governance log entries and rationale. **The prose is not authoritative** ; the deterministic verdict from the engine is. The LLM is a renderer, not a judge.
 
 ## Related
 

@@ -78,7 +78,7 @@ Chaque verdict est signé. La frontière du tool vérifie la signature et refuse
 
 ## Prose de verdict (LLM-rendered)
 
-Si le tenant a `knowledge-ai` activé, le verdict peut être rendu comme prose humainement-lisible citant les entrées governance log et le rationale. **La prose n'est pas autoritative** ; le verdict déterministe du moteur l'est. Le LLM est un renderer, pas un juge.
+Si le tenant a la capability de prose de verdict activée, le verdict peut être rendu comme prose humainement-lisible citant les entrées governance log et le rationale. **La prose n'est pas autoritative** ; le verdict déterministe du moteur l'est. Le LLM est un renderer, pas un juge.
 
 ## Related
 

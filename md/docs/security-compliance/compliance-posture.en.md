@@ -49,7 +49,7 @@ Documented at [Trust model deep dive](/docs/security-compliance/trust-model). Fo
 
 - **All API traffic** : TLS 1.3 minimum. HSTS enforced. HTTP/2 supported.
 - **Webhooks outbound** : TLS 1.2 minimum (limited by subscriber capability).
-- **Internal service-to-service** : mTLS between `knowledge-api` and `knowledge-ai` in production.
+- **Internal service-to-service** : mTLS between Knowledge's internal components in production.
 
 ## Data-at-rest
 

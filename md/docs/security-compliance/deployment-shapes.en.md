@@ -65,7 +65,7 @@ Knowledge ships in three deployment shapes. Pick based on data residency require
 
 **Runtime dependencies** :
 - Postgres 15+ (managed or self-hosted).
-- Your LLM provider (Anthropic, OpenAI, ...) if you enable `knowledge-ai` for verdict prose. Otherwise no LLM dependency.
+- Your LLM provider (Anthropic, OpenAI, ...) if you enable the optional verdict-prose rendering capability. Otherwise no LLM dependency.
 
 **Everything else** : bundled in the Knowledge distribution.
 

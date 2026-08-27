@@ -65,7 +65,7 @@ Knowledge ship dans trois formes de déploiement. Pickez selon les exigences de 
 
 **Dépendances runtime** :
 - Postgres 15+ (managé ou self-hosted).
-- Votre provider LLM (Anthropic, OpenAI, ...) si vous activez `knowledge-ai` pour la prose de verdict. Sinon aucune dépendance LLM.
+- Votre provider LLM (Anthropic, OpenAI, ...) si vous activez la capability optionnelle de prose de verdict. Sinon aucune dépendance LLM.
 
 **Tout le reste** : bundlé dans la distribution Knowledge.
 
