@@ -1,71 +1,157 @@
 ---
 title: Quickstart - create your first policy
-description: From an empty tenant to your first `/resolve` returning a real verdict, in about 30 minutes. CSV import, sample cases, first agent-side call.
+description: From an empty tenant to your first `/resolve` returning a real verdict, in about 30 minutes. Two authoring paths - back-office UI (no code) or JSON API (programmatic). Pick either.
 locale: en
 kicker: Docs / Getting started - Stable
 ---
 
-This quickstart takes you from an empty tenant to your first `/resolve` call returning a real verdict, in about 30 minutes. It focuses on the author side : how to get rules into Knowledge. The consumer-side quickstarts (Python decorator, MCP proxy) build on this one.
+This quickstart takes you from an empty tenant to your first `/resolve` call returning a real verdict, in about 30 minutes. It focuses on the author side : how rules get into Knowledge. The consumer-side quickstarts (Python decorator, MCP proxy) build on this one.
 
-## What you need
+## Prerequisites
 
-- A Knowledge tenant, and an API key with authoring permission.
-- The tenant's base URL for the Knowledge API. All endpoints below are shown as paths ; prepend your base URL.
-- A text editor. That is genuinely all.
+- A Knowledge tenant.
+- One of :
+  - Back-office UI access with an authoring role (Path A below), OR
+  - An API key with authoring permission and your tenant's Knowledge API base URL (Path B)
+
+You do not need both. Either path gets you to the same end state.
 
 ## The example we build
 
 A refund policy for a customer-service tool :
 
-- Any refund of €100 or less is allowed automatically.
-- Any refund between €100 and €500 requires approval.
-- Any refund above €500 is blocked.
+- Any refund of €100 or less is allowed automatically
+- Any refund between €100 and €500 requires approval
+- Any refund above €500 is blocked
 
-Three rules. One policy. Enough to see the full loop.
+Three rules. One policy. Applies to every caller in the tenant (universal). Enough to see the full loop.
 
-## Step 1 - author the rules as CSV
+---
 
-Create `refund-policy.csv` with one row per rule :
+## Path A - author via the back-office UI (no code)
+
+The visual path. Best when a compliance officer or SME is authoring the rules and you want the CSV format to travel between compliance and engineering.
+
+### Step 1 - create the Policy
+
+Log in to the back-office UI. From the Registry view, choose *New policy*. Fill in :
+
+- **Name** : Refund policy
+- **Owner** : the accountable role or person
+- **Rationale** : *"Governs customer-service refund authorizations"*
+
+Save. The policy appears in the registry with its own detail page. **The policy identifier is shown at the top of that page and in the URL** (e.g. `pol-refund-a3f2`). You will not need it in this UI path (the import knows the policy from context), but keep it handy for `/resolve` calls in step 4.
+
+### Step 2 - upload the rules as CSV
+
+From the policy's detail page, choose *Import rules*. Upload a CSV file with one row per rule.
+
+`refund-policy.csv` :
 
 ```csv
-policy_id,rule_id,statement,scope_action,condition_field,condition_op,condition_value,severity,rationale
-pol-refund,rul-refund-small,Allow refunds up to and including €100,refund.execute,amount_eur,lte,100,allow,Standard small-refund allowance
-pol-refund,rul-refund-medium,Refunds between €100 and €500 require approval,refund.execute,amount_eur,gt,100,require_approval,Above €100 needs decider oversight
-pol-refund,rul-refund-large,Refunds above €500 are blocked,refund.execute,amount_eur,gt,500,hard_block,Above €500 is out of standard policy
+rule_id,statement,scope_action,condition_field,condition_op,condition_value,severity,rationale
+rul-refund-small,Allow refunds up to and including €100,refund.execute,amount_eur,lte,100,allow,Standard small-refund allowance
+rul-refund-medium,Refunds between €100 and €500 require approval,refund.execute,amount_eur,gt,100,require_approval,Above €100 needs decider oversight
+rul-refund-large,Refunds above €500 are blocked,refund.execute,amount_eur,gt,500,hard_block,Above €500 is out of standard policy
 ```
 
-Each row is a rule with its scope (`refund.execute`), its condition (`amount_eur` compared to a threshold), and its severity (`allow` / `require_approval` / `hard_block`).
+Each row is a rule with its scope (`refund.execute`), its condition (`amount_eur` compared to a threshold), and its severity. The UI validates the CSV, shows what will be created, and imports it on confirmation.
 
-## Step 2 - import into Knowledge
+Every rule imported this way is created as **universal** (applies to every principal in the tenant). See *[About targeting](#about-targeting)* below.
 
-Post the CSV to the import endpoint :
+### Step 3 - approve if required
+
+If the policy has an approver chain, the rules enter a pending state. The named approvers see them in their queue, review them, and approve. Rules then become active.
+
+Skip if the tenant does not enforce the approval workflow.
+
+---
+
+## Path B - author via the API (programmatic)
+
+The programmatic path. Best when you want the whole flow scripted, seeded from code, or part of your CI pipeline.
+
+Every endpoint below is shown as a path. Prepend your tenant's base URL. Every request carries `X-API-Key: <your key>`.
+
+### Step 1 - create the Policy
 
 ```
-POST /v1/rules/import
-Content-Type: multipart/form-data
-X-API-Key: <your key>
+POST /v1/policies
+Content-Type: application/json
 
-file=@refund-policy.csv
-```
-
-The response returns the created rules with their versions :
-
-```json
 {
-  "policy_id": "pol-refund",
-  "rules_created": [
-    { "id": "rul-refund-small", "version_id": "rv-abc1" },
-    { "id": "rul-refund-medium", "version_id": "rv-def2" },
-    { "id": "rul-refund-large", "version_id": "rv-ghi3" }
-  ]
+  "name": "Refund policy",
+  "owner_role": "customer-service-compliance",
+  "rationale": "Governs customer-service refund authorizations"
 }
 ```
 
-The policy is now live. Every rule carries an immutable `version_id` ; every future decision that cites the rule will pin the exact version that applied.
+Response :
 
-## Step 3 - call `/resolve` on a real case
+```json
+{
+  "id": "pol-refund-a3f2",
+  "name": "Refund policy",
+  "owner_role": "customer-service-compliance",
+  "created_at": "2026-08-27T09:00:00Z"
+}
+```
 
-Send a case that the small-refund rule should allow :
+**Capture `id`** ; every rule you create references this Policy.
+
+### Step 2 - add each rule
+
+One `POST` per rule :
+
+```
+POST /v1/policies/pol-refund-a3f2/rules
+Content-Type: application/json
+
+{
+  "id": "rul-refund-small",
+  "statement": "Allow refunds up to and including €100",
+  "severity": "allow",
+  "universal": true,
+  "rows": [
+    {
+      "scope": { "action": "refund.execute" },
+      "condition": { "parameters.amount_eur": { "op": "lte", "value": 100 } }
+    }
+  ],
+  "rationale": "Standard small-refund allowance"
+}
+```
+
+Same body shape for the other two, adjusting `severity` and `condition` :
+
+- `rul-refund-medium` : `severity: "require_approval"`, condition `parameters.amount_eur > 100`
+- `rul-refund-large` : `severity: "hard_block"`, condition `parameters.amount_eur > 500`
+
+Response for each :
+
+```json
+{
+  "id": "rul-refund-small",
+  "version_id": "rv-abc1",
+  "status": "active"
+}
+```
+
+Every rule carries an immutable `version_id`. Every future decision that cites the rule will pin the exact version that applied.
+
+---
+
+## About targeting
+
+The rules in this quickstart use `universal: true` (in the JSON path) or the default *universal* mode (in the CSV path). That means the rules apply to **every principal calling the tenant** — every agent, every service account, every user.
+
+If you want a rule to apply only to a specific subset of principals (a role, an agent, a user group), attach it to a **Target** instead of marking it universal. See [Policies, rules and targets](/docs/concepts/policies-rules-targets) for the concept, and the [author-rules-in-back-office-ui](/docs/guides/author-rules-in-back-office-ui) guide for how to attach rules to Targets in the UI.
+
+---
+
+## Step 4 - call `/resolve` on a real case
+
+Same for both paths. Send a case that the small-refund rule should allow :
 
 ```
 POST /v1/resolve
@@ -93,12 +179,13 @@ Response :
 }
 ```
 
-You have your first governed decision. Note the `cited_rule_version_ids` : if you edit the rule later, this consultation still points at `rv-abc1`.
+Your first governed decision. Note `cited_rule_version_ids` : if you edit the rule later, this consultation still points at `rv-abc1`.
 
-## Step 4 - try a case that requires approval
+## Step 5 - try a case that requires approval
 
 ```
 POST /v1/resolve
+
 {
   "action": "refund.execute",
   "resource": "TX-43",
@@ -118,20 +205,36 @@ Response :
 }
 ```
 
-An `Approval` record is created automatically ; a decider can resolve it via the back-office UI or through the approvals API. See [approvals](/docs/api-reference/approvals).
+An `Approval` record is created automatically. A decider can resolve it via the back-office UI or through the approvals API. See [approvals](/docs/api-reference/approvals).
 
-## Step 5 - try a case that requires context you did not send
+## Step 6 - try a case that requires context you did not send
 
-Add a rule that needs a field your case does not carry. Import an updated CSV where one rule requires `customer.tier` :
+Add a rule that needs a field your case does not carry. Author it through the UI or via the API :
 
-```csv
-pol-refund,rul-refund-vip,VIP customers get refunds up to €200 automatically,refund.execute,amount_eur,lte,200,allow,VIP tier exception
+```json
+{
+  "id": "rul-refund-vip",
+  "statement": "VIP customers get refunds up to €200 automatically",
+  "severity": "allow",
+  "universal": true,
+  "rows": [
+    {
+      "scope": { "action": "refund.execute" },
+      "condition": {
+        "parameters.amount_eur": { "op": "lte", "value": 200 },
+        "customer.tier": { "op": "eq", "value": "vip" }
+      }
+    }
+  ],
+  "rationale": "VIP tier exception"
+}
 ```
 
-Add the condition on `customer.tier` (via the back-office UI or a second CSV column ; both work). Now call `/resolve` with only the amount :
+Now call `/resolve` with only the amount, no tier :
 
 ```
 POST /v1/resolve
+
 {
   "action": "refund.execute",
   "resource": "TX-44",
@@ -155,11 +258,11 @@ Response :
 }
 ```
 
-Knowledge tells you what is still needed. Fetch the field from your CRM, add it to the request, call `/resolve` again. This is the progressive-context loop. See [Progressive context](/docs/concepts/progressive-context-resolution) for the full model.
+Knowledge tells you what is still needed. Fetch the field, add it to the request, call `/resolve` again. This is the progressive-context loop. See [Progressive context](/docs/concepts/progressive-context-resolution) for the full model.
 
 ## What you have now
 
-- A tenant with one policy and three rules
+- A tenant with one policy and (at least) three rules, applying to every principal
 - Rules that resolve to `allow`, `approval_required` and `hard_block` verdicts
 - One rule that demonstrates the progressive-context loop
 - A signed envelope on every complete verdict, ready for a downstream enforcement point to verify
@@ -168,14 +271,13 @@ Knowledge tells you what is still needed. Fetch the field from your CRM, add it 
 
 - Wrap a tool in Python so the signed verdict is enforced before the action runs : [Quickstart : governed tool](/docs/quickstart-governed-tool)
 - Do the same for an MCP-based agent stack : [Quickstart : MCP proxy](/docs/quickstart-mcp-proxy)
-- Author the same rules from the compliance-friendly back-office UI : [Author rules in the back-office UI](/docs/guides/author-rules-in-back-office-ui)
+- Author more rules from the UI, with test cases and preview : [Author rules in the back-office UI](/docs/guides/author-rules-in-back-office-ui)
 - Run Knowledge alongside your current process before enforcement : [Validate before you enforce](/docs/guides/validate-before-you-enforce)
 
 ## Related
 
 | Read next | Why |
 |---|---|
-| [Policies, rules and targets](/docs/concepts/policies-rules-targets) | The concept model behind the CSV columns |
+| [Policies, rules and targets](/docs/concepts/policies-rules-targets) | The concept model behind rule fields and targeting |
 | [Verdicts and decisions](/docs/concepts/verdicts-and-decisions) | The severity ladder and how the winning rule is chosen |
 | [POST /v1/resolve](/docs/api-reference/resolve) | Endpoint reference |
-| [POST /v1/rules/import](/docs/api-reference/authentication) | Import endpoint reference (in the API section) |
