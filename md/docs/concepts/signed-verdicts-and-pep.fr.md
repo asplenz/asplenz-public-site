@@ -59,7 +59,7 @@ La signature couvre header + claims. Toute modification invalide la signature.
 Un PEP est n'importe quel composant qui wrappe une API métier et vérifie les verdicts avant d'exécuter. Exemples concrets dans ce codebase :
 
 - **Décorateur `@governed_tool`** dans `knowledge-runtime` (Python).
-- **Proxy MCP** dans `knowledge-mcp-proxy` (proxy transparent devant un serveur MCP).
+- **Intercepteur de tool call MCP** utilisant `verify_verdict` devant un serveur MCP (voir le guide plus bas pour le pattern).
 - **Code custom** que vous écrivez dans n'importe quel langage.
 
 Chaque PEP effectue les mêmes six checks à la réception :
@@ -114,4 +114,4 @@ Cached côté client par `knowledge-runtime` pour 5 minutes par défaut.
 - [Modèle de confiance à quatre acteurs](/docs/concepts/four-actor-trust-model) - qui signe, qui vérifie, ce que chaque arête garantit.
 - [/v1/jwks](/docs/api-reference/jwks) - le contrat endpoint JWKS.
 - [`knowledge-runtime` Python](/docs/sdk-reference/knowledge-runtime-python) - le PEP de référence.
-- [MCP proxy](/docs/mcp-proxy/setup) - PEP transparent pour serveurs MCP.
+- [Wrapper votre propre serveur MCP avec enforcement](/docs/guides/wrap-your-own-mcp-server-with-enforcement) - le pattern PEP pour tool calls MCP.

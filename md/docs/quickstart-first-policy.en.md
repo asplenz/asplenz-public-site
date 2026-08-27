@@ -261,7 +261,7 @@ Knowledge tells you what is still needed. Fetch the field, add it to the request
 ## Next
 
 - Wrap a tool in Python so the signed verdict is enforced before the action runs : [Quickstart : governed tool](/docs/quickstart-governed-tool)
-- Do the same for an MCP-based agent stack : [Quickstart : MCP proxy](/docs/quickstart-mcp-proxy)
+- Let an agent consult Knowledge directly through its MCP host : [Quickstart : Knowledge as an MCP server](/docs/quickstart-knowledge-mcp)
 
 ## Related
 

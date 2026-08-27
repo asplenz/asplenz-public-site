@@ -67,6 +67,6 @@ The underlying deployment (SaaS, private cloud, on-premise) is opaque to callers
 ## Next
 
 - **[Quickstart : governed tool in Python](/docs/quickstart-governed-tool)** - 5 minutes.
-- **[Quickstart : MCP proxy in 5 minutes](/docs/quickstart-mcp-proxy)** - 5 minutes.
+- **[Quickstart : Knowledge as an MCP server](/docs/quickstart-knowledge-mcp)** - 5 minutes.
 - **[Enforcement](/product/enforcement)** - deeper on the signed envelope model.
 - **[Progressive context](/product/progressive-context)** - deeper on the required_context loop.

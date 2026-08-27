@@ -11,8 +11,8 @@ Tout ce dont vous avez besoin pour consulter Knowledge depuis votre stack, wrapp
 
 - **[Qu'est-ce que Knowledge ?](/docs/what-is-knowledge)** [Stable] - deux minutes sur le modèle mental et le vocabulaire.
 - **[Quickstart : créer votre première policy](/docs/quickstart-first-policy)** [Stable] - d'un tenant vide au premier `/resolve` qui retourne un vrai verdict, en environ 30 minutes. Le chemin auteur.
-- **[Quickstart : governed tool en Python](/docs/quickstart-governed-tool)** [Stable] - cinq minutes hands-on avec le décorateur `@governed_tool`, de l'install au premier verdict signé.
-- **[Quickstart : MCP proxy en 5 minutes](/docs/quickstart-mcp-proxy)** [Stable] - cinq minutes pour insérer le proxy devant un serveur MCP existant et voir l'enforcement se déclencher sur un appel tampered.
+- **[Quickstart : governed tool en Python](/docs/quickstart-governed-tool)** [Stable] - deux patterns pour l'enforcement de signed verdict sur un tool Python : vérifier un verdict qu'on reçoit, ou laisser un décorateur se consulter tout seul.
+- **[Quickstart : Knowledge comme serveur MCP](/docs/quickstart-knowledge-mcp)** [Stable] - wire le serveur MCP Knowledge dans Claude Desktop / Cursor / tout MCP host pour que l'agent puisse query, check, et soumettre des approvals sous forme de tool calls.
 
 ## Concepts
 
@@ -41,17 +41,15 @@ Spec OpenAPI complète à `docs/api/openapi-v3.json` dans le monorepo. Collectio
 - **[knowledge-runtime (Python)](/docs/sdk-reference/knowledge-runtime-python)** [Stable] - `@governed_tool`, `verify_verdict`, cache JWKS, guard-rails.
 - **[SDK TypeScript](/docs/sdk-reference/typescript-roadmap)** [Roadmap] - parité feature avec Python planifiée pour Q4-2026.
 
-## MCP proxy
+## Serveur MCP
 
-- **[Setup](/docs/mcp-proxy/setup)** [Stable] - insérer le proxy devant n'importe quel serveur MCP.
-- **[Config reference](/docs/mcp-proxy/config-reference)** [Stable] - chaque knob dans proxy.yaml.
-- **[Deployment modes](/docs/mcp-proxy/deployment-modes)** [Stable] - stdio, sidecar, shared.
+- **[Reference des tools](/docs/mcp-server/tools-reference)** [Stable] - les huit tools qu'expose le serveur MCP Knowledge, avec paramètres et format de retour.
 
 ## Guides
 
+- **[Wrapper votre propre serveur MCP avec enforcement](/docs/guides/wrap-your-own-mcp-server-with-enforcement)** [Stable] - le pattern pour gater les tool calls d'un serveur MCP avec les signed verdicts Knowledge. Exemple de référence dans le monorepo.
 - **[Rotate signing keys](/docs/guides/rotate-signing-keys)** [Stable] - rotation planifiée + urgence.
 - **[Multi-tenant setup](/docs/guides/multi-tenant-setup)** [Stable] - faire tourner plusieurs tenants sur un déploiement.
-- **[Bring your own tools au MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy)** [Stable] - fetcher registry + policy mapping.
 - **[Migrer d'advisory à enforcement](/docs/guides/migrate-from-advisory-to-enforcement)** [Stable] - le playbook en trois étapes.
 - **[Emergency response](/docs/guides/emergency-response)** [Stable] - kill switch, rotation de clé, downgrade.
 

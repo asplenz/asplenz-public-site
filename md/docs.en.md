@@ -11,8 +11,8 @@ Everything you need to consult Knowledge from your stack, wrap a business tool w
 
 - **[What is Knowledge ?](/docs/what-is-knowledge)** [Stable] - two minutes on the mental model and vocabulary.
 - **[Quickstart : create your first policy](/docs/quickstart-first-policy)** [Stable] - from empty tenant to first `/resolve` returning a real verdict, in about 30 minutes. The author path.
-- **[Quickstart : governed tool in Python](/docs/quickstart-governed-tool)** [Stable] - five minutes hands-on with the `@governed_tool` decorator, from install to first signed verdict.
-- **[Quickstart : MCP proxy in 5 minutes](/docs/quickstart-mcp-proxy)** [Stable] - five minutes to insert the proxy in front of an existing MCP server and see enforcement fire on a tampered call.
+- **[Quickstart : governed tool in Python](/docs/quickstart-governed-tool)** [Stable] - two patterns for signed-verdict enforcement on a Python tool : verify a verdict you receive, or let a decorator self-consult.
+- **[Quickstart : Knowledge as an MCP server](/docs/quickstart-knowledge-mcp)** [Stable] - wire the Knowledge MCP server into Claude Desktop / Cursor / any MCP host so the agent can query, check, and request approvals as tool calls.
 
 ## Concepts
 
@@ -41,17 +41,15 @@ Full OpenAPI spec at `docs/api/openapi-v3.json` in the monorepo. Postman collect
 - **[knowledge-runtime (Python)](/docs/sdk-reference/knowledge-runtime-python)** [Stable] - `@governed_tool`, `verify_verdict`, JWKS cache, guard-rails.
 - **[TypeScript SDK](/docs/sdk-reference/typescript-roadmap)** [Roadmap] - feature parity with Python planned for Q4-2026.
 
-## MCP proxy
+## MCP server
 
-- **[Setup](/docs/mcp-proxy/setup)** [Stable] - insert the proxy in front of any MCP server.
-- **[Config reference](/docs/mcp-proxy/config-reference)** [Stable] - every knob in proxy.yaml.
-- **[Deployment modes](/docs/mcp-proxy/deployment-modes)** [Stable] - stdio, sidecar, shared.
+- **[Tools reference](/docs/mcp-server/tools-reference)** [Stable] - the eight tools the Knowledge MCP server exposes, with parameters and return format.
 
 ## Guides
 
+- **[Wrap your own MCP server with enforcement](/docs/guides/wrap-your-own-mcp-server-with-enforcement)** [Stable] - the pattern for gating an MCP server's tool calls with Knowledge signed verdicts. Reference example in the monorepo.
 - **[Rotate signing keys](/docs/guides/rotate-signing-keys)** [Stable] - scheduled + emergency rotation.
 - **[Multi-tenant setup](/docs/guides/multi-tenant-setup)** [Stable] - run multiple tenants on one deployment.
-- **[Bring your own tools to MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy)** [Stable] - fetcher registry + policy mapping.
 - **[Migrate from advisory to enforcement](/docs/guides/migrate-from-advisory-to-enforcement)** [Stable] - the three-stage playbook.
 - **[Emergency response](/docs/guides/emergency-response)** [Stable] - kill switch, key rotation, downgrade.
 

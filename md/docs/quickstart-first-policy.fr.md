@@ -261,7 +261,7 @@ Knowledge vous dit ce qui est encore nécessaire. Fetchez le champ, ajoutez-le �
 ## La suite
 
 - Wrapper un tool en Python pour que le verdict signé soit enforced avant que l'action tourne : [Quickstart : governed tool](/docs/quickstart-governed-tool)
-- Faire la même chose pour un stack d'agent basé MCP : [Quickstart : MCP proxy](/docs/quickstart-mcp-proxy)
+- Laisser un agent consulter Knowledge directement à travers son MCP host : [Quickstart : Knowledge comme serveur MCP](/docs/quickstart-knowledge-mcp)
 
 ## Related
 

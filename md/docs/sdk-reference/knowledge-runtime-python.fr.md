@@ -164,4 +164,4 @@ Source : `apps/knowledge/src/knowledge-runtime/` dans le monorepo. Suite de test
 
 - [Quickstart : governed tool](/docs/quickstart-governed-tool) - hands-on de 5 minutes.
 - [Signed verdicts et PEP](/docs/concepts/signed-verdicts-and-pep) - ce que le SDK vérifie.
-- [MCP proxy](/docs/mcp-proxy/setup) - si votre stack est MCP, utilisez le proxy au lieu de décorer les tools individuellement.
+- [Wrapper votre propre serveur MCP avec enforcement](/docs/guides/wrap-your-own-mcp-server-with-enforcement) - si votre stack est MCP, appliquez la même primitive `verify_verdict` à l'intercepteur des tool calls.

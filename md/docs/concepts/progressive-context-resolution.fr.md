@@ -92,7 +92,7 @@ Le caller a seulement besoin de savoir **comment fetcher des champs**, pas quels
 
 ## Pattern fetcher registry
 
-La forme standard (documentée à [Bring your own tools to MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy)) :
+La forme standard :
 
 ```python
 fetchers = {
@@ -134,4 +134,3 @@ def resolve_with_fetchers(initial_ctx):
 
 - [/v1/resolve](/docs/api-reference/resolve) - la référence endpoint.
 - [Page produit Progressive context](/product/progressive-context) - la vue story-level.
-- [Bring your own tools to MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy) - pattern fetcher en pratique.

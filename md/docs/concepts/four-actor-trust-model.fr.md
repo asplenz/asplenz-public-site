@@ -88,7 +88,7 @@ Chaque arête est une frontière de confiance. Knowledge en durcit deux ; les au
 | Intégrité de signature de l'enveloppe | Knowledge |
 | Authentification d'actor | Knowledge |
 | Gel du contexte de décision (Consultation) | Knowledge |
-| PEP vérifie la signature avant d'exécuter | Vous (via `knowledge-runtime`, `knowledge-mcp-proxy`, ou code custom) |
+| PEP vérifie la signature avant d'exécuter | Vous (via `knowledge-runtime` ou code custom) |
 | Chaque chemin vers l'API métier traverse le PEP | Vous (via isolation réseau + IAM) |
 | L'humain délégant est authentifié | Vous (via identity binding que vous fournissez à Knowledge) |
 | Les facts assertés par le caller (dans `context`) sont vrais | Vous (l'auth fact-level est orthogonale) |

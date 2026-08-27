@@ -173,5 +173,5 @@ The runtime caches the JWKS for 5 minutes by default.
 
 ## Next
 
-- **[Quickstart : MCP proxy in 5 minutes](/docs/quickstart-mcp-proxy)** - same enforcement, MCP transport.
+- **[Wrap your own MCP server with enforcement](/docs/guides/wrap-your-own-mcp-server-with-enforcement)** - the same `verify_verdict` primitive, applied to tools exposed over MCP.
 - **[Enforcement](/product/enforcement)** - the full model, the four-actor trust chain, adoption paths.

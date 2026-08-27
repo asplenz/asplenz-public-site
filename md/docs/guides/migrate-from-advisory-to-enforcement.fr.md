@@ -105,7 +105,7 @@ Set `KNOWLEDGE_ENFORCEMENT=advisory` pour downgrader instantanément dans un inc
 
 ## Observability pendant la migration
 
-Metrics à watcher (voir [Config reference](/docs/mcp-proxy/config-reference) pour le proxy MCP) :
+Metrics à watcher :
 
 - `governed_tool_calls_total{action, verdict, mode}` - volume global.
 - `governed_tool_would_have_blocked_total{action, rule}` - signal shadow.

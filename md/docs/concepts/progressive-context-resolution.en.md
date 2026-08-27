@@ -92,7 +92,7 @@ The caller only needs to know **how to fetch fields**, not which fields matter f
 
 ## Fetcher registry pattern
 
-The standard shape (documented in [Bring your own tools to MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy)) :
+The standard shape :
 
 ```python
 fetchers = {
@@ -134,4 +134,3 @@ def resolve_with_fetchers(initial_ctx):
 
 - [/v1/resolve](/docs/api-reference/resolve) - the endpoint reference.
 - [Progressive context product page](/product/progressive-context) - the story-level view.
-- [Bring your own tools to MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy) - fetcher pattern in practice.

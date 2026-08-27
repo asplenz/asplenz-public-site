@@ -53,7 +53,7 @@ Quatre arêtes. Deux sont la responsabilité de Knowledge (E2, E3). Deux dépend
 
 **Rôle de Knowledge** : signe chaque verdict avec la clé privée ES256 du tenant. La signature couvre le protected header JWS et les claims. Toute modification l'invalide.
 
-**Votre rôle** : le PEP vérifie la signature contre le JWKS sur chaque appel, sans exception. `knowledge-runtime` et `knowledge-mcp-proxy` gèrent ça par défaut ; les PEPs custom doivent l'implémenter.
+**Votre rôle** : le PEP vérifie la signature contre le JWKS sur chaque appel, sans exception. `knowledge-runtime` gère ça par défaut ; les PEPs custom doivent l'implémenter.
 
 **Failure mode si cette arête est faible** : des attaquants network-level peuvent forger des verdicts favorables. Détection impossible sans vérification de signature ; l'audit montrerait le verdict comme légitime.
 
@@ -61,7 +61,7 @@ Quatre arêtes. Deux sont la responsabilité de Knowledge (E2, E3). Deux dépend
 
 **Menace** : le PEP vérifie la signature mais ne checke pas que l'opération réelle matche l'opération que le verdict a autorisée.
 
-**Rôle de Knowledge** : encode `authorization.{actor, action, resource, parameters}` dans les claims signés. Fournit `knowledge-runtime` (Python) et `knowledge-mcp-proxy` comme PEPs de référence qui implémentent le check.
+**Rôle de Knowledge** : encode `authorization.{actor, action, resource, parameters}` dans les claims signés. Fournit `knowledge-runtime` (Python) comme PEP de référence qui implémente le check.
 
 **Votre rôle** :
 

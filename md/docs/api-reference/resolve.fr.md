@@ -130,4 +130,3 @@ raise ContextResolutionTooManyRounds()
 
 - [Résolution progressive de contexte](/docs/concepts/progressive-context-resolution) - l'algorithme + pattern fetcher.
 - [/v1/check](/docs/api-reference/check) - sibling strict.
-- [Bring your own tools to MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy) - pattern fetcher en production.

@@ -67,6 +67,6 @@ Le déploiement sous-jacent (SaaS, cloud privé, on-premise) est opaque aux call
 ## Suite
 
 - **[Quickstart : governed tool en Python](/docs/quickstart-governed-tool)** - 5 minutes.
-- **[Quickstart : MCP proxy en 5 minutes](/docs/quickstart-mcp-proxy)** - 5 minutes.
+- **[Quickstart : Knowledge comme serveur MCP](/docs/quickstart-knowledge-mcp)** - 5 minutes.
 - **[Enforcement](/product/enforcement)** - plus profond sur le modèle d'enveloppe signée.
 - **[Progressive context](/product/progressive-context)** - plus profond sur la boucle required_context.

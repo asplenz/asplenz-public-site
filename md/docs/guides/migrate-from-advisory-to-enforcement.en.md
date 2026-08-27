@@ -105,7 +105,7 @@ Set `KNOWLEDGE_ENFORCEMENT=advisory` to instantly downgrade in an incident. The 
 
 ## Observability during migration
 
-Metrics to watch (see [Config reference](/docs/mcp-proxy/config-reference) for MCP proxy) :
+Metrics to watch :
 
 - `governed_tool_calls_total{action, verdict, mode}` - overall volume.
 - `governed_tool_would_have_blocked_total{action, rule}` - shadow signal.

@@ -53,7 +53,7 @@ Four edges. Two are Knowledge's responsibility (E2, E3). Two depend on your arch
 
 **Knowledge's role** : signs every verdict with the tenant's ES256 private key. The signature covers the JWS protected header and claims. Any modification invalidates it.
 
-**Your role** : the PEP verifies the signature against JWKS on every call, without exception. `knowledge-runtime` and `knowledge-mcp-proxy` handle this by default ; custom PEPs must implement it.
+**Your role** : the PEP verifies the signature against JWKS on every call, without exception. `knowledge-runtime` handles this by default ; custom PEPs must implement it.
 
 **Failure mode if this edge is weak** : network-level attackers can forge favourable verdicts. Detection is impossible without signature verification ; audit would show the verdict as legitimate.
 
@@ -61,7 +61,7 @@ Four edges. Two are Knowledge's responsibility (E2, E3). Two depend on your arch
 
 **Threat** : the PEP verifies the signature but does not check that the actual operation matches the operation the verdict authorised.
 
-**Knowledge's role** : encodes `authorization.{actor, action, resource, parameters}` in the signed claims. Provides `knowledge-runtime` (Python) and `knowledge-mcp-proxy` as reference PEPs that implement the check.
+**Knowledge's role** : encodes `authorization.{actor, action, resource, parameters}` in the signed claims. Provides `knowledge-runtime` (Python) as the reference PEP that implements the check.
 
 **Your role** :
 

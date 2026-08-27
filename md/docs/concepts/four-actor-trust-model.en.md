@@ -88,7 +88,7 @@ Every edge is a trust boundary. Knowledge tightens two ; the others depend on yo
 | Signature integrity of the envelope | Knowledge |
 | Actor authentication | Knowledge |
 | Freeze of decision context (Consultation) | Knowledge |
-| PEP verifies signature before executing | You (via `knowledge-runtime`, `knowledge-mcp-proxy`, or custom code) |
+| PEP verifies signature before executing | You (via `knowledge-runtime` or custom code) |
 | Every path to the business API traverses the PEP | You (via network isolation + IAM) |
 | The delegating human is authenticated | You (via identity binding you provide to Knowledge) |
 | Caller-asserted facts (in `context`) are truthful | You (fact-level auth is orthogonal) |
