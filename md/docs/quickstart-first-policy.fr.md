@@ -136,7 +136,7 @@ Chaque règle porte un `version_id` immuable. Chaque décision future qui cite l
 
 Les règles de ce quickstart utilisent `universal: true` (dans le chemin JSON) ou le défaut *s'applique à tout le monde* (dans le chemin UI). Ça veut dire que les règles s'appliquent à **chaque principal appelant le tenant** - chaque agent, chaque service account, chaque utilisateur.
 
-Si vous voulez qu'une règle s'applique seulement à un sous-ensemble spécifique de principals (un rôle, un agent, un groupe d'utilisateurs), attachez-la à un **Target** au lieu de la marquer universal. Voir [Policies, rules et targets](/docs/concepts/policies-rules-targets) pour le concept, et le guide [authorer des règles dans l'UI back-office](/docs/guides/author-rules-in-back-office-ui) pour comment attacher des règles à des Targets dans l'UI.
+Si vous voulez qu'une règle s'applique seulement à un sous-ensemble spécifique de principals (un rôle, un agent, un groupe d'utilisateurs), attachez-la à un **Target** au lieu de la marquer universal. Voir [Policies, rules et targets](/docs/concepts/policies-rules-targets) pour le concept.
 
 ---
 
@@ -262,8 +262,6 @@ Knowledge vous dit ce qui est encore nécessaire. Fetchez le champ, ajoutez-le �
 
 - Wrapper un tool en Python pour que le verdict signé soit enforced avant que l'action tourne : [Quickstart : governed tool](/docs/quickstart-governed-tool)
 - Faire la même chose pour un stack d'agent basé MCP : [Quickstart : MCP proxy](/docs/quickstart-mcp-proxy)
-- Authorer plus de règles depuis l'UI, avec test cases et preview : [Authorer des règles dans l'UI back-office](/docs/guides/author-rules-in-back-office-ui)
-- Faire tourner Knowledge à côté de votre process actuel avant enforcement : [Valider avant d'enforce](/docs/guides/validate-before-you-enforce)
 
 ## Related
 

@@ -49,8 +49,6 @@ Full OpenAPI spec at `docs/api/openapi-v3.json` in the monorepo. Postman collect
 
 ## Guides
 
-- **[Author rules in the back-office UI](/docs/guides/author-rules-in-back-office-ui)** [Stable] - the visual authoring path for compliance and SMEs.
-- **[Validate before you enforce](/docs/guides/validate-before-you-enforce)** [Stable] - shadow mode, discrepancy investigation, cut-over criteria, test-case libraries.
 - **[Rotate signing keys](/docs/guides/rotate-signing-keys)** [Stable] - scheduled + emergency rotation.
 - **[Multi-tenant setup](/docs/guides/multi-tenant-setup)** [Stable] - run multiple tenants on one deployment.
 - **[Bring your own tools to MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy)** [Stable] - fetcher registry + policy mapping.

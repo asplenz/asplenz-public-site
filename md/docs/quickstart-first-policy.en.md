@@ -136,7 +136,7 @@ Every rule carries an immutable `version_id`. Every future decision that cites t
 
 The rules in this quickstart use `universal: true` (in the JSON path) or the *applies to everyone* default (in the UI path). That means the rules apply to **every principal calling the tenant** - every agent, every service account, every user.
 
-If you want a rule to apply only to a specific subset of principals (a role, an agent, a user group), attach it to a **Target** instead of marking it universal. See [Policies, rules and targets](/docs/concepts/policies-rules-targets) for the concept, and the [author-rules-in-back-office-ui](/docs/guides/author-rules-in-back-office-ui) guide for how to attach rules to Targets in the UI.
+If you want a rule to apply only to a specific subset of principals (a role, an agent, a user group), attach it to a **Target** instead of marking it universal. See [Policies, rules and targets](/docs/concepts/policies-rules-targets) for the concept.
 
 ---
 
@@ -262,8 +262,6 @@ Knowledge tells you what is still needed. Fetch the field, add it to the request
 
 - Wrap a tool in Python so the signed verdict is enforced before the action runs : [Quickstart : governed tool](/docs/quickstart-governed-tool)
 - Do the same for an MCP-based agent stack : [Quickstart : MCP proxy](/docs/quickstart-mcp-proxy)
-- Author more rules from the UI, with test cases and preview : [Author rules in the back-office UI](/docs/guides/author-rules-in-back-office-ui)
-- Run Knowledge alongside your current process before enforcement : [Validate before you enforce](/docs/guides/validate-before-you-enforce)
 
 ## Related
 

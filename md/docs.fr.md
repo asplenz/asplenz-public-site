@@ -49,8 +49,6 @@ Spec OpenAPI complète à `docs/api/openapi-v3.json` dans le monorepo. Collectio
 
 ## Guides
 
-- **[Authorer des règles dans l'UI back-office](/docs/guides/author-rules-in-back-office-ui)** [Stable] - le chemin d'authoring visuel pour compliance et SMEs.
-- **[Valider avant d'enforce](/docs/guides/validate-before-you-enforce)** [Stable] - shadow mode, investigation des discrepancies, critères de cut-over, bibliothèques de test cases.
 - **[Rotate signing keys](/docs/guides/rotate-signing-keys)** [Stable] - rotation planifiée + urgence.
 - **[Multi-tenant setup](/docs/guides/multi-tenant-setup)** [Stable] - faire tourner plusieurs tenants sur un déploiement.
 - **[Bring your own tools au MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy)** [Stable] - fetcher registry + policy mapping.
