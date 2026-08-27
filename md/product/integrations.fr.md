@@ -1,97 +1,117 @@
 ---
-title: Integrations
-description: Comment Knowledge s'insère dans les stacks agentiques, les serveurs MCP, les backends Python et les couches identity/observability autour.
+title: Ajouter du decisioning gouverné sans reconstruire votre stack d'agent
+description: Gardez vos agents, tools, APIs métier, systèmes d'identité et rules engines existants. Knowledge s'insère dans le chemin de décision là où la policy a besoin d'une autorité indépendante.
 locale: fr
 kicker: Produit - Integrations
 ---
 
-Knowledge s'intègre par trois surfaces : une **API REST** (la source of truth), un **MCP tool + proxy** pour les stacks agentiques qui parlent Model Context Protocol, et un **SDK Python** pour les backends qui exposent des tools à des agents directement.
+## Où Knowledge s'insère
 
-## MCP - support natif
+Vous avez déjà assemblé un stack : un runtime d'agent, des tools, des APIs métier, de l'identity, de l'observability, peut-être un ou plusieurs rules engines existants. La question à laquelle cette page répond n'est pas *quels endpoints proposons-nous*, mais *où Knowledge se met dans ce que vous faites déjà tourner, et combien vous devrez changer*.
 
-**MCP tool** [Stable] : serveur `knowledge-mcp` expose `/check`, `/resolve`, `/approvals` de Knowledge comme des tools MCP natifs. N'importe quel MCP host (Claude Desktop, Cursor, plugins IDE, arrays MCP servers de l'API Anthropic) peut consulter Knowledge depuis un agent en cours en appelant les tools. Tourne en stdio ou streamable-http.
+La réponse : très peu.
 
-**MCP proxy** [Stable] : `asplenz-mcp-proxy` s'insère entre un MCP host et un serveur MCP customer existant. Lit une config déclarant quels tools sont gouvernés. À chaque `tools/call`, le proxy exécute le flow PEP (resolve → verify signed_verdict → forward) de façon transparente. Le serveur MCP du customer, les implémentations de tools et le client host restent inchangés.
+**Avant Knowledge :**
 
-**Histoire d'adoption** : le MCP proxy est le chemin d'onboarding le plus fluide pour les équipes déjà en MCP - insertion drop-in, zéro changement de code sur les tools, enforcement ajouté par insertion du proxy. Voir [Enforcement](/product/enforcement) §Trois chemins d'adoption et [MCP proxy setup](/docs/mcp-proxy/setup).
-
-## SDK Python - knowledge-runtime
-
-[Stable] Module Python partagé pour backends qui exposent des tools à des agents.
-
-**Primitives** :
-- `verify_verdict(token, jwks_url, expected_bindings) -> claims` : vérifie une enveloppe JWS + bindings contre le JWKS de Knowledge
-- Décorateur `@governed_tool(action, resource, bind)` : wrappe une callable Python pour que les appels passent par `/resolve` + verify + execute de façon transparente
-- `JwksCache` : cache par URL avec TTL + auto-refresh sur miss de `kid`
-- `lint_bindings(fn)` : sanity check à l'import sur les déclarations du décorateur
-- `verify_binding_completeness(fn, sample, variations)` : test helper qui prouve que les args bindés changent l'enveloppe signée et les args non-bindés non
-
-**Installation** :
-```
-pip install -e ../knowledge-runtime      # editable, depuis le monorepo
+```pipeline
+Agent IA | Investigue, décide
+Runtime d'agent | Orchestre les appels de tools
+Tools | Exécutent directement
+API métier | Trust le caller
 ```
 
-Publication PyPI est un follow-up quand un client hors monorepo en a besoin.
+**Avec Knowledge :**
 
-**Compatibilité framework** :
-- **Tout framework de tool basé sur callables Python** (LangChain, LlamaIndex, agents Python custom) : le décorateur wrappe une fonction Python, préserve `__wrapped__` pour que les tool-schema generators voient la signature intentionnelle. Compatible structurellement, pas testé par framework.
-- **OpenAI Assistants API / function-calling** : structurellement possible via un adapter qui expose le tool comme JSON schema. Pas shippé ; sur la roadmap selon la demande.
-- **Backends TypeScript** : le SDK est Python uniquement aujourd'hui. `@asplenz/knowledge-runtime` sur npm est sur la roadmap pour Q4-2026.
+```pipeline
+Agent IA | Investigue, rassemble le contexte
+Runtime d'agent | Orchestre les appels de tools
+Frontière du tool | Consulte Knowledge, vérifie la décision signée
+API métier | Exécute seulement si autorisée
+```
 
-## API REST - la source of truth
+Knowledge ne remplace pas votre runtime d'agent ni vos systèmes métier. Il ajoute une décision policy gouvernée et, quand c'est requis, un point d'enforcement à la frontière du tool. Tout ce qui est en amont et tout ce qui est en aval reste tel quel.
 
-Chaque chemin d'intégration appelle ultimement ceci. Endpoints :
+## Choisissez votre chemin d'intégration
 
-| Endpoint | Objectif |
+Trois choix architecturaux selon ce à quoi votre stack ressemble déjà. Même modèle sous-jacent, points d'insertion différents.
+
+### Déjà MCP ?
+
+**Proxy MCP.** Le proxy se place entre l'host MCP (Claude Desktop, Cursor, plugins IDE) et votre serveur MCP existant. Il lit une config déclarant quels tools sont gouvernés. Sur chaque `tools/call`, le proxy consulte Knowledge, vérifie la décision signée, puis forward seulement si autorisée. Votre serveur MCP, vos implémentations de tools et le client host restent tous inchangés.
+
+Meilleur fit pour les équipes tournant déjà MCP. Insertion drop-in, zéro changement de code.
+
+### Vos tools sont des fonctions Python ?
+
+**SDK Python - `knowledge-runtime`.** Wrappez les tools sélectionnés avec un décorateur :
+
+```python
+from knowledge_runtime import governed_tool
+
+@governed_tool(action="refund.execute", resource="tx", bind=["amount"])
+def refund(tx: str, amount: int):
+    return refund_api.execute(tx, amount)
+```
+
+Le décorateur consulte Knowledge à chaque appel, vérifie la décision signée, et ne fait tourner la fonction sous-jacente que si l'opération a été autorisée. Structurellement compatible avec LangChain, LlamaIndex et les runtimes Python custom.
+
+### Architecture custom ?
+
+**REST API + PEP custom.** N'importe quel langage, n'importe quel framework. Votre runtime appelle les endpoints REST de Knowledge, vérifie l'enveloppe JWS retournée contre le JWKS public de Knowledge, puis décide dans votre propre couche d'enforcement s'il faut invoquer l'API métier.
+
+Meilleur fit quand votre stack d'agent n'est pas Python ou MCP, ou quand vous voulez contrôle complet sur où l'évaluation policy et l'enforcement se produisent.
+
+## Gardez vos systèmes métier existants
+
+Knowledge n'exige pas de centraliser chaque règle dans votre organisation. Il donne aux décisions que vous choisissez de gouverner une policy authority indépendante, et coexiste proprement avec tout le reste.
+
+| Système existant | Comment Knowledge coexiste |
 |---|---|
-| `POST /knowledge/v1/check` | Verdict déterministe, contexte strict (le caller envoie tout) |
-| `POST /knowledge/v1/resolve` | Verdict progressif, contexte tolérant (Knowledge dit au caller ce qu'il manque) |
-| `GET /knowledge/v1/tenants/{slug}/jwks` | JWKS public pour vérification signed_verdict |
-| `GET /knowledge/v1/normative-hash` | Normative hash tenant courant (pour vérification strict-mode) |
-| `GET /knowledge/v1/.well-known/webhook-key` | Clé publique pour vérification signature webhook |
-| `POST /knowledge/v1/namespaces/{ns}/approvals` | Créer une demande d'approbation |
-| `POST /knowledge/v1/approvals/{id}/decide` | Un humain décide une demande d'approbation |
-| `GET /knowledge/v1/consultations/{id}` | Récupérer un record de Consultation pour audit |
+| **Rules engines existants** (FICO, ODM, ServiceNow, custom) | Knowledge gouverne les décisions que vous lui routez. Vos moteurs existants continuent de gérer credit scoring, fraud, ticketing, ou quel que soit le domaine qu'ils possèdent déjà. |
+| **CRM, core banking, ERP** | Intouchés. Knowledge lit seulement le contexte que le caller lui envoie et retourne une décision. Il ne se place pas dans le chemin de données de vos systèmes de record. |
+| **APIs métier** | Atteintes uniquement à travers la frontière du tool qui vérifie la décision signée. Aucun changement à l'API métier elle-même. |
+| **Workflow engines** (Camunda, Temporal, n8n) | Knowledge peut être appelé comme une étape dans un workflow, ou embarqué dans un agent gouverné qui tourne dans le workflow. Les deux formes marchent. |
 
-Authentifié avec une clé API (header `X-API-Key`). Référence complète à [API reference](/docs/api-reference/authentication). Spec OpenAPI à `/api/openapi-v3.json`.
+Deux patterns couvrent la plupart des intégrations :
 
-## Identity, SSO, SCIM
+- **Knowledge possède la décision** — pour une nouvelle classe de décisions agentiques qui a besoin d'une policy authority indépendante.
+- **Knowledge coexiste avec les moteurs de domaine** — certaines décisions restent naturellement dans ODM / FICO / ServiceNow / code custom, et Knowledge gouverne celles qui étaient précédemment gérées par procédures, spreadsheets ou jugement humain.
 
-**OIDC** [Stable] : l'UI back-office supporte le login OIDC. Configurable par déploiement à l'onboarding.
+## S'insérer dans votre infrastructure enterprise
 
-**SCIM** [Stable] : endpoints SCIM 2.0 pour provisioning users + groupes. Configurable par déploiement.
+| Couche | Ce avec quoi Knowledge s'intègre |
+|---|---|
+| **Identity** | Login OIDC pour l'UI back-office. SCIM 2.0 pour le provisioning utilisateurs et groupes. Identity binding pour unifier une personne à travers les mécanismes d'auth. |
+| **Observability** | Logs JSON structurés sur chaque service, `X-Request-Id` propagé pour la corrélation, une ligne `Event` par mutation d'entité gouvernée queryable pour audit ou shipping SIEM. |
+| **Déploiement** | SaaS (hosté par Asplenz), cloud privé / VPC (dans votre compte, vous contrôlez réseau, backup, résidence), ou on-premise (aucune dépendance externe au runtime au-delà de Postgres et, quand le reasoning est utilisé, votre provider LLM). |
+| **Security** | JWKS per-tenant pour vérification JWS, clés API avec `X-API-Key`, clé publique de signature webhook à une URL well-known. |
 
-**Identity binding** [Stable core, surface admin en cours] : Knowledge track le mapping *"SSO email X dans tenant Y = principal Z"* pour unifier les identités à travers les mécanismes d'auth. Le modèle `PrincipalIdentityBinding` ship avec auto-linking sur email match. Endpoints admin CRUD + surface knowledge-ui sont les Slice C+D restants du workstream identity-unification.
+## Disponible aujourd'hui
 
-## Observability + logs
+| Surface | Status |
+|---|---|
+| **Proxy MCP** | Disponible |
+| **SDK Python** (`knowledge-runtime`) | Disponible |
+| **REST API + JWKS** | Disponible |
+| **OIDC + SCIM** | Disponible |
+| **TypeScript, Java, adaptateur OpenAI** | [Parlez-nous](/pilot) si c'est sur votre chemin |
 
-**Structured logs** : tous les services émettent structlog JSON par défaut. `LOG_FORMAT=text` pour dev local.
+## Explorer l'API
 
-**Correlation IDs** : `X-Request-Id` se propage à travers knowledge-api / knowledge-ai / knowledge-slack / knowledge-mcp. Chaque ligne de log le porte.
+Trois endpoints font le plus gros du travail dans une intégration d'agent :
 
-**Table Events** : chaque mutation d'une entité gouvernée écrit une ligne `Event`. Query pour audit ou ship vers un SIEM via l'API events.
+- `POST /v1/resolve` - détermine la policy à partir du contexte disponible, retourne ce qui manque encore si incomplet
+- `POST /v1/check` - évalue avec un contexte complet, contrat d'input strict
+- `POST /v1/approvals` - route les décisions qui exigent une autorité humaine
 
-**Widgets FinOps** [Stable] : breakdown des coûts LLM par tenant (tokens, cache hit ratio, spend par modèle) via le service standalone `asplenz-finops` sur port 8092. Dashboard widget shippé comme une app React servie à `/dashboard/`.
-
-## Formes de déploiement
-
-- **SaaS** (hosté par Asplenz) : le plus rapide à démarrer. Tier design-partner disponible aujourd'hui ; certification production (SOC 2, ISO 27001) démarre avec la cohorte design-partner.
-- **Cloud privé / VPC** : déployé dans votre compte cloud. Vous contrôlez le placement réseau, backup, résidence.
-- **On-premise** : déployé sur une infrastructure que vous opérez. Aucune dépendance externe au runtime au-delà d'un Postgres standard et (quand la couche reasoning est utilisée) d'un provider LLM que vous configurez.
-
-## Ce qui n'est pas encore shippé (roadmap)
-
-- SDK TypeScript
-- Adapter OpenAI function-calling
-- Registry de field-fetchers (`GET /v1/field-fetchers/{tenant}` pour que l'agent auto-découvre comment fetcher les champs manquants ; voir [Progressive context](/product/progressive-context))
-- SDK Java (opt-in selon demande)
-
-Tout ce qui est shippé porte un badge de maturité dans [`docs/`](/docs) : `[Stable] [Beta] [Experimental] [Roadmap]`.
+Référence endpoints complète, schémas de requêtes et réponses à [Référence API](/docs/api-reference/authentication). Spec OpenAPI à `/api/openapi-v3.json`.
 
 ## Related
 
 | À lire ensuite | Pourquoi |
 |---|---|
-| [Enforcement](/product/enforcement) | L'enveloppe signée + le modèle PEP que MCP proxy + SDK implémentent |
-| [Docs quickstart](/docs) | Hands-on de 5 minutes avec le décorateur ou le MCP proxy |
-| [Security](/security) | Modèle de confiance, inventaire des clés, topologies de déploiement |
+| [Enforcement](/product/enforcement) | Le modèle enveloppe signée et PEP que les chemins d'intégration implémentent |
+| [Quickstart : governed tool](/docs/quickstart-governed-tool) | Hands-on de cinq minutes avec le décorateur Python |
+| [Setup proxy MCP](/docs/mcp-proxy/setup) | Hands-on de cinq minutes avec le proxy MCP |
+| [Formes de déploiement](/docs/security-compliance/deployment-shapes) | Détails SaaS, VPC, on-premise |
+| [Security](/security) | Trust model, inventaire des clés, frontières réseau |
