@@ -7,9 +7,7 @@ ctaLabel: Explore a design partnership
 ctaHref: /pilot
 ---
 
-Payers and TPAs still rely on operational teams to resolve policy-driven cases that need information from multiple systems, documents and procedures. AI can increasingly gather and interpret that context : search claims and eligibility systems, read clinical notes and supporting documents, query provider directories, prepare the case file.
-
-The determination itself, however, still needs to follow explicit organizational policy. The question becomes :
+An AI service can now investigate a case with growing sophistication. It reads clinical notes and supporting documents, queries claims, eligibility and provider systems, extracts the facts that matter. That flexibility is powerful. It also raises a policy question :
 
 > **The AI service can assemble the case. Who decides whether the case can be resolved, and how ?**
 

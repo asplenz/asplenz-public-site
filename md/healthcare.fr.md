@@ -7,9 +7,7 @@ ctaLabel: Explorer un design partnership
 ctaHref: /pilot
 ---
 
-Les assureurs santé et organismes gestionnaires s'appuient encore sur des équipes opérationnelles pour traiter de nombreux dossiers dont la décision dépend de règles, d'informations provenant de plusieurs systèmes, de documents et de procédures. L'IA peut de plus en plus rassembler et interpréter ce contexte : chercher dans les systèmes de gestion des dossiers et d'éligibilité, lire des notes cliniques et des pièces justificatives, interroger les annuaires de professionnels de santé, préparer le dossier.
-
-La décision elle-même, cependant, doit toujours suivre la politique organisationnelle explicite. La question devient :
+Une brique IA peut désormais investiguer un dossier avec une sophistication croissante. Elle lit les notes cliniques et les pièces justificatives, interroge les systèmes de gestion, d'éligibilité et d'annuaires, extrait les faits qui comptent. Cette flexibilité est puissante. Elle soulève aussi une question de gouvernance :
 
 > **La brique IA peut assembler le dossier. Qui décide si le dossier peut être traité, et comment ?**
 
