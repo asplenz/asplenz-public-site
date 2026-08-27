@@ -1,182 +1,128 @@
 ---
-title: KYC / KYB - gouverner la décision d'admission sans remplacer votre stack de vérification
-description: Knowledge gouverne les policies d'admission autour de votre stack de vérification existant. Il détermine ce que la policy exige ; vos applications, agents et vendors déterminent comment l'obtenir. Chaque verdict est signé pour enforcement à la frontière du tool.
+title: Laissez les agents d'onboarding collecter ce dont ils ont besoin. Gardez la décision d'admission déterministe.
+description: L'onboarding piloté par IA change comment l'information client peut être collectée. Un agent peut chercher dans les systèmes internes, appeler des providers de vérification et ne demander au client que quand c'est nécessaire. Knowledge détermine ce que la policy applicable exige et si le cas résultant peut procéder, sans remplacer votre stack IDV, screening ou workflow.
 locale: fr
 kicker: Knowledge pour le KYC / KYB
-ctaLabel: Devenir design partner
+ctaLabel: Explorer un design partnership
 ctaHref: /pilot
 ---
 
-L'onboarding est souvent décrit comme « KYC » comme si c'était une seule chose. Ce n'en est pas une. C'est un stack.
+L'admission client se transforme sous l'effet de l'investigation pilotée par IA. Un agent d'onboarding peut chercher dans les systèmes internes, appeler des providers de vérification, extraire des faits depuis des documents, et ne demander au client que quand rien d'autre n'est disponible. Cette flexibilité est puissante. Elle soulève aussi une question de policy :
 
-| Couche | Ce qu'elle fait |
+> **L'agent peut rassembler l'information. Qui décide si le cas résultant peut être admis ?**
+
+Knowledge sépare les deux. L'agent détermine *comment* collecter ce dont un cas a besoin. Knowledge détermine *ce que* la policy exige et si le cas peut procéder.
+
+## KYC n'est pas une seule chose
+
+L'onboarding est souvent décrit comme « KYC » comme si c'était une catégorie produit unique. C'est un stack de couches, chacune typiquement possédée par un outil différent.
+
+| Couche | Ce qu'elle fait | Typiquement possédée par |
+|---|---|---|
+| **Collect** | Ce que le client doit fournir (quels champs, quels documents, dans quel ordre) | UI onboarding ou agent |
+| **Verify** | Que ce qu'il a fourni est valide (identité, adresse, screening, PEP, sanctions) | Vendor IDV, vendor screening |
+| **Decide** | De l'admettre (résultat de vérification + règles firme + policy juridictionnelle + policy produit + policy commerciale + exceptions) | Policy d'admission de la firme |
+| **Orchestrate** | Le flow (retries, escalations, callbacks, SLAs) | Outil de workflow, BPM |
+
+Knowledge se pose sur **Decide**. Les trois autres couches restent dans les outils déjà bons pour elles.
+
+## La décision d'admission que Knowledge peut posséder
+
+La couche Decide est là où le composite se produit. Plusieurs inputs combinent en une détermination : *admettons-nous ce client pour cette relation ou ce produit ?*
+
+| Input | Ce qu'il apporte à la décision d'admission |
 |---|---|
-| **Collecter** | Ce que le client doit fournir (quels champs, quels documents, dans quel ordre) |
-| **Vérifier** | Que ce qu'il a fourni est valide (identité, adresse, screening, PEP, sanctions) |
-| **Décider** | De l'admettre (résultat de vérification + règles firme + policy juridictionnelle + policy produit + policy commerciale + exceptions) |
-| **Orchestrer** | Le flux (retries, escalations, callbacks, SLAs) |
+| **Vérification d'identité** (vendor IDV) | La personne ou l'entité est bien qui elle prétend être |
+| **Screening** (sanctions, PEP) | Check restricted-party |
+| **Éligibilité produit** | Le produit pour lequel le client postule fit son profil |
+| **Juridiction** | Règles qui s'appliquent étant donné le pays du client et l'empreinte réglementaire de la firme |
+| **Policy commerciale** | Règles spécifiques à la firme sur les clients acceptables |
+| **Appétit au risque** | Thresholds de tolérance et règles d'escalation de la firme |
+| **Exceptions** | Approbations ou overrides spécifiques au cas |
 
-Votre plateforme de vérification ou de compliance peut déjà couvrir des parties des quatre couches. La frontière devient intéressante quand la décision d'admission dépend de policies qui vont au-delà du domaine de vérification du vendor - juridiction, éligibilité produit, appétit au risque, policy commerciale ou exceptions spécifiques à la firme.
+Ensemble ils résolvent à une seule détermination : **admit, review, ou block**. Ce composite est souvent une décision qu'aucun outil existant unique ne possède end-to-end. C'est ce que Knowledge peut tenir.
 
-**Knowledge gouverne cette couche de décision, et signe son verdict pour que l'API d'admission puisse l'enforcer.**
+## Laisser la policy driver l'investigation
 
-## Ce que Knowledge apporte à l'onboarding
+Progressive Context fait de la décision d'admission une boucle active plutôt qu'un formulaire statique. Le caller (un agent, une plateforme d'onboarding, un node de workflow) envoie ce qu'il a. Knowledge détermine ce que les règles applicables exigent encore. Le caller l'acquiert et re-consulte. La boucle converge vers une décision.
 
-**Gouverne la décision d'admission composite.** Combine le résultat de vérification de votre vendor avec les policies de votre firme (éligibilité produit, restrictions juridictionnelles, règles commerciales, matrices d'exceptions). Retourne un verdict déterministe identifiant les règles qui l'ont déterminé.
+Une admission KYB pour un client entreprise français :
 
-**Détermine quel contexte est requis.** À mesure que le cas se résout, Knowledge indique à l'appelant onboarding quelle information manque encore pour la décision en cours, plutôt qu'encoder chaque exigence d'information possible d'entrée.
+**Round 1.** Le caller envoie `jurisdiction: FR`. Knowledge demande `client_type` (individual ou business).
 
-**Retourne un verdict signé à chaque étape.** Chaque `/check` ou `/resolve` embarque une enveloppe JWS ES256. L'API d'admission (custom, node BPM, ou legacy wrappée) vérifie la signature et contrôle que les bindings matchent avant d'ouvrir un compte. Voir [Enforcement](/product/enforcement).
+**Round 2.** Le caller ajoute `client_type: business`. Knowledge demande maintenant `legal_form` et `beneficial_ownership_structure`.
 
-**Préserve le contexte de décision.** Chaque consultation enregistre l'état de la policy et les règles derrière le résultat, fournissant une trace reproductible pour review ultérieure. Voir [Auditability](/product/auditability).
+**Round 3.** Le caller récupère `legal_form: SAS` et `beneficial_ownership_structure: simple` depuis le registre des sociétés. Plusieurs branches de policy qui auraient concerné des particuliers ou des structures complexes deviennent maintenant sans objet. Knowledge demande `beneficial_owner_identity` avec `source_requirement: verified`.
 
-## Ce que Knowledge ne fait PAS
+**Round 4.** Le vendor IDV vérifie. Le vendor screening retourne `pep_match: false`. Le caller re-consulte.
 
-| Pas ça | Pourquoi |
-|---|---|
-| **Pas d'IDV** | Knowledge ne vérifie pas l'identité, ne fait pas d'OCR sur documents, ne matche pas de visages, ne fait pas de screening de sanctions, ne consulte pas de bases PEP. Votre vendor existant est meilleur pour ça |
-| **Pas le workflow de vérification** | Knowledge n'orchestre pas les retries et callbacks entre votre UI et le vendor IDV. Votre outil de workflow (ou le workflow intégré du vendor IDV) gère ça |
-| **Pas la surface de collecte** | Knowledge gouverne les exigences d'information derrière la collecte et la décision elle-même ; votre application ou agent reste responsable de la collecte |
-| **Pas un remplacement de RFP KYC** | Si votre problème est de choisir entre vendors IDV, Knowledge n'est pas cette décision. Choisissez votre vendor IDV pour sa qualité de vérification |
+**Résultat.** `allowed`. Règle citée : `rul-kyb-fr-sas-simple-owner-verified`. Autorisation signée émise pour l'ouverture de compte.
 
-## Knowledge détermine ce que la policy exige. Votre stack existant détermine comment l'obtenir.
+Le caller n'encode pas tout l'arbre de dépendances. À mesure que le contexte arrive, Knowledge détermine quelles branches de policy restent pertinentes et quelle information additionnelle est réellement nécessaire. Voir [Progressive context](/product/progressive-context) pour le mécanisme.
 
-L'onboarding traditionnel encode chaque exigence d'information possible d'entrée, puis cache les champs avec de la logique conditionnelle. Knowledge inverse ça : l'appelant envoie ce qu'il a, et Knowledge lui dit ce qui manque encore pour que les policies applicables se résolvent.
+## Knowledge détermine quoi. Votre stack détermine comment.
 
-Une admission KYB pour un client entreprise, dépliée :
-
-**Étape 1.** L'appelant commence avec le peu qu'il sait.
-
-```
-context: {
-  "jurisdiction": { value: "FR", source: "caller" }
-}
-```
-
-Knowledge répond :
-
-```
-{ operation_status: "incomplete",
-  required_context: [
-    { field: "client_type",
-      reason: "required by rul-kyb-fr-client-type",
-      type: "enum",
-      allowed_values: ["individual", "business"] }
-  ] }
-```
-
-**Étape 2.** Le client est une entreprise. L'appelant rappelle `/resolve`.
-
-```
-context: {
-  ...,
-  "client_type": { value: "business", source: "caller" }
-}
-```
-
-Knowledge répond :
-
-```
-{ operation_status: "incomplete",
-  required_context: [
-    { field: "legal_form",
-      reason: "required by rul-kyb-fr-business",
-      type: "enum",
-      allowed_values: ["SAS", "SARL", "SA", "..."] },
-    { field: "beneficial_ownership_structure",
-      reason: "required by rul-kyb-fr-business",
-      type: "enum",
-      allowed_values: ["simple", "complex"] }
-  ] }
-```
-
-**Étape 3.** L'appelant ajoute la forme juridique et la structure d'actionnariat. Plusieurs branches de policy qui auraient concerné des particuliers ou des structures complexes deviennent maintenant sans objet.
-
-```
-context: {
-  ...,
-  "legal_form": { value: "SAS", source: "company_registry" },
-  "beneficial_ownership_structure": { value: "simple", source: "company_registry" }
-}
-```
-
-Knowledge répond :
-
-```
-{ operation_status: "incomplete",
-  required_context: [
-    { field: "beneficial_owner_identity",
-      reason: "required by rul-kyb-fr-sas-simple-owner",
-      type: "string",
-      source_requirement: "verified" }
-  ] }
-```
-
-**Étape 4.** Le fournisseur de vérification d'identité retourne son résultat. L'appelant rappelle `/resolve`.
-
-```
-context: {
-  ...,
-  "beneficial_owner_identity": {
-    value: "verified", source: "IDV_vendor", verification_status: "verified"
-  },
-  "pep_match": { value: false, source: "screening_vendor" }
-}
-```
-
-Knowledge répond :
-
-```
-{ operation_status: "complete",
-  verdict: "allowed",
-  cited_rules: ["rul-kyb-fr-sas-simple-owner-verified"],
-  signed_verdict: "eyJhbGciOiJFUzI1NiIsInR5cCI6ImdvdmVybmVkK2p3cyIsImtpZCI6...",
-  consultation_id: "cns-..." }
-```
-
-L'appelant n'a pas besoin d'encoder tout l'arbre de dépendances. À mesure que le contexte arrive, Knowledge détermine quelles branches de policy restent pertinentes et quelle information additionnelle est réellement nécessaire pour résoudre la décision. Voir [Progressive context](/product/progressive-context).
-
-## « Required » ne veut pas dire « demander au client »
-
-Knowledge identifie le contexte requis pour la décision. L'appelant décide où l'obtenir.
+Knowledge identifie le contexte dont les règles applicables ont besoin. Le caller (agent, application, workflow) décide où l'obtenir.
 
 | Contexte requis | Source typique |
 |---|---|
 | Pays du client | Dossier client existant, CRM |
 | Statut PEP | Vendor de screening, API sanctions |
-| Activité business | Demander au client, extraire des documents |
+| Activité business | Extraire des documents, ou demander au client |
 | Relation existante | Système core banking ou de compte |
 | Vérification d'identité | Vendor IDV |
+| Structure de beneficial owner | Registre des sociétés, statuts |
 
-**Votre système d'onboarding doit décider comment collecter l'information. Il ne devrait pas avoir à savoir pourquoi la policy l'exige.**
+**Votre système d'onboarding décide comment collecter l'information. Il n'a pas besoin de savoir pourquoi la policy l'exige.**
 
-## Ce que ça change pour un onboarding piloté par IA
+Quand un agent est côté caller, la même séparation devient plus nette : l'agent raisonne sur la façon la moins chère, la plus rapide ou la moins intrusive d'obtenir chaque champ demandé. Knowledge ne juge pas ce choix. Il ne se soucie que de savoir si la valeur satisfait la policy une fois arrivée.
 
-Un agent d'onboarding (chat, voice, in-app) appelle Knowledge comme un tool. À mesure que `required_context` arrive, l'agent décide s'il va le récupérer depuis un système interne, appeler un vendor de vérification, ou demander au client directement. Quand la décision est complète, l'enveloppe signée autorise l'appel d'ouverture de compte à la frontière du tool.
+## Ce que Knowledge peut être dans votre stack KYC
 
-L'agent choisit **comment** collecter l'information. Knowledge détermine **ce que** la policy exige. La frontière du tool fait respecter la décision résultante. C'est le garde-fou qui permet à un agent probabiliste de prendre des actions au-dessus d'une policy déterministe.
+Deux formes couvrent la plupart des déploiements KYC / KYB.
 
-## Où Knowledge s'insère dans un stack KYC typique
-
-Selon ce que votre stack existant possède déjà, Knowledge s'insère de façons différentes.
-
-| Votre setup actuel | Où Knowledge se place |
+| Forme | Comment ça marche |
 |---|---|
-| **Vendor IDV possède vérifier + workflow, vous possédez l'admission** | Knowledge expose la décision d'admission au parcours d'onboarding. Il peut être consulté progressivement à mesure que le contexte est collecté et à nouveau quand les résultats de vérification arrivent |
-| **Plateforme compliance possède vérification + workflow + rules end-to-end** | Knowledge ne fit pas à la couche KYC. Entrée possible au-dessus : la décision d'admission composite qui combine verdict KYC + éligibilité produit + matrice juridictionnelle + exceptions commerciales - une décision que la plateforme compliance ne possède pas |
-| **Vendor IDV verification-only, votre plateforme possède collecte + orchestration + décision** | Knowledge gouverne la décision ; votre plateforme continue à posséder l'UI et l'orchestration |
-| **Logique d'admission legacy custom patchée sur des années** | Knowledge se place en overlay, ajoute de nouvelles règles ou gouverne des existantes sans toucher au code legacy. Shadow-first est commun - valider la parité avant de passer primary |
+| **Knowledge comme autorité de décision d'admission** | Pour un flow d'onboarding donné, Knowledge détermine allow / review / block à partir des résultats de vérification collectés et des policies de la firme. La plateforme d'onboarding agit sur le résultat. |
+| **Knowledge comme complément à ce que vous faites déjà tourner** | Pour les décisions que la plateforme existante produit déjà, Knowledge peut ajouter une couche gouvernée pour des cas spécifiques : une règle d'exception spécifique à la firme, un overlay juridictionnel, un workflow d'approbation, une surface d'audit. |
 
-## Résolution progressive : ce qui se mesure
+Les engagements KYC utilisent souvent les deux formes en même temps.
 
-Pour les processus où beaucoup d'information est actuellement collectée « au cas où », la capacité à demander de l'information seulement quand elle devient pertinente crée une opportunité de réduire la collecte inutile et les demandes de suivi. L'impact sur le taux de complétion et le time-to-onboard se mesure pendant un engagement design-partner, aux côtés de l'accord de décision et du temps de reconstruction d'audit.
+## Patterns d'insertion
 
-## La suite
+Les stacks d'onboarding varient considérablement. Formes communes :
+
+| Setup | Où Knowledge se place |
+|---|---|
+| **Vendor IDV possède verify + workflow ; la firme possède l'admission** | Knowledge expose la décision d'admission au parcours d'onboarding. Consulté progressivement à mesure que le contexte est collecté et à nouveau quand les résultats de vérification arrivent. |
+| **Plateforme compliance possède vérification + workflow + règles d'admission end-to-end** | Knowledge ne fit pas à la couche KYC. Entrée possible au-dessus : la décision d'admission composite qui combine verdict KYC + éligibilité produit + matrice juridictionnelle + exceptions commerciales, une détermination que la plateforme compliance ne porte typiquement pas. |
+| **Vendor IDV verification-only ; la plateforme de la firme possède collecte + orchestration + décision** | Knowledge gouverne la décision. Votre plateforme continue à posséder l'UI et l'orchestration. |
+| **Logique d'admission legacy custom accumulée sur des années** | Knowledge se place en overlay, ajoute de nouvelles règles ou gouverne des existantes sans toucher au code legacy. Le mode shadow est commun : valider la parité avant que Knowledge tienne l'autorité. |
+
+## Rendre la décision d'admission enforceable
+
+Une décision policy seule est advisory. Pour l'action d'ouverture de compte elle-même, Knowledge peut émettre une autorisation signée liée à l'admission exacte que la policy a résolue. L'API d'ouverture de compte ou le node de workflow vérifie la signature et refuse si l'opération ne matche pas ce que la policy a autorisé.
+
+Voir [Enforcement](/product/enforcement) pour le modèle.
+
+## Reconstruire pourquoi un client a été admis
+
+Chaque consultation écrit un record Consultation qui fige les versions de règles applicables, le trace de précédence, les overrides en vigueur, et le contexte exact qui a été résolu. Quand un régulateur demande *« pourquoi ce client a-t-il été admis le 2026-03-15 ? »*, la réponse est une vue business de l'état gelé au moment de décision, pas une approximation recollée depuis des logs.
+
+Voir [Auditability](/product/auditability) pour le mécanisme.
+
+## Commencer par une décision d'admission
+
+Pickez une décision d'admission que votre stack d'onboarding fait actuellement, ou une que votre nouvel agent d'onboarding doit faire, où l'autorité policy devrait vivre hors du modèle. Faites-la tourner en shadow mode contre le process actuel. Cutoverez quand la parité et l'audit atteignent votre bar.
+
+**[Explorer un design partnership](/pilot)** &nbsp; · &nbsp; **[Parlez-nous](/contact)**
+
+## Related
 
 | À lire ensuite | Pourquoi |
 |---|---|
-| [Enforcement](/product/enforcement) | Verdicts signés, PEP, chemins d'adoption |
-| [Auditability](/product/auditability) | L'histoire d'audit complète : Consultation, RuleVersion, precedence trace |
-| [Progressive context](/product/progressive-context) | La boucle required_context en profondeur |
-| [Pour équipes produit IA](/solutions/by-role/ai-product-teams) | Pour les assistants d'onboarding pilotés par IA |
-| [Design partner](/pilot) | Trois places founding, une décision production, pricing founding-customer |
+| [Pour équipes produit IA](/solutions/by-role/ai-product-teams) | L'équipe qui construit l'agent d'onboarding |
+| [Pour compliance officers](/solutions/by-role/compliance-officers) | L'angle compliance : ownership des règles, audit, approbations |
+| [Progressive context](/product/progressive-context) | La boucle `/resolve` que le caller d'onboarding navigue |
+| [Enforcement](/product/enforcement) | Verdicts signés et PEP pour la frontière d'ouverture de compte |
+| [Auditability](/product/auditability) | Record Consultation, RuleVersion, trace de précédence |

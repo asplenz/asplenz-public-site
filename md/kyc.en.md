@@ -1,182 +1,128 @@
 ---
-title: KYC / KYB - govern the admission decision without replacing your verification stack
-description: Knowledge governs the admission policies around your existing verification stack. It determines what the policy requires ; your applications, agents and vendors determine how to get it. Every verdict is signed for enforcement at the tool boundary.
+title: Let onboarding agents collect what they need. Keep the admission decision deterministic.
+description: AI-driven onboarding changes how customer information can be collected. An agent can search internal systems, call verification providers and ask the customer only when necessary. Knowledge determines what the applicable policy requires and whether the resulting case can proceed, without replacing your IDV, screening or workflow stack.
 locale: en
 kicker: Knowledge for KYC / KYB
-ctaLabel: Become a design partner
+ctaLabel: Explore a design partnership
 ctaHref: /pilot
 ---
 
-Onboarding is often described as "KYC" as if it were one thing. It is not. It's a stack.
+Customer admission is being reshaped by AI-driven investigation. An onboarding agent can search internal systems, call verification providers, extract facts from documents, and ask the customer only when nothing else is available. That flexibility is powerful. It also raises a policy question :
 
-| Layer | What it does |
+> **The agent can gather information. Who decides whether the resulting case can be admitted ?**
+
+Knowledge separates the two. The agent determines *how* to collect what a case needs. Knowledge determines *what* the policy requires and whether the case can proceed.
+
+## KYC isn't one thing
+
+Onboarding is often described as "KYC" as if it were a single product category. It is a stack of layers, each typically owned by a different tool.
+
+| Layer | What it does | Typically owned by |
+|---|---|---|
+| **Collect** | What the customer needs to provide (which fields, which documents, in what order) | Onboarding UI or agent |
+| **Verify** | That what they provided is valid (identity, address, screening, PEP, sanctions) | IDV vendor, screening vendor |
+| **Decide** | Whether to admit them (verification result + firm rules + jurisdictional policy + product policy + commercial policy + exceptions) | Firm's admission policy |
+| **Orchestrate** | The flow (retries, escalations, callbacks, SLAs) | Workflow tool, BPM |
+
+Knowledge sits on **Decide**. The other three layers stay in the tools already good at them.
+
+## The admission decision Knowledge can own
+
+The Decide layer is where the composite happens. Multiple inputs combine into one determination : *do we admit this customer for this relationship or product ?*
+
+| Input | What it contributes to the admission decision |
 |---|---|
-| **Collect** | What the customer needs to provide (which fields, which documents, in what order) |
-| **Verify** | That what they provided is valid (identity, address, screening, PEP, sanctions) |
-| **Decide** | Whether to admit them (verification result + firm rules + jurisdictional policy + product policy + commercial policy + exceptions) |
-| **Orchestrate** | The flow (retries, escalations, callbacks, SLAs) |
+| **Identity verification** (IDV vendor) | The person or entity is who they claim to be |
+| **Screening** (sanctions, PEP) | Restricted-party check |
+| **Product eligibility** | The product the customer is applying for fits their profile |
+| **Jurisdiction** | Rules that apply given the customer's country and the firm's regulatory footprint |
+| **Commercial policy** | Firm-specific rules on acceptable customers |
+| **Risk appetite** | Firm's tolerance thresholds and escalation rules |
+| **Exceptions** | Case-specific approvals or overrides |
 
-Your verification or compliance platform may already cover parts of all four layers. The boundary becomes interesting when the admission decision depends on policies that extend beyond the vendor's own verification domain - jurisdiction, product eligibility, risk appetite, commercial policy or firm-specific exceptions.
+Together they resolve to one determination : **admit, review, or block**. That composite is often a decision no single existing tool owns end-to-end. It is what Knowledge can hold.
 
-**Knowledge governs that decision layer, and signs its verdict so the admission API can enforce it.**
+## Let the policy drive the investigation
 
-## What Knowledge does for onboarding
+Progressive Context makes the admission decision an active loop rather than a static form. The caller (an agent, an onboarding platform, a workflow node) sends what it has. Knowledge determines what the applicable rules still require. The caller acquires it and re-consults. The loop converges to a decision.
 
-**Governs the composite admission decision.** Combines your vendor's verification result with your firm's policies (product eligibility, jurisdictional restrictions, commercial rules, exception matrices). Returns a deterministic verdict identifying the rules that determined it.
+A KYB admission for a French business customer :
 
-**Determines what context is required.** As the case is resolved, Knowledge tells the onboarding caller what information is still needed for the current decision, rather than encoding every possible information requirement upfront.
+**Round 1.** The caller sends `jurisdiction: FR`. Knowledge asks for `client_type` (individual or business).
 
-**Returns a signed verdict at every step.** Every `/check` or `/resolve` embeds a JWS ES256 envelope. The admission API (custom, BPM node, or wrapped legacy) verifies the signature and checks bindings match before opening an account. See [Enforcement](/product/enforcement).
+**Round 2.** The caller adds `client_type: business`. Knowledge now asks for `legal_form` and `beneficial_ownership_structure`.
 
-**Preserves the decision context.** Each consultation records the policy state and rules behind the outcome, providing a reproducible trail for later review. See [Auditability](/product/auditability).
+**Round 3.** The caller retrieves `legal_form: SAS` and `beneficial_ownership_structure: simple` from the company registry. Several policy branches that would have applied to individuals or to complex ownership structures are now irrelevant. Knowledge asks for `beneficial_owner_identity` with `source_requirement: verified`.
 
-## What Knowledge does NOT do
+**Round 4.** The IDV vendor verifies. The screening vendor returns `pep_match: false`. The caller re-consults.
 
-| Not that | Why |
-|---|---|
-| **Not IDV** | Knowledge does not verify identity, run OCR on documents, check faces, screen sanctions lists, or check PEP databases. Your existing vendor is better at that |
-| **Not the verification workflow** | Knowledge does not orchestrate the retries and callbacks between your UI and the IDV vendor. Your workflow tool (or IDV vendor's built-in workflow) handles that |
-| **Not the collection surface** | Knowledge governs the information requirements behind collection and the decision itself ; your application or agent remains responsible for collecting the information |
-| **Not a KYC RFP replacement** | If your issue is choosing between IDV vendors, Knowledge is not that decision. Pick your IDV vendor for its verification quality |
+**Result.** `allowed`. Cited rule : `rul-kyb-fr-sas-simple-owner-verified`. Signed authorization issued for account opening.
 
-## Knowledge determines what the policy needs. Your existing stack determines how to get it.
+The caller does not encode the complete dependency tree. As context arrives, Knowledge determines which policy branches remain relevant and which additional information is actually required. See [Progressive context](/product/progressive-context) for the mechanism.
 
-Traditional onboarding encodes every possible information requirement upfront, then hides fields with conditional logic. Knowledge inverts that : the caller sends what it has, and Knowledge tells it what is still required for the applicable policies to resolve.
+## Knowledge determines what. Your stack determines how.
 
-A KYB admission for a business customer, unfolded :
-
-**Step 1.** The caller starts with the little it knows.
-
-```
-context: {
-  "jurisdiction": { value: "FR", source: "caller" }
-}
-```
-
-Knowledge responds :
-
-```
-{ operation_status: "incomplete",
-  required_context: [
-    { field: "client_type",
-      reason: "required by rul-kyb-fr-client-type",
-      type: "enum",
-      allowed_values: ["individual", "business"] }
-  ] }
-```
-
-**Step 2.** The customer is a company. The caller re-calls `/resolve`.
-
-```
-context: {
-  ...,
-  "client_type": { value: "business", source: "caller" }
-}
-```
-
-Knowledge responds :
-
-```
-{ operation_status: "incomplete",
-  required_context: [
-    { field: "legal_form",
-      reason: "required by rul-kyb-fr-business",
-      type: "enum",
-      allowed_values: ["SAS", "SARL", "SA", "..."] },
-    { field: "beneficial_ownership_structure",
-      reason: "required by rul-kyb-fr-business",
-      type: "enum",
-      allowed_values: ["simple", "complex"] }
-  ] }
-```
-
-**Step 3.** The caller adds legal form and beneficial ownership. Several policy branches that would have applied to individuals or to complex ownership structures are now irrelevant.
-
-```
-context: {
-  ...,
-  "legal_form": { value: "SAS", source: "company_registry" },
-  "beneficial_ownership_structure": { value: "simple", source: "company_registry" }
-}
-```
-
-Knowledge responds :
-
-```
-{ operation_status: "incomplete",
-  required_context: [
-    { field: "beneficial_owner_identity",
-      reason: "required by rul-kyb-fr-sas-simple-owner",
-      type: "string",
-      source_requirement: "verified" }
-  ] }
-```
-
-**Step 4.** The identity verification provider returns its result. The caller re-calls `/resolve`.
-
-```
-context: {
-  ...,
-  "beneficial_owner_identity": {
-    value: "verified", source: "IDV_vendor", verification_status: "verified"
-  },
-  "pep_match": { value: false, source: "screening_vendor" }
-}
-```
-
-Knowledge responds :
-
-```
-{ operation_status: "complete",
-  verdict: "allowed",
-  cited_rules: ["rul-kyb-fr-sas-simple-owner-verified"],
-  signed_verdict: "eyJhbGciOiJFUzI1NiIsInR5cCI6ImdvdmVybmVkK2p3cyIsImtpZCI6...",
-  consultation_id: "cns-..." }
-```
-
-The caller does not need to encode the complete dependency tree. As context arrives, Knowledge determines which policy branches remain relevant and which additional information is actually required to resolve the decision. See [Progressive context](/product/progressive-context).
-
-## Required doesn't mean "ask the customer"
-
-Knowledge identifies the context required for the decision. The caller decides where to get it.
+Knowledge identifies the context the applicable rules need. The caller (agent, application, workflow) decides where to get it.
 
 | Required context | Typical source |
 |---|---|
 | Customer country | Existing customer record, CRM |
 | PEP status | Screening vendor, sanctions API |
-| Business activity | Ask the customer, extract from documents |
+| Business activity | Extract from documents, or ask the customer |
 | Existing relationship | Core banking or account system |
 | Identity verification | IDV vendor |
+| Beneficial owner structure | Company registry, articles of incorporation |
 
-**Your onboarding system should decide how to collect information. It shouldn't have to know why the policy requires it.**
+**Your onboarding system decides how to collect information. It does not need to know why the policy requires it.**
 
-## What this changes for AI-driven onboarding
+When an agent is on the caller side, the same separation gets sharper : the agent reasons about the cheapest, fastest or least intrusive way to obtain each requested field. Knowledge does not judge that choice. It only cares whether the value satisfies the policy once it arrives.
 
-An onboarding agent (chat, voice, in-app) calls Knowledge as a tool. As `required_context` arrives, the agent decides whether to fetch it from an internal system, call a verification vendor, or ask the customer directly. When the decision is complete, the signed envelope authorizes the account-opening call at the tool boundary.
+## What Knowledge can be in your KYC stack
 
-The agent chooses **how** to collect information. Knowledge determines **what** the policy needs. The tool boundary enforces the resulting decision. This is the guardrail that lets a probabilistic agent take actions on top of a deterministic policy.
+Two shapes cover most KYC / KYB deployments.
 
-## Where Knowledge fits in a typical KYC stack
-
-Depending on what your existing stack already owns, Knowledge inserts in different ways.
-
-| Your current setup | Where Knowledge sits |
+| Shape | How it works |
 |---|---|
-| **IDV vendor owns verify + workflow, you own admission** | Knowledge exposes the admission decision to the onboarding journey. It can be consulted progressively as context is collected and again when verification results become available |
-| **Compliance platform owns verification + workflow + rules end-to-end** | Knowledge does not fit at the KYC layer. Possible entry above : the composite admission that combines KYC verdict + product eligibility + jurisdictional matrix + commercial exceptions - a decision the compliance platform doesn't own |
-| **IDV vendor is verification-only, your platform owns collection + orchestration + decision** | Knowledge governs the decision ; your platform continues to own the UI and orchestration |
-| **Custom legacy admission logic patched over years** | Knowledge sits as an overlay, adds new rules or governs existing ones without touching the legacy code. Shadow-first is common - validate parity before going primary |
+| **Knowledge as the admission decision authority** | For a given onboarding flow, Knowledge determines allow / review / block from the collected verification results and firm policies. The onboarding platform acts on the outcome. |
+| **Knowledge as a complement to what you already run** | For decisions the existing platform already produces, Knowledge can add a governed layer for specific cases : a firm-specific exception rule, a jurisdiction overlay, an approval workflow, an audit surface. |
 
-## Progressive resolution : what to measure
+KYC engagements often use both shapes at once.
 
-For processes where significant information is currently collected "just in case", the ability to request information only when it becomes relevant creates an opportunity to reduce unnecessary collection and follow-up requests. The impact on completion rate and time-to-onboard is measured during a design-partner engagement, alongside decision agreement and audit reconstruction time.
+## Insertion patterns
 
-## What comes next
+Onboarding stacks vary considerably. Common shapes :
+
+| Setup | Where Knowledge sits |
+|---|---|
+| **IDV vendor owns verify + workflow ; the firm owns admission** | Knowledge exposes the admission decision to the onboarding journey. Consulted progressively as context is collected and again when verification results become available. |
+| **Compliance platform owns verification + workflow + admission rules end-to-end** | Knowledge does not fit at the KYC layer. Possible entry above : the composite admission that combines KYC verdict + product eligibility + jurisdictional matrix + commercial exceptions, a determination the compliance platform typically does not carry. |
+| **IDV vendor is verification-only ; the firm's platform owns collection + orchestration + decision** | Knowledge governs the decision. Your platform continues to own the UI and orchestration. |
+| **Custom legacy admission logic accumulated over years** | Knowledge sits as an overlay, adds new rules or governs existing ones without touching the legacy code. Shadow mode is common : validate parity before Knowledge holds authority. |
+
+## Make the admission decision enforceable
+
+A policy decision on its own is advisory. For the account-opening action itself, Knowledge can issue signed authorization bound to the exact admission the policy resolved. The account-opening API or workflow node verifies the signature and refuses if the operation does not match what the policy authorized.
+
+See [Enforcement](/product/enforcement) for the model.
+
+## Reconstruct why a customer was admitted
+
+Every consultation writes a Consultation record that freezes the applicable rule versions, the precedence trace, the overrides in force, and the exact context that was resolved. When a regulator asks *"why was this customer admitted on 2026-03-15 ?"* the answer is a business-view of the frozen state at decision time, not an approximation stitched together from logs.
+
+See [Auditability](/product/auditability) for the mechanism.
+
+## Start with one admission decision
+
+Pick one admission decision your onboarding stack currently makes, or one your new onboarding agent needs to make, where the policy authority should live outside the model. Run it in shadow mode against the current process. Cut over when parity and audit meet your bar.
+
+**[Explore a design partnership](/pilot)** &nbsp; · &nbsp; **[Talk to us](/contact)**
+
+## Related
 
 | Read next | Why |
 |---|---|
-| [Enforcement](/product/enforcement) | Signed verdicts, PEP, adoption paths |
-| [Auditability](/product/auditability) | The full audit story : Consultation, RuleVersion, precedence trace |
-| [Progressive context](/product/progressive-context) | The required_context loop in depth |
-| [For AI product teams](/solutions/by-role/ai-product-teams) | For AI-driven onboarding assistants |
-| [Design partner](/pilot) | Three founding slots, one production-relevant decision, founding-customer pricing |
+| [For AI product teams](/solutions/by-role/ai-product-teams) | The team building the onboarding agent |
+| [For compliance officers](/solutions/by-role/compliance-officers) | The compliance-side angle : rule ownership, audit, approvals |
+| [Progressive context](/product/progressive-context) | The `/resolve` loop the onboarding caller navigates |
+| [Enforcement](/product/enforcement) | Signed verdicts and PEP for the account-opening boundary |
+| [Auditability](/product/auditability) | Consultation record, RuleVersion, precedence trace |
