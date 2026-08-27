@@ -15,11 +15,13 @@ Avant les agents, ce bouton appelait soit un moteur suitability fixe soit décle
 
 Avec un service IA qui participe derrière le bouton, la détermination se construit maintenant par le modèle. Il fetche les données produit, lit le profil client, extrait des faits depuis la conversation et le dossier, et construit la vue composite : éligibilité produit, suitability, cross-border, concentration.
 
-Le RM voit un résultat native de l'application :
+Le RM voit un résultat native de l'application.
 
-- **Suitable.** Le client rencontre les exigences applicables.
-- **Additional information required.** Merci d'obtenir un niveau K&E à jour pour cette complexité de produit.
-- **Compliance review required.** Mismatch booking-centre avec juridiction ; escalader à Compliance.
+| Résultat | Ce que le workstation affiche |
+|---|---|
+| **Suitable** | Le client rencontre les exigences applicables. |
+| **Additional information required** | Merci d'obtenir un niveau K&E à jour pour cette complexité de produit. |
+| **Compliance review required** | Mismatch booking-centre avec juridiction ; escalader à Compliance. |
 
 Il n'a pas besoin de savoir qu'un agent a tourné derrière le workstation. Le workstation, le CRM, l'UI d'order entry restent exactement comme ils sont.
 

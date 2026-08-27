@@ -15,11 +15,13 @@ Before agents, that button either called a fixed suitability engine or triggered
 
 With an AI service participating behind the button, the determination now gets built by the model. It fetches product data, reads the client profile, extracts facts from the conversation and the case file, and constructs the composite view : product eligibility, suitability, cross-border, concentration.
 
-The RM sees a native application result :
+The RM sees a native application result.
 
-- **Suitable.** Client meets the applicable requirements.
-- **Additional information required.** Please obtain updated K&E level for this product complexity.
-- **Compliance review required.** Booking-centre mismatch with jurisdiction ; escalate to Compliance.
+| Outcome | What the workstation shows |
+|---|---|
+| **Suitable** | Client meets the applicable requirements. |
+| **Additional information required** | Please obtain updated K&E level for this product complexity. |
+| **Compliance review required** | Booking-centre mismatch with jurisdiction ; escalate to Compliance. |
 
 They do not need to know an agent ran behind the workstation. The workstation, the CRM, the order-entry UI stay exactly as they are.
 
