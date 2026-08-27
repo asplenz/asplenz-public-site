@@ -1,113 +1,113 @@
 ---
-title: Apporter du decision-making gouverné aux opérations healthcare AI-powered
-description: Les payers et TPAs comptent encore sur des équipes opérationnelles pour résoudre des cas policy-driven qui requièrent de l'information depuis plusieurs systèmes, documents et procédures. L'IA peut de plus en plus rassembler et interpréter ce contexte, mais les décisions de couverture, claims et approbation qui en résultent doivent toujours suivre la policy organisationnelle explicite. Knowledge garde ces règles hors du modèle et les évalue de manière déterministe, pendant que les plateformes existantes continuent à posséder le workflow et l'exécution.
+title: Apporter la gouvernance des décisions aux opérations santé pilotées par IA
+description: Les assureurs santé et organismes gestionnaires s'appuient encore sur des équipes opérationnelles pour traiter des dossiers dont la décision dépend de règles, d'informations provenant de plusieurs systèmes, de documents et de procédures. L'IA peut de plus en plus rassembler et interpréter ce contexte, mais les décisions de couverture, de remboursement et d'autorisation qui en résultent doivent toujours suivre la politique organisationnelle explicite. Knowledge garde ces règles hors du modèle et les évalue de manière déterministe, pendant que les plateformes existantes continuent à gérer le workflow et l'exécution.
 locale: fr
-kicker: Knowledge pour le Healthcare
+kicker: Knowledge pour la santé
 ctaLabel: Explorer un design partnership
 ctaHref: /pilot
 ---
 
-Les payers et TPAs comptent encore sur des équipes opérationnelles pour résoudre des cas policy-driven qui ont besoin d'information depuis plusieurs systèmes, documents et procédures. L'IA peut de plus en plus rassembler et interpréter ce contexte : chercher dans les systèmes claims et eligibility, lire les notes cliniques et documents de support, interroger les provider directories, préparer le dossier du cas.
+Les assureurs santé et organismes gestionnaires s'appuient encore sur des équipes opérationnelles pour traiter de nombreux dossiers dont la décision dépend de règles, d'informations provenant de plusieurs systèmes, de documents et de procédures. L'IA peut de plus en plus rassembler et interpréter ce contexte : chercher dans les systèmes de gestion des dossiers et d'éligibilité, lire des notes cliniques et des pièces justificatives, interroger les annuaires de professionnels de santé, préparer le dossier.
 
-La détermination elle-même, cependant, doit toujours suivre la policy organisationnelle explicite. La question devient :
+La décision elle-même, cependant, doit toujours suivre la politique organisationnelle explicite. La question devient :
 
-> **Le service IA peut assembler le cas. Qui décide si le cas peut être résolu, et comment ?**
+> **La brique IA peut assembler le dossier. Qui décide si le dossier peut être traité, et comment ?**
 
-Knowledge garde les règles hors du modèle. Les plateformes existantes continuent à posséder le workflow et l'exécution. La capability IA détermine *comment* rassembler ce dont un cas a besoin ; Knowledge détermine *ce que* la policy dit une fois le contexte assemblé.
+Knowledge garde les règles hors du modèle. Les plateformes existantes continuent à gérer le workflow et l'exécution. La brique IA détermine *comment* rassembler ce dont un dossier a besoin ; Knowledge détermine *ce que* la politique dit une fois le contexte assemblé.
 
 ## Comment le pipeline opérationnel change
 
 ```lifecycle
-step: Claims platform ou application opérationnelle
-step: La capability IA rassemble le contexte du cas depuis systèmes, documents, providers
-step: Knowledge applique la policy encodée
-branch-left-label: Chemin automatisé
-branch-left-1: Verdict déterministe sur allow, deny, ou détermination benefit
-branch-left-2: Autorisation signée vers l'API claims ou preauth
-branch-right-label: Review humaine
-branch-right-1: approval_required, avec contexte policy-relevant assemblé
-branch-right-2: Cas routé vers le reviewer approprié
+step: Plateforme de gestion des dossiers ou application opérationnelle
+step: La brique IA rassemble le contexte du dossier depuis les systèmes, documents, annuaires
+step: Knowledge applique la politique encodée
+branch-left-label: Traitement automatisé
+branch-left-1: Verdict déterministe (accord, refus, ou détermination de prestation)
+branch-left-2: Autorisation signée vers l'API de gestion ou d'autorisation préalable
+branch-right-label: Revue humaine
+branch-right-1: approval_required, avec le contexte pertinent déjà assemblé
+branch-right-2: Dossier routé vers le reviewer approprié
 end: La décision s'exécute
 ```
 
-Knowledge se pose entre la capability IA qui assemble le cas et le chemin opérationnel qui suit de la décision. La claims platform, le workflow de préautorisation, les systèmes cliniques et les reviewers humains restent en place.
+Knowledge se pose entre la brique IA qui assemble le dossier et le chemin opérationnel qui suit de la décision. La plateforme de gestion des dossiers, le workflow d'autorisation préalable, les systèmes cliniques et les reviewers humains restent en place.
 
-## Ce que Knowledge peut être dans votre stack healthcare
+## Ce que Knowledge peut être dans votre architecture santé
 
-Deux formes couvrent la plupart des déploiements payer et TPA.
+Deux formes couvrent la plupart des déploiements chez les assureurs et gestionnaires.
 
 | Forme | Comment ça marche |
 |---|---|
-| **Knowledge comme autorité de décision** | Pour un type de cas donné, Knowledge détermine le résultat (allow, deny, détermination benefit-specific, approval required) à partir du contexte assemblé et des policies encodées. La claims platform ou le workflow agit sur le résultat. |
-| **Knowledge comme complément à ce que vous faites déjà tourner** | Pour les décisions que la claims platform existante produit déjà, Knowledge peut ajouter une couche gouvernée pour des cas spécifiques : une règle d'exception spécifique à la firme, un overlay juridictionnel ou de plan, un workflow d'approbation, une surface d'audit. |
+| **Knowledge comme autorité de décision** | Pour un type de dossier donné, Knowledge détermine le résultat (accord, refus, détermination spécifique à une prestation, revue humaine requise) à partir du contexte assemblé et des politiques encodées. La plateforme de gestion ou le workflow agit sur le résultat. |
+| **Knowledge comme complément à ce que vous faites déjà tourner** | Pour les décisions que la plateforme existante produit déjà, Knowledge peut ajouter une couche gouvernée pour des cas spécifiques : une règle d'exception propre à l'organisation, un overlay lié à un contrat ou une région, un workflow d'approbation, une surface d'audit. |
 
-Les engagements healthcare utilisent souvent les deux formes en même temps.
+Les engagements santé combinent souvent les deux formes.
 
-## Trois outcomes que Knowledge produit
+## Trois résultats que Knowledge produit
 
-Toutes les décisions healthcare ne devraient pas être automatisées. Knowledge distingue les cas qui peuvent être résolus depuis une policy explicite de ceux qui exigent réellement un jugement humain.
+Toutes les décisions santé ne devraient pas être automatisées. Knowledge distingue les dossiers qui peuvent être résolus par une politique explicite de ceux qui exigent réellement un jugement humain.
 
-| Outcome | Ce qui se passe ensuite |
+| Résultat | Ce qui se passe ensuite |
 |---|---|
-| **incomplete + required_context** | Les policies applicables ont encore besoin d'information spécifique. Le système existant (ou la capability IA derrière) l'obtient et re-consulte Knowledge. |
-| **complete + verdict déterministe** | Les policies encodées résolvent le cas sans review humaine. Le workflow existant agit sur le verdict ; l'enveloppe signée autorise l'appel opérationnel aval. |
-| **complete + approval_required** | Les policies encodées routent explicitement le cas vers review humaine. Le workflow escalade avec le contexte policy-relevant déjà assemblé. |
+| **incomplete + required_context** | Les règles applicables ont encore besoin d'informations spécifiques. Le système existant (ou la brique IA derrière) les obtient et re-consulte Knowledge. |
+| **complete + verdict déterministe** | Les règles encodées résolvent le dossier sans revue humaine. Le workflow existant agit sur le verdict ; l'enveloppe signée autorise l'appel opérationnel aval. |
+| **complete + approval_required** | Les règles encodées routent explicitement le dossier vers une revue humaine. Le workflow escalade avec le contexte pertinent déjà assemblé. |
 
-Pour les TPAs opérant à travers plusieurs payers et plans, le même modèle garde différents ensembles de policies gouvernés séparément tout en exposant une interface de décision cohérente aux systèmes qui traitent les cas.
+Pour un organisme gestionnaire qui opère plusieurs contrats ou plusieurs porteurs de risque, le même modèle garde des ensembles de règles gouvernés séparément tout en exposant une interface de décision cohérente aux systèmes qui traitent les dossiers.
 
-## Les patterns de policy que Knowledge représente
+## Les patterns de règles que Knowledge représente
 
-Les organisations healthcare opèrent sous différents frameworks réglementaires, structures de plans et modèles opérationnels. Knowledge ne prescrit pas ces policies. Il fournit une façon gouvernée d'encoder et d'évaluer les patterns de décision récurrents qui les sous-tendent.
+Les organisations santé opèrent sous différents cadres réglementaires, structures de contrats et modèles opérationnels. Knowledge ne prescrit pas ces règles. Il fournit une manière gouvernée d'encoder et d'évaluer les schémas de décision récurrents qui les sous-tendent.
 
-| Pattern de policy | Ce qu'il gouverne |
+| Pattern de règle | Ce qu'il gouverne |
 |---|---|
-| **Éligibilité et couverture** | Si le membre, la policy, le benefit ou le service rentre dans les conditions de couverture applicables |
-| **Complétude de l'information** | Quelle information ou documentation est requise avant que les policies applicables puissent rendre un verdict |
-| **Conditions de plan et de benefit** | Limits, exclusions, conditions réseau, exigences spécifiques par benefit et autres règles de plan |
-| **Règles de claims et d'approbation** | Les conditions encodées par l'organisation pour résoudre un claim ou une demande d'approbation |
-| **Exceptions et escalation** | Quand une exception s'applique ou quand les policies encodées exigent une review additionnelle |
-| **Routing vers review humaine** | Quand un cas ne peut ou ne doit pas être résolu automatiquement et doit être envoyé à un reviewer approprié |
+| **Éligibilité et couverture** | Si le bénéficiaire, le contrat, la prestation ou l'acte tombent dans les conditions de couverture applicables |
+| **Complétude de l'information** | Quelle information ou documentation est requise avant que les règles applicables puissent rendre un verdict |
+| **Conditions de contrat et de prestation** | Plafonds, exclusions, conditions de réseau, exigences spécifiques par prestation et autres règles de contrat |
+| **Règles de remboursement et d'autorisation** | Les conditions encodées par l'organisation pour traiter une demande de remboursement ou d'autorisation |
+| **Exceptions et escalade** | Quand une exception s'applique ou quand les règles encodées exigent une revue supplémentaire |
+| **Routage vers revue humaine** | Quand un dossier ne peut ou ne doit pas être résolu automatiquement et doit être envoyé à un reviewer approprié |
 
-Votre organisation possède le contenu policy. Knowledge fournit la couche de décision gouvernée à travers laquelle ces policies sont évaluées.
+Votre organisation possède le contenu des règles. Knowledge fournit la couche de décision gouvernée à travers laquelle ces règles sont évaluées.
 
-## Laisser la policy driver l'investigation du cas
+## Laisser la politique conduire l'investigation
 
-Progressive Context transforme la préparation du cas en une boucle active plutôt qu'un formulaire statique. Le caller (une capability IA, une application opérationnelle, un node de workflow) envoie ce qu'il a. Knowledge détermine ce que les règles applicables exigent encore. Le caller l'acquiert et re-consulte.
+Progressive Context transforme la préparation du dossier en une boucle active plutôt qu'en un formulaire statique. Le caller (une brique IA, une application opérationnelle, un node de workflow) envoie ce qu'il a. Knowledge détermine ce que les règles applicables exigent encore. Le caller l'acquiert et re-consulte.
 
-Un cas de préautorisation en cours :
+Un dossier d'autorisation préalable en cours :
 
-**Round 1.** Le caller envoie ce que le cas porte déjà : `member_plan`, `service_code`, `provider_id`.
+**Round 1.** Le caller envoie ce que le dossier porte déjà : `contrat_bénéficiaire`, `code_acte`, `identifiant_professionnel`.
 
-**Round 2.** Knowledge demande `supporting_documentation_status` et `provider_network_status`. Le caller récupère les deux, un depuis le repository de documents, l'autre depuis le provider directory.
+**Round 2.** Knowledge demande `statut_pièces_justificatives` et `statut_réseau_professionnel`. Le caller récupère les deux, l'un depuis le référentiel documentaire, l'autre depuis l'annuaire des professionnels de santé.
 
-**Round 3.** Knowledge demande `medical_necessity_review_flag` (gouverné par la policy benefit pour ce service code). Le caller interroge le système approprié.
+**Round 3.** Knowledge demande `indicateur_revue_nécessité_médicale` (gouverné par la règle de prestation pour ce code d'acte). Le caller interroge le système approprié.
 
-**Résultat.** `approval_required`. Le workflow route le cas vers un reviewer médical avec tout le contexte policy-relevant assemblé.
+**Résultat.** `approval_required`. Le workflow route le dossier vers un reviewer médical avec tout le contexte pertinent assemblé.
 
-Le caller n'encode pas tout l'arbre de dépendances. À mesure que le contexte arrive, Knowledge détermine quelles branches de policy restent pertinentes et quelle information additionnelle est requise. Voir [Progressive context](/product/progressive-context).
+Le caller n'encode pas tout l'arbre de dépendances. À mesure que le contexte arrive, Knowledge détermine quelles branches de règle restent pertinentes et quelle information additionnelle est requise. Voir [Progressive context](/product/progressive-context).
 
 ## Patterns d'insertion
 
-Les engagements healthcare utilisent typiquement un de quatre patterns.
+Les engagements santé utilisent typiquement un de quatre patterns.
 
 | Pattern | Comment ça marche |
 |---|---|
-| **Shadow** (point de départ typique) | Knowledge évalue les mêmes cas en parallèle du process existant. Comparer les résultats sur une fenêtre définie avant que Knowledge tienne l'autorité opérationnelle. |
-| **Overlay** | Les résultats de décision existants deviennent partie du contexte que Knowledge évalue. Ajouter de nouvelles policies gouvernées sans migrer la plateforme sous-jacente. |
-| **Selective routing** | Knowledge gère un nouveau scope de décision (un nouveau plan, produit, benefit ou région) pendant que les flows existants restent sur le stack actuel. |
+| **Shadow** (point de départ typique) | Knowledge évalue les mêmes dossiers en parallèle du process existant. Comparer les résultats sur une période définie avant que Knowledge tienne l'autorité opérationnelle. |
+| **Overlay** | Les résultats de décision existants deviennent partie du contexte que Knowledge évalue. Ajouter de nouvelles règles gouvernées sans migrer la plateforme sous-jacente. |
+| **Routage sélectif** | Knowledge gère un nouveau périmètre de décision (un nouveau contrat, une nouvelle prestation, une nouvelle région) pendant que les flux existants restent sur la plateforme actuelle. |
 | **Primary** | Knowledge est la couche de décision dès le début, typique pour un nouveau service opérationnel ou un déploiement greenfield. |
 
-Commencez par une décision. Encodez la policy applicable. Faites tourner Knowledge à côté du process existant. Mesurez ce qui change.
+Commencez par une décision. Encodez la règle applicable. Faites tourner Knowledge à côté du process existant. Mesurez ce qui change.
 
 ## Rendre la décision enforceable
 
-Pour l'appel opérationnel qui suit un verdict Knowledge, Knowledge peut émettre une autorisation signée liée à la décision exacte que la policy a produite. L'API claims, le service de préautorisation, ou un node de workflow gouverné vérifie la signature et refuse si l'opération ne matche pas ce que la policy a autorisé.
+Pour l'appel opérationnel qui suit un verdict Knowledge, Knowledge peut émettre une autorisation signée liée à la décision exacte que la politique a produite. L'API de gestion des dossiers, le service d'autorisation préalable ou un node de workflow gouverné vérifie la signature et refuse si l'opération ne correspond pas à ce que la politique a autorisé.
 
 Voir [Enforcement](/product/enforcement) pour le modèle.
 
-## Reconstruire pourquoi un cas a été décidé
+## Reconstruire pourquoi un dossier a été décidé
 
-Chaque consultation écrit un record Consultation qui fige les versions de règles applicables, le trace de précédence, les overrides en vigueur, et le contexte exact qui a été résolu. Les reviewers, auditeurs et régulateurs demandant *« pourquoi ce cas a-t-il été allowed / denied / escalated ? »* obtiennent une vue business de l'état gelé au moment de décision, pas une approximation recollée depuis des logs.
+Chaque consultation écrit un record Consultation qui fige les versions de règles applicables, la trace de précédence, les overrides en vigueur, et le contexte exact qui a été résolu. Les reviewers, auditeurs et régulateurs demandant *« pourquoi ce dossier a-t-il été accepté, refusé ou escaladé ? »* obtiennent une vue métier de l'état gelé au moment de la décision, pas une approximation recollée depuis des logs.
 
 Voir [Auditability](/product/auditability) pour le mécanisme.
 
@@ -115,19 +115,19 @@ Voir [Auditability](/product/auditability) pour le mécanisme.
 
 Être explicite sur la frontière clinique fait partie du contrat.
 
-**Knowledge évalue les policies que votre organisation a encodées. Il ne diagnostique pas les patients, ne recommande pas de traitement, ne détermine pas la nécessité médicale et ne remplace pas le jugement clinique.** Il n'exécute pas d'actions opérationnelles ; votre organisation décide si un verdict résulte en un traitement automatisé, une demande d'information additionnelle, une escalation ou une review humaine.
+**Knowledge évalue les règles que votre organisation a encodées. Il ne pose pas de diagnostic, ne recommande pas de traitement, ne détermine pas la nécessité médicale et ne remplace pas le jugement clinique.** Il n'exécute pas d'actions opérationnelles ; votre organisation décide si un verdict conduit à un traitement automatisé, à une demande d'information additionnelle, à une escalade ou à une revue humaine.
 
-Là où le jugement clinique est requis (déterminations de nécessité médicale qui vont au-delà de la policy encodée, cas contestés, présentations inhabituelles), la policy encodée devrait router le cas vers le reviewer humain avec les qualifications appropriées, et Knowledge enregistre ce routing comme il enregistre n'importe quelle autre décision.
+Là où le jugement clinique est requis (déterminations de nécessité médicale qui vont au-delà de la règle encodée, dossiers contestés, présentations inhabituelles), la règle encodée doit router le dossier vers le reviewer humain aux qualifications appropriées, et Knowledge enregistre ce routage comme il enregistre toute autre décision.
 
 ## Où nous démarrons
 
-Nous explorons le Healthcare avec des payers et TPAs qui opèrent des processus policy-heavy de couverture, claims et approbation, particulièrement là où les plateformes existantes tournent déjà mais où la logique de décision requiert une review inutile, dépend d'information incomplète, ou doit devenir accessible en sécurité à des workflows AI-driven.
+Nous explorons la santé avec des assureurs et gestionnaires qui opèrent des processus riches en règles autour de la couverture, du remboursement et des autorisations, en particulier là où les plateformes existantes tournent déjà mais où la logique de décision impose une revue humaine excessive, dépend d'informations incomplètes, ou doit devenir accessible en toute sécurité à des workflows pilotés par IA.
 
-Le focus initial est sur des organisations opérant des environnements complexes multi-plan ou multi-payer.
+Le focus initial est sur des organisations opérant des environnements complexes avec plusieurs contrats ou plusieurs porteurs de risque.
 
 ## Commencer par une décision
 
-Pickez une décision opérationnelle que vos équipes résolvent encore manuellement ou où une capability IA pourrait assembler le cas mais où la détermination policy devrait rester hors du modèle. Faites-la tourner en shadow mode contre le process actuel. Cutoverez quand la parité et l'audit atteignent votre bar.
+Choisissez une décision opérationnelle que vos équipes résolvent encore manuellement, ou une décision où une brique IA pourrait assembler le dossier mais où la détermination des règles doit rester hors du modèle. Faites-la tourner en shadow mode contre le process actuel. Basculez en enforcement quand la parité et l'auditabilité atteignent votre seuil.
 
 **[Explorer un design partnership](/pilot)** &nbsp; · &nbsp; **[Parlez-nous](/contact)**
 
@@ -135,8 +135,8 @@ Pickez une décision opérationnelle que vos équipes résolvent encore manuelle
 
 | À lire ensuite | Pourquoi |
 |---|---|
-| [Pour équipes produit IA](/solutions/by-role/ai-product-teams) | L'équipe qui construit la capability IA derrière les workflows opérationnels |
-| [Pour compliance officers](/solutions/by-role/compliance-officers) | L'angle policy-ownership : versioning, coverage, approbations |
-| [Progressive context](/product/progressive-context) | La boucle `/resolve` que le caller d'assemblage de cas navigue |
+| [Pour équipes produit IA](/solutions/by-role/ai-product-teams) | L'équipe qui construit la brique IA derrière les workflows opérationnels |
+| [Pour compliance officers](/solutions/by-role/compliance-officers) | L'angle policy ownership : versioning, coverage, approbations |
+| [Progressive context](/product/progressive-context) | La boucle `/resolve` que le caller d'assemblage de dossier navigue |
 | [Enforcement](/product/enforcement) | Verdicts signés et PEP pour la frontière opérationnelle |
 | [Auditability](/product/auditability) | Record Consultation, RuleVersion, trace de précédence |
