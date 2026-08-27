@@ -28,7 +28,7 @@ Knowledge
 Human decision  (when required)
    |  exercises judgment on approval_required
    v
-Enforcement point  (tool wrapper, MCP proxy, custom PEP)
+Enforcement point  (tool wrapper, MCP interceptor, custom PEP)
    |  verifies signed authorization matches the operation
    v
 Business tool  (Stripe, core banking, EMR, ...)
@@ -68,9 +68,9 @@ def refund_customer(tx, amount):
     return refund_api_legacy(tx, amount)
 ```
 
-The agent proposes the action. Knowledge decides. The tool executes only with a valid signed authorization that binds to this exact operation. Shipped 2026-08. Python SDK + MCP proxy + JWS ES256.
+The agent proposes the action. Knowledge decides. The tool executes only with a valid signed authorization that binds to this exact operation. Shipped 2026-08. Python SDK + MCP server + JWS ES256.
 
-**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[MCP proxy setup](/docs/quickstart-mcp-proxy)** &nbsp; · &nbsp; **[Enforcement spec](/product/enforcement)**
+**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Knowledge as MCP server](/docs/quickstart-knowledge-mcp)** &nbsp; · &nbsp; **[Enforcement spec](/product/enforcement)**
 
 ---
 

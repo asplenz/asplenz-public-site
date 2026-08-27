@@ -37,7 +37,7 @@ An agent (or any caller) sends a proposed action and the context it currently ha
 
 **Progressive context** - the mechanism by which a caller sends what it has and Knowledge returns the fields still needed to reach a verdict. See [Progressive context](/product/progressive-context).
 
-**PEP (Policy Enforcement Point)** - the client-side wrapper (Python decorator, MCP proxy, custom code) that verifies the signed envelope before executing a business action. Lives in your infrastructure, not Knowledge's.
+**PEP (Policy Enforcement Point)** - the client-side wrapper (Python decorator, MCP tool-call interceptor, custom code) that verifies the signed envelope before executing a business action. Lives in your infrastructure, not Knowledge's.
 
 ## Where Knowledge fits in your stack
 
@@ -59,7 +59,7 @@ Knowledge exposes a small set of surfaces. Which one matters depends on your rol
 | **Knowledge API** | Agents, applications, workflows | Consult a decision (`/check`, `/resolve`), fetch consultations, create approvals |
 | **Back-office UI** | Compliance officers, product owners | Author policies and rules, review coverage, resolve approvals |
 | **Python SDK** | Backend teams | Wrap tools with `@governed_tool` so signed verdicts are enforced before execution |
-| **MCP proxy** | Agent stacks running MCP | Governance layer in front of an existing MCP server, no code change on tools |
+| **MCP interceptor** | Agent stacks running MCP | Enforcement pattern at the MCP tool-call boundary. Reference example in the monorepo, adapt to your MCP stack. |
 | **JWKS endpoint** | Enforcement points | Public keys for verifying signed verdicts offline |
 
 The underlying deployment (SaaS, private cloud, on-premise) is opaque to callers. Endpoints are versioned paths ; substitute your tenant's base URL.

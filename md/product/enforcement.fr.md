@@ -93,11 +93,11 @@ Knowledge durcit deux arêtes de cette chaîne : **Knowledge vers PEP** (la sign
 
 | Chemin | Fit | Effort client |
 |---|---|---|
-| **Proxy MCP** | Stacks d'agent tournant MCP (Claude Desktop, Cursor, plugins IDE avec serveur MCP) | Insérer le proxy devant votre serveur MCP. Zéro changement de code sur vos tools. |
+| **Intercepteur de tool call MCP** | Stacks d'agent tournant MCP (Claude Desktop, Cursor, plugins IDE avec serveur MCP) | Wrapper les tool calls à travers votre serveur MCP avec `verify_verdict` avant exécution. Exemple de référence dans le monorepo à copier et adapter. |
 | **Décorateur SDK Python** | Backends Python exposant des tools aux agents | Installer `knowledge-runtime`, ajouter `@governed_tool(action, resource, bind)` par tool. |
 | **PEP custom** | N'importe quel langage, n'importe quel framework, à la frontière de votre API métier | Vérifier l'enveloppe JWS contre Knowledge JWKS et comparer les bindings avant d'exécuter. Petite librairie, aucune dépendance de framework. |
 
-Le proxy MCP est le chemin le plus fluide pour les équipes tournant déjà MCP. Ship en drop-in qui lit un registry file déclarant quels tools sont gouvernés. Votre serveur MCP, vos implémentations de tools, votre client host restent tous inchangés.
+Pour les équipes tournant déjà MCP, le pattern d'intercepteur est le fit naturel. La primitive `verify_verdict` reste stable ; la glue MCP s'adapte à votre framework, transport et modèle d'auth.
 
 ## Ce que Knowledge ne promet PAS
 
@@ -120,7 +120,7 @@ Le proxy MCP est le chemin le plus fluide pour les équipes tournant déjà MCP.
 
 M1 à M4bis complets. 121 tests. CI vert. Disponible aujourd'hui dans les déploiements design-partner ; certification production (SOC 2, ISO 27001) démarre avec la cohorte design-partner.
 
-**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Setup proxy MCP](/docs/quickstart-mcp-proxy)** &nbsp; · &nbsp; **[Parlez-nous](/pilot)**
+**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Knowledge comme serveur MCP](/docs/quickstart-knowledge-mcp)** &nbsp; · &nbsp; **[Parlez-nous](/pilot)**
 
 ## Related
 

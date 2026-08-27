@@ -36,11 +36,11 @@ Four capabilities materialize the loop. Each one has its own page ; this section
 
 **The verdict itself** - the deterministic outcome (`allowed`, `approval_required`, `blocked`). Produced from the encoded policy, not from LLM interpretation. Every fired rule is cited by the exact `RuleVersion` in force at decision time. See [Verdicts and decisions](/docs/concepts/verdicts-and-decisions) for the severity ladder and precedence tie-breakers.
 
-**Enforcement** - Knowledge signs every verdict as a JWS envelope binding the exact operation authorized. A Policy Enforcement Point (SDK decorator, MCP proxy, custom code) verifies the signature and checks bindings before the tool executes. An agent that hallucinates or a bug that skips the check cannot execute the underlying action, because the boundary refuses without a matching signed verdict. See [Enforcement](/product/enforcement).
+**Enforcement** - Knowledge signs every verdict as a JWS envelope binding the exact operation authorized. A Policy Enforcement Point (SDK decorator, MCP tool-call interceptor, custom code) verifies the signature and checks bindings before the tool executes. An agent that hallucinates or a bug that skips the check cannot execute the underlying action, because the boundary refuses without a matching signed verdict. See [Enforcement](/product/enforcement).
 
 **Auditability** - every consultation writes a Consultation record freezing the exact rule versions cited, the precedence trace, the overrides applied, and the normative hash. A regulator asking *"show me why this decision was made on 2026-03-15"* is one API call. See [Auditability](/product/auditability).
 
-**Integrations** - the surfaces through which agents, tools and existing systems connect to Knowledge : MCP proxy, Python SDK (`knowledge-runtime`), REST API, JWKS endpoint per tenant, webhooks, SSO / SCIM. See [Integrations](/product/integrations).
+**Integrations** - the surfaces through which agents, tools and existing systems connect to Knowledge : Knowledge MCP server, Python SDK (`knowledge-runtime`), REST API, JWKS endpoint per tenant, webhooks, SSO / SCIM. See [Integrations](/product/integrations).
 
 ## Where Knowledge fits
 
@@ -68,6 +68,6 @@ Four capabilities materialize the loop. Each one has its own page ; this section
 | [Enforcement](/product/enforcement) | The signed envelope and PEP model, four-actor trust chain, adoption paths |
 | [Progressive context](/product/progressive-context) | The `/resolve` loop, dependency inversion, why policy changes ship without touching the caller |
 | [Auditability](/product/auditability) | Consultation, RuleVersion, precedence trace, cold-storage replay |
-| [Integrations](/product/integrations) | MCP proxy, Python SDK, REST, JWKS, deployment shapes |
+| [Integrations](/product/integrations) | Knowledge MCP server, Python SDK, REST, JWKS, deployment shapes |
 | [Docs](/docs) | Implementation-level reference |
 | [Solutions](/solutions/build-rule-governed-agents) | Why this matters for someone in your role |

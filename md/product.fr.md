@@ -36,11 +36,11 @@ Quatre capabilities matérialisent la boucle. Chacune a sa propre page ; cette s
 
 **Le verdict lui-même** - l'outcome déterministe (`allowed`, `approval_required`, `blocked`). Produit à partir de la policy encodée, pas de l'interprétation du LLM. Chaque règle qui fire est citée par la `RuleVersion` exacte en vigueur au moment de décision. Voir [Verdicts et decisions](/docs/concepts/verdicts-and-decisions) pour l'échelle de severity et les tie-breakers de précédence.
 
-**Enforcement** - Knowledge signe chaque verdict comme une enveloppe JWS liant l'opération exacte autorisée. Un Policy Enforcement Point (décorateur SDK, proxy MCP, code custom) vérifie la signature et checke les bindings avant que le tool ne s'exécute. Un agent qui hallucine ou un bug qui skip le check ne peut pas exécuter l'action sous-jacente, parce que la frontière refuse sans verdict signé matchant. Voir [Enforcement](/product/enforcement).
+**Enforcement** - Knowledge signe chaque verdict comme une enveloppe JWS liant l'opération exacte autorisée. Un Policy Enforcement Point (décorateur SDK, intercepteur de tool call MCP, code custom) vérifie la signature et checke les bindings avant que le tool ne s'exécute. Un agent qui hallucine ou un bug qui skip le check ne peut pas exécuter l'action sous-jacente, parce que la frontière refuse sans verdict signé matchant. Voir [Enforcement](/product/enforcement).
 
 **Auditability** - chaque consultation écrit un record Consultation qui fige les versions de règles exactes citées, la trace de précédence, les overrides appliqués, et le normative hash. Un régulateur demandant *« montrez-moi pourquoi cette décision a été prise le 2026-03-15 »* est un seul appel API. Voir [Auditability](/product/auditability).
 
-**Integrations** - les surfaces à travers lesquelles agents, tools et systèmes existants se connectent à Knowledge : proxy MCP, SDK Python (`knowledge-runtime`), API REST, endpoint JWKS par tenant, webhooks, SSO / SCIM. Voir [Integrations](/product/integrations).
+**Integrations** - les surfaces à travers lesquelles agents, tools et systèmes existants se connectent à Knowledge : serveur MCP Knowledge, SDK Python (`knowledge-runtime`), API REST, endpoint JWKS par tenant, webhooks, SSO / SCIM. Voir [Integrations](/product/integrations).
 
 ## Où Knowledge s'insère
 
@@ -68,6 +68,6 @@ Quatre capabilities matérialisent la boucle. Chacune a sa propre page ; cette s
 | [Enforcement](/product/enforcement) | L'enveloppe signée et le modèle PEP, chaîne de confiance à quatre acteurs, chemins d'adoption |
 | [Progressive context](/product/progressive-context) | La boucle `/resolve`, l'inversion de dépendance, pourquoi les policies changent sans toucher au caller |
 | [Auditability](/product/auditability) | Consultation, RuleVersion, trace de précédence, replay cold-storage |
-| [Integrations](/product/integrations) | Proxy MCP, SDK Python, REST, JWKS, formes de déploiement |
+| [Integrations](/product/integrations) | Serveur MCP Knowledge, SDK Python, REST, JWKS, formes de déploiement |
 | [Docs](/docs) | Référence implementation-level |
 | [Solutions](/solutions/build-rule-governed-agents) | Pourquoi ça compte pour quelqu'un dans votre rôle |

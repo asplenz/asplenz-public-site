@@ -63,7 +63,7 @@ Avant la semaine 1, nous convenons des chiffres qui justifieraient la conversion
 | **Délai pour livrer une règle** | Entre « compliance demande une nouvelle règle » et « règle live dans Knowledge », comparé au même délai dans votre système existant |
 | **Efficacité de collecte** | Champs demandés, requêtes de suivi et taux de complétion sur la résolution progressive de Knowledge, comparés au parcours d'onboarding ou d'intake actuel |
 | **Temps de reconstruction d'audit** | Temps pour retrouver le contexte, les règles applicables et l'état de la policy derrière une décision historique, comparé à votre processus actuel |
-| **Coverage d'enforcement** | Pour les engagements où un Policy Enforcement Point est déployé (décorateur SDK, proxy MCP, wrapper custom) : part des actions automatisées qui exigent un verdict signé valide avant de s'exécuter |
+| **Coverage d'enforcement** | Pour les engagements où un Policy Enforcement Point est déployé (décorateur SDK, intercepteur MCP, wrapper custom) : part des actions automatisées qui exigent un verdict signé valide avant de s'exécuter |
 
 ## Amenez votre équipe AI interne ou votre partenaire d'implémentation
 

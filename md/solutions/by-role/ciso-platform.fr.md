@@ -73,7 +73,7 @@ un principal agent différent
 une action expirée
 ```
 
-Le point d'enforcement (wrapper de tool, proxy MCP, code custom) vérifie que l'autorisation et l'opération matchent avant que l'API métier ne soit appelée. Sur n'importe quel mismatch, l'action sous-jacente ne tourne pas.
+Le point d'enforcement (wrapper de tool, intercepteur MCP, code custom) vérifie que l'autorisation et l'opération matchent avant que l'API métier ne soit appelée. Sur n'importe quel mismatch, l'action sous-jacente ne tourne pas.
 
 Modèle technique complet à [Enforcement](/product/enforcement).
 

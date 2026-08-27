@@ -5,7 +5,7 @@ locale: fr
 kicker: Docs / Getting started - Stable
 ---
 
-Ce quickstart vous emmène d'un tenant vide à votre premier appel `/resolve` qui retourne un vrai verdict, en environ 30 minutes. Il se concentre sur le côté auteur : comment les règles entrent dans Knowledge. Les quickstarts côté consumer (décorateur Python, proxy MCP) s'appuient sur celui-ci.
+Ce quickstart vous emmène d'un tenant vide à votre premier appel `/resolve` qui retourne un vrai verdict, en environ 30 minutes. Il se concentre sur le côté auteur : comment les règles entrent dans Knowledge. Les quickstarts côté consumer (décorateur Python, Knowledge comme serveur MCP) s'appuient sur celui-ci.
 
 ## Prérequis
 

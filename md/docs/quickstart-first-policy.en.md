@@ -5,7 +5,7 @@ locale: en
 kicker: Docs / Getting started - Stable
 ---
 
-This quickstart takes you from an empty tenant to your first `/resolve` call returning a real verdict, in about 30 minutes. It focuses on the author side : how rules get into Knowledge. The consumer-side quickstarts (Python decorator, MCP proxy) build on this one.
+This quickstart takes you from an empty tenant to your first `/resolve` call returning a real verdict, in about 30 minutes. It focuses on the author side : how rules get into Knowledge. The consumer-side quickstarts (Python decorator, Knowledge as MCP server) build on this one.
 
 ## Prerequisites
 

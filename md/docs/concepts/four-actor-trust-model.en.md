@@ -76,7 +76,7 @@ Every edge is a trust boundary. Knowledge tightens two ; the others depend on yo
 2. Compare against `authorization` in the signed envelope.
 3. If every declared binding matches, invoke the business API. Otherwise refuse.
 
-**This is the load-bearing edge.** Get bindings wrong and enforcement becomes theatre. The `@governed_tool` decorator handles this correctly in Python ; the MCP proxy handles this correctly for MCP tools ; custom PEPs must implement it correctly.
+**This is the load-bearing edge.** Get bindings wrong and enforcement becomes theatre. The `@governed_tool` decorator handles this correctly in Python ; an MCP tool-call interceptor built on `verify_verdict` handles this correctly for MCP tools ; custom PEPs must implement it correctly.
 
 **Coverage responsibility** : if any reachable path to the business API skips the PEP, the model breaks. Network isolation + IAM prevent alternative paths. This is your architecture, not Knowledge's.
 

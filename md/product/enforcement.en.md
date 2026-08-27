@@ -93,11 +93,11 @@ Knowledge tightens two edges of this chain : **Knowledge to PEP** (the signature
 
 | Path | Fit | Client effort |
 |---|---|---|
-| **MCP proxy** | Agent stacks running MCP (Claude Desktop, Cursor, IDE plugins with an MCP server) | Insert the proxy in front of your MCP server. Zero code change on your tools. |
+| **MCP tool-call interceptor** | Agent stacks running MCP (Claude Desktop, Cursor, IDE plugins with an MCP server) | Wrap tool calls through your MCP server with `verify_verdict` before executing. Reference example in the monorepo to copy and adapt. |
 | **Python SDK decorator** | Python backends exposing tools to agents | Install `knowledge-runtime`, add `@governed_tool(action, resource, bind)` per tool. |
 | **Custom PEP** | Any language, any framework, at your business API boundary | Verify the JWS envelope against Knowledge JWKS and compare bindings before executing. Small library, no framework dependency. |
 
-The MCP proxy is the smoothest path for teams already running MCP. Ships as a drop-in that reads a registry file declaring which tools are governed. Your MCP server, your tool implementations, your host client all stay unchanged.
+For teams already running MCP, the interceptor pattern is the natural fit. The `verify_verdict` primitive stays stable ; the MCP glue adapts to your framework, transport and auth model.
 
 ## What Knowledge does not promise
 
@@ -120,7 +120,7 @@ Being explicit here is part of the enforcement contract, not a caveat.
 
 M1 through M4bis complete. 121 tests. CI green. Available today in design-partner deployments ; production certification (SOC 2, ISO 27001) starts with the design-partner cohort.
 
-**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[MCP proxy setup](/docs/quickstart-mcp-proxy)** &nbsp; · &nbsp; **[Talk to us](/pilot)**
+**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Knowledge as MCP server](/docs/quickstart-knowledge-mcp)** &nbsp; · &nbsp; **[Talk to us](/pilot)**
 
 ## Related
 

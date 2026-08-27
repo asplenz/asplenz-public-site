@@ -88,7 +88,7 @@ Modèle complet à [Enforcement](/product/enforcement).
 
 ## Fonctionne avec la stack que vous avez déjà
 
-Proxy MCP, SDK Python, API REST, PEP custom. Amenez votre propre framework d'agent (LangGraph, client MCP, orchestrator custom).
+Tools du serveur MCP, SDK Python, API REST, PEP custom. Amenez votre propre framework d'agent (LangGraph, client MCP, orchestrator custom).
 
 Voir [Integrations](/product/integrations) pour les détails sur chaque chemin.
 
@@ -102,7 +102,7 @@ Voir [Integrations](/product/integrations) pour les détails sur chaque chemin.
 
 Commencez par une décision que votre agent prend actuellement - ou une que vous n'êtes pas encore à l'aise de le laisser prendre. Wrappez-la. Faites-la tourner en shadow mode contre votre process actuel. Cutoverez vers l'enforcement quand la parité est prouvée.
 
-**[Quickstart : governed tool en Python](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Quickstart : proxy MCP](/docs/quickstart-mcp-proxy)** &nbsp; · &nbsp; **[Parlez-nous](/contact)**
+**[Quickstart : governed tool en Python](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Quickstart : Knowledge comme serveur MCP](/docs/quickstart-knowledge-mcp)** &nbsp; · &nbsp; **[Parlez-nous](/contact)**
 
 ## Related
 
@@ -111,4 +111,4 @@ Commencez par une décision que votre agent prend actuellement - ou une que vous
 | [Product](/product) | La boucle de décision pour agents IA rule-governed |
 | [Progressive context](/product/progressive-context) | La boucle `required_context` et l'inversion de dépendance |
 | [Enforcement](/product/enforcement) | Le modèle enveloppe signée et PEP |
-| [Integrations](/product/integrations) | Proxy MCP, SDK Python, REST, chemins PEP custom |
+| [Integrations](/product/integrations) | Serveur MCP Knowledge, SDK Python, REST, chemins PEP custom |

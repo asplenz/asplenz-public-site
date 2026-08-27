@@ -88,7 +88,7 @@ Full model at [Enforcement](/product/enforcement).
 
 ## Works with the stack you already have
 
-MCP proxy, Python SDK, REST API, custom PEP. Bring your own agent framework (LangGraph, MCP client, custom orchestrator).
+MCP server tools, Python SDK, REST API, custom PEP. Bring your own agent framework (LangGraph, MCP client, custom orchestrator).
 
 See [Integrations](/product/integrations) for the details on each path.
 
@@ -102,7 +102,7 @@ See [Integrations](/product/integrations) for the details on each path.
 
 Start with one decision your agent currently makes - or one you are not yet comfortable letting it make. Wrap it. Run it in shadow mode against your current process. Cut over to enforcement when parity is proven.
 
-**[Quickstart : governed tool in Python](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Quickstart : MCP proxy](/docs/quickstart-mcp-proxy)** &nbsp; · &nbsp; **[Talk to us](/contact)**
+**[Quickstart : governed tool in Python](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Quickstart : Knowledge as MCP server](/docs/quickstart-knowledge-mcp)** &nbsp; · &nbsp; **[Talk to us](/contact)**
 
 ## Related
 

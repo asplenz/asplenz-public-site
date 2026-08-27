@@ -37,7 +37,11 @@ Trois choix architecturaux selon ce à quoi votre stack ressemble déjà. Même 
 
 ### Déjà MCP ?
 
-**Proxy MCP.** Le proxy se place entre l'host MCP (Claude Desktop, Cursor, plugins IDE) et votre serveur MCP existant. Il lit une config déclarant quels tools sont gouvernés. Sur chaque `tools/call`, le proxy consulte Knowledge, vérifie la décision signée, puis forward seulement si autorisée. Votre serveur MCP, vos implémentations de tools et le client host restent tous inchangés.
+Deux chemins selon le côté de la conversation où Knowledge se trouve.
+
+**Knowledge comme serveur MCP.** Wire le serveur MCP Knowledge dans le MCP host de votre agent. L'agent appelle `knowledge_check`, `knowledge_resolve`, `knowledge_request_approval` et les autres comme des tool calls, sans que votre code pilote de REST. Voir [Quickstart : Knowledge comme serveur MCP](/docs/quickstart-knowledge-mcp).
+
+**Intercepteur de tool call MCP.** Pour gater vos propres tools MCP avec l'enforcement Knowledge, wrappez chaque invocation avec `verify_verdict` avant exécution. Pattern documenté à [Wrapper votre propre serveur MCP avec enforcement](/docs/guides/wrap-your-own-mcp-server-with-enforcement) ; une implémentation de référence vit dans le monorepo à copier et adapter à votre stack.
 
 Meilleur fit pour les équipes tournant déjà MCP. Insertion drop-in, zéro changement de code.
 
@@ -90,7 +94,8 @@ Deux patterns couvrent la plupart des intégrations :
 
 | Surface | Status |
 |---|---|
-| **Proxy MCP** | Disponible |
+| **Serveur MCP Knowledge** | Disponible |
+| **Pattern d'intercepteur de tool call MCP** | Exemple de référence dans le monorepo |
 | **SDK Python** (`knowledge-runtime`) | Disponible |
 | **REST API + JWKS** | Disponible |
 | **OIDC + SCIM** | Disponible |
@@ -112,6 +117,7 @@ Référence endpoints complète, schémas de requêtes et réponses à [Référe
 |---|---|
 | [Enforcement](/product/enforcement) | Le modèle enveloppe signée et PEP que les chemins d'intégration implémentent |
 | [Quickstart : governed tool](/docs/quickstart-governed-tool) | Hands-on de cinq minutes avec le décorateur Python |
-| [Setup proxy MCP](/docs/mcp-proxy/setup) | Hands-on de cinq minutes avec le proxy MCP |
+| [Knowledge comme serveur MCP](/docs/quickstart-knowledge-mcp) | Wire le serveur MCP Knowledge dans le MCP host de votre agent |
+| [Wrapper votre propre serveur MCP](/docs/guides/wrap-your-own-mcp-server-with-enforcement) | Pattern pour gater vos propres tools MCP avec des signed verdicts |
 | [Formes de déploiement](/docs/security-compliance/deployment-shapes) | Détails SaaS, VPC, on-premise |
 | [Security](/security) | Trust model, inventaire des clés, frontières réseau |

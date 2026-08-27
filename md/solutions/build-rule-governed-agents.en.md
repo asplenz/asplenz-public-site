@@ -192,5 +192,5 @@ Once the pattern is normalized on your side, you run subsequent projects indepen
 | [Enforcement](/product/enforcement) | The signed envelope and PEP model your architecture will implement |
 | [Progressive context](/product/progressive-context) | The `/resolve` loop your agent calls into |
 | [knowledge-runtime (Python)](/docs/sdk-reference/knowledge-runtime-python) | The SDK your Python-based agents will use |
-| [MCP proxy](/docs/mcp-proxy/setup) | Transparent enforcement if your agents speak MCP |
+| [Wrap your own MCP server](/docs/guides/wrap-your-own-mcp-server-with-enforcement) | Enforcement pattern if your agents speak MCP |
 | [Talk to us](/contact) | Co-delivery on your first engagement |

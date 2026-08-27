@@ -37,7 +37,7 @@ Un agent (ou n'importe quel caller) envoie une action proposée et le contexte q
 
 **Progressive context** - le mécanisme par lequel un caller envoie ce qu'il a et Knowledge retourne les champs encore nécessaires pour atteindre un verdict. Voir [Progressive context](/product/progressive-context).
 
-**PEP (Policy Enforcement Point)** - le wrapper côté client (décorateur Python, MCP proxy, code custom) qui vérifie l'enveloppe signée avant d'exécuter une action métier. Vit dans votre infrastructure, pas celle de Knowledge.
+**PEP (Policy Enforcement Point)** - le wrapper côté client (décorateur Python, intercepteur de tool call MCP, code custom) qui vérifie l'enveloppe signée avant d'exécuter une action métier. Vit dans votre infrastructure, pas celle de Knowledge.
 
 ## Où Knowledge s'insère dans votre stack
 
@@ -59,7 +59,7 @@ Knowledge expose un petit set de surfaces. Laquelle compte dépend de votre rôl
 | **API Knowledge** | Agents, applications, workflows | Consulter une décision (`/check`, `/resolve`), fetch des consultations, créer des approbations |
 | **UI back-office** | Compliance officers, product owners | Authorer policies et règles, review coverage, résoudre des approbations |
 | **SDK Python** | Équipes backend | Wrapper des tools avec `@governed_tool` pour que les verdicts signés soient enforced avant exécution |
-| **Proxy MCP** | Stacks d'agent tournant MCP | Couche de gouvernance devant un serveur MCP existant, zéro changement de code sur les tools |
+| **Intercepteur MCP** | Stacks d'agent tournant MCP | Pattern d'enforcement à la frontière des tool calls MCP. Exemple de référence dans le monorepo, à adapter à votre stack MCP. |
 | **Endpoint JWKS** | Points d'enforcement | Clés publiques pour vérifier les verdicts signés offline |
 
 Le déploiement sous-jacent (SaaS, cloud privé, on-premise) est opaque aux callers. Les endpoints sont des paths versionnés ; substituez l'URL de base de votre tenant.

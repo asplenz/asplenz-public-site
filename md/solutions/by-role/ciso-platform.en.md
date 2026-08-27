@@ -73,7 +73,7 @@ a different agent principal
 an expired action
 ```
 
-The enforcement point (tool wrapper, MCP proxy, custom code) verifies the authorization and the operation match before the business API is called. On any mismatch, the underlying action does not run.
+The enforcement point (tool wrapper, MCP interceptor, custom code) verifies the authorization and the operation match before the business API is called. On any mismatch, the underlying action does not run.
 
 Full technical model at [Enforcement](/product/enforcement).
 

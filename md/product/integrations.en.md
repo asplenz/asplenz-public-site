@@ -37,9 +37,11 @@ Three architectural choices depending on what your stack already looks like. Sam
 
 ### Already use MCP ?
 
-**MCP proxy.** The proxy sits between the MCP host (Claude Desktop, Cursor, IDE plugins) and your existing MCP server. It reads a config declaring which tools are governed. On each `tools/call`, the proxy consults Knowledge, verifies the signed decision, then forwards only if authorized. Your MCP server, your tool implementations and the host client all stay unchanged.
+Two paths depending on which side of the conversation Knowledge sits on.
 
-Best fit for teams already running MCP. Drop-in insertion, no code change.
+**Knowledge as an MCP server.** Wire the Knowledge MCP server into your agent's MCP host. The agent calls `knowledge_check`, `knowledge_resolve`, `knowledge_request_approval` and the rest as tool calls, without your code driving REST. See [Quickstart : Knowledge as an MCP server](/docs/quickstart-knowledge-mcp).
+
+**MCP tool-call interceptor.** For gating your own MCP tools with Knowledge enforcement, wrap each tool invocation with `verify_verdict` before executing. Pattern documented at [Wrap your own MCP server with enforcement](/docs/guides/wrap-your-own-mcp-server-with-enforcement) ; a reference implementation lives in the monorepo to copy and adapt to your stack.
 
 ### Your tools are Python functions ?
 
@@ -90,7 +92,8 @@ Two patterns cover most integrations :
 
 | Surface | Status |
 |---|---|
-| **MCP proxy** | Available |
+| **Knowledge MCP server** | Available |
+| **MCP tool-call interceptor pattern** | Reference example in the monorepo |
 | **Python SDK** (`knowledge-runtime`) | Available |
 | **REST API + JWKS** | Available |
 | **OIDC + SCIM** | Available |
@@ -112,6 +115,7 @@ Full endpoint reference, request and response schemas at [API reference](/docs/a
 |---|---|
 | [Enforcement](/product/enforcement) | The signed envelope and PEP model the integration paths implement |
 | [Quickstart : governed tool](/docs/quickstart-governed-tool) | Five-minute hands-on with the Python decorator |
-| [MCP proxy setup](/docs/mcp-proxy/setup) | Five-minute hands-on with the MCP proxy |
+| [Knowledge as MCP server](/docs/quickstart-knowledge-mcp) | Wire the Knowledge MCP server into your agent's MCP host |
+| [Wrap your own MCP server](/docs/guides/wrap-your-own-mcp-server-with-enforcement) | Pattern for gating your own MCP tools with signed verdicts |
 | [Deployment shapes](/docs/security-compliance/deployment-shapes) | SaaS, VPC, on-premise details |
 | [Security](/security) | Trust model, keys inventory, network boundaries |

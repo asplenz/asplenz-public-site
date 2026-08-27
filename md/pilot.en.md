@@ -63,7 +63,7 @@ Before week 1, we agree on the numbers that would justify converting. Typical cr
 | **Time to ship a rule** | From "compliance asks for a new rule" to "rule live in Knowledge", compared with the same delay in your existing system |
 | **Collection efficiency** | Fields requested, follow-up requests and completion rate on Knowledge's progressive resolution, compared with the current onboarding or intake journey |
 | **Audit reconstruction time** | Time to retrieve the context, applicable rules and policy state behind a historical decision, compared with your current process |
-| **Enforcement coverage** | For engagements where a Policy Enforcement Point is deployed (SDK decorator, MCP proxy, custom wrapper) : share of automated actions that require a valid signed verdict before executing |
+| **Enforcement coverage** | For engagements where a Policy Enforcement Point is deployed (SDK decorator, MCP interceptor, custom wrapper) : share of automated actions that require a valid signed verdict before executing |
 
 ## Bring your internal AI team or implementation partner
 

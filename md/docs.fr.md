@@ -5,7 +5,7 @@ locale: fr
 kicker: Docs
 ---
 
-Tout ce dont vous avez besoin pour consulter Knowledge depuis votre stack, wrapper un business tool avec autorisation signée, ou lancer un MCP proxy. Chaque page porte un badge de maturité : `[Stable]` `[Beta]` `[Experimental]` `[Roadmap]`.
+Tout ce dont vous avez besoin pour consulter Knowledge depuis votre stack, wrapper un business tool avec autorisation signée, ou brancher un MCP host aux tools Knowledge. Chaque page porte un badge de maturité : `[Stable]` `[Beta]` `[Experimental]` `[Roadmap]`.
 
 ## Getting started
 

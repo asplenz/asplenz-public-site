@@ -192,5 +192,5 @@ Une fois le pattern normalisé de votre côté, vous faites tourner les projets 
 | [Enforcement](/product/enforcement) | Le modèle enveloppe signée et PEP que votre architecture va implémenter |
 | [Progressive context](/product/progressive-context) | La boucle `/resolve` que votre agent va appeler |
 | [knowledge-runtime (Python)](/docs/sdk-reference/knowledge-runtime-python) | Le SDK que vos agents Python vont utiliser |
-| [MCP proxy](/docs/mcp-proxy/setup) | Enforcement transparent si vos agents parlent MCP |
+| [Wrapper votre propre serveur MCP](/docs/guides/wrap-your-own-mcp-server-with-enforcement) | Pattern d'enforcement si vos agents parlent MCP |
 | [Parlez-nous](/contact) | Co-delivery sur votre premier engagement |

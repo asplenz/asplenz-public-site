@@ -5,7 +5,7 @@ locale: en
 kicker: Docs
 ---
 
-Everything you need to consult Knowledge from your stack, wrap a business tool with signed authorization, or spin up an MCP proxy. Every page carries a maturity badge : `[Stable]` `[Beta]` `[Experimental]` `[Roadmap]`.
+Everything you need to consult Knowledge from your stack, wrap a business tool with signed authorization, or wire an MCP host to Knowledge tools. Every page carries a maturity badge : `[Stable]` `[Beta]` `[Experimental]` `[Roadmap]`.
 
 ## Getting started
 

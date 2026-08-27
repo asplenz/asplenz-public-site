@@ -57,7 +57,7 @@ export KNOWLEDGE_ENFORCEMENT=advisory
 systemctl restart my-pep-service
 ```
 
-**Avec MCP proxy** : edit `proxy.yaml`, set `enforcement_mode: advisory`, redémarrez le proxy.
+**Avec un intercepteur MCP** : flip le flag advisory de votre intercepteur (ou set `require_outcome_allowed=False` sur l'appel `verify_verdict`) pour qu'un verdict `require_approval` / `blocked` soit loggé au lieu d'être refusé. Redémarrez le process.
 
 **Effet** : Knowledge consulte toujours, les verdicts enregistrent toujours, mais les refus ne terminent plus les appels. Le business continue ; le signal de compliance est préservé pour l'analyse post-incident.
 

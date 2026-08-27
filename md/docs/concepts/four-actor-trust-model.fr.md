@@ -76,7 +76,7 @@ Chaque arête est une frontière de confiance. Knowledge en durcit deux ; les au
 2. Compare contre `authorization` dans l'enveloppe signée.
 3. Si chaque binding déclaré matche, invoque l'API métier. Sinon refuse.
 
-**C'est l'arête load-bearing.** Bindings faux et l'enforcement devient du théâtre. Le décorateur `@governed_tool` gère ça correctement en Python ; le proxy MCP gère ça correctement pour les tools MCP ; les PEPs custom doivent l'implémenter correctement.
+**C'est l'arête load-bearing.** Bindings faux et l'enforcement devient du théâtre. Le décorateur `@governed_tool` gère ça correctement en Python ; un intercepteur de tool call MCP bâti sur `verify_verdict` gère ça correctement pour les tools MCP ; les PEPs custom doivent l'implémenter correctement.
 
 **Responsabilité coverage** : si un chemin atteignable vers l'API métier skip le PEP, le modèle casse. Isolation réseau + IAM empêchent les chemins alternatifs. C'est votre architecture, pas celle de Knowledge.
 
