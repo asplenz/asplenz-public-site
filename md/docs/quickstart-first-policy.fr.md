@@ -132,7 +132,7 @@ Chaque règle porte un `version_id` immuable. Chaque décision future qui cite l
 
 ---
 
-## À propos du targeting
+### À propos du targeting
 
 Les règles de ce quickstart utilisent `universal: true` (dans le chemin JSON) ou le défaut *s'applique à tout le monde* (dans le chemin UI). Ça veut dire que les règles s'appliquent à **chaque principal appelant le tenant** - chaque agent, chaque service account, chaque utilisateur.
 

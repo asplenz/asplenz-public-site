@@ -132,7 +132,7 @@ Every rule carries an immutable `version_id`. Every future decision that cites t
 
 ---
 
-## About targeting
+### About targeting
 
 The rules in this quickstart use `universal: true` (in the JSON path) or the *applies to everyone* default (in the UI path). That means the rules apply to **every principal calling the tenant** - every agent, every service account, every user.
 
