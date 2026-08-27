@@ -29,11 +29,14 @@ The question is not *how do we centralize every wealth rule*. It is :
 
 Knowledge separates the two. The AI service investigates, gathers context, prepares the case. Knowledge determines what the AI capability is allowed to conclude before the workstation surfaces the outcome.
 
-## Already have eligibility and suitability engines ? Keep them.
+## What Knowledge can be in your stack
 
-Knowledge does not require moving every Wealth rule into a new platform. Existing eligibility, suitability, OMS and compliance services can remain authoritative where they already own a decision cleanly.
+Two shapes cover most Wealth deployments :
 
-**Knowledge becomes useful where the AI capability introduces a decision boundary that does not already exist as a single callable business capability.** The composite *"can we propose this specific product to this specific client, given the current context ?"* is often that boundary. It combines product, client, portfolio and jurisdiction information in a way that no single existing engine may hold end-to-end.
+- **Knowledge as the decision authority.** For a given workflow, Knowledge owns the policy determination end-to-end. The AI service asks Knowledge, gets a deterministic verdict, the workstation acts on it.
+- **Knowledge as a complement to what you already run.** For decisions an existing engine already produces, Knowledge can add a governed layer on top : an extra check on high-risk operations, an approval workflow, or an audit surface, without replacing the underlying engine.
+
+Wealth engagements often use both shapes at once.
 
 ## The composite decision the AI capability navigates
 
@@ -120,18 +123,16 @@ Policies governing the AI capability's decision boundary can be versioned, appro
 
 Where Knowledge holds a rule, it lives in the back-office UI as a business-view object : scope (jurisdiction, asset class, client segment), conditions and thresholds, severity (allow / require approval / block / absolute ban), effective dates, rationale, approver. Compliance amends the threshold ; the next `/resolve` uses the new value. Prior consultations still point at the exact rule of their day, via immutable RuleVersion. See [Auditability](/product/auditability).
 
-## Start without replacing what already works
+## Insertion patterns
 
 A wealth engagement typically inserts Knowledge in one of four ways.
 
-| Insertion point | How it works |
+| Pattern | How it works |
 |---|---|
-| **Existing decision keeps its authority** | If OMS, pre-trade engine or suitability engine already owns a decision cleanly, no change. Knowledge does not sit in that path. |
+| **Existing decision keeps its authority** | If an OMS, pre-trade engine or suitability engine already owns a decision, Knowledge does not sit in that path. |
 | **Overlay** | Existing eligibility or suitability results become part of the context Knowledge evaluates. Add a new policy domain, jurisdiction or agent-driven decision without migrating the underlying engine. |
 | **Shadow** | Knowledge evaluates the composite decision in parallel with the existing process. Compare outcomes for a defined window before giving Knowledge authority. |
 | **New decision boundary** | The workstation's *"can we propose this ?"* determination runs on Knowledge from day one. Existing engines remain the authority for the flows they already own. |
-
-Knowledge is not a migration project.
 
 ## Wealth decision pack
 

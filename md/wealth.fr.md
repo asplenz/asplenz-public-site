@@ -29,11 +29,14 @@ La question n'est pas *comment centraliser toutes les règles wealth*. Elle est 
 
 Knowledge sépare les deux. Le service IA investigue, rassemble le contexte, prépare le cas. Knowledge détermine ce que la capability IA est autorisée à conclure avant que le workstation ne surface le résultat.
 
-## Vous avez déjà des moteurs d'éligibilité et de suitability ? Gardez-les.
+## Ce que Knowledge peut être dans votre stack
 
-Knowledge n'exige pas de déplacer chaque règle Wealth dans une nouvelle plateforme. Les services d'éligibilité, suitability, OMS et compliance existants peuvent rester autoritatifs là où ils possèdent déjà une décision proprement.
+Deux formes couvrent la plupart des déploiements Wealth :
 
-**Knowledge devient utile là où la capability IA introduit une frontière de décision qui n'existe pas déjà comme capability métier appelable unique.** La décision composite *« pouvons-nous proposer ce produit spécifique à ce client spécifique, étant donné le contexte courant ? »* est souvent cette frontière. Elle combine information produit, client, portefeuille et juridiction d'une façon qu'aucun moteur existant unique ne détient peut-être end-to-end.
+- **Knowledge comme autorité de décision.** Pour un workflow donné, Knowledge possède la détermination policy end-to-end. Le service IA demande à Knowledge, obtient un verdict déterministe, le workstation agit dessus.
+- **Knowledge comme complément à ce que vous faites déjà tourner.** Pour les décisions qu'un moteur existant produit déjà, Knowledge peut ajouter une couche gouvernée par-dessus : un check supplémentaire sur les opérations à haut risque, un workflow d'approbation, ou une surface d'audit, sans remplacer le moteur sous-jacent.
+
+Les engagements Wealth utilisent souvent les deux formes en même temps.
 
 ## La décision composite que la capability IA navigue
 
@@ -120,18 +123,16 @@ Les policies gouvernant la frontière de décision de la capability IA peuvent �
 
 Là où Knowledge tient une règle, elle vit dans l'UI back-office comme un objet business-view : scope (juridiction, asset class, segment client), conditions et thresholds, severity (allow / require approval / block / absolute ban), dates d'effet, rationale, approver. Compliance amende le threshold ; le prochain `/resolve` utilise la nouvelle valeur. Les consultations antérieures pointent toujours sur la règle exacte de leur jour, via RuleVersion immuable. Voir [Auditability](/product/auditability).
 
-## Démarrer sans remplacer ce qui marche déjà
+## Patterns d'insertion
 
 Un engagement wealth insère typiquement Knowledge d'une de quatre façons.
 
-| Point d'insertion | Comment ça marche |
+| Pattern | Comment ça marche |
 |---|---|
-| **La décision existante garde son autorité** | Si OMS, moteur pre-trade ou moteur suitability possède déjà une décision proprement, aucun changement. Knowledge ne se met pas sur ce chemin. |
+| **La décision existante garde son autorité** | Si un OMS, moteur pre-trade ou moteur suitability possède déjà une décision, Knowledge ne se met pas sur ce chemin. |
 | **Overlay** | Les résultats d'éligibilité ou suitability existants deviennent partie du contexte que Knowledge évalue. Ajouter un nouveau domaine policy, une juridiction ou une décision agent-driven sans migrer le moteur sous-jacent. |
 | **Shadow** | Knowledge évalue la décision composite en parallèle du process existant. Comparer les résultats pendant une fenêtre définie avant de donner l'autorité à Knowledge. |
 | **Nouvelle frontière de décision** | La détermination *« pouvons-nous proposer ceci ? »* du workstation tourne sur Knowledge dès le premier jour. Les moteurs existants restent l'autorité pour les flows qu'ils possèdent déjà. |
-
-Knowledge n'est pas un projet de migration.
 
 ## Pack de décision Wealth
 
