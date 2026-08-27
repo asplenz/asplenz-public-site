@@ -41,19 +41,14 @@ Un agent (ou n'importe quel caller) envoie une action proposée et le contexte q
 
 ## Où Knowledge s'insère dans votre stack
 
-Knowledge n'est **pas** :
-
-- Un remplacement de tout le paysage rules d'entreprise (Drools, IBM ODM, DMN, ServiceNow, moteurs custom). Gardez-les où ils font sens.
-- Un moteur de workflow. Votre workflow orchestre le processus ; Knowledge gouverne des points de décision spécifiques à l'intérieur.
-- Un vendor KYC. Il consomme le résultat KYC et applique la décision composite.
-- Un RAG sur vos documents de policy. Il produit des verdicts déterministes avec rules citées, pas du texte retrouvé.
-
-Knowledge est **pour une classe spécifique de décisions** :
+Knowledge est designé pour une classe spécifique de décisions :
 
 - Décisions qu'un agent IA prend de façon autonome et qui nécessitent des résultats déterministes gouvernés par règles.
 - Décisions qui doivent rester reproductibles pour l'audit de niveau régulateur des années plus tard.
 - Décisions qui ont besoin de sémantique d'approbation explicite (`approval_required` comme verdict first-class).
 - Décisions dont l'exécution requiert une autorisation cryptographiquement vérifiable à la frontière du tool.
+
+Les catégories adjacentes (orchestration de workflows, scoring déterministe de règles, retrieval sur documents, vérification d'identité) ont leurs propres outils dédiés. Knowledge se place à côté d'elles.
 
 ## Les surfaces avec lesquelles vous interagissez
 

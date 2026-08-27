@@ -41,19 +41,14 @@ An agent (or any caller) sends a proposed action and the context it currently ha
 
 ## Where Knowledge fits in your stack
 
-Knowledge is **not** :
-
-- A replacement for the whole enterprise rules landscape (Drools, IBM ODM, DMN, ServiceNow, custom engines). Keep those where they fit.
-- A workflow engine. Your workflow orchestrates the process ; Knowledge governs specific decision points inside it.
-- A KYC vendor. It consumes the KYC result and applies the composite decision.
-- A RAG on your policy documents. It produces deterministic verdicts with cited rules, not retrieved text.
-
-Knowledge is **for a specific class of decisions** :
+Knowledge is designed for a specific class of decisions :
 
 - Decisions an AI agent takes autonomously that need rule-governed, deterministic outcomes.
 - Decisions that must remain reproducible for regulator-grade audit years later.
 - Decisions that need explicit approval semantics (`approval_required` as a first-class verdict).
 - Decisions whose execution requires cryptographically verifiable authorization at the tool boundary.
+
+Adjacent categories (workflow orchestration, deterministic rule scoring, retrieval over documents, identity verification) have their own dedicated tools. Knowledge sits alongside them.
 
 ## The surfaces you interact with
 
