@@ -1,35 +1,41 @@
 ---
-title: Laissez les copilotes RM investiguer les opportunités. Gardez la suitability et la policy de distribution hors du modèle.
-description: Quand un copilote IA aide à déterminer si un produit structuré peut être proposé à un client, il peut avoir besoin de contexte produit, client, portefeuille et juridiction. Knowledge laisse le copilote rassembler ce contexte progressivement pendant qu'une policy déterministe détermine ce qui est allowed, blocked ou requires human approval.
+title: Laissez les workflows wealth AI-powered investiguer la suitability. Gardez la policy de distribution hors du modèle.
+description: Quand les capabilities IA derrière vos applications wealth aident à déterminer si un produit structuré peut être proposé à un client, elles peuvent avoir besoin de contexte produit, client, portefeuille et juridiction. Knowledge les laisse rassembler ce contexte progressivement pendant qu'une policy déterministe détermine ce qui est allowed, blocked ou requires human approval.
 locale: fr
 kicker: Knowledge pour le Wealth
 ctaLabel: Explorer un design partnership
 ctaHref: /pilot
 ---
 
-## La nouvelle frontière de décision qu'un copilote wealth management introduit
+## La nouvelle frontière de décision qu'un workflow wealth AI-powered introduit
 
-Le RM demande au copilote IA :
+Le RM est dans son workstation, au milieu d'une conversation client. Il sélectionne un candidat de note structurée et clique sur **« Check suitability »**.
 
-> *« Pourrait-on montrer au client cet autocall ? »*
+Avant les agents, ce bouton appelait soit un moteur suitability fixe soit déclenchait une desk review manuelle. La détermination était possédée end-to-end par un système unique ou un process humain.
 
-Avant les agents, le RM ouvrait un memo de distribution, checkait une matrice, regardait le portefeuille, combinait mentalement l'alignement target-market avec la classification client et les règles cross-border, et proposait le produit ou escaladait.
+Avec un service IA qui participe derrière le bouton, la détermination se construit maintenant par le modèle. Il fetche les données produit, lit le profil client, extrait des faits depuis la conversation et le dossier, et construit la vue composite : éligibilité produit, suitability, cross-border, concentration.
 
-Avec un copilote IA qui participe, cette détermination se construit par le modèle. L'éligibilité produit, la suitability, le cross-border, et la concentration sont toujours gouvernés par la policy. Mais le copilote navigue maintenant lui-même à travers.
+Le RM voit un résultat native de l'application :
+
+- **Suitable.** Le client rencontre les exigences applicables.
+- **Additional information required.** Merci d'obtenir un niveau K&E à jour pour cette complexité de produit.
+- **Compliance review required.** Mismatch booking-centre avec juridiction ; escalader à Compliance.
+
+Il n'a pas besoin de savoir qu'un agent a tourné derrière le workstation. Le workstation, le CRM, l'UI d'order entry restent exactement comme ils sont.
 
 La question n'est pas *comment centraliser toutes les règles wealth*. Elle est :
 
-> **Maintenant que le copilote participe à cette détermination, où vit l'autorité policy ?**
+> **Maintenant qu'une capability IA derrière le workstation participe à cette détermination, où vit l'autorité policy ?**
 
-Knowledge sépare les deux. Le copilote investigue, rassemble le contexte, prépare la proposition. Knowledge détermine ce que le copilote est autorisé à conclure.
+Knowledge sépare les deux. Le service IA investigue, rassemble le contexte, prépare le cas. Knowledge détermine ce que la capability IA est autorisée à conclure avant que le workstation ne surface le résultat.
 
 ## Vous avez déjà des moteurs d'éligibilité et de suitability ? Gardez-les.
 
 Knowledge n'exige pas de déplacer chaque règle Wealth dans une nouvelle plateforme. Les services d'éligibilité, suitability, OMS et compliance existants peuvent rester autoritatifs là où ils possèdent déjà une décision proprement.
 
-**Knowledge devient utile là où le nouveau copilote crée une frontière de décision qui n'existe pas déjà comme capability métier appelable unique.** La décision composite *« puis-je proposer ce produit spécifique à ce client spécifique, étant donné le contexte courant ? »* est souvent cette frontière. Elle combine information produit, client, portefeuille et juridiction d'une façon qu'aucun moteur existant unique ne détient peut-être end-to-end.
+**Knowledge devient utile là où la capability IA introduit une frontière de décision qui n'existe pas déjà comme capability métier appelable unique.** La décision composite *« pouvons-nous proposer ce produit spécifique à ce client spécifique, étant donné le contexte courant ? »* est souvent cette frontière. Elle combine information produit, client, portefeuille et juridiction d'une façon qu'aucun moteur existant unique ne détient peut-être end-to-end.
 
-## La décision composite que le copilote navigue
+## La décision composite que la capability IA navigue
 
 ```
                     PRODUIT
@@ -46,15 +52,15 @@ CLIENT --- suitability +----- CROSS-BORDER
            LE RM PEUT-IL PROPOSER ÇA ?
 ```
 
-Chacun des quatre inputs peut déjà avoir son propre système de record : product master, CRM, moteur suitability, moteur portefeuille, données juridictionnelles. Knowledge ne les remplace pas. Il lit ce qu'ils tiennent, applique la policy wealth qui gouverne le composite, et retourne une décision déterministe sur laquelle le copilote et le RM peuvent agir.
+Chacun des quatre inputs peut déjà avoir son propre système de record : product master, CRM, moteur suitability, moteur portefeuille, données juridictionnelles. Knowledge ne les remplace pas. Il lit ce qu'ils tiennent, applique la policy wealth qui gouverne le composite, et retourne une décision déterministe sur laquelle le workstation peut agir.
 
-## Progressive context : le copilote investigue à mesure que la policy demande
+## Progressive context : le service IA investigue à mesure que la policy demande
 
-C'est la forme opérationnelle qui rend le wealth intéressant pour un copilote agent.
+C'est la forme opérationnelle qui rend le wealth intéressant pour une capability IA sise derrière un workstation.
 
-Le copilote n'a pas besoin de fetcher 47 champs d'entrée. Il démarre avec ce qu'il a ; Knowledge lui dit ce que les règles applicables exigent encore ; le copilote acquiert chaque champ (lookup CRM, appel portefeuille, extraction LLM depuis la conversation RM, question au RM), re-consulte, itère jusqu'à ce qu'une décision soit atteinte.
+Le service IA n'a pas besoin de fetcher 47 champs d'entrée. Il démarre avec ce qu'il a ; Knowledge lui dit ce que les règles applicables exigent encore ; le service acquiert chaque champ (lookup CRM, appel portefeuille, extraction LLM depuis le dossier, question remontée à travers le workstation), re-consulte, itère jusqu'à ce qu'une décision soit atteinte.
 
-**Étape 1.** Le copilote appelle `/resolve` avec ce qu'il a déjà (asset class, type de produit).
+**Étape 1.** Le service IA appelle `/resolve` avec ce qu'il a déjà (asset class, type de produit).
 
 ```
 { operation_status: "incomplete",
@@ -70,7 +76,7 @@ Le copilote n'a pas besoin de fetcher 47 champs d'entrée. Il démarre avec ce q
   ] }
 ```
 
-**Étape 2.** Le copilote récupère la classification depuis le CRM et infère le type de solicitation depuis la conversation RM, puis rappelle `/resolve`.
+**Étape 2.** Le service récupère la classification depuis le CRM et infère le type de solicitation depuis le contexte du cas, puis rappelle `/resolve`.
 
 ```
 { operation_status: "incomplete",
@@ -82,7 +88,7 @@ Le copilote n'a pas besoin de fetcher 47 champs d'entrée. Il démarre avec ce q
   ] }
 ```
 
-**Étape 3.** Le copilote récupère le niveau K&E depuis le dossier client, puis rappelle `/resolve`.
+**Étape 3.** Le service récupère le niveau K&E depuis le dossier client, puis rappelle `/resolve`.
 
 ```
 { operation_status: "complete",
@@ -93,24 +99,24 @@ Le copilote n'a pas besoin de fetcher 47 champs d'entrée. Il démarre avec ce q
   consultation_id: "cns-..." }
 ```
 
-Le copilote n'encode pas quelle question vient ensuite. La policy le lui dit. Quand compliance amende une règle et qu'elle commence à exiger un nouveau champ, le prochain `/resolve` du copilote apprend à le fetch. Voir [Progressive context](/product/progressive-context).
+Le service n'encode pas quelle question vient ensuite. La policy le lui dit. Quand compliance amende une règle et qu'elle commence à exiger un nouveau champ, le prochain `/resolve` apprend à le fetch, et seul le fetcher doit être ajouté côté backend du workstation. Voir [Progressive context](/product/progressive-context).
 
-## Quatre questions que le copilote ne devrait pas répondre depuis le jugement du modèle seul
+## Quatre questions que la capability IA ne devrait pas répondre depuis le jugement du modèle seul
 
-Au-delà de la décision composite *« puis-je proposer ceci ? »*, il y a quatre déterminations liées dont le copilote peut avoir besoin. Chacune est un cas où l'autorité policy déterministe devrait vivre hors du modèle.
+Au-delà de la décision composite *« pouvons-nous proposer ceci ? »*, il y a quatre déterminations liées dont le service IA peut avoir besoin. Chacune est un cas où l'autorité policy déterministe devrait vivre hors du modèle.
 
 | Question | Ce que la policy détermine |
 |---|---|
-| **Puis-je offrir ce produit à ce client ?** | Retail vs produit highly-complex, approval sur large notional retail, alignement target-market |
+| **Pouvons-nous offrir ce produit à ce client ?** | Retail vs produit highly-complex, approval sur large notional retail, alignement target-market |
 | **Ce trade est-il suitable pour ce client ?** | Gate K&E sur produits complex, escalation sur mismatch de tolérance au risque, allow documenté sur reverse enquiry |
-| **Cross-border : puis-je soliciter ce client depuis cette localisation ?** | Bloque l'outreach solicité vers juridictions restreintes, mismatch de booking-centre au-dessus du seuil escalade |
+| **Cross-border : pouvons-nous soliciter ce client depuis cette localisation ?** | Bloque l'outreach solicité vers juridictions restreintes, mismatch de booking-centre au-dessus du seuil escalade |
 | **Concentration portefeuille : ce trade est-il dans les limites ?** | Thresholds d'escalation et de block sur concentration single-name post-trade, plafonds d'allocation SP agrégée sur mandats conservateurs |
 
-Si votre OMS ou moteur pre-trade possède déjà une de ces décisions end-to-end, gardez-la là. Là où le copilote introduit une nouvelle frontière que les systèmes existants ne couvrent pas proprement, Knowledge la gouverne.
+Si votre OMS ou moteur pre-trade possède déjà une de ces décisions end-to-end, gardez-la là. Là où la capability IA introduit une nouvelle frontière que les systèmes existants ne couvrent pas proprement, Knowledge la gouverne.
 
 ## Compliance possède les policies déléguées à Knowledge
 
-Les policies gouvernant la frontière de décision du copilote peuvent être versionnées, approuvées et évoluées indépendamment du copilote. Les règles qui restent possédées par les systèmes existants y restent.
+Les policies gouvernant la frontière de décision de la capability IA peuvent être versionnées, approuvées et évoluées indépendamment du service IA. Les règles qui restent possédées par les systèmes existants y restent.
 
 Là où Knowledge tient une règle, elle vit dans l'UI back-office comme un objet business-view : scope (juridiction, asset class, segment client), conditions et thresholds, severity (allow / require approval / block / absolute ban), dates d'effet, rationale, approver. Compliance amende le threshold ; le prochain `/resolve` utilise la nouvelle valeur. Les consultations antérieures pointent toujours sur la règle exacte de leur jour, via RuleVersion immuable. Voir [Auditability](/product/auditability).
 
@@ -122,8 +128,8 @@ Un engagement wealth insère typiquement Knowledge d'une de quatre façons.
 |---|---|
 | **La décision existante garde son autorité** | Si OMS, moteur pre-trade ou moteur suitability possède déjà une décision proprement, aucun changement. Knowledge ne se met pas sur ce chemin. |
 | **Overlay** | Les résultats d'éligibilité ou suitability existants deviennent partie du contexte que Knowledge évalue. Ajouter un nouveau domaine policy, une juridiction ou une décision agent-driven sans migrer le moteur sous-jacent. |
-| **Shadow** | Knowledge évalue la décision composite du copilote en parallèle du process existant. Comparer les résultats pendant une fenêtre définie avant de donner l'autorité à Knowledge. |
-| **Nouvelle frontière de décision** | La décision *« puis-je proposer ceci ? »* du copilote tourne sur Knowledge dès le premier jour. Les moteurs existants restent l'autorité pour les flows qu'ils possèdent déjà. |
+| **Shadow** | Knowledge évalue la décision composite en parallèle du process existant. Comparer les résultats pendant une fenêtre définie avant de donner l'autorité à Knowledge. |
+| **Nouvelle frontière de décision** | La détermination *« pouvons-nous proposer ceci ? »* du workstation tourne sur Knowledge dès le premier jour. Les moteurs existants restent l'autorité pour les flows qu'ils possèdent déjà. |
 
 Knowledge n'est pas un projet de migration.
 
@@ -135,14 +141,14 @@ Pour un engagement design-partner, Asplenz ship un point de départ opérationne
 |---|---|
 | **Scope schema** | Le vocabulaire que la couche de décision utilise : product complexity, risk rating, client experience level, solicitation type, booking centre, RM location, post-trade exposure |
 | **Quatre templates de policy + règles d'exemple** | Un modèle de décision opérationnel avec des thresholds illustratifs, prêt pour calibration |
-| **Intégration de référence RM-copilot** | Un script opérationnel montrant le copilote appelant `/resolve` progressivement à travers la décision composite |
+| **Intégration de référence service IA** | Un script opérationnel montrant le service derrière un workflow wealth appelant `/resolve` progressivement à travers la décision composite |
 | **Playbook de calibration** | Le runbook que Compliance et l'équipe d'engineering utilisent pour installer, calibrer et répéter |
 
 **Knowledge évalue la policy encodée de l'institution. Il ne remplace pas le jugement réglementaire de l'institution ni n'exécute l'action métier qui en résulte.** Le pack ne livre pas d'interprétation réglementaire ; il donne à la banque une forme opérationnelle à calibrer.
 
-## Commencer par une décision RM
+## Commencer par une décision workstation
 
-Pickez une décision que votre copilote RM doit prendre qui est actuellement gouvernée par de l'interprétation humaine, des procédures fragmentées ou de la logique d'agent custom. Faites-la tourner en shadow mode contre le process actuel. Cutoverez quand la parité et l'audit sont prouvés.
+Pickez une décision que votre service IA derrière le workstation doit prendre qui est actuellement gouvernée par de l'interprétation humaine, des procédures fragmentées ou de la logique d'agent custom. Faites-la tourner en shadow mode contre le process actuel. Cutoverez quand la parité et l'audit sont prouvés.
 
 **[Explorer un design partnership](/pilot)** &nbsp; · &nbsp; **[Parlez-nous](/contact)**
 
@@ -150,8 +156,8 @@ Pickez une décision que votre copilote RM doit prendre qui est actuellement gou
 
 | À lire ensuite | Pourquoi |
 |---|---|
-| [Pour équipes produit IA](/solutions/by-role/ai-product-teams) | L'angle copilote RM : intégration côté agent |
+| [Pour équipes produit IA](/solutions/by-role/ai-product-teams) | L'équipe qui construit la capability IA derrière le workstation |
 | [Pour compliance officers](/solutions/by-role/compliance-officers) | L'angle compliance : ownership des règles, coverage, approbations |
-| [Progressive context](/product/progressive-context) | La boucle `/resolve` que le copilote navigue |
+| [Progressive context](/product/progressive-context) | La boucle `/resolve` que le service IA navigue |
 | [Enforcement](/product/enforcement) | Verdicts signés, PEP, chaîne de confiance à quatre acteurs |
 | [Auditability](/product/auditability) | Questions régulateur : Consultation, RuleVersion, trace de précédence |
