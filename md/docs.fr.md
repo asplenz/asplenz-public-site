@@ -10,6 +10,7 @@ Tout ce dont vous avez besoin pour consulter Knowledge depuis votre stack, wrapp
 ## Getting started
 
 - **[Qu'est-ce que Knowledge ?](/docs/what-is-knowledge)** [Stable] - deux minutes sur le modèle mental et le vocabulaire.
+- **[Quickstart : créer votre première policy](/docs/quickstart-first-policy)** [Stable] - d'un tenant vide au premier `/resolve` qui retourne un vrai verdict, en environ 30 minutes. Le chemin auteur.
 - **[Quickstart : governed tool en Python](/docs/quickstart-governed-tool)** [Stable] - cinq minutes hands-on avec le décorateur `@governed_tool`, de l'install au premier verdict signé.
 - **[Quickstart : MCP proxy en 5 minutes](/docs/quickstart-mcp-proxy)** [Stable] - cinq minutes pour insérer le proxy devant un serveur MCP existant et voir l'enforcement se déclencher sur un appel tampered.
 
@@ -48,6 +49,8 @@ Spec OpenAPI complète à `docs/api/openapi-v3.json` dans le monorepo. Collectio
 
 ## Guides
 
+- **[Authorer des règles dans l'UI back-office](/docs/guides/author-rules-in-back-office-ui)** [Stable] - le chemin d'authoring visuel pour compliance et SMEs.
+- **[Valider avant d'enforce](/docs/guides/validate-before-you-enforce)** [Stable] - shadow mode, investigation des discrepancies, critères de cut-over, bibliothèques de test cases.
 - **[Rotate signing keys](/docs/guides/rotate-signing-keys)** [Stable] - rotation planifiée + urgence.
 - **[Multi-tenant setup](/docs/guides/multi-tenant-setup)** [Stable] - faire tourner plusieurs tenants sur un déploiement.
 - **[Bring your own tools au MCP proxy](/docs/guides/bring-your-own-tools-to-mcp-proxy)** [Stable] - fetcher registry + policy mapping.
