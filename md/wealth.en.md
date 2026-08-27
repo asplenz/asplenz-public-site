@@ -1,51 +1,58 @@
 ---
-title: Wealth - one governed policy layer for structured-product distribution
-description: Product eligibility. Client suitability. Cross-border distribution. Concentration limits. One governed layer that your OMS, RM applications, compliance systems and AI copilots consult, with cryptographic proof at the tool boundary.
+title: Let RM copilots investigate opportunities. Keep suitability and distribution policy outside the model.
+description: When an AI copilot helps determine whether a structured product can be proposed to a client, it may need product, client, portfolio and jurisdiction context. Knowledge lets the copilot gather that context progressively while deterministic policy determines what is allowed, blocked or requires human approval.
 locale: en
 kicker: Knowledge for Wealth
-ctaLabel: Become a design partner
+ctaLabel: Explore a design partnership
 ctaHref: /pilot
 ---
 
-Structured-product distribution is a composite decision. Product eligibility (retail vs accredited, complexity band, K&E level), suitability (risk tolerance, loss capacity, investment objectives), cross-border rules (RM location vs client residence, solicited vs reverse enquiry), and concentration (single name, underlying class, aggregate SP allocation) all mix in every offer.
+## The new decision boundary a wealth-management copilot introduces
 
-When these decisions are implemented across OMS logic, workflows, compliance tools and spreadsheets, every product launch, new jurisdiction or policy change requires coordinating changes across multiple systems. Knowledge holds the composite decision in one governed policy layer that every caller consults, and returns a signed verdict the tool boundary can enforce.
+An RM asks the AI copilot :
 
-## What Knowledge does for a wealth manager
+> *"Could we show the client this autocall ?"*
 
-**One policy layer, many decision points.** Whether eligibility is checked by the OMS at trade time, by a mobile RM application before an offer, by an AI copilot during a client conversation, or by Compliance during a review, each caller consults the same governed policy layer.
+Before agents, the RM would open a distribution memo, check a matrix, look at the portfolio, mentally combine target-market alignment with client classification and cross-border rules, and either propose the product or escalate.
 
-**Cryptographic proof at every consultation.** Every `/check` and `/resolve` returns a JWS ES256 envelope binding the exact `{actor, action, resource, parameters}` that were authorized. A downstream Policy Enforcement Point (an OMS pre-trade gate, a governed refund tool, an MCP proxy in front of an RM copilot) verifies the signature and refuses on binding mismatch. See [Enforcement](/product/enforcement).
+With an AI copilot participating, that determination gets built by the model. Product eligibility, suitability, cross-border, and concentration are still governed by policy. But the copilot is now navigating them itself.
 
-**Four policy templates, thirteen example rules.**
+The question is not *how do we centralize every wealth rule*. It is :
 
-| Policy | What it governs |
-|---|---|
-| **Product eligibility** | Retail vs highly-complex product, large notional retail approval, target-market alignment |
-| **Client suitability** | K&E gate on complex products, risk-tolerance mismatch escalation, documented reverse-enquiry allow |
-| **Cross-border distribution** | Solicited outreach into restricted jurisdictions blocked, booking-centre mismatch above threshold escalates |
-| **Portfolio concentration** | Single-name post-trade above a threshold escalates, above a higher threshold blocks, aggregate SP allocation caps on conservative mandates |
+> **Now that the copilot participates in this determination, where does the policy authority live ?**
 
-The pack provides a working decision model with illustrative thresholds. Firm-specific thresholds, restricted jurisdictions, classifications and approval requirements are calibrated against the institution's own policies.
+Knowledge separates the two. The copilot investigates, gathers context, prepares the proposal. Knowledge determines what the copilot is allowed to conclude.
 
-## Four decisions modelled in the pack
+## Already have eligibility and suitability engines ? Keep them.
 
-An RM copilot or an OMS asks Knowledge one of four questions.
+Knowledge does not require moving every Wealth rule into a new platform. Existing eligibility, suitability, OMS and compliance services can remain authoritative where they already own a decision cleanly.
 
-| Question asked | What Knowledge returns |
-|---|---|
-| **Can I offer this product to this client?** | Blocks retail on highly-complex products ; requires approval on large notionals |
-| **Is this trade suitable for this client?** | Gates complex products against K&E levels ; escalates risk-tolerance mismatches |
-| **Cross-border: can I solicit this client from this location?** | Blocks solicited outreach into restricted jurisdictions ; allows documented reverse enquiries |
-| **Portfolio concentration: is this trade within limits?** | Escalates single-name concentration above the escalation threshold ; blocks above the block threshold |
+**Knowledge becomes useful where the new copilot creates a decision boundary that does not already exist as a single callable business capability.** The composite *"can I propose this specific product to this specific client, given the current context ?"* is often that boundary. It combines product, client, portfolio and jurisdiction information in a way that no single existing engine may hold end-to-end.
 
-Each verdict identifies the rules that determined the outcome, freezes the exact rule versions used, and returns a signed envelope citing them.
+## The composite decision the copilot navigates
 
-## Progressive context : the copilot does not need the whole decision tree
+```
+                    PRODUCT
+                  eligibility
+                       |
+CLIENT --- suitability +----- CROSS-BORDER
+                       |      solicitation, booking centre
+                       |
+                  PORTFOLIO
+                 concentration
+                       |
+                       v
 
-Traditional rules engines require every caller to know the exact fields needed for every decision. Knowledge inverts that : the caller sends the context it has, and Knowledge identifies what context is still required to reach a verdict.
+           CAN THE RM PROPOSE THIS ?
+```
 
-An RM copilot asking whether a structured note can be proposed to a client :
+Each of the four inputs may already have its own system of record : product master, CRM, suitability engine, portfolio engine, jurisdictional data. Knowledge does not replace them. It reads what they hold, applies the wealth policy that governs the composite, and returns a deterministic decision the copilot and the RM can act on.
+
+## Progressive context : the copilot investigates as policy asks
+
+This is the operational shape that makes wealth interesting for an agent copilot.
+
+The copilot does not need to fetch 47 fields up front. It starts with what it has ; Knowledge tells it what the applicable rules still need ; the copilot acquires each field (CRM lookup, portfolio call, LLM extraction from the RM conversation, question to the RM), re-consults, iterates until a decision is reached.
 
 **Step 1.** The copilot calls `/resolve` with what it already has (asset class, product type).
 
@@ -86,45 +93,65 @@ An RM copilot asking whether a structured note can be proposed to a client :
   consultation_id: "cns-..." }
 ```
 
-The copilot does not need to encode which question comes next. Knowledge derives the required context from the policies that become applicable as the case is resolved. See [Progressive context](/product/progressive-context).
+The copilot does not encode which question comes next. Policy tells it. When compliance amends a rule and it starts requiring a new field, the copilot's next `/resolve` learns to fetch it. See [Progressive context](/product/progressive-context).
 
-## Compliance owns the rules. Engineering does not gate them.
+## Four questions the copilot should not answer from model judgment alone
 
-Every threshold, every jurisdiction list, every K&E gate lives in the Knowledge back-office UI as a structured `{scope, condition, severity}` object. Compliance edits it directly. The next consultation uses the new value. Prior consultations still point at the exact rule text of their day, via immutable `RuleVersion` records. See [Auditability](/product/auditability).
+Beyond the composite *"can I propose this ?"* decision, there are four related determinations the copilot may need. Each is a case where the deterministic policy authority should sit outside the model.
 
-## What the pack ships
-
-| Component | What it is |
+| Question | What policy determines |
 |---|---|
-| **Scope schema** | The vocabulary the decision layer uses (product complexity, risk rating, client experience level, solicitation type, booking centre, RM location, post-trade exposure) |
-| **Four policy templates + thirteen example rules** | A working decision model with illustrative thresholds, ready for the institution's compliance team to calibrate |
-| **Reference integration** | A working script showing an RM copilot calling `/resolve` for the four modelled decisions |
-| **Operator playbook** | The runbook to install, calibrate and rehearse the pack |
+| **Can I offer this product to this client ?** | Retail vs highly-complex product, large-notional retail approval, target-market alignment |
+| **Is this trade suitable for this client ?** | K&E gate on complex products, risk-tolerance mismatch escalation, documented reverse-enquiry allow |
+| **Cross-border : can I solicit this client from this location ?** | Solicited outreach into restricted jurisdictions blocked, booking-centre mismatch above threshold escalates |
+| **Portfolio concentration : is this trade within limits ?** | Single-name post-trade escalation and block thresholds, aggregate SP allocation caps on conservative mandates |
 
-## What the bank owns, what Asplenz ships
+If your OMS or pre-trade engine already owns any of these decisions end-to-end, keep it there. Where the copilot introduces a new boundary the existing systems do not cleanly cover, Knowledge governs it.
 
-Asplenz ships the ontology and the rule patterns with illustrative thresholds. The bank's compliance function owns the interpretation of every threshold - what "large notional" means at this firm, which jurisdictions are restricted, which risk-tolerance mismatch triggers escalation.
+## Compliance owns the policies delegated to Knowledge
 
-**Knowledge evaluates the institution's encoded policy ; it does not replace the institution's regulatory judgement or execute the resulting business action.** The pack does not ship regulatory interpretation ; it gives the bank a working shape to calibrate.
+Policies governing the copilot's decision boundary can be versioned, approved and evolved independently of the copilot. Rules that remain owned by existing systems stay there.
 
-## Deployment options
+Where Knowledge holds a rule, it lives in the back-office UI as a business-view object : scope (jurisdiction, asset class, client segment), conditions and thresholds, severity (allow / require approval / block / absolute ban), effective dates, rationale, approver. Compliance amends the threshold ; the next `/resolve` uses the new value. Prior consultations still point at the exact rule of their day, via immutable RuleVersion. See [Auditability](/product/auditability).
 
-The wealth pack inserts into an existing wealth stack in one of several ways.
+## Start without replacing what already works
+
+A wealth engagement typically inserts Knowledge in one of four ways.
 
 | Insertion point | How it works |
 |---|---|
-| **Existing eligibility engine** (Overlay) | Existing eligibility results become part of the context evaluated by Knowledge. Add a new policy domain, jurisdiction or control without migrating the underlying engine |
-| **Behind the OMS** (Gate) | The OMS calls Knowledge before routing an order. Blocking verdicts stop bad trades pre-execution |
-| **Alongside a legacy engine** (Shadow) | Knowledge evaluates the same cases in parallel without controlling the production decision. Compare outcomes before giving it authority |
-| **New product line or new market** (Selective routing) | The existing decision layer handles today's flows ; Knowledge handles the new flow, with no impact on today's decisions |
-| **Greenfield decision layer** (Primary) | No legacy to work around. Knowledge is the decision layer from day one, typical for a new business unit or a greenfield surface |
+| **Existing decision keeps its authority** | If OMS, pre-trade engine or suitability engine already owns a decision cleanly, no change. Knowledge does not sit in that path. |
+| **Overlay** | Existing eligibility or suitability results become part of the context Knowledge evaluates. Add a new policy domain, jurisdiction or agent-driven decision without migrating the underlying engine. |
+| **Shadow** | Knowledge evaluates the copilot's composite decision in parallel with the existing process. Compare outcomes for a defined window before giving Knowledge authority. |
+| **New decision boundary** | The copilot's *"can I propose this ?"* decision runs on Knowledge from day one. Existing engines remain the authority for the flows they already own. |
 
-## What comes next
+Knowledge is not a migration project.
+
+## Wealth decision pack
+
+For a design-partner engagement, Asplenz ships a working starting point Compliance can calibrate against the firm's own policies :
+
+| Component | What it is |
+|---|---|
+| **Scope schema** | The vocabulary the decision layer uses : product complexity, risk rating, client experience level, solicitation type, booking centre, RM location, post-trade exposure |
+| **Four policy templates + example rules** | A working decision model with illustrative thresholds, ready for calibration |
+| **Reference RM-copilot integration** | A working script showing the copilot calling `/resolve` progressively through the composite decision |
+| **Calibration playbook** | The runbook Compliance and the engineering team use to install, calibrate and rehearse |
+
+**Knowledge evaluates the institution's encoded policy. It does not replace the institution's regulatory judgment or execute the resulting business action.** The pack does not ship regulatory interpretation ; it gives the bank a working shape to calibrate.
+
+## Start with one RM decision
+
+Pick one decision your RM copilot needs to make that is currently governed by human interpretation, fragmented procedures or custom agent logic. Run it in shadow mode against the current process. Cut over when parity and audit are proven.
+
+**[Explore a design partnership](/pilot)** &nbsp; · &nbsp; **[Talk to us](/contact)**
+
+## Related
 
 | Read next | Why |
 |---|---|
-| [Enforcement](/product/enforcement) | Signed verdicts, PEP, four-actor trust chain |
-| [Auditability](/product/auditability) | Regulator questions in one query : Consultation, RuleVersion, precedence trace |
 | [For AI product teams](/solutions/by-role/ai-product-teams) | The RM copilot angle : agent-side integration |
 | [For compliance officers](/solutions/by-role/compliance-officers) | The compliance-side angle : rule ownership, coverage, approvals |
-| [Design partner](/pilot) | Three founding slots, one production-relevant decision, founding-customer pricing |
+| [Progressive context](/product/progressive-context) | The `/resolve` loop the copilot navigates |
+| [Enforcement](/product/enforcement) | Signed verdicts, PEP, four-actor trust chain |
+| [Auditability](/product/auditability) | Regulator questions : Consultation, RuleVersion, precedence trace |
