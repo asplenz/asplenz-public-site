@@ -31,29 +31,25 @@ Knowledge separates the two. The AI service investigates, gathers context, prepa
 
 ## What Knowledge can be in your stack
 
-Two shapes cover most Wealth deployments :
+Two shapes cover most Wealth deployments.
 
-- **Knowledge as the decision authority.** For a given workflow, Knowledge owns the policy determination end-to-end. The AI service asks Knowledge, gets a deterministic verdict, the workstation acts on it.
-- **Knowledge as a complement to what you already run.** For decisions an existing engine already produces, Knowledge can add a governed layer on top : an extra check on high-risk operations, an approval workflow, or an audit surface, without replacing the underlying engine.
+| Shape | How it works |
+|---|---|
+| **Knowledge as the decision authority** | For a given workflow, Knowledge owns the policy determination end-to-end. The AI service asks Knowledge, gets a deterministic verdict, the workstation acts on it. |
+| **Knowledge as a complement to what you already run** | For decisions an existing engine already produces, Knowledge can add a governed layer on top : an extra check on high-risk operations, an approval workflow, or an audit surface, without replacing the underlying engine. |
 
 Wealth engagements often use both shapes at once.
 
 ## The composite decision the AI capability navigates
 
-```
-                    PRODUCT
-                  eligibility
-                       |
-CLIENT --- suitability +----- CROSS-BORDER
-                       |      solicitation, booking centre
-                       |
-                  PORTFOLIO
-                 concentration
-                       |
-                       v
+Four dimensions typically shape the *"can we propose this ?"* determination.
 
-           CAN THE RM PROPOSE THIS ?
-```
+| Dimension | What it contributes to the decision |
+|---|---|
+| **Product** | Eligibility (retail vs highly-complex, target-market alignment, notional bands) |
+| **Client** | Suitability (K&E level, risk tolerance, loss capacity, investment objectives) |
+| **Cross-border** | Jurisdictional rules (solicitation type, booking centre vs client residence) |
+| **Portfolio** | Concentration and exposure limits (single-name, aggregate SP allocation) |
 
 Each of the four inputs may already have its own system of record : product master, CRM, suitability engine, portfolio engine, jurisdictional data. Knowledge does not replace them. It reads what they hold, applies the wealth policy that governs the composite, and returns a deterministic decision the workstation can act on.
 

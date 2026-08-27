@@ -31,29 +31,25 @@ Knowledge sépare les deux. Le service IA investigue, rassemble le contexte, pr�
 
 ## Ce que Knowledge peut être dans votre stack
 
-Deux formes couvrent la plupart des déploiements Wealth :
+Deux formes couvrent la plupart des déploiements Wealth.
 
-- **Knowledge comme autorité de décision.** Pour un workflow donné, Knowledge possède la détermination policy end-to-end. Le service IA demande à Knowledge, obtient un verdict déterministe, le workstation agit dessus.
-- **Knowledge comme complément à ce que vous faites déjà tourner.** Pour les décisions qu'un moteur existant produit déjà, Knowledge peut ajouter une couche gouvernée par-dessus : un check supplémentaire sur les opérations à haut risque, un workflow d'approbation, ou une surface d'audit, sans remplacer le moteur sous-jacent.
+| Forme | Comment ça marche |
+|---|---|
+| **Knowledge comme autorité de décision** | Pour un workflow donné, Knowledge possède la détermination policy end-to-end. Le service IA demande à Knowledge, obtient un verdict déterministe, le workstation agit dessus. |
+| **Knowledge comme complément à ce que vous faites déjà tourner** | Pour les décisions qu'un moteur existant produit déjà, Knowledge peut ajouter une couche gouvernée par-dessus : un check supplémentaire sur les opérations à haut risque, un workflow d'approbation, ou une surface d'audit, sans remplacer le moteur sous-jacent. |
 
 Les engagements Wealth utilisent souvent les deux formes en même temps.
 
 ## La décision composite que la capability IA navigue
 
-```
-                    PRODUIT
-                  éligibilité
-                       |
-CLIENT --- suitability +----- CROSS-BORDER
-                       |      solicitation, booking centre
-                       |
-                  PORTEFEUILLE
-                  concentration
-                       |
-                       v
+Quatre dimensions shapent typiquement la détermination *« pouvons-nous proposer ceci ? »*.
 
-           LE RM PEUT-IL PROPOSER ÇA ?
-```
+| Dimension | Ce qu'elle apporte à la décision |
+|---|---|
+| **Produit** | Éligibilité (retail vs highly-complex, alignement target-market, bandes de notional) |
+| **Client** | Suitability (niveau K&E, tolérance au risque, capacité de perte, objectifs d'investissement) |
+| **Cross-border** | Règles juridictionnelles (type de solicitation, booking centre vs résidence client) |
+| **Portefeuille** | Limites de concentration et d'exposition (single-name, allocation SP agrégée) |
 
 Chacun des quatre inputs peut déjà avoir son propre système de record : product master, CRM, moteur suitability, moteur portefeuille, données juridictionnelles. Knowledge ne les remplace pas. Il lit ce qu'ils tiennent, applique la policy wealth qui gouverne le composite, et retourne une décision déterministe sur laquelle le workstation peut agir.
 
