@@ -54,11 +54,7 @@ Depuis la page de détail de la policy, choisissez *Nouvelle règle*. Pour chacu
 
 Sauvegardez chacune. Les règles authorées ici s'appliquent à **chaque principal** du tenant par défaut (universal). Voir *[À propos du targeting](#à-propos-du-targeting)* plus bas.
 
-### Étape 3 - approuver si requis
-
-Si la policy a une approver chain, les règles entrent en état pending. Les approvers nommés les voient dans leur queue, les reviewent, et les approuvent. Les règles deviennent alors actives.
-
-Skipper si le tenant n'enforce pas le workflow d'approbation.
+Les règles sont actives dès qu'elles sont sauvegardées.
 
 ---
 

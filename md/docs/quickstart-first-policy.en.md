@@ -54,11 +54,7 @@ From the policy's detail page, choose *New rule*. For each of the three rules, f
 
 Save each. Rules authored here apply to **every principal** in the tenant by default (universal). See *[About targeting](#about-targeting)* below.
 
-### Step 3 - approve if required
-
-If the policy has an approver chain, the rules enter a pending state. The named approvers see them in their queue, review them, and approve. Rules then become active.
-
-Skip if the tenant does not enforce the approval workflow.
+Rules are active as soon as they are saved.
 
 ---
 
