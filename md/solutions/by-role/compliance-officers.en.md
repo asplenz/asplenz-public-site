@@ -1,99 +1,134 @@
 ---
-title: For compliance officers
-description: Own the rules, edit them directly, watch them fire in real cases, and reconstruct any decision years later. No coordination sprint with engineering to change a threshold.
+title: Keep policy authority when AI agents start making business decisions
+description: AI agents can investigate cases, gather evidence and recommend or execute actions. Knowledge keeps the rules that determine what is allowed, blocked or requires human approval under Compliance governance, outside the model.
 locale: en
 kicker: Solutions - For compliance officers
 ---
 
-Two frustrations that surface in every compliance team using a rules engine at scale :
+Your organization is starting to deploy AI agents into work that used to be done by humans following procedures.
 
-> *"We asked engineering to change the concentration limit from 15% to 12% three months ago. It is now in the sprint after next. Meanwhile our RMs are still using the old threshold in their diligence."*
+Before agents, Compliance could govern the procedure, the controls, the approval hierarchy, the training and the audit trail around the humans. The decisions were made by people who could be trained on the policy and observed acting on it.
 
-> *"A regulator asked us for the exact rule that produced a decision from 18 months ago. We can reproduce the decision, but we cannot reproduce the rule text of that period - it was updated twice since."*
+With agents, the same question surfaces on every deployment :
 
-Knowledge is built so both frustrations disappear.
+> *Who determines what the agent is allowed to decide ?*
 
-## You edit the rules directly. Engineering does not gate you.
+This page is about how Compliance keeps that authority when the agent, rather than a human or an existing business system, participates in the decision.
 
-Rules live in the Knowledge back-office UI as structured objects with :
+## Keep policy outside the model
 
-- **Statement** - human-readable declaration of what the rule says
-- **Scope** - which cases it applies to, expressed as `{jurisdiction: SG, asset_class: equity}` fields against your tenant's `scope_schema`
-- **Condition** - the numeric or enum gate, as `{field, op, threshold}` triples (e.g. `{post_trade_single_name_pct, gt, 15}`)
-- **Severity** - `absolute_ban`, `hard_block`, `require_approval`, `informative`, `allow`
-- **Effect** - the engine action derived from severity
-- **Rationale + governance log** - free-text explanation of *why* the rule exists
+The AI team can decide how the agent investigates a case, which tools it uses, what evidence it gathers. Compliance keeps authority over the deterministic rules that govern the outcome.
 
-Change the threshold in the UI. Save. The next `/check` call uses the new value. No release cycle. The old value is preserved in `RuleVersion` so any consultation from before the change still points at the exact rule text of that day.
+| AI Product owns | Compliance owns |
+|---|---|
+| Agent behavior | Policy content |
+| Tools and integrations | Thresholds, conditions, scope |
+| Investigation and orchestration | Precedence between rules |
+| Fact acquisition | Approval requirements |
+| Agent UX and error handling | Exceptions and their scope |
+| Deployment and observability | Effective dates and amendments |
 
-## Every change writes a governance act
+Knowledge is the surface where the Compliance column lives. It is not a place engineers ship policy to. It is a place Compliance edits directly, without engineering as a gatekeeper.
 
-The `governance_log` on each Policy records adoption, amendment, renewal, retirement acts. Every entry carries actor + date + rationale. Auditors see who changed what and why, without asking you to reconstruct git history.
+## Decide where AI autonomy ends
 
-The engine never reads the log ; it is the human context. Rendered in the registry UI as an amber header above the rule list so anyone opening the Policy sees the story.
+Not every governed decision should be automated. Knowledge lets policy determine, per rule and per scope, when the agent may proceed, when it must stop, and when authority must return to a human.
 
-## Regulator questions are one query away
+| Severity | What the agent does |
+|---|---|
+| **Allow** | The agent proceeds. The decision is deterministic and traceable. |
+| **Require approval** | The agent may prepare the recommendation, but a human decider owns the outcome. Knowledge creates a first-class Approval record with the triggering rules, the intent and the approver. Decision surfaces via back-office UI, Slack modal, or webhook callback. |
+| **Block** | The agent stops. The tool boundary refuses to execute the underlying action. |
+| **Absolute ban** | Same as block, and cannot be overridden even with an approval. |
 
-*"Show me the decision on case ID X"* :
+Compliance decides the autonomy boundary at the rule level. That boundary is enforceable at the tool boundary, not a note in a document. See [Enforcement](/product/enforcement) for the mechanism.
+
+## Change policy independently
+
+Rules are objects Compliance can author and amend without a coordinated release cycle. Each rule carries a business-view :
 
 ```
-GET /knowledge/v1/consultations/cns-abc123
+Single-name concentration
+
+Applies to      : Singapore, Equity
+Rule            : Post-trade exposure > 12%
+Outcome         : REQUIRE APPROVAL
+Effective       : 1 October 2026
+Rationale       : Updated concentration policy per MAS guidance
+Approved by     : Head of Wealth Compliance
+Previous version: pinned to consultations from before this date
 ```
 
-Returns the full frozen state at decision time - the context sent, the rule versions cited, the dominating rule, the precedence trace, the overrides in force, the normative hash. Not an approximation.
+Change the threshold. Save. The next agent consultation uses the new value. The previous version is preserved so any past decision still points at the exact policy of its day.
 
-*"Show me the rule text that applied here"* : each `cited_rule_version_id` in the response points at an immutable `RuleVersion`. Fetch it, see the exact statement and condition of that day.
+Policy changes can be governed independently of agent releases when the new rule uses context the agent can already acquire. When a rule requires a new field, the agent's `required_context` loop learns to fetch it. See [Progressive context](/product/progressive-context).
 
-*"Show me why this rule fired here and not on that other similar case"* : the `precedence_trace` records the full candidate list, which rules were neutralised by overrides, and which precedence field broke the tie.
+## Explain every governed decision
 
-## Coherence checks catch drift at write time
+*"Show me the decision on this case, and why it was made."*
 
-Every rule create or update triggers an automatic coherence check :
+The answer is a business-view of the frozen state at decision time :
 
-- **Exact-duplicate** : a semantically identical rule already exists (embedding similarity)
-- **Tension** : the new rule interacts non-obviously with an existing one
-- **Contradiction** : the new rule would fire opposite verdicts to an existing one on the same case (LLM check)
+```
+Decision       : BLOCKED
+Case           : C-18273
+Decided at     : 15 March 2026, 09:12 UTC
 
-Warnings surface in the UI before you save. Not a blocker ; a nudge.
+Policy at time : Client Suitability v7
 
-## Coverage : who fires, who does not
+Applicable rules :
+  R-182 v4  (allow)
+  R-291 v2  (require approval)
+  R-817 v6  (block)
 
-Every fire of every rule is recorded on a `Consultation`. Query :
+Winning rule   : R-817 v6
+Reason         : Higher precedence prohibition
 
-- Which rules fired most in the last quarter ?
-- Which rules have not fired in 6 months (candidate for retirement) ?
-- Which cases blocked, which allowed, which required approval ?
+Human override : None
+```
 
-The data is in the Consultation table today. A dedicated coverage UI is on the roadmap ; for now, the SQL is direct.
+Not an approximation. Not derived from logs. The exact rules, versions, precedence and overrides in force at decision time. See [Auditability](/product/auditability) for how the reconstruction works.
 
-## Approvals as first-class governed objects
+## Preserve why policy changed, not just what changed
 
-`approval_required` is a verdict, not a workflow annotation. When a rule returns it, an `Approval` entity is created with :
+Two audit histories, kept in one place. Compliance teams need both.
 
-- The triggering rules (as `triggers[]`)
-- The requester + the requested intent
-- The approver (or approver role)
-- The decision + comment
-- Optionally, the `Override` the approval granted (Type 3, scope-bounded exception)
+| Policy history | Decision history |
+|---|---|
+| Why did we introduce this rule ? | Which rule version applied on this case ? |
+| Who approved the amendment ? | Which rules fired ? Which were neutralised by an override ? |
+| Why did the threshold move ? | Which rule won precedence, and why ? |
+| Under what regulatory driver ? | What was the human approval, if any ? |
 
-Decide via the back-office UI, Slack modal, or webhook callback. Every decision writes to the audit trail alongside the original Consultation.
+Every policy amendment writes a governance act (actor, date, rationale). Every decision writes a Consultation. Neither history is stitched together after the fact ; both are preserved as the decisions and amendments happen.
 
-## What you cannot do (honestly)
+## Govern policy as it evolves
 
-- **Guarantee your rules are enforced everywhere in your firm.** Knowledge governs the decisions that consume its API. A workflow that hardcodes its own logic is invisible to Knowledge. Discovery + adoption is a change-management problem, not a technical one.
-- **Eliminate the need for judgment.** `approval_required` verdicts still need a human decider. Knowledge routes efficiently ; it does not remove the responsibility.
-- **Prove that the model interpreting a rule statement is correct.** Knowledge produces the verdict deterministically from the structured `{scope, condition, severity}` - the free-text statement is informative, not authoritative. If your rules only exist as free text in a document, you still need to translate them into the structured form.
+Three lightweight controls Knowledge runs while policy grows :
 
-## Getting started
+| Control | What it surfaces |
+|---|---|
+| **Coherence checks at write time** | AI-assisted authoring checks can flag potential duplicates, tensions or contradictions for human review. They do not determine runtime policy outcomes ; the deterministic engine does. |
+| **Coverage insight** | See which rules drive most decisions, which rarely apply, and where approvals or blocks concentrate. Helps identify rules that no longer earn their keep. |
+| **Effective-date preview** | Verify how a proposed rule change would have altered past decisions before you activate it. |
 
-1. Read [Auditability](/product/auditability) for the full audit story.
-2. Read the [what-is-knowledge](/docs/what-is-knowledge) primer for the vocabulary.
-3. [Talk to us](/contact) about a design-partner engagement in your vertical.
+## Where Knowledge's responsibility ends
+
+- **Enforcement everywhere in the firm.** Knowledge governs the decisions that consume its API. A workflow that hardcodes its own policy logic is invisible to Knowledge. Discovery and adoption of the governed layer is a change-management effort, not a technical guarantee.
+- **The judgment inside approval decisions.** `approval_required` verdicts still need a human decider. Knowledge routes the case efficiently ; it does not remove the responsibility.
+- **Free-text policy interpretation.** Knowledge produces the verdict deterministically from structured `{scope, condition, severity}` triples. If your rules today only exist as free text in a document, you still need to translate them into that structured form. Knowledge accepts CSV, Excel, DMN or API input.
+
+## Start with one policy area
+
+Pick one policy area your agents are already touching, or about to touch. Formalize the rules in Knowledge. Run in shadow mode against your current process. Measure parity. Cut over when the numbers land.
+
+**[What is Knowledge ?](/docs/what-is-knowledge)** &nbsp; · &nbsp; **[Talk to us](/contact)**
 
 ## Related
 
 | Read next | Why |
 |---|---|
-| [Auditability](/product/auditability) | Consultation, RuleVersion, precedence trace deep dive |
+| [Product](/product) | The decision loop for rule-governed AI agents |
+| [Auditability](/product/auditability) | How historical reconstruction works : Consultation, RuleVersion, precedence trace |
+| [Enforcement](/product/enforcement) | The signed envelope, PEP model and four-actor trust chain |
 | [Progressive context](/product/progressive-context) | How rules requiring new fields propagate without breaking consumers |
-| [Enforcement](/product/enforcement) | The signed envelope story - the CISO angle on the same product |
