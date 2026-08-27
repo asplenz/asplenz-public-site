@@ -1,90 +1,155 @@
 ---
-title: Auditability
-description: Reconstruct the exact policy state behind a historical decision, years later. Deterministic replay, not an approximation.
+title: Explain a decision using the policy that existed when it was made
+description: Rules change. Exceptions expire. Precedence evolves. Knowledge preserves the normative state behind each decision so compliance and audit teams can reconstruct exactly what applied, what won, and why.
 locale: en
 kicker: Product - Auditability
 ---
 
-Two questions a regulator can ask about a decision from 18 months ago that a classic rules engine cannot cleanly answer :
+## When compliance asks about a decision from 18 months ago
 
-> *Show me the exact rules that produced this decision, in the exact version they had at decision time, with the exact precedence and overrides in force that day.*
+A customer was rejected 18 months ago. Compliance, internal audit or a regulator asks the question every organization eventually faces :
 
-> *Show me why this specific rule fired here and did not fire on a similar-looking case last week.*
+> *Why was this customer rejected ?*
 
-Knowledge's audit surface is designed so those answers are one query away, deterministic, and cryptographically verifiable when signed verdicts are enabled.
+The decision log answers with what happened at the operational layer :
 
-## Every decision writes a Consultation
+```
+decision   = REJECTED
+rule       = R-182
+timestamp  = 2025-02-14T09:12:00Z
+```
+
+The natural next step is to look up rule R-182. But the current R-182 is not the R-182 that fired that day. Since then :
+
+```
+R-182 v1
+    ↓
+amended  (threshold raised)
+    ↓
+R-182 v2
+    ↓
+exception added  (institutional clients exempt)
+    ↓
+R-182 v3
+```
+
+And R-182 may not even have been the winning rule. Several rules likely applied simultaneously :
+
+```
+R-182  →  ALLOW
+R-431  →  REVIEW
+R-817  →  BLOCK
+
+precedence rule  →  R-817 wins
+```
+
+The real question is not *what does R-182 say today ?* It is :
+
+> **Can you reconstruct the policy decision as it was actually made, not explain it using today's policy ?**
+
+## The reconstruction problem
+
+In many architectures, reconstructing a historical decision requires stitching together several sources :
+
+```
+decision logs           what was written to storage
++
+rule versions           which rules existed at that instant
++
+overrides               what exceptions were active
++
+context                 what facts were available
++
+approvals               what human decisions had been recorded
++
+precedence config       how ties were broken
+=
+decision as it happened
+```
+
+Each of these lives in a different system, often with its own retention policy. The reconstruction is doable, but expensive, and fragile.
+
+Knowledge treats reconstruction as a native property of each decision, not a downstream engineering effort.
+
+## What Knowledge preserves for each decision
 
 Every `/check` and `/resolve` call that produces a verdict writes a `Consultation` row that freezes :
 
-- **The context sent** by the caller (all facts, their sources, their verification status)
-- **The applicable rule versions** at that instant (`cited_rule_version_ids` - immutable snapshots)
+- **The context sent** by the caller - all facts, their sources, their verification status
+- **The applicable rule versions** at that instant (immutable snapshots)
 - **The dominating rule** and the precedence trace that led to it
 - **The overrides in force** and how they neutralised or shaped the outcome
 - **The scope schema** in effect for that tenant
 - **A normative hash** - SHA-256 aggregate of the cited rule versions + active overrides + precedence configuration + universal-rule flags
 
-Given a `consultation_id`, the decision can be reconstructed **exactly** - not from log inference, from frozen state.
+Given a `consultation_id`, the decision can be reconstructed **exactly**. Not from log inference. From frozen state.
 
-## Immutable versioning by design
+## Replay a decision
 
-Every change to a verdict-affecting field on a Rule creates a new `RuleVersion`. Prior versions are never rewritten. A Consultation that cited an earlier version keeps pointing to that exact version, forever. Same shape for `OverrideVersion`.
+Given a consultation ID, Knowledge returns the decision as it happened :
 
-**Historical decisions remain tied to the normative policy state that produced them.** A rule edited today does not silently change the verdict of a decision made last quarter.
+```
+Decision                 :  BLOCKED
+Consultation             :  cns-9a8b7c
+Decided at               :  2025-02-14T09:12:00Z
 
-## The precedence trace
+Applicable rule versions :
+  R-182 v4  (severity: informative)
+  R-291 v7  (severity: hard_block)
+  R-817 v2  (severity: absolute_ban)
 
-Auditors and regulators do not just want to know *which* rule fired. They want to know *why that rule and not the other*. The precedence trace records :
+Overrides in force       :
+  none
 
-- The full list of **candidate rules** considered at scope pre-filter
-- The **neutralised rules** and the override that neutralised each
-- The **effective rules** left after neutralisation
-- The **winning rule** and the precedence field that broke the tie (severity, priority, specificity)
-- The **effect** and **enforcement mode** of the winning rule
+Dominating rule          :  R-817 v2
+Precedence tie-broken by :  severity (absolute_ban > hard_block > informative)
 
-Rendered as a structured JSON alongside the verdict. Also renderable in prose via `/reason` for a compliance officer who wants human narration.
+Context at decision      :
+  jurisdiction    = FR
+  client_type     = individual
+  pep_match       = true                        (source: screening_vendor)
+  risk_score      = 0.83                        (source: risk_engine)
 
-## Governance log per Policy
+Approval trail           :  none required
+Normative hash           :  sha256:9f2a...
+```
 
-Every Policy carries a `governance_log` : an ordered list of `GovernanceNote` entries recording the adoption, amendment, renewal or retirement acts, each with actor + date + rationale. The engine never reads this log ; it is the human context that explains *why* a rule exists. Rendered in the registry UI as an amber header above the rule list.
+Everything the reconstruction needs is in one query, populated from state that was frozen at decision time. Rule R-817 is now on v4 in production ; the Consultation still returns v2 because that is what applied.
 
-Distinct from the technical audit trail (Consultation, Event, RuleVersion) which the engine does read.
+## Explain both the policy and the decision
 
-## Approvals and overrides as first-class governed objects
+Two different questions carry very different answers. Knowledge separates them so each has a first-class surface.
 
-Not workflow annotations, not hidden branches. Both are queryable, versioned, and tied to the Consultation they resolved :
+| Question | Where it lives | What it explains |
+|---|---|---|
+| **Why did the organization adopt this policy ?** | The Policy's `governance_log` - an ordered list of adoption, amendment, renewal and retirement acts, each with actor, date and rationale. | The policy's own history : who changed it, when, why. Regulatory driver, internal decision, exception process. Never read by the engine. Rendered in the registry UI as an amber header above the rule list. |
+| **Why did this specific case get this outcome ?** | The Consultation - rule versions cited, precedence trace, overrides, context, approvals. Read by the engine at replay time. | The decision's technical history : what rules applied, what won, why, on what context. |
 
-- **Approval** : one row per operation, records the triggering rules, the requester, the decider, the outcome, the decision comment. Includes the optional `override_id` if the approval granted a scope-bounded exception.
-- **Override** : first-class entity with its own version chain, applies within a declared scope for a declared time window, cited by every Consultation whose verdict it shaped.
+The governance log answers *"why does this rule exist ?"* The Consultation answers *"why did this rule fire on this case ?"* Compliance teams need both, from the same audit surface.
 
-## Cryptographic signature (when signed-verdict is enabled)
+## How replay stays deterministic across years
+
+The properties that make replay deterministic :
+
+- **Immutable versioning by design.** Every change to a verdict-affecting field on a Rule creates a new `RuleVersion`. Prior versions are never rewritten. A Consultation that cited an earlier version keeps pointing to that exact version, forever. Same shape for `OverrideVersion`.
+- **Precedence trace as data, not derivation.** The trace records the full candidate list, which rules were neutralised, which override neutralised each, the effective set that remained, the winning rule, and the precedence field that broke the tie. Rendered as structured JSON alongside the verdict, or as prose via `/reason` for human narration.
+- **Approvals and overrides as first-class governed objects.** Not workflow annotations, not hidden branches. Both are queryable, versioned, and tied to the Consultation they resolved. An `Approval` row records the triggering rules, the requester, the decider, the outcome, the decision comment, and the optional `override_id` if the approval granted a scope-bounded exception. An `Override` is a first-class entity with its own version chain, applies within a declared scope for a declared time window.
+- **Retention is a deployment choice.** Consultations, rule versions and events retain by the tenant's configured policy. As long as the Consultation is retained, the reconstruction reads the frozen state.
+
+## Cryptographic verification (when signed-verdict is enabled)
 
 When the deployment has verdict signing configured, every audit-relevant field of the decision (action, actor, resource, parameters, outcome, cited rule versions, normative hash) is included in a JWS ES256 envelope signed by the tenant's private key. See [Enforcement](/product/enforcement).
 
 This adds to the audit story :
 
-- **Tamper-evidence** : any modification of the recorded decision fields invalidates the signature.
-- **Externally verifiable** : an auditor can verify a decision from cold storage, years later, against the tenant's JWKS, without any dependency on Knowledge being live.
-- **Non-repudiation** : the tenant cannot later claim *"Knowledge did not say that"* - the signature proves the exact decision produced at the exact time.
-
-## What replay actually returns
-
-Given a `consultation_id`, Knowledge reconstructs :
-
-- The context that was sent (with fact provenance)
-- The applicable rules and the verdict each produced
-- The precedence walk that led to the dominating rule
-- The overrides and approvals that shaped the outcome
-- The exact rule and override versions in effect at that moment
-- The normative hash for external verification
-- (When signed-verdict enabled) the JWS envelope + the public key the receiving party would verify against
-
-Retention policy is a deployment concern, not a limitation of the model. As long as the Consultation is retained, the reconstruction reads the frozen state.
+- **Tamper-evident.** Any modification of the recorded decision fields invalidates the signature.
+- **Independently verifiable.** An auditor can verify a decision from cold storage, years later, against the tenant's JWKS, without any dependency on Knowledge being live.
 
 ## Related
 
 | Read next | Why |
 |---|---|
-| [Enforcement](/product/enforcement) | Signed verdicts + the four-actor trust chain |
-| [Progressive context](/product/progressive-context) | How the input side of the audit trail is populated |
-| [Overrides, approvals, pauses](/docs/concepts/overrides-approvals-pauses) | The authorship + versioning + approval surface in depth |
+| [Enforcement](/product/enforcement) | Signed verdicts and the four-actor trust chain |
+| [Progressive context](/product/progressive-context) | How the context side of the audit trail is populated |
+| [Overrides, approvals, pauses](/docs/concepts/overrides-approvals-pauses) | The authorship, versioning and approval surface in depth |
+| [Product](/product) | The decision loop for rule-governed AI agents |

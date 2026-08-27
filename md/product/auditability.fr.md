@@ -1,90 +1,155 @@
 ---
-title: Auditability
-description: Reconstruisez l'état policy exact derrière une décision historique, des années plus tard. Replay déterministe, pas une approximation.
+title: Expliquer une décision en utilisant la policy qui existait au moment où elle a été prise
+description: Les règles changent. Les exceptions expirent. La précédence évolue. Knowledge préserve l'état normatif derrière chaque décision pour que les équipes compliance et audit puissent reconstruire exactement ce qui s'appliquait, ce qui a gagné, et pourquoi.
 locale: fr
 kicker: Produit - Auditability
 ---
 
-Deux questions qu'un régulateur peut poser sur une décision d'il y a 18 mois auxquelles un rules engine classique ne peut pas répondre proprement :
+## Quand compliance pose une question sur une décision d'il y a 18 mois
 
-> *Montrez-moi les règles exactes qui ont produit cette décision, dans la version exacte qu'elles avaient au moment de la décision, avec la précédence et les overrides exacts en vigueur ce jour-là.*
+Un client a été rejeté il y a 18 mois. Compliance, l'audit interne ou un régulateur pose la question que chaque organisation finit par affronter :
 
-> *Montrez-moi pourquoi cette règle spécifique a fired ici et n'a pas fired sur un cas similaire la semaine dernière.*
+> *Pourquoi ce client a-t-il été rejeté ?*
 
-La surface d'audit de Knowledge est conçue pour que ces réponses soient à une requête, déterministes, et cryptographiquement vérifiables quand les verdicts signés sont activés.
+Le decision log répond avec ce qui s'est passé à la couche opérationnelle :
 
-## Chaque décision écrit une Consultation
+```
+decision   = REJECTED
+rule       = R-182
+timestamp  = 2025-02-14T09:12:00Z
+```
+
+L'étape naturelle suivante est de regarder la règle R-182. Mais la R-182 actuelle n'est pas celle qui a fired ce jour-là. Depuis :
+
+```
+R-182 v1
+    ↓
+amendée  (seuil relevé)
+    ↓
+R-182 v2
+    ↓
+exception ajoutée  (clients institutionnels exemptés)
+    ↓
+R-182 v3
+```
+
+Et R-182 n'était peut-être même pas la règle gagnante. Plusieurs règles s'appliquaient probablement simultanément :
+
+```
+R-182  →  ALLOW
+R-431  →  REVIEW
+R-817  →  BLOCK
+
+règle de précédence  →  R-817 gagne
+```
+
+La vraie question n'est pas *que dit R-182 aujourd'hui ?* C'est :
+
+> **Pouvez-vous reconstruire la décision policy telle qu'elle a réellement été prise, pas l'expliquer en utilisant la policy d'aujourd'hui ?**
+
+## Le problème de reconstruction
+
+Dans beaucoup d'architectures, reconstruire une décision historique exige de recoller plusieurs sources :
+
+```
+decision logs           ce qui a été écrit dans le storage
++
+versions de règles      quelles règles existaient à cet instant
++
+overrides               quelles exceptions étaient actives
++
+contexte                quels faits étaient disponibles
++
+approbations            quelles décisions humaines avaient été enregistrées
++
+config de précédence    comment les ties étaient cassés
+=
+décision telle qu'elle s'est produite
+```
+
+Chacune de ces sources vit dans un système différent, souvent avec sa propre policy de rétention. La reconstruction est faisable, mais coûteuse et fragile.
+
+Knowledge traite la reconstruction comme une propriété native de chaque décision, pas comme un effort d'engineering downstream.
+
+## Ce que Knowledge préserve pour chaque décision
 
 Chaque appel `/check` et `/resolve` qui produit un verdict écrit une ligne `Consultation` qui fige :
 
-- **Le contexte envoyé** par le caller (tous les facts, leurs sources, leur statut de vérification)
-- **Les versions de rules applicables** à cet instant (`cited_rule_version_ids` - snapshots immuables)
+- **Le contexte envoyé** par le caller - tous les faits, leurs sources, leur verification status
+- **Les versions de règles applicables** à cet instant (snapshots immuables)
 - **La règle dominante** et le trace de précédence qui y a mené
-- **Les overrides en vigueur** et comment ils ont neutralisé ou façonné le résultat
+- **Les overrides en vigueur** et comment ils ont neutralisé ou shapé le résultat
 - **Le scope schema** en effet pour ce tenant
-- **Un normative hash** - SHA-256 agrégat des versions de rules citées + overrides actifs + configuration de précédence + flags universal-rule
+- **Un normative hash** - agrégat SHA-256 des versions de règles citées + overrides actifs + configuration de précédence + flags universal-rule
 
-Étant donné un `consultation_id`, la décision peut être reconstruite **exactement** - pas par inférence de logs, à partir d'un état gelé.
+Étant donné un `consultation_id`, la décision peut être reconstruite **exactement**. Pas par inférence de logs. À partir d'un état gelé.
 
-## Versioning immuable par design
+## Replay d'une décision
 
-Chaque changement d'un champ verdict-affecting sur une Rule crée un nouveau `RuleVersion`. Les versions antérieures ne sont jamais réécrites. Une Consultation qui a cité une version antérieure continue de pointer vers cette version exacte, pour toujours. Même shape pour `OverrideVersion`.
+Étant donné un ID de consultation, Knowledge retourne la décision telle qu'elle s'est produite :
 
-**Les décisions historiques restent liées à l'état normatif policy qui les a produites.** Une règle éditée aujourd'hui ne change pas silencieusement le verdict d'une décision prise le trimestre dernier.
+```
+Decision                 :  BLOCKED
+Consultation             :  cns-9a8b7c
+Decided at               :  2025-02-14T09:12:00Z
 
-## Le trace de précédence
+Applicable rule versions :
+  R-182 v4  (severity: informative)
+  R-291 v7  (severity: hard_block)
+  R-817 v2  (severity: absolute_ban)
 
-Les auditeurs et régulateurs ne veulent pas juste savoir *quelle* règle a fired. Ils veulent savoir *pourquoi cette règle et pas l'autre*. Le trace de précédence enregistre :
+Overrides in force       :
+  aucun
 
-- La liste complète des **règles candidates** considérées au pre-filter de scope
-- Les **règles neutralisées** et l'override qui a neutralisé chacune
-- Les **règles effectives** restantes après neutralisation
-- La **winning rule** et le champ de précédence qui a cassé le tie (severity, priority, specificity)
-- L' **effect** et le **enforcement mode** de la winning rule
+Dominating rule          :  R-817 v2
+Precedence tie-broken by :  severity (absolute_ban > hard_block > informative)
 
-Rendu comme un JSON structuré à côté du verdict. Aussi rendable en prose via `/reason` pour un compliance officer qui veut la narration humaine.
+Context at decision      :
+  jurisdiction    = FR
+  client_type     = individual
+  pep_match       = true                        (source: screening_vendor)
+  risk_score      = 0.83                        (source: risk_engine)
 
-## Governance log par Policy
+Approval trail           :  aucun requis
+Normative hash           :  sha256:9f2a...
+```
 
-Chaque Policy porte un `governance_log` : une liste ordonnée d'entrées `GovernanceNote` qui enregistrent les actes d'adoption, amendement, renouvellement ou retraite, chacun avec acteur + date + rationale. Le moteur ne lit jamais ce log ; c'est le contexte humain qui explique *pourquoi* une règle existe. Rendu dans l'UI registry comme un header ambre au-dessus de la liste de rules.
+Tout ce dont la reconstruction a besoin est dans une seule requête, peuplé depuis un état qui a été gelé au moment de décision. La règle R-817 est maintenant en v4 en production ; la Consultation retourne toujours v2 parce que c'est ce qui s'appliquait.
 
-Distinct du trace d'audit technique (Consultation, Event, RuleVersion) que le moteur lit.
+## Expliquer et la policy et la décision
 
-## Approbations et overrides comme objets gouvernés first-class
+Deux questions différentes portent des réponses très différentes. Knowledge les sépare pour que chacune ait une surface first-class.
 
-Pas des annotations de workflow, pas des branches cachées. Les deux sont queryables, versionnés, et liés à la Consultation qu'ils ont résolue :
+| Question | Où ça vit | Ce que ça explique |
+|---|---|---|
+| **Pourquoi l'organisation a-t-elle adopté cette policy ?** | Le `governance_log` de la Policy - une liste ordonnée d'actes d'adoption, amendement, renouvellement et retrait, chacun avec actor, date et rationale. | L'histoire propre de la policy : qui l'a changée, quand, pourquoi. Driver réglementaire, décision interne, process d'exception. Jamais lu par le moteur. Rendu dans l'UI registry comme un header ambre au-dessus de la liste de règles. |
+| **Pourquoi ce cas spécifique a-t-il eu ce résultat ?** | La Consultation - versions de règles citées, trace de précédence, overrides, contexte, approbations. Lu par le moteur au moment de replay. | L'histoire technique de la décision : quelles règles s'appliquaient, ce qui a gagné, pourquoi, sur quel contexte. |
 
-- **Approval** : une ligne par opération, enregistre les rules déclenchantes, le requester, le decider, le résultat, le commentaire de décision. Inclut l'`override_id` optionnel si l'approbation a accordé une exception scope-bounded.
-- **Override** : entité first-class avec sa propre chaîne de versions, s'applique dans un scope déclaré pour une fenêtre de temps déclarée, cité par chaque Consultation dont il a façonné le verdict.
+Le governance log répond à *« pourquoi cette règle existe ? »* La Consultation répond à *« pourquoi cette règle a-t-elle fired sur ce cas ? »* Les équipes compliance ont besoin des deux, depuis la même surface d'audit.
 
-## Signature cryptographique (quand signed-verdict est activé)
+## Comment le replay reste déterministe à travers les années
 
-Quand le déploiement a la signature des verdicts configurée, chaque champ audit-relevant de la décision (action, actor, resource, parameters, outcome, versions de rules citées, normative hash) est inclus dans une enveloppe JWS ES256 signée par la clé privée du tenant. Voir [Enforcement](/product/enforcement).
+Les propriétés qui rendent le replay déterministe :
 
-Cela s'ajoute à l'histoire d'audit :
+- **Versioning immuable par design.** Chaque changement à un champ affectant le verdict d'une Rule crée une nouvelle `RuleVersion`. Les versions précédentes ne sont jamais réécrites. Une Consultation qui a cité une version antérieure continue de pointer sur cette version exacte, pour toujours. Même forme pour `OverrideVersion`.
+- **Trace de précédence comme data, pas comme dérivation.** Le trace enregistre la liste candidate complète, quelles règles ont été neutralisées, quel override a neutralisé chacune, le set effectif qui reste, la règle gagnante, et le champ de précédence qui a cassé le tie. Rendu comme JSON structuré à côté du verdict, ou comme prose via `/reason` pour une narration humaine.
+- **Approbations et overrides comme objets gouvernés first-class.** Pas des annotations de workflow, pas des branches cachées. Les deux sont queryables, versionnées, et liées à la Consultation qu'elles ont résolue. Une ligne `Approval` enregistre les règles déclenchantes, le requester, le decider, le résultat, le commentaire de décision, et l'`override_id` optionnel si l'approbation a accordé une exception scope-bounded. Un `Override` est une entité first-class avec sa propre chaîne de versions, s'applique dans un scope déclaré pour une fenêtre de temps déclarée.
+- **La rétention est un choix de déploiement.** Consultations, versions de règles et events sont retenus selon la policy configurée du tenant. Tant que la Consultation est retenue, la reconstruction lit l'état gelé.
 
-- **Tamper-evidence** : toute modification des champs enregistrés de décision invalide la signature.
-- **Vérifiable externellement** : un auditeur peut vérifier une décision depuis cold storage, des années plus tard, contre le JWKS du tenant, sans aucune dépendance à Knowledge étant en ligne.
-- **Non-répudiation** : le tenant ne peut pas plus tard prétendre *"Knowledge n'a pas dit ça"* - la signature prouve la décision exacte produite au moment exact.
+## Vérification cryptographique (quand signed-verdict est activé)
 
-## Ce que le replay retourne réellement
+Quand le déploiement a le verdict signing configuré, chaque champ audit-relevant de la décision (action, actor, resource, parameters, outcome, versions de règles citées, normative hash) est inclus dans une enveloppe JWS ES256 signée par la clé privée du tenant. Voir [Enforcement](/product/enforcement).
 
-Étant donné un `consultation_id`, Knowledge reconstruit :
+Ça ajoute à l'histoire d'audit :
 
-- Le contexte qui a été envoyé (avec provenance des facts)
-- Les rules applicables et le verdict que chacune a produit
-- La marche de précédence qui a mené à la règle dominante
-- Les overrides et approbations qui ont façonné le résultat
-- Les versions exactes de rule et override en vigueur à ce moment
-- Le normative hash pour vérification externe
-- (Quand signed-verdict activé) l'enveloppe JWS + la clé publique contre laquelle la partie recevant vérifierait
-
-La politique de rétention est un souci de déploiement, pas une limitation du modèle. Tant que la Consultation est retenue, la reconstruction lit l'état gelé.
+- **Tamper-evident.** Toute modification des champs de décision enregistrés invalide la signature.
+- **Vérifiable indépendamment.** Un auditeur peut vérifier une décision depuis cold storage, des années plus tard, contre le JWKS du tenant, sans aucune dépendance à ce que Knowledge soit en ligne.
 
 ## Related
 
 | À lire ensuite | Pourquoi |
 |---|---|
-| [Enforcement](/product/enforcement) | Verdicts signés + la chaîne de confiance à quatre acteurs |
-| [Progressive context](/product/progressive-context) | Comment le côté input du trace d'audit est peuplé |
-| [Overrides, approbations, pauses](/docs/concepts/overrides-approvals-pauses) | La surface d'authorship + versioning + approbation en profondeur |
+| [Enforcement](/product/enforcement) | Verdicts signés et la chaîne de confiance à quatre acteurs |
+| [Progressive context](/product/progressive-context) | Comment le côté contexte de l'audit trail est peuplé |
+| [Overrides, approbations, pauses](/docs/concepts/overrides-approvals-pauses) | La surface d'authorship, versioning et approbation en profondeur |
+| [Product](/product) | La boucle de décision pour agents IA rule-governed |
