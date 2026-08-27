@@ -1,40 +1,113 @@
 ---
 title: Quickstart - governed tool en Python
-description: Cinq minutes hands-on. Installer le runtime, décorer une fonction, voir l'enforcement se déclencher sur un appel tampered.
+description: Deux patterns pour wrapper un tool Python avec l'enforcement d'un signed verdict. Pattern A vérifie un verdict qu'on vous remet. Pattern B laisse le tool consulter Knowledge lui-même.
 locale: fr
 kicker: Docs - Getting started
 ---
 
-Cinq minutes. Se termine avec une vraie vérification de signed_verdict et un refus `binding_mismatch` qui marche.
+Deux patterns, même page. Choisissez celui qui correspond à l'endroit où votre code se trouve dans la chaîne.
+
+| Pattern | Utilisez-le quand |
+|---|---|
+| **A - `verify_verdict`** | Quelque chose en amont (l'agent, un proxy, un orchestrateur) a déjà consulté Knowledge et remet le verdict signé à votre tool. Votre job : vérifier ce verdict contre ce que l'appelant demande, puis exécuter. |
+| **B - `@governed_tool`** | Votre tool possède l'appel à Knowledge. Il re-consulte à chaque invocation. L'agent ne voit jamais de token. |
 
 ## Prérequis
 
-- Un déploiement Knowledge qui tourne (tier design-partner). Si vous n'en avez pas, [contactez-nous](/pilot).
-- Une clé API agent pour le tenant que vous voulez consulter. Passée comme env var `AGENT_API_KEY` ci-dessous.
-- Python 3.11+ disponible.
+- Un déploiement Knowledge actif. [Contactez-nous](/pilot) si vous n'en avez pas.
+- Python 3.11+.
+- Pattern B a besoin d'une clé API pour le tenant. Pattern A n'en a pas besoin - la vérification n'utilise que le JWKS public.
 
-## Installation
+## Install
 
 ```bash
-pip install fastapi uvicorn                      # pour le service démo
-pip install -e path/to/knowledge-runtime         # le SDK Python (editable depuis monorepo)
+pip install -e path/to/knowledge-runtime
 ```
 
-(Publication PyPI de `knowledge-runtime` est un follow-up. Pour l'instant, installer depuis le checkout du monorepo.)
+Publication PyPI en follow-up.
 
-## Configuration
+---
+
+## Pattern A - vérifier un verdict qu'on vous remet
+
+### La primitive
+
+```python
+from knowledge_runtime import verify_verdict, VerdictVerificationError
+
+JWKS_URL = "https://knowledge.acme-bank.com/knowledge/v1/tenants/acme-bank/jwks"
+
+def refund_customer(tx: str, amount: int, signed_verdict: str):
+    try:
+        verify_verdict(
+            token=signed_verdict,
+            jwks_url=JWKS_URL,
+            expected_bindings={
+                "action": "refund.execute",
+                "resource": tx,
+                "parameters.amount_eur": amount,
+            },
+        )
+    except VerdictVerificationError as e:
+        raise PermissionError(f"refund refused ({e.code})") from e
+
+    return call_refund_api(tx, amount)
+```
+
+`expected_bindings` est construit depuis les vrais args de l'appel. Si le token atteste quelque chose de différent de ce que l'appelant demande, la vérification échoue et le tool ne s'exécute pas.
+
+### Demo 1 - flow normal
+
+L'agent consulte Knowledge pour un remboursement de 40 EUR, puis appelle le tool avec le même montant.
+
+```python
+verdict = agent_calls_knowledge(action="refund.execute", tx="TX-456", amount=40)
+refund_customer(tx="TX-456", amount=40, signed_verdict=verdict)
+# Refund exécuté.
+```
+
+### Demo 2 - l'agent skip Knowledge et hallucine un verdict
+
+L'agent bypasse `/resolve` et fabrique un token - par exemple le base64 d'un JSON inventé par l'LLM.
+
+```python
+hallucinated = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9..."  # inventé
+
+refund_customer(tx="TX-456", amount=40, signed_verdict=hallucinated)
+# PermissionError : refund refused (bad_signature)
+```
+
+Selon la distance entre le token bidon et un JWS valide, vous obtenez `malformed_token` ou `bad_signature`. Dans les deux cas le corps du tool ne s'exécute jamais.
+
+### Demo 3 - l'agent consulte pour 40 EUR mais appelle le tool avec 4000 EUR
+
+L'agent obtient un vrai verdict pour 40, puis tente de le réutiliser pour 4000.
+
+```python
+verdict_for_40 = agent_calls_knowledge(action="refund.execute", tx="TX-456", amount=40)
+refund_customer(tx="TX-456", amount=4000, signed_verdict=verdict_for_40)
+# PermissionError : refund refused (binding_mismatch)
+```
+
+`expected_bindings["parameters.amount_eur"]` vaut 4000 (construit depuis l'arg réel de l'appel). Le token porte 40. Mismatch, refusé.
+
+---
+
+## Pattern B - décorer un tool et le laisser se consulter tout seul
+
+### Configure
 
 ```python
 from knowledge_runtime import configure
 
 configure(
-    knowledge_url="https://knowledge.your-deployment.com",
+    knowledge_url="https://knowledge.acme-bank.com",
     tenant_slug="acme-bank",
     api_key=os.environ["AGENT_API_KEY"],
 )
 ```
 
-## Décorer une fonction
+### Decorate
 
 ```python
 from knowledge_runtime import governed_tool
@@ -43,90 +116,62 @@ from knowledge_runtime import governed_tool
     action="refund.execute",
     resource="tx",
     bind=["amount"],
-    security_irrelevant=["reason"],
 )
 def refund_customer(tx: str, amount: int, reason: str = "") -> dict:
-    # Appel métier réel - atteint uniquement APRÈS que Knowledge signe
     return call_refund_api(tx, amount)
 ```
 
-C'est toute l'intégration. Le décorateur :
-
-1. Enregistre le tool dans le runtime à l'import.
-2. Wrappe la fonction pour qu'un appel direct déclenche `/resolve` → verify signed_verdict → check bindings → execute.
-3. Préserve `__wrapped__` pour que les tool-schema generators (LangChain, LlamaIndex, MCP) voient la signature intentionnelle.
-
-## Essayer le happy path
+### Flow normal
 
 ```python
-result = refund_customer(tx="TX-456", amount=40)
-# {"tx": "TX-456", "amount": 40, "provider_ref": "re_...", ...}
+refund_customer(tx="TX-456", amount=40)
 ```
 
-Sous le capot :
+À chaque appel, le decorator :
 
-1. Le wrapper appelle `/knowledge/v1/resolve` avec `action_type="refund.execute"`, `context.scope={tx: "TX-456"}`, `context.metrics={amount: 40}`.
-2. Knowledge retourne un verdict + une enveloppe JWS `signed_verdict`.
-3. Le wrapper fetch le JWKS depuis `/knowledge/v1/tenants/acme-bank/jwks` (cached, TTL 5 min).
-4. Le wrapper vérifie signature, expiry, outcome, et bindings contre les args réels de l'appel.
-5. Tous les checks passent → le corps de fonction s'exécute → l'API refund est appelée.
+1. POST sur `/knowledge/v1/resolve` avec `action_type="refund.execute"`, resource `TX-456`, `parameters.amount=40`.
+2. Extrait `signed_verdict` de la réponse.
+3. Vérifie signature + expected bindings contre les args d'appel.
+4. Sur succès, exécute le corps de la fonction.
 
-## Essayer un appel tampered
+Parce que le decorator construit lui-même la requête resolve depuis les args courants, les attaques d'escalade comme Pattern A / Demo 3 ne s'appliquent pas : le verdict est toujours pour les args que vous avez réellement passés. Pattern B protège contre l'exécution du tool sans décision Knowledge. Il ne protège PAS l'appel Knowledge lui-même contre un tool compromis qui enverrait de mauvais args.
 
-Le `@governed_tool` vérifie les bindings entre ce que Knowledge a signé et ce que le caller a passé. Pour voir l'enforcement se déclencher, simuler l'attaque *"l'attaquant escalade le montant après avoir consulté"* :
+---
 
-```python
-# Consulter Knowledge pour un petit montant (40 EUR)
-resolved = client.post("/knowledge/v1/resolve", json={
-    "action_type": "refund.execute",
-    "context": {"scope": {"tx": "TX-456"}, "metrics": {"amount": 40}},
-}).json()
+## Errors
 
-# Tenter d'utiliser le signed_verdict résultant pour un GROS montant (4000 EUR)
-# en appelant manuellement le wrapper avec une valeur différente :
-try:
-    refund_customer(tx="TX-456", amount=4000)  # PAS 40
-except VerdictVerificationError as e:
-    assert e.code == "binding_mismatch"
-    print(f"Refusé : {e}")
+Les deux patterns lèvent `VerdictVerificationError` avec un `.code` machine-readable :
+
+| Code | Cause |
+|---|---|
+| `malformed_token` | Le JWS n'a pas pu être parsé. Levé aussi en Pattern B si `/resolve` n'a pas retourné de `signed_verdict` (déploiement advisory-only). |
+| `unknown_kid` | Le JWKS ne contient pas le `kid` du token même après refresh. |
+| `bad_signature` | La signature ne vérifie contre aucune clé connue. |
+| `expired` | L'heure actuelle est passée `expires_at`. |
+| `outcome_not_allowed` | Le verdict est `blocked` ou `approval_required`, pas `allowed`. |
+| `binding_mismatch` | Un binding attendu n'a pas matché le token. `.details` porte la clé qui a échoué. |
+| `actor_mismatch` | L'`actor` du token ne match pas le caller principal authentifié. |
+| `on_behalf_of_unauthenticated` | Le caller utilise `on_behalf_of` mais le flag dit qu'il n'a pas été authentifié. |
+| `jwks_fetch_failed` | Erreur HTTP au fetch du document JWKS. |
+
+## Où est la clé publique
+
+La clé publique de vérification vit dans un document JWKS servi par Knowledge lui-même :
+
+```
+GET https://knowledge.<votre-déploiement>/knowledge/v1/tenants/<slug>/jwks
 ```
 
-Le wrapper re-consulte toujours Knowledge avec les args courants, donc ce pattern d'attaque spécifique est symétrique ; la preuve de tampering la plus forte vit dans les tests unitaires du runtime (`test_governed_tool.py::test_decorator_end_to_end_amount_tampered`) qui utilisent un stub Knowledge qui signe délibérément une enveloppe mismatchée.
+Format JWKS standard. La rotation est transparente : quand un token arrive avec un `kid` inconnu, le runtime re-fetch le JWKS une fois et retente.
 
-## Guard-rails
+- **Pattern A** : passez l'URL à `verify_verdict(..., jwks_url=...)`.
+- **Pattern B** : `configure()` dérive l'URL depuis `knowledge_url + tenant_slug`. Overridable via `jwks_url=` si le déploiement route JWKS via un autre host.
 
-Linting à l'import :
+Le runtime cache le JWKS 5 minutes par défaut.
 
-```python
-from knowledge_runtime import lint_bindings
-for warning in lint_bindings(refund_customer):
-    print(warning)
-# governed_tool "refund_customer" : arg "reason" is neither in `bind`,
-# `resource`, nor `security_irrelevant`. Confirm this argument does not
-# affect authorization.
-```
-
-Dans votre suite de tests :
-
-```python
-from knowledge_runtime import verify_binding_completeness
-
-verify_binding_completeness(
-    refund_customer,
-    sample_call={"tx": "TX-456", "amount": 40, "reason": "duplicate"},
-    variations={"amount": 4000, "tx": "TX-999", "reason": "test"},
-    build_resolve_body=<votre body-builder>,
-)
-```
-
-Asserte que muter un arg bindé change le corps de resolve et muter un arg non-bindé non.
-
-## Et si aucune clé de signature verdict n'est configurée (déploiement advisory-only) ?
-
-Le runtime raise `VerdictVerificationError(code="malformed_token")` au moment de l'appel avec un message qui pointe la config du déploiement. Les déploiements advisory-only ne devraient PAS utiliser `@governed_tool` ; ils devraient appeler `/check` ou `/resolve` directement et agir sur le verdict de façon consultative.
+---
 
 ## Suite
 
 - **[Quickstart : MCP proxy en 5 minutes](/docs/quickstart-mcp-proxy)** - même enforcement, transport MCP.
 - **[Enforcement](/product/enforcement)** - le modèle complet, la chaîne de confiance à quatre acteurs, chemins d'adoption.
-- **[Integrations](/product/integrations)** - matrice de compatibilité framework.
