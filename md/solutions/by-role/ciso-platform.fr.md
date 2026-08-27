@@ -1,106 +1,182 @@
 ---
-title: Pour CISO / platform
-description: Preuve cryptographique que chaque action gouvernée a été autorisée par la policy. Une chaîne de confiance à quatre acteurs qui documente ses propres limites. Reconstitution d'audit qui survit au cold storage.
+title: Donnez aux agents IA de l'autonomie sans donner l'autorité au modèle
+description: Knowledge sépare ce que l'agent décide de faire de ce qu'il est autorisé à faire. Les actions gouvernées peuvent exiger une autorisation policy indépendante à la frontière du tool, avec un trail d'audit qui enregistre exactement ce qui a autorisé chaque exécution.
 locale: fr
-kicker: Solutions - Pour CISO / platform
+kicker: Solutions - Pour CISO et équipes Platform
 ---
 
-Votre organisation déploie des agents IA. Votre job est de répondre à trois questions avant que ça n'arrive :
+Votre organisation déploie des agents IA qui vont investiguer des cas, rassembler des preuves et prendre des actions métier réelles. Votre job est de permettre ça sans laisser le modèle devenir l'autorité sur ce qui est autorisé.
 
-> *Comment j'audite ce que l'agent a réellement décidé ?*
+Avant les agents, une application traversait des chemins de code connus, appelait des APIs connues, sous des permissions connues. Chaque chemin pouvait être raisonné statiquement. Avec un agent décisionnel, l'action prise émerge du raisonnement du modèle au runtime. Le chemin est dynamique.
 
-> *Comment j'empêche l'agent d'agir hors de son scope autorisé ?*
+La question à laquelle vous devez répondre :
 
-> *Comment je prouve ça à un régulateur, six mois plus tard, sans scramble ?*
+> *Comment donner à un agent IA de l'autonomie sans donner l'autorité au modèle ?*
 
-Knowledge répond aux deux premières directement et à la troisième structurellement.
+Knowledge sépare les deux.
 
-## Preuve cryptographique à la frontière du tool
+**Le modèle propose. La policy autorise. Votre architecture enforce.**
 
-Chaque réponse `/check` et `/resolve` embarque une enveloppe JWS ES256 signée par la clé privée du tenant. Les Policy Enforcement Points en aval (wrappers de tool, proxy MCP, code custom) vérifient la signature et contrôlent que l'opération matche les bindings avant d'exécuter l'API métier sous-jacente.
+## Pourquoi les contrôles classiques ne suffisent pas seuls
 
-Concrètement, un verdict autorisant `refund_execute(TX-456, 40 EUR)` :
+Vous avez déjà IAM, RBAC, API gateways, service accounts, OAuth. Ces contrôles répondent à *qui peut appeler*.
 
-- Ne peut pas être rejoué pour `refund_execute(TX-456, 4000 EUR)` - le binding `amount` ne matche pas, le PEP refuse avec `binding_mismatch`
-- Ne peut pas être rejoué pour `refund_execute(TX-999, 40 EUR)` - le binding `resource` ne matche pas
-- Ne peut pas être forgé avec un `actor` différent via injection JSON body - l'actor est dérivé de l'authentification Knowledge du caller, jamais du payload de requête
-- Ne peut pas être vérifié passé son `expires_at` - défaut 60 secondes, configurable par tenant + par appel
+Ils ne répondent pas à *si cette action métier spécifique devrait arriver*, étant donné l'état policy courant, le contexte courant, et l'identité de l'humain pour le compte duquel l'agent agit.
 
-La spec complète à [/product/enforcement](/product/enforcement).
+Considérez un tool d'agent support :
 
-## La chaîne de confiance à quatre acteurs
+| Couche | Ce qu'elle décide |
+|---|---|
+| **IAM / RBAC** | Le service account de l'agent support PEUT appeler l'API refund. |
+| **API gateway** | La requête est bien formée et rate-limited. |
+| **Business policy** | Refund de €40 sur TX-456, pour un client Gold, raison delayed-shipment, sous la refund policy v12 courante, agissant pour hum-alice - **cette action spécifique est-elle autorisée ?** |
+
+IAM sait qui. La policy sait si. Knowledge est cette couche policy, à côté des contrôles d'identité et réseau que vous avez déjà.
+
+## Séparer intention et autorité
 
 ```
-Human Principal   ->   Agent Principal   ->   Knowledge   ->   PEP   ->   Business API
+Agent
+  |  comprend, investigue, propose
+  ↕
+Knowledge
+  |  applique la policy, résout la précédence
+  |  détermine : allow / approval required / block
+  ↓
+Point d'enforcement
+  |  vérifie que l'autorisation matche l'action proposée exacte
+  ↓
+API métier
 ```
 
-Knowledge durcit deux arêtes de cette chaîne :
+L'agent peut proposer. Knowledge détermine l'autorité. Le point d'enforcement vérifie que les deux matchent, à la frontière du tool, avant que l'action sous-jacente ne puisse s'exécuter.
 
-- **Knowledge -> PEP** : vérification de signature
-- **Agent -> PEP** : check de binding contre l'opération signée
+## Rendre l'autorisation policy enforceable
 
-Les autres arêtes dépendent de votre architecture. Le modèle de confiance est explicite à [/product/enforcement](/product/enforcement) §Trust boundaries pour que votre équipe review voie exactement ce que Knowledge garantit et ne garantit pas.
+Une décision policy seule est advisory. Pour les actions gouvernées, Knowledge peut émettre une preuve d'autorisation liée à l'opération exacte que l'agent propose.
 
-## Ce que Knowledge ne garantit PAS (documenté, pas caché)
+Un verdict autorisant :
 
-- **Tous les chemins vers une API métier passent par un PEP.** Si votre réseau / IAM permet à l'agent d'atteindre une API métier directement, aucun verdict signé n'aide. **C'est votre responsabilité d'architecture.**
-- **L'humain délégant est digne de confiance.** Le claim `on_behalf_of` est authentifié uniquement quand un token de délégation ou un binding d'identité le supporte. `on_behalf_of_authenticated: false` est un cas commun ; le PEP doit le traiter comme metadata non fiable.
-- **Les faits assertés par le caller sont vrais.** Les facts injectés dans `/resolve` sont hashés pour audit mais pas authentifiés par champ. La provenance des facts est orthogonale.
-- **Un verdict signé ne peut pas être rejoué dans son TTL.** La protection contre le replay est un store spent-verdicts côté PEP. À activer pour les opérations exactement-une-fois.
+```
+refund
+transaction = TX-456
+amount = €40
+actor = SupportAgent-17
+```
 
-Être explicite sur ces limites fait partie du contrat d'enforcement. Une histoire signed-verdict qui cache ses limites est pire qu'une qui les nomme.
+ne peut pas être réutilisé pour exécuter :
 
-## Surface d'audit qui survit au cold storage
+```
+amount = €4,000
+transaction = TX-999
+un principal agent différent
+une action expirée
+```
 
-Chaque consultation écrit un record Consultation qui fige les versions exactes de rules, le trace de précédence, les overrides, et le normative hash au moment de décision. Les verdicts signés ajoutent la tamper-evidence cryptographique : un auditeur peut vérifier une décision depuis cold storage des années plus tard, contre le JWKS du tenant, sans aucune dépendance à Knowledge étant en ligne.
+Le point d'enforcement (wrapper de tool, proxy MCP, code custom) vérifie que l'autorisation et l'opération matchent avant que l'API métier ne soit appelée. Sur n'importe quel mismatch, l'action sous-jacente ne tourne pas.
 
-- **Trace d'autorisation prouvable.** Chaque exécution wrappée a un artefact cryptographique citant les rules exactes qui l'ont autorisée, à un état policy précis, pour un principal agent précis, sur une ressource précise avec des paramètres précis.
-- **Non-répudiation.** Le tenant ne peut pas plus tard prétendre *"Knowledge n'a pas dit ça"* - la signature prouve la décision exacte produite au moment exact.
-- **Replay déterministe.** Pas par inférence de logs. À partir d'un état gelé.
+Modèle technique complet à [Enforcement](/product/enforcement).
 
-L'histoire d'audit complète à [/product/auditability](/product/auditability).
+## Donner à chaque équipe agent la même primitive de gouvernance
 
-## Inventaire des clés (honnête)
+Les équipes Platform ont un second problème quand plusieurs équipes commencent à shipper des agents. Sans standard, chaque équipe construit sa propre couche de contrôle :
 
-Knowledge ship avec quatre clés cryptographiques par déploiement, documentées à `docs/engineering/keys-guide.md` :
+```
+Agent A         Agent B          Agent C
+policy dans     policy dans      policy dans
+les prompts     config JSON      code Python
 
-- **Webhook signing** (ECDSA P-256, deployment-wide) - stable
-- **Encryption at rest / KEK** (Fernet AES-128-CBC + HMAC-SHA256, deployment-wide, rotation MultiFernet) - stable
-- **Session JWT secret** (HS256, deployment-wide, partagée avec knowledge-mcp) - stable
-- **Verdict signing** (ECDSA P-256, per-tenant comme planifié) - Option B deployment-wide aujourd'hui, Option C per-tenant est un upgrade path non-cassant
+flow            format d'audit   rate limits
+d'approval      différent        différents
+custom
 
-Les stories de rotation par clé sont documentées ; la rotation KEK est graceful avec zéro downtime via MultiFernet. La rotation verdict-signing retire l'ancien `kid` du JWKS après que la fenêtre de recouvrement draine les verdicts signés en vol.
+logs custom     logs custom      logs custom
+```
 
-## Posture compliance
+Platform doit reviewer un modèle de gouvernance différent sur chaque projet. Avec Knowledge comme primitive standard :
 
-État actuel, honnête :
+```
+              Knowledge
+                 ↓
+    interface de décision commune
+    preuve d'autorisation commune
+    pattern d'enforcement commun
+    sémantique d'audit commune
 
-- **SOC 2 + ISO 27001** : programme démarre avec la cohorte design-partner. Aujourd'hui, les contrôles sécurité documentés à [/security](/security) définissent la posture.
-- **Résidence des données** : configurable selon la forme de déploiement. SaaS tourne dans une région fixe ; VPC et on-prem vous donnent contrôle total.
-- **Rétention d'audit** : configurée par déploiement. La plateforme préserve les records d'audit ; les fenêtres de rétention sont à vous de fixer.
-- **Modèle de menace** : chaîne de confiance à quatre acteurs entièrement documentée ; réponse d'incident par clé documentée ; guidance de déploiement pour isolation réseau des APIs métier documentée.
+Agent A ─┐
+Agent B ─┼→ même surface de gouvernance
+Agent C ─┘
+```
 
-Nous ne prétendons pas ce que nous n'avons pas. Le tier design-partner est production-grade pour design partners ; les certifications complètes ship au fur et à mesure que la cohorte mûrit.
+Toutes les règles n'ont pas à être centralisées. Mais chaque décision rule-governed suit le même pattern de gouvernance. Reviews, audits et incident response deviennent du travail que vous faites une fois, pas par équipe.
 
-## Formes de déploiement
+## Reconstruire l'autorisation, pas juste l'activité
 
-- **SaaS** (hosté par Asplenz) : le plus rapide à démarrer ; les certifications suivent
-- **Cloud privé / VPC** : déployé dans votre compte cloud ; vous contrôlez tout
-- **On-premise** : déployé sur infrastructure que vous opérez ; aucune dépendance externe au runtime au-delà de Postgres + votre provider LLM
+Les logs classiques répondent à *ce qui s'est passé* :
 
-Voir [Integrations](/product/integrations) §Formes de déploiement.
+```
+POST /refund/execute
+200 OK
+service = agent-service
+14:32:18
+```
 
-## Commencer
+Knowledge répond à *ce qui l'a autorisé* :
 
-1. Lisez [Enforcement](/product/enforcement) - le modèle en profondeur.
-2. Lisez [Security](/security) - la posture compliance.
-3. Lisez `docs/engineering/keys-guide.md` dans le monorepo - l'inventaire complet des clés.
-4. [Parlez-nous](/contact) pour une évaluation technique.
+```
+Agent           : SupportAgent-17
+Acting for      : hum-alice (authenticated: false)
+Action          : refund TX-456 €40
+
+Policy          : Refund Policy v12
+Règle gagnante  : R-771 v7
+Règles citées   : R-182 v3, R-771 v7
+Override humain : Aucun
+
+Autorisation    : signée, bound, timestampée
+Décidé le       : 2026-03-15T09:12:00Z
+Expire le       : 2026-03-15T09:13:00Z
+```
+
+Pas dérivé des logs. L'état policy exact et la preuve d'autorisation, gelés au moment de décision. Quand l'audit est une question policy (« qui a autorisé cette action, sous quelles règles, à quel moment »), le record est déterministe.
+
+Histoire d'audit complète à [Auditability](/product/auditability).
+
+## Frontières de sécurité claires. Pas de claims magiques.
+
+Être explicite sur les limites fait partie du contrat de sécurité, pas une caveat.
+
+| Frontière | Ce que Knowledge ne garantit pas |
+|---|---|
+| **Bypass API** | Knowledge ne peut pas protéger une API que l'agent peut atteindre en contournant le point d'enforcement. Votre réseau et IAM décident si ce chemin existe. |
+| **Délégation** | Knowledge ne prouve pas automatiquement que l'identité humaine claimed par un agent a réellement délégué l'autorité. Le claim `on_behalf_of` n'est authentifié que quand un token de délégation ou un identity binding le supporte. |
+| **Fact provenance** | Signer une décision policy ne prouve pas que chaque fact d'input était vrai. Les facts fournis à Knowledge sont hashés pour audit mais pas authentifiés par champ. La fact provenance est un contrôle séparé. |
+| **Replay** | La sémantique exactly-once exige une protection de replay au point d'enforcement. Knowledge set une expiry ; le store spent-verdicts est votre responsabilité à activer pour les opérations exactly-once. |
+
+Modèle de menace complet à [Enforcement](/product/enforcement) et [Security](/security).
+
+## Déployer dans votre modèle de sécurité
+
+| Couche | Détails |
+|---|---|
+| **Formes de déploiement** | SaaS (hosté par Asplenz, le plus rapide à démarrer), cloud privé / VPC (dans votre compte, vous contrôlez le placement réseau et la résidence), on-premise (aucune dépendance externe au runtime au-delà de Postgres et votre provider LLM). |
+| **Résidence des données** | Configurable par forme de déploiement. |
+| **Certifications sécurité** | Le programme SOC 2 et ISO 27001 démarre avec la cohorte design-partner. Les contrôles de sécurité d'aujourd'hui sont documentés à [/security](/security). Nous ne claim pas ce que nous n'avons pas. |
+| **Modèle de menace** | Frontières de confiance, incident response et guidance de déploiement pour l'isolation réseau des APIs métier sont documentés et reviewable. |
+
+Inventaire de clés détaillé, stories de rotation et guidance d'isolation réseau à [Security](/security).
+
+## Évaluer une action agent gouvernée
+
+Commencez par une action que vous n'êtes pas à l'aise de laisser un agent exécuter sur le jugement du modèle seul. Wrappez-la. Vérifiez le comportement d'autorisation en shadow mode. Cutoverez vers l'enforcement quand le trail d'audit atteint votre bar.
+
+**[Security](/security)** &nbsp; · &nbsp; **[Parlez-nous](/contact) pour une évaluation technique**
 
 ## Related
 
 | À lire ensuite | Pourquoi |
 |---|---|
-| [Enforcement](/product/enforcement) | Modèle cryptographique, chemins d'adoption, limites de confiance |
+| [Product](/product) | La boucle de décision pour agents IA rule-governed |
+| [Enforcement](/product/enforcement) | Modèle cryptographique, chemins d'adoption, frontières de confiance complètes |
 | [Auditability](/product/auditability) | Gel de Consultation, replay, tamper-evidence |
-| [Security](/security) | Contrôles enterprise, clés, topologies de déploiement |
+| [Security](/security) | Contrôles enterprise, inventaire des clés, topologies de déploiement |

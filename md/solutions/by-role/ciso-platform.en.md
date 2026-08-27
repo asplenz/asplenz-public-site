@@ -1,106 +1,181 @@
 ---
-title: For CISO / platform
-description: Cryptographic proof that every governed action was authorized by policy. A four-actor trust chain that documents its own boundaries. Audit reconstruction that survives cold storage.
+title: Give AI agents autonomy without giving the model authority
+description: Knowledge separates what an agent decides to do from what it is authorized to do. Governed actions can require independent policy authorization at the tool boundary, with an audit trail that records exactly what authorized each execution.
 locale: en
-kicker: Solutions - For CISO / platform
+kicker: Solutions - For CISO and Platform Teams
 ---
 
-Your organisation is deploying AI agents. Your job is to answer three questions before that happens :
+Your organization is deploying AI agents that will investigate cases, gather evidence and take real business actions. Your job is to enable that without letting the model become the authority on what is allowed.
 
-> *How do I audit what the agent actually decided ?*
+Before agents, an application traversed known code paths, called known APIs, under known permissions. Every path could be reasoned about statically. With a decision-making agent, the action taken emerges from the model's reasoning at runtime. The path is dynamic.
 
-> *How do I prevent the agent from acting outside its authorized scope ?*
+The question you need to answer :
 
-> *How do I prove that to a regulator, six months later, without a scramble ?*
+> *How do I give an AI agent autonomy without giving the model authority ?*
 
-Knowledge answers the first two directly and the third structurally.
+Knowledge separates the two.
 
-## Cryptographic proof at the tool boundary
+**The model proposes. Policy authorizes. Your architecture enforces.**
 
-Every `/check` and `/resolve` response embeds a JWS ES256 envelope signed by the tenant's private key. Downstream Policy Enforcement Points (tool wrappers, MCP proxy, custom code) verify the signature and check that the operation matches the bindings before executing the underlying business API.
+## Why classic controls are not enough on their own
 
-Concretely, a verdict authorizing `refund_execute(TX-456, 40 EUR)` :
+You already have IAM, RBAC, API gateways, service accounts, OAuth. Those controls answer *who can call*.
 
-- Cannot be replayed for `refund_execute(TX-456, 4000 EUR)` - the `amount` binding does not match, the PEP refuses with `binding_mismatch`
-- Cannot be replayed for `refund_execute(TX-999, 40 EUR)` - the `resource` binding does not match
-- Cannot be forged with a different `actor` field via JSON body injection - the actor is derived from Knowledge's authentication of the caller, never from the request payload
-- Cannot be verified past its `expires_at` - default 60 seconds, configurable per tenant + per call
+They do not answer *whether this specific business action should happen*, given the current policy state, the current context, and the identity of the human on whose behalf the agent is acting.
 
-The full spec at [/product/enforcement](/product/enforcement).
+Consider a support agent tool :
 
-## The four-actor trust chain
+| Layer | What it decides |
+|---|---|
+| **IAM / RBAC** | The service account for the support agent CAN call the refund API. |
+| **API gateway** | The request is well-formed and rate-limited. |
+| **Business policy** | Refund of €40 on TX-456, for a Gold-tier customer, delayed-shipment reason, under current refund policy v12, acting for hum-alice - **is this specific action authorized ?** |
+
+IAM knows who. Policy knows whether. Knowledge is that policy layer, sitting alongside the identity and network controls you already have.
+
+## Separate intention from authority
 
 ```
-Human Principal   ->   Agent Principal   ->   Knowledge   ->   PEP   ->   Business API
+Agent
+  |  understands, investigates, proposes
+  ↕
+Knowledge
+  |  applies policy, resolves precedence
+  |  determines: allow / approval required / block
+  ↓
+Enforcement point
+  |  verifies authorization matches the exact proposed action
+  ↓
+Business API
 ```
 
-Knowledge tightens two edges of this chain :
+The agent may propose. Knowledge determines authority. The enforcement point verifies both, at the tool boundary, before the underlying action can execute.
 
-- **Knowledge -> PEP** : signature verification
-- **Agent -> PEP** : binding check against the signed operation
+## Make policy authorization enforceable
 
-The other edges depend on your architecture. The trust model is explicit at [/product/enforcement](/product/enforcement) §Trust boundaries so your review team sees exactly what Knowledge does and does not guarantee.
+A policy decision on its own is advisory. For governed actions, Knowledge can issue authorization evidence bound to the exact operation the agent proposes.
 
-## What Knowledge does NOT guarantee (documented, not hidden)
+A verdict authorizing :
 
-- **Every path to a business API goes through a PEP.** If your network / IAM allows the agent to reach a business API directly, no signed verdict helps. **This is your architecture responsibility.**
-- **The delegating human is trustworthy.** The `on_behalf_of` claim is authenticated only when a delegation token or an identity binding backs it. `on_behalf_of_authenticated: false` is a common case ; the PEP must treat it as untrusted metadata.
-- **Caller-asserted facts are truthful.** Facts fed into `/resolve` are hashed for audit but not authenticated per field. Fact provenance is orthogonal.
-- **A signed verdict cannot be replayed within its TTL.** Replay protection is a PEP-side spent-verdicts store. Enable it for exactly-once operations.
+```
+refund
+transaction = TX-456
+amount = €40
+actor = SupportAgent-17
+```
 
-Being explicit about these limits is part of the enforcement contract. A signed-verdict story that hides its limits is worse than one that names them.
+cannot be reused to execute :
 
-## Audit surface that survives cold storage
+```
+amount = €4,000
+transaction = TX-999
+a different agent principal
+an expired action
+```
 
-Every consultation writes a Consultation record freezing the exact rule versions, precedence trace, overrides, and normative hash at decision time. Signed verdicts add cryptographic tamper-evidence : an auditor can verify a decision from cold storage years later, against the tenant's JWKS, without any dependency on Knowledge being live.
+The enforcement point (tool wrapper, MCP proxy, custom code) verifies the authorization and the operation match before the business API is called. On any mismatch, the underlying action does not run.
 
-- **Provable authorization trace.** Every wrapped execution has a cryptographic artifact citing the exact rules that authorized it, at a specific policy state, for a specific agent principal, on a specific resource with specific parameters.
-- **Non-repudiation.** The tenant cannot later claim *"Knowledge did not say that"* - the signature proves the exact decision produced at the exact time.
-- **Deterministic replay.** Not from log inference. From frozen state.
+Full technical model at [Enforcement](/product/enforcement).
 
-Full audit story at [/product/auditability](/product/auditability).
+## Give every agent team the same governance primitive
 
-## Keys inventory (honest)
+Platform teams get a second problem when multiple teams start shipping agents. Without a standard, each team builds its own control layer :
 
-Knowledge ships with four cryptographic keys per deployment, documented at `docs/engineering/keys-guide.md` :
+```
+Agent A         Agent B          Agent C
+policy in       policy in a      policy in
+prompts         JSON config      Python code
 
-- **Webhook signing** (ECDSA P-256, deployment-wide) - stable
-- **Encryption at rest / KEK** (Fernet AES-128-CBC + HMAC-SHA256, deployment-wide, MultiFernet rotation) - stable
-- **Session JWT secret** (HS256, deployment-wide, shared with knowledge-mcp) - stable
-- **Verdict signing** (ECDSA P-256, per-tenant as planned) - Option B deployment-wide today, Option C per-tenant is a non-breaking upgrade path
+custom          different        different
+approval flow   audit format     rate limits
 
-Rotation stories per key are documented ; the KEK rotation is graceful with zero downtime via MultiFernet. Verdict-signing rotation retires the old `kid` from JWKS after the overlap window drains in-flight signed verdicts.
+custom logs     custom logs      custom logs
+```
 
-## Compliance posture
+Platform gets to review a different governance model on every project. With Knowledge as the standard primitive :
 
-Current state, honest :
+```
+              Knowledge
+                 ↓
+       common decision interface
+       common authorization evidence
+       common enforcement pattern
+       common audit semantics
 
-- **SOC 2 + ISO 27001** : programme starts with the design-partner cohort. Today, the security controls documented at [/security](/security) define the posture.
-- **Data residency** : configurable by deployment shape. SaaS runs in a fixed region ; VPC and on-prem give you full control.
-- **Audit retention** : configured per deployment. Platform preserves the audit records ; retention windows are yours to set.
-- **Threat model** : four-actor trust chain fully documented ; incident response per key documented ; deployment guidance for network isolation of business APIs documented.
+Agent A ─┐
+Agent B ─┼→ same governance surface
+Agent C ─┘
+```
 
-We do not claim what we do not have. The design-partner tier is production-grade for design partners ; full certifications ship as the cohort matures.
+Not every rule has to be centralized. But every rule-governed decision follows the same governance pattern. Reviews, audits and incident response become work you do once, not per team.
 
-## Deployment shapes
+## Reconstruct authorization, not just activity
 
-- **SaaS** (Asplenz-hosted) : fastest to start ; certifications trail
-- **Private cloud / VPC** : deployed in your cloud account ; you control everything
-- **On-premise** : deployed on infrastructure you operate ; no external runtime dependency beyond Postgres + your LLM provider
+Classic logs answer *what happened* :
 
-See [Integrations](/product/integrations) §Deployment shapes.
+```
+POST /refund/execute
+200 OK
+service = agent-service
+14:32:18
+```
 
-## Getting started
+Knowledge answers *what authorized it* :
 
-1. Read [Enforcement](/product/enforcement) - the model in depth.
-2. Read [Security](/security) - the compliance posture.
-3. Read `docs/engineering/keys-guide.md` in the monorepo - the full keys inventory.
-4. [Talk to us](/contact) for a technical evaluation.
+```
+Agent          : SupportAgent-17
+Acting for     : hum-alice (authenticated: false)
+Action         : refund TX-456 €40
+
+Policy         : Refund Policy v12
+Winning rule   : R-771 v7
+Cited rules    : R-182 v3, R-771 v7
+Human override : None
+
+Authorization  : signed, bound, timestamped
+Decided at     : 2026-03-15T09:12:00Z
+Expires at     : 2026-03-15T09:13:00Z
+```
+
+Not derived from logs. The exact policy state and authorization evidence, frozen at decision time. When the audit is a policy question ("who authorized this action, under what rules, at what time"), the record is deterministic.
+
+Full audit story at [Auditability](/product/auditability).
+
+## Clear security boundaries. No magic claims.
+
+Being explicit about limits is part of the security contract, not a caveat.
+
+| Boundary | What Knowledge does not guarantee |
+|---|---|
+| **API bypass** | Knowledge cannot protect an API the agent can reach around the enforcement point. Your network and IAM decide whether that path exists. |
+| **Delegation** | Knowledge does not automatically prove that the human identity claimed by an agent actually delegated authority. The `on_behalf_of` claim is authenticated only when a delegation token or identity binding backs it. |
+| **Fact provenance** | Signing a policy decision does not prove every input fact was truthful. Facts fed to Knowledge are hashed for audit but not authenticated per field. Fact provenance is a separate control. |
+| **Replay** | Exactly-once semantics require replay protection at the enforcement point. Knowledge sets an expiry ; the spent-verdicts store is your responsibility to enable for exactly-once operations. |
+
+Complete threat model at [Enforcement](/product/enforcement) and [Security](/security).
+
+## Deploy inside your security model
+
+| Layer | Details |
+|---|---|
+| **Deployment shapes** | SaaS (Asplenz-hosted, fastest to start), private cloud / VPC (in your account, you control network placement and residency), on-premise (no external runtime dependency beyond Postgres and your LLM provider). |
+| **Data residency** | Configurable per deployment shape. |
+| **Security certifications** | SOC 2 and ISO 27001 program begins with the design-partner cohort. Today's security controls are documented at [/security](/security). We do not claim what we do not have. |
+| **Threat model** | Trust boundaries, incident response and deployment guidance for network isolation of business APIs are documented and reviewable. |
+
+Detailed keys inventory, rotation stories and network isolation guidance at [Security](/security).
+
+## Evaluate one governed agent action
+
+Start with one action you are not comfortable letting an agent execute on model judgment alone. Wrap it. Verify the authorization behavior in shadow mode. Cut over to enforcement when the audit trail meets your bar.
+
+**[Security](/security)** &nbsp; · &nbsp; **[Talk to us](/contact) for a technical evaluation**
 
 ## Related
 
 | Read next | Why |
 |---|---|
-| [Enforcement](/product/enforcement) | Cryptographic model, adoption paths, trust boundaries |
+| [Product](/product) | The decision loop for rule-governed AI agents |
+| [Enforcement](/product/enforcement) | Cryptographic model, adoption paths, complete trust boundaries |
 | [Auditability](/product/auditability) | Consultation freeze, replay, tamper-evidence |
-| [Security](/security) | Enterprise controls, keys, deployment topologies |
+| [Security](/security) | Enterprise controls, keys inventory, deployment topologies |
