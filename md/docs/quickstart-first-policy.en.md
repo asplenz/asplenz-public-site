@@ -1,6 +1,6 @@
 ---
 title: Quickstart - create your first policy
-description: From an empty tenant to your first `/resolve` returning a real verdict, in about 30 minutes. Two authoring paths - back-office UI (no code) or JSON API (programmatic). Pick either.
+description: From an empty tenant to your first `/resolve` returning a real verdict, in about 30 minutes. Two authoring paths - back-office UI (no code, direct create) or JSON API (programmatic). Pick either.
 locale: en
 kicker: Docs / Getting started - Stable
 ---
@@ -30,7 +30,7 @@ Three rules. One policy. Applies to every caller in the tenant (universal). Enou
 
 ## Path A - author via the back-office UI (no code)
 
-The visual path. Best when a compliance officer or SME is authoring the rules and you want the CSV format to travel between compliance and engineering.
+The visual path. Best when a compliance officer or SME is authoring the rules directly.
 
 ### Step 1 - create the Policy
 
@@ -40,24 +40,19 @@ Log in to the back-office UI. From the Registry view, choose *New policy*. Fill 
 - **Owner** : the accountable role or person
 - **Rationale** : *"Governs customer-service refund authorizations"*
 
-Save. The policy appears in the registry with its own detail page. **The policy identifier is shown at the top of that page and in the URL** (e.g. `pol-refund-a3f2`). You will not need it in this UI path (the import knows the policy from context), but keep it handy for `/resolve` calls in step 4.
+Save. The policy appears in the registry with its own detail page. Keep this page open ; you will author the rules from here. The policy identifier is shown at the top of the page and in the URL (e.g. `pol-refund-a3f2`) ; you will use it for `/resolve` calls in step 4.
 
-### Step 2 - upload the rules as CSV
+### Step 2 - author each rule
 
-From the policy's detail page, choose *Import rules*. Upload a CSV file with one row per rule.
+From the policy's detail page, choose *New rule*. For each of the three rules, fill in the author view :
 
-`refund-policy.csv` :
+| Rule | Statement | Scope | Condition | Severity |
+|---|---|---|---|---|
+| Small refund | Allow refunds up to €100 | action = `refund.execute` | `parameters.amount_eur` `<=` `100` | allow |
+| Medium refund | Refunds between €100 and €500 require approval | action = `refund.execute` | `parameters.amount_eur` `>` `100` | require_approval |
+| Large refund | Refunds above €500 are blocked | action = `refund.execute` | `parameters.amount_eur` `>` `500` | hard_block |
 
-```csv
-rule_id,statement,scope_action,condition_field,condition_op,condition_value,severity,rationale
-rul-refund-small,Allow refunds up to and including €100,refund.execute,amount_eur,lte,100,allow,Standard small-refund allowance
-rul-refund-medium,Refunds between €100 and €500 require approval,refund.execute,amount_eur,gt,100,require_approval,Above €100 needs decider oversight
-rul-refund-large,Refunds above €500 are blocked,refund.execute,amount_eur,gt,500,hard_block,Above €500 is out of standard policy
-```
-
-Each row is a rule with its scope (`refund.execute`), its condition (`amount_eur` compared to a threshold), and its severity. The UI validates the CSV, shows what will be created, and imports it on confirmation.
-
-Every rule imported this way is created as **universal** (applies to every principal in the tenant). See *[About targeting](#about-targeting)* below.
+Save each. Rules authored here apply to **every principal** in the tenant by default (universal). See *[About targeting](#about-targeting)* below.
 
 ### Step 3 - approve if required
 
@@ -143,7 +138,7 @@ Every rule carries an immutable `version_id`. Every future decision that cites t
 
 ## About targeting
 
-The rules in this quickstart use `universal: true` (in the JSON path) or the default *universal* mode (in the CSV path). That means the rules apply to **every principal calling the tenant** — every agent, every service account, every user.
+The rules in this quickstart use `universal: true` (in the JSON path) or the *applies to everyone* default (in the UI path). That means the rules apply to **every principal calling the tenant** - every agent, every service account, every user.
 
 If you want a rule to apply only to a specific subset of principals (a role, an agent, a user group), attach it to a **Target** instead of marking it universal. See [Policies, rules and targets](/docs/concepts/policies-rules-targets) for the concept, and the [author-rules-in-back-office-ui](/docs/guides/author-rules-in-back-office-ui) guide for how to attach rules to Targets in the UI.
 

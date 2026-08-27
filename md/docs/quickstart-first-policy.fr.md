@@ -1,6 +1,6 @@
 ---
 title: Quickstart - créer votre première policy
-description: D'un tenant vide à votre premier `/resolve` qui retourne un vrai verdict, en environ 30 minutes. Deux chemins d'authoring - UI back-office (no-code) ou API JSON (programmatique). Choisissez l'un ou l'autre.
+description: D'un tenant vide à votre premier `/resolve` qui retourne un vrai verdict, en environ 30 minutes. Deux chemins d'authoring - UI back-office (no-code, create direct) ou API JSON (programmatique). Choisissez l'un ou l'autre.
 locale: fr
 kicker: Docs / Getting started - Stable
 ---
@@ -30,7 +30,7 @@ Trois règles. Une policy. S'applique à chaque caller du tenant (universal). As
 
 ## Path A - authorer via l'UI back-office (no code)
 
-Le chemin visuel. Idéal quand un compliance officer ou SME authore les règles et que vous voulez que le format CSV voyage entre compliance et engineering.
+Le chemin visuel. Idéal quand un compliance officer ou SME authore les règles directement.
 
 ### Étape 1 - créer la Policy
 
@@ -40,24 +40,19 @@ Connectez-vous à l'UI back-office. Depuis la vue Registry, choisissez *Nouvelle
 - **Owner** : le rôle ou la personne responsable
 - **Rationale** : *« Gouverne les autorisations refund customer-service »*
 
-Sauvegardez. La policy apparaît dans le registry avec sa propre page de détail. **L'identifiant policy est affiché en haut de cette page et dans l'URL** (ex. `pol-refund-a3f2`). Vous n'en aurez pas besoin dans ce chemin UI (l'import connaît la policy par contexte), mais gardez-le sous la main pour les appels `/resolve` en étape 4.
+Sauvegardez. La policy apparaît dans le registry avec sa propre page de détail. Gardez cette page ouverte ; vous allez authorer les règles depuis là. L'identifiant policy est affiché en haut de la page et dans l'URL (ex. `pol-refund-a3f2`) ; vous l'utiliserez pour les appels `/resolve` en étape 4.
 
-### Étape 2 - uploader les règles en CSV
+### Étape 2 - authorer chaque règle
 
-Depuis la page de détail de la policy, choisissez *Import rules*. Uploadez un fichier CSV avec une ligne par règle.
+Depuis la page de détail de la policy, choisissez *Nouvelle règle*. Pour chacune des trois règles, remplissez la vue auteur :
 
-`refund-policy.csv` :
+| Règle | Statement | Scope | Condition | Severity |
+|---|---|---|---|---|
+| Small refund | Allow refunds up to €100 | action = `refund.execute` | `parameters.amount_eur` `<=` `100` | allow |
+| Medium refund | Refunds between €100 and €500 require approval | action = `refund.execute` | `parameters.amount_eur` `>` `100` | require_approval |
+| Large refund | Refunds above €500 are blocked | action = `refund.execute` | `parameters.amount_eur` `>` `500` | hard_block |
 
-```csv
-rule_id,statement,scope_action,condition_field,condition_op,condition_value,severity,rationale
-rul-refund-small,Allow refunds up to and including €100,refund.execute,amount_eur,lte,100,allow,Standard small-refund allowance
-rul-refund-medium,Refunds between €100 and €500 require approval,refund.execute,amount_eur,gt,100,require_approval,Above €100 needs decider oversight
-rul-refund-large,Refunds above €500 are blocked,refund.execute,amount_eur,gt,500,hard_block,Above €500 is out of standard policy
-```
-
-Chaque ligne est une règle avec son scope (`refund.execute`), sa condition (`amount_eur` comparé à un threshold), et sa severity. L'UI valide le CSV, montre ce qui sera créé, et l'importe sur confirmation.
-
-Chaque règle importée par ce chemin est créée en **universal** (s'applique à chaque principal du tenant). Voir *[À propos du targeting](#à-propos-du-targeting)* plus bas.
+Sauvegardez chacune. Les règles authorées ici s'appliquent à **chaque principal** du tenant par défaut (universal). Voir *[À propos du targeting](#à-propos-du-targeting)* plus bas.
 
 ### Étape 3 - approuver si requis
 
@@ -143,7 +138,7 @@ Chaque règle porte un `version_id` immuable. Chaque décision future qui cite l
 
 ## À propos du targeting
 
-Les règles de ce quickstart utilisent `universal: true` (dans le chemin JSON) ou le mode *universal* par défaut (dans le chemin CSV). Ça veut dire que les règles s'appliquent à **chaque principal appelant le tenant** — chaque agent, chaque service account, chaque utilisateur.
+Les règles de ce quickstart utilisent `universal: true` (dans le chemin JSON) ou le défaut *s'applique à tout le monde* (dans le chemin UI). Ça veut dire que les règles s'appliquent à **chaque principal appelant le tenant** - chaque agent, chaque service account, chaque utilisateur.
 
 Si vous voulez qu'une règle s'applique seulement à un sous-ensemble spécifique de principals (un rôle, un agent, un groupe d'utilisateurs), attachez-la à un **Target** au lieu de la marquer universal. Voir [Policies, rules et targets](/docs/concepts/policies-rules-targets) pour le concept, et le guide [authorer des règles dans l'UI back-office](/docs/guides/author-rules-in-back-office-ui) pour comment attacher des règles à des Targets dans l'UI.
 
