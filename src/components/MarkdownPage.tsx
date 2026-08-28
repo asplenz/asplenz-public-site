@@ -111,6 +111,15 @@ export default function MarkdownPage({ body, theme }: MarkdownPageProps) {
               }
               return <pre {...props} />;
             },
+            table: (props: ComponentProps<'table'>) => (
+              // Wrap in a scrolling container so a wide table (3-column
+              // with long descriptive cells) scrolls horizontally inside
+              // its own box on mobile instead of forcing the whole page
+              // past viewport width. See .table-scroll rule in globals.css.
+              <div className="table-scroll">
+                <table {...props} />
+              </div>
+            ),
           }}
         >
           {body}

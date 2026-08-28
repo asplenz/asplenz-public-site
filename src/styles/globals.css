@@ -70,6 +70,11 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
+  /* Prevent page-level horizontal scroll when a code block or table has
+   * a wide row (long ASCII diagram, 3-column table with long cells).
+   * Individual .prose pre and .table-scroll containers scroll internally
+   * instead. Nav is position:fixed so it is unaffected by this. */
+  overflow-x: hidden;
 }
 
 .font-serif {
@@ -192,6 +197,10 @@ body {
   color: var(--text-secondary);
   border: 1px solid var(--border-light);
   font-size: 0.875rem;
+  /* Without max-width, a pre grows to fit its content and can push the
+   * article past viewport on mobile. max-width forces the internal
+   * overflow-x-auto to actually kick in. */
+  max-width: 100%;
 }
 
 .prose pre code {
@@ -279,12 +288,21 @@ body {
   color: var(--text-primary);
 }
 
-.prose table {
-  @apply w-full my-6 text-sm;
-  border-collapse: collapse;
+/* Tables sit inside a scrolling wrapper (rendered by MarkdownPage.tsx
+ * component override) so wide 3-column tables scroll horizontally
+ * inside the wrapper instead of pushing the page past viewport width. */
+.prose .table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 1.5rem 0;
   border: 1px solid var(--border);
   border-radius: 8px;
-  overflow: hidden;
+}
+
+.prose table {
+  @apply w-full text-sm;
+  margin: 0;
+  border-collapse: collapse;
 }
 
 .prose thead th {
