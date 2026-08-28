@@ -65,6 +65,12 @@ Le décorateur consulte Knowledge à chaque appel, vérifie la décision signée
 
 Meilleur fit quand votre stack d'agent n'est pas Python ou MCP, ou quand vous voulez contrôle complet sur où l'évaluation policy et l'enforcement se produisent.
 
+### Excel ou un autre workbook back-office ?
+
+Un workbook peut consommer une décision signée de la même façon qu'un tool d'agent : appeler `POST /v1/resolve`, recevoir un verdict + une enveloppe JWS, et agir dessus. Le verdict signé est transport-agnostic.
+
+Le chemin d'intégration concret dépend de vos contraintes IT — typiquement un bridge ou un broker interne entre le workbook et Knowledge, dimensionné selon votre gateway, votre auth et votre posture de déploiement. On scope la forme dans le cadre d'un engagement design-partner.
+
 ## Gardez vos systèmes métier existants
 
 Knowledge n'exige pas de centraliser chaque règle dans votre organisation. Il donne aux décisions que vous choisissez de gouverner une policy authority indépendante, et coexiste proprement avec tout le reste.
@@ -98,6 +104,7 @@ Deux patterns couvrent la plupart des intégrations :
 | **Pattern d'intercepteur de tool call MCP** | Exemple de référence dans le monorepo |
 | **SDK Python** (`knowledge-runtime`) | Disponible |
 | **REST API + JWKS** | Disponible |
+| **Intégration Spreadsheet / EUC** | Patterns de bridge scopés par engagement |
 | **OIDC + SCIM** | Disponible |
 | **TypeScript, Java, adaptateur OpenAI** | [Parlez-nous](/contact) si c'est sur votre chemin |
 

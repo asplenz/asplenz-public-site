@@ -63,6 +63,12 @@ The decorator consults Knowledge on each call, verifies the signed decision, and
 
 Best fit when your agent stack is not Python or MCP, or when you want complete control over where policy evaluation and enforcement happen.
 
+### Excel or another back-office spreadsheet ?
+
+A workbook can consume a signed decision the same way an agent tool does : call `POST /v1/resolve`, receive a verdict + JWS envelope, and act on it. The signed verdict is transport-agnostic.
+
+The concrete integration path depends on your IT constraints — typically a small bridge or internal broker between the workbook and Knowledge, sized for your gateway, auth and deployment posture. We scope the shape as part of a design-partner engagement.
+
 ## Keep your existing business systems
 
 Knowledge does not require centralizing every rule in your organization. It gives the decisions you choose to govern an independent policy authority, and coexists cleanly with everything else.
@@ -96,6 +102,7 @@ Two patterns cover most integrations :
 | **MCP tool-call interceptor pattern** | Reference example in the monorepo |
 | **Python SDK** (`knowledge-runtime`) | Available |
 | **REST API + JWKS** | Available |
+| **Spreadsheet / EUC integration** | Bridge patterns scoped per engagement |
 | **OIDC + SCIM** | Available |
 | **TypeScript, Java, OpenAI adapter** | [Talk to us](/contact) if this is on your path |
 
