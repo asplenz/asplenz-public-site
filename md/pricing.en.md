@@ -1,6 +1,6 @@
 ---
 title: Pricing built around governed decisions, not rule count
-description: "How Knowledge is priced today : a fixed-scope design-partner engagement, then an annual production agreement based on deployment and decision volume. Never per rule."
+description: "How Knowledge is priced today : a fixed-scope design-partner engagement, then an annual production agreement scoped to your Knowledge environment."
 locale: en
 kicker: Pricing
 ctaLabel: Discuss pricing
@@ -24,7 +24,7 @@ Pricing is scoped upfront based on the decision, the integration requirements an
 
 **Annual platform agreement**
 
-Production pricing reflects the scale and deployment requirements of your Knowledge environment — never the number of rules you encode. Your pricing should not increase simply because you formalize more of your policy in Knowledge.
+Production pricing reflects the scale and deployment requirements of your Knowledge environment — not how many rules you formalize.
 
 Founding design partners receive preferential first-year production terms.
 

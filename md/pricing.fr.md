@@ -1,6 +1,6 @@
 ---
 title: Un pricing construit autour des décisions gouvernées, pas du nombre de rules
-description: "Comment Knowledge est facturé aujourd'hui : un engagement design-partner à scope fixe, puis un contrat de production annuel basé sur le déploiement et le volume de décisions. Jamais par rule."
+description: "Comment Knowledge est facturé aujourd'hui : un engagement design-partner à scope fixe, puis un contrat de production annuel scopé sur votre environnement Knowledge."
 locale: fr
 kicker: Pricing
 ctaLabel: Discuss pricing
@@ -24,7 +24,7 @@ Le pricing est scopé en amont selon la décision, les exigences d'intégration 
 
 **Accord plateforme annuel**
 
-Le pricing production reflète l'échelle et les exigences de déploiement de votre environnement Knowledge — jamais le nombre de rules que vous encodez. Votre pricing ne devrait pas augmenter simplement parce que vous formalisez davantage de votre policy dans Knowledge.
+Le pricing production reflète l'échelle et les exigences de déploiement de votre environnement Knowledge — pas le nombre de rules que vous formalisez.
 
 Les founding design partners bénéficient de conditions préférentielles la première année de production.
 
