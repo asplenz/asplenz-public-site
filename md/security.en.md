@@ -5,7 +5,6 @@ locale: en
 kicker: Security model
 ctaLabel: Discuss security with us
 ctaHref: mailto:contact@asplenz.com
-contactEmail: contact@asplenz.com
 ---
 
 Knowledge is designed to be deployed in environments where the cost of a wrong or forged authorization is material. The standard controls are summarised below. For a security questionnaire, a deployment-specific review, or a specific control requirement, [write to us](mailto:contact@asplenz.com).

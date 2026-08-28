@@ -5,7 +5,6 @@ locale: en
 kicker: Three founding design-partner engagements open
 ctaLabel: Discuss a design partnership
 ctaHref: mailto:contact@asplenz.com
-contactEmail: contact@asplenz.com
 ---
 
 We work alongside your implementation team to turn one policy-driven human decision into a governed agent workflow. The engagement is not a demo or a sandbox proof-of-concept. It is a scoped working session where we model one production-relevant decision, run it against real cases using the safest appropriate adoption pattern (typically shadow, gate or selective routing, chosen at scoping), and measure the outcome against criteria we agree together.

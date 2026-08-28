@@ -5,7 +5,6 @@ locale: fr
 kicker: Modèle de sécurité
 ctaLabel: Discutons sécurité avec nous
 ctaHref: mailto:contact@asplenz.com
-contactEmail: contact@asplenz.com
 ---
 
 Knowledge est conçu pour être déployé dans des environnements où le coût d'une autorisation fausse ou forgée est matériel. Les contrôles standards sont résumés ci-dessous. Pour un questionnaire de sécurité, une revue spécifique à un déploiement, ou une exigence de contrôle particulière, [écrivez-nous](mailto:contact@asplenz.com).

@@ -5,7 +5,6 @@ locale: en
 kicker: Pricing
 ctaLabel: Discuss pricing
 ctaHref: mailto:contact@asplenz.com
-contactEmail: contact@asplenz.com
 ---
 
 Knowledge is currently available through our Founding Design Partner Program. We start with one production-relevant decision, establish measurable success criteria, and run Knowledge alongside your existing process before moving to production.

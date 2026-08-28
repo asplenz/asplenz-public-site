@@ -5,7 +5,6 @@ locale: en
 kicker: Contact
 ctaLabel: Email us
 ctaHref: mailto:contact@asplenz.com
-contactEmail: contact@asplenz.com
 ---
 
 If you're building an AI-powered workflow or agent that needs to make decisions based on business or compliance rules, we'd like to understand the use case.

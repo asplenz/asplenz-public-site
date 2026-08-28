@@ -5,7 +5,6 @@ locale: fr
 kicker: Contact
 ctaLabel: Écrivez-nous
 ctaHref: mailto:contact@asplenz.com
-contactEmail: contact@asplenz.com
 ---
 
 Si vous construisez un workflow ou un agent IA qui doit prendre des décisions basées sur des règles métier ou compliance, on aimerait comprendre votre cas d'usage.

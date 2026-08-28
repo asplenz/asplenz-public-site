@@ -5,7 +5,6 @@ locale: fr
 kicker: Trois engagements founding design-partner ouverts
 ctaLabel: Discuter d'un partenariat design
 ctaHref: mailto:contact@asplenz.com
-contactEmail: contact@asplenz.com
 ---
 
 Nous travaillons aux côtés de votre équipe d'implémentation pour transformer une décision humaine policy-driven en workflow agent gouverné. L'engagement n'est pas une démo ni une preuve de concept en sandbox. C'est une session de travail scopée où nous modélisons une décision production, la faisons tourner contre de vrais cas en utilisant le pattern d'adoption le plus sûr (typiquement shadow, gate ou selective routing, choisi au scoping), et mesurons le résultat contre des critères convenus ensemble.
