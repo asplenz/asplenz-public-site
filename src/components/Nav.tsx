@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 // ---------------------------------------------------------------------------
 // Nav model : leaf links and dropdown groups.
 //
-// Solutions and Industries are the two dropdown groups. Each child carries a
+// Product and Use cases are the two dropdown groups. Each child carries a
 // short one-liner description surfaced in the mega-menu, so the menu itself
 // qualifies the reader before the click.
 // ---------------------------------------------------------------------------
@@ -41,12 +41,15 @@ function isGroup(item: NavItem): item is NavGroup {
   return 'children' in item;
 }
 
-// 2026-08-26 : nav restructured for the from-scratch site strategy.
-// Five top-level items (Product / Solutions / Docs / Pricing / Contact).
-// Product exposes the 4 features ; Solutions groups by industry
-// (existing) - the "by role" split is a follow-up. Legacy leaf slugs
-// (how-it-works, ai-agents, ...) still resolve at their old URLs but
-// are no longer in the nav ; redirects handled at next.config.js.
+// 2026-08-28 : nav aligned with horizontal-product positioning.
+// Five top-level items (Product / Use cases / Developers / Pricing / Contact).
+// Use cases dropdown = the horizontal AI-powered-agents entry + concrete
+// applications (Wealth suitability, KYC/KYB admission, Healthcare
+// authorization). Team-persona pages (AI & Automation, Compliance & Risk,
+// Security & Platform) live on /solutions and are surfaced in-content
+// rather than in the primary nav — they are perspectives inside the ICP,
+// not four separate ICPs. Legacy leaf slugs still resolve at their old
+// URLs but are no longer in the nav ; redirects handled at next.config.js.
 const NAV_ITEMS: NavItem[] = [
   {
     groupKey: 'product',
@@ -92,11 +95,11 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    groupKey: 'solutions',
-    groupLabelEn: 'Solutions',
-    groupLabelFr: 'Solutions',
+    groupKey: 'use-cases',
+    groupLabelEn: 'Use cases',
+    groupLabelFr: 'Use cases',
     children: [
-      // Build with Knowledge — the horizontal use case, featured first.
+      // The horizontal use case, featured first.
       {
         slug: 'solutions/build-rule-governed-agents',
         labelEn: 'AI-powered applications & agents',
@@ -105,29 +108,9 @@ const NAV_ITEMS: NavItem[] = [
         descFr: "Le use case horizontal : agents et workflows IA qui prennent des décisions rule-driven avec Knowledge comme autorité policy.",
         featured: true,
       },
-      // For your team — perspectives inside a regulated organization.
-      {
-        slug: 'solutions/by-role/ai-product-teams',
-        labelEn: 'AI & Automation teams',
-        labelFr: 'AI & Automation teams',
-        descEn: 'Integration, APIs, progressive context — how Knowledge fits your architecture.',
-        descFr: "Intégration, APIs, progressive context — comment Knowledge s'insère dans votre architecture.",
-      },
-      {
-        slug: 'solutions/by-role/compliance-officers',
-        labelEn: 'Compliance & Risk',
-        labelFr: 'Compliance & Risk',
-        descEn: 'Own the rules, edit them directly, reconstruct any decision.',
-        descFr: 'Ownez les rules, éditez-les directement, reconstituez toute décision.',
-      },
-      {
-        slug: 'solutions/by-role/ciso-platform',
-        labelEn: 'Security & Platform',
-        labelFr: 'Security & Platform',
-        descEn: 'Trust model, keys inventory, deployment shapes, honest compliance posture.',
-        descFr: 'Trust model, keys inventory, formes de déploiement, posture de compliance honnête.',
-      },
       // Knowledge in practice — concrete applications, moteur is generic.
+      // Team personas (AI/Automation, Compliance/Risk, Security/Platform) live
+      // on /solutions and are surfaced in-content, not in the primary nav.
       {
         slug: 'wealth',
         labelEn: 'Wealth suitability',
@@ -151,7 +134,7 @@ const NAV_ITEMS: NavItem[] = [
       },
     ],
   },
-  { slug: 'docs', labelEn: 'Docs', labelFr: 'Docs' },
+  { slug: 'docs', labelEn: 'Developers', labelFr: 'Developers' },
   { slug: 'pilot', labelEn: 'Pricing', labelFr: 'Pricing' },
   { slug: 'contact', labelEn: 'Contact', labelFr: 'Contact' },
 ];
