@@ -196,7 +196,7 @@ Response :
 }
 ```
 
-An `Approval` record is created automatically. A decider can resolve it via the back-office UI or through the approvals API. See [approvals](/docs/api-reference/approvals).
+The verdict signals that an approval is required ; it does not create the request. To open one, the caller submits `POST /v1/approvals` with the SAME `context` that produced this verdict. The backend re-derives the covered rules from the same computation, so the resulting approval covers exactly the set of blocking rules cited above. A decider then resolves it via the back-office UI or the approvals API. See [approvals](/docs/api-reference/approvals).
 
 ## Step 6 - try a case that requires context you did not send
 

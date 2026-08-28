@@ -196,7 +196,7 @@ Réponse :
 }
 ```
 
-Un record `Approval` est créé automatiquement. Un decider peut le résoudre via l'UI back-office ou à travers l'API approvals. Voir [approvals](/docs/api-reference/approvals).
+Le verdict signale qu'une approval est requise ; il ne crée pas la demande. Pour l'ouvrir, l'appelant soumet `POST /v1/approvals` avec le MÊME `context` qui a produit ce verdict. Le backend re-dérive les rules couvertes depuis la même computation, donc l'approval qui en résulte couvre exactement le set de rules bloquantes citées ci-dessus. Un decider la résout ensuite via l'UI back-office ou l'API approvals. Voir [approvals](/docs/api-reference/approvals).
 
 ## Étape 6 - essayer un cas qui requiert un contexte non envoyé
 
