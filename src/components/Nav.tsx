@@ -108,6 +108,14 @@ const NAV_ITEMS: NavItem[] = [
         descFr: "Le use case horizontal : agents et workflows IA qui prennent des décisions rule-driven avec Knowledge comme autorité policy.",
         featured: true,
       },
+      // Second use case — policy authority for spreadsheet-embedded rules.
+      {
+        slug: 'use-cases/governed-policies-for-excel',
+        labelEn: 'Governed policies for Excel',
+        labelFr: 'Policies gouvernées pour Excel',
+        descEn: 'Move business, risk or compliance policies out of spreadsheet formulas and let Excel use governed decisions in place.',
+        descFr: 'Sortez les policies business, risk ou compliance des formules de spreadsheet et laissez Excel utiliser des décisions gouvernées à leur place.',
+      },
       // Knowledge in practice — concrete applications, moteur is generic.
       // Team personas (AI/Automation, Compliance/Risk, Security/Platform) live
       // on /solutions and are surfaced in-content, not in the primary nav.

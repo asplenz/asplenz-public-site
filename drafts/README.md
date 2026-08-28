@@ -29,4 +29,6 @@ drafts/
 
 ## What lives here today
 
-- `use-cases/governed-policies-for-excel.{en,fr}.md` — page prepared for the EUC wedge (Excel + spreadsheet policy governance). Published only after the wedge validates via 3+ discovery conversations. See internal memory `project_knowledge_euc_wedge_hypothesis.md`.
+Nothing yet. The folder is kept ready for future non-public content.
+
+Previously here : `use-cases/governed-policies-for-excel.{en,fr}.md` — promoted to `md/use-cases/` on 2026-08-29 as a public page after content softening.
