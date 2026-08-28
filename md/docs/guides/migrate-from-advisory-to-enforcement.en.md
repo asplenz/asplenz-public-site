@@ -1,35 +1,54 @@
 ---
 title: Migrate from advisory to enforcement
-description: A three-stage playbook for turning on hard enforcement without breaking traffic.
+description: A three-stage playbook for turning on hard enforcement without breaking traffic. Deployment mode lives on the PEP, not on Knowledge.
 locale: en
 kicker: Docs / Guides - Stable
 ---
 
 Turning on signed-verdict enforcement in production is not a boolean. This playbook covers a three-stage migration that lets you validate parity before the tool boundary starts refusing calls.
 
-## Stage 1 : advisory-only (shadow mode)
+**Deployment mode lives on the PEP, not on Knowledge.** Knowledge always returns the same verdict for the same context. It never blocks, never runs in "shadow mode" itself. The PEP (your tool wrapper, your MCP interceptor, your custom code) is the party that decides whether to advise, orchestrate an approval, or refuse the call. Every stage below is a PEP-side change ; nothing on Knowledge changes across the migration.
 
-**Goal** : Knowledge consults + logs but does not refuse. You measure parity against the current logic.
+## Stage 1 : advisory (shadow)
+
+**Goal** : Knowledge is consulted + the verdict is verified, but the PEP does not refuse. You measure parity against the current logic.
 
 **Setup** :
 
-- Deploy the PEP with `enforcement_mode: advisory`.
-- On every intercepted call, the PEP calls `/check` or `/resolve`, verifies the signature, checks bindings.
-- On a refusal that would have blocked : log the intended refusal to structured logs + a monitoring dashboard, then invoke the downstream API anyway.
+- The PEP calls `/check` or `/resolve`, verifies the signature, checks bindings.
+- On a verdict outcome other than `allowed` : log the intended refusal to structured logs + a monitoring dashboard, then invoke the downstream API anyway.
 - On a bind mismatch : same - log + proceed.
 
-**Config example** (`knowledge-runtime`) :
+**Config example** with `knowledge-runtime` (`require_outcome_allowed=False` skips the outcome check while keeping signature + bindings verified) :
 
 ```python
 @governed_tool(
     action="refund.execute",
     resource="tx",
     bind=["amount"],
-    client=client,
-    enforcement_mode="advisory",
+    require_outcome_allowed=False,
 )
 def refund_customer(tx: str, amount: int):
     return refund_api.execute(tx, amount)
+```
+
+Or with the lower-level primitive when you want full control :
+
+```python
+try:
+    claims = verify_verdict(
+        token=signed,
+        jwks_url=JWKS_URL,
+        expected_bindings=expected,
+        require_outcome_allowed=False,
+    )
+    outcome = claims["decision"]["outcome"]
+    if outcome != "allowed":
+        log.info("would_have_blocked", extra={"outcome": outcome, ...})
+except VerdictVerificationError as e:
+    log.warning("verdict_verify_failed", extra={"code": e.code})
+# Proceed with the wrapped call either way in Stage 1
+return refund_api.execute(tx, amount)
 ```
 
 **What to measure** :
@@ -40,28 +59,34 @@ def refund_customer(tx: str, amount: int):
 
 **Exit criteria** : false-positive rate below your tolerance (target : zero in critical paths).
 
-## Stage 2 : soft-fail (approval workflow)
+## Stage 2 : approval workflow
 
-**Goal** : Knowledge refuses convert to `approval_required` at the PEP layer, not hard refusal. Human review catches remaining edge cases before enforcement.
+**Goal** : Knowledge verdicts of `approval_required` become real approval requests instead of being ignored. Human review catches remaining edge cases before hard enforcement.
 
-**Setup** :
-
-- `enforcement_mode: approval_workflow`.
-- On refusal, PEP creates an Approval via `/v1/approvals` and returns 202-Accepted to the caller with a status URL.
-- Downstream call waits (or polls) for approval.
-- On approve, verdict re-issued as `allowed` (via the Type-3 Override grant).
+**Setup** : still on the PEP side. Application code inspects the verdict and orchestrates :
 
 ```python
 @governed_tool(
     action="refund.execute",
     resource="tx",
     bind=["amount"],
-    client=client,
-    enforcement_mode="approval_workflow",
+    require_outcome_allowed=False,
 )
-def refund_customer(tx: str, amount: int):
-    ...
+def refund_customer(tx: str, amount: int) -> RefundOutcome:
+    verdict = get_last_verdict()  # inspect what the decorator retrieved
+    if verdict.outcome == "blocked":
+        raise PermissionError("refund refused by policy")
+    if verdict.outcome == "approval_required":
+        approval_id = create_approval(
+            action="refund.execute",
+            justification="...",
+            context=verdict.context,
+        )
+        return {"status": "pending_approval", "approval_id": approval_id}
+    return refund_api.execute(tx, amount)
 ```
+
+The approval itself is created by your code calling `POST /v1/approvals` with the same `context` that produced the verdict. Knowledge re-derives the covered rules from that context (see [approvals reference](/docs/api-reference/approvals)).
 
 **What changes for users** : previously-invisible policy triggers now become approval requests. Route them via Slack / email / back-office UI. Deciders learn which cases are edge and which are real risks.
 
@@ -69,23 +94,18 @@ def refund_customer(tx: str, amount: int):
 
 ## Stage 3 : hard enforcement
 
-**Goal** : refusals are terminal. Callers must not send operations that would be refused.
+**Goal** : PEP refuses on any verdict other than `allowed`. Callers must not send operations that would be refused.
 
-**Setup** :
-
-- `enforcement_mode: enforce`.
-- Refusals raise typed errors ; callers must handle them (retry with different parameters, escalate to human, abandon).
+**Setup** : default `@governed_tool` behavior — `require_outcome_allowed=True` (the default). The decorator raises `VerdictVerificationError(code="outcome_not_allowed")` on `blocked` or `approval_required`.
 
 ```python
 @governed_tool(
     action="refund.execute",
     resource="tx",
     bind=["amount"],
-    client=client,
-    enforcement_mode="enforce",
 )
 def refund_customer(tx: str, amount: int):
-    ...
+    return refund_api.execute(tx, amount)
 ```
 
 **When to skip stages** :
@@ -95,21 +115,21 @@ def refund_customer(tx: str, amount: int):
 
 ## Rollback
 
-Every stage is a config change, no code redeploy required (with `knowledge-runtime` :
+Every stage is a PEP config change, no code redeploy required. Flip your PEP's `require_outcome_allowed` flag (or the equivalent in your custom interceptor) via env var :
 
 ```python
-client = KnowledgeClient(..., default_enforcement_mode=os.environ["KNOWLEDGE_ENFORCEMENT"])
+require_outcome_allowed = os.environ.get("PEP_ENFORCE", "true") == "true"
 ```
 
-Set `KNOWLEDGE_ENFORCEMENT=advisory` to instantly downgrade in an incident. The signed verdict is still emitted (audit trail preserved), just not blocking.
+Set `PEP_ENFORCE=false` to instantly downgrade to advisory in an incident. Knowledge continues emitting signed verdicts (audit trail preserved), the PEP just stops refusing.
 
 ## Observability during migration
 
-Metrics to watch :
+Metrics to watch (all recorded PEP-side ; Knowledge itself has no notion of enforcement mode) :
 
-- `governed_tool_calls_total{action, verdict, mode}` - overall volume.
-- `governed_tool_would_have_blocked_total{action, rule}` - shadow signal.
-- `governed_tool_approvals_created_total{action}` - approval workflow volume.
+- `pep_calls_total{action, outcome, mode}` - overall volume.
+- `pep_would_have_blocked_total{action, rule}` - shadow signal.
+- `pep_approvals_created_total{action}` - approval workflow volume.
 
 Alert on : sustained `would_have_blocked` growth (compliance is right, callers are wrong) ; approval SLA breaches (need more deciders or better calibration).
 

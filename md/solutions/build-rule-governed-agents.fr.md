@@ -111,7 +111,7 @@ Chaque agent rule-governed finit par avoir besoin de tout ça. Ce que vous assem
 | Audit trail | Vous buildez le schema et le reader | Record Consultation avec precedence trace |
 | Autorisation signée | Vous ne le faites pas | Enveloppe JWS ES256, JWKS-verifiable |
 | Progressive context | Vous hardcodez la liste de champs | `/resolve` retourne `required_context` |
-| Mode shadow / advisory | Branching custom | Flag de config, même code path |
+| Mode shadow / advisory | Branching custom | `require_outcome_allowed=False` sur le PEP, Knowledge inchangé |
 | Kill switch d'urgence | Redéploiement | Pause via API |
 
 ## Ce que ça vous permet de dire à votre client

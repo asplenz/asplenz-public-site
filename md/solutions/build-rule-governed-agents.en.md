@@ -111,7 +111,7 @@ Every rule-governed agent eventually needs all of it. What you assemble from scr
 | Audit trail | You build the schema and the reader | Consultation record with precedence trace |
 | Signed authorization | You don't | JWS ES256 envelope, JWKS-verifiable |
 | Progressive context | You hardcode the field list | `/resolve` returns `required_context` |
-| Shadow / advisory mode | Custom branching | Config flag, same code path |
+| Shadow / advisory mode | Custom branching | `require_outcome_allowed=False` on the PEP, Knowledge unchanged |
 | Emergency kill switch | Redeploy | Pause via API |
 
 ## What this lets you tell your client
