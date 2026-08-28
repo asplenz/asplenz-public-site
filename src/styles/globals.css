@@ -63,6 +63,16 @@
 
 html {
   scroll-behavior: smooth;
+  /* Prevent page-level horizontal scroll when a code block, table or
+   * wide element sits somewhere in the body. Applied to html AND body
+   * because some mobile browsers (Safari, older Chrome) only honour the
+   * property on one of them for the viewport scroll. Fallback pattern :
+   * `hidden` for older browsers, then `clip` (which browsers with clip
+   * support use ; hidden creates a scroll container that can mis-anchor
+   * position:fixed elements, clip does not). Browsers that don't
+   * recognise `clip` ignore that declaration and fall back to `hidden`. */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -70,11 +80,8 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
-  /* Prevent page-level horizontal scroll when a code block or table has
-   * a wide row (long ASCII diagram, 3-column table with long cells).
-   * Individual .prose pre and .table-scroll containers scroll internally
-   * instead. Nav is position:fixed so it is unaffected by this. */
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .font-serif {
