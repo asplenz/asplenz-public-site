@@ -2,7 +2,7 @@
 title: Give AI agents autonomy without giving the model authority
 description: Knowledge separates what an agent decides to do from what it is authorized to do. Governed actions can require independent policy authorization at the tool boundary, with an audit trail that records exactly what authorized each execution.
 locale: en
-kicker: Solutions - For CISO and Platform Teams
+kicker: Solutions - For Security & Platform
 ---
 
 Your organization is deploying AI agents that will investigate cases, gather evidence and take real business actions. Your job is to enable that without letting the model become the authority on what is allowed.

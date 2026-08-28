@@ -2,7 +2,7 @@
 title: Donnez aux agents IA de l'autonomie sans donner l'autorité au modèle
 description: Knowledge sépare ce que l'agent décide de faire de ce qu'il est autorisé à faire. Les actions gouvernées peuvent exiger une autorisation policy indépendante à la frontière du tool, avec un trail d'audit qui enregistre exactement ce qui a autorisé chaque exécution.
 locale: fr
-kicker: Solutions - Pour CISO et équipes Platform
+kicker: Solutions - Pour Security & Platform
 ---
 
 Votre organisation déploie des agents IA qui vont investiguer des cas, rassembler des preuves et prendre des actions métier réelles. Votre job est de permettre ça sans laisser le modèle devenir l'autorité sur ce qui est autorisé.

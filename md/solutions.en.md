@@ -1,38 +1,38 @@
 ---
-title: Solutions
-description: Ways to apply Knowledge to your organization. Grouped by adoption pattern (build-agent path, role, industry) so you can find the framing closest to your context.
+title: Where Knowledge fits
+description: "Knowledge is a horizontal product : one class of problem (rule-governed decisions), one integration surface, applied across regulated organizations. Pick the framing closest to what brought you here."
 locale: en
-kicker: Solutions
+kicker: Where Knowledge fits
 ---
 
-Knowledge supports policy-driven decisions across many organizational shapes. Pick the framing closest to yours.
+Knowledge is used by regulated organizations building AI applications and agents that automate processes with rule-driven decisions. The product is horizontal ; the sections below are three ways to enter the same thesis.
 
-## By adoption path
+## Build with Knowledge
 
-| Path | Framing |
+The horizontal use case Knowledge is designed for.
+
+| Page | Framing |
 |---|---|
-| **[Build rule-governed agents](/solutions/build-rule-governed-agents)** | You (or your integrator) build agents that make regulated decisions. Knowledge is the policy authority those agents consult, so business rules do not have to live inside the model. |
+| **[AI-powered applications & agents](/solutions/build-rule-governed-agents)** | You (or your integrator) are building agents or AI-powered workflows that make rule-driven decisions. Knowledge is the policy authority those agents consult, so business rules do not have to live inside the model. |
 
-## By role
+## For your team
 
-| Role | Framing |
+Different parts of a regulated organization interact with rule-governed decisions differently. These pages frame Knowledge from each perspective.
+
+| Persona | Framing |
 |---|---|
-| **[For AI product teams](/solutions/by-role/ai-product-teams)** | You build the agent. How Knowledge fits your architecture, whether you are a two-person team shipping your first agent or an internal AI factory scaling across products. |
-| **[For compliance officers](/solutions/by-role/compliance-officers)** | You own the rules. Edit them directly, watch them fire, reconstruct any decision, without engineering as a gatekeeper. |
-| **[For CISO / platform](/solutions/by-role/ciso-platform)** | You review security and architecture. The trust model, keys inventory, deployment shapes, honest compliance posture. |
+| **[AI & Automation teams](/solutions/by-role/ai-product-teams)** | You build the agent. Integration, APIs, progressive context, how Knowledge fits your architecture from a two-person team to an internal AI factory. |
+| **[Compliance & Risk](/solutions/by-role/compliance-officers)** | You own the rules. Edit them directly, watch them fire, reconstruct any decision, without engineering as a gatekeeper. |
+| **[Security & Platform](/solutions/by-role/ciso-platform)** | You review security and architecture. The trust model, keys inventory, deployment shapes, honest compliance posture. |
 
-## By industry
+*Operations & Business teams* — the process owners and business SMEs — is a perspective we surface in customer conversations rather than as a standalone persona page yet. If that is you, start on the *AI & Automation teams* page for context and reach out on [Contact](/contact) with your process.
 
-| Industry | Focus |
+## Knowledge in practice
+
+Concrete applications of the same horizontal product. Each is a class of decisions Knowledge handles ; the moteur is generic.
+
+| Application | Status |
 |---|---|
-| **[Wealth](/wealth)** | Structured-product distribution decisions : eligibility, suitability, cross-border, concentration. |
-| **[KYC / KYB](/kyc)** | Composite onboarding and admission decisions across regulated verticals. |
-| **[Healthcare](/healthcare)** | Coverage, authorization and administrative decisions in policy-driven healthcare workflows. |
-
-## Related
-
-| Read next | Why |
-|---|---|
-| [Product](/product) | The decision loop for rule-governed AI agents |
-| [Design partner](/pilot) | Co-delivery engagement on one production-relevant decision |
-| [Docs](/docs) | Technical reference for developers and integrators |
+| **[Wealth suitability](/wealth)** | Reference implementation — structured-product distribution decisions : eligibility, suitability, cross-border, concentration. |
+| **[KYC / KYB admission](/kyc)** | Example application — composite onboarding and admission decisions across regulated verticals. |
+| **[Healthcare authorization](/healthcare)** | Example application — coverage, authorization and administrative decisions in policy-driven healthcare workflows. |

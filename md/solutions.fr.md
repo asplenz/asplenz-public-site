@@ -1,38 +1,38 @@
 ---
-title: Solutions
-description: Façons d'appliquer Knowledge à votre organisation. Groupées par pattern d'adoption (chemin build-agent, rôle, industrie) pour que vous trouviez le framing le plus proche de votre contexte.
+title: Où Knowledge s'insère
+description: "Knowledge est un produit horizontal : une classe de problème (décisions rule-driven gouvernées), une surface d'intégration, appliqué à des organisations régulées. Choisissez l'angle le plus proche de ce qui vous a amené ici."
 locale: fr
-kicker: Solutions
+kicker: Où Knowledge s'insère
 ---
 
-Knowledge supporte les décisions policy-driven à travers de nombreuses formes organisationnelles. Pickez le framing le plus proche du vôtre.
+Knowledge est utilisé par des organisations régulées qui construisent des applications et des agents IA pour automatiser des processus contenant des décisions rule-driven. Le produit est horizontal ; les sections ci-dessous sont trois façons d'entrer dans la même thèse.
 
-## Par chemin d'adoption
+## Build avec Knowledge
 
-| Chemin | Framing |
+Le use case horizontal pour lequel Knowledge est conçu.
+
+| Page | Cadre |
 |---|---|
-| **[Construire des agents rule-governed](/solutions/build-rule-governed-agents)** | Vous (ou votre intégrateur) construisez des agents qui prennent des décisions régulées. Knowledge est la policy authority que ces agents consultent, pour que les règles métier n'aient pas à vivre à l'intérieur du modèle. |
+| **[Applications et agents IA](/solutions/build-rule-governed-agents)** | Vous (ou votre intégrateur) construisez des agents ou des workflows IA qui prennent des décisions rule-driven. Knowledge est l'autorité policy que ces agents consultent, pour que les règles métier n'aient pas à vivre dans le modèle. |
 
-## Par rôle
+## For your team
 
-| Rôle | Framing |
+Différentes parties d'une organisation régulée interagissent différemment avec les décisions rule-governed. Ces pages cadrent Knowledge depuis chaque perspective.
+
+| Persona | Cadre |
 |---|---|
-| **[Pour équipes produit IA](/solutions/by-role/ai-product-teams)** | Vous construisez l'agent. Comment Knowledge s'insère dans votre architecture, que vous soyez une équipe de deux qui ship son premier agent ou une AI factory interne qui scale à travers plusieurs produits. |
-| **[Pour compliance officers](/solutions/by-role/compliance-officers)** | Vous ownez les règles. Éditez-les directement, regardez-les fire, reconstituez toute décision, sans que l'engineering soit un gatekeeper. |
-| **[Pour CISO / platform](/solutions/by-role/ciso-platform)** | Vous reviewez security et architecture. Le trust model, l'inventaire des clés, les formes de déploiement, la posture compliance honnête. |
+| **[AI & Automation teams](/solutions/by-role/ai-product-teams)** | Vous construisez l'agent. Intégration, APIs, progressive context, comment Knowledge s'insère dans votre architecture — d'une équipe de deux à une AI factory interne. |
+| **[Compliance & Risk](/solutions/by-role/compliance-officers)** | Vous ownez les rules. Éditez-les directement, watchez-les fire, reconstituez toute décision, sans ingénierie en gatekeeper. |
+| **[Security & Platform](/solutions/by-role/ciso-platform)** | Vous reviewez sécurité et architecture. Trust model, keys inventory, formes de déploiement, posture de compliance honnête. |
 
-## Par industrie
+*Operations & Business teams* — les owners de processus et SMEs métier — est une perspective qu'on aborde en conversation client plutôt que comme une persona page standalone pour l'instant. Si c'est votre profil, commencez sur la page *AI & Automation teams* pour le contexte et écrivez-nous via [Contact](/contact) avec votre processus.
 
-| Industrie | Focus |
+## Knowledge in practice
+
+Applications concrètes du même produit horizontal. Chacune est une classe de décisions que Knowledge traite ; le moteur est générique.
+
+| Application | Statut |
 |---|---|
-| **[Wealth](/wealth)** | Décisions de distribution de produits structurés : éligibilité, suitability, cross-border, concentration. |
-| **[KYC / KYB](/kyc)** | Décisions composites d'onboarding et d'admission à travers les verticals régulés. |
-| **[Healthcare](/healthcare)** | Décisions de couverture, d'autorisation et administratives dans les workflows healthcare policy-driven. |
-
-## Related
-
-| À lire ensuite | Pourquoi |
-|---|---|
-| [Product](/product) | La boucle de décision pour agents IA rule-governed |
-| [Design partner](/pilot) | Engagement co-delivery sur une décision production |
-| [Docs](/docs) | Référence technique pour développeurs et intégrateurs |
+| **[Wealth suitability](/wealth)** | Reference implementation — décisions de distribution de produits structurés : éligibilité, suitability, cross-border, concentration. |
+| **[KYC / KYB admission](/kyc)** | Example application — décisions composites d'onboarding et d'admission à travers verticaux régulés. |
+| **[Healthcare authorization](/healthcare)** | Example application — décisions de couverture, d'autorisation et administratives dans les workflows healthcare policy-driven. |
