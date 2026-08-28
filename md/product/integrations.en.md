@@ -97,7 +97,7 @@ Two patterns cover most integrations :
 | **Python SDK** (`knowledge-runtime`) | Available |
 | **REST API + JWKS** | Available |
 | **OIDC + SCIM** | Available |
-| **TypeScript, Java, OpenAI adapter** | [Talk to us](/pilot) if this is on your path |
+| **TypeScript, Java, OpenAI adapter** | [Talk to us](/contact) if this is on your path |
 
 ## Explore the API
 

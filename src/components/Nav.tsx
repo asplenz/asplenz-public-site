@@ -135,7 +135,7 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   { slug: 'docs', labelEn: 'Developers', labelFr: 'Developers' },
-  { slug: 'pilot', labelEn: 'Pricing', labelFr: 'Pricing' },
+  { slug: 'pricing', labelEn: 'Pricing', labelFr: 'Pricing' },
   { slug: 'contact', labelEn: 'Contact', labelFr: 'Contact' },
 ];
 

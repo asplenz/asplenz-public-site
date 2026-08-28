@@ -120,7 +120,7 @@ Pour les équipes tournant déjà MCP, le pattern d'intercepteur est le fit natu
 
 M1 à M4bis complets. 121 tests. CI vert. Disponible aujourd'hui dans les déploiements design-partner ; certification production (SOC 2, ISO 27001) démarre avec la cohorte design-partner.
 
-**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Knowledge comme serveur MCP](/docs/quickstart-knowledge-mcp)** &nbsp; · &nbsp; **[Parlez-nous](/pilot)**
+**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Knowledge comme serveur MCP](/docs/quickstart-knowledge-mcp)** &nbsp; · &nbsp; **[Discuter de votre use case](/contact)**
 
 ## Related
 

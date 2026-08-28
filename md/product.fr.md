@@ -58,7 +58,7 @@ Quatre capabilities matérialisent la boucle. Chacune a sa propre page ; cette s
 |---|---|
 | **[Construire des agents rule-governed](/solutions/build-rule-governed-agents)** | Voyez comment Knowledge s'insère dans une architecture d'agent et donne aux équipes d'implémentation un endroit gouverné pour les règles métier dont leurs agents dépendent. |
 | **[Appliquer Knowledge à votre organisation](/solutions)** | Explorez comment Knowledge peut supporter les décisions policy-driven à travers différents rôles, processes et industries régulées. |
-| **[Rejoindre notre Founding Design Partner Program](/pilot)** | Travaillez avec nous sur une décision production, en démarrant en shadow mode avec des critères de succès mesurables et un accès direct à l'équipe produit. |
+| **[Rejoindre notre Founding Design Partner Program](/design-partners)** | Travaillez avec nous sur une décision production, en démarrant en shadow mode avec des critères de succès mesurables et un accès direct à l'équipe produit. |
 | **[Documentation développeur](/docs)** | Explorez quickstarts, APIs, SDKs, intégration MCP, security, deployment et référence technique. |
 
 ## Related

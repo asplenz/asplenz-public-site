@@ -3,8 +3,8 @@ title: Laissez les agents d'onboarding collecter ce dont ils ont besoin. Gardez 
 description: L'onboarding piloté par IA change comment l'information client peut être collectée. Un agent peut chercher dans les systèmes internes, appeler des providers de vérification et ne demander au client que quand c'est nécessaire. Knowledge détermine ce que la policy applicable exige et si le cas résultant peut procéder, sans remplacer votre stack IDV, screening ou workflow.
 locale: fr
 kicker: Knowledge pour le KYC / KYB
-ctaLabel: Explorer un design partnership
-ctaHref: /pilot
+ctaLabel: Discuter de votre use case
+ctaHref: /contact
 ---
 
 L'admission client se transforme sous l'effet de l'investigation pilotée par IA. Un agent d'onboarding peut chercher dans les systèmes internes, appeler des providers de vérification, extraire des faits depuis des documents, et ne demander au client que quand rien d'autre n'est disponible. Cette flexibilité est puissante. Elle soulève aussi une question de policy :
@@ -115,7 +115,7 @@ Voir [Auditability](/product/auditability) pour le mécanisme.
 
 Pickez une décision d'admission que votre stack d'onboarding fait actuellement, ou une que votre nouvel agent d'onboarding doit faire, où l'autorité policy devrait vivre hors du modèle. Faites-la tourner en shadow mode contre le process actuel. Cutoverez quand la parité et l'audit atteignent votre bar.
 
-**[Explorer un design partnership](/pilot)** &nbsp; · &nbsp; **[Parlez-nous](/contact)**
+**[Discuter de votre use case](/contact)** &nbsp; · &nbsp; **[Voir pricing](/pricing)**
 
 ## Related
 

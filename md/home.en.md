@@ -96,7 +96,7 @@ The lifecycle stays operational through :
 - **Overrides and pauses** as governed objects, not hidden branches
 - **Signed authorization** so a downstream enforcement boundary can prove the policy decision that authorized an action (with the honest caveat that architectural placement of the PEP is the client's responsibility)
 
-**[How Knowledge fits your firm](/pilot)** &nbsp; · &nbsp; **[The auditability model](/product/auditability)**
+**[See pricing](/pricing)** &nbsp; · &nbsp; **[The auditability model](/product/auditability)**
 
 ---
 
@@ -106,7 +106,7 @@ Working with three founding partners on production-relevant decisions. One produ
 
 **One slot filled** (wealth vertical, structured products distribution). **Two slots open** - one prioritised for teams that build AI agents making rule-governed decisions, one flexible.
 
-**[Apply as design partner](/pilot)** &nbsp; · &nbsp; **[contact@asplenz.com](mailto:contact@asplenz.com)**
+**[Apply as design partner](/design-partners)** &nbsp; · &nbsp; **[contact@asplenz.com](mailto:contact@asplenz.com)**
 
 ---
 

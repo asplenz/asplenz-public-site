@@ -3,8 +3,8 @@ title: Laissez les workflows wealth AI-powered investiguer la suitability. Garde
 description: Quand les capabilities IA derrière vos applications wealth aident à déterminer si un produit structuré peut être proposé à un client, elles peuvent avoir besoin de contexte produit, client, portefeuille et juridiction. Knowledge les laisse rassembler ce contexte progressivement pendant qu'une policy déterministe détermine ce qui est allowed, blocked ou requires human approval.
 locale: fr
 kicker: Knowledge pour le Wealth
-ctaLabel: Explorer un design partnership
-ctaHref: /pilot
+ctaLabel: Discuter de votre use case
+ctaHref: /contact
 ---
 
 ## La nouvelle frontière de décision qu'un workflow wealth AI-powered introduit
@@ -149,7 +149,7 @@ Pour un engagement design-partner, Asplenz ship un point de départ opérationne
 
 Pickez une décision que votre service IA derrière le workstation doit prendre qui est actuellement gouvernée par de l'interprétation humaine, des procédures fragmentées ou de la logique d'agent custom. Faites-la tourner en shadow mode contre le process actuel. Cutoverez quand la parité et l'audit sont prouvés.
 
-**[Explorer un design partnership](/pilot)** &nbsp; · &nbsp; **[Parlez-nous](/contact)**
+**[Discuter de votre use case](/contact)** &nbsp; · &nbsp; **[Voir pricing](/pricing)**
 
 ## Related
 

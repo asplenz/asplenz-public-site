@@ -17,7 +17,7 @@ const nextConfig = {
       { source: '/enforcement',        destination: '/product/enforcement',        permanent: true },
       { source: '/governance',         destination: '/product/auditability',       permanent: true },
       { source: '/ask-less',           destination: '/product/progressive-context', permanent: true },
-      { source: '/developers',         destination: '/product/integrations',       permanent: true },
+      { source: '/developers',         destination: '/docs',                       permanent: true },
       { source: '/how-it-works',       destination: '/docs/what-is-knowledge',     permanent: true },
       { source: '/vs',                 destination: '/product/enforcement',        permanent: true },
       // Solutions by role : legacy ai-agents and automate-approvals
@@ -27,6 +27,9 @@ const nextConfig = {
       { source: '/ai-agents',          destination: '/solutions/by-role/ai-product-teams',    permanent: true },
       { source: '/automate-approvals', destination: '/solutions/by-role/compliance-officers', permanent: true },
       { source: '/stack',              destination: '/product/integrations',                  permanent: true },
+      // 2026-08-28 : /pilot page renamed to /design-partners to make
+      // room for a dedicated /pricing landing above it.
+      { source: '/pilot',              destination: '/design-partners',            permanent: true },
     ];
   },
 };

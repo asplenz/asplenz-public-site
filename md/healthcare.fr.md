@@ -3,8 +3,8 @@ title: Apporter la gouvernance des décisions aux opérations santé pilotées p
 description: Les assureurs santé et organismes gestionnaires s'appuient encore sur des équipes opérationnelles pour traiter des dossiers dont la décision dépend de règles, d'informations provenant de plusieurs systèmes, de documents et de procédures. L'IA peut de plus en plus rassembler et interpréter ce contexte, mais les décisions de couverture, de remboursement et d'autorisation qui en résultent doivent toujours suivre la politique organisationnelle explicite. Knowledge garde ces règles hors du modèle et les évalue de manière déterministe, pendant que les plateformes existantes continuent à gérer le workflow et l'exécution.
 locale: fr
 kicker: Knowledge pour la santé
-ctaLabel: Explorer un design partnership
-ctaHref: /pilot
+ctaLabel: Discuter de votre use case
+ctaHref: /contact
 ---
 
 Une brique IA peut désormais investiguer un dossier avec une sophistication croissante. Elle lit les notes cliniques et les pièces justificatives, interroge les systèmes de gestion, d'éligibilité et d'annuaires, extrait les faits qui comptent. Cette flexibilité est puissante. Elle soulève aussi une question de gouvernance :
@@ -127,7 +127,7 @@ Le focus initial est sur des organisations opérant des environnements complexes
 
 Choisissez une décision opérationnelle que vos équipes résolvent encore manuellement, ou une décision où une brique IA pourrait assembler le dossier mais où la détermination des règles doit rester hors du modèle. Faites-la tourner en shadow mode contre le process actuel. Basculez en enforcement quand la parité et l'auditabilité atteignent votre seuil.
 
-**[Explorer un design partnership](/pilot)** &nbsp; · &nbsp; **[Parlez-nous](/contact)**
+**[Discuter de votre use case](/contact)** &nbsp; · &nbsp; **[Voir pricing](/pricing)**
 
 ## Related
 

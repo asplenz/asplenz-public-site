@@ -3,8 +3,8 @@ title: Let AI-powered wealth workflows investigate suitability. Keep distributio
 description: When AI capabilities behind your wealth applications help determine whether a structured product can be proposed to a client, they may need product, client, portfolio and jurisdiction context. Knowledge lets them gather that context progressively while deterministic policy determines what is allowed, blocked or requires human approval.
 locale: en
 kicker: Knowledge for Wealth
-ctaLabel: Explore a design partnership
-ctaHref: /pilot
+ctaLabel: Discuss your use case
+ctaHref: /contact
 ---
 
 ## The new decision boundary an AI-powered wealth workflow introduces
@@ -149,7 +149,7 @@ For a design-partner engagement, Asplenz ships a working starting point Complian
 
 Pick one decision your AI service behind the workstation needs to make that is currently governed by human interpretation, fragmented procedures or custom agent logic. Run it in shadow mode against the current process. Cut over when parity and audit are proven.
 
-**[Explore a design partnership](/pilot)** &nbsp; · &nbsp; **[Talk to us](/contact)**
+**[Discuss your use case](/contact)** &nbsp; · &nbsp; **[See pricing](/pricing)**
 
 ## Related
 

@@ -95,4 +95,4 @@ Pour des questionnaires de sécurité détaillés, des revues spécifiques à un
 | [Enforcement](/product/enforcement) | Le verdict signé et le modèle PEP, la chaîne de confiance à quatre acteurs, chemins d'adoption |
 | [Auditability](/product/auditability) | La surface d'autorship, versioning et approbation protégée par les contrôles de cette page |
 | [Integrations](/product/integrations) | La surface API à laquelle les contrôles d'authentification et d'autorisation s'appliquent |
-| [Design partner](/pilot) | Trois places founding, une décision production, pricing founding-customer |
+| [Design partner](/design-partners) | Trois places founding, une décision production, pricing founding-customer |

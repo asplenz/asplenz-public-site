@@ -14,7 +14,7 @@ Deux patterns, même page. Choisissez celui qui correspond à l'endroit où votr
 
 ## Prérequis
 
-- Un déploiement Knowledge actif. [Contactez-nous](/pilot) si vous n'en avez pas.
+- Un déploiement Knowledge actif. [Contactez-nous](/contact) si vous n'en avez pas.
 - Python 3.11+.
 - Pattern B a besoin d'une clé API pour le tenant. Pattern A n'en a pas besoin - la vérification n'utilise que le JWKS public.
 

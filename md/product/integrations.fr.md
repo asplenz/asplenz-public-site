@@ -99,7 +99,7 @@ Deux patterns couvrent la plupart des intégrations :
 | **SDK Python** (`knowledge-runtime`) | Disponible |
 | **REST API + JWKS** | Disponible |
 | **OIDC + SCIM** | Disponible |
-| **TypeScript, Java, adaptateur OpenAI** | [Parlez-nous](/pilot) si c'est sur votre chemin |
+| **TypeScript, Java, adaptateur OpenAI** | [Parlez-nous](/contact) si c'est sur votre chemin |
 
 ## Explorer l'API
 

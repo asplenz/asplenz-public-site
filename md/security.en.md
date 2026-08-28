@@ -95,4 +95,4 @@ For detailed security questionnaires, deployment-specific reviews or custom cont
 | [Enforcement](/product/enforcement) | The signed verdict and PEP model, the four-actor trust chain, adoption paths |
 | [Auditability](/product/auditability) | The authorship, versioning and approval surface protected by the controls on this page |
 | [Integrations](/product/integrations) | The API surface the authentication and authorization controls apply to |
-| [Design partner](/pilot) | Three founding slots, one production-relevant decision, founding-customer pricing |
+| [Design partner](/design-partners) | Three founding slots, one production-relevant decision, founding-customer pricing |

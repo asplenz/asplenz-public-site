@@ -3,8 +3,8 @@ title: Let onboarding agents collect what they need. Keep the admission decision
 description: AI-driven onboarding changes how customer information can be collected. An agent can search internal systems, call verification providers and ask the customer only when necessary. Knowledge determines what the applicable policy requires and whether the resulting case can proceed, without replacing your IDV, screening or workflow stack.
 locale: en
 kicker: Knowledge for KYC / KYB
-ctaLabel: Explore a design partnership
-ctaHref: /pilot
+ctaLabel: Discuss your use case
+ctaHref: /contact
 ---
 
 Customer admission is being reshaped by AI-driven investigation. An onboarding agent can search internal systems, call verification providers, extract facts from documents, and ask the customer only when nothing else is available. That flexibility is powerful. It also raises a policy question :
@@ -115,7 +115,7 @@ See [Auditability](/product/auditability) for the mechanism.
 
 Pick one admission decision your onboarding stack currently makes, or one your new onboarding agent needs to make, where the policy authority should live outside the model. Run it in shadow mode against the current process. Cut over when parity and audit meet your bar.
 
-**[Explore a design partnership](/pilot)** &nbsp; · &nbsp; **[Talk to us](/contact)**
+**[Discuss your use case](/contact)** &nbsp; · &nbsp; **[See pricing](/pricing)**
 
 ## Related
 

@@ -96,7 +96,7 @@ Le cycle de vie reste opérationnel via :
 - **Overrides et pauses** comme objets gouvernés, pas des branches cachées
 - **Autorisation signée** pour qu'une frontière d'enforcement en aval puisse prouver la décision policy qui a autorisé une action (avec le caveat honnête que le placement architectural du PEP est la responsabilité du client)
 
-**[Comment Knowledge s'insère chez vous](/pilot)** &nbsp; · &nbsp; **[Le modèle d'auditability](/product/auditability)**
+**[Voir pricing](/pricing)** &nbsp; · &nbsp; **[Le modèle d'auditability](/product/auditability)**
 
 ---
 
@@ -106,7 +106,7 @@ Nous travaillons avec trois partenaires founding sur des décisions production-r
 
 **Une place remplie** (vertical wealth, distribution produits structurés). **Deux places ouvertes** - une priorisée pour équipes qui construisent des agents IA de décision gouvernée, une flexible.
 
-**[Postuler comme design partner](/pilot)** &nbsp; · &nbsp; **[contact@asplenz.com](mailto:contact@asplenz.com)**
+**[Postuler comme design partner](/design-partners)** &nbsp; · &nbsp; **[contact@asplenz.com](mailto:contact@asplenz.com)**
 
 ---
 

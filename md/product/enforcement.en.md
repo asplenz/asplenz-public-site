@@ -120,7 +120,7 @@ Being explicit here is part of the enforcement contract, not a caveat.
 
 M1 through M4bis complete. 121 tests. CI green. Available today in design-partner deployments ; production certification (SOC 2, ISO 27001) starts with the design-partner cohort.
 
-**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Knowledge as MCP server](/docs/quickstart-knowledge-mcp)** &nbsp; · &nbsp; **[Talk to us](/pilot)**
+**[Quickstart 5 min](/docs/quickstart-governed-tool)** &nbsp; · &nbsp; **[Knowledge as MCP server](/docs/quickstart-knowledge-mcp)** &nbsp; · &nbsp; **[Discuss your use case](/contact)**
 
 ## Related
 

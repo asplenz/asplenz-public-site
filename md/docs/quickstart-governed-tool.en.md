@@ -14,7 +14,7 @@ Two patterns, same page. Pick the one that matches where in the chain your code 
 
 ## Prerequisites
 
-- A running Knowledge deployment. [Contact us](/pilot) if you do not have one.
+- A running Knowledge deployment. [Contact us](/contact) if you do not have one.
 - Python 3.11+.
 - Pattern B needs an API key for the tenant. Pattern A does not - verification uses only the public JWKS.
 

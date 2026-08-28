@@ -12,7 +12,7 @@ Three paths to reach us :
 
 ## Design partner enquiries
 
-For firms considering a design-partner engagement, see [/pilot](/pilot) for the full offer + criteria + timeline. Then email :
+For firms considering a design-partner engagement, see [/design-partners](/design-partners) for the full offer + criteria + timeline. Then email :
 
 **[contact@asplenz.com](mailto:contact@asplenz.com)**
 

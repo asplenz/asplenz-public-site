@@ -1,6 +1,6 @@
 ---
-title: Bring us one decision your stack makes hard to change, automate or audit
-description: One production-relevant decision. Knowledge runs alongside your existing system, measured against criteria agreed upfront. Convert to a founding-customer contract if the numbers land; clean exit if they don't.
+title: Bring us one policy-driven decision your organization wants to automate with AI
+description: One production-relevant decision, turned into a governed agent workflow. Knowledge runs alongside your existing system, measured against criteria agreed upfront. Convert to a founding-customer contract if the numbers land ; clean exit if they don't.
 locale: en
 kicker: Three founding design-partner engagements open
 ctaLabel: Discuss a design partnership
@@ -8,7 +8,7 @@ ctaHref: mailto:contact@asplenz.com
 contactEmail: contact@asplenz.com
 ---
 
-The engagement is not a demo or a sandbox proof-of-concept. It is a scoped working session where we model one production-relevant decision, run it against real cases using the safest appropriate adoption pattern (typically shadow, gate or selective routing, chosen at scoping), and measure the outcome against criteria we agree together.
+We work alongside your implementation team to turn one policy-driven human decision into a governed agent workflow. The engagement is not a demo or a sandbox proof-of-concept. It is a scoped working session where we model one production-relevant decision, run it against real cases using the safest appropriate adoption pattern (typically shadow, gate or selective routing, chosen at scoping), and measure the outcome against criteria we agree together.
 
 If the criteria are met, you convert to a founding-customer contract and we extend to the next decision. If not, clean exit, no ongoing commitment.
 
@@ -30,7 +30,7 @@ Knowledge is already operational. At this stage, the first cohort of design part
 | What we need | Detail |
 |---|---|
 | **A real, production-relevant decision** | One decision that is escalated, mis-decided or slow today, evaluated against real cases |
-| **A named business champion and a named tech champion** | Typically the compliance officer, CISO, head of AI product or head of platform on one side, the person who plumbs Knowledge into the caller on the other. One working meeting per week for eight weeks |
+| **A named business champion and a named tech champion** | The business champion owns the process and the decision — typically a Business or Operations lead, sometimes a head of AI product when the decision is embedded in a new agent flow. The tech champion is the AI / Automation implementation lead who plumbs Knowledge into the caller. Compliance & Risk and Security & Platform participate when the decision touches their surface, but they are not the primary champions. One working meeting per week for eight weeks |
 | **Honest feedback** | You tell us what breaks, what is confusing, what is missing. We ship fixes weekly during the engagement |
 | **An eight-week commitment** | Long enough for the metrics to accumulate meaningfully. Clean exit at the end if we have not hit the criteria agreed upfront |
 | **Optional but valued** | Willingness to be quoted or referenced once the success criteria are met |
@@ -67,17 +67,39 @@ Before week 1, we agree on the numbers that would justify converting. Typical cr
 
 ## Bring your internal AI team or implementation partner
 
-Knowledge does not build the agent for you. The engagement assumes an implementation team - either your internal AI / automation team, or an implementation partner (SI, agent vendor, boutique consultancy) already engaged on the project. We work alongside them to turn one policy-driven human decision into a governed agent workflow.
+Knowledge does not build the agent for you. The engagement assumes an implementation team — either your internal AI / automation team, or an implementation partner (SI, agent vendor, boutique consultancy) already engaged on the project. We work alongside them to turn one policy-driven human decision into a governed agent workflow.
 
 If you don't yet have an implementation team lined up, we can introduce partners we have already delivered alongside. That is a discussion, not a marketplace ; the intent is to make sure the first engagement has the right hands, not to route you through a channel.
 
 See [Build rule-governed agents](/solutions/build-rule-governed-agents) if you are the implementation partner.
 
+## The engagement in one picture
+
+```
+Your team + SMEs
+       |
+       v
+formalize the rules
+       |
+       v
+Knowledge
+       |
+       v
+historical replay
+       |
+       v
+shadow deployment
+       |
+       v
+measure
+       |
+       v
+production if the numbers land
+```
+
 ## Why only three
 
-These are hands-on engagements with direct founder and product-team involvement. We limit the first cohort to three firms so each partner can materially influence what gets productized, and so we can ship weekly fixes that respond to what the engagements reveal.
-
-Fit is determined by the decision and the problem, not the industry label. Current solution patterns include **Reviews & Approvals**, **Ask Less**, **governed AI decisions**, and **cryptographic enforcement at the tool boundary**. Current industry packs include **Wealth** (structured-product distribution) and **KYC / KYB**. A strong fit is any decision where compliance rigor, agent enforcement or auditable authorization matters, whether it maps to an existing pattern or a new one.
+Hands-on engagements with direct founder and product-team involvement. We limit the first cohort to three firms so each partner can materially influence what gets productized, and so we can ship weekly fixes that respond to what the engagements reveal. Fit is determined by the decision and the problem, not the industry label.
 
 [[cta]Discuss a design partnership](mailto:contact@asplenz.com)
 

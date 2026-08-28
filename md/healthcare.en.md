@@ -3,8 +3,8 @@ title: Bring governed decision-making to AI-powered healthcare operations
 description: Payers and TPAs still rely on operational teams to resolve policy-driven cases that require information from multiple systems, documents and procedures. AI can increasingly gather and interpret that context, but the resulting coverage, claims and approval decisions still need to follow explicit organizational policy. Knowledge keeps those rules outside the model and evaluates them deterministically, while existing platforms continue to own the workflow and execution.
 locale: en
 kicker: Knowledge for Healthcare
-ctaLabel: Explore a design partnership
-ctaHref: /pilot
+ctaLabel: Discuss your use case
+ctaHref: /contact
 ---
 
 An AI service can now investigate a case with growing sophistication. It reads clinical notes and supporting documents, queries claims, eligibility and provider systems, extracts the facts that matter. That flexibility is powerful. It also raises a policy question :
@@ -127,7 +127,7 @@ The initial focus is on organizations operating complex multi-plan or multi-paye
 
 Pick one operational decision your teams still resolve manually or where an AI capability could gather the case but the policy determination should remain outside the model. Run it in shadow mode against the current process. Cut over when parity and audit meet your bar.
 
-**[Explore a design partnership](/pilot)** &nbsp; · &nbsp; **[Talk to us](/contact)**
+**[Discuss your use case](/contact)** &nbsp; · &nbsp; **[See pricing](/pricing)**
 
 ## Related
 

@@ -1,6 +1,6 @@
 ---
-title: Apportez-nous une décision que votre stack rend difficile à changer, automatiser ou auditer
-description: Une décision production. Knowledge tourne à côté de votre système existant, mesuré contre des critères convenus d'entrée. Conversion en contrat founding-customer si les chiffres tombent ; sortie propre sinon.
+title: Apportez-nous une décision policy-driven que votre organisation veut automatiser avec l'IA
+description: Une décision production-relevant, transformée en workflow agent gouverné. Knowledge tourne à côté de votre système existant, mesuré contre des critères convenus d'entrée. Conversion en contrat founding-customer si les chiffres tombent ; sortie propre sinon.
 locale: fr
 kicker: Trois engagements founding design-partner ouverts
 ctaLabel: Discuter d'un partenariat design
@@ -8,7 +8,7 @@ ctaHref: mailto:contact@asplenz.com
 contactEmail: contact@asplenz.com
 ---
 
-L'engagement n'est pas une démo ni une preuve de concept en sandbox. C'est une session de travail scopée où nous modélisons une décision production, la faisons tourner contre de vrais cas en utilisant le pattern d'adoption le plus sûr (typiquement shadow, gate ou selective routing, choisi au scoping), et mesurons le résultat contre des critères convenus ensemble.
+Nous travaillons aux côtés de votre équipe d'implémentation pour transformer une décision humaine policy-driven en workflow agent gouverné. L'engagement n'est pas une démo ni une preuve de concept en sandbox. C'est une session de travail scopée où nous modélisons une décision production, la faisons tourner contre de vrais cas en utilisant le pattern d'adoption le plus sûr (typiquement shadow, gate ou selective routing, choisi au scoping), et mesurons le résultat contre des critères convenus ensemble.
 
 Si les critères sont atteints, vous convertissez au contrat founding-customer et nous étendons à la décision suivante. Sinon, sortie propre, aucun engagement continu.
 
@@ -30,7 +30,7 @@ Knowledge est déjà opérationnel. À ce stade, la première cohorte de design 
 | Ce dont nous avons besoin | Détail |
 |---|---|
 | **Une vraie décision production** | Une décision escaladée, mal-décidée ou lente aujourd'hui, évaluée contre de vrais cas |
-| **Un champion business nommé et un champion tech nommé** | Typiquement le compliance officer, le CISO, le head of AI product ou le head of platform d'un côté, la personne qui plombe Knowledge dans l'appelant de l'autre. Une réunion de travail par semaine pendant huit semaines |
+| **Un champion business nommé et un champion tech nommé** | Le champion business owne le processus et la décision — typiquement un lead Business ou Operations, parfois un head of AI product quand la décision est embarquée dans un nouveau flow agent. Le champion tech est le lead d'implémentation AI / Automation qui plombe Knowledge dans l'appelant. Compliance & Risk et Security & Platform participent quand la décision touche leur surface, mais ne sont pas les champions primaires. Une réunion de travail par semaine pendant huit semaines |
 | **Feedback honnête** | Vous nous dites ce qui casse, ce qui est confus, ce qui manque. Nous shippons des fixes chaque semaine pendant l'engagement |
 | **Un engagement de huit semaines** | Assez long pour que les métriques s'accumulent de manière significative. Sortie propre à la fin si nous n'avons pas atteint les critères convenus d'entrée |
 | **Optionnel mais apprécié** | Volonté d'être cité ou référencé une fois les critères de succès atteints |
@@ -67,17 +67,39 @@ Avant la semaine 1, nous convenons des chiffres qui justifieraient la conversion
 
 ## Amenez votre équipe AI interne ou votre partenaire d'implémentation
 
-Knowledge ne construit pas l'agent pour vous. L'engagement présuppose une équipe d'implémentation - soit votre équipe AI / automation interne, soit un partenaire d'implémentation (SI, agent vendor, cabinet boutique) déjà engagé sur le projet. Nous travaillons à leurs côtés pour transformer une décision humaine policy-driven en workflow agent gouverné.
+Knowledge ne construit pas l'agent pour vous. L'engagement présuppose une équipe d'implémentation — soit votre équipe AI / automation interne, soit un partenaire d'implémentation (SI, agent vendor, cabinet boutique) déjà engagé sur le projet. Nous travaillons à leurs côtés pour transformer une décision humaine policy-driven en workflow agent gouverné.
 
 Si vous n'avez pas encore d'équipe d'implémentation en place, nous pouvons vous introduire à des partenaires avec lesquels nous avons déjà livré. C'est une discussion, pas un marketplace ; l'intention est de s'assurer que le premier engagement a les bonnes mains, pas de vous router à travers un canal.
 
 Voir [Construire des agents rule-governed](/solutions/build-rule-governed-agents) si vous êtes le partenaire d'implémentation.
 
+## L'engagement en une image
+
+```
+Votre équipe + SMEs
+       |
+       v
+formaliser les règles
+       |
+       v
+Knowledge
+       |
+       v
+replay historique
+       |
+       v
+déploiement shadow
+       |
+       v
+mesurer
+       |
+       v
+production si les chiffres tombent
+```
+
 ## Pourquoi trois seulement
 
-Ce sont des engagements hands-on avec implication directe des fondateurs et de l'équipe produit. Nous limitons la première cohorte à trois firmes pour que chaque partenaire puisse influencer matériellement ce qui est productisé, et pour que nous puissions shipper des fixes hebdomadaires qui répondent à ce que les engagements révèlent.
-
-Le fit est déterminé par la décision et le problème, pas par le label sectoriel. Les patterns de solutions actuels sont **Revues & approbations**, **Demandez moins**, **décisions IA gouvernées**, et **enforcement cryptographique à la frontière du tool**. Les packs industry actuels sont **Wealth** (distribution de produits structurés) et **KYC / KYB**. Un fit fort est n'importe quelle décision où la rigueur compliance, l'enforcement d'agent ou l'autorisation auditable comptent, qu'elle colle à un pattern existant ou à un nouveau.
+Engagements hands-on avec implication directe des fondateurs et de l'équipe produit. Nous limitons la première cohorte à trois firmes pour que chaque partenaire puisse influencer matériellement ce qui est productisé, et pour que nous puissions shipper des fixes hebdomadaires qui répondent à ce que les engagements révèlent. Le fit est déterminé par la décision et le problème, pas par le label sectoriel.
 
 [[cta]Discuter d'un partenariat design](mailto:contact@asplenz.com)
 

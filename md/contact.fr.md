@@ -12,7 +12,7 @@ Trois chemins pour nous joindre :
 
 ## Demandes design partner
 
-Pour les firmes qui considèrent un engagement design-partner, voir [/pilot](/pilot) pour l'offre complète + critères + timeline. Ensuite email :
+Pour les firmes qui considèrent un engagement design-partner, voir [/design-partners](/design-partners) pour l'offre complète + critères + timeline. Ensuite email :
 
 **[contact@asplenz.com](mailto:contact@asplenz.com)**
 

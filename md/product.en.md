@@ -58,7 +58,7 @@ Four capabilities materialize the loop. Each one has its own page ; this section
 |---|---|
 | **[Build rule-governed agents](/solutions/build-rule-governed-agents)** | See how Knowledge fits into an agent architecture and gives implementation teams a governed place for the business rules their agents rely on. |
 | **[Apply Knowledge to your organization](/solutions)** | Explore how Knowledge can support policy-driven decisions across different roles, processes and regulated industries. |
-| **[Join our Founding Design Partner Program](/pilot)** | Work with us on one production-relevant decision, starting in shadow mode with measurable success criteria and direct access to the product team. |
+| **[Join our Founding Design Partner Program](/design-partners)** | Work with us on one production-relevant decision, starting in shadow mode with measurable success criteria and direct access to the product team. |
 | **[Developer documentation](/docs)** | Explore quickstarts, APIs, SDKs, MCP integration, security, deployment and technical reference. |
 
 ## Related
