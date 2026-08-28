@@ -1,6 +1,6 @@
 ---
-title: Contact
-description: Talk to us about a design-partner engagement, a technical evaluation, or anything else.
+title: Tell us what you're trying to automate
+description: If you're building an AI-powered workflow or agent that needs to make decisions based on business or compliance rules, we'd like to understand the use case.
 locale: en
 kicker: Contact
 ctaLabel: Email us
@@ -8,38 +8,31 @@ ctaHref: mailto:contact@asplenz.com
 contactEmail: contact@asplenz.com
 ---
 
-Three paths to reach us :
+If you're building an AI-powered workflow or agent that needs to make decisions based on business or compliance rules, we'd like to understand the use case.
 
-## Design partner enquiries
+Tell us about :
 
-For firms considering a design-partner engagement, see [/design-partners](/design-partners) for the full offer + criteria + timeline. Then email :
-
-**[contact@asplenz.com](mailto:contact@asplenz.com)**
-
-Include a one-line description of the decision you would like Knowledge to help with, and whether you have an AI agent in production, in pilot, or on the roadmap.
-
-## Technical evaluation
-
-For engineering teams evaluating the enforcement + PEP model :
-
-- Read [/product/enforcement](/product/enforcement) for the architecture.
-- Read the quickstarts at [/docs](/docs) for hands-on integration.
-- Read the full spec at `docs/specs/signed-verdict-v1.md` in the monorepo.
-
-Questions or a technical demo :
+- the decision or process ;
+- how it's handled today ;
+- where AI or automation fits — or is expected to fit — in the process ;
+- who is building the solution (internal team, integrator, still deciding).
 
 **[contact@asplenz.com](mailto:contact@asplenz.com)**
 
-## Security disclosure
+## Exploring a design partnership ?
 
-Suspected security issue in the platform, SDK, or spec :
+We work with a small number of teams on one production-relevant decision, starting with replay or shadow deployment and measurable success criteria.
+
+**[Learn about the Founding Design Partner Program](/design-partners)**
+
+## Evaluating Knowledge technically ?
+
+Architecture, APIs, SDKs and quickstarts.
+
+**[Read the docs](/docs)**
+
+## Security disclosures
 
 **[security@asplenz.com](mailto:security@asplenz.com)**
 
 Please do not open a public issue. We acknowledge within 48h and coordinate disclosure timing with you.
-
-## Everything else
-
-**[contact@asplenz.com](mailto:contact@asplenz.com)**
-
-We read every message. Response time depends on load ; design-partner enquiries get priority.
