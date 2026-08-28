@@ -24,15 +24,11 @@ Pricing is scoped upfront based on the decision, the integration requirements an
 
 **Annual platform agreement**
 
-Once Knowledge moves into production, pricing is based on your deployment and decision volume. Not on the number of rules you encode : formalizing more of your policy is exactly the adoption we want, so we do not tax it.
+Production pricing reflects the scale and deployment requirements of your Knowledge environment — never the number of rules you encode. Your pricing should not increase simply because you formalize more of your policy in Knowledge.
 
 Founding design partners receive preferential first-year production terms.
 
 **[Discuss production pricing](mailto:contact@asplenz.com)**
-
-## Why not a price grid
-
-Publishing Starter / Pro / Enterprise tiers today would be theatre. After the first three design-partner engagements, we will know which packaging metric — decisions, consultations, environments, policy domains, business units, agents — actually reflects the cost and value of Knowledge in your stack. Until then, every scope is priced against what it actually is.
 
 [[cta]Discuss pricing](mailto:contact@asplenz.com)
 

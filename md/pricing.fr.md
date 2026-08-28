@@ -24,15 +24,11 @@ Le pricing est scopé en amont selon la décision, les exigences d'intégration 
 
 **Accord plateforme annuel**
 
-Une fois Knowledge en production, le pricing est basé sur votre déploiement et votre volume de décisions. Pas sur le nombre de rules que vous encodez : formaliser davantage de votre policy est exactement l'adoption qu'on veut encourager, donc on ne la taxe pas.
+Le pricing production reflète l'échelle et les exigences de déploiement de votre environnement Knowledge — jamais le nombre de rules que vous encodez. Votre pricing ne devrait pas augmenter simplement parce que vous formalisez davantage de votre policy dans Knowledge.
 
 Les founding design partners bénéficient de conditions préférentielles la première année de production.
 
 **[Discuss production pricing](mailto:contact@asplenz.com)**
-
-## Pourquoi pas de grille de prix
-
-Publier des tiers Starter / Pro / Enterprise aujourd'hui serait du théâtre. Après les trois premiers engagements design-partner, on saura quel metric de packaging — décisions, consultations, environnements, domaines de policy, business units, agents — reflète réellement le coût et la valeur de Knowledge dans votre stack. En attendant, chaque scope est pricé pour ce qu'il est réellement.
 
 [[cta]Discuss pricing](mailto:contact@asplenz.com)
 
