@@ -102,5 +102,3 @@ production si les chiffres tombent
 Engagements hands-on avec implication directe des fondateurs et de l'équipe produit. Nous limitons la première cohorte à trois firmes pour que chaque partenaire puisse influencer matériellement ce qui est productisé, et pour que nous puissions shipper des fixes hebdomadaires qui répondent à ce que les engagements révèlent. Le fit est déterminé par la décision et le problème, pas par le label sectoriel.
 
 [[cta]Discuter d'un partenariat design](mailto:contact@asplenz.com)
-
-email : [contact@asplenz.com](mailto:contact@asplenz.com)

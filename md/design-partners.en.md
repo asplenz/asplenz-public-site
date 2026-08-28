@@ -102,5 +102,3 @@ production if the numbers land
 Hands-on engagements with direct founder and product-team involvement. We limit the first cohort to three firms so each partner can materially influence what gets productized, and so we can ship weekly fixes that respond to what the engagements reveal. Fit is determined by the decision and the problem, not the industry label.
 
 [[cta]Discuss a design partnership](mailto:contact@asplenz.com)
-
-email: [contact@asplenz.com](mailto:contact@asplenz.com)

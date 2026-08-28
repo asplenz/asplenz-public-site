@@ -31,5 +31,3 @@ Founding design partners receive preferential first-year production terms.
 **[Discuss production pricing](mailto:contact@asplenz.com)**
 
 [[cta]Discuss pricing](mailto:contact@asplenz.com)
-
-email : [contact@asplenz.com](mailto:contact@asplenz.com)

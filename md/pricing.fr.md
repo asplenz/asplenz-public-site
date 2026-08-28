@@ -31,5 +31,3 @@ Les founding design partners bénéficient de conditions préférentielles la pr
 **[Discuss production pricing](mailto:contact@asplenz.com)**
 
 [[cta]Discuss pricing](mailto:contact@asplenz.com)
-
-email : [contact@asplenz.com](mailto:contact@asplenz.com)
