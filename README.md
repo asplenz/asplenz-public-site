@@ -109,3 +109,19 @@ The site was built to embody the GTM stance formalised in
   agents happen to be excellent callers for.
 
 Any content update should preserve these stances.
+
+## Visuals : real UI vs diagrams
+
+Not every page needs the same media. The rule is :
+
+> **Real product UI where the UI itself demonstrates the value. Diagrams where the architecture or interaction between systems demonstrates the value.**
+
+Under this rule :
+
+- `use-cases/governed-policies-for-excel` uses real screenshots. The value proposition ("Knowledge works inside the workbook you already use") is exactly what a screenshot shows and a diagram cannot. The screenshots must come from the actual add-in running against real seed data, never mockups.
+- `product/enforcement`, `product/progressive-context`, `product/integrations`, `solutions/build-rule-governed-agents` use diagrams (fenced code blocks : `pipeline`, `agent-toolbelt`, `fanout`, `lifecycle`, `outcomes`). The value is a control boundary, a protocol or a system interaction — a screenshot of an API response would tell the reader less than a diagram does.
+- `wealth`, `kyc`, `healthcare` (example applications) use diagrams. The Knowledge back-office is not the user's workstation ; showing it would suggest Knowledge ships the persona's tool, which it does not.
+
+A natural future candidate for a real screenshot is `product/auditability` : the back-office consultation record is itself the proof of the audit proposition. Ship when the flow is clean enough to capture without misleading the reader.
+
+Do not add screenshots to a page for visual consistency with other pages. Asymmetry is fine when it is justified by what each page needs to prove.
