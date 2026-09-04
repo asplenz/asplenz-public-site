@@ -1,170 +1,86 @@
 ---
 title: Keep Excel. Move critical policy out of the spreadsheet.
-description: When business, risk or compliance policies are implemented directly in spreadsheet formulas or macros, every workbook can become its own copy of the policy. Knowledge lets Excel use governed policy decisions while teams keep working in the spreadsheets they already use.
+description: Governed policies for Excel bring policy decisions into the workbooks your teams already use, and keep them aligned when the policy, the case, or the reference data around them changes.
 locale: en
 kicker: Governed policies for Excel
 ctaLabel: Discuss your use case
 ctaHref: /contact
 ---
 
-Business teams rely on spreadsheets for calculations, analysis and workflows. That is not the problem.
+Your teams keep Excel : the layout, the rows, the formulas, the shared workbooks. What changes : the rule that decides whether an operation is compliant no longer lives inside the workbook. It lives in Knowledge, versioned and current, and Excel consults it when the governed decision is evaluated. Excel stays where the case data is. Knowledge holds the policy. The two meet inside the cell that renders the verdict.
 
-The problem starts when a spreadsheet also becomes the authority for a business, risk or compliance policy.
+![Knowledge for Excel hero view showing four rows with distinct verdicts](/images/knowledge-for-excel/01-hero.png)
 
-A threshold is embedded in a formula. An eligibility rule lives in VBA. An approval requirement is copied across several workbooks.
+*Illustrative data. Company names, products and amounts are fictional and used for demonstration purposes only.*
 
-When the policy changes, which spreadsheets contain it ? Have they all been updated ? And months later, can you prove which version produced a particular decision ?
+## Two problems, one solution
 
-Knowledge moves selected policies out of the spreadsheet and gives them their own governed lifecycle — while users continue working in Excel.
+**Policy duplication.** Critical rules get copied into formulas, VBA and local scripts. When the policy changes, every implementation has to follow. Some don't. Audit findings follow.
 
-## The propagation problem
+**Decisions become stale.** Even when the policy has not changed, the facts it applies to can. A client rating changes. An issuer enters a restricted list. A transaction changes status. A workbook can continue showing yesterday's answer unless the decision is evaluated again.
 
-A policy can quickly become many local implementations.
+Governed policies for Excel address both. The formula asks Knowledge what the applicable policy determines given the current facts. When the relevant inputs change, the decision can be evaluated again.
 
-```
-                 Company policy
-                       |
-          +------------+------------+
-          |            |            |
-          v            v            v
-       Excel A      Excel B      Excel C
+## How it works for the user
 
-       > EUR 500k   > EUR 500k   > EUR 500k
-       formula      VBA          formula
-```
-
-When that policy changes :
-
-- Where is it implemented ?
-- Have all copies been updated ?
-- Who approved the new rule ?
-- When did it become effective ?
-- Which version applied to a past decision ?
-
-The policy has its own lifecycle : ownership, approval, versions, effective dates, exceptions and decision history.
-
-Knowledge makes that lifecycle explicit.
-
-## Use governed policy decisions directly from Excel
-
-The spreadsheet provides the facts of the case. Knowledge determines which policy and rules apply and returns the governed decision.
+In the workbook they already use, the user adds one formula :
 
 ```
-Structured Product Suitability
-
-Client        Retail
-Product       Structured Note
-Amount        EUR 450,000
-
---------------------------------
-
-APPROVAL REQUIRED
-
-Rule          LARGE_NOTIONAL
-Rule version  v18
-Effective     28 Aug 2026
-Consultation  cns-abc123
+=KNOWLEDGE.RESOLVE("order.book_structured_product", A1:H2)
 ```
 
-The user gets the result in Excel, alongside the work they are already doing.
+where `A1:H2` holds the case data (client segment, product complexity, amount, and so on). The cell displays a verdict paired with a short human reason drawn from the winning rule :
 
-The policy itself lives in Knowledge.
+| Icon | Cell text | Meaning |
+|---|---|---|
+| green check | **ALLOWED** | The applicable policy authorises the operation. |
+| orange triangle | **APPROVAL_REQUIRED - Complex on accredited** | The applicable policy requires an approval before the operation. |
+| orange clock | **APPROVAL_PENDING - Complex on accredited** | A colleague in the same scope has already submitted an approval request for the same context. |
+| red cross | **BLOCKED - Restricted issuer** | The applicable policy forbids the operation. |
 
-## Change the policy once. Not every spreadsheet.
+Clicking the cell opens a native Excel card with the full rule statement, its version at decision time, the consultation id, and the cryptographically signed fingerprint of the decision.
 
-Suppose three workbooks rely on the same suitability policy :
+## When things change, the decision follows
 
-- a trade-suitability workbook
-- a client-review workbook
-- an exception-monitoring workbook
+A Knowledge decision depends on three independent inputs. Any of them can change ; the decision follows on the next workbook calculation.
 
-The current policy says :
+**Policy.** Compliance edits and approves a new rule version in Knowledge. Previously allowed cases become approval-required or blocked under the new policy, without editing a single formula in any workbook. Motivations for a version bump include internal policy tightening, product launches, or a regulatory change interpreted by Compliance / Legal into the firm's own approved policy.
 
-```
-SUITABILITY.LARGE_NOTIONAL
+**Case data.** A cell in the row changes. The RM raises the notional from 450k to 550k. The row moves from ALLOWED to APPROVAL_REQUIRED without any change to the policy or the reference data.
 
-Retail client
-Structured product
-Amount > EUR 500,000
+**Reference data.** An external fact the row consults changes. Compliance adds an issuer to the restricted list. Client risk rating gets reclassified from medium to high. Sanctions status changes. The workbook picks up the new fact from the source that owns it, and the row re-evaluates.
 
--> APPROVAL REQUIRED
-```
+![Same row, before and after an issuer enters the restricted list. ALLOWED at 14:31, BLOCKED - Restricted issuer at 14:32.](/images/knowledge-for-excel/02-before-after-restricted.png)
 
-Compliance approves a change.
+Same row, same policy, same formula. Between 14:31 and 14:32 the compliance-owned restricted list changed. The updated reference data triggered a new evaluation. No policy logic had to be changed in the workbook.
 
-```
-v17                 v18
+## Regulation changes. Your policy follows.
 
-EUR 500,000   ->    EUR 400,000
-                    APPROVED
-                    Effective 28 Aug 2026
-```
+When a regulatory change requires Compliance or Legal to update an internal policy, the new rule is reviewed, approved and given an effective date in Knowledge. Workbooks consulting that policy use the new version without embedding a new copy of the rule.
 
-Knowledge records the new version and its effective date.
+Knowledge does not interpret regulatory texts automatically. The authority inside Knowledge is always the policy your organisation has approved. Compliance / Legal translate the external requirement into an internal policy version. Knowledge holds and executes that version. This is what makes the audit trail defensible.
 
-The workbooks continue consulting Knowledge :
+**Change the policy once. Not every spreadsheet.**
 
-```
-                      Knowledge
-                         v18
-                          |
-              +-----------+-----------+
-              |           |           |
-              v           v           v
-           Excel A     Excel B     Excel C
-```
+## From decision to approval, without leaving Excel
 
-No local threshold needs to be redistributed across those workbooks.
+When Knowledge returns `APPROVAL_REQUIRED`, the RM opens the Knowledge panel inside Excel. The case context is pre-filled from the cell. The justification textarea is editable. One click submits the request. The cell moves to `APPROVAL_PENDING` immediately, so another user resolving the same governed case can see that an approval is already in progress. The compliance officer decides in the back-office. If approved, the cell moves to `ALLOWED` on the next refresh, with the resulting Override recorded and dated.
 
-Each workbook consults the same effective policy instead of maintaining its own copy of the rule.
+![Approval submission panel with pre-filled context and justification](/images/knowledge-for-excel/03-approval-panel.png)
 
-## Know which policy produced the decision
+Every consultation and every approval submitted via Knowledge becomes an audit line tied to the case context, the user, the rule that triggered it, and the rule version at decision time.
 
-The audit question is not only :
+## Reconstruct any decision precisely
 
-**What does the policy say today ?**
+Every decision is tied to the context, policy version and rule that applied at the time. You can explain why the same case was allowed yesterday and blocked today.
 
-It is also :
+![Consultation detail page in the Knowledge back-office](/images/knowledge-for-excel/04-consultation-detail.png)
 
-**What policy applied when this decision was made ?**
+Timestamp precise to the second. Rule cited with its version. Full context sent. Cryptographic signature. You can reconstruct both decisions from the context and policy state recorded at the time.
 
-Consider a transaction from 14 March 2025 :
+## Which rules belong in Knowledge ?
 
-```
-Client        Retail
-Product       Structured Product
-Amount        EUR 450,000
-
-Decision      ALLOWED
-```
-
-Knowledge records the policy state behind that decision :
-
-```
-Policy        Structured Product Suitability
-Rule          LARGE_NOTIONAL
-Rule version  v17
-Threshold     EUR 500,000
-Effective at  14 March 2025
-Consultation  cns-91827
-```
-
-Under today's policy, the same case produces :
-
-```
-Decision      APPROVAL REQUIRED
-Rule version  v18
-Threshold     EUR 400,000
-Effective     28 Aug 2026
-```
-
-Two different decisions, both correct — because each is tied to the rule version that applied at that time.
-
-## What belongs in Knowledge ?
-
-Not every formula or business rule in a spreadsheet should move to Knowledge.
-
-A useful test is :
+Not every formula or business rule in a spreadsheet should move to Knowledge. A useful test is :
 
 > **Would this rule still exist if this spreadsheet did not ?**
 
@@ -174,26 +90,44 @@ A useful test is :
 | Highlight an incomplete cell | No — workbook behavior |
 | Retail structured-product transactions above EUR 500k require compliance review | Yes — organizational policy |
 
-The test identifies a candidate, not a mandatory move.
+The test identifies a candidate, not a mandatory move. Knowledge is most relevant when a rule represents organizational policy and needs its own approval, versioning, effective dates or historical audit trail. Everything else can stay where it is.
 
-Knowledge is most relevant when a rule represents organizational policy and needs its own approval, versioning, effective dates or historical audit trail.
+## Where teams can use it
 
-Everything else can stay where it is.
+These are examples. Knowledge evaluates your organisation's policies ; it does not provide the underlying KYC, suitability or risk policy.
 
-## Keep working in Excel
+| Team | Where it fits | Example decision |
+|---|---|---|
+| **Front office** | Structured product booking, order entry | Suitability based on client segment, product complexity and notional. |
+| **Compliance** | Periodic client review, exception review | Escalation when client risk or review conditions require it. |
+| **Operations** | Exception release monitoring, post-trade breaks | Benign reasons (system error, custodian holiday) versus sensitive ones (VIP facility, large notional) get different paths. |
 
-Knowledge does not require business teams to replace their spreadsheets or move calculations and analysis into a new application.
+## Under the hood
 
-Excel remains the working environment.
+**Custom function.** `KNOWLEDGE.RESOLVE(action_type, context_range)` returns the verdict as a native Excel Entity Value. Companion variants exist for batch and streaming evaluation. Cells re-evaluate when their inputs change, so a workbook that receives updated case data or reference data from an external source picks up the new decision on the next calculation.
 
-Selected business, risk and compliance policies are evaluated through Knowledge, with their governance and decision history maintained independently.
+**Deployed centrally through Microsoft 365. No per-user installation required.** The add-in is installed once by your tenant admin ; end users see it in Excel automatically. Available for Excel on the web and Excel Desktop for Windows. Users authenticate with their existing Microsoft 365 account through Entra ID.
 
-Enterprise integrations can be adapted to existing authentication, network and deployment requirements.
+## Current scope
 
-## Discuss your use case
+**Available today**
 
-Are business, risk or compliance rules embedded in critical spreadsheets today ?
+- The custom functions above.
+- The native Excel entity card with rule, version, consultation id and signature.
+- The side panel with approval submission and pending list.
+- Approval deduplication across users in the same scope.
+- SSO through Entra ID.
+- Centralised install via Microsoft 365 tenant admin.
 
-When one of those policies changes, can you identify where it is applied — and prove which version produced a decision months later ?
+**Current boundaries**
 
-**[Discuss your use case](/contact)**
+- A workbook that is closed when a policy or reference-data change occurs does not re-evaluate on its own ; re-evaluation happens on the next open.
+- Knowledge does not proactively push notifications to every downstream system ; each consumer asks Knowledge on its own cadence.
+- Knowledge does not automatically identify the full population of open cases across the firm that a new policy version affects.
+- Actions performed outside Knowledge are not captured by Knowledge.
+
+## Discuss your workbook
+
+If you have a spreadsheet whose policy you would want to govern this way, or a regulatory change coming up that will require updating rules in many places, we would rather see it than describe it in the abstract.
+
+[[cta]Discuss your use case](/contact)
