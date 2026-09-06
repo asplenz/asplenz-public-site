@@ -30,6 +30,14 @@ const nextConfig = {
       // 2026-08-28 : /pilot page renamed to /design-partners to make
       // room for a dedicated /pricing landing above it.
       { source: '/pilot',              destination: '/design-partners',            permanent: true },
+      // 2026-09-06 : eliminate the /en duplicate that Google Search
+      // Console flagged as "Duplicate without user-selected canonical".
+      // Next.js i18n with defaultLocale=en serves the same content at
+      // both `/` and `/en/*`. Redirecting `/en/*` -> `/*` collapses the
+      // duplicate ; the Layout component also emits canonical +
+      // hreflang tags for defense in depth.
+      { source: '/en/:path*',          destination: '/:path*',                     permanent: true },
+      { source: '/en',                 destination: '/',                           permanent: true },
     ];
   },
 };
