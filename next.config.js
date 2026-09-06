@@ -36,8 +36,14 @@ const nextConfig = {
       // both `/` and `/en/*`. Redirecting `/en/*` -> `/*` collapses the
       // duplicate ; the Layout component also emits canonical +
       // hreflang tags for defense in depth.
-      { source: '/en/:path*',          destination: '/:path*',                     permanent: true },
-      { source: '/en',                 destination: '/',                           permanent: true },
+      //
+      // `locale: false` is required so the redirect source matches the
+      // literal `/en/*` path. Without it, Next.js auto-prefixes the
+      // pattern with the active locale, so `/en/foo` becomes
+      // `/{locale}/en/foo` and never matches - the redirect silently
+      // does nothing.
+      { source: '/en/:path*',          destination: '/:path*',                     permanent: true, locale: false },
+      { source: '/en',                 destination: '/',                           permanent: true, locale: false },
     ];
   },
 };
